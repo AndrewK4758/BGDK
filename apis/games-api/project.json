@@ -1,0 +1,24 @@
+{
+  "name": "games-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/games-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "games-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "games-api:build:development"
+        },
+        "production": {
+          "buildTarget": "games-api:build:production"
+        }
+      }
+    }
+  }
+}

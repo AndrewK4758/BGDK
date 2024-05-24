@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "Bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ESNext",
+    "module": "esnext",
+    "lib": ["ESNext", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@aklapper/chain": ["libs/chain/src/index.ts"],
+      "@aklapper/chains-for-games": ["libs/chains-for-games/src/index.ts"],
+      "@aklapper/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
+      "@aklapper/model": ["libs/model/src/index.ts"],
+      "@aklapper/react-components": ["libs/react-components/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
