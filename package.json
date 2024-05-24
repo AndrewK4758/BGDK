@@ -1,0 +1,13 @@
+{
+  "name": "@aklapper/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@nx/js": "19.0.8",
+    "@nx/workspace": "19.0.8",
+    "nx": "19.0.8"
+  }
+}
