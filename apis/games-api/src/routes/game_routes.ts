@@ -13,3 +13,5 @@ export class GameRoutes {
     router.patch('/join-game', performAction);
   }
 }
+
+//enable appEngine and authorization/authentication ask for example yaml file
