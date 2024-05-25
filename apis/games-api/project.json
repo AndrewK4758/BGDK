@@ -1,7 +1,7 @@
 {
   "name": "games-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/games-api/src",
+  "sourceRoot": "apis/games-api/src",
   "projectType": "application",
   "tags": [],
   "targets": {

@@ -17,7 +17,7 @@ let game: IGame,
   instance: ChutesAndLadders;
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     instance = new ChutesAndLadders(5, 5);
     game = new Game(instance);
 
@@ -35,19 +35,19 @@ describe('Test connectivity of spaces within Board', () => {
     game.playersArray[0] = player1;
     game.playersArray[1] = player2;
 
-    cur.land(avatar1);
-    cur.land(avatar2);
+    game.instance.startSpace.land(avatar1);
+    game.instance.startSpace.land(avatar2);
 
     die = new Die(6);
     rollValue = die.roll();
   });
 
-  afterEach(() => {
-    avatar1.location.leave();
-    avatar2.location.leave();
+  // afterEach(() => {
+  //   avatar1.location.leave();
+  //   avatar2.location.leave();
 
-    cur = game.instance.startSpace;
-  });
+  //   cur = game.instance.startSpace;
+  // });
   describe('test next property of all spaces', () => {
     it('should pass', () => {
       while (cur) {

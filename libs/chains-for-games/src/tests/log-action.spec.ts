@@ -1,6 +1,6 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { logAction } from '../index';
 import { GameContextKeys } from '@aklapper/model';
+import { logAction } from '../index';
 
 let ctx: Context;
 

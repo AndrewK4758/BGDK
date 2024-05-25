@@ -31,5 +31,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    target: 'modules',
   },
+  envDir: './',
 });

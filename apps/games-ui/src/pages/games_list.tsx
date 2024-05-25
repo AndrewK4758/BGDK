@@ -23,7 +23,6 @@ const listGamesMap = (e: IBuiltGame, i: number, arr: IBuiltGame[]) => (
 
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
-
   return (
     <Container
       component={'div'}

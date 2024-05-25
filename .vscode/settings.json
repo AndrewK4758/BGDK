@@ -1,4 +1,4 @@
 {
-  "jest.jestCommandLine": "./",
+  "jest.enable": true,
   "jest.rootPath": "./"
 }

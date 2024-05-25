@@ -1,8 +1,29 @@
-import { resetGame, flipHaveWinnerFlag, makeGameBoard } from '../index';
-import { ContextBuilder, Context } from '@aklapper/chain';
-import { GameContextKeys, InstanceOfGame, deRefContextObject, getCurrentMinute } from '@aklapper/model';
-import { ChutesAndLadders, Game, GameBoard, IGame } from '@aklapper/chutes-and-ladders';
-import { mockAddPlayersToGame } from './__mocks__/__mock_';
+import { Context, ContextBuilder } from '@aklapper/chain';
+import {
+  Avatar,
+  ChutesAndLadders,
+  Color,
+  Game,
+  GameBoard,
+  IGame,
+  Player,
+} from '@aklapper/chutes-and-ladders';
+import {
+  GameContextKeys,
+  InstanceOfGame,
+  deRefContextObject,
+  getCurrentMinute,
+} from '@aklapper/model';
+import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
+
+export const mockAddPlayersToGame = (game: InstanceOfGame) => {
+  game.instance.playersArray[0] = new Player('player1', 'player-1-ID');
+  game.instance.playersArray[0].order = 1;
+  game.instance.playersArray[0].avatar = new Avatar('XENOMORPH', Color.BLACK);
+  game.instance.playersArray[1] = new Player('player2', 'player-2-ID');
+  game.instance.playersArray[1].order = 2;
+  game.instance.playersArray[1].avatar = new Avatar('PREDATOR', Color.RED);
+};
 
 let ctx: Context, game: InstanceOfGame;
 
@@ -10,7 +31,11 @@ describe('it should reset game', () => {
   beforeAll(() => {
     ctx = ContextBuilder.build();
 
-    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
+    game = new InstanceOfGame(
+      getCurrentMinute(),
+      'game-ID',
+      new Game(new ChutesAndLadders(5, 5))
+    );
     mockAddPlayersToGame(game);
 
     ctx.put(GameContextKeys.GAME, game);
@@ -18,8 +43,12 @@ describe('it should reset game', () => {
   });
 
   beforeEach(() => {
-    game.instance.instance.startSpace.next.land(game.instance.playersArray[0].avatar);
-    game.instance.instance.startSpace.next.next.land(game.instance.playersArray[1].avatar);
+    game.instance.instance.startSpace.next.land(
+      game.instance.playersArray[0].avatar
+    );
+    game.instance.instance.startSpace.next.next.land(
+      game.instance.playersArray[1].avatar
+    );
   });
 
   afterEach(() => {
@@ -30,9 +59,16 @@ describe('it should reset game', () => {
   it('should show start space as empty then return both players to startspace', () => {
     expect(game.instance.instance.startSpace.occupied).toBeFalsy();
 
-    if (!game.instance.instance.startSpace.next.special && !game.instance.instance.startSpace.next.next.special) {
-      expect(game.instance.instance.startSpace.next.avatarsInSpace[0].name).toBe('XENOMORPH');
-      expect(game.instance.instance.startSpace.next.next.avatarsInSpace[0].name).toBe('PREDATOR');
+    if (
+      !game.instance.instance.startSpace.next.special &&
+      !game.instance.instance.startSpace.next.next.special
+    ) {
+      expect(
+        game.instance.instance.startSpace.next.avatarsInSpace[0].name
+      ).toBe('XENOMORPH');
+      expect(
+        game.instance.instance.startSpace.next.next.avatarsInSpace[0].name
+      ).toBe('PREDATOR');
     }
 
     const commandResult = resetGame.execute(ctx);

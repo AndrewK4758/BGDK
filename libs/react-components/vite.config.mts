@@ -32,6 +32,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    target: 'modules',
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',

@@ -116,13 +116,17 @@ describe('Games api test wrapper', () => {
             const resp = await axios.patch(
               '/games/Chutes-&-Ladders/board',
               {},
-              { headers: { __current_game__: JSON.stringify(__current_game__) } }
+              {
+                headers: { __current_game__: JSON.stringify(__current_game__) },
+              }
             );
 
             __current_game__ = JSON.parse(resp.headers.__current_game__);
             const gamePlayData = resp.data as IPlayersAndBoard;
             expect(gamePlayData.gameBoard).toEqual(
-              expect.arrayContaining([expect.arrayContaining([expect.any(String)])])
+              expect.arrayContaining([
+                expect.arrayContaining([expect.any(String)]),
+              ])
             );
             expect(gamePlayData.activePlayersInGame).toEqual(
               expect.arrayContaining([
@@ -134,24 +138,9 @@ describe('Games api test wrapper', () => {
               ])
             );
             expect(gamePlayData.playerInTurn).toEqual(expect.any(String));
-            expect(gamePlayData.message).toEqual(expect.any(String));
+            expect(gamePlayData.winner).toEqual(expect.any(String));
           });
         });
-        // describe('Patch /take-turn', () => {
-        //   it('Should verify valid turn', async () => {
-        //     __current_game__.test = true;
-
-        //     const resp = await axios.patch(
-        //       '/games/Chutes-&-Ladders/take-turn',
-        //       {},
-        //       { headers: { __current_game__: JSON.stringify(__current_game__) } }
-        //     );
-        //     console.log(resp.headers.__current_game__);
-        //     __current_game__ = JSON.parse(resp.headers.__current_game__);
-
-        //     expect(resp.data.message).toMatch(TurnStatus.VALID || TurnStatus.INVALID);
-        //   });
-        // });
       });
     });
   });
