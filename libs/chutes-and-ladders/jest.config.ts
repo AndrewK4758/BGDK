@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 export default {
   displayName: 'chutes-and-ladders',
   preset: '../../jest.preset.js',
@@ -8,4 +9,7 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/libs/chutes-and-ladders',
+  moduleNameMapper: {
+    '@mocks': '<rootDir>/__mocks__/*.ts',
+  },
 };

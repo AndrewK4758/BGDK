@@ -39,8 +39,8 @@ export const checkIfWinner = CommandBuilder.build((context: Context) => {
     const winner = game.instance.haveWinner;
 
     if (winner) {
-      const message = `CONGRATULATIONS ${game.instance.playerInTurn.name}... YOU WON!!!!`;
-      context.put('winner-message', message);
+      const winnerMessage = `CONGRATULATIONS ${game.instance.playerInTurn.name}... YOU WON!!!!`;
+      context.put('winner-message', winnerMessage);
     } else {
       context.put('winner-message', '');
     }

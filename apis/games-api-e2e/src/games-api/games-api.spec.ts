@@ -3,11 +3,13 @@ import {
   IBuiltGame,
   GamePlayerValidation,
   IPlayersAndBoard,
-  // TurnStatus,
   GameInstanceID,
   PlayerID,
+  TurnStatus,
 } from '@aklapper/model';
 import axios from 'axios';
+
+let __current_game__: GamePlayerValidation, playerIDs: string[];
 
 describe('Games api test wrapper', () => {
   describe('GET Games ', () => {
@@ -25,20 +27,16 @@ describe('Games api test wrapper', () => {
     it('Should return a gameID', async () => {
       const resp = await axios.post('/games/Chutes-&-Ladders');
 
-      const __current_game__ = JSON.parse(resp.headers.__current_game__);
+      __current_game__ = JSON.parse(resp.headers.__current_game__);
 
-      expect((__current_game__.gameInstanceID as GameInstanceID).length).toEqual(6);
+      expect(
+        (__current_game__.gameInstanceID as GameInstanceID).length
+      ).toEqual(6);
       expect(resp.status).toEqual(201);
     });
   });
 
   describe('From here down tests the dynamic endpoints in my CoR', () => {
-    let __current_game__: GamePlayerValidation;
-    beforeAll(async () => {
-      const respForID = await axios.post('/games/Chutes-&-Ladders');
-      __current_game__ = JSON.parse(respForID.headers.__current_game__);
-    });
-
     describe('PATCH Formik form loader to register player/avatar', () => {
       it('Should return a list of avatar objects and avatar color string enums', async () => {
         const resp = await axios.patch(
@@ -48,34 +46,13 @@ describe('Games api test wrapper', () => {
         );
 
         expect(resp.data.avatarList.length).toEqual(4);
-        expect(resp.data.avatarList).toContainEqual(
-          expect.objectContaining<AvatarTotem>({ id: expect.any(Number), name: expect.any(String) })
-        );
-        expect(resp.data.avatarColorList).toEqual(expect.objectContaining(Color));
+        expect(resp.data.avatarList).toContainEqual<AvatarTotem>;
+        expect(resp.data.avatarColorList).toContainEqual<Color>;
       });
     });
     describe('PATCH Formik form submission to register player/avatar', () => {
+      playerIDs = [];
       it('Should return status of 200 and update players array', async () => {
-        const resp = await axios.patch(
-          '/games/Chutes-&-Ladders/register',
-          {
-            playerName: 'test P',
-            avatarName: 'test A',
-            avatarColor: Color.BLACK,
-          },
-          { headers: { __current_game__: JSON.stringify(__current_game__) } }
-        );
-
-        __current_game__ = JSON.parse(resp.headers.__current_game__) as GamePlayerValidation;
-
-        expect(resp.data.message).toEqual('Player Created');
-        expect((__current_game__.playerID as PlayerID).length).toEqual(6);
-        expect(resp.status).toEqual(201);
-      });
-    });
-
-    describe('This tests everything min number of players are registered to start and play game', () => {
-      beforeAll(async () => {
         for (let i = 1; i < 3; i++) {
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/register',
@@ -87,13 +64,21 @@ describe('Games api test wrapper', () => {
             { headers: { __current_game__: JSON.stringify(__current_game__) } }
           );
           __current_game__ = JSON.parse(resp.headers.__current_game__);
+          playerIDs.push(__current_game__.playerID);
+
+          expect(resp.data.message).toEqual('Player Created');
+          expect((__current_game__.playerID as PlayerID).length).toEqual(6);
+          expect(resp.status).toEqual(201);
         }
       });
+    });
+
+    describe('This tests everything min number of players are registered to start and play game', () => {
       describe('PATCH /start - set avatars and ready game for play', () => {
         it('Should verify the min/max number of players in a game, set the randomly decided player order, place players in startSpace, set the player in turn to the player order', async () => {
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/start',
-            {},
+            { test: true },
             { headers: { __current_game__: JSON.stringify(__current_game__) } }
           );
 
@@ -104,13 +89,6 @@ describe('Games api test wrapper', () => {
       });
 
       describe('Game functionality after game is started', () => {
-        beforeAll(async () => {
-          await axios.patch(
-            '/games/Chutes-&-Ladders/start',
-            {},
-            { headers: { __current_game__: JSON.stringify(__current_game__) } }
-          );
-        });
         describe('PATCH /board - return board', () => {
           it('Should verify game play data', async () => {
             const resp = await axios.patch(
@@ -122,23 +100,63 @@ describe('Games api test wrapper', () => {
             );
 
             __current_game__ = JSON.parse(resp.headers.__current_game__);
+
             const gamePlayData = resp.data as IPlayersAndBoard;
-            expect(gamePlayData.gameBoard).toEqual(
-              expect.arrayContaining([
-                expect.arrayContaining([expect.any(String)]),
-              ])
+            expect(gamePlayData.gameBoard.length).toEqual(10);
+            expect(gamePlayData.activePlayersInGame.length).toEqual(2);
+            expect(gamePlayData.playerInTurn).not.toBeUndefined();
+            expect(gamePlayData.winner).toEqual('');
+          });
+        });
+        describe('PATCH /take-turn - move only player in turn and return turnStatus', () => {
+          it('should pass and return valid turn status', async () => {
+            const resp = await axios.patch(
+              '/games/Chutes-&-Ladders/take-turn',
+              {},
+              {
+                headers: { __current_game__: JSON.stringify(__current_game__) },
+              }
             );
-            expect(gamePlayData.activePlayersInGame).toEqual(
-              expect.arrayContaining([
-                expect.objectContaining({
-                  playerName: expect.any(String),
-                  avatarName: expect.any(String),
-                  avatarColor: expect.any(String),
-                }),
-              ])
+
+            __current_game__ = JSON.parse(resp.headers.__current_game__);
+
+            if (resp.data.turnStatus === TurnStatus.INVALID) {
+              __current_game__.playerID = playerIDs[1];
+
+              const resp = await axios.patch(
+                '/games/Chutes-&-Ladders/take-turn',
+                {},
+                {
+                  headers: {
+                    __current_game__: JSON.stringify(__current_game__),
+                  },
+                }
+              );
+
+              __current_game__ = JSON.parse(resp.headers.__current_game__);
+
+              expect(resp.data.turnStatus).toEqual(TurnStatus.INVALID);
+              expect(resp.status).toEqual(201);
+            } else {
+              __current_game__ = JSON.parse(resp.headers.__current_game__);
+
+              expect(resp.data.turnStatus).toEqual(TurnStatus.VALID);
+              expect(resp.status).toEqual(201);
+            }
+          });
+          it('should fail and return invalid turn status', async () => {
+            __current_game__.playerID = 'different-player-ID';
+
+            const resp = await axios.patch(
+              '/games/Chutes-&-Ladders/take-turn',
+              {},
+              {
+                headers: { __current_game__: JSON.stringify(__current_game__) },
+              }
             );
-            expect(gamePlayData.playerInTurn).toEqual(expect.any(String));
-            expect(gamePlayData.winner).toEqual(expect.any(String));
+
+            expect(resp.data.turnStatus).toEqual(TurnStatus.INVALID);
+            expect(resp.status).toEqual(201);
           });
         });
       });

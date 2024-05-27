@@ -2,9 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "module": "Preserve",
-    "types": ["jest", "node"],
-    "esModuleInterop": true
+    "module": "NodeNext",
+    "target": "ESNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",

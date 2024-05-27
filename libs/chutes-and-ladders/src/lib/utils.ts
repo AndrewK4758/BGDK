@@ -57,6 +57,5 @@ export const rollMultipleDiceAndSum = (dice: IDie[]): ISummedRoll => {
 };
 
 export const rangeSelector = (min: number, max: number): number => {
-  const num: number = Math.floor(Math.random() * (max - min) + min);
-  return num !== 1 ? num : num + 1;
+  return Math.floor(Math.random() * (max - min) + min);
 };

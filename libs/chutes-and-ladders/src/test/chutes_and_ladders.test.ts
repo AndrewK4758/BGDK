@@ -6,6 +6,7 @@ import { Game } from '../lib/game';
 import { Player } from '../lib/player';
 import { Avatar } from '../lib/avatar';
 
+
 let game: IGame,
   cur: ISpace,
   player1: IPlayer,
@@ -17,7 +18,7 @@ let game: IGame,
   instance: ChutesAndLadders;
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     instance = new ChutesAndLadders(5, 5);
     game = new Game(instance);
 
@@ -42,12 +43,9 @@ describe('Test connectivity of spaces within Board', () => {
     rollValue = die.roll();
   });
 
-  // afterEach(() => {
-  //   avatar1.location.leave();
-  //   avatar2.location.leave();
-
-  //   cur = game.instance.startSpace;
-  // });
+  afterEach(() => {
+    cur = game.instance.startSpace;
+  });
   describe('test next property of all spaces', () => {
     it('should pass', () => {
       while (cur) {

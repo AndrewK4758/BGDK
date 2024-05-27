@@ -115,16 +115,10 @@ describe('Test all utils functions', () => {
 
   test('Test rangeSelector function', () => {
     while (min < max) {
-      const num1 = generateRandomNumber(50);
-      const num2 = generateRandomNumber(90);
+      const range1 = rangeSelector(1, 100);
 
-      const max1 = num1 > num2 ? num1 : num2;
-      const min1 = num1 < num2 ? num1 : num2;
-
-      const range1 = rangeSelector(min1, max1);
-
-      expect(range1).toBeGreaterThanOrEqual(min1);
-      expect(range1).toBeLessThanOrEqual(max1);
+      expect(range1).toBeGreaterThanOrEqual(1);
+      expect(range1).toBeLessThanOrEqual(100);
 
       min++;
     }

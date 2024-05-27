@@ -1,19 +1,13 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
 import {
   GameContextKeys,
-  GamePlayerValidation,
   getCurrentMinute,
   InstanceOfGame,
-  IRegisterFormValues,
   TurnStatus,
 } from '@aklapper/model';
-import { Request, Response } from 'express';
 
 import {
-  Avatar,
   ChutesAndLadders,
-  Color,
-  Game,
   Player,
   SpaceType,
 } from '@aklapper/chutes-and-ladders';
@@ -26,55 +20,15 @@ import {
   wonGame,
 } from '../index';
 
-export const mockReqObj: Partial<Request> = {
-  body: {
-    playerName: 'Player Name',
-    avatarName: 'XENOMORPH',
-    avatarColor: Color.BLACK,
-  } as IRegisterFormValues,
-
-  header: jest.fn().mockImplementation((name: string) => {
-    const headers = new Map<string, string>();
-    const __current_game__ = {
-      gameInstanceID: 'game-ID',
-      playerID: 'player-2-ID',
-    } as GamePlayerValidation;
-
-    headers.set('__current_game__', JSON.stringify(__current_game__));
-
-    return headers.get(name);
-  }),
-};
-
-export const mockRespObj: Partial<Response> = {
-  setHeader: jest
-    .fn()
-    .mockImplementation((name: string, headerValue: string) => {
-      const headers = new Map<string, string>();
-
-      headers.set(name, headerValue);
-    }),
-  status: jest.fn().mockImplementation((code) => {
-    mockRespObj.status = code;
-    return mockRespObj;
-  }),
-  sendStatus: jest
-    .fn()
-    .mockImplementation((result) => (mockRespObj.status = result)),
-  json: jest.fn().mockImplementation((result) => (mockRespObj.json = result)),
-};
-
-export const mockAddPlayersToGame = (game: InstanceOfGame) => {
-  game.instance.playersArray[0] = new Player('player1', 'player-1-ID');
-  game.instance.playersArray[0].order = 1;
-  game.instance.playersArray[0].avatar = new Avatar('XENOMORPH', Color.BLACK);
-  game.instance.playersArray[1] = new Player('player2', 'player-2-ID');
-  game.instance.playersArray[1].order = 2;
-  game.instance.playersArray[1].avatar = new Avatar('PREDATOR', Color.RED);
-};
+import {
+  mockAddPlayersToGame,
+  mockMakeGame,
+  mockReqObj,
+  mockRespObj,
+} from '__mocks__/mocks';
 
 interface ICtxOutput {
-  message: TurnStatus;
+  turnStatus: TurnStatus;
 }
 
 let ctx: Context,
@@ -82,27 +36,21 @@ let ctx: Context,
   output: ICtxOutput,
   turnStatus: TurnStatus;
 
-describe('should execute all steps of taking turn', () => {
-  beforeAll(() => {
-    ctx = ContextBuilder.build();
-    game = new InstanceOfGame(
-      getCurrentMinute(),
-      'game-ID',
-      new Game(new ChutesAndLadders(5, 5))
-    );
-    turnStatus = TurnStatus.NOT_READY;
-    output = { message: turnStatus };
-    mockAddPlayersToGame(game);
-    game.instance.playersArray.sort((a, b) => a.order - b.order);
-    game.instance.instance.startSpace.land(
-      game.instance.playersArray[0].avatar
-    );
-    ctx.put(GameContextKeys.ACTION, 'take-turn');
-    ctx.put(GameContextKeys.GAME, game);
-    ctx.put(GameContextKeys.REQUEST, mockReqObj);
-    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
-  });
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+  game = game = mockMakeGame(new ChutesAndLadders(5, 5));
+  turnStatus = TurnStatus.NOT_READY;
+  output = { turnStatus: turnStatus };
 
+  mockAddPlayersToGame(game);
+
+  ctx.put(GameContextKeys.ACTION, 'take-turn');
+  ctx.put(GameContextKeys.GAME, game);
+  ctx.put(GameContextKeys.REQUEST, mockReqObj);
+  ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+});
+
+describe('should execute all steps of taking turn', () => {
   describe('test take turn command in chain', () => {
     it('should fail because game is in NOT_READY state when receiving a turn ', () => {
       const commandResult = takeTurn.execute(ctx);
@@ -112,11 +60,10 @@ describe('should execute all steps of taking turn', () => {
     });
 
     it('should fail because game is in GAME_WON state when receiving a turn', () => {
-      const commandResult = takeTurn.execute(ctx);
-
       game.instance.readyToPlay = true;
       game.instance.haveWinner = true;
-      turnStatus = TurnStatus.GAME_WON;
+      output = { turnStatus: TurnStatus.GAME_WON };
+      const commandResult = takeTurn.execute(ctx);
 
       expect(commandResult).toBeFalsy();
       expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
@@ -149,7 +96,6 @@ describe('should execute all steps of taking turn', () => {
       const commandResult = verifyPlayer.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      // expect(ctx.getString(GameContextKeys.NEXT)).toEqual('roll-dice');
       expect(ctx.get('player-taking-turn')).toEqual(
         game.instance.playerInTurn as Player
       );
@@ -159,7 +105,7 @@ describe('should execute all steps of taking turn', () => {
       ctx.put(GameContextKeys.NEXT, 'verify-player');
 
       game.instance.playerInTurn = game.instance.playersArray[0];
-      output.message = TurnStatus.INVALID;
+      output = { turnStatus: TurnStatus.INVALID };
       const commandResult = verifyPlayer.execute(ctx);
       expect(commandResult).toBeFalsy();
       expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
@@ -197,7 +143,7 @@ describe('should execute all steps of taking turn', () => {
   describe('test move avatar command in chain', () => {
     it('should pass with out prop of ctx obj being a valid turn status and update the location of player in turn avatar', () => {
       ctx.put(GameContextKeys.NEXT, 'move-avatar');
-      output.message = TurnStatus.VALID;
+      output = { turnStatus: TurnStatus.VALID };
 
       const playerTakingTurn = game.instance.playersArray[0] as Player;
       const moveDist = game.instance.instance.DIE.roll() as number;

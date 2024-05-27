@@ -1,96 +1,43 @@
-import { ContextBuilder, Context } from '@aklapper/chain';
+import { Context, ContextBuilder } from '@aklapper/chain';
+import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
+import { GameContextKeys, InstanceOfGame } from '@aklapper/model';
+
 import {
-  GameContextKeys,
-  InstanceOfGame,
-  getCurrentMinute,
-  IRegisterFormValues,
-  GamePlayerValidation,
-} from '@aklapper/model';
-import {
-  ChutesAndLadders,
-  Game,
-  Player,
-  Avatar,
-  Color,
-} from '@aklapper/chutes-and-ladders';
-import { Request, Response } from 'express';
-import {
-  startGame,
-  verifyReadyToPlay,
+  sendStartGameStatus,
   setAvatarsOnStart,
   setPlayerInTurn,
-  sendStartGameStatus,
+  startGame,
+  verifyReadyToPlay,
 } from '../index';
 
-export const mockReqObj: Partial<Request> = {
-  body: {
-    playerName: 'Player Name',
-    avatarName: 'XENOMORPH',
-    avatarColor: Color.BLACK,
-  } as IRegisterFormValues,
+import {
+  mockAddPlayersToGame,
+  mockMakeGame,
+  mockReqObj,
+  mockRespObj,
+} from '__mocks__/mocks';
 
-  header: jest.fn().mockImplementation((name: string) => {
-    const headers = new Map<string, string>();
-    const __current_game__ = {
-      gameInstanceID: 'game-ID',
-      playerID: 'player-2-ID',
-    } as GamePlayerValidation;
+let ctx: Context, game: InstanceOfGame;
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+  game = mockMakeGame(new ChutesAndLadders(5, 5));
 
-    headers.set('__current_game__', JSON.stringify(__current_game__));
+  if (game) mockAddPlayersToGame(game);
 
-    return headers.get(name);
-  }),
-};
-
-export const mockRespObj: Partial<Response> = {
-  setHeader: jest
-    .fn()
-    .mockImplementation((name: string, headerValue: string) => {
-      const headers = new Map<string, string>();
-
-      headers.set(name, headerValue);
-    }),
-  status: jest.fn().mockImplementation((code) => {
-    mockRespObj.status = code;
-    return mockRespObj;
-  }),
-  sendStatus: jest
-    .fn()
-    .mockImplementation((result) => (mockRespObj.status = result)),
-  json: jest.fn().mockImplementation((result) => (mockRespObj.json = result)),
-};
-
-export const mockAddPlayersToGame = (game: InstanceOfGame) => {
-  game.instance.playersArray[0] = new Player('player1', 'player-1-ID');
-  game.instance.playersArray[0].order = 1;
-  game.instance.playersArray[0].avatar = new Avatar('XENOMORPH', Color.BLACK);
-  game.instance.playersArray[1] = new Player('player2', 'player-2-ID');
-  game.instance.playersArray[1].order = 2;
-  game.instance.playersArray[1].avatar = new Avatar('PREDATOR', Color.RED);
-};
-
-let ctx: Context, game: InstanceOfGame, output: object;
-
+  ctx.put(GameContextKeys.ACTION, 'start');
+  ctx.put(GameContextKeys.GAME, game);
+  ctx.put(GameContextKeys.REQUEST, mockReqObj);
+  ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+});
 describe('execute all steps of starting a game', () => {
-  beforeEach(() => {
-    ctx = ContextBuilder.build();
-    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
-    output = { message: 'Game Started' };
-
-    mockAddPlayersToGame(game);
-
-    ctx.put(GameContextKeys.ACTION, 'start');
-    ctx.put(GameContextKeys.GAME, game);
-    ctx.put(GameContextKeys.REQUEST, mockReqObj);
-    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
-  });
-
   describe('test start game command', () => {
     it('should verify the context action is start and send to next-handler', () => {
       const commandResult = startGame.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect(ctx.getString(GameContextKeys.NEXT)).toEqual('verify-ready-to-play');
+      expect(ctx.getString(GameContextKeys.NEXT)).toEqual(
+        'verify-ready-to-play'
+      );
     });
 
     it('should fail', () => {
@@ -115,11 +62,11 @@ describe('execute all steps of starting a game', () => {
     it('should fail and put message on out prop of ctx obj', () => {
       ctx.put(GameContextKeys.NEXT, 'verify-ready-to-play');
       game.instance.playersArray.splice(1);
-      output = { message: 'Game Not Started' };
+      const output = { gameStatus: 'Game Not Ready to Start' };
 
       const commandResult = verifyReadyToPlay.execute(ctx);
 
-      expect(commandResult).toBeTruthy();
+      expect(commandResult).toBeFalsy();
       expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
     });
   });
@@ -156,13 +103,16 @@ describe('execute all steps of starting a game', () => {
 
       expect(commandResult).toBeTruthy();
       expect(game.instance.playerInTurn).toEqual(game.instance.playersArray[0]);
-      expect(game.instance.playerInTurn).not.toEqual(game.instance.playersArray[1]);
+      expect(game.instance.playerInTurn).not.toEqual(
+        game.instance.playersArray[1]
+      );
     });
   });
 
   describe('test send start game status', () => {
     it('should pass and add a message to the out prop of ctx obj', () => {
       ctx.put(GameContextKeys.NEXT, 'send-start-game-status');
+      const output = { message: 'Game Started' };
 
       const commandResult = sendStartGameStatus.execute(ctx);
 

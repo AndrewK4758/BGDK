@@ -134,7 +134,6 @@ export type GamesInMinute = GameInstanceID[];
 export type GamePlayerValidation = {
   gameInstanceID?: GameInstanceID;
   playerID?: string;
-  test?: boolean;
 };
 
 export type PlayerInTurn = {

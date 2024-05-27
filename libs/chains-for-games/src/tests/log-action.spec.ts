@@ -3,13 +3,11 @@ import { GameContextKeys } from '@aklapper/model';
 import { logAction } from '../index';
 
 let ctx: Context;
-
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+  ctx.put(GameContextKeys.ACTION, 'ACTION');
+});
 describe('it should log the action property to the console', () => {
-  beforeAll(() => {
-    ctx = ContextBuilder.build();
-    ctx.put(GameContextKeys.ACTION, 'ACTION');
-  });
-
   it('logs action off context to console', () => {
     const commandResult = logAction.execute(ctx);
 

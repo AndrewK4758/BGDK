@@ -1,9 +1,6 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
 import {
-  Avatar,
   ChutesAndLadders,
-  Color,
-  Game,
   GameBoard,
   IGame,
   Player,
@@ -12,50 +9,29 @@ import {
   GameContextKeys,
   InstanceOfGame,
   deRefContextObject,
-  getCurrentMinute,
 } from '@aklapper/model';
+import { mockAddPlayersToGame, mockMakeGame } from '__mocks__/mocks';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 
-export const mockAddPlayersToGame = (game: InstanceOfGame) => {
-  game.instance.playersArray[0] = new Player('player1', 'player-1-ID');
-  game.instance.playersArray[0].order = 1;
-  game.instance.playersArray[0].avatar = new Avatar('XENOMORPH', Color.BLACK);
-  game.instance.playersArray[1] = new Player('player2', 'player-2-ID');
-  game.instance.playersArray[1].order = 2;
-  game.instance.playersArray[1].avatar = new Avatar('PREDATOR', Color.RED);
-};
+let ctx: Context, game: InstanceOfGame, player1: Player, player2: Player;
 
-let ctx: Context, game: InstanceOfGame;
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+
+  game = mockMakeGame(new ChutesAndLadders(5, 5));
+  mockAddPlayersToGame(game);
+
+  ctx.put(GameContextKeys.GAME, game);
+  ctx.put(GameContextKeys.ACTION, 'reset');
+
+  player1 = game.instance.playersArray[0];
+  player2 = game.instance.playersArray[1];
+
+  player1.avatar.move(1);
+  player2.avatar.move(2);
+});
 
 describe('it should reset game', () => {
-  beforeAll(() => {
-    ctx = ContextBuilder.build();
-
-    game = new InstanceOfGame(
-      getCurrentMinute(),
-      'game-ID',
-      new Game(new ChutesAndLadders(5, 5))
-    );
-    mockAddPlayersToGame(game);
-
-    ctx.put(GameContextKeys.GAME, game);
-    ctx.put(GameContextKeys.ACTION, 'reset');
-  });
-
-  beforeEach(() => {
-    game.instance.instance.startSpace.next.land(
-      game.instance.playersArray[0].avatar
-    );
-    game.instance.instance.startSpace.next.next.land(
-      game.instance.playersArray[1].avatar
-    );
-  });
-
-  afterEach(() => {
-    game.instance.playersArray[0].avatar.location.leave();
-    game.instance.playersArray[1].avatar.location.leave();
-  });
-
   it('should show start space as empty then return both players to startspace', () => {
     expect(game.instance.instance.startSpace.occupied).toBeFalsy();
 
