@@ -26,7 +26,7 @@ reaper(instanceMap);
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api/v1`);
+  console.log(`Listening at http://0.0.0.0:${port}/api/v1`);
 });
 server.on('error', console.error);
 export default app;

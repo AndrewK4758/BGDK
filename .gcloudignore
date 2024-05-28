@@ -1,0 +1,4 @@
+.gitignore
+__mocks__/**
+node_modules/**
+aklapper.code-workspace

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "nx build games-ui"
+    "build": "npx nx run games-api:build:production",
+    "start": "node ./dist/apis/games-api/main.js"
   },
   "private": true,
   "dependencies": {
