@@ -11,8 +11,8 @@ export const takeTurn = async ({ params }: ActionFunctionArgs) => {
     const resp = await axios.patch(
       `${__baseURL__}/games/${id}/take-turn`,
       {},
-      { headers: { __current_game__: __current_game__ } }
-    )
+      { headers: { 'current-game': __current_game__ } }
+    );
     console.log(resp.data.message)
 
     return null

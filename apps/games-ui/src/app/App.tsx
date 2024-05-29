@@ -87,7 +87,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/Game-MonoRepo/',
+    // basename: '/Game-MonoRepo/',
   }
 );
 

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": [
       "node",

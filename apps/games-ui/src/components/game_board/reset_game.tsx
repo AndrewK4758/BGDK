@@ -11,7 +11,11 @@ export default function ResetGame() {
     const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
     const __current_game__ = JSON.stringify(getGameInstanceInfo());
     try {
-      await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, { headers: { __current_game__: __current_game__ } });
+      await axios.patch(
+        `${__baseURL__}/games/${id}/reset`,
+        {},
+        { headers: { 'current-game': __current_game__ } }
+      );
       return null;
     } catch (error) {
       console.log(error);

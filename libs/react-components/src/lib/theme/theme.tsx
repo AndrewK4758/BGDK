@@ -1,7 +1,6 @@
 import createTheme from '@mui/material/styles/createTheme';
 import './theme.module.css';
 
-
 declare module '@mui/material' {
   interface BreakpointOverrides {
     // Your custom breakpoints
@@ -37,8 +36,8 @@ const __greyDefault = '#404040';
 
 //text main?
 const __rustColor = '#ff3d00';
-
-export const Theme = createTheme({
+let Theme = createTheme();
+Theme = createTheme(Theme, {
   palette: {
     common: {
       black: __greyDark,
@@ -95,6 +94,9 @@ export const Theme = createTheme({
       fontSize: '8rem',
       color: __rustColor,
       textShadow: `2px 1px ${__primaryLight}`,
+      [Theme.breakpoints.up('laptop')]: {
+        fontSize: '3rem',
+      },
     },
     h2: {
       fontSize: '4rem',
@@ -179,11 +181,13 @@ export const Theme = createTheme({
             left: 0,
             textAlign: 'center',
             alignContent: 'center',
-            height: 65,
             zIndex: 10,
           },
         },
       ],
+      defaultProps: {
+        color: 'transparent',
+      },
     },
     MuiAppBar: {
       variants: [
@@ -194,7 +198,6 @@ export const Theme = createTheme({
             flexDirection: 'row',
             position: 'absolute',
             top: 0,
-            height: 65,
             zIndex: 10,
             backgroundColor: __greyDark,
             boxShadow: `0px 7px 8px -4px ${__rustColor}, 0px 12px 17px 2px ${__primaryLight}, 0px 5px 22px 4px ${__primaryDark}`,
@@ -250,3 +253,5 @@ export const Theme = createTheme({
     },
   },
 });
+
+export { Theme };

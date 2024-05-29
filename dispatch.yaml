@@ -1,0 +1,13 @@
+dispatch:
+
+- url: "*/api/v1/*"
+  service: api
+
+- url: "api-dot-games-424800.uc.r.appspot.com/*"
+  service: api
+
+- url: "*/favicon.ico"
+  service: default
+
+- url: "games-424800.uc.r.appspot.com/*"
+  service: default

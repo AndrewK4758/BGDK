@@ -15,7 +15,7 @@ export default function ReadyToStart() {
     const resp = await axios.patch(
       `${__baseURL__}/games/${id}/start`,
       {},
-      { headers: { __current_game__: __current_game__ } }
+      { headers: { 'current-game': __current_game__ } }
     );
     console.log(resp.data.message);
   };

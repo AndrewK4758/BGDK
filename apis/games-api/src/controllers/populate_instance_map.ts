@@ -3,8 +3,8 @@ import {
   GameInstanceID,
   GamePlayerValidation,
   getCurrentMinute,
-  IAllGamesMap,
-  IInstanceMap,
+  AllGamesMap,
+  InstanceMap,
   InstanceOfGame,
   Minute,
 } from '@aklapper/model';
@@ -18,16 +18,16 @@ import { games } from './list-games';
 export const populateInstanceMaps = (req: Request, resp: Response) => {
   const gameName = req.params.id.replace(/-/g, ' ');
   console.log(`Game selected: ${gameName}`);
-  const instanceMap = req.app.get('instanceMap') as IInstanceMap;
-  const allGamesMap = req.app.get('allGamesMap') as IAllGamesMap;
+  const instanceMap = req.app.get('instanceMap') as InstanceMap;
+  const allGamesMap = req.app.get('allGamesMap') as AllGamesMap;
 
   const game = games.find(({ name }) => name === gameName);
 
   const minute: Minute = getCurrentMinute();
   const gameID: GameInstanceID = new ShortUniqueId().rnd();
-  //
+
   game.instance = new Game(new ChutesAndLadders(5, 5));
-  //
+
   const activeGame = new InstanceOfGame(minute, gameID, game.instance);
   allGamesMap.addGame(gameID, activeGame);
   instanceMap.addGameInstance(minute, gameID);
@@ -36,7 +36,7 @@ export const populateInstanceMaps = (req: Request, resp: Response) => {
     gameInstanceID: gameID,
     playerID: '',
   };
-  resp.header('__current_game__', JSON.stringify(__current_game__));
+  resp.setHeader('current-game', JSON.stringify(__current_game__));
 
   resp.sendStatus(201);
 };

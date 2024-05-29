@@ -6,9 +6,9 @@ export const registerGameInstanceOnServerAction: ActionFunction = async ({ param
   const id = params.id;
 
   try {
-    const resp = await axios.post(`${baseURL}/games/${id}`);
+    const resp = await axios.post(`${baseURL}/games/${id}`, {});
 
-    sessionStorage.setItem('__current_game__', resp.headers.__current_game__);
+    sessionStorage.setItem('__current_game__', resp.headers['current-game']);
 
     return redirect(`register`);
   } catch (error) {

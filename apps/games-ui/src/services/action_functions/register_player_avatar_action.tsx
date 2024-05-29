@@ -21,13 +21,17 @@ export const registerPlayerAndAvatarAction: ActionFunction = async ({ request, p
   } as IRegisterFormValues;
 
   try {
-    const resp = await axios.patch(`${baseURL}/games/${id}/register`, registerFormValues, {
-      headers: {
-        __current_game__: __current_game__,
-      },
-    });
+    const resp = await axios.patch(
+      `${baseURL}/games/${id}/register`,
+      registerFormValues,
+      {
+        headers: {
+          'current-game': __current_game__,
+        },
+      }
+    );
 
-    sessionStorage.setItem('__current_game__', resp.headers.__current_game__);
+    sessionStorage.setItem('__current_game__', resp.headers['current-game']);
 
     return resp.data;
   } catch (error) {

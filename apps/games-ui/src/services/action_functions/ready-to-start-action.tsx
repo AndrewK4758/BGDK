@@ -7,12 +7,11 @@ export default async function readyToStartAction({ params }: ActionFunctionArgs)
   const id = params.id;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
 
-  console.log('action called');
   try {
     const resp = await axios.patch(
       `${__baseURL__}/games/${id}/start`,
       {},
-      { headers: { __current_game__: __current_game__ } }
+      { headers: { 'current-game': __current_game__ } }
     );
     console.log(resp.data.message);
     return null;

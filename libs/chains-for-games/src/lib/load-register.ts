@@ -19,8 +19,8 @@ export const loadRegister = CommandBuilder.build((context: Context) => {
 export const sendLoadRegister = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-load-register-data') {
     const { req, resp } = deRefContextObject(context);
-    const __current_game__ = req.header('__current_game__');
-    resp.setHeader('__current_game__', __current_game__ as string);
+    const __current_game__ = req.header('current-game') as string;
+    resp.setHeader('current-game', __current_game__);
     return true;
   } else return false;
 });

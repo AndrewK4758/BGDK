@@ -4,7 +4,28 @@
   "sourceRoot": "apis/games-api/src",
   "projectType": "application",
   "tags": [],
+  "scripts": {
+    "start": "node ./main.js"
+  },
   "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apis/games-api",
+        "main": "apis/games-api/src/main.ts",
+        "tsConfig": "apis/games-api/tsconfig.app.json",
+        "assets": ["apis/games-api/src/assets"],
+        "webpackConfig": "apis/games-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
@@ -19,6 +40,17 @@
           "buildTarget": "games-api:build:production"
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apis/games-api/jest.config.ts"
+      }
     }
   }
 }
+    

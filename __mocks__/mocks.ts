@@ -30,7 +30,7 @@ export const mockReqObj: Partial<Request> = {
       playerID: 'player-2-ID',
     } as GamePlayerValidation;
 
-    headers.set('__current_game__', JSON.stringify(__current_game__));
+    headers.set('current-game', JSON.stringify(__current_game__));
 
     return headers.get(name);
   }),

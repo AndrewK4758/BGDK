@@ -59,7 +59,7 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
       activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
-    resp.setHeader('__current_game__', req.header('__current_game__') as string);
+    resp.setHeader('current-game', req.header('current-game') as string);
     context.put(GameContextKeys.OUTPUT, activeDataToSend);
     return true;
   } else return false;

@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx nx run games-ui:build:production"
-    
+    "start": "node ./dist/apis/games-api/main.js"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +43,7 @@
     "@swc/core": "^1.5.7",
     "@swc/helpers": "^0.5.2",
     "@testing-library/react": "15.0.6",
+    "@types/cors": "^2.8.17",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.16.9",
     "@types/react": "^18.3.1",

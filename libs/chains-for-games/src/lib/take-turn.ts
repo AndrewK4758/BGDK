@@ -11,18 +11,12 @@ export const takeTurn = CommandBuilder.build((context: Context) => {
 
     if (!game.instance.readyToPlay) {
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.NOT_READY });
-      resp.setHeader(
-        '__current_game__',
-        req.header('__current_game__') as string
-      );
+      resp.setHeader('current-game', req.header('current-game') as string);
       return false;
     }
     if (game.instance.readyToPlay && game.instance.haveWinner) {
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.GAME_WON });
-      resp.setHeader(
-        '__current_game__',
-        req.header('__current_game__') as string
-      );
+      resp.setHeader('current-game', req.header('current-game') as string);
       return false;
     }
     game.updateLastActive(getCurrentMinute());
@@ -42,16 +36,9 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
     if (playerTakingTurn === game.instance.playerInTurn.id) {
       context.put('player-taking-turn', game.instance.playerInTurn as Player);
       context.put(GameContextKeys.NEXT, 'roll-dice');
-      console.log(
-        req.header('__current_game__'),
-        'in pass to roll dice FAIL call'
-      );
       return true;
     } else {
-      resp.setHeader(
-        '__current_game__',
-        req.header('__current_game__') as string
-      );
+      resp.setHeader('current-game', req.header('current-game') as string);
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.INVALID });
       return false;
     }
@@ -108,10 +95,7 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
 
     game.instance.rotatePlayers();
 
-    resp.setHeader(
-      '__current_game__',
-      req.header('__current_game__') as string
-    );
+    resp.setHeader('current-game', req.header('current-game') as string);
     return true;
   } else return false;
 });

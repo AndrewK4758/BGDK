@@ -69,7 +69,7 @@ export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
 export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-start-game-status') {
     const { req, resp } = deRefContextObject(context);
-    resp.setHeader('__current_game__', req.header('__current_game__') as string);
+    resp.setHeader('current-game', req.header('current-game') as string);
     context.put(GameContextKeys.OUTPUT, { message: 'Game Started' });
     return true;
   } else return false;

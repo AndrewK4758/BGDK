@@ -203,16 +203,20 @@ export const deRefContextObject = (context: Context): ContextData => {
 };
 
 export const getActiveGame = (req: Request) => {
-  const __current_game__ = JSON.parse(req.header('__current_game__') as string) as GamePlayerValidation;
+  const __current_game__ = JSON.parse(
+    req.header('current-game') as string
+  ) as GamePlayerValidation;
 
   const gameInstanceID = __current_game__.gameInstanceID as string;
 
-  const allGamesMap = req.app.get('allGamesMap') as IAllGamesMap;
+  const allGamesMap = req.app.get('allGamesMap') as AllGamesMap;
   return allGamesMap.AllGames.get(gameInstanceID) as InstanceOfGame;
 };
 
 export const getPlayerID = (req: Request) => {
-  const __current_game__ = JSON.parse(req.header('__current_game__') as string) as GamePlayerValidation;
+  const __current_game__ = JSON.parse(
+    req.header('current-game') as string
+  ) as GamePlayerValidation;
   return __current_game__.playerID;
 };
 

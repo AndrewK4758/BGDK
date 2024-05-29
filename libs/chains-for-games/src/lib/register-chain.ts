@@ -69,11 +69,13 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'player-created') {
     const { req, resp } = deRefContextObject(context);
 
-    const __current_game__: GamePlayerValidation = JSON.parse(req.header('__current_game__') as string);
+    const __current_game__: GamePlayerValidation = JSON.parse(
+      req.header('current-game') as string
+    );
 
     __current_game__.playerID = context.get('playerID') as PlayerID;
 
-    resp.setHeader('__current_game__', JSON.stringify(__current_game__));
+    resp.setHeader('current-game', JSON.stringify(__current_game__));
 
     context.put(GameContextKeys.OUTPUT, { message: 'Player Created' });
     return true;
