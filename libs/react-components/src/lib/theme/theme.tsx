@@ -99,7 +99,7 @@ Theme = createTheme(Theme, {
       },
     },
     h2: {
-      fontSize: '4rem',
+      // fontSize: '4rem',
       color: __primaryMain,
       textShadow: `2px 1px ${__primaryContrast}`,
     },
@@ -189,25 +189,14 @@ Theme = createTheme(Theme, {
         color: 'transparent',
       },
     },
-    MuiAppBar: {
-      variants: [
-        {
-          props: { component: 'header' },
-          style: {
-            display: 'flex',
-            flexDirection: 'row',
-            position: 'absolute',
-            top: 0,
-            zIndex: 10,
-            backgroundColor: __greyDark,
-            boxShadow: `0px 7px 8px -4px ${__rustColor}, 0px 12px 17px 2px ${__primaryLight}, 0px 5px 22px 4px ${__primaryDark}`,
-          },
-        },
-      ],
-      defaultProps: {
-        color: 'transparent',
-      },
-    },
+    // MuiAppBar: {
+    //   variants: [
+    //     {
+    //       props: { component: 'header' },
+    //       style: {},
+    //     },
+    //   ],
+    // },
     MuiButton: {
       variants: [
         {

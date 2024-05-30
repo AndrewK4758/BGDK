@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "build": "npx nx build games-api",
     "start": "node ./dist/apis/games-api/main.js"
   },
   "private": true,
