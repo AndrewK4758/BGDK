@@ -10,11 +10,13 @@ import { SxProps } from '@mui/material';
 export interface JoinGameProps {
   breakpointsJoinGameButton?: SxProps;
   breakpointsJoinGameText?: SxProps;
+  breakpointsJoinGameLabel?: SxProps;
 }
 
 export function JoinGame({
   breakpointsJoinGameText,
   breakpointsJoinGameButton,
+  breakpointsJoinGameLabel,
 }: JoinGameProps) {
   const submit = useSubmit();
 
@@ -43,6 +45,7 @@ export function JoinGame({
           placeholder="Enter GameID to join"
           name="gamePath"
           textSx={breakpointsJoinGameText}
+          labelSx={breakpointsJoinGameLabel}
         />
         <br />
         <Button type="submit" sx={breakpointsJoinGameButton}>

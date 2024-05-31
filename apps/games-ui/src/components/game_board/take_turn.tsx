@@ -1,5 +1,16 @@
-import { ButtonFormAction } from '@aklapper/react-components';
+import { ButtonFormAction, Theme } from '@aklapper/react-components';
 import { useParams } from 'react-router-dom';
+import { SxProps } from '@mui/material';
+
+const breakpointsTakeTurnButton: SxProps = {
+  marginTop: '.5rem',
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+    width: 130,
+    height: 35,
+  },
+};
 
 export default function TakeTurn() {
   const params = useParams();
@@ -13,7 +24,7 @@ export default function TakeTurn() {
       name="Take Turn"
       value={'take-turn'}
       type="submit"
-      sx={{ marginRight: '.5rem' }}
+      sx={breakpointsTakeTurnButton}
       buttonText="Take Turn"
     />
   );

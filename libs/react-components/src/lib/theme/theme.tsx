@@ -147,7 +147,6 @@ export const Theme = createTheme({
           style: {
             display: 'flex',
             flexWrap: 'wrap',
-            margin: 0,
           },
         },
       ],
@@ -165,7 +164,6 @@ export const Theme = createTheme({
             backgroundColor: __greyDefault,
             width: 230,
             height: 70,
-            marginTop: '1%',
             fontSize: 34,
           },
         },

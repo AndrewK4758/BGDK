@@ -21,6 +21,14 @@ const breakpointsJoinGameButton: SxProps = {
     height: 35,
   },
 };
+
+const breakpointsJoinGameLabel: SxProps = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '2rem',
+    marginTop: 0,
+  },
+};
+
 const breakpointsJoinGameText: SxProps = {
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
@@ -38,6 +46,7 @@ export default function HomePage() {
       breakpointsHomeTextTitle={breakpointsHomeTextTitle}
       breakpointsJoinGameButton={breakpointsJoinGameButton}
       breakpointsJoinGameText={breakpointsJoinGameText}
+      breakpointsJoinGameLabel={breakpointsJoinGameLabel}
     />
   );
 }

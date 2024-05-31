@@ -9,6 +9,7 @@ export interface HomeProps {
   breakpointsHomeText?: SxProps;
   breakpointsJoinGameButton?: SxProps;
   breakpointsJoinGameText?: SxProps;
+  breakpointsJoinGameLabel?: SxProps;
 }
 
 export function Home({
@@ -16,6 +17,7 @@ export function Home({
   breakpointsHomeTextTitle,
   breakpointsJoinGameButton,
   breakpointsJoinGameText,
+  breakpointsJoinGameLabel,
 }: HomeProps) {
   return (
     <>
@@ -37,6 +39,7 @@ export function Home({
       <JoinGame
         breakpointsJoinGameButton={breakpointsJoinGameButton}
         breakpointsJoinGameText={breakpointsJoinGameText}
+        breakpointsJoinGameLabel={breakpointsJoinGameLabel}
       />
     </>
   );

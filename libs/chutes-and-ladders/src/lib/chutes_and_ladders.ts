@@ -160,7 +160,8 @@ export class ChutesAndLadders {
 
     while (space) {
       const rowCount = rowFinder(indexOfSpace);
-      if (space.occupied) row.push(`${space.display}\n${space.avatarsInSpace[0].name}`);
+      if (space.occupied)
+        row.push(`${space.avatarsInSpace[0].name}${'\n'}${space.display}`);
       else row.push(space.display);
 
       if (row.length === ROWS) {

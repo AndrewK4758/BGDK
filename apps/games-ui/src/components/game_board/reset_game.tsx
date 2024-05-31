@@ -1,7 +1,18 @@
-import { ButtonFormAction } from '@aklapper/react-components';
+import { ButtonFormAction, Theme } from '@aklapper/react-components';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { getGameInstanceInfo } from '../../services/utils';
+import { SxProps } from '@mui/material';
+
+const breakpointsResetGameButton: SxProps = {
+  marginLeft: '.5rem',
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+    width: 130,
+    height: 35,
+  },
+};
 
 export default function ResetGame() {
   const params = useParams();
@@ -32,7 +43,7 @@ export default function ResetGame() {
       name="Reset Game"
       value={'reset-game'}
       type="submit"
-      sx={{ marginLeft: '.5rem' }}
+      sx={breakpointsResetGameButton}
       buttonText="Reset"
     />
   );

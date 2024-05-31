@@ -16,7 +16,7 @@ export interface ImageLinkProps {
   style: CSSProperties;
   title: ReactNode;
   position?: 'bottom' | 'top' | 'below' | undefined;
-  sx?: SxProps;
+  breakpointsImageListText?: SxProps;
 }
 
 export function ImageLink({
@@ -29,13 +29,18 @@ export function ImageLink({
   style,
   title,
   position,
+  breakpointsImageListText,
 }: ImageLinkProps) {
   return (
     <ImageListItem key={id} sx={{ overflow: 'hidden' }}>
       <Link type={type} to={to}>
         <img srcSet={srcSet} loading={loading} alt={alt} style={style} />
 
-        <ImageListItemBar title={title} position={position} />
+        <ImageListItemBar
+          title={title}
+          position={position}
+          sx={breakpointsImageListText}
+        />
       </Link>
     </ImageListItem>
   );
