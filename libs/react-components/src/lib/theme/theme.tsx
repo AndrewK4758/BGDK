@@ -36,8 +36,8 @@ const __greyDefault = '#404040';
 
 //text main?
 const __rustColor = '#ff3d00';
-let Theme = createTheme();
-Theme = createTheme(Theme, {
+
+export const Theme = createTheme({
   palette: {
     common: {
       black: __greyDark,
@@ -94,12 +94,10 @@ Theme = createTheme(Theme, {
       fontSize: '8rem',
       color: __rustColor,
       textShadow: `2px 1px ${__primaryLight}`,
-      [Theme.breakpoints.up('laptop')]: {
-        fontSize: '3rem',
-      },
     },
     h2: {
-      // fontSize: '4rem',
+      fontSize: '4rem',
+      fontFamily: 'Jersey25',
       color: __primaryMain,
       textShadow: `2px 1px ${__primaryContrast}`,
     },
@@ -121,10 +119,12 @@ Theme = createTheme(Theme, {
       textShadow: `2px 1px ${__primaryLight}`,
     },
     body1: {
+      fontFamily: 'Jersey25',
       color: __greyDark,
       fontSize: '2rem',
     },
     body2: {
+      fontFamily: 'Jersey25',
       fontWeight: 100,
       fontSize: '1.5rem',
     },
@@ -132,19 +132,6 @@ Theme = createTheme(Theme, {
   components: {
     MuiContainer: {
       variants: [
-        {
-          props: { component: 'main' },
-          style: {
-            position: 'absolute',
-            top: 65,
-            bottom: 65,
-            left: 0,
-            right: 0,
-            backgroundColor: __greyLight,
-            zIndex: 9,
-            paddingTop: '1.5rem',
-          },
-        },
         {
           props: { component: 'div' },
           style: {
@@ -165,38 +152,10 @@ Theme = createTheme(Theme, {
         },
       ],
       defaultProps: {
-        disableGutters: false,
+        disableGutters: true,
         maxWidth: false,
       },
     },
-    MuiPaper: {
-      variants: [
-        {
-          props: { component: 'footer' },
-          style: {
-            position: 'absolute',
-            top: 'calc(100% - 65px)',
-            bottom: 0,
-            right: 0,
-            left: 0,
-            textAlign: 'center',
-            alignContent: 'center',
-            zIndex: 10,
-          },
-        },
-      ],
-      defaultProps: {
-        color: 'transparent',
-      },
-    },
-    // MuiAppBar: {
-    //   variants: [
-    //     {
-    //       props: { component: 'header' },
-    //       style: {},
-    //     },
-    //   ],
-    // },
     MuiButton: {
       variants: [
         {
@@ -243,4 +202,3 @@ Theme = createTheme(Theme, {
   },
 });
 
-export { Theme };

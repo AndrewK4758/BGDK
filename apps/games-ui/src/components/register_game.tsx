@@ -1,7 +1,14 @@
-import { ButtonFormAction, Theme } from '@aklapper/react-components';
+import { ButtonFormAction } from '@aklapper/react-components';
+import { SxProps } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-export default function RegisterGame() {
+export interface RegisterGameProps {
+  registerGameButtonSx: SxProps;
+}
+
+export default function RegisterGame({
+  registerGameButtonSx,
+}: RegisterGameProps) {
   const params = useParams();
   const id = params.id;
 
@@ -13,15 +20,7 @@ export default function RegisterGame() {
       name="name"
       value={id}
       type="submit"
-      sx={{
-        animation: 'blink 3s infinite',
-        '@keyframes blink': {
-          '50%': {
-            color: Theme.palette.secondary.main,
-            backgroundColor: Theme.palette.primary.contrastText,
-          },
-        },
-      }}
+      sx={registerGameButtonSx}
       buttonText="REGISTER"
     />
   );

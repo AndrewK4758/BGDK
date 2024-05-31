@@ -8,19 +8,72 @@ import { Form, Formik } from 'formik';
 import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 
-const selectMenuSxProps: SxProps = {
+const breakpointsSelectMenuSxProps: SxProps = {
   color: Theme.palette.primary.main,
   backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+  },
+};
+
+const breakpointsRegisterPlayerButton: SxProps = {
+  alignSelf: 'end',
+  marginTop: '1rem',
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+    width: 130,
+    height: 35,
+  },
+};
+
+const breakpointsRegisterPlayerLabel: SxProps = {
+  m: 1,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+  },
+};
+
+const breakpointsRegisterPlayerTextInput: SxProps = {
+  width: '50%',
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '20px',
+    height: 45,
+    width: 200,
+  },
+};
+
+const breakpointsRegisterPlayerSelectInput: SxProps = {
+  width: 200,
+  textAlign: 'center',
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '19px',
+    height: 45,
+  },
+};
+
+const breakpointsFormContianer: SxProps = {
+  textAlign: 'start',
+  flexDirection: 'column',
+  paddingX: '1rem',
+  [Theme.breakpoints.down('laptop')]: {},
 };
 
 const avatarColorMap = (e: Color, i: number, arr: string[]) => (
-  <MenuItem key={e} value={e} divider={true} sx={selectMenuSxProps}>
+  <MenuItem key={e} value={e} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e}
   </MenuItem>
 );
 
 const avatarListMap = (e: AvatarTotem, i: number, arr: AvatarTotem[]) => (
-  <MenuItem key={e.name} value={e.name} divider={true} sx={selectMenuSxProps}>
+  <MenuItem
+    key={e.name}
+    value={e.name}
+    divider={true}
+    sx={breakpointsSelectMenuSxProps}
+  >
     {e.name}
   </MenuItem>
 );
@@ -56,11 +109,31 @@ export default function RegisterPlayerAndAvatarForm() {
       }
     >
       <Form style={{ width: '100%' }}>
-        <Container component={'div'} sx={{ textAlign: 'start', flexDirection: 'column' }}>
-          <TextInput type="text" name="playerName" placeholder="Enter Player Name" label="Player Name" />
-          <SelectMenu name="avatarName" label="Avatar Name" data={avatars} mapCallback={avatarListMap} />
-          <SelectMenu name="avatarColor" label="Avatar Color" data={colors} mapCallback={avatarColorMap} />
-          <Button type="submit" sx={{ alignSelf: 'end' }}>
+        <Container component={'div'} sx={breakpointsFormContianer}>
+          <TextInput
+            type="text"
+            name="playerName"
+            label="Player Name"
+            textSx={breakpointsRegisterPlayerTextInput}
+            labelSx={breakpointsRegisterPlayerLabel}
+          />
+          <SelectMenu
+            name="avatarName"
+            label="Avatar Name"
+            data={avatars}
+            mapCallback={avatarListMap}
+            labelSx={breakpointsRegisterPlayerLabel}
+            selectSx={breakpointsRegisterPlayerSelectInput}
+          />
+          <SelectMenu
+            name="avatarColor"
+            label="Avatar Color"
+            data={colors}
+            mapCallback={avatarColorMap}
+            labelSx={breakpointsRegisterPlayerLabel}
+            selectSx={breakpointsRegisterPlayerSelectInput}
+          />
+          <Button type="submit" sx={breakpointsRegisterPlayerButton}>
             Register
           </Button>
         </Container>

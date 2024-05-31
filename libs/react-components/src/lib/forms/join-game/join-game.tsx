@@ -4,10 +4,18 @@ import { Form, Formik } from 'formik';
 import { useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import TextInput from '../../text-input/text-input';
+import { SxProps } from '@mui/material';
 
 /* eslint-disable-next-line */
+export interface JoinGameProps {
+  breakpointsJoinGameButton?: SxProps;
+  breakpointsJoinGameText?: SxProps;
+}
 
-export function JoinGame() {
+export function JoinGame({
+  breakpointsJoinGameText,
+  breakpointsJoinGameButton,
+}: JoinGameProps) {
   const submit = useSubmit();
 
   const validationSchema = Yup.object({
@@ -34,9 +42,12 @@ export function JoinGame() {
           type="text"
           placeholder="Enter GameID to join"
           name="gamePath"
+          textSx={breakpointsJoinGameText}
         />
         <br />
-        <Button type="submit">Join Game</Button>
+        <Button type="submit" sx={breakpointsJoinGameButton}>
+          Join Game
+        </Button>
       </Form>
     </Formik>
   );

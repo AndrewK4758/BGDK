@@ -5,6 +5,18 @@ import Box from '@mui/material/Box';
 import { Fragment, useMemo } from 'react';
 import { useRouteLoaderData } from 'react-router-dom';
 import useRevalidateBoard from '../../hooks/revalidator';
+import { SxProps } from '@mui/material';
+
+const breakpointsGameBoardBox: SxProps = {
+  border: `4px solid ${Theme.palette.success.main}`,
+  [Theme.breakpoints.down('laptop')]: {
+    height: '90%',
+  },
+  [Theme.breakpoints.up('laptop')]: {
+    height: '100%',
+    boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
+  },
+};
 
 const gameBoardMap = (e: string[], i: number, arr: GameBoard) => (
   <Fragment key={`row ${i}`}>
@@ -28,14 +40,7 @@ export default function ShowGameBoard() {
 
   useRevalidateBoard();
   return (
-    <Box
-      component={'div'}
-      sx={{
-        height: '100%',
-        border: `4px solid ${Theme.palette.success.main}`,
-        boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
-      }}
-    >
+    <Box component={'div'} sx={breakpointsGameBoardBox}>
       <RenderList data={board} listMapCallback={gameBoardMap} />
     </Box>
   );

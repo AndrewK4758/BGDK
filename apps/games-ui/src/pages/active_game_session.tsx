@@ -15,11 +15,14 @@ export default function ActiveGameSession() {
 
   return (
     <>
-      <Container component={'section'} sx={{ display: 'flex' }}>
+      <Container component={'section'}>
         <ActiveAvatars playersInGame={activePlayersInGame} />
         {activePlayersInGame.length > 1 && <ReadyToStart />}
       </Container>
-      <Box component={'div'} sx={{ height: 'calc(100% - 30vh)', marginY: '1.5rem' }}>
+      <Box
+        component={'div'}
+        sx={{ height: 'calc(100% - 30vh)', marginY: '1.5rem' }}
+      >
         <Outlet />
       </Box>
       <Container component={'section'}>

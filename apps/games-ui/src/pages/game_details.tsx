@@ -1,10 +1,51 @@
 import { IBuiltGame, IRule } from '@aklapper/model';
-import { HeadingWithDetails, RenderList, Text } from '@aklapper/react-components';
+import {
+  HeadingWithDetails,
+  RenderList,
+  Text,
+  Theme,
+} from '@aklapper/react-components';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import { useParams, useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 import RegisterGame from '../components/register_game';
+import { SxProps } from '@mui/material';
+
+const breakpointsGameDetailsTitle: SxProps = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '4rem',
+  },
+};
+
+const breakpointsGameDetailsListTitle: SxProps = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '2rem',
+  },
+};
+
+const breakpointsGameDetailsListValue: SxProps = {
+  paddingX: '1rem',
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '1rem',
+  },
+};
+
+const breakpointsGameDetailsRegisterButton: SxProps = {
+  animation: 'blink 3s infinite',
+  '@keyframes blink': {
+    '50%': {
+      color: Theme.palette.secondary.main,
+      backgroundColor: Theme.palette.primary.contrastText,
+    },
+  },
+
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '1rem',
+    width: '130px',
+    height: '35px',
+  },
+};
 
 const listRulesCallback = (e: IRule, i: number, arr: IRule[]) => (
   <Fragment key={e.title}>
@@ -13,8 +54,10 @@ const listRulesCallback = (e: IRule, i: number, arr: IRule[]) => (
       id={e.order}
       titleVariant="h2"
       titleText={e.title}
+      titleSx={breakpointsGameDetailsListTitle}
       valueVariant="body1"
       valueText={e.value}
+      valueSx={breakpointsGameDetailsListValue}
     />
   </Fragment>
 );
@@ -28,15 +71,30 @@ const GameDetails = () => {
   if (selectedGame) {
     const gameDetails: IRule[] = selectedGame.rules;
     return (
-      <Container component={'div'} sx={{ flexDirection: 'column', marginTop: '1.5rem' }}>
-        <Text titleVariant="h1" titleText={selectedName} />
+      <Container
+        component={'div'}
+        sx={{ flexDirection: 'column', marginTop: '1.5rem' }}
+      >
+        <Text
+          titleVariant="h1"
+          titleText={selectedName}
+          sx={breakpointsGameDetailsTitle}
+        />
         <List component={'ul'}>
           <RenderList data={gameDetails} listMapCallback={listRulesCallback} />
         </List>
-        <RegisterGame />
+        <RegisterGame
+          registerGameButtonSx={breakpointsGameDetailsRegisterButton}
+        />
       </Container>
     );
-  } else return <Text titleVariant="h1" titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'} />;
+  } else
+    return (
+      <Text
+        titleVariant="h1"
+        titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'}
+      />
+    );
 };
 
 export default GameDetails;

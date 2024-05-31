@@ -23,7 +23,7 @@ export const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
       playerInTurn: resp.data.playerInTurn,
       activePlayersInGame: resp.data.activePlayersInGame,
     };
-
+    console.log(activePlayerDataToSend);
     return activePlayerDataToSend;
   } catch (error) {
     console.log(error);

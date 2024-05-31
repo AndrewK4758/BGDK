@@ -34,5 +34,4 @@ export default defineConfig({
     target: 'modules',
   },
   envDir: './',
-  // base: '/Game-MonoRepo',
 });

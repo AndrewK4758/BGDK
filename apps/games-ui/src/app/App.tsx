@@ -9,7 +9,7 @@ import Waiting from '../components/layout/waiting';
 import { NoGameError, NotEnoughPlayersError } from '../errors/error';
 import GameDetails from '../pages/game_details';
 import GamesList from '../pages/games_list';
-import Home from '../pages/home';
+import HomePage from '../pages/home-page';
 import RegisterPlayerAndAvatarOnGame from '../pages/register_player_and_avatar_on_game';
 import { joinGameAction } from '../services/action_functions/join_game_action';
 import { registerGameInstanceOnServerAction } from '../services/action_functions/register_game_on_server_action';
@@ -27,7 +27,7 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          Component: Home,
+          Component: HomePage,
         },
         {
           path: 'games',

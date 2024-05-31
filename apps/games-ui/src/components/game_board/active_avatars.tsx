@@ -1,34 +1,97 @@
 import { Player } from '@aklapper/chutes-and-ladders';
 import { IPlayersAndBoard, IRegisterFormValues } from '@aklapper/model';
-import { PlayersInGame, RenderList, Text } from '@aklapper/react-components';
+import {
+  PlayersInGame,
+  RenderList,
+  Text,
+  Theme,
+} from '@aklapper/react-components';
+import { SxProps, Box } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
+
+const breakpointsActiveGameTitleContainer: SxProps = {
+  flexDirection: 'row',
+  flex: '0 1 80%',
+  [Theme.breakpoints.down('laptop')]: {
+    flex: '1 0 100%',
+    height: 'fit-content',
+  },
+};
+
+const breakpointsActiveGameTitleText: SxProps = {
+  textAlign: 'start',
+  flex: '1 0 45%',
+  [Theme.breakpoints.down('laptop')]: {
+    flex: '1 0 100%',
+    fontSize: '1.5rem',
+    textAlign: 'center',
+  },
+};
+
+const breakpointsPlayersInGameBox: SxProps = {
+  flex: '1 0 55%',
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  height: '100%',
+  [Theme.breakpoints.down('laptop')]: {},
+};
+
+const breakpointsPlayersBox: SxProps = {
+  flex: '1 0 50%',
+  display: 'flex',
+  flexDirection: 'row',
+  [Theme.breakpoints.down('laptop')]: {},
+};
+
+const breakpointsPlayersInGameText: SxProps = {
+  flex: '0 1 auto',
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '1rem',
+  },
+};
 
 const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
   <Fragment key={e.avatarName}>
     <PlayersInGame
       component={'span'}
       id={e.playerName}
-      sx={{ color: `${e.avatarColor}`, flex: '0 1 auto', justifyContent: 'center', alignContent: 'center' }}
+      boxSx={breakpointsPlayersBox}
+      textSx={{ color: e.avatarColor, ...breakpointsPlayersInGameText }}
       playerVariant="body1"
-      playerName={`${e.playerName} playing with a `}
+      playerName={`${e.playerName}: `}
       avatarColor={`${e.avatarColor} `}
       avatarName={e.avatarName}
     />
   </Fragment>
 );
 
-export default function ActiveAvatars({ playersInGame }: { playersInGame: IRegisterFormValues[] }) {
+export default function ActiveAvatars({
+  playersInGame,
+}: {
+  playersInGame: IRegisterFormValues[];
+}) {
   const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
 
   return (
-    <Container component={'section'} sx={{ width: '70%', flex: '1 0 70' }}>
-      <Text titleVariant="h2" titleText="Active Players in Game" sx={{ textAlign: 'start' }} />
+    <Container component={'section'} sx={breakpointsActiveGameTitleContainer}>
+      <Text
+        titleVariant="h2"
+        titleText="Active Players in Game"
+        sx={breakpointsActiveGameTitleText}
+      />
       {!loader.winner ? (
-        <RenderList data={playersInGame} listMapCallback={playersInGameMap} />
+        <Box sx={breakpointsPlayersInGameBox}>
+          <RenderList data={playersInGame} listMapCallback={playersInGameMap} />
+        </Box>
       ) : (
-        <Text titleVariant="h2" titleText={loader.winner} />
+        <Text
+          titleVariant="h2"
+          titleText={loader.winner}
+          sx={breakpointsActiveGameTitleText}
+        />
       )}
     </Container>
   );

@@ -4,8 +4,23 @@ import { ElementType } from 'react';
 import Text from '../text/text';
 import HeaderMenu from './header-menu/header-menu';
 import { SxProps } from '@mui/material';
+import { Theme } from '../theme/theme';
 
 /* eslint-disable-next-line */
+
+const breakpointsMenuItem: SxProps = {
+  color: Theme.palette.primary.main,
+  backgroundColor: Theme.palette.info.main,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '17px',
+  },
+};
+
+const breakpointsMenu = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '2rem',
+  },
+};
 
 export interface HeaderProps {
   component: ElementType;
@@ -24,7 +39,10 @@ export function Header({
 }: HeaderProps) {
   return (
     <AppBar component={component} sx={sxAppBar}>
-      <HeaderMenu />
+      <HeaderMenu
+        breakpointsMenuItem={breakpointsMenuItem}
+        breakpointsMenu={breakpointsMenu}
+      />
       <Text
         titleVariant={headerTextVariant}
         titleText={titleText}

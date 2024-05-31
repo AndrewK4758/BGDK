@@ -6,29 +6,68 @@ const breakpointsAppBar: SxProps = {
   paddingX: '1rem',
   display: 'flex',
   flexDirection: 'row',
-  position: 'absolute',
-  top: 0,
+  position: 'fixed',
   zIndex: 10,
   backgroundColor: Theme.palette.background.paper,
   boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}`,
+  [Theme.breakpoints.down('laptop')]: {
+    height: '35px',
+    bottom: 0,
+    top: 'calc(100vh - 35px)',
+    boxShadow: `0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
+  },
   [Theme.breakpoints.up('laptop')]: {
-    fontSize: '2rem',
-    border: '5px solid blue',
+    height: '65px',
+    top: 0,
   },
 };
-
-// const x = (theme) => ({
-//   [theme.breakpoints.up('laptop')]: {
-//     fontSize: '2rem',
-//     border: '5px solid blue',
-//   },
-// });
 
 const breakpointsText: SxProps = {
   flex: '1 0 auto',
   textAlign: 'end',
   alignSelf: 'center',
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '2rem',
+  },
 };
+
+const breakpointsFooter: SxProps = {
+  position: 'fixed',
+  top: 'calc(100vh - 65px)',
+  bottom: 0,
+  right: 0,
+  left: 0,
+  textAlign: 'center',
+  alignContent: 'center',
+  zIndex: 10,
+  [Theme.breakpoints.down('laptop')]: {
+    display: 'none',
+  },
+};
+
+const breakpointsFooterText: SxProps = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '1.25rem',
+  },
+};
+
+const breakpointsMain: SxProps = {
+  textAlign: 'center',
+  position: 'fixed',
+  top: 65,
+  bottom: 65,
+  left: 0,
+  right: 0,
+  backgroundColor: Theme.palette.background.default,
+  zIndex: 9,
+  paddingY: '65px',
+
+  [Theme.breakpoints.down('laptop')]: {
+    top: 0,
+    bottom: 35,
+  },
+};
+
 export default function Layout() {
   return (
     <>
@@ -39,8 +78,16 @@ export default function Layout() {
         sxAppBar={breakpointsAppBar}
         sxText={breakpointsText}
       />
-      <Main component={'main'} maxWidth={false} />
-      <Footer />
+      <Main
+        component={'main'}
+        maxWidth={false}
+        breakpointsMain={breakpointsMain}
+      />
+      <Footer
+        component={'footer'}
+        breakpointsFooter={breakpointsFooter}
+        breakpointsFooterText={breakpointsFooterText}
+      />
     </>
   );
 }

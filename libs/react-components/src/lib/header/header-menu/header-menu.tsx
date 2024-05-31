@@ -4,9 +4,17 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import Text from '../../text/text';
-import { Theme } from '../../theme/theme';
+import { SxProps } from '@mui/material';
 
-export function HeaderMenu() {
+export interface HeaderMenuProps {
+  breakpointsMenu?: SxProps;
+  breakpointsMenuItem?: SxProps;
+}
+
+export function HeaderMenu({
+  breakpointsMenu,
+  breakpointsMenuItem,
+}: HeaderMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -18,17 +26,28 @@ export function HeaderMenu() {
 
   return (
     <>
-      <IconButton size="large" onClick={handleOpenMenu} edge={false} sx={{ padding: 0 }}>
+      <IconButton
+        size="large"
+        onClick={handleOpenMenu}
+        edge={false}
+        sx={{ padding: 0 }}
+      >
         <MenuRoundedIcon color={'success'} fontSize="large" />
-        <Text titleVariant="h2" titleText={'MENU'} />
+        <Text titleVariant="h2" titleText={'MENU'} sx={breakpointsMenu} />
       </IconButton>
 
-      <Menu component={'ul'} open={open} anchorEl={anchorEl} onClose={handleCloseMenu} variant="menu">
+      <Menu
+        component={'ul'}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleCloseMenu}
+        variant="menu"
+      >
         <MenuItem
           divider={true}
           component="a"
           href="/"
-          sx={{ color: Theme.palette.primary.main, backgroundColor: Theme.palette.info.main }}
+          sx={breakpointsMenuItem}
         >
           HOME
         </MenuItem>
@@ -36,7 +55,7 @@ export function HeaderMenu() {
           divider={true}
           component="a"
           href="games"
-          sx={{ color: Theme.palette.primary.main, backgroundColor: Theme.palette.info.main }}
+          sx={breakpointsMenuItem}
         >
           SHOW GAMES
         </MenuItem>

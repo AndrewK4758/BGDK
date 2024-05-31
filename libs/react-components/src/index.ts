@@ -1,3 +1,4 @@
+export * from './lib/home/home';
 export * from './lib/button/button-form-action';
 export * from './lib/forms/join-game/join-game';
 export * from './lib/forms/select/select-menu';

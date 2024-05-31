@@ -1,9 +1,16 @@
 import { IBuiltGame } from '@aklapper/model';
 import { ImageLink, RenderList, Text, Theme } from '@aklapper/react-components';
+import { SxProps, useMediaQuery } from '@mui/material';
 import Container from '@mui/material/Container';
 import ImageList from '@mui/material/ImageList';
 import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
+
+const breakpointsGameListText: SxProps = {
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '4rem',
+  },
+};
 
 const listGamesMap = (e: IBuiltGame, i: number, arr: IBuiltGame[]) => (
   <Fragment key={e.id}>
@@ -14,7 +21,7 @@ const listGamesMap = (e: IBuiltGame, i: number, arr: IBuiltGame[]) => (
       srcSet={e.imageURL}
       loading="lazy"
       alt={`${e.name} game picture`}
-      style={{ width: 350, height: 'auto' }}
+      style={{ width: '100%', height: 'auto' }}
       title={e.name}
       position="bottom"
     />
@@ -23,21 +30,27 @@ const listGamesMap = (e: IBuiltGame, i: number, arr: IBuiltGame[]) => (
 
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
+  const media = useMediaQuery('laptop');
   return (
     <Container
       component={'div'}
-      sx={{ flexDirection: 'column', alignItems: 'center', justifyItems: 'center', padding: 3 }}
+      sx={{
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyItems: 'center',
+        padding: 3,
+      }}
     >
-      <Text titleVariant="h1" titleText={'Games'} />
+      <Text
+        titleVariant="h1"
+        titleText={'Games'}
+        sx={breakpointsGameListText}
+      />
       <ImageList
         variant="standard"
-        cols={2}
-        rowHeight={365}
+        rowHeight={media ? 365 : 220}
+        cols={media ? 2 : 1}
         gap={4}
-        sx={{
-          backgroundColor: Theme.palette.info.main,
-          boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
-        }}
       >
         <RenderList data={games} listMapCallback={listGamesMap} />
       </ImageList>
