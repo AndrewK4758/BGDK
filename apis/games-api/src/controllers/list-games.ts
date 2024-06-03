@@ -56,8 +56,16 @@ export const TicTacToe = gb
   .setDescription('Second Game Placeholder')
   .setImageURL('TicTacToeT.webp')
   .setRule(1, 'SETUP', `The game is played on a 3x3 grid`)
-  .setRule(2, 'TURNS', `Players take turns marking an empty square with their symbol (X or O)`)
-  .setRule(3, 'WIN', `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`)
+  .setRule(
+    2,
+    'TURNS',
+    `Players take turns marking an empty square with their symbol (X or O)`
+  )
+  .setRule(
+    3,
+    'WIN',
+    `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`
+  )
   .setGameFunctionality([])
   .build();
 

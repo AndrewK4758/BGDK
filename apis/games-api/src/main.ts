@@ -1,4 +1,4 @@
-import { AllGamesMap, InstanceMap, reaper } from '@aklapper/model';
+import { AllGamesMap, InstanceMap } from '@aklapper/model';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';
@@ -29,7 +29,7 @@ app.enable('trust proxy');
 
 new GameRoutes(router);
 
-reaper(instanceMap);
+// reaper(instanceMap);
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {

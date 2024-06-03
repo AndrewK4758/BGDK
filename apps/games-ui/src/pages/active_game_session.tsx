@@ -10,6 +10,8 @@ import TakeTurn from '../components/game_board/take_turn';
 import { SxProps } from '@mui/material';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
+  marginTop: '2rem',
+  flexDirection: 'row',
   [Theme.breakpoints.down('laptop')]: {
     marginTop: '1rem',
   },
@@ -21,6 +23,14 @@ const breakpointsPlayerInTurnText: SxProps = {
   },
 };
 
+const breakpointsBottomMenuButtonsBox: SxProps = {
+  flex: '1 0 50%',
+  flexDirection: 'row',
+  [Theme.breakpoints.down('tablet')]: {
+    flexDirection: 'column',
+  },
+};
+
 export default function ActiveGameSession() {
   const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
   const activePlayersInGame = loader.activePlayersInGame;
@@ -28,11 +38,11 @@ export default function ActiveGameSession() {
 
   return (
     <>
-      <Container component={'section'}>
+      <Container component={'section'} sx={{ marginBottom: '2rem' }}>
         <ActiveAvatars playersInGame={activePlayersInGame} />
         {activePlayersInGame.length > 1 && <ReadyToStart />}
       </Container>
-      <Box component={'div'} sx={{ height: 'fit-content' }}>
+      <Box component={'section'} sx={{ height: '55vh' }}>
         <Outlet />
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
@@ -43,10 +53,10 @@ export default function ActiveGameSession() {
             sx={breakpointsPlayerInTurnText}
           />
         </Box>
-        <Box component={'div'} sx={{ flex: '1 0 50%' }}>
+        <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
           <TakeTurn />
           <ResetGame />
-        </Box>
+        </Container>
       </Container>
     </>
   );

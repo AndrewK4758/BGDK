@@ -12,11 +12,9 @@ import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsActiveGameTitleContainer: SxProps = {
-  flexDirection: 'row',
   flex: '0 1 80%',
   [Theme.breakpoints.down('laptop')]: {
-    flex: '1 0 100%',
-    height: 'fit-content',
+    flex: '1 0 60%',
   },
 };
 

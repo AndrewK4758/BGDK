@@ -12,7 +12,7 @@ export class Game implements IGame {
   haveWinner: boolean;
   currentPlayer: number;
   constructor(instance: ChutesAndLadders) {
-    this.instance = instance;
+    this.instance = instance; 
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;

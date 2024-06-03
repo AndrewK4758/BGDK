@@ -60,7 +60,7 @@ const breakpointsMain: SxProps = {
   right: 0,
   backgroundColor: Theme.palette.background.default,
   zIndex: 9,
-  paddingY: '55px',
+  paddingY: '35px',
   [Theme.breakpoints.down('laptop')]: {
     top: 0,
     bottom: 115,

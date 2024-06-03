@@ -7,13 +7,12 @@ import { SxProps } from '@mui/material';
 
 const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
-  justifyContent: 'center',
+  justifyItems: 'center',
   alignContent: 'center',
   [Theme.breakpoints.down('laptop')]: {},
 };
 
 const breakpointsStartGameButtonFormButton: SxProps = {
-  flex: '0 1 auto',
   textAlign: 'center',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',

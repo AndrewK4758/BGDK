@@ -37,6 +37,12 @@ export function Home({
         sx={breakpointsHomeText}
       />
       <JoinGame
+        method="patch"
+        action="join-game"
+        type="text"
+        buttonText="Join Game"
+        buttonType="submit"
+        name="gamePath"
         breakpointsJoinGameButton={breakpointsJoinGameButton}
         breakpointsJoinGameText={breakpointsJoinGameText}
         breakpointsJoinGameLabel={breakpointsJoinGameLabel}

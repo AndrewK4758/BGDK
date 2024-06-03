@@ -1,7 +1,12 @@
 // ASK ABOUT DIRECTORY STRUCTURE BEST PRACTICE
 
 import { Chain, ChainBuilder, Command, Context } from '@aklapper/chain';
-import { AvatarTotem, ChutesAndLadders, Color, Game, GameBoard, IGame } from '@aklapper/chutes-and-ladders';
+import {
+  AvatarTotem,
+  Color,
+  Game,
+  GameBoard,
+} from '@aklapper/chutes-and-ladders';
 import { Request, Response } from 'express';
 
 export interface IRule {
@@ -53,7 +58,7 @@ export interface IBuiltGame {
   rules: IRule[];
   chain: Chain;
   commands: Command[];
-  instance: IGame;
+  instance: Game;
 }
 
 export interface IGameBuilder {
@@ -63,7 +68,6 @@ export interface IGameBuilder {
   setImageURL(imageURL: string): IGameBuilder;
   setRule(order: number, value: string, title: string): IGameBuilder;
   setGameFunctionality(commands: Command[]): IGameBuilder;
-  setGameInstance(game: ChutesAndLadders): IGameBuilder;
   build(): IBuiltGame;
 }
 
@@ -95,7 +99,11 @@ export class GameBuilder implements IGameBuilder {
   }
 
   setRule(order: number, title: string, value: string): IGameBuilder {
-    const rule = new Rule().setOrder(order).setValue(value).setTitle(title).build();
+    const rule = new Rule()
+      .setOrder(order)
+      .setValue(value)
+      .setTitle(title)
+      .build();
     this.Game.rules.push(rule);
     return this;
   }
@@ -105,10 +113,6 @@ export class GameBuilder implements IGameBuilder {
     return this;
   }
 
-  setGameInstance(game: ChutesAndLadders): IGameBuilder {
-    this.Game.instance = new Game(game) as IGame;
-    return this;
-  }
   build(): IBuiltGame {
     this.Game.chain = ChainBuilder.build(this.Game.commands, true);
     const gameBuildComplete = Object.assign(new Object(), this.Game);
@@ -199,7 +203,14 @@ export const deRefContextObject = (context: Context): ContextData => {
   const next = context.get(GameContextKeys.NEXT) as string;
   const output = context.get(GameContextKeys.OUTPUT) as object;
 
-  return { action: action, game: game, req: req, resp: resp, next: next, output: output };
+  return {
+    action: action,
+    game: game,
+    req: req,
+    resp: resp,
+    next: next,
+    output: output,
+  };
 };
 
 export const getActiveGame = (req: Request) => {
@@ -223,13 +234,14 @@ export const getPlayerID = (req: Request) => {
 //------------------------------------------------------------------------------------------------------------------
 // Game instance map
 
-export const getCurrentMinute = (): Minute => (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
+export const getCurrentMinute = (): Minute =>
+  (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
 
 export interface IInstanceOfGame {
   gameInstanceID: GameInstanceID;
   instanceTime: Minute;
   lastActive: Minute;
-  instance: IGame;
+  instance: Game;
   updateLastActive(minute: Minute): void;
 }
 
@@ -237,8 +249,8 @@ export class InstanceOfGame implements IInstanceOfGame {
   gameInstanceID: GameInstanceID;
   instanceTime: Minute;
   lastActive: Minute;
-  instance: IGame;
-  constructor(minute: Minute, gameInstanceID: GameInstanceID, instance: IGame) {
+  instance: Game;
+  constructor(minute: Minute, gameInstanceID: GameInstanceID, instance: Game) {
     this.instanceTime = minute;
     this.lastActive = minute;
     this.gameInstanceID = gameInstanceID;

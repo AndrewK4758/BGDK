@@ -5,6 +5,7 @@ import { MenuItem, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { Form, Formik } from 'formik';
+import { CSSProperties } from 'react';
 import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -17,8 +18,9 @@ const breakpointsSelectMenuSxProps: SxProps = {
 };
 
 const breakpointsRegisterPlayerButton: SxProps = {
+  flex: '1 0 15%',
   alignSelf: 'end',
-  marginTop: '1rem',
+  justifySelf: 'center',
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
@@ -58,7 +60,17 @@ const breakpointsFormContianer: SxProps = {
   textAlign: 'start',
   flexDirection: 'column',
   paddingX: '1rem',
+
   [Theme.breakpoints.down('laptop')]: {},
+};
+
+const breakpointsFormStyle: CSSProperties = {
+  display: 'flex',
+  flex: '1 0 75%',
+  paddingRight: '1.5rem',
+  [Theme.breakpoints.down('laptop')]: {
+    flexDirection: 'column',
+  },
 };
 
 const avatarColorMap = (e: Color, i: number, arr: string[]) => (
@@ -108,8 +120,8 @@ export default function RegisterPlayerAndAvatarForm() {
         })
       }
     >
-      <Form style={{ width: '100%' }}>
-        <Container component={'div'} sx={breakpointsFormContianer}>
+      <Form style={breakpointsFormStyle}>
+        <Container component={'section'} sx={breakpointsFormContianer}>
           <TextInput
             type="text"
             name="playerName"
@@ -133,10 +145,10 @@ export default function RegisterPlayerAndAvatarForm() {
             labelSx={breakpointsRegisterPlayerLabel}
             selectSx={breakpointsRegisterPlayerSelectInput}
           />
-          <Button type="submit" sx={breakpointsRegisterPlayerButton}>
-            Register
-          </Button>
         </Container>
+        <Button type="submit" sx={breakpointsRegisterPlayerButton}>
+          Register
+        </Button>
       </Form>
     </Formik>
   );

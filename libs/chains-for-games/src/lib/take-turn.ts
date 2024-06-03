@@ -1,6 +1,13 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
 import { Player } from '@aklapper/chutes-and-ladders'; // move to model
-import { deRefContextObject, GameContextKeys, getCurrentMinute, getPlayerID, TurnStatus } from '@aklapper/model';
+import {
+  deRefContextObject,
+  GameContextKeys,
+  GameInstanceID,
+  getCurrentMinute,
+  getPlayerID,
+  TurnStatus,
+} from '@aklapper/model';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
   if (
@@ -38,7 +45,10 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
       context.put(GameContextKeys.NEXT, 'roll-dice');
       return true;
     } else {
-      resp.setHeader('current-game', req.header('current-game') as string);
+      resp.setHeader(
+        'current-game',
+        req.header('current-game') as GameInstanceID
+      );
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.INVALID });
       return false;
     }
@@ -95,7 +105,10 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
 
     game.instance.rotatePlayers();
 
-    resp.setHeader('current-game', req.header('current-game') as string);
+    resp.setHeader(
+      'current-game',
+      req.header('current-game') as GameInstanceID
+    );
     return true;
   } else return false;
 });

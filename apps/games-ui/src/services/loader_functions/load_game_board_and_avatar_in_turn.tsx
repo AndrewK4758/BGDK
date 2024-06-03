@@ -7,12 +7,12 @@ export const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
   params,
 }: LoaderFunctionArgs) => {
   const id = params.id;
-  const baseURL = import.meta.env.VITE_API_SERVER_URL;
+  const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
 
   try {
     const resp = await axios.patch(
-      `${baseURL}/games/${id}/board`,
+      `${__baseURL__}/games/${id}/board`,
       {},
       { headers: { 'current-game': __current_game__ } }
     );
@@ -23,7 +23,7 @@ export const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
       playerInTurn: resp.data.playerInTurn,
       activePlayersInGame: resp.data.activePlayersInGame,
     };
-    console.log(activePlayerDataToSend);
+
     return activePlayerDataToSend;
   } catch (error) {
     console.log(error);

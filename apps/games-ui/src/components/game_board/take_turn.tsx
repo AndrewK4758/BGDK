@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { SxProps } from '@mui/material';
 
 const breakpointsTakeTurnButton: SxProps = {
-  marginTop: '.5rem',
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',

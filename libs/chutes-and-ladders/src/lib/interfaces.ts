@@ -44,7 +44,7 @@ export interface IPlayer {
 export interface IAvatar {
   Name: string;
   Color: Color;
-  Location: ISpace;
+  Location: ISpace | undefined;
   get name(): string;
   get color(): Color;
   get location(): ISpace;

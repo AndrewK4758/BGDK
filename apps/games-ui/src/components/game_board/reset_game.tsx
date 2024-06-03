@@ -36,7 +36,7 @@ export default function ResetGame() {
 
   return (
     <ButtonFormAction
-      method={undefined}
+      method={'patch'}
       action={undefined}
       handleSubmit={handleResetGame}
       variant="outlined"

@@ -20,6 +20,7 @@ export interface GameBoardProps {
 
 const breakpointsRowSx: SxProps = {
   flex: '1 0 10%',
+  height: '5.4vh',
   border: `3px solid ${Theme.palette.success.main}`,
   [Theme.breakpoints.down('laptop')]: {
     border: `1.5px solid ${Theme.palette.success.main}`,
@@ -34,12 +35,8 @@ const breakpointsSpaceSx: SxProps = {
 
 const gameBoardRowMap = (e: string, i: number, arr: string[]) => (
   <Fragment key={e}>
-    <Grid key={e} height={'100'} sx={breakpointsRowSx}>
-      <Text
-        titleVariant="body2"
-        titleText={Theme.breakpoints.down('laptop') ? e.slice(0, 3) : e}
-        sx={breakpointsSpaceSx}
-      />
+    <Grid key={e} sx={breakpointsRowSx}>
+      <Text titleVariant="body2" titleText={e} sx={breakpointsSpaceSx} />
     </Grid>
   </Fragment>
 );

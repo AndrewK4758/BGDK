@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import RegisterPlayerAndAvatarForm from '../components/formik_form_components/register_player_and_avatar_formik';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import IconButton from '@mui/material/IconButton';
 import { SxProps } from '@mui/material';
 
 const breakpointsRegisterPlayerTitle: SxProps = {
@@ -12,11 +14,25 @@ const breakpointsRegisterPlayerTitle: SxProps = {
   },
 };
 
+const breakpointsRegisterPlayerTitleBox: SxProps = { flex: '1 0 33.3%' };
+
 const breakpointsRegisterPlayerTitleValue: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '1rem',
   },
 };
+
+const breakpointsCopyIcon: SxProps = {
+  fontSize: '2.5rem',
+  color: Theme.palette.primary.contrastText,
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '1.25rem',
+  },
+};
+
+const handleCopyGameLinkToClipboard = (
+  gameLocatordata: string
+): Promise<void> => navigator.clipboard.writeText(gameLocatordata);
 
 export default function RegisterPlayerAndAvatarOnGame() {
   const loader = useRouteLoaderData('registerData') as IRegisterLoaderAndFilter;
@@ -25,15 +41,17 @@ export default function RegisterPlayerAndAvatarOnGame() {
   const gameID = loader.gamePlayerIDs.gameInstanceID;
   const playerID = loader.gamePlayerIDs.playerID;
 
-  const gameLocatordata = location.pathname.replace('register', `${gameID}`).slice(1);
+  const gameLocatordata = location.pathname
+    .replace('register', `${gameID}`)
+    .slice(1);
 
   return (
     <>
       <Container
-        component={'div'}
+        component={'section'}
         sx={{ borderBottom: `5px solid ${Theme.palette.background.paper}` }}
       >
-        <Box sx={{ flex: '1 0 33.3%' }}>
+        <Box sx={breakpointsRegisterPlayerTitleBox}>
           <Text
             titleVariant="h2"
             titleText={'Game ID:'}
@@ -45,7 +63,7 @@ export default function RegisterPlayerAndAvatarOnGame() {
             sx={breakpointsRegisterPlayerTitleValue}
           />
         </Box>
-        <Box sx={{ flex: '1 0 33.3%' }}>
+        <Box sx={breakpointsRegisterPlayerTitleBox}>
           <Text
             titleVariant="h2"
             titleText={'Player ID: '}
@@ -57,7 +75,7 @@ export default function RegisterPlayerAndAvatarOnGame() {
             sx={breakpointsRegisterPlayerTitleValue}
           />
         </Box>
-        <Box sx={{ flex: '1 0 33.3%' }}>
+        <Box sx={breakpointsRegisterPlayerTitleBox}>
           <Text
             titleVariant="h2"
             titleText={'Game Link:'}
@@ -68,6 +86,17 @@ export default function RegisterPlayerAndAvatarOnGame() {
             titleText={gameLocatordata}
             sx={breakpointsRegisterPlayerTitleValue}
           />
+          <IconButton
+            onClick={() => handleCopyGameLinkToClipboard(gameLocatordata)}
+            sx={{
+              '&:hover': { backgroundColor: Theme.palette.primary.main },
+            }}
+          >
+            <ContentCopyIcon
+              titleAccess="Copy Game Link"
+              sx={breakpointsCopyIcon}
+            />
+          </IconButton>
         </Box>
       </Container>
       <RegisterPlayerAndAvatarForm />

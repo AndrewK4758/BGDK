@@ -11,11 +11,13 @@ import {
 import ShortUniqueId from 'short-unique-id';
 
 export const registerAction = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'register') {
+  if (
+    context.get(GameContextKeys.ACTION) &&
+    context.getString(GameContextKeys.ACTION) === 'register'
+  ) {
     context.put(GameContextKeys.NEXT, 'create-playerID');
     return true;
-  }
-  return false;
+  } else return false;
 });
 export const createPlayerID = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'create-playerID') {

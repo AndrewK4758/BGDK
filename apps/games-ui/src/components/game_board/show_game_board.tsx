@@ -8,8 +8,7 @@ import useRevalidateBoard from '../../hooks/revalidator';
 import { SxProps } from '@mui/material';
 
 const breakpointsGameBoardBox: SxProps = {
-  border: `4px solid ${Theme.palette.success.main}`,
-  height: '100%',
+  border: `5px solid ${Theme.palette.success.main}`,
   [Theme.breakpoints.up('laptop')]: {
     boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
   },
@@ -36,7 +35,7 @@ export default function ShowGameBoard() {
 
   useRevalidateBoard();
   return (
-    <Box component={'div'} sx={breakpointsGameBoardBox}>
+    <Box component={'section'} sx={breakpointsGameBoardBox}>
       <RenderList data={board} listMapCallback={gameBoardMap} />
     </Box>
   );

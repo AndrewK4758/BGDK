@@ -7,16 +7,34 @@ import TextInput from '../../text-input/text-input';
 import { SxProps } from '@mui/material';
 
 /* eslint-disable-next-line */
-export interface JoinGameProps {
+export interface JoinGameProps extends FormActionProps {
   breakpointsJoinGameButton?: SxProps;
   breakpointsJoinGameText?: SxProps;
   breakpointsJoinGameLabel?: SxProps;
+}
+
+export interface FormActionProps {
+  method: 'get' | 'post' | 'put' | 'delete' | 'patch' | undefined;
+  action: string | undefined;
+  handleSubmit?: () => unknown;
+  name: string;
+  value?: string | number | readonly string[] | undefined;
+  type: 'text' | 'file';
+  sx?: SxProps;
+  buttonText: string;
+  buttonType: 'button' | 'submit' | undefined;
 }
 
 export function JoinGame({
   breakpointsJoinGameText,
   breakpointsJoinGameButton,
   breakpointsJoinGameLabel,
+  method,
+  action,
+  type,
+  name,
+  buttonType,
+  buttonText,
 }: JoinGameProps) {
   const submit = useSubmit();
 
@@ -37,19 +55,19 @@ export function JoinGame({
         })
       }
     >
-      <Form method="patch" action="join-game">
+      <Form method={method} action={action}>
         <TextInput
           label={'Game Path'}
           id="gamePath"
-          type="text"
+          type={type}
           placeholder="Enter GameID to join"
-          name="gamePath"
+          name={name}
           textSx={breakpointsJoinGameText}
           labelSx={breakpointsJoinGameLabel}
         />
         <br />
-        <Button type="submit" sx={breakpointsJoinGameButton}>
-          Join Game
+        <Button type={buttonType} sx={breakpointsJoinGameButton}>
+          {buttonText}
         </Button>
       </Form>
     </Formik>

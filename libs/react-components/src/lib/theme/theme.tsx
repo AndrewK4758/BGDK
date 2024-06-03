@@ -136,10 +136,14 @@ export const Theme = createTheme({
           props: { component: 'div' },
           style: {
             gap: 4,
-            textAlign: 'center',
             display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            textAlign: 'center',
             justifyContent: 'center',
             alignContent: 'center',
+            margin: 0,
+            padding: 0,
           },
         },
         {
@@ -147,6 +151,8 @@ export const Theme = createTheme({
           style: {
             display: 'flex',
             flexWrap: 'wrap',
+            margin: 0,
+            padding: 0,
           },
         },
       ],

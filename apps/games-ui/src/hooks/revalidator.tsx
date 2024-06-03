@@ -7,7 +7,7 @@ export default function useRevalidateBoard() {
   useEffect(() => {
     const interval = setInterval(() => {
       revalidator.revalidate();
-    }, 1500);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [revalidator]);

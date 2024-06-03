@@ -15,6 +15,7 @@ const breakpointsHomeText: SxProps = {
 
 const breakpointsJoinGameButton: SxProps = {
   backgroundColor: Theme.palette.info.main,
+  marginTop: '1rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
@@ -31,6 +32,9 @@ const breakpointsJoinGameLabel: SxProps = {
 
 const breakpointsJoinGameText: SxProps = {
   backgroundColor: Theme.palette.info.main,
+  width: '30vw',
+  justifySelf: 'center',
+  alignSelf: 'center',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     textAlign: 'center',

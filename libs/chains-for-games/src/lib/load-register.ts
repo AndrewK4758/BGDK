@@ -1,5 +1,10 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { deRefContextObject, GameContextKeys, ILoadRegisterData } from '@aklapper/model';
+import {
+  deRefContextObject,
+  GameContextKeys,
+  GameInstanceID,
+  ILoadRegisterData,
+} from '@aklapper/model';
 
 export const loadRegister = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'load-register') {
@@ -19,8 +24,10 @@ export const loadRegister = CommandBuilder.build((context: Context) => {
 export const sendLoadRegister = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-load-register-data') {
     const { req, resp } = deRefContextObject(context);
-    const __current_game__ = req.header('current-game') as string;
-    resp.setHeader('current-game', __current_game__);
+    resp.setHeader(
+      'current-game',
+      req.header('current-game') as GameInstanceID
+    );
     return true;
   } else return false;
 });

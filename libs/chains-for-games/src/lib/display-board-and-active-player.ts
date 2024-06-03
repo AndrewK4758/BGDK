@@ -1,18 +1,25 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
 import { GameBoard } from '@aklapper/chutes-and-ladders';
-import { deRefContextObject, GameContextKeys, IPlayersAndBoard, IRegisterFormValues } from '@aklapper/model';
+import {
+  deRefContextObject,
+  GameContextKeys,
+  GameInstanceID,
+  IPlayersAndBoard,
+  IRegisterFormValues,
+} from '@aklapper/model';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'board') {
     const { game } = deRefContextObject(context);
 
-    const activePlayersArray: IRegisterFormValues[] = game.instance.playersArray.map((p) => {
-      return {
-        playerName: p.name,
-        avatarName: p.avatar.name,
-        avatarColor: p.avatar.color,
-      };
-    });
+    const activePlayersArray: IRegisterFormValues[] =
+      game.instance.playersArray.map((p) => {
+        return {
+          playerName: p.name,
+          avatarName: p.avatar.name,
+          avatarColor: p.avatar.color,
+        };
+      });
     context.put('active-players-in-game', activePlayersArray);
     context.put(GameContextKeys.NEXT, 'ready-to-play-check');
     return true;
@@ -59,7 +66,10 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
       activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
-    resp.setHeader('current-game', req.header('current-game') as string);
+    resp.setHeader(
+      'current-game',
+      req.header('current-game') as GameInstanceID
+    );
     context.put(GameContextKeys.OUTPUT, activeDataToSend);
     return true;
   } else return false;

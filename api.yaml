@@ -25,17 +25,9 @@ handlers:
 - url: /.*
   script: None
   secure: always
-# - url: /games/.*
-#   script: None
-#   secure: always
-# - url: /games/:id/.*
-#   script: None
-#   secure: always
-# - url: /games/:id/:action
-#   script: None
-#   secure: always
-# - url: /join-game
-#   script: None
-#   secure: always
+
+automatic_scaling: 
+  min_instances: 0
+  max_instances: 1
 
 
