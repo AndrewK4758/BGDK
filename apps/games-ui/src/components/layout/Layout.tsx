@@ -61,6 +61,7 @@ const breakpointsMain: SxProps = {
   backgroundColor: Theme.palette.background.default,
   zIndex: 9,
   paddingY: '35px',
+  overflowY: 'scroll',
   [Theme.breakpoints.down('laptop')]: {
     top: 0,
     bottom: 115,
@@ -80,6 +81,7 @@ export default function Layout() {
       />
       <Main
         component={'main'}
+        id={'main-container'}
         maxWidth={false}
         breakpointsMain={breakpointsMain}
       />

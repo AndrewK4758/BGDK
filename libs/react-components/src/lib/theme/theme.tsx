@@ -1,4 +1,5 @@
 import createTheme from '@mui/material/styles/createTheme';
+import darkScrollbar from '@mui/material/darkScrollbar';
 import './theme.module.css';
 
 declare module '@mui/material' {
@@ -130,6 +131,11 @@ export const Theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        main: darkScrollbar(),
+      },
+    },
     MuiContainer: {
       variants: [
         {
@@ -156,10 +162,6 @@ export const Theme = createTheme({
           },
         },
       ],
-      defaultProps: {
-        disableGutters: true,
-        maxWidth: false,
-      },
     },
     MuiButton: {
       variants: [

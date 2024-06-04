@@ -4,9 +4,13 @@ import { SelectMenu, TextInput, Theme } from '@aklapper/react-components';
 import { MenuItem, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Form, Formik } from 'formik';
-import { CSSProperties } from 'react';
-import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
+import { Formik } from 'formik';
+import {
+  useParams,
+  useRouteLoaderData,
+  useSubmit,
+  Form,
+} from 'react-router-dom';
 import * as Yup from 'yup';
 
 const breakpointsSelectMenuSxProps: SxProps = {
@@ -37,7 +41,7 @@ const breakpointsRegisterPlayerLabel: SxProps = {
 };
 
 const breakpointsRegisterPlayerTextInput: SxProps = {
-  width: '50%',
+  width: '35%',
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '20px',
@@ -47,12 +51,13 @@ const breakpointsRegisterPlayerTextInput: SxProps = {
 };
 
 const breakpointsRegisterPlayerSelectInput: SxProps = {
-  width: 200,
+  width: '25%',
   textAlign: 'center',
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '19px',
     height: 45,
+    width: 200,
   },
 };
 
@@ -60,16 +65,8 @@ const breakpointsFormContianer: SxProps = {
   textAlign: 'start',
   flexDirection: 'column',
   paddingX: '1rem',
-
-  [Theme.breakpoints.down('laptop')]: {},
-};
-
-const breakpointsFormStyle: CSSProperties = {
-  display: 'flex',
-  flex: '1 0 75%',
-  paddingRight: '1.5rem',
   [Theme.breakpoints.down('laptop')]: {
-    flexDirection: 'column',
+    alignContent: 'center',
   },
 };
 
@@ -120,7 +117,7 @@ export default function RegisterPlayerAndAvatarForm() {
         })
       }
     >
-      <Form style={breakpointsFormStyle}>
+      <Form>
         <Container component={'section'} sx={breakpointsFormContianer}>
           <TextInput
             type="text"

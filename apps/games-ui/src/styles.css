@@ -13,10 +13,3 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 } 
-
-@media (max-width: 1024px) {
-  main {
-    overflow: scroll;
-  }
-}
-
