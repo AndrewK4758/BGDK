@@ -115,7 +115,6 @@ export class ChutesAndLadders {
     this.MAX_PLAYERS = 4;
     this.MIN_PLAYERS = 2;
     this.makeGameBoard();
-    this.startSpace;
     this.colorList = Color;
     this.avatarList = [
       { id: 1, name: 'XENOMORPH' },

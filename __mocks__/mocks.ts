@@ -15,7 +15,7 @@ import { InstanceOfGame, getCurrentMinute } from '../libs/instance-of-game/src';
 import { Request, Response } from 'express';
 
 export const mockMakeGame = (game: ChutesAndLadders) =>
-  new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(game));
+  new InstanceOfGame(getCurrentMinute(), 'gameID', new Game(game));
 
 export const mockReqObj: Partial<Request> = {
   body: {
@@ -27,7 +27,7 @@ export const mockReqObj: Partial<Request> = {
   header: jest.fn().mockImplementation((name: string) => {
     const headers = new Map<string, string>();
     const __current_game__ = {
-      gameInstanceID: 'game-ID',
+      gameInstanceID: 'gameID',
       playerID: 'player-2-ID',
     } as GamePlayerValidation;
 
