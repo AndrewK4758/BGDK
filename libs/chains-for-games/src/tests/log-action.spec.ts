@@ -4,9 +4,11 @@ import { logAction } from '../index';
 
 let ctx: Context;
 beforeAll(() => {
-  if (ctx) ctx.state.clear();
   ctx = ContextBuilder.build();
   ctx.put(GameContextKeys.ACTION, 'ACTION');
+});
+afterAll(() => {
+  ctx.state.clear();
 });
 describe('it should log the action property to the console', () => {
   it('logs action off context to console', () => {

@@ -21,7 +21,6 @@ import {
 let ctx: Context, game: IInstanceOfGame;
 describe('test display board and active player chain', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
 
@@ -29,6 +28,10 @@ describe('test display board and active player chain', () => {
     ctx.put(GameContextKeys.ACTION, 'board');
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+  });
+
+  afterAll(() => {
+    ctx.state.clear();
   });
 
   it('should return all players registered in the game instance', () => {

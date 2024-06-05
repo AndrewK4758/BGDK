@@ -3,12 +3,12 @@ import { Game } from '@aklapper/game';
 import { GameBuilder } from '../lib/game-builder/game-builder';
 import { GameInstanceID, Minute } from '@aklapper/game-types';
 import { getCurrentMinute, InstanceOfGame } from '@aklapper/instance-of-game';
-import { InstanceMap } from '../lib/instance-time-map/instance-time-map';
+import { InstanceTimeMap } from '../lib/instance-time-map/instance-time-map';
 import { Rule } from '../lib/rule/rule';
 
 let rb: Rule,
   gb: GameBuilder,
-  instanceMap: InstanceMap,
+  instanceMap: InstanceTimeMap,
   activeGame: InstanceOfGame,
   minute: Minute,
   gameInstanceID: GameInstanceID;
@@ -19,7 +19,7 @@ describe('test all model functions for games-api and games-ui', () => {
     gameInstanceID = 'G@Me!D';
     rb = new Rule();
     gb = new GameBuilder();
-    instanceMap = new InstanceMap();
+    instanceMap = new InstanceTimeMap();
     activeGame = new InstanceOfGame(
       minute,
       gameInstanceID,

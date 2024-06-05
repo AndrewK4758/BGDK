@@ -9,10 +9,9 @@ import { Color } from '../libs/game-types/src';
 import { Game } from '../libs/game/src';
 import {
   GamePlayerValidation,
-  getCurrentMinute,
-  InstanceOfGame,
   IRegisterFormValues,
-} from '../libs/model/src';
+} from '../libs/game-types/src/lib/types/game-types';
+import { InstanceOfGame, getCurrentMinute } from '../libs/instance-of-game/src';
 import { Request, Response } from 'express';
 
 export const mockMakeGame = (game: ChutesAndLadders) =>

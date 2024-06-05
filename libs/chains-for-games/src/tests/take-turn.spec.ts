@@ -27,7 +27,6 @@ let ctx: Context,
   turnStatus: TurnStatus;
 describe('should execute all steps of taking turn', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
     turnStatus = TurnStatus.NOT_READY;
@@ -38,7 +37,9 @@ describe('should execute all steps of taking turn', () => {
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
   });
-
+  afterAll(() => {
+    ctx.state.clear();
+  });
   describe('test take turn command in chain', () => {
     it('should fail because game is in NOT_READY state when receiving a turn ', () => {
       const commandResult = takeTurn.execute(ctx);

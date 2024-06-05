@@ -19,13 +19,15 @@ let ctx: Context, game: IInstanceOfGame;
 
 describe('execute all steps of starting a game', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
     ctx.put(GameContextKeys.ACTION, 'start');
     ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+  });
+  afterAll(() => {
+    ctx.state.clear();
   });
   describe('test start game command', () => {
     it('should verify the context action is start and send to next-handler', () => {

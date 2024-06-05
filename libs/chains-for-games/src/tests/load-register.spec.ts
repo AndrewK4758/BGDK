@@ -15,7 +15,6 @@ import {
 let ctx: Context, game: IInstanceOfGame;
 describe('test load register chain', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
     ctx.put(GameContextKeys.GAME, game);
@@ -25,7 +24,9 @@ describe('test load register chain', () => {
     ctx.put(GameContextKeys.NEXT, '');
     ctx.put(GameContextKeys.OUTPUT, {});
   });
-
+  afterAll(() => {
+    ctx.state.clear();
+  });
   describe('test the load-register endpoint chain', () => {
     it('should add avatar list and color list to context object', () => {
       const commandResult = loadRegister.execute(ctx);

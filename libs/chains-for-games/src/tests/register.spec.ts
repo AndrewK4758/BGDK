@@ -17,7 +17,6 @@ let ctx: Context, game: IInstanceOfGame, output: ITestCtxOutput;
 
 describe('test register chain', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     game = mockMakeGame(new ChutesAndLadders(5, 5));
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.GAME, game);
@@ -26,6 +25,9 @@ describe('test register chain', () => {
     ctx.put(GameContextKeys.ACTION, 'register');
     ctx.put(GameContextKeys.NEXT, '');
     output = { message: 'Player Created' };
+  });
+  afterAll(() => {
+    ctx.state.clear();
   });
   describe('register chain test', () => {
     it('should return true for register action', () => {

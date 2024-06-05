@@ -10,7 +10,6 @@ import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 let ctx: Context, game: IInstanceOfGame, player1: IPlayer, player2: IPlayer;
 describe('test reset game chain', () => {
   beforeAll(() => {
-    if (ctx) ctx.state.clear();
     ctx = ContextBuilder.build();
 
     game = mockGameWithPlayersAdded();
@@ -24,7 +23,9 @@ describe('test reset game chain', () => {
     player1.avatar.move(1);
     player2.avatar.move(2);
   });
-
+  afterAll(() => {
+    ctx.state.clear();
+  });
   describe('it should reset game', () => {
     it('should show start space as empty then return both players to startspace', () => {
       expect(game.instance.instance.startSpace.occupied).toBeFalsy();
