@@ -4,6 +4,7 @@ import { logAction } from '../index';
 
 let ctx: Context;
 beforeAll(() => {
+  if (ctx) ctx.state.clear();
   ctx = ContextBuilder.build();
   ctx.put(GameContextKeys.ACTION, 'ACTION');
 });

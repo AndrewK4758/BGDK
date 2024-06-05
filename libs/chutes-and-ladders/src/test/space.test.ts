@@ -2,7 +2,8 @@
 
 import { Space } from '../lib/space';
 import { Avatar } from '../lib/avatar';
-import { IAvatar, ISpace, SpaceType, Color } from '../lib/interfaces';
+import { IAvatar, ISpace } from '../lib/interfaces';
+import { SpaceType, Color } from '@aklapper/game-types';
 
 // Setup of spaces & avatars
 let s1: ISpace,

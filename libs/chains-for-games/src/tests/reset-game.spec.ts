@@ -1,78 +1,74 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import {
-  ChutesAndLadders,
-  GameBoard,
-  IGame,
-  Player,
-} from '@aklapper/chutes-and-ladders';
+import { GameBoard, IGame, IPlayer } from '@aklapper/chutes-and-ladders';
 import {
   GameContextKeys,
   InstanceOfGame,
   deRefContextObject,
 } from '@aklapper/model';
-import { mockAddPlayersToGame, mockMakeGame } from '__mocks__/mocks';
+import { mockGameWithPlayersAdded } from '__mocks__/mocks';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 
-let ctx: Context, game: InstanceOfGame, player1: Player, player2: Player;
+let ctx: Context, game: InstanceOfGame, player1: IPlayer, player2: IPlayer;
+describe('test reset game chain', () => {
+  beforeAll(() => {
+    if (ctx) ctx.state.clear();
+    ctx = ContextBuilder.build();
 
-beforeAll(() => {
-  ctx = ContextBuilder.build();
+    game = mockGameWithPlayersAdded();
 
-  game = mockMakeGame(new ChutesAndLadders(5, 5));
-  mockAddPlayersToGame(game);
+    ctx.put(GameContextKeys.GAME, game);
+    ctx.put(GameContextKeys.ACTION, 'reset');
 
-  ctx.put(GameContextKeys.GAME, game);
-  ctx.put(GameContextKeys.ACTION, 'reset');
+    player1 = game.instance.playersArray[0];
+    player2 = game.instance.playersArray[1];
 
-  player1 = game.instance.playersArray[0];
-  player2 = game.instance.playersArray[1];
-
-  player1.avatar.move(1);
-  player2.avatar.move(2);
-});
-
-describe('it should reset game', () => {
-  it('should show start space as empty then return both players to startspace', () => {
-    expect(game.instance.instance.startSpace.occupied).toBeFalsy();
-
-    if (
-      !game.instance.instance.startSpace.next.special &&
-      !game.instance.instance.startSpace.next.next.special
-    ) {
-      expect(
-        game.instance.instance.startSpace.next.avatarsInSpace[0].name
-      ).toBe('XENOMORPH');
-      expect(
-        game.instance.instance.startSpace.next.next.avatarsInSpace[0].name
-      ).toBe('PREDATOR');
-    }
-
-    const commandResult = resetGame.execute(ctx);
-
-    expect(commandResult).toBeTruthy();
+    player1.avatar.move(1);
+    player2.avatar.move(2);
   });
 
-  it('should flip have winner flag on game', () => {
-    ctx.put(GameContextKeys.NEXT, 'flip-have-winner-flag');
+  describe('it should reset game', () => {
+    it('should show start space as empty then return both players to startspace', () => {
+      expect(game.instance.instance.startSpace.occupied).toBeFalsy();
 
-    const commandResult = flipHaveWinnerFlag.execute(ctx);
+      if (
+        !game.instance.instance.startSpace.next.special &&
+        !game.instance.instance.startSpace.next.next.special
+      ) {
+        expect(
+          game.instance.instance.startSpace.next.avatarsInSpace[0].name
+        ).toBe('XENOMORPH');
+        expect(
+          game.instance.instance.startSpace.next.next.avatarsInSpace[0].name
+        ).toBe('PREDATOR');
+      }
 
-    expect(commandResult).toBeTruthy();
-    expect((ctx.get(GameContextKeys.GAME) as IGame).haveWinner).toBeFalsy();
-  });
+      const commandResult = resetGame.execute(ctx);
 
-  it('should make new gameboard and send to start game chain', () => {
-    ctx.put(GameContextKeys.NEXT, 'make-game-board');
-    const { game } = deRefContextObject(ctx);
+      expect(commandResult).toBeTruthy();
+    });
 
-    const oldBoard: GameBoard = game.instance.instance.displayGameBoard();
+    it('should flip have winner flag on game', () => {
+      ctx.put(GameContextKeys.NEXT, 'flip-have-winner-flag');
 
-    const commandResult = makeGameBoard.execute(ctx);
+      const commandResult = flipHaveWinnerFlag.execute(ctx);
 
-    const newBoard: GameBoard = game.instance.instance.displayGameBoard();
+      expect(commandResult).toBeTruthy();
+      expect((ctx.get(GameContextKeys.GAME) as IGame).haveWinner).toBeFalsy();
+    });
 
-    expect(commandResult).toBeTruthy();
-    expect(oldBoard === newBoard).toBeFalsy();
-    expect(ctx.get(GameContextKeys.ACTION)).toEqual('start');
+    it('should make new gameboard and send to start game chain', () => {
+      ctx.put(GameContextKeys.NEXT, 'make-game-board');
+      const { game } = deRefContextObject(ctx);
+
+      const oldBoard: GameBoard = game.instance.instance.displayGameBoard();
+
+      const commandResult = makeGameBoard.execute(ctx);
+
+      const newBoard: GameBoard = game.instance.instance.displayGameBoard();
+
+      expect(commandResult).toBeTruthy();
+      expect(oldBoard === newBoard).toBeFalsy();
+      expect(ctx.get(GameContextKeys.ACTION)).toEqual('start');
+    });
   });
 });

@@ -60,7 +60,8 @@
       "executor": "@nx/vite:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/apps/games-ui"
+        "reportsDirectory": "../../coverage/apps/games-ui",
+        "testFiles": ["./tests/*"]
       }
     },
     "lint": {

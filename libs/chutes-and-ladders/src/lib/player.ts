@@ -32,7 +32,7 @@ export class Player implements IPlayer {
     return this.Avatar;
   }
 
-  set avatar(avatar) {
+  set avatar(avatar: IAvatar) {
     this.Avatar = avatar;
   }
 }

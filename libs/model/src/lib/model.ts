@@ -1,12 +1,8 @@
 // ASK ABOUT DIRECTORY STRUCTURE BEST PRACTICE
 
 import { Chain, ChainBuilder, Command, Context } from '@aklapper/chain';
-import {
-  AvatarTotem,
-  Color,
-  Game,
-  GameBoard,
-} from '@aklapper/chutes-and-ladders';
+import { AvatarTotem, Color, GameBoard } from '@aklapper/game-types';
+import { Game, IGame } from '@aklapper/game';
 import { Request, Response } from 'express';
 
 export interface IRule {
@@ -58,7 +54,7 @@ export interface IBuiltGame {
   rules: IRule[];
   chain: Chain;
   commands: Command[];
-  instance: Game;
+  instance: IGame;
 }
 
 export interface IGameBuilder {
@@ -192,6 +188,10 @@ export type ContextData = {
   output: object;
 };
 
+export interface ITestCtxOutput {
+  message: string;
+}
+
 //-------------------------------------------------------------------------------------------------------------//
 // util functions
 
@@ -324,5 +324,4 @@ export const reaper = (instanceMap: IInstanceMap) => {
   }, startTime.getTime() - now.getTime());
 };
 
-//--------------------------------------------------------------------------------------------------------
-//ReturnGameFunctionallityLoaderData interface
+

@@ -1,18 +1,22 @@
-import { Avatar } from './avatar';
-import { ChutesAndLadders } from './chutes_and_ladders';
-import { Color, IGame, SpaceType } from './interfaces';
-import { Player } from './player';
-import { generateRandomNumber } from './utils';
+import {
+  Avatar,
+  ChutesAndLadders,
+  IPlayer,
+  Player,
+  generateRandomNumber,
+} from '@aklapper/chutes-and-ladders';
+import { IGame } from '../interfaces/interfaces';
+import { Color, SpaceType } from '@aklapper/game-types';
 
 export class Game implements IGame {
   instance: ChutesAndLadders;
-  playersArray: Player[];
-  playerInTurn!: Player;
+  playersArray: IPlayer[];
+  playerInTurn!: IPlayer;
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
   constructor(instance: ChutesAndLadders) {
-    this.instance = instance; 
+    this.instance = instance;
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
@@ -22,11 +26,12 @@ export class Game implements IGame {
 
   register(playerName: string, id: string, avatarName: string, color: Color) {
     const player = new Player(playerName, id);
-    player.avatar = new Avatar(avatarName, color);
+    const avatar = new Avatar(avatarName, color);
+    player.avatar = avatar;
     this.generatePlayerOrder(player);
   }
 
-  generatePlayerOrder(player: Player) {
+  generatePlayerOrder(player: IPlayer) {
     const unshiftOrPush = generateRandomNumber(2);
     if (unshiftOrPush === 1) this.playersArray.push(player);
     if (unshiftOrPush === 2) this.playersArray.unshift(player);
@@ -34,7 +39,8 @@ export class Game implements IGame {
 
   verifyReadyToPlay() {
     return (this.readyToPlay =
-      this.playersArray.length >= this.instance.MIN_PLAYERS && this.playersArray.length <= this.instance.MAX_PLAYERS
+      this.playersArray.length >= this.instance.MIN_PLAYERS &&
+      this.playersArray.length <= this.instance.MAX_PLAYERS
         ? true
         : false);
   }

@@ -1,5 +1,14 @@
-import { ChutesAndLadders, Game } from '@aklapper/chutes-and-ladders';
-import { GameBuilder, GameInstanceID, getCurrentMinute, InstanceMap, InstanceOfGame, Minute, Rule } from '../lib/model';
+import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
+import { Game } from '@aklapper/game';
+import {
+  GameBuilder,
+  GameInstanceID,
+  getCurrentMinute,
+  InstanceMap,
+  InstanceOfGame,
+  Minute,
+  Rule,
+} from '../lib/model';
 
 let rb: Rule,
   gb: GameBuilder,
@@ -15,11 +24,19 @@ describe('test all model functions for games-api and games-ui', () => {
     rb = new Rule();
     gb = new GameBuilder();
     instanceMap = new InstanceMap();
-    activeGame = new InstanceOfGame(minute, gameInstanceID, new Game(new ChutesAndLadders(5, 5)));
+    activeGame = new InstanceOfGame(
+      minute,
+      gameInstanceID,
+      new Game(new ChutesAndLadders(5, 5))
+    );
   });
 
   test('RuleBuilder', () => {
-    const r1 = rb.setOrder(1).setTitle('Rule 1').setValue('Rule 1 explains rule 1').build();
+    const r1 = rb
+      .setOrder(1)
+      .setTitle('Rule 1')
+      .setValue('Rule 1 explains rule 1')
+      .build();
     expect(r1.order).toEqual(1);
     expect(r1.title).toEqual('Rule 1');
     expect(r1.value).toEqual('Rule 1 explains rule 1');

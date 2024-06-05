@@ -1,7 +1,5 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
 import { GameContextKeys, InstanceOfGame } from '@aklapper/model';
-
 import {
   sendStartGameStatus,
   setAvatarsOnStart,
@@ -11,25 +9,23 @@ import {
 } from '../index';
 
 import {
-  mockAddPlayersToGame,
-  mockMakeGame,
+  mockGameWithPlayersAdded,
   mockReqObj,
   mockRespObj,
 } from '__mocks__/mocks';
 
 let ctx: Context, game: InstanceOfGame;
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-  game = mockMakeGame(new ChutesAndLadders(5, 5));
 
-  if (game) mockAddPlayersToGame(game);
-
-  ctx.put(GameContextKeys.ACTION, 'start');
-  ctx.put(GameContextKeys.GAME, game);
-  ctx.put(GameContextKeys.REQUEST, mockReqObj);
-  ctx.put(GameContextKeys.RESPONSE, mockRespObj);
-});
 describe('execute all steps of starting a game', () => {
+  beforeAll(() => {
+    if (ctx) ctx.state.clear();
+    ctx = ContextBuilder.build();
+    game = mockGameWithPlayersAdded();
+    ctx.put(GameContextKeys.ACTION, 'start');
+    ctx.put(GameContextKeys.GAME, game);
+    ctx.put(GameContextKeys.REQUEST, mockReqObj);
+    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+  });
   describe('test start game command', () => {
     it('should verify the context action is start and send to next-handler', () => {
       const commandResult = startGame.execute(ctx);

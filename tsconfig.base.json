@@ -20,6 +20,8 @@
       "@aklapper/chain": ["libs/chain/src/index.ts"],
       "@aklapper/chains-for-games": ["libs/chains-for-games/src/index.ts"],
       "@aklapper/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
+      "@aklapper/game": ["libs/game/src/index.ts"],
+      "@aklapper/game-types": ["libs/game-types/src/index.ts"],
       "@aklapper/model": ["libs/model/src/index.ts"],
       "@aklapper/react-components": ["libs/react-components/src/index.ts"]
     }

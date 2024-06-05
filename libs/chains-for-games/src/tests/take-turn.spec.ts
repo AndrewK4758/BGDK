@@ -5,12 +5,7 @@ import {
   InstanceOfGame,
   TurnStatus,
 } from '@aklapper/model';
-
-import {
-  ChutesAndLadders,
-  Player,
-  SpaceType,
-} from '@aklapper/chutes-and-ladders';
+import { Player, SpaceType } from '@aklapper/chutes-and-ladders';
 import {
   moveAvatar,
   rollDice,
@@ -21,8 +16,7 @@ import {
 } from '../index';
 
 import {
-  mockAddPlayersToGame,
-  mockMakeGame,
+  mockGameWithPlayersAdded,
   mockReqObj,
   mockRespObj,
 } from '__mocks__/mocks';
@@ -35,22 +29,20 @@ let ctx: Context,
   game: InstanceOfGame,
   output: ICtxOutput,
   turnStatus: TurnStatus;
-
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-  game = game = mockMakeGame(new ChutesAndLadders(5, 5));
-  turnStatus = TurnStatus.NOT_READY;
-  output = { turnStatus: turnStatus };
-
-  mockAddPlayersToGame(game);
-
-  ctx.put(GameContextKeys.ACTION, 'take-turn');
-  ctx.put(GameContextKeys.GAME, game);
-  ctx.put(GameContextKeys.REQUEST, mockReqObj);
-  ctx.put(GameContextKeys.RESPONSE, mockRespObj);
-});
-
 describe('should execute all steps of taking turn', () => {
+  beforeAll(() => {
+    if (ctx) ctx.state.clear();
+    ctx = ContextBuilder.build();
+    game = mockGameWithPlayersAdded();
+    turnStatus = TurnStatus.NOT_READY;
+    output = { turnStatus: turnStatus };
+
+    ctx.put(GameContextKeys.ACTION, 'take-turn');
+    ctx.put(GameContextKeys.GAME, game);
+    ctx.put(GameContextKeys.REQUEST, mockReqObj);
+    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+  });
+
   describe('test take turn command in chain', () => {
     it('should fail because game is in NOT_READY state when receiving a turn ', () => {
       const commandResult = takeTurn.execute(ctx);
