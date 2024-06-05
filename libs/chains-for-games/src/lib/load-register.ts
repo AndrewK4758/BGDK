@@ -1,10 +1,10 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
+import { deRefContextObject } from '@aklapper/model';
 import {
-  deRefContextObject,
   GameContextKeys,
   GameInstanceID,
   ILoadRegisterData,
-} from '@aklapper/model';
+} from '@aklapper/game-types';
 
 export const loadRegister = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'load-register') {

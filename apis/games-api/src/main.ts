@@ -1,4 +1,4 @@
-import { AllGamesMap, InstanceMap } from '@aklapper/model';
+import { AllGamesMap, InstanceTimeMap } from '@aklapper/model';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';
@@ -16,7 +16,7 @@ const corsOptions: CorsOptions = {
   preflightContinue: true,
 };
 
-const instanceMap = new InstanceMap();
+const instanceMap = new InstanceTimeMap();
 const allGamesMap = new AllGamesMap();
 
 app.set('instanceMap', instanceMap);

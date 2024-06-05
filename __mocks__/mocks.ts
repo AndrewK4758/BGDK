@@ -2,11 +2,11 @@ import {
   IAvatar,
   Avatar,
   Player,
-  Color,
   ChutesAndLadders,
-  Game,
   IPlayer,
 } from '../libs/chutes-and-ladders/src';
+import { Color } from '../libs/game-types/src';
+import { Game } from '../libs/game/src';
 import {
   GamePlayerValidation,
   getCurrentMinute,

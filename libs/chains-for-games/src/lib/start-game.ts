@@ -1,10 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
 import { Player } from '@aklapper/chutes-and-ladders';
-import {
-  deRefContextObject,
-  GameContextKeys,
-  GameInstanceID,
-} from '@aklapper/model';
+import { deRefContextObject } from '@aklapper/model';
+import { GameContextKeys, GameInstanceID } from '@aklapper/game-types';
 
 export const startGame = CommandBuilder.build((context: Context) => {
   if (

@@ -1,6 +1,3 @@
-import { Theme } from '@aklapper/react-components';
-import { ThemeProvider } from '@emotion/react';
-import CssBaseline from '@mui/material/CssBaseline';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ActiveGameSession from '../pages/active_game_session';
 import ShowGameBoard from '../components/game_board/show_game_board';
@@ -87,10 +84,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return (
-    <ThemeProvider theme={Theme}>
-      <CssBaseline enableColorScheme />
-      <RouterProvider router={router} fallbackElement={<Waiting />} />
-    </ThemeProvider>
-  );
+  return <RouterProvider router={router} fallbackElement={<Waiting />} />;
 }

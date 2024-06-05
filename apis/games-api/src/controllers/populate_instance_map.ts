@@ -1,13 +1,12 @@
-import { ChutesAndLadders, Game } from '@aklapper/chutes-and-ladders';
+import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
+import { Game } from '@aklapper/game';
+import { IAllGamesMap, IInstanceTimeMap } from '@aklapper/model';
 import {
   GameInstanceID,
   GamePlayerValidation,
-  getCurrentMinute,
-  AllGamesMap,
-  InstanceMap,
-  InstanceOfGame,
   Minute,
-} from '@aklapper/model';
+} from '@aklapper/game-types';
+import { getCurrentMinute, InstanceOfGame } from '@aklapper/instance-of-game';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
 import { games } from './list-games';
@@ -18,8 +17,8 @@ import { games } from './list-games';
 export const populateInstanceMaps = (req: Request, resp: Response) => {
   const gameName = req.params.id.replace(/-/g, ' ');
   console.log(`Game selected: ${gameName}`);
-  const instanceMap = req.app.get('instanceMap') as InstanceMap;
-  const allGamesMap = req.app.get('allGamesMap') as AllGamesMap;
+  const instanceMap = req.app.get('instanceMap') as IInstanceTimeMap;
+  const allGamesMap = req.app.get('allGamesMap') as IAllGamesMap;
 
   const game = games.find(({ name }) => name === gameName);
 

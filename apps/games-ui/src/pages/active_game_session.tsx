@@ -1,4 +1,4 @@
-import { IPlayersAndBoard } from '@aklapper/model';
+import { IPlayersAndBoard } from '@aklapper/game-types';
 import { Text, Theme } from '@aklapper/react-components';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';

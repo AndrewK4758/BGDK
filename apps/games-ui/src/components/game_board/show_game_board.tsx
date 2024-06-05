@@ -1,5 +1,4 @@
-import { GameBoard } from '@aklapper/chutes-and-ladders';
-import { IPlayersAndBoard } from '@aklapper/model';
+import { IPlayersAndBoard, GameBoard } from '@aklapper/game-types';
 import { GameBoardMap, RenderList, Theme } from '@aklapper/react-components';
 import Box from '@mui/material/Box';
 import { Fragment, useMemo } from 'react';

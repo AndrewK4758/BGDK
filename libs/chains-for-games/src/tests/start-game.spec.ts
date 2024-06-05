@@ -1,5 +1,6 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys, InstanceOfGame } from '@aklapper/model';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { GameContextKeys } from '@aklapper/game-types';
 import {
   sendStartGameStatus,
   setAvatarsOnStart,
@@ -14,7 +15,7 @@ import {
   mockRespObj,
 } from '__mocks__/mocks';
 
-let ctx: Context, game: InstanceOfGame;
+let ctx: Context, game: IInstanceOfGame;
 
 describe('execute all steps of starting a game', () => {
   beforeAll(() => {

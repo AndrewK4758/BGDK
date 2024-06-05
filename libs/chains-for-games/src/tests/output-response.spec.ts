@@ -1,5 +1,5 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys, ITestCtxOutput } from '@aklapper/model';
+import { GameContextKeys, ITestCtxOutput } from '@aklapper/game-types';
 import { mockRespObj } from '__mocks__/mocks';
 import { outputContextResponse } from '../index';
 

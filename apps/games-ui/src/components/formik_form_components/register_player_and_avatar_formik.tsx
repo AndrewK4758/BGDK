@@ -1,5 +1,4 @@
-import { AvatarTotem, Color } from '@aklapper/chutes-and-ladders';
-import { ILoadRegisterData } from '@aklapper/model';
+import { AvatarTotem, Color, ILoadRegisterData } from '@aklapper/game-types';
 import { SelectMenu, TextInput, Theme } from '@aklapper/react-components';
 import { MenuItem, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';

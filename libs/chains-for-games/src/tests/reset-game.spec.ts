@@ -1,14 +1,13 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameBoard, IGame, IPlayer } from '@aklapper/chutes-and-ladders';
-import {
-  GameContextKeys,
-  InstanceOfGame,
-  deRefContextObject,
-} from '@aklapper/model';
+import { IPlayer } from '@aklapper/chutes-and-ladders';
+import { IGame } from '@aklapper/game';
+import { GameBoard, GameContextKeys } from '@aklapper/game-types';
+import { deRefContextObject } from '@aklapper/model';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
 import { mockGameWithPlayersAdded } from '__mocks__/mocks';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 
-let ctx: Context, game: InstanceOfGame, player1: IPlayer, player2: IPlayer;
+let ctx: Context, game: IInstanceOfGame, player1: IPlayer, player2: IPlayer;
 describe('test reset game chain', () => {
   beforeAll(() => {
     if (ctx) ctx.state.clear();

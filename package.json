@@ -2,10 +2,7 @@
   "name": "@aklapper/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "build": "npx nx build games-api",
-    "start": "node ./dist/apis/games-api/main.js"
-  },
+  "scripts": {},
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",

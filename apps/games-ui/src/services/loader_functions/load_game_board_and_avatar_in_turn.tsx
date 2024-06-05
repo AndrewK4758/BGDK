@@ -1,4 +1,4 @@
-import { IPlayersAndBoard } from '@aklapper/model';
+import { IPlayersAndBoard } from '@aklapper/game-types';
 import axios from 'axios';
 import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils';

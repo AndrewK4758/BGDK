@@ -1,4 +1,4 @@
-import { IRegisterLoaderAndFilter } from '@aklapper/model';
+import { IRegisterLoaderAndFilter } from '@aklapper/game-types';
 import { Text, Theme } from '@aklapper/react-components';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';

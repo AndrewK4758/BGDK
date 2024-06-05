@@ -1,10 +1,6 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import {
-  GameContextKeys,
-  getCurrentMinute,
-  InstanceOfGame,
-  ITestCtxOutput,
-} from '@aklapper/model';
+import { GameContextKeys, ITestCtxOutput } from '@aklapper/game-types';
+import { getCurrentMinute, IInstanceOfGame } from '@aklapper/instance-of-game';
 import {
   createPlayerID,
   filterAvatar,
@@ -17,7 +13,7 @@ import {
 import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
 
-let ctx: Context, game: InstanceOfGame, output: ITestCtxOutput;
+let ctx: Context, game: IInstanceOfGame, output: ITestCtxOutput;
 
 describe('test register chain', () => {
   beforeAll(() => {

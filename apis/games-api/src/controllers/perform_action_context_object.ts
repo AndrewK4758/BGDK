@@ -1,12 +1,13 @@
 import { ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys, InstanceOfGame } from '@aklapper/model';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { GameContextKeys } from '@aklapper/game-types';
 import { Request, Response } from 'express';
 import { getActiveGame } from '@aklapper/model';
 import { ChutesAndLaddersGame } from './list-games';
 
 export const performAction = (req: Request, resp: Response) => {
   console.log('Perform Action Called');
-  const game = getActiveGame(req) as InstanceOfGame;
+  const game = getActiveGame(req) as IInstanceOfGame;
   console.log(
     `Got Game: ${JSON.stringify(game.gameInstanceID)}: ${
       game.instance.instance.constructor.name

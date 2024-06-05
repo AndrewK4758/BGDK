@@ -1,5 +1,5 @@
 import { Player } from '@aklapper/chutes-and-ladders';
-import { IPlayersAndBoard, IRegisterFormValues } from '@aklapper/model';
+import { IPlayersAndBoard, IRegisterFormValues } from '@aklapper/game-types';
 import {
   PlayersInGame,
   RenderList,

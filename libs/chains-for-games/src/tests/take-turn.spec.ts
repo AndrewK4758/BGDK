@@ -1,11 +1,7 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import {
-  GameContextKeys,
-  getCurrentMinute,
-  InstanceOfGame,
-  TurnStatus,
-} from '@aklapper/model';
-import { Player, SpaceType } from '@aklapper/chutes-and-ladders';
+import { GameContextKeys, TurnStatus, SpaceType } from '@aklapper/game-types';
+import { getCurrentMinute, IInstanceOfGame } from '@aklapper/instance-of-game';
+import { Player } from '@aklapper/chutes-and-ladders';
 import {
   moveAvatar,
   rollDice,
@@ -26,7 +22,7 @@ interface ICtxOutput {
 }
 
 let ctx: Context,
-  game: InstanceOfGame,
+  game: IInstanceOfGame,
   output: ICtxOutput,
   turnStatus: TurnStatus;
 describe('should execute all steps of taking turn', () => {

@@ -1,12 +1,13 @@
-import { Color, AvatarTotem } from '@aklapper/chutes-and-ladders';
 import {
-  IBuiltGame,
+  Color,
+  AvatarTotem,
   GamePlayerValidation,
   IPlayersAndBoard,
   GameInstanceID,
   PlayerID,
   TurnStatus,
-} from '@aklapper/model';
+} from '@aklapper/game-types';
+import { IBuiltGame } from '@aklapper/model';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];

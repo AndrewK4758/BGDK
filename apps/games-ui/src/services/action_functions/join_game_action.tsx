@@ -1,4 +1,4 @@
-import { GamePlayerValidation } from '@aklapper/model';
+import { GamePlayerValidation } from '@aklapper/game-types';
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 export const joinGameAction = async ({ request }: ActionFunctionArgs) => {

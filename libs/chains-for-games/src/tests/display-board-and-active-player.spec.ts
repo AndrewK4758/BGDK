@@ -3,9 +3,8 @@ import {
   GameContextKeys,
   IPlayersAndBoard,
   IRegisterFormValues,
-  InstanceOfGame,
-} from '@aklapper/model';
-
+} from '@aklapper/game-types';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
 import {
   activeDataToSend,
   activePlayers,
@@ -19,7 +18,7 @@ import {
   mockRespObj,
 } from '__mocks__/mocks';
 
-let ctx: Context, game: InstanceOfGame;
+let ctx: Context, game: IInstanceOfGame;
 describe('test display board and active player chain', () => {
   beforeAll(() => {
     if (ctx) ctx.state.clear();

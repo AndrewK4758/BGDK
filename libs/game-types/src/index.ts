@@ -1,1 +1,1 @@
-export * from './lib/game-types';
+export * from './lib/types/game-types';

@@ -1,14 +1,10 @@
 import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
 import { Game } from '@aklapper/game';
-import {
-  GameBuilder,
-  GameInstanceID,
-  getCurrentMinute,
-  InstanceMap,
-  InstanceOfGame,
-  Minute,
-  Rule,
-} from '../lib/model';
+import { GameBuilder } from '../lib/game-builder/game-builder';
+import { GameInstanceID, Minute } from '@aklapper/game-types';
+import { getCurrentMinute, InstanceOfGame } from '@aklapper/instance-of-game';
+import { InstanceMap } from '../lib/instance-time-map/instance-time-map';
+import { Rule } from '../lib/rule/rule';
 
 let rb: Rule,
   gb: GameBuilder,

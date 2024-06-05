@@ -1,10 +1,10 @@
 import { Context, ContextBuilder } from '@aklapper/chain';
-import { Color } from '@aklapper/chutes-and-ladders';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
 import {
   GameContextKeys,
   ILoadRegisterData,
-  InstanceOfGame,
-} from '@aklapper/model';
+  Color,
+} from '@aklapper/game-types';
 import { loadRegister, sendLoadRegister } from '../index';
 import {
   mockGameWithPlayersAdded,
@@ -12,7 +12,7 @@ import {
   mockRespObj,
 } from '__mocks__/mocks';
 
-let ctx: Context, game: InstanceOfGame;
+let ctx: Context, game: IInstanceOfGame;
 describe('test load register chain', () => {
   beforeAll(() => {
     if (ctx) ctx.state.clear();
