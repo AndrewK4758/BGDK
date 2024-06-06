@@ -3,13 +3,8 @@ import { SelectMenu, TextInput, Theme } from '@aklapper/react-components';
 import { MenuItem, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Formik } from 'formik';
-import {
-  useParams,
-  useRouteLoaderData,
-  useSubmit,
-  Form,
-} from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 
 const breakpointsSelectMenuSxProps: SxProps = {

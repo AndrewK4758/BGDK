@@ -1,8 +1,9 @@
-import { ButtonFormAction, Theme } from '@aklapper/react-components';
+import { Theme } from '@aklapper/react-components';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { getGameInstanceInfo } from '../../services/utils';
 import { SxProps } from '@mui/material';
+import Button from '@mui/material/Button';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
@@ -35,16 +36,13 @@ export default function ResetGame() {
   };
 
   return (
-    <ButtonFormAction
-      method={'patch'}
-      action={undefined}
-      handleSubmit={handleResetGame}
+    <Button
+      onClick={handleResetGame}
       variant="outlined"
-      name="Reset Game"
-      value={'reset-game'}
-      type="submit"
+      type="button"
       sx={breakpointsResetGameButton}
-      buttonText="Reset"
-    />
+    >
+      Reset{' '}
+    </Button>
   );
 }

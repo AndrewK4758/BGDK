@@ -13,8 +13,6 @@ export class Space implements ISpace {
   constructor(spaceType: SpaceType, spaceValue: string | number) {
     this.Type = spaceType;
     this.Value = String(spaceValue);
-    this.Previous;
-    this.Next;
     this.Special = null;
     this.AvatarsInSpace = [];
     this.Display = String(this.Value);

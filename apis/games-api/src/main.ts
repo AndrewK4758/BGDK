@@ -1,4 +1,4 @@
-import { AllGamesMap, InstanceTimeMap } from '@aklapper/model';
+import { AllGamesMap, InstanceTimeMap, reaper } from '@aklapper/model';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';
@@ -13,7 +13,6 @@ const corsOptions: CorsOptions = {
   exposedHeaders: '*',
   optionsSuccessStatus: 204,
   allowedHeaders: '*',
-  preflightContinue: true,
 };
 
 const instanceMap = new InstanceTimeMap();
@@ -29,7 +28,7 @@ app.enable('trust proxy');
 
 new GameRoutes(router);
 
-// reaper(instanceMap);
+reaper(instanceMap);
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {

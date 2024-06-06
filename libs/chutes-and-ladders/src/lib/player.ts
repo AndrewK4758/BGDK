@@ -7,8 +7,6 @@ export class Player implements IPlayer {
   Avatar!: IAvatar;
   constructor(name: string, id: string) {
     this.Name = name;
-    this.Order;
-    this.Avatar;
     this.Id = id;
   }
 

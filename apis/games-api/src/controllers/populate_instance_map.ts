@@ -9,7 +9,6 @@ import {
 import { getCurrentMinute, InstanceOfGame } from '@aklapper/instance-of-game';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import { games } from './list-games';
 
 //NEED TO IMPLEMENT PUTTING THE REF TO THE GAME CLASS IN THE GAME BUILDER AND
 //FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME
@@ -20,14 +19,12 @@ export const populateInstanceMaps = (req: Request, resp: Response) => {
   const instanceMap = req.app.get('instanceMap') as IInstanceTimeMap;
   const allGamesMap = req.app.get('allGamesMap') as IAllGamesMap;
 
-  const game = games.find(({ name }) => name === gameName);
-
   const minute: Minute = getCurrentMinute();
   const gameID: GameInstanceID = new ShortUniqueId().rnd();
 
-  game.instance = new Game(new ChutesAndLadders(5, 5));
+  const instance = new Game(new ChutesAndLadders(5, 5));
 
-  const activeGame = new InstanceOfGame(minute, gameID, game.instance);
+  const activeGame = new InstanceOfGame(minute, gameID, instance);
   allGamesMap.addGame(gameID, activeGame);
   instanceMap.addGameInstance(minute, gameID);
 

@@ -4,10 +4,6 @@
   "sourceRoot": "apis/games-api/src",
   "projectType": "application",
   "tags": [],
-  "scripts": {
-    "build": "npx nx build games-api",
-    "start": "node ./dist/apis/games-api/main.js"
-  },
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",

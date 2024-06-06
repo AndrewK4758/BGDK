@@ -13,7 +13,7 @@ export const takeTurn = async ({ params }: ActionFunctionArgs) => {
       {},
       { headers: { 'current-game': __current_game__ } }
     );
-    console.log(resp.data.message)
+    console.log(resp.data.turnStatus);
 
     return null
   } catch (error) {

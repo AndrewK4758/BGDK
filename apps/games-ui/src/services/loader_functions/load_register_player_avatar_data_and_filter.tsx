@@ -21,7 +21,6 @@ export const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
         },
       }
     );
-    // sessionStorage.setItem('__current_game__', resp.headers['current-game']);
 
     if (resp.data.errorMessage) {
       const errorMessage = {

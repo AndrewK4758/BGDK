@@ -1,9 +1,10 @@
-import { ButtonFormAction, Theme } from '@aklapper/react-components';
+import { Theme } from '@aklapper/react-components';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { getGameInstanceInfo } from '../../services/utils';
 import { SxProps } from '@mui/material';
+import Button from '@mui/material/Button';
 
 const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
@@ -39,17 +40,14 @@ export default function ReadyToStart() {
 
   return (
     <Container component={'section'} sx={breakpointsStartGameButtonBox}>
-      <ButtonFormAction
-        method={'patch'}
-        action={undefined}
-        handleSubmit={handleStartGame}
+      <Button
+        onClick={handleStartGame}
         variant="outlined"
-        value={'ready-to-start-button'}
-        name="ready to play"
-        type="submit"
+        type="button"
         sx={breakpointsStartGameButtonFormButton}
-        buttonText="Start Game"
-      />
+      >
+        Start Game
+      </Button>
     </Container>
   );
 }
