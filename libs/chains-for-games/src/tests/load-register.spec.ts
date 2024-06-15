@@ -15,14 +15,15 @@ import {
 let ctx: Context, game: IInstanceOfGame;
 describe('test load register chain', () => {
   beforeAll(() => {
-    ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
-    ctx.put(GameContextKeys.GAME, game);
+    ctx = ContextBuilder.build();
+
     ctx.put(GameContextKeys.ACTION, 'load-register');
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
     ctx.put(GameContextKeys.NEXT, '');
     ctx.put(GameContextKeys.OUTPUT, {});
+    ctx.put(GameContextKeys.GAME, game);
   });
   afterAll(() => {
     ctx.state.clear();

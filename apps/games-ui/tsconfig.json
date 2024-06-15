@@ -2,10 +2,11 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": false,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "rootDir": "../.",
+    "composite": true
   },
   "files": [],
   "include": [],

@@ -27,15 +27,16 @@ let ctx: Context,
   turnStatus: TurnStatus;
 describe('should execute all steps of taking turn', () => {
   beforeAll(() => {
-    ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
+
+    ctx = ContextBuilder.build();
     turnStatus = TurnStatus.NOT_READY;
     output = { turnStatus: turnStatus };
 
     ctx.put(GameContextKeys.ACTION, 'take-turn');
-    ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.GAME, game);
   });
   afterAll(() => {
     ctx.state.clear();

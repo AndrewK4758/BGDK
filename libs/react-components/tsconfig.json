@@ -5,7 +5,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "rootDir": "../.",
+    "composite": true
   },
   "files": [],
   "include": ["src/**/*.tsx", "src/**/*.css", "src/**/*.ts"],

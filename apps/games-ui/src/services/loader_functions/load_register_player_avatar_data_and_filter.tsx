@@ -3,7 +3,7 @@ import axios from 'axios';
 import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils';
 
-export const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
+const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
   params,
 }: LoaderFunctionArgs) => {
   const baseURL = import.meta.env.VITE_API_SERVER_URL;
@@ -41,3 +41,5 @@ export const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
     return null;
   }
 };
+
+export default loadPlayerAvatarRegisterFilterData;

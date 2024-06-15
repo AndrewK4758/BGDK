@@ -2,7 +2,7 @@ import { Context, ContextBuilder } from '@aklapper/chain';
 import { IPlayer } from '@aklapper/chutes-and-ladders';
 import { IGame } from '@aklapper/game';
 import { GameBoard, GameContextKeys } from '@aklapper/game-types';
-import { deRefContextObject } from '@aklapper/model';
+import { deRefContextObject } from '@aklapper/de-referencing-utilities';
 import { IInstanceOfGame } from '@aklapper/instance-of-game';
 import { mockGameWithPlayersAdded } from '__mocks__/mocks';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
@@ -10,18 +10,17 @@ import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 let ctx: Context, game: IInstanceOfGame, player1: IPlayer, player2: IPlayer;
 describe('test reset game chain', () => {
   beforeAll(() => {
-    ctx = ContextBuilder.build();
-
     game = mockGameWithPlayersAdded();
-
-    ctx.put(GameContextKeys.GAME, game);
-    ctx.put(GameContextKeys.ACTION, 'reset');
+    ctx = ContextBuilder.build();
 
     player1 = game.instance.playersArray[0];
     player2 = game.instance.playersArray[1];
 
     player1.avatar.move(1);
     player2.avatar.move(2);
+
+    ctx.put(GameContextKeys.ACTION, 'reset');
+    ctx.put(GameContextKeys.GAME, game);
   });
   afterAll(() => {
     ctx.state.clear();

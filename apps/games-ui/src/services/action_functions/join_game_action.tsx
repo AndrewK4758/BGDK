@@ -1,7 +1,7 @@
 import { GamePlayerValidation } from '@aklapper/game-types';
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
-export const joinGameAction = async ({ request }: ActionFunctionArgs) => {
+const joinGameAction = async ({ request }: ActionFunctionArgs) => {
   const data = await request.json();
   const gamePath = data.gamePath;
 
@@ -17,3 +17,5 @@ export const joinGameAction = async ({ request }: ActionFunctionArgs) => {
   sessionStorage.setItem('__current_game__', JSON.stringify(__current_game__));
   return redirect(`/games/${id}/register`);
 };
+
+export default joinGameAction;

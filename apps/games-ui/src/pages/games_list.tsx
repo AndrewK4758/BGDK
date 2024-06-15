@@ -1,4 +1,4 @@
-import { IBuiltGame } from '@aklapper/model';
+import { IBuiltGame } from '@aklapper/game-builder';
 import { ImageLink, RenderList, Text, Theme } from '@aklapper/react-components';
 import { SxProps, useMediaQuery } from '@mui/material';
 import Container from '@mui/material/Container';

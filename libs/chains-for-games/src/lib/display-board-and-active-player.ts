@@ -6,7 +6,7 @@ import {
   IPlayersAndBoard,
   IRegisterFormValues,
 } from '@aklapper/game-types';
-import { deRefContextObject } from '@aklapper/model';
+import { deRefContextObject } from '@aklapper/de-referencing-utilities';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (

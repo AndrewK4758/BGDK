@@ -1,5 +1,5 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { deRefContextObject } from '@aklapper/model';
+import { deRefContextObject } from '@aklapper/de-referencing-utilities';
 import { getCurrentMinute } from '@aklapper/instance-of-game';
 import {
   AvatarTotem,

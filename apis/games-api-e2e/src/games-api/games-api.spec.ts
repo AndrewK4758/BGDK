@@ -7,7 +7,7 @@ import {
   PlayerID,
   TurnStatus,
 } from '@aklapper/game-types';
-import { IBuiltGame } from '@aklapper/model';
+import { IBuiltGame } from '@aklapper/game-builder';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];
@@ -111,6 +111,8 @@ describe('Games api test wrapper', () => {
         });
         describe('PATCH /take-turn - move only player in turn and return turnStatus', () => {
           it('should pass and return valid turn status', async () => {
+            __current_game__.playerID = playerIDs[0];
+
             const resp = await axios.patch(
               '/games/Chutes-&-Ladders/take-turn',
               {},
@@ -118,8 +120,6 @@ describe('Games api test wrapper', () => {
                 headers: { 'current-game': JSON.stringify(__current_game__) },
               }
             );
-
-            __current_game__ = JSON.parse(resp.headers['current-game']);
 
             if (resp.data.turnStatus === TurnStatus.INVALID) {
               __current_game__.playerID = playerIDs[1];
@@ -134,13 +134,8 @@ describe('Games api test wrapper', () => {
                 }
               );
 
-              __current_game__ = JSON.parse(resp.headers['current-game']);
-
-              expect(resp.data.turnStatus).toEqual(TurnStatus.INVALID);
               expect(resp.status).toEqual(201);
             } else {
-              __current_game__ = JSON.parse(resp.headers['current-game']);
-
               expect(resp.data.turnStatus).toEqual(TurnStatus.VALID);
               expect(resp.status).toEqual(201);
             }

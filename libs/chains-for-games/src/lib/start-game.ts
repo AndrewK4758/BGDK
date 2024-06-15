@@ -1,6 +1,6 @@
 import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
 import { Player } from '@aklapper/chutes-and-ladders';
-import { deRefContextObject } from '@aklapper/model';
+import { deRefContextObject } from '@aklapper/de-referencing-utilities';
 import { GameContextKeys, GameInstanceID } from '@aklapper/game-types';
 
 export const startGame = CommandBuilder.build((context: Context) => {
@@ -56,7 +56,10 @@ export const setAvatarsOnStart = CommandBuilder.build((context: Context) => {
 });
 
 export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'set-player-in-turn') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'set-player-in-turn'
+  ) {
     const { game } = deRefContextObject(context);
 
     game.instance.playerInTurn = game.instance.playersArray[0];
@@ -67,7 +70,10 @@ export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
 });
 
 export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-start-game-status') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'send-start-game-status'
+  ) {
     const { req, resp } = deRefContextObject(context);
     resp.setHeader(
       'current-game',
@@ -79,6 +85,12 @@ export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
 });
 
 export const startGameChain = ChainBuilder.build(
-  [startGame, verifyReadyToPlay, setAvatarsOnStart, setPlayerInTurn, sendStartGameStatus],
+  [
+    startGame,
+    verifyReadyToPlay,
+    setAvatarsOnStart,
+    setPlayerInTurn,
+    sendStartGameStatus,
+  ],
   false
 );

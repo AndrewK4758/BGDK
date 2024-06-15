@@ -16,14 +16,24 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@aklapper/all-games-map": ["libs/models/all-games-map/src/index.ts"],
       "@aklapper/chain": ["libs/chain/src/index.ts"],
       "@aklapper/chains-for-games": ["libs/chains-for-games/src/index.ts"],
       "@aklapper/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
+      "@aklapper/de-referencing-utilities": [
+        "libs/models/de-referencing-utilities/src/index.ts"
+      ],
       "@aklapper/game": ["libs/game/src/index.ts"],
+      "@aklapper/game-builder": ["libs/models/game-builder/src/index.ts"],
       "@aklapper/game-types": ["libs/game-types/src/index.ts"],
-      "@aklapper/instance-of-game": ["libs/instance-of-game/src/index.ts"],
-      "@aklapper/model": ["libs/model/src/index.ts"],
-      "@aklapper/react-components": ["libs/react-components/src/index.ts"]
+      "@aklapper/instance-of-game": [
+        "libs/models/instance-of-game/src/index.ts"
+      ],
+      "@aklapper/instance-time-map": [
+        "libs/models/instance-time-map/src/index.ts"
+      ],
+      "@aklapper/react-components": ["libs/react-components/src/index.ts"],
+      "@aklapper/rule": ["libs/models/rule/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

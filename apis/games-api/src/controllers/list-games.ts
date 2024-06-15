@@ -8,13 +8,13 @@ import {
   startGameChain,
   turnChain,
 } from '@aklapper/chains-for-games';
-import { GameBuilder, IBuiltGame } from '@aklapper/model';
+import { GameBuilder, IBuiltGame } from '@aklapper/game-builder';
 
 const gb = new GameBuilder();
 const games: IBuiltGame[] = [];
 
 export const ChutesAndLaddersGame = gb
-  .seId('0')
+  .setId('0')
   .setName('Chutes & Ladders')
   .setDescription('First Game')
   .setImageURL('ChutesAndLaddersT.webp')
@@ -51,7 +51,7 @@ export const ChutesAndLaddersGame = gb
 games.push(ChutesAndLaddersGame);
 
 export const TicTacToe = gb
-  .seId('1')
+  .setId('1')
   .setName('Tic Tac Toe')
   .setDescription('Second Game Placeholder')
   .setImageURL('TicTacToeT.webp')

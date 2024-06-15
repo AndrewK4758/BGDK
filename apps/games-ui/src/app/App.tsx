@@ -1,20 +1,20 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ActiveGameSession from '../pages/active_game_session';
 import ShowGameBoard from '../components/game_board/show_game_board';
 import Layout from '../components/layout/Layout';
 import Waiting from '../components/layout/waiting';
 import { NoGameError, NotEnoughPlayersError } from '../errors/error';
+import ActiveGameSession from '../pages/active_game_session';
 import GameDetails from '../pages/game_details';
 import GamesList from '../pages/games_list';
 import HomePage from '../pages/home-page';
 import RegisterPlayerAndAvatarOnGame from '../pages/register_player_and_avatar_on_game';
-import { joinGameAction } from '../services/action_functions/join_game_action';
-import { registerGameInstanceOnServerAction } from '../services/action_functions/register_game_on_server_action';
-import { registerPlayerAndAvatarAction } from '../services/action_functions/register_player_avatar_action';
-import { takeTurn } from '../services/action_functions/take_turn';
-import { loadGameBoardAndAvatarInTurn } from '../services/loader_functions/load_game_board_and_avatar_in_turn';
-import { loadGameList } from '../services/loader_functions/load_game_list';
-import { loadPlayerAvatarRegisterFilterData } from '../services/loader_functions/load_register_player_avatar_data_and_filter';
+import joinGameAction from '../services/action_functions/join_game_action';
+import registerGameInstanceOnServerAction from '../services/action_functions/register_game_on_server_action';
+import registerPlayerAndAvatarAction from '../services/action_functions/register_player_avatar_action';
+import takeTurn from '../services/action_functions/take_turn';
+import loadGameBoardAndAvatarInTurn from '../services/loader_functions/load_game_board_and_avatar_in_turn';
+import loadGameList from '../services/loader_functions/load_game_list';
+import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
 
 const router = createBrowserRouter([
   {

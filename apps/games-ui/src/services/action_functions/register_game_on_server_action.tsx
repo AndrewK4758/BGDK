@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { ActionFunction, ActionFunctionArgs, redirect } from 'react-router-dom';
 
-export const registerGameInstanceOnServerAction: ActionFunction = async ({ params }: ActionFunctionArgs) => {
+const registerGameInstanceOnServerAction: ActionFunction = async ({
+  params,
+}: ActionFunctionArgs) => {
   const baseURL = import.meta.env.VITE_API_SERVER_URL;
   const id = params.id;
 
@@ -16,3 +18,5 @@ export const registerGameInstanceOnServerAction: ActionFunction = async ({ param
     return null;
   }
 };
+
+export default registerGameInstanceOnServerAction;

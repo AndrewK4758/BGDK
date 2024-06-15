@@ -8,7 +8,6 @@ import {
 } from '../lib/chutes_and_ladders';
 import { GameBoard, SpaceType } from '@aklapper/game-types';
 import { Space } from '../lib/space';
-// import { ISpace } from '../lib/interfaces';
 
 let game: ChutesAndLadders;
 

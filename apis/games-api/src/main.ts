@@ -1,4 +1,5 @@
-import { AllGamesMap, InstanceTimeMap, reaper } from '@aklapper/model';
+import { AllGamesMap } from '@aklapper/all-games-map';
+import { InstanceTimeMap, reaper } from '@aklapper/instance-time-map';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';

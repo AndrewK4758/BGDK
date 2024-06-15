@@ -11,7 +11,10 @@ import {
   GamePlayerValidation,
   IRegisterFormValues,
 } from '../libs/game-types/src/lib/types/game-types';
-import { InstanceOfGame, getCurrentMinute } from '../libs/instance-of-game/src';
+import {
+  InstanceOfGame,
+  getCurrentMinute,
+} from '../libs/models/instance-of-game/src';
 import { Request, Response } from 'express';
 
 export const mockMakeGame = (game: ChutesAndLadders) =>

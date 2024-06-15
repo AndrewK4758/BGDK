@@ -1,8 +1,8 @@
 import { ContextBuilder } from '@aklapper/chain';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { getActiveGame } from '@aklapper/de-referencing-utilities';
 import { GameContextKeys } from '@aklapper/game-types';
+import { IInstanceOfGame } from '@aklapper/instance-of-game';
 import { Request, Response } from 'express';
-import { getActiveGame } from '@aklapper/model';
 import { ChutesAndLaddersGame } from './list-games';
 
 export const performAction = (req: Request, resp: Response) => {

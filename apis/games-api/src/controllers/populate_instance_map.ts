@@ -1,6 +1,7 @@
 import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
 import { Game } from '@aklapper/game';
-import { IAllGamesMap, IInstanceTimeMap } from '@aklapper/model';
+import { IInstanceTimeMap } from '@aklapper/instance-time-map';
+import { IAllGamesMap } from '@aklapper/all-games-map';
 import {
   GameInstanceID,
   GamePlayerValidation,

@@ -1,4 +1,5 @@
-import { IBuiltGame, IRule } from '@aklapper/model';
+import { IBuiltGame } from '@aklapper/game-builder';
+import { IRule } from '@aklapper/rule';
 import {
   HeadingWithDetails,
   RenderList,

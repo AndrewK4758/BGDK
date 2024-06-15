@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ActionFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils';
 
-export const takeTurn = async ({ params }: ActionFunctionArgs) => {
+const takeTurn = async ({ params }: ActionFunctionArgs) => {
   const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
   const id = params.id;
@@ -15,9 +15,11 @@ export const takeTurn = async ({ params }: ActionFunctionArgs) => {
     );
     console.log(resp.data.turnStatus);
 
-    return null
+    return null;
   } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
 };
+
+export default takeTurn;

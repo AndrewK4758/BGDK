@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ActionFunction, ActionFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils';
 
-export const registerPlayerAndAvatarAction: ActionFunction = async ({
+const registerPlayerAndAvatarAction: ActionFunction = async ({
   request,
   params,
 }: ActionFunctionArgs) => {
@@ -42,3 +42,5 @@ export const registerPlayerAndAvatarAction: ActionFunction = async ({
     return null;
   }
 };
+
+export default registerPlayerAndAvatarAction;

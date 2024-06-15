@@ -21,13 +21,13 @@ import {
 let ctx: Context, game: IInstanceOfGame;
 describe('test display board and active player chain', () => {
   beforeAll(() => {
-    ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
+    ctx = ContextBuilder.build();
 
-    ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.ACTION, 'board');
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.GAME, game);
   });
 
   afterAll(() => {

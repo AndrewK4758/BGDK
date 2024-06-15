@@ -3,7 +3,7 @@ import axios from 'axios';
 import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils';
 
-export const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
+const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
   params,
 }: LoaderFunctionArgs) => {
   const id = params.id;
@@ -30,3 +30,5 @@ export const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
     return null;
   }
 };
+
+export default loadGameBoardAndAvatarInTurn;

@@ -19,12 +19,12 @@ let ctx: Context, game: IInstanceOfGame;
 
 describe('execute all steps of starting a game', () => {
   beforeAll(() => {
-    ctx = ContextBuilder.build();
     game = mockGameWithPlayersAdded();
+    ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, 'start');
-    ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.GAME, game);
   });
   afterAll(() => {
     ctx.state.clear();

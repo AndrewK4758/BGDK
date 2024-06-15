@@ -18,13 +18,13 @@ let ctx: Context, game: IInstanceOfGame, output: ITestCtxOutput;
 describe('test register chain', () => {
   beforeAll(() => {
     game = mockMakeGame(new ChutesAndLadders(5, 5));
+    output = { message: 'Player Created' };
     ctx = ContextBuilder.build();
-    ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
     ctx.put(GameContextKeys.ACTION, 'register');
     ctx.put(GameContextKeys.NEXT, '');
-    output = { message: 'Player Created' };
+    ctx.put(GameContextKeys.GAME, game);
   });
   afterAll(() => {
     ctx.state.clear();
