@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/all-games-map",
+  "name": "@bgdk/all-games-map",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

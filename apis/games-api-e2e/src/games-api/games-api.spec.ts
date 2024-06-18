@@ -6,8 +6,8 @@ import {
   GameInstanceID,
   PlayerID,
   TurnStatus,
-} from '@aklapper/game-types';
-import { IBuiltGame } from '@aklapper/game-builder';
+} from '@bgdk/game-types';
+import { IBuiltGame } from '@bgdk/game-builder';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];

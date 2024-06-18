@@ -1,5 +1,5 @@
-import { AllGamesMap } from '@aklapper/all-games-map';
-import { InstanceTimeMap, reaper } from '@aklapper/instance-time-map';
+import { AllGamesMap } from '@bgdk/all-games-map';
+import { InstanceTimeMap, reaper } from '@bgdk/instance-time-map';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';

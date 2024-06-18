@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/rule",
+  "name": "@bgdk/rule",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

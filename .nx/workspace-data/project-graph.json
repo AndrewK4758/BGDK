@@ -354,6 +354,108 @@
         "implicitDependencies": []
       }
     },
+    "chutes-and-ladders-ui": {
+      "name": "chutes-and-ladders-ui",
+      "type": "app",
+      "data": {
+        "root": "apps/chutes-and-ladders-ui",
+        "targets": {
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "options": {},
+            "configurations": {}
+          },
+          "test": {
+            "executor": "@nx/vite:test",
+            "outputs": [
+              "{options.reportsDirectory}"
+            ],
+            "options": {
+              "reportsDirectory": "../../coverage/apps/chutes-and-ladders-ui",
+              "testFiles": [
+                "./tests/*"
+              ]
+            },
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/vite:build",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "outputPath": "dist/apps/chutes-and-ladders-ui"
+            },
+            "configurations": {
+              "development": {
+                "mode": "development"
+              },
+              "production": {
+                "mode": "production"
+              }
+            }
+          },
+          "serve": {
+            "executor": "@nx/vite:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "chutes-and-ladders-ui:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "chutes-and-ladders-ui:build:development",
+                "hmr": true
+              },
+              "production": {
+                "buildTarget": "chutes-and-ladders-ui:build:production",
+                "hmr": false
+              }
+            }
+          },
+          "preview": {
+            "executor": "@nx/vite:preview-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "chutes-and-ladders-ui:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "chutes-and-ladders-ui:build:development"
+              },
+              "production": {
+                "buildTarget": "chutes-and-ladders-ui:build:production"
+              }
+            }
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "build",
+              "spa": true
+            },
+            "configurations": {}
+          }
+        },
+        "name": "chutes-and-ladders-ui",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/chutes-and-ladders-ui/src",
+        "projectType": "application",
+        "scripts": {
+          "start": "vite"
+        },
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
     "all-games-map": {
       "name": "all-games-map",
       "type": "lib",
@@ -1298,108 +1400,6 @@
         "name": "games-api",
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "sourceRoot": "apis/games-api/src",
-        "tags": [],
-        "implicitDependencies": []
-      }
-    },
-    "games-ui": {
-      "name": "games-ui",
-      "type": "app",
-      "data": {
-        "root": "apps/games-ui",
-        "targets": {
-          "lint": {
-            "executor": "@nx/eslint:lint",
-            "options": {},
-            "configurations": {}
-          },
-          "test": {
-            "executor": "@nx/vite:test",
-            "outputs": [
-              "{options.reportsDirectory}"
-            ],
-            "options": {
-              "reportsDirectory": "../../coverage/apps/games-ui",
-              "testFiles": [
-                "./tests/*"
-              ]
-            },
-            "configurations": {}
-          },
-          "build": {
-            "executor": "@nx/vite:build",
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
-            "inputs": [
-              "production",
-              "^production"
-            ],
-            "outputs": [
-              "{options.outputPath}"
-            ],
-            "defaultConfiguration": "production",
-            "options": {
-              "outputPath": "dist/apps/games-ui"
-            },
-            "configurations": {
-              "development": {
-                "mode": "development"
-              },
-              "production": {
-                "mode": "production"
-              }
-            }
-          },
-          "serve": {
-            "executor": "@nx/vite:dev-server",
-            "defaultConfiguration": "development",
-            "options": {
-              "buildTarget": "games-ui:build"
-            },
-            "configurations": {
-              "development": {
-                "buildTarget": "games-ui:build:development",
-                "hmr": true
-              },
-              "production": {
-                "buildTarget": "games-ui:build:production",
-                "hmr": false
-              }
-            }
-          },
-          "preview": {
-            "executor": "@nx/vite:preview-server",
-            "defaultConfiguration": "development",
-            "options": {
-              "buildTarget": "games-ui:build"
-            },
-            "configurations": {
-              "development": {
-                "buildTarget": "games-ui:build:development"
-              },
-              "production": {
-                "buildTarget": "games-ui:build:production"
-              }
-            }
-          },
-          "serve-static": {
-            "executor": "@nx/web:file-server",
-            "options": {
-              "buildTarget": "build",
-              "spa": true
-            },
-            "configurations": {}
-          }
-        },
-        "name": "games-ui",
-        "$schema": "../../node_modules/nx/schemas/project-schema.json",
-        "sourceRoot": "apps/games-ui/src",
-        "projectType": "application",
-        "scripts": {
-          "start": "vite"
-        },
         "tags": [],
         "implicitDependencies": []
       }
@@ -2960,207 +2960,207 @@
       "type": "npm",
       "name": "npm:@esbuild/aix-ppc64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/aix-ppc64",
-        "hash": "sha512-D+EBOJHXdNZcLJRBkhENNG8Wji2kgc9AZ9KiPr1JuZjsNtyHzrsfLRrY0tk2H2aoFu6RANO1y1iPPUCDYWkb5g=="
+        "hash": "sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ=="
       }
     },
     "npm:@esbuild/android-arm": {
       "type": "npm",
       "name": "npm:@esbuild/android-arm",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/android-arm",
-        "hash": "sha512-t98Ra6pw2VaDhqNWO2Oph2LXbz/EJcnLmKLGBJwEwXX/JAN83Fym1rU8l0JUWK6HkIbWONCSSatf4sf2NBRx/w=="
+        "hash": "sha512-vCPvzSjpPHEi1siZdlvAlsPxXl7WbOVUBBAowWug4rJHb68Ox8KualB+1ocNvT5fjv6wpkX6o/iEpbDrf68zcg=="
       }
     },
     "npm:@esbuild/android-arm64": {
       "type": "npm",
       "name": "npm:@esbuild/android-arm64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/android-arm64",
-        "hash": "sha512-mRzjLacRtl/tWU0SvD8lUEwb61yP9cqQo6noDZP/O8VkwafSYwZ4yWy24kan8jE/IMERpYncRt2dw438LP3Xmg=="
+        "hash": "sha512-c0uX9VAUBQ7dTDCjq+wdyGLowMdtR/GoC2U5IYk/7D1H1JYC0qseD7+11iMP2mRLN9RcCMRcjC4YMclCzGwS/A=="
       }
     },
     "npm:@esbuild/android-x64": {
       "type": "npm",
       "name": "npm:@esbuild/android-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/android-x64",
-        "hash": "sha512-btzExgV+/lMGDDa194CcUQm53ncxzeBrWJcncOBxuC6ndBkKxnHdFJn86mCIgTELsooUmwUm9FkhSp5HYu00Rg=="
+        "hash": "sha512-D7aPRUUNHRBwHxzxRvp856rjUHRFW1SdQATKXH2hqA0kAZb1hKmi02OpYRacl0TxIGz/ZmXWlbZgjwWYaCakTA=="
       }
     },
     "npm:@esbuild/darwin-arm64": {
       "type": "npm",
       "name": "npm:@esbuild/darwin-arm64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/darwin-arm64",
-        "hash": "sha512-4J6IRT+10J3aJH3l1yzEg9y3wkTDgDk7TSDFX+wKFiWjqWp/iCfLIYzGyasx9l0SAFPT1HwSCR+0w/h1ES/MjA=="
+        "hash": "sha512-DwqXqZyuk5AiWWf3UfLiRDJ5EDd49zg6O9wclZ7kUMv2WRFr4HKjXp/5t8JZ11QbQfUS6/cRCKGwYhtNAY88kQ=="
       }
     },
     "npm:@esbuild/darwin-x64": {
       "type": "npm",
       "name": "npm:@esbuild/darwin-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/darwin-x64",
-        "hash": "sha512-tBcXp9KNphnNH0dfhv8KYkZhjc+H3XBkF5DKtswJblV7KlT9EI2+jeA8DgBjp908WEuYll6pF+UStUCfEpdysA=="
+        "hash": "sha512-se/JjF8NlmKVG4kNIuyWMV/22ZaerB+qaSi5MdrXtd6R08kvs2qCN4C09miupktDitvh8jRFflwGFBQcxZRjbw=="
       }
     },
     "npm:@esbuild/freebsd-arm64": {
       "type": "npm",
       "name": "npm:@esbuild/freebsd-arm64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/freebsd-arm64",
-        "hash": "sha512-d3qI41G4SuLiCGCFGUrKsSeTXyWG6yem1KcGZVS+3FYlYhtNoNgYrWcvkOoaqMhwXSMrZRl69ArHsGJ9mYdbbw=="
+        "hash": "sha512-5JcRxxRDUJLX8JXp/wcBCy3pENnCgBR9bN6JsY4OmhfUtIHe3ZW0mawA7+RDAcMLrMIZaf03NlQiX9DGyB8h4g=="
       }
     },
     "npm:@esbuild/freebsd-x64": {
       "type": "npm",
       "name": "npm:@esbuild/freebsd-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/freebsd-x64",
-        "hash": "sha512-d+DipyvHRuqEeM5zDivKV1KuXn9WeRX6vqSqIDgwIfPQtwMP4jaDsQsDncjTDDsExT4lR/91OLjRo8bmC1e+Cw=="
+        "hash": "sha512-J95kNBj1zkbMXtHVH29bBriQygMXqoVQOQYA+ISs0/2l3T9/kj42ow2mpqerRBxDJnmkUDCaQT/dfNXWX/ZZCQ=="
       }
     },
     "npm:@esbuild/linux-arm": {
       "type": "npm",
       "name": "npm:@esbuild/linux-arm",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-arm",
-        "hash": "sha512-VhLPeR8HTMPccbuWWcEUD1Az68TqaTYyj6nfE4QByZIQEQVWBB8vup8PpR7y1QHL3CpcF6xd5WVBU/+SBEvGTg=="
+        "hash": "sha512-bPb5AHZtbeNGjCKVZ9UGqGwo8EUu4cLq68E95A53KlxAPRmUyYv2D6F0uUI65XisGOL1hBP5mTronbgo+0bFcA=="
       }
     },
     "npm:@esbuild/linux-arm64": {
       "type": "npm",
       "name": "npm:@esbuild/linux-arm64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-arm64",
-        "hash": "sha512-9pb6rBjGvTFNira2FLIWqDk/uaf42sSyLE8j1rnUpuzsODBq7FvpwHYZxQ/It/8b+QOS1RYfqgGFNLRI+qlq2A=="
+        "hash": "sha512-ibKvmyYzKsBeX8d8I7MH/TMfWDXBF3db4qM6sy+7re0YXya+K1cem3on9XgdT2EQGMu4hQyZhan7TeQ8XkGp4Q=="
       }
     },
     "npm:@esbuild/linux-ia32": {
       "type": "npm",
       "name": "npm:@esbuild/linux-ia32",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-ia32",
-        "hash": "sha512-o10utieEkNPFDZFQm9CoP7Tvb33UutoJqg3qKf1PWVeeJhJw0Q347PxMvBgVVFgouYLGIhFYG0UGdBumROyiig=="
+        "hash": "sha512-YvjXDqLRqPDl2dvRODYmmhz4rPeVKYvppfGYKSNGdyZkA01046pLWyRKKI3ax8fbJoK5QbxblURkwK/MWY18Tg=="
       }
     },
     "npm:@esbuild/linux-loong64": {
       "type": "npm",
       "name": "npm:@esbuild/linux-loong64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-loong64",
-        "hash": "sha512-PR7sp6R/UC4CFVomVINKJ80pMFlfDfMQMYynX7t1tNTeivQ6XdX5r2XovMmha/VjR1YN/HgHWsVcTRIMkymrgQ=="
+        "hash": "sha512-uHf1BmMG8qEvzdrzAqg2SIG/02+4/DHB6a9Kbya0XDvwDEKCoC8ZRWI5JJvNdUjtciBGFQ5PuBlpEOXQj+JQSg=="
       }
     },
     "npm:@esbuild/linux-mips64el": {
       "type": "npm",
       "name": "npm:@esbuild/linux-mips64el",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-mips64el",
-        "hash": "sha512-4BlTqeutE/KnOiTG5Y6Sb/Hw6hsBOZapOVF6njAESHInhlQAghVVZL1ZpIctBOoTFbQyGW+LsVYZ8lSSB3wkjA=="
+        "hash": "sha512-IajOmO+KJK23bj52dFSNCMsz1QP1DqM6cwLUv3W1QwyxkyIWecfafnI555fvSGqEKwjMXVLokcV5ygHW5b3Jbg=="
       }
     },
     "npm:@esbuild/linux-ppc64": {
       "type": "npm",
       "name": "npm:@esbuild/linux-ppc64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-ppc64",
-        "hash": "sha512-rD3KsaDprDcfajSKdn25ooz5J5/fWBylaaXkuotBDGnMnDP1Uv5DLAN/45qfnf3JDYyJv/ytGHQaziHUdyzaAg=="
+        "hash": "sha512-1hHV/Z4OEfMwpLO8rp7CvlhBDnjsC3CttJXIhBi+5Aj5r+MBvy4egg7wCbe//hSsT+RvDAG7s81tAvpL2XAE4w=="
       }
     },
     "npm:@esbuild/linux-riscv64": {
       "type": "npm",
       "name": "npm:@esbuild/linux-riscv64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-riscv64",
-        "hash": "sha512-snwmBKacKmwTMmhLlz/3aH1Q9T8v45bKYGE3j26TsaOVtjIag4wLfWSiZykXzXuE1kbCE+zJRmwp+ZbIHinnVg=="
+        "hash": "sha512-2HdXDMd9GMgTGrPWnJzP2ALSokE/0O5HhTUvWIbD3YdjME8JwvSCnNGBnTThKGEB91OZhzrJ4qIIxk/SBmyDDA=="
       }
     },
     "npm:@esbuild/linux-s390x": {
       "type": "npm",
       "name": "npm:@esbuild/linux-s390x",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-s390x",
-        "hash": "sha512-wcWISOobRWNm3cezm5HOZcYz1sKoHLd8VL1dl309DiixxVFoFe/o8HnwuIwn6sXre88Nwj+VwZUvJf4AFxkyrQ=="
+        "hash": "sha512-zus5sxzqBJD3eXxwvjN1yQkRepANgxE9lgOW2qLnmr8ikMTphkjgXu1HR01K4FJg8h1kEEDAqDcZQtbrRnB41A=="
       }
     },
     "npm:@esbuild/linux-x64": {
       "type": "npm",
       "name": "npm:@esbuild/linux-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/linux-x64",
-        "hash": "sha512-1MdwI6OOTsfQfek8sLwgyjOXAu+wKhLEoaOLTjbijk6E2WONYpH9ZU2mNtR+lZ2B4uwr+usqGuVfFT9tMtGvGw=="
+        "hash": "sha512-1rYdTpyv03iycF1+BhzrzQJCdOuAOtaqHTWJZCWvijKD2N5Xu0TtVC8/+1faWqcP9iBCWOmjmhoH94dH82BxPQ=="
       }
     },
     "npm:@esbuild/netbsd-x64": {
       "type": "npm",
       "name": "npm:@esbuild/netbsd-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/netbsd-x64",
-        "hash": "sha512-K8/DhBxcVQkzYc43yJXDSyjlFeHQJBiowJ0uVL6Tor3jGQfSGHNNJcWxNbOI8v5k82prYqzPuwkzHt3J1T1iZQ=="
+        "hash": "sha512-Woi2MXzXjMULccIwMnLciyZH4nCIMpWQAs049KEeMvOcNADVxo0UBIQPfSmxB3CWKedngg7sWZdLvLczpe0tLg=="
       }
     },
     "npm:@esbuild/openbsd-x64": {
       "type": "npm",
       "name": "npm:@esbuild/openbsd-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/openbsd-x64",
-        "hash": "sha512-eMpKlV0SThJmmJgiVyN9jTPJ2VBPquf6Kt/nAoo6DgHAoN57K15ZghiHaMvqjCye/uU4X5u3YSMgVBI1h3vKrQ=="
+        "hash": "sha512-HLNNw99xsvx12lFBUwoT8EVCsSvRNDVxNpjZ7bPn947b8gJPzeHWyNVhFsaerc0n3TsbOINvRP2byTZ5LKezow=="
       }
     },
     "npm:@esbuild/sunos-x64": {
       "type": "npm",
       "name": "npm:@esbuild/sunos-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/sunos-x64",
-        "hash": "sha512-2UyFtRC6cXLyejf/YEld4Hajo7UHILetzE1vsRcGL3earZEW77JxrFjH4Ez2qaTiEfMgAXxfAZCm1fvM/G/o8w=="
+        "hash": "sha512-6+gjmFpfy0BHU5Tpptkuh8+uw3mnrvgs+dSPQXQOv3ekbordwnzTVEb4qnIvQcYXq6gzkyTnoZ9dZG+D4garKg=="
       }
     },
     "npm:@esbuild/win32-arm64": {
       "type": "npm",
       "name": "npm:@esbuild/win32-arm64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/win32-arm64",
-        "hash": "sha512-GRibxoawM9ZCnDxnP3usoUDO9vUkpAxIIZ6GQI+IlVmr5kP3zUq+l17xELTHMWTWzjxa2guPNyrpq1GWmPvcGQ=="
+        "hash": "sha512-Z0gOTd75VvXqyq7nsl93zwahcTROgqvuAcYDUr+vOv8uHhNSKROyU961kgtCD1e95IqPKSQKH7tBTslnS3tA8A=="
       }
     },
     "npm:@esbuild/win32-ia32": {
       "type": "npm",
       "name": "npm:@esbuild/win32-ia32",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/win32-ia32",
-        "hash": "sha512-HfLOfn9YWmkSKRQqovpnITazdtquEW8/SoHW7pWpuEeguaZI4QnCRW6b+oZTztdBnZOS2hqJ6im/D5cPzBTTlQ=="
+        "hash": "sha512-SWXFF1CL2RVNMaVs+BBClwtfZSvDgtL//G/smwAc5oVK/UPu2Gu9tIaRgFmYFFKrmg3SyAjSrElf0TiJ1v8fYA=="
       }
     },
     "npm:@esbuild/win32-x64": {
       "type": "npm",
       "name": "npm:@esbuild/win32-x64",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "@esbuild/win32-x64",
-        "hash": "sha512-N49X4lJX27+l9jbLKSqZ6bKNjzQvHaT8IIFUy+YIqmXQdjYCToGWwOItDrfby14c78aDd5NHQl29xingXfCdLQ=="
+        "hash": "sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw=="
       }
     },
     "npm:@eslint-community/eslint-utils": {
@@ -5579,9 +5579,9 @@
       "type": "npm",
       "name": "npm:@types/node",
       "data": {
-        "version": "18.19.34",
+        "version": "18.19.36",
         "packageName": "@types/node",
-        "hash": "sha512-eXF4pfBNV5DAMKGbI02NnDtWrQ40hAN558/2vvS4gMpMIxaf6JmD7YjnZbq0Q9TDSSkKBamime8ewRoomHdt4g=="
+        "hash": "sha512-tX1BNmYSWEvViftB26VLNxT6mEr37M7+ldUtq7rlKnv4/2fKYsJIOmqJAjT6h1DNuwQjIKgw3VJ/Dtw3yiTIQw=="
       }
     },
     "npm:@types/node-forge": {
@@ -5759,72 +5759,72 @@
       "type": "npm",
       "name": "npm:@typescript-eslint/eslint-plugin",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/eslint-plugin",
-        "hash": "sha512-FX1X6AF0w8MdVFLSdqwqN/me2hyhuQg4ykN6ZpVhh1ij/80pTvDKclX1sZB9iqex8SjQfVhwMKs3JtnnMLzG9w=="
+        "hash": "sha512-kZqi+WZQaZfPKnsflLJQCz6Ze9FFSMfXrrIOcyargekQxG37ES7DJNpJUE9Q/X5n3yTIP/WPutVNzgknQ7biLg=="
       }
     },
     "npm:@typescript-eslint/parser": {
       "type": "npm",
       "name": "npm:@typescript-eslint/parser",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/parser",
-        "hash": "sha512-EjMfl69KOS9awXXe83iRN7oIEXy9yYdqWfqdrFAYAAr6syP8eLEFI7ZE4939antx2mNgPRW/o1ybm2SFYkbTVA=="
+        "hash": "sha512-1ELDPlnLvDQ5ybTSrMhRTFDfOQEOXNM+eP+3HT/Yq7ruWpciQw+Avi73pdEbA4SooCawEWo3dtYbF68gN7Ed1A=="
       }
     },
     "npm:@typescript-eslint/scope-manager": {
       "type": "npm",
       "name": "npm:@typescript-eslint/scope-manager",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/scope-manager",
-        "hash": "sha512-ZrMCe1R6a01T94ilV13egvcnvVJ1pxShkE0+NDjDzH4nvG1wXpwsVI5bZCvE7AEDH1mXEx5tJSVR68bLgG7Dng=="
+        "hash": "sha512-adbXNVEs6GmbzaCpymHQ0MB6E4TqoiVbC0iqG3uijR8ZYfpAXMGttouQzF4Oat3P2GxDVIrg7bMI/P65LiQZdg=="
       }
     },
     "npm:@typescript-eslint/type-utils": {
       "type": "npm",
       "name": "npm:@typescript-eslint/type-utils",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/type-utils",
-        "hash": "sha512-xMEtMzxq9eRkZy48XuxlBFzpVMDurUAfDu5Rz16GouAtXm0TaAoTFzqWUFPPuQYXI/CDaH/Bgx/fk/84t/Bc9A=="
+        "hash": "sha512-aWDbLu1s9bmgPGXSzNCxELu+0+HQOapV/y+60gPXafR8e2g1Bifxzevaa+4L2ytCWm+CHqpELq4CSoN9ELiwCg=="
       }
     },
     "npm:@typescript-eslint/types": {
       "type": "npm",
       "name": "npm:@typescript-eslint/types",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/types",
-        "hash": "sha512-QWuwm9wcGMAuTsxP+qz6LBBd3Uq8I5Nv8xb0mk54jmNoCyDspnMvVsOxI6IsMmway5d1S9Su2+sCKv1st2l6eA=="
+        "hash": "sha512-7K7HMcSQIAND6RBL4kDl24sG/xKM13cA85dc7JnmQXw2cBDngg7c19B++JzvJHRG3zG36n9j1i451GBzRuHchw=="
       }
     },
     "npm:@typescript-eslint/typescript-estree": {
       "type": "npm",
       "name": "npm:@typescript-eslint/typescript-estree",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/typescript-estree",
-        "hash": "sha512-cAvBvUoobaoIcoqox1YatXOnSl3gx92rCZoMRPzMNisDiM12siGilSM4+dJAekuuHTibI2hVC2fYK79iSFvWjw=="
+        "hash": "sha512-uxNr51CMV7npU1BxZzYjoVz9iyjckBduFBP0S5sLlh1tXYzHzgZ3BR9SVsNed+LmwKrmnqN3Kdl5t7eZ5TS1Yw=="
       }
     },
     "npm:@typescript-eslint/utils": {
       "type": "npm",
       "name": "npm:@typescript-eslint/utils",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/utils",
-        "hash": "sha512-jceD8RgdKORVnB4Y6BqasfIkFhl4pajB1wVxrF4akxD2QPM8GNYjgGwEzYS+437ewlqqrg7Dw+6dhdpjMpeBFQ=="
+        "hash": "sha512-h5MzFBD5a/Gh/fvNdp9pTfqJAbuQC4sCN2WzuXme71lqFJsZtLbjxfSk4r3p02WIArOF9N94pdsLiGutpDbrXQ=="
       }
     },
     "npm:@typescript-eslint/visitor-keys": {
       "type": "npm",
       "name": "npm:@typescript-eslint/visitor-keys",
       "data": {
-        "version": "7.13.0",
+        "version": "7.13.1",
         "packageName": "@typescript-eslint/visitor-keys",
-        "hash": "sha512-nxn+dozQx+MK61nn/JP+M4eCkHDSxSLDpgE3WcQo0+fkjEolnaB5jswvIKC4K56By8MMgIho7f1PVxERHEo8rw=="
+        "hash": "sha512-k/Bfne7lrP7hcb7m9zSsgcBmo+8eicqqfNAJ7uUY+jkTFpKeH2FSkWpFRtimBxgkyvqfu9jTPRbYOvud6isdXA=="
       }
     },
     "npm:@ungap/structured-clone": {
@@ -6038,18 +6038,18 @@
       "type": "npm",
       "name": "npm:@vue/compiler-core",
       "data": {
-        "version": "3.4.27",
+        "version": "3.4.29",
         "packageName": "@vue/compiler-core",
-        "hash": "sha512-E+RyqY24KnyDXsCuQrI+mlcdW3ALND6U7Gqa/+bVwbcpcR3BRRIckFoz7Qyd4TTlnugtwuI7YgjbvsLmxb+yvg=="
+        "hash": "sha512-TFKiRkKKsRCKvg/jTSSKK7mYLJEQdUiUfykbG49rubC9SfDyvT2JrzTReopWlz2MxqeLyxh9UZhvxEIBgAhtrg=="
       }
     },
     "npm:@vue/compiler-dom": {
       "type": "npm",
       "name": "npm:@vue/compiler-dom",
       "data": {
-        "version": "3.4.27",
+        "version": "3.4.29",
         "packageName": "@vue/compiler-dom",
-        "hash": "sha512-kUTvochG/oVgE1w5ViSr3KUBh9X7CWirebA3bezTbB5ZKBQZwR2Mwj9uoSKRMFcz4gSMzzLXBPD6KpCLb9nvWw=="
+        "hash": "sha512-A6+iZ2fKIEGnfPJejdB7b1FlJzgiD+Y/sxxKwJWg1EbJu6ZPgzaPQQ51ESGNv0CP6jm6Z7/pO6Ia8Ze6IKrX7w=="
       }
     },
     "npm:@vue/language-core": {
@@ -6065,9 +6065,9 @@
       "type": "npm",
       "name": "npm:@vue/shared",
       "data": {
-        "version": "3.4.27",
+        "version": "3.4.29",
         "packageName": "@vue/shared",
-        "hash": "sha512-DL3NmY2OFlqmYYrzp39yi3LDkKxa5vZVwxWdQ3rG0ekuWscHraeIbnI8t+aZK7qhYqEqWKTUdijadunb9pnrgA=="
+        "hash": "sha512-hQ2gAQcBO/CDpC82DCrinJNgOHI2v+FA7BDW4lMSPeBpQ7sRe2OLHWe5cph1s7D8DUQAwRt18dBDfJJ220APEA=="
       }
     },
     "npm:@webassemblyjs/ast": {
@@ -6299,9 +6299,9 @@
       "type": "npm",
       "name": "npm:acorn",
       "data": {
-        "version": "8.11.3",
+        "version": "8.12.0",
         "packageName": "acorn",
-        "hash": "sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg=="
+        "hash": "sha512-RTvkC4w+KNXrM39/lWCUaG0IbRkWdCv7W/IOW9oU6SawyxulvkQy5HQPVTKxEjczcUvapcrw3cFx/60VN/NRNw=="
       }
     },
     "npm:acorn-globals": {
@@ -6335,9 +6335,9 @@
       "type": "npm",
       "name": "npm:acorn-walk",
       "data": {
-        "version": "8.3.2",
+        "version": "8.3.3",
         "packageName": "acorn-walk",
-        "hash": "sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A=="
+        "hash": "sha512-MxXdReSRhGO7VlFe1bRG/oI7/mdLV9B9JJT0N8vZOhF7gFRR5l3M8W9G8JxmKV+JC5mGqJ0QvqfSOLsCPa4nUw=="
       }
     },
     "npm:address": {
@@ -7190,9 +7190,9 @@
       "type": "npm",
       "name": "npm:caniuse-lite",
       "data": {
-        "version": "1.0.30001632",
+        "version": "1.0.30001636",
         "packageName": "caniuse-lite",
-        "hash": "sha512-udx3o7yHJfUxMLkGohMlVHCvFvWmirKh9JAH/d7WOLPetlH+LTL5cocMZ0t7oZx/mdlOWXti97xLZWc8uURRHg=="
+        "hash": "sha512-bMg2vmr8XBsbL6Lr0UHXy/21m84FTxDLWn2FSqMd5PrlbMxwJlQnC2YWYxVgp66PZE+BBNF2jYQUBKCo1FDeZg=="
       }
     },
     "npm:chai": {
@@ -8315,9 +8315,9 @@
       "type": "npm",
       "name": "npm:electron-to-chromium",
       "data": {
-        "version": "1.4.801",
+        "version": "1.4.804",
         "packageName": "electron-to-chromium",
-        "hash": "sha512-PnlUz15ii38MZMD2/CEsAzyee8tv9vFntX5nhtd2/4tv4HqY7C5q2faUAjmkXS/UFpVooJ/5H6kayRKYWoGMXQ=="
+        "hash": "sha512-gXMMs2m7aUTdZpORQAvMCyH0JHywSpZxjblSc/C81aDr34jh0hmpplTFcM4AYrYALVmiVT/r63oA3tEG1BPVRw=="
       }
     },
     "npm:emittery": {
@@ -8522,9 +8522,9 @@
       "type": "npm",
       "name": "npm:esbuild",
       "data": {
-        "version": "0.20.2",
+        "version": "0.21.5",
         "packageName": "esbuild",
-        "hash": "sha512-WdOOppmUNU+IbZ0PaDiTst80zjnrOkyJNHoKupIcVyU8Lvla3Ugx94VzkQ32Ijqd7UhHJy75gNWDMUekcrSJ6g=="
+        "hash": "sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw=="
       }
     },
     "npm:escalade": {
@@ -10979,9 +10979,9 @@
       "type": "npm",
       "name": "npm:launch-editor",
       "data": {
-        "version": "2.6.1",
+        "version": "2.7.0",
         "packageName": "launch-editor",
-        "hash": "sha512-eB/uXmFVpY4zezmGp5XtU21kwo7GBbKB+EQ+UZeWtGb9yAM5xt/Evk+lYH3eRNAtId+ej4u7TYPFZ07w4s7rRw=="
+        "hash": "sha512-KAc66u6LxWL8MifQ94oG3YGKYWDwz/Gi0T15lN//GaQoZe08vQGFJxrXkPAeu50UXgvJPPaRKVGuP1TRUm/aHQ=="
       }
     },
     "npm:less": {
@@ -12887,9 +12887,9 @@
       "type": "npm",
       "name": "npm:sass",
       "data": {
-        "version": "1.77.5",
+        "version": "1.77.6",
         "packageName": "sass",
-        "hash": "sha512-oDfX1mukIlxacPdQqNb6mV2tVCrnE+P3nVYioy72V5tlk56CPNcO4TCuFcaCRKKfJ1M3lH95CleRS+dVKL2qMg=="
+        "hash": "sha512-ByXE1oLD79GVq9Ht1PeHWCPMPB8XHpBuz1r85oByKHjZY6qV6rWnQovQzXJXuQ/XyE1Oj3iPk3lo28uzaRA2/Q=="
       }
     },
     "npm:sass-loader": {
@@ -13715,9 +13715,9 @@
       "type": "npm",
       "name": "npm:ts-jest",
       "data": {
-        "version": "29.1.4",
+        "version": "29.1.5",
         "packageName": "ts-jest",
-        "hash": "sha512-YiHwDhSvCiItoAgsKtoLFCuakDzDsJ1DLDnSouTaTmdOcOwIkSzbLXduaQ6M5DRVhuZC/NYaaZ/mtHbWMv/S6Q=="
+        "hash": "sha512-UuClSYxM7byvvYfyWdFI+/2UxMmwNyJb0NPkZPQE2hew3RurV7l7zURgOHAd/1I1ZdPpe3GUsXNXAcN8TFKSIg=="
       }
     },
     "npm:ts-loader": {
@@ -14012,9 +14012,9 @@
       "type": "npm",
       "name": "npm:vite",
       "data": {
-        "version": "5.2.13",
+        "version": "5.3.1",
         "packageName": "vite",
-        "hash": "sha512-SSq1noJfY9pR3I1TUENL3rQYDQCFqgD+lM6fTRAM8Nv6Lsg5hDLaXkjETVeBt+7vZBCMoibD+6IWnT2mJ+Zb/A=="
+        "hash": "sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ=="
       }
     },
     "npm:vite-node": {
@@ -14318,9 +14318,9 @@
       "type": "npm",
       "name": "npm:ws",
       "data": {
-        "version": "8.17.0",
+        "version": "8.17.1",
         "packageName": "ws",
-        "hash": "sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow=="
+        "hash": "sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ=="
       }
     },
     "npm:xml-name-validator": {
@@ -14409,27 +14409,7 @@
     "de-referencing-utilities": [
       {
         "source": "de-referencing-utilities",
-        "target": "instance-of-game",
-        "type": "static"
-      },
-      {
-        "source": "de-referencing-utilities",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "de-referencing-utilities",
-        "target": "chain",
-        "type": "static"
-      },
-      {
-        "source": "de-referencing-utilities",
         "target": "npm:express",
-        "type": "static"
-      },
-      {
-        "source": "de-referencing-utilities",
-        "target": "all-games-map",
         "type": "static"
       },
       {
@@ -14451,16 +14431,6 @@
     "instance-time-map": [
       {
         "source": "instance-time-map",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "instance-time-map",
-        "target": "instance-of-game",
-        "type": "static"
-      },
-      {
-        "source": "instance-time-map",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14478,21 +14448,6 @@
     "instance-of-game": [
       {
         "source": "instance-of-game",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "instance-of-game",
-        "target": "game",
-        "type": "static"
-      },
-      {
-        "source": "instance-of-game",
-        "target": "chutes-and-ladders",
-        "type": "static"
-      },
-      {
-        "source": "instance-of-game",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14507,27 +14462,94 @@
         "type": "static"
       }
     ],
-    "all-games-map": [
+    "chutes-and-ladders-ui": [
       {
-        "source": "all-games-map",
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:react-router-dom",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
         "target": "game-types",
         "type": "static"
       },
       {
-        "source": "all-games-map",
-        "target": "instance-of-game",
+        "source": "chutes-and-ladders-ui",
+        "target": "react-components",
         "type": "static"
       },
       {
-        "source": "all-games-map",
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@mui/material",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:formik",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:yup",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
         "target": "chutes-and-ladders",
         "type": "static"
       },
       {
-        "source": "all-games-map",
-        "target": "game",
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:react",
         "type": "static"
       },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:axios",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:react-dom",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@emotion/react",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "game-builder",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "rule",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@mui/icons-material",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@vitejs/plugin-react",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@nx/vite",
+        "type": "static"
+      }
+    ],
+    "all-games-map": [
       {
         "source": "all-games-map",
         "target": "npm:vite",
@@ -14547,21 +14569,6 @@
     "game-builder": [
       {
         "source": "game-builder",
-        "target": "chain",
-        "type": "static"
-      },
-      {
-        "source": "game-builder",
-        "target": "game",
-        "type": "static"
-      },
-      {
-        "source": "game-builder",
-        "target": "rule",
-        "type": "static"
-      },
-      {
-        "source": "game-builder",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14577,11 +14584,6 @@
       }
     ],
     "chutes-and-ladders": [
-      {
-        "source": "chutes-and-ladders",
-        "target": "game-types",
-        "type": "static"
-      },
       {
         "source": "chutes-and-ladders",
         "target": "npm:vite",
@@ -14601,37 +14603,7 @@
     "chains-for-games": [
       {
         "source": "chains-for-games",
-        "target": "chain",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
-        "target": "de-referencing-utilities",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
-        "target": "instance-of-game",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
         "target": "npm:short-unique-id",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
-        "target": "chutes-and-ladders",
-        "type": "static"
-      },
-      {
-        "source": "chains-for-games",
-        "target": "game",
         "type": "static"
       },
       {
@@ -14674,11 +14646,6 @@
       {
         "source": "react-components",
         "target": "npm:yup",
-        "type": "static"
-      },
-      {
-        "source": "react-components",
-        "target": "game-types",
         "type": "static"
       },
       {
@@ -14771,36 +14738,6 @@
     "games-api": [
       {
         "source": "games-api",
-        "target": "chains-for-games",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "game-builder",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "chain",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "de-referencing-utilities",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "instance-of-game",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
         "target": "npm:express",
         "type": "static"
       },
@@ -14826,7 +14763,22 @@
       },
       {
         "source": "games-api",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "instance-of-game",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
         "target": "npm:short-unique-id",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "game-builder",
         "type": "static"
       },
       {
@@ -14837,93 +14789,6 @@
       {
         "source": "games-api",
         "target": "npm:@nx/webpack",
-        "type": "static"
-      }
-    ],
-    "games-ui": [
-      {
-        "source": "games-ui",
-        "target": "npm:react-router-dom",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "react-components",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:@mui/material",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:formik",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:yup",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "chutes-and-ladders",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:axios",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:react-dom",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:@emotion/react",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "game-builder",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "rule",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:@mui/icons-material",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:vite",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:@vitejs/plugin-react",
-        "type": "static"
-      },
-      {
-        "source": "games-ui",
-        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
@@ -14945,16 +14810,6 @@
       }
     ],
     "game": [
-      {
-        "source": "game",
-        "target": "chutes-and-ladders",
-        "type": "static"
-      },
-      {
-        "source": "game",
-        "target": "game-types",
-        "type": "static"
-      },
       {
         "source": "game",
         "target": "npm:vite",
@@ -22028,6 +21883,13 @@
     "npm:acorn-jsx": [
       {
         "source": "npm:acorn-jsx",
+        "target": "npm:acorn",
+        "type": "static"
+      }
+    ],
+    "npm:acorn-walk": [
+      {
+        "source": "npm:acorn-walk",
         "target": "npm:acorn",
         "type": "static"
       }

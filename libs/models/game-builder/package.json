@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/game-builder",
+  "name": "@bgdk/game-builder",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

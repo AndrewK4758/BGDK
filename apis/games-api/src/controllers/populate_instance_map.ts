@@ -1,13 +1,9 @@
-import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
-import { Game } from '@aklapper/game';
-import { IInstanceTimeMap } from '@aklapper/instance-time-map';
-import { IAllGamesMap } from '@aklapper/all-games-map';
-import {
-  GameInstanceID,
-  GamePlayerValidation,
-  Minute,
-} from '@aklapper/game-types';
-import { getCurrentMinute, InstanceOfGame } from '@aklapper/instance-of-game';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { Game } from '@bgdk/game';
+import { IInstanceTimeMap } from '@bgdk/instance-time-map';
+import { IAllGamesMap } from '@bgdk/all-games-map';
+import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/game-types';
+import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
 

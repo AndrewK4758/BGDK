@@ -6,8 +6,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "rootDir": "../.",
-    "composite": true
+    "rootDirs": ["../../.", "../../apps/.", "../../apis/."],
+    "composite": true,
+    "declaration": true
   },
   "files": [],
   "include": ["src/**/*.tsx", "src/**/*.css", "src/**/*.ts"],

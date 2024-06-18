@@ -1,4 +1,4 @@
-import { IBuiltGame } from '@aklapper/game-builder';
+import { IBuiltGame } from '@bgdk/game-builder';
 import { Request, Response } from 'express';
 import { games } from './list-games';
 

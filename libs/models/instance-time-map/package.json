@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/instance-time-map",
+  "name": "@bgdk/instance-time-map",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",
