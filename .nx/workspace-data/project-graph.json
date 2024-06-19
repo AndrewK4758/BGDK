@@ -51,6 +51,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -118,124 +119,6 @@
         "implicitDependencies": []
       }
     },
-    "instance-time-map": {
-      "name": "instance-time-map",
-      "type": "lib",
-      "data": {
-        "root": "libs/models/instance-time-map",
-        "name": "instance-time-map",
-        "metadata": {
-          "targetGroups": {
-            "NPM Scripts": []
-          }
-        },
-        "targets": {
-          "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "libs/models/instance-time-map",
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/.eslintrc.json",
-              "{projectRoot}/.eslintrc.json",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "outputs": [
-              "{options.outputFile}"
-            ],
-            "executor": "nx:run-commands",
-            "configurations": {}
-          },
-          "test": {
-            "options": {
-              "cwd": "libs/models/instance-time-map",
-              "command": "jest"
-            },
-            "metadata": {
-              "technologies": [
-                "jest"
-              ],
-              "description": "Run Jest Tests"
-            },
-            "cache": true,
-            "inputs": [
-              "default",
-              "^production",
-              {
-                "externalDependencies": [
-                  "jest"
-                ]
-              }
-            ],
-            "outputs": [
-              "{workspaceRoot}/coverage/libs/models/instance-time-map"
-            ],
-            "executor": "nx:run-commands",
-            "configurations": {}
-          },
-          "build": {
-            "executor": "@nx/vite:build",
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
-            "inputs": [
-              "production",
-              "^production"
-            ],
-            "outputs": [
-              "{options.outputPath}"
-            ],
-            "options": {
-              "outputPath": "dist/libs/models/instance-time-map",
-              "main": "libs/models/instance-time-map/src/index.ts",
-              "tsConfig": "libs/models/instance-time-map/tsconfig.lib.json",
-              "assets": [
-                "libs/models/instance-time-map/*.md"
-              ]
-            },
-            "configurations": {}
-          },
-          "serve": {
-            "options": {
-              "cwd": "libs/models/instance-time-map",
-              "command": "vite serve"
-            },
-            "executor": "nx:run-commands",
-            "configurations": {}
-          },
-          "preview": {
-            "options": {
-              "cwd": "libs/models/instance-time-map",
-              "command": "vite preview"
-            },
-            "executor": "nx:run-commands",
-            "configurations": {}
-          },
-          "serve-static": {
-            "executor": "@nx/web:file-server",
-            "options": {
-              "buildTarget": "build",
-              "spa": true
-            },
-            "configurations": {}
-          }
-        },
-        "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-        "sourceRoot": "libs/models/instance-time-map/src",
-        "projectType": "library",
-        "tags": [],
-        "implicitDependencies": []
-      }
-    },
     "instance-of-game": {
       "name": "instance-of-game",
       "type": "lib",
@@ -287,6 +170,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -445,6 +329,7 @@
             "configurations": {}
           }
         },
+        "metadata": {},
         "name": "chutes-and-ladders-ui",
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "sourceRoot": "apps/chutes-and-ladders-ui/src",
@@ -507,6 +392,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -625,6 +511,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -743,6 +630,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -861,6 +749,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -1133,6 +1022,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -1251,6 +1141,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -1455,6 +1346,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -1573,6 +1465,7 @@
             "inputs": [
               "default",
               "^production",
+              "{workspaceRoot}/jest.preset.js",
               {
                 "externalDependencies": [
                   "jest"
@@ -4130,162 +4023,162 @@
       "type": "npm",
       "name": "npm:@nrwl/devkit",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/devkit",
-        "hash": "sha512-OL6sc70gR/USasvbYzyYY44Hd5ZCde2UfiA5h8VeAYAJbq+JmtscpvjcnZ7OIsXyYEOxe1rypULElqu/8qpKzQ=="
+        "hash": "sha512-WRcph/7U37HkTLIRzQ2oburZVfEFkPHJUn7vmo46gCq+N2cAKy3qwONO0RbthhjFIsG94YPXqFWFlV6k4nXpxA=="
       }
     },
     "npm:@nrwl/eslint-plugin-nx": {
       "type": "npm",
       "name": "npm:@nrwl/eslint-plugin-nx",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/eslint-plugin-nx",
-        "hash": "sha512-xQn+oC+YCMY580vaiD+D4CfArUvfPXW1g18mUzLbzKB+77qs+ODrfs5clmFd5/FoQIyKjSf7b65P6ogNOIcqow=="
+        "hash": "sha512-urquS7aYwCnXeTqCVb7bpjfBkcvrm84igOP+S59rDhmw4sNxSbI0iFJrLwdVnO8oPFFP1BR4DMUYSWRvdP8NZQ=="
       }
     },
     "npm:@nrwl/express": {
       "type": "npm",
       "name": "npm:@nrwl/express",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/express",
-        "hash": "sha512-RaaKX9u/KGe6QRNO22t70sC9bJ/odOiH2GOJnUWtcniglCc7doF8sNLeEbgCRRZaBqylrKRiK7URG+N9BgdwBw=="
+        "hash": "sha512-Rm1Uss05r40LQkmO723q1ylDgVF6+NqM/LNUMJQJbsXEyf74pZUsQp+WdPmLDoGOX57gj0nuxvZpBSSz7daIrA=="
       }
     },
     "npm:@nrwl/jest": {
       "type": "npm",
       "name": "npm:@nrwl/jest",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/jest",
-        "hash": "sha512-IyladH5v7Zpd6ds/RIUjripxmHaf1VkKxCnmjfcovWlivvGQ5PiJ90JPbqBwGFDaHs44i1J7dMF3Ly2Ky4byrw=="
+        "hash": "sha512-21J8Rj7tEQFlMxQTYmt5VEyeWIuEN3VNAkTtTuFLM95KKYONhuFC0ppiYiy+RTA1R3RyTJZLyln/hqH74BPx/g=="
       }
     },
     "npm:@nrwl/js": {
       "type": "npm",
       "name": "npm:@nrwl/js",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/js",
-        "hash": "sha512-foM72vQZBjUXu/8RuTBK9fwf6Oyezqbv2nQQBmJmUhCeh9Tg3P9JPcSRIdI740qTjRlF05zouJPABFu899vuPQ=="
+        "hash": "sha512-G+7nvAlfwnnlcPnoAhpcCrsOZTwa7hRd6WoqSrYuG/9Ge1NZ3H+rwvS5wX+bTKn8/hKHQdDuJUTomyOTpt1I1g=="
       }
     },
     "npm:@nrwl/node": {
       "type": "npm",
       "name": "npm:@nrwl/node",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/node",
-        "hash": "sha512-xYUydfOQx8pGZsGrumPb53ONlxQQ5oKln74BpjpLTE0sslXwE2r3SrqXi7kKrQX4e9IQAz4+lc85fURwbIjQiA=="
+        "hash": "sha512-BhbY1k0eS//BIdzU8iblsbIVIm3gxa+2WqpBYNoLZr95qU2QJD20VmmNBIehUTJn4fj58KbdbHzW4jbw7Zf4pA=="
       }
     },
     "npm:@nrwl/react": {
       "type": "npm",
       "name": "npm:@nrwl/react",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/react",
-        "hash": "sha512-Uuab5fhaxTMAiTXVnez4mH3ny9KAl5gZ1IECfeOo0oAlaf3IQ1KdnQ0k5P2gWRZ/Paq3ukJxUsJCyr2Wq0niHQ=="
+        "hash": "sha512-Yb7CEVKB2Ebso+uY3OTV9FStNpzXPggC4mzVJZRm7KcoMSE3Md+fvkAB1LVkHc8WFye4mULMog+tfeGysk79Yw=="
       }
     },
     "npm:@nrwl/tao": {
       "type": "npm",
       "name": "npm:@nrwl/tao",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/tao",
-        "hash": "sha512-vwo6ogcy6A9vJggDOsHGi1F0cTRqSqRypbgq/EdNuZqL7rGyZB/ctId69/i8dV6cLkl8BJG/4WpEe5BIrMTsjA=="
+        "hash": "sha512-MyGYeHbh9O4Tv9xmz3Du+/leY5sKUHaPy4ancfNyShHgYi21hemX0/YYjzzoYHi44D8GzSc1XG2rAuwba7Kilw=="
       }
     },
     "npm:@nrwl/vite": {
       "type": "npm",
       "name": "npm:@nrwl/vite",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/vite",
-        "hash": "sha512-G0IHrxYsekHPPdcdT2J29agFMI8hIN8t4VyxXxHScEsIRVHLMqu+4NAqn8gRV57DW7wqgyHp8ORd2pmAXGtNYA=="
+        "hash": "sha512-gvzySN1OUmp5D3iT9nHxYvrdB9c0xf5xdq9BMsCV1nn7VY5VioF5tmksP89s3nMSWyoqoFY6e5eJNPsTySLgZA=="
       }
     },
     "npm:@nrwl/web": {
       "type": "npm",
       "name": "npm:@nrwl/web",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/web",
-        "hash": "sha512-KXUoE3hEodTz/b5ib0/S9HY9pEai3mXu0Dtlrron/7ZbW9govNGX97MvNe8LtCHsOnSanbPN8Et1LeIzEC5kOg=="
+        "hash": "sha512-LDHqYVqdLSRvNrUCKDOIenaO//UjLElX3LL+Fr14dqzCKR26T8R+ZiwLcCPlre2cfskoDOvYdIHY/4pmebGW/w=="
       }
     },
     "npm:@nrwl/webpack": {
       "type": "npm",
       "name": "npm:@nrwl/webpack",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/webpack",
-        "hash": "sha512-U5RDvRgiNeZBI2OjmG0gVECAtBeBWmwRZ0PfRS/Uu4EXPsN5fZ8/a8HdBWCjscsDYjVZzGJURk3ZwMKRZWbo0Q=="
+        "hash": "sha512-8ztyou5kLOajLTVpi7lbliL8DezZH1kBByuo1xeqrh8ef75egOAAikoGMcbwuFVx/XMMD7jE2ZOBQheZqa+Pbw=="
       }
     },
     "npm:@nrwl/workspace": {
       "type": "npm",
       "name": "npm:@nrwl/workspace",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nrwl/workspace",
-        "hash": "sha512-pqT2UDk3DjB+Ny+1Av22vZ4NIYpwRbfPHR9tm4Skxs7dSr5zlf3ChUl+MwrQhzvM3KhBoGEmHhQOR6n45Bo4Sg=="
+        "hash": "sha512-h/kMImLdX5NMg0lXB6PmYIxBYI6WU7ATcOI3tGl8z48HHfyfwu87vTQlxFi3jaZv2qj/mE5VFpd+tGADEPNvCw=="
       }
     },
     "npm:@nx/devkit": {
       "type": "npm",
       "name": "npm:@nx/devkit",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/devkit",
-        "hash": "sha512-if1WwRVexrQBBADObEcxVIivq4QRZWY/nYRhCQy/qfFI6Cu2jBSI6ZQ1uy7to2L2sQPLgn8v2beQZiAeZdIktg=="
+        "hash": "sha512-Natya5nzvHH0qTOIL1w/EZtwMgDx87Dgz0LgeY7te2fULaNFcj5fVrP+mUKEJZR+NccO7GPumT2RPhuEl9rPnQ=="
       }
     },
     "npm:@nx/eslint": {
       "type": "npm",
       "name": "npm:@nx/eslint",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/eslint",
-        "hash": "sha512-W8TL0/ds+Nzgh/eVUGynPV2zpbNnSzh3ckFHybhgivrBD6fdNVqJOeK6Aq7DxiDe9LvoCNuwQImuJBcBWtwh0g=="
+        "hash": "sha512-x4SrQMnLnX+jM7KGsj+ReOvEHo5S0chLPfJhf0KFnXnzWoWcrq18z0lZ33JaAWWBsjexozDTld2wHj7nkvcjCg=="
       }
     },
     "npm:@nx/eslint-plugin": {
       "type": "npm",
       "name": "npm:@nx/eslint-plugin",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/eslint-plugin",
-        "hash": "sha512-p+mOjLCwwfld+zZd3CcAALsOyZtMmNcz/eJv2Qz7CW9rWwD6Vru2x7r8Qwjjbq5UBJIVd88vhJyFX6lmi7lvGw=="
+        "hash": "sha512-NZ966Wy4mF34lLi+QOgY9mpOiiAL5UiJ+QqOZcg22QIVz0zPY5HbtbYDZTu8OmR4O/S+3ylguaP1O1P2xiYMBQ=="
       }
     },
     "npm:@nx/express": {
       "type": "npm",
       "name": "npm:@nx/express",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/express",
-        "hash": "sha512-SFSYPTPsngtVpobvT6xsDGwPDmVvuU2iJHh3LTTbcVgcAdrc33FwYQbNNlEAFuWoaW40VNaUSNXCqhRs2VyCYw=="
+        "hash": "sha512-xSFW/Me9rSQF981u8YXrzjZL9HUp9jytKsuRuwk8D99543m6exbaNX9nbejhOdeaNtKZ0vj3+RgIhrwl4GwP2g=="
       }
     },
     "npm:@nx/jest": {
       "type": "npm",
       "name": "npm:@nx/jest",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/jest",
-        "hash": "sha512-S1Vhqclk56LRfMIxGpN34FTnYFuE4ZAwBJ/Fhy0NwgFrVA75xuQDBo/W6EryNLBDnzkKt+sgIutAjdXEDk+9WA=="
+        "hash": "sha512-XgtMw7QHD1wni3EZd3YS4UgoskRZh264tJf/8QRQ8XxWJCFjNM3IEQHDUycIt09Vzz5rql5NwuZ9ct9CNZveNw=="
       }
     },
     "npm:@nx/js": {
       "type": "npm",
       "name": "npm:@nx/js",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/js",
-        "hash": "sha512-5nY/KNGV+I3VjVoEeP3azfMt1JJg6fP+llO7w0AqViczY8IzmOhdfwSY6ddKgsejURR8OTcy7Z61T9ISthOfKg=="
+        "hash": "sha512-bZuV8sXR5kZ2FJzqnjSZqWs21W7AlZKgjzYB7Rt1u1ap4KcVR32NNAUVFjnTuI1A/6rhO39IShTyMhswnBV9qA=="
       }
     },
     "npm:babel-plugin-macros@2.8.0": {
@@ -4355,153 +4248,153 @@
       "type": "npm",
       "name": "npm:@nx/linter",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/linter",
-        "hash": "sha512-rnouoM+WMBsuKL+v+J5WPevPPvU/CNgawGTk9P4JPAe3rR0E9fniNhSqnBxyjDS4d5GuEHyRmxQfYfriWtVoFA=="
+        "hash": "sha512-+bpDyXjHBTuVHvbQ7m2hG86m1jJNAPOmnoad/2ZPoQM4LjBTOW8M7s2upZPewjnAJs8Fv02281mO+ORbhW7L9A=="
       }
     },
     "npm:@nx/node": {
       "type": "npm",
       "name": "npm:@nx/node",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/node",
-        "hash": "sha512-qpWUHqDJA+MaVkxYDcLiDupH0M3cL1in5WWHWhgh5YGgQzYB26H/PlyTRxPCM/DkRozOGaLKPZymDLIAH8LAog=="
+        "hash": "sha512-haa2YBNv2FLKcV6X4wAIhzVLOhn9f6i+AJGRUzlgNOqEtGlrRWpnuO2kGBtFco9PmI7avyUxySlwXppYWDOBRQ=="
       }
     },
     "npm:@nx/nx-darwin-arm64": {
       "type": "npm",
       "name": "npm:@nx/nx-darwin-arm64",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-darwin-arm64",
-        "hash": "sha512-1beJscdMraGgLHpvjyC5FXUzpdQYW8JwnPK0Yj9iti9Vnahtx3PLQHCFOFwoE0KZF9VEL1KsZSSVPljMgW/j+g=="
+        "hash": "sha512-TMTxjrN7Y/UsKFjmz0YfhVItLTGWqvud8cmQchw5NEjdNakfjXk0mREufO5/5PwoiRIsen6MbThoTprLpjOUiQ=="
       }
     },
     "npm:@nx/nx-darwin-x64": {
       "type": "npm",
       "name": "npm:@nx/nx-darwin-x64",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-darwin-x64",
-        "hash": "sha512-wCpIRThGKL/FebPe+WaFk/V6nk31mMc83APoEyhyS5kAodqeKjb6iPud+QNydtUJ/jsF9aQ/DaHIioKC9wbg8A=="
+        "hash": "sha512-GH2L6ftnzdIs7JEdv7ZPCdbpAdB5sW6NijK07riYZSONzq5fEruD1yDWDkyZbYBb8RTxsparUWJnq8q1qxEPHQ=="
       }
     },
     "npm:@nx/nx-freebsd-x64": {
       "type": "npm",
       "name": "npm:@nx/nx-freebsd-x64",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-freebsd-x64",
-        "hash": "sha512-ytY18USCyf83wqyUgFaeRO/3zvysJXPJf1Di8czBhiUSroSMB6088OaeqW7SnzdcYNdACZUv0Q6PupXpx3w2Ng=="
+        "hash": "sha512-1ow7Xku1yyjHviCKsWiuHCAnTd3fD+5O5c+e4DXHVthT8wnadKSotvBIWf38DMbMthl7na82e72OzxcdSbrVqQ=="
       }
     },
     "npm:@nx/nx-linux-arm-gnueabihf": {
       "type": "npm",
       "name": "npm:@nx/nx-linux-arm-gnueabihf",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-linux-arm-gnueabihf",
-        "hash": "sha512-FPtqIMzdOzYSSDnLXUpcrflqEsNe6UgpAgYoHLVbWiR47O3qJnpQRDfYUsP7Lv+2C0CBKNXgwPEvmDLXKHcfYg=="
+        "hash": "sha512-mYQMIUvNr2gww8vbg766uk/C1RxoC1fwioeP87bmV5NRUKSzJ8WEJVxAsqc9RGhAOUaNXOgEuKYrMcVhKyIKJQ=="
       }
     },
     "npm:@nx/nx-linux-arm64-gnu": {
       "type": "npm",
       "name": "npm:@nx/nx-linux-arm64-gnu",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-linux-arm64-gnu",
-        "hash": "sha512-VOuzPD5FBPZmctvXqdB9K1MYVzkV8TgOZFS7Md6ClH7UwJTEOjnMoomYCMM1VlOZV4P0S5E0u/Zere5YWh+ZWw=="
+        "hash": "sha512-rHL3eQ0RHkeAXnhHHu/NIyouN/ykiXvgyNU3TuCd50+2MZcAbjB+Xq3mwL0MwiP+BQuptiE+snTuxFUJp4ZH6A=="
       }
     },
     "npm:@nx/nx-linux-arm64-musl": {
       "type": "npm",
       "name": "npm:@nx/nx-linux-arm64-musl",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-linux-arm64-musl",
-        "hash": "sha512-qd6QZysktt0D7rNCOlBaV3ME0/J0VwvC1cmdjtZoljwtsX6Zc56AEdfwsgGzsZNU4w+N+BtXxowan3D44iiSzQ=="
+        "hash": "sha512-im0+OgOD6ShpTkI9ZRz7BjzxhQ/Lk3xjYmmCu+PFGmaybEnkNNDFwsgS0iEVKMdWZ/EQoQvJrqOYsX125iIBuQ=="
       }
     },
     "npm:@nx/nx-linux-x64-gnu": {
       "type": "npm",
       "name": "npm:@nx/nx-linux-x64-gnu",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-linux-x64-gnu",
-        "hash": "sha512-wE08BstTD65dt6c+9L9bEp98PxFwc7CuaUVX2cZTDFAERBXCMhu7y6Gb1JbiAvfVci4+yLrm+h0E1ieY1wMTXw=="
+        "hash": "sha512-k8q/d6WBSXOeUpBq6Mw69yMKL4n9LaX3o4LBNwBkVCEZ8p6s0njwKefLtjwnKlai0g/k5f0NcilU2zTwP/Ex8g=="
       }
     },
     "npm:@nx/nx-linux-x64-musl": {
       "type": "npm",
       "name": "npm:@nx/nx-linux-x64-musl",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-linux-x64-musl",
-        "hash": "sha512-IA09+NZ0kKPSfK/dXsyjZ8TN+hN/1PcnbdNuUCn1Opmbrdda9GBfzHSDFKXxoA6TVB/j/qnXHKgKxhhVH05TGg=="
+        "hash": "sha512-sahEV99glBlpGKG1TIQ5PkJ0QvpHp69wWsBFK2DKtCETxOtsWqwvIjemxTCXRirTqeHiP7BiR6VWsf2YqqqBdw=="
       }
     },
     "npm:@nx/nx-win32-arm64-msvc": {
       "type": "npm",
       "name": "npm:@nx/nx-win32-arm64-msvc",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-win32-arm64-msvc",
-        "hash": "sha512-fkbcTp+XuxGaL5e4Ve8AjxNEim5Ifdn61ofaxEDMoGjauKvKZBejbLhBFOonCKDqntXsY8D2nDXjhcsdNYxzMg=="
+        "hash": "sha512-w03gFwLijStmhUji70QJHYo/U16ovybNczxGO7+5TT330X8/y+ihw9FCGHiIcujAjTAE88h0DKGn05WlNqRmfg=="
       }
     },
     "npm:@nx/nx-win32-x64-msvc": {
       "type": "npm",
       "name": "npm:@nx/nx-win32-x64-msvc",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/nx-win32-x64-msvc",
-        "hash": "sha512-E2q3c504xjFXTY+/iq57DOZmS6CPA8RbFwLf6bCG5wo2BDajxmvU3VCeCSkxqXEwCY7NJSI3PT1V/3vRDzJ3lQ=="
+        "hash": "sha512-M7e2zXGfTjH8NLiwqKLdWC9VlfMSQDYlI4/SM4OSpPqhUTfPlRPa+wNKNTG7perKfDXxE9ei8yjocujknXJk/A=="
       }
     },
     "npm:@nx/react": {
       "type": "npm",
       "name": "npm:@nx/react",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/react",
-        "hash": "sha512-gT5Mi6qo+BEK2gyMFazLbP8EFGMRdcyLsNjBahrRyE+dXxIfKSm72uY2PQJWXrbuHbZYzqLcOqnjuY/rG/YqLw=="
+        "hash": "sha512-kT0kOp5JjTqPxiBHjIi2LhI4gxPRghC9iitMsG3orD847KG2cP+ONRJWcq9e5lJFgeppiTr7EP3fg/Q5b2ZS1g=="
       }
     },
     "npm:@nx/vite": {
       "type": "npm",
       "name": "npm:@nx/vite",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/vite",
-        "hash": "sha512-TtjlOE8pWQCdzk9eDot3jZpb9jswQdAxoEL5OnBx17ZMZF/RMCNqNs4lwo0i+OzzH6jTcKmcZaq6dmt1+OhM0w=="
+        "hash": "sha512-EAAzSNiCi7iP82xqliqoCgOfLCbsgZkr3xWG4JPEw6CJKBf22XmdIb4POr4NhEdDW7ewGAz0oMtu2sYMuPKzAA=="
       }
     },
     "npm:@nx/web": {
       "type": "npm",
       "name": "npm:@nx/web",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/web",
-        "hash": "sha512-BUQeckTMjAyqOTpUcfXZRl8olPLP0oDHJpix1mOt6hmhqHel+ep8+z/pYF5UqRbYAGYxsltFlZm7NxQnlZHT+w=="
+        "hash": "sha512-kK+jpUKhWflpKHegkNPBDkH3XYjpdEwCKr6izqJU7nvV0P9EHT/jVWRxfic/imTAoC9IZpHwAW9bYSd0LKpe1A=="
       }
     },
     "npm:@nx/webpack": {
       "type": "npm",
       "name": "npm:@nx/webpack",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/webpack",
-        "hash": "sha512-JHZJ7Fg4GIoq6NnTRF6T39hVnzu5Mo8vdQQOPJXIIVpSSjcUhn03QJdb0bamDSPObBYyxZqP37/o0vHSGyuyPA=="
+        "hash": "sha512-wc0woE2wrqmMA7IhAVzIJtHXt0aTdD9JMRctGH5ygAcZ9PMm0QL/rRr+u4o6m8RN7hegvy4C21/Pj9c3FUXOhg=="
       }
     },
     "npm:@nx/workspace": {
       "type": "npm",
       "name": "npm:@nx/workspace",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "@nx/workspace",
-        "hash": "sha512-LC3CxKDzoLqRGNwVD1wWkxGwCBf9AzyCztXyMIh1ihVL2hLnRna3pLJrk+3R2hXYapRsbhpGT7twLlNZJz9lQw=="
+        "hash": "sha512-mhhQIXPGOysg/1vqGnXzwB3ODckpwi2OxQm4x4R1rX8tnS7I4+K2MZFyQzpa13vPf4h4Y4yxdDUl+TfZa7lVhQ=="
       }
     },
     "npm:@phenomnomnominal/tsquery": {
@@ -11636,9 +11529,9 @@
       "type": "npm",
       "name": "npm:nx",
       "data": {
-        "version": "19.2.3",
+        "version": "19.3.0",
         "packageName": "nx",
-        "hash": "sha512-SvxFgk9PD2m6tXEaqB6DENOpe4jhov/Ili/2JmOnPAAIGUR6H9WajCzVuHfq3bvQxmGRvkQQRv/rfvAuLTme3g=="
+        "hash": "sha512-WILWiROUkZWwuPJ12tP24Z0NULPEhxFN9i55/fECuVXYaFtkg6FvEne9C4d4bRqhZPcbrz6WhHnzE3NhdjH7XQ=="
       }
     },
     "npm:object-assign": {
@@ -14409,11 +14302,31 @@
     "de-referencing-utilities": [
       {
         "source": "de-referencing-utilities",
+        "target": "instance-of-game",
+        "type": "static"
+      },
+      {
+        "source": "de-referencing-utilities",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "de-referencing-utilities",
+        "target": "chain",
+        "type": "static"
+      },
+      {
+        "source": "de-referencing-utilities",
         "target": "npm:express",
         "type": "static"
       },
       {
         "source": "de-referencing-utilities",
+        "target": "all-games-map",
+        "type": "static"
+      },
+      {
+        "source": "de-referencing-utilities",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14424,28 +14337,26 @@
       },
       {
         "source": "de-referencing-utilities",
-        "target": "npm:@nx/vite",
-        "type": "static"
-      }
-    ],
-    "instance-time-map": [
-      {
-        "source": "instance-time-map",
-        "target": "npm:vite",
-        "type": "static"
-      },
-      {
-        "source": "instance-time-map",
-        "target": "npm:vite-plugin-dts",
-        "type": "static"
-      },
-      {
-        "source": "instance-time-map",
         "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
     "instance-of-game": [
+      {
+        "source": "instance-of-game",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "instance-of-game",
+        "target": "game",
+        "type": "static"
+      },
+      {
+        "source": "instance-of-game",
+        "target": "chutes-and-ladders",
+        "type": "static"
+      },
       {
         "source": "instance-of-game",
         "target": "npm:vite",
@@ -14552,6 +14463,26 @@
     "all-games-map": [
       {
         "source": "all-games-map",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "all-games-map",
+        "target": "instance-of-game",
+        "type": "static"
+      },
+      {
+        "source": "all-games-map",
+        "target": "chutes-and-ladders",
+        "type": "static"
+      },
+      {
+        "source": "all-games-map",
+        "target": "game",
+        "type": "static"
+      },
+      {
+        "source": "all-games-map",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14567,6 +14498,21 @@
       }
     ],
     "game-builder": [
+      {
+        "source": "game-builder",
+        "target": "chain",
+        "type": "static"
+      },
+      {
+        "source": "game-builder",
+        "target": "game",
+        "type": "static"
+      },
+      {
+        "source": "game-builder",
+        "target": "rule",
+        "type": "static"
+      },
       {
         "source": "game-builder",
         "target": "npm:vite",
@@ -14586,6 +14532,11 @@
     "chutes-and-ladders": [
       {
         "source": "chutes-and-ladders",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders",
         "target": "npm:vite",
         "type": "static"
       },
@@ -14603,7 +14554,37 @@
     "chains-for-games": [
       {
         "source": "chains-for-games",
+        "target": "chain",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "de-referencing-utilities",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "chutes-and-ladders",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "instance-of-game",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
         "target": "npm:short-unique-id",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "game",
         "type": "static"
       },
       {
@@ -14646,6 +14627,11 @@
       {
         "source": "react-components",
         "target": "npm:yup",
+        "type": "static"
+      },
+      {
+        "source": "react-components",
+        "target": "game-types",
         "type": "static"
       },
       {
@@ -14738,6 +14724,36 @@
     "games-api": [
       {
         "source": "games-api",
+        "target": "chains-for-games",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "game-builder",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "chain",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "de-referencing-utilities",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "instance-of-game",
+        "type": "static"
+      },
+      {
+        "source": "games-api",
         "target": "npm:express",
         "type": "static"
       },
@@ -14753,32 +14769,12 @@
       },
       {
         "source": "games-api",
-        "target": "instance-time-map",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
         "target": "all-games-map",
         "type": "static"
       },
       {
         "source": "games-api",
-        "target": "game-types",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "instance-of-game",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
         "target": "npm:short-unique-id",
-        "type": "static"
-      },
-      {
-        "source": "games-api",
-        "target": "game-builder",
         "type": "static"
       },
       {
@@ -14810,6 +14806,16 @@
       }
     ],
     "game": [
+      {
+        "source": "game",
+        "target": "chutes-and-ladders",
+        "type": "static"
+      },
+      {
+        "source": "game",
+        "target": "game-types",
+        "type": "static"
+      },
       {
         "source": "game",
         "target": "npm:vite",

@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "rootDirs": ["../../.", "../../apps/.", "../../apis/."],
+    "rootDirs": ["../."],
     "composite": true,
     "declaration": true
   },

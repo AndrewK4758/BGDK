@@ -11,8 +11,8 @@
     }
   ],
   "compilerOptions": {
-    "rootDirs": ["../.", "../apps/.", "../libs/."],
-    "composite": true,
-    "declaration": true
+    // "rootDirs": ["../.", "../apps/.", "../libs/."],
+    // "composite": true,
+    // "declaration": true
   }
 }

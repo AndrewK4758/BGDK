@@ -1,5 +1,5 @@
-import { GameInstanceID } from '@aklapper/game-types';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { GameInstanceID } from '@bgdk/game-types';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 
 export interface IAllGamesMap {
   AllGames: Map<GameInstanceID, IInstanceOfGame>;

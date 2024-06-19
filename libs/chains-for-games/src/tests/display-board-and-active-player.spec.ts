@@ -1,10 +1,10 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
+import { Context, ContextBuilder } from '@bgdk/chain';
 import {
   GameContextKeys,
   IPlayersAndBoard,
   IRegisterFormValues,
-} from '@aklapper/game-types';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
+} from '@bgdk/game-types';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import {
   activeDataToSend,
   activePlayers,

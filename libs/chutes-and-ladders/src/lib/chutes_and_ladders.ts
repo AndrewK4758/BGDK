@@ -3,7 +3,7 @@ import { Die } from './die';
 import { ISpace, IDie } from './interfaces';
 import { Space } from './space';
 import { rangeSelector } from './utils';
-import { AvatarTotem, Color, SpaceType, GameBoard } from '@aklapper/game-types';
+import { AvatarTotem, Color, SpaceType, GameBoard } from '@bgdk/game-types';
 
 const TOTAL_SPACES = 100;
 const START = 1;
@@ -161,6 +161,8 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
+  //make space lite
+  //firestore db deploy in firebase
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
@@ -217,4 +219,3 @@ export class ChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
-

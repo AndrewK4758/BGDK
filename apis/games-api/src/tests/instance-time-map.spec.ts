@@ -1,6 +1,6 @@
-import { getCurrentMinute } from '@aklapper/instance-of-game';
-import { GameInstanceID, Minute } from '@aklapper/game-types';
-import { InstanceTimeMap } from '../lib/instance-time-map';
+import { getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameInstanceID, Minute } from '@bgdk/game-types';
+import { InstanceTimeMap } from '../instance-time-map/instance-time-map';
 
 let instanceMap: InstanceTimeMap,
   minute: Minute,

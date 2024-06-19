@@ -1,7 +1,7 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys, TurnStatus, SpaceType } from '@aklapper/game-types';
-import { getCurrentMinute, IInstanceOfGame } from '@aklapper/instance-of-game';
-import { Player } from '@aklapper/chutes-and-ladders';
+import { Context, ContextBuilder } from '@bgdk/chain';
+import { GameContextKeys, TurnStatus, SpaceType } from '@bgdk/game-types';
+import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
+import { Player } from '@bgdk/chutes-and-ladders';
 import {
   moveAvatar,
   rollDice,

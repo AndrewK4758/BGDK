@@ -1,10 +1,10 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { deRefContextObject } from '@aklapper/de-referencing-utilities';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import {
   GameContextKeys,
   GameInstanceID,
   ILoadRegisterData,
-} from '@aklapper/game-types';
+} from '@bgdk/game-types';
 
 export const loadRegister = CommandBuilder.build((context: Context) => {
   if (

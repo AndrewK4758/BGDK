@@ -1,11 +1,11 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { Player } from '@aklapper/chutes-and-ladders';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { Player } from '@bgdk/chutes-and-ladders';
 import {
   deRefContextObject,
   getPlayerID,
-} from '@aklapper/de-referencing-utilities';
-import { getCurrentMinute } from '@aklapper/instance-of-game';
-import { GameContextKeys, TurnStatus } from '@aklapper/game-types';
+} from '@bgdk/de-referencing-utilities';
+import { getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameContextKeys, TurnStatus } from '@bgdk/game-types';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
   if (

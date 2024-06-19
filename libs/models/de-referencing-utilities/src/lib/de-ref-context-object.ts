@@ -1,6 +1,6 @@
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
-import { GameContextKeys } from '@aklapper/game-types';
-import { Context } from '@aklapper/chain';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
+import { GameContextKeys } from '@bgdk/game-types';
+import { Context } from '@bgdk/chain';
 import { Request, Response } from 'express';
 
 export type ContextData = {

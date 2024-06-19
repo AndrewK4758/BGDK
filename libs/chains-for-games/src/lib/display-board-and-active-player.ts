@@ -1,12 +1,13 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import {
   GameBoard,
   GameContextKeys,
   GameInstanceID,
   IPlayersAndBoard,
   IRegisterFormValues,
-} from '@aklapper/game-types';
-import { deRefContextObject } from '@aklapper/de-referencing-utilities';
+} from '@bgdk/game-types';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { IPlayer } from '@bgdk/chutes-and-ladders';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (
@@ -16,7 +17,7 @@ export const activePlayers = CommandBuilder.build((context: Context) => {
     const { game } = deRefContextObject(context);
 
     const activePlayersArray: IRegisterFormValues[] =
-      game.instance.playersArray.map((p) => {
+      game.instance.playersArray.map((p: IPlayer) => {
         return {
           playerName: p.name,
           avatarName: p.avatar.name,

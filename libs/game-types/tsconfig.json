@@ -7,7 +7,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "rootDirs": ["../.", "../apps/.", "../../apis/."],
+    "rootDirs": ["../."],
     "composite": true,
     "declaration": true
   },

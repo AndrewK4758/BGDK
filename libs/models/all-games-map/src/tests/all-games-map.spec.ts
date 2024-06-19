@@ -1,8 +1,8 @@
 import { AllGamesMap } from '../lib/all-games-map';
-import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
-import { InstanceOfGame, getCurrentMinute } from '@aklapper/instance-of-game';
-import { Game } from '@aklapper/game';
-import { Minute, GameInstanceID } from '@aklapper/game-types';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { Game } from '@bgdk/game';
+import { Minute, GameInstanceID } from '@bgdk/game-types';
 
 let activeGame: InstanceOfGame,
   minute: Minute,

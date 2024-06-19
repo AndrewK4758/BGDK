@@ -1,6 +1,6 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { deRefContextObject } from '@aklapper/de-referencing-utilities';
-import { GameContextKeys } from '@aklapper/game-types';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { GameContextKeys } from '@bgdk/game-types';
 
 export const outputContextResponse = CommandBuilder.build(
   (context: Context) => {

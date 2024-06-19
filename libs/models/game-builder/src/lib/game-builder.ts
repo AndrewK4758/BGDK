@@ -1,6 +1,6 @@
-import { Chain, ChainBuilder, Command } from '@aklapper/chain';
-import { IGame } from '@aklapper/game';
-import { IRule, Rule } from '@aklapper/rule';
+import { Chain, ChainBuilder, Command } from '@bgdk/chain';
+import { IGame } from '@bgdk/game';
+import { IRule, Rule } from '@bgdk/rule';
 
 export interface IBuiltGame {
   id: string;

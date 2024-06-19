@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { GamePlayerValidation } from '@aklapper/game-types';
+import { GamePlayerValidation } from '@bgdk/game-types';
 
 export const getPlayerID = (req: Request) => {
   const __current_game__ = JSON.parse(

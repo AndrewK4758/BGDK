@@ -5,8 +5,8 @@ import {
   ROWS,
   uniqueSpecialValues,
   ChutesAndLadders,
-} from '../lib/chutes_and_ladders';
-import { GameBoard, SpaceType } from '@aklapper/game-types';
+} from '../lib/chutes_and_ladders.js';
+import { GameBoard, SpaceType } from '@bgdk/game-types';
 import { Space } from '../lib/space';
 
 let game: ChutesAndLadders;

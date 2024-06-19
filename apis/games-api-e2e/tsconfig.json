@@ -8,9 +8,6 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "rootDirs": ["../.", "../apps/.", "../libs/."],
-    "composite": true,
-    "declaration": true
+
   }
 }

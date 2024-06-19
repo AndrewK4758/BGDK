@@ -1,10 +1,6 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
-import {
-  GameContextKeys,
-  ILoadRegisterData,
-  Color,
-} from '@aklapper/game-types';
+import { Context, ContextBuilder } from '@bgdk/chain';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
+import { GameContextKeys, ILoadRegisterData, Color } from '@bgdk/game-types';
 import { loadRegister, sendLoadRegister } from '../index';
 import {
   mockGameWithPlayersAdded,

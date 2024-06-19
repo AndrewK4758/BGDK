@@ -1,4 +1,4 @@
-import { AvatarTotem } from '@aklapper/game-types';
+import { AvatarTotem } from '@bgdk/game-types';
 import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';

@@ -7,8 +7,8 @@ import {
   resetGameChain,
   startGameChain,
   turnChain,
-} from '@aklapper/chains-for-games';
-import { GameBuilder, IBuiltGame } from '@aklapper/game-builder';
+} from '@bgdk/chains-for-games';
+import { GameBuilder, IBuiltGame } from '@bgdk/game-builder';
 
 const gb = new GameBuilder();
 const games: IBuiltGame[] = [];

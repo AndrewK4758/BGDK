@@ -1,7 +1,7 @@
 import { Game } from '../lib/game';
 import { IGame } from '../interfaces/interfaces';
-import { ChutesAndLadders, IPlayer, Space } from '@aklapper/chutes-and-ladders';
-import { Color, SpaceType } from '@aklapper/game-types';
+import { ChutesAndLadders, IPlayer, Space } from '@bgdk/chutes-and-ladders';
+import { Color, SpaceType } from '@bgdk/game-types';
 
 let game: IGame, instance: ChutesAndLadders, playerInTurn: IPlayer;
 

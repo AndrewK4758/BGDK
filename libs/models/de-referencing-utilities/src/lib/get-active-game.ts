@@ -1,7 +1,7 @@
 import { Request } from 'express';
-import { GamePlayerValidation } from '@aklapper/game-types';
-import { IAllGamesMap } from '@aklapper/all-games-map';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { GamePlayerValidation } from '@bgdk/game-types';
+import { IAllGamesMap } from '@bgdk/all-games-map';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 
 export const getActiveGame = (req: Request) => {
   const __current_game__ = JSON.parse(

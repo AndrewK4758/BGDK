@@ -1,5 +1,5 @@
-import { Minute, GameInstanceID } from '@aklapper/game-types';
-import { IGame } from '@aklapper/game';
+import { Minute, GameInstanceID } from '@bgdk/game-types';
+import { IGame } from '@bgdk/game';
 
 export const getCurrentMinute = (): Minute =>
   (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;

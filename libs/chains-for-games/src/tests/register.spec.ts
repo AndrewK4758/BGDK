@@ -1,6 +1,6 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys, ITestCtxOutput } from '@aklapper/game-types';
-import { getCurrentMinute, IInstanceOfGame } from '@aklapper/instance-of-game';
+import { Context, ContextBuilder } from '@bgdk/chain';
+import { GameContextKeys, ITestCtxOutput } from '@bgdk/game-types';
+import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
 import {
   createPlayerID,
   filterAvatar,
@@ -11,7 +11,7 @@ import {
 } from '../index';
 
 import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 
 let ctx: Context, game: IInstanceOfGame, output: ITestCtxOutput;
 

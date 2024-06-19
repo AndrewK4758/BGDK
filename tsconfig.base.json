@@ -27,7 +27,7 @@
       "@bgdk/game-builder": ["libs/models/game-builder/src/index.ts"],
       "@bgdk/game-types": ["libs/game-types/src/index.ts"],
       "@bgdk/instance-of-game": ["libs/models/instance-of-game/src/index.ts"],
-      "@bgdk/instance-time-map": ["libs/models/instance-time-map/src/index.ts"],
+
       "@bgdk/react-components": ["libs/react-components/src/index.ts"],
       "@bgdk/rule": ["libs/models/rule/src/index.ts"]
     }

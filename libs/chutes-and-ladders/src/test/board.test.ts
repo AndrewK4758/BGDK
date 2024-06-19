@@ -1,7 +1,7 @@
 import { Board } from '../lib/board';
 import { Space } from '../lib/space';
 import { ISpace } from '../lib/interfaces';
-import { SpaceType } from '@aklapper/game-types';
+import { SpaceType } from '@bgdk/game-types';
 
 let space: ISpace;
 

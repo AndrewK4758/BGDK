@@ -1,7 +1,7 @@
-import { ContextBuilder } from '@aklapper/chain';
-import { getActiveGame } from '@aklapper/de-referencing-utilities';
-import { GameContextKeys } from '@aklapper/game-types';
-import { IInstanceOfGame } from '@aklapper/instance-of-game';
+import { ContextBuilder } from '@bgdk/chain';
+import { getActiveGame } from '@bgdk/de-referencing-utilities';
+import { GameContextKeys } from '@bgdk/game-types';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import { Request, Response } from 'express';
 import { ChutesAndLaddersGame } from './list-games';
 

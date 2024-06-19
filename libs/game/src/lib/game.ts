@@ -4,9 +4,9 @@ import {
   IPlayer,
   Player,
   generateRandomNumber,
-} from '@aklapper/chutes-and-ladders';
+} from '@bgdk/chutes-and-ladders';
 import { IGame } from '../interfaces/interfaces';
-import { Color, SpaceType } from '@aklapper/game-types';
+import { Color, SpaceType } from '@bgdk/game-types';
 
 export class Game implements IGame {
   instance: ChutesAndLadders;
@@ -20,7 +20,6 @@ export class Game implements IGame {
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
-    this.playerInTurn;
     this.currentPlayer = 0;
   }
 

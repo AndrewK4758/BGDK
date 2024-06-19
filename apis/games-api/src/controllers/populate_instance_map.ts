@@ -1,6 +1,6 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
-import { IInstanceTimeMap } from '@bgdk/instance-time-map';
+import { IInstanceTimeMap } from '../instance-time-map/instance-time-map';
 import { IAllGamesMap } from '@bgdk/all-games-map';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/game-types';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';

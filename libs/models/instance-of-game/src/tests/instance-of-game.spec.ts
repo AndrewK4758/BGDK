@@ -1,7 +1,7 @@
-import { ChutesAndLadders } from '@aklapper/chutes-and-ladders';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { InstanceOfGame, getCurrentMinute } from '../lib/instance-of-game';
-import { Game } from '@aklapper/game';
-import { Minute, GameInstanceID } from '@aklapper/game-types';
+import { Game } from '@bgdk/game';
+import { Minute, GameInstanceID } from '@bgdk/game-types';
 
 let activeGame: InstanceOfGame, minute: Minute, gameInstanceID: GameInstanceID;
 

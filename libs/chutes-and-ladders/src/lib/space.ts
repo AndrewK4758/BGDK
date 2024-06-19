@@ -1,5 +1,5 @@
 import { IAvatar, ISpace } from './interfaces';
-import { SpaceType } from '@aklapper/game-types';
+import { SpaceType } from '@bgdk/game-types';
 
 export class Space implements ISpace {
   Value: string;
