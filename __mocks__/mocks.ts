@@ -1,20 +1,24 @@
 import {
+  IAvatar,
   Avatar,
   Player,
-  Color,
   ChutesAndLadders,
-  Game,
+  IPlayer,
 } from '../libs/chutes-and-ladders/src';
+import { Color } from '../libs/game-types/src';
+import { Game } from '../libs/game/src';
 import {
   GamePlayerValidation,
-  getCurrentMinute,
-  InstanceOfGame,
   IRegisterFormValues,
-} from '../libs/model/src';
+} from '../libs/game-types/src/lib/types/game-types';
+import {
+  InstanceOfGame,
+  getCurrentMinute,
+} from '../libs/models/instance-of-game/src';
 import { Request, Response } from 'express';
 
 export const mockMakeGame = (game: ChutesAndLadders) =>
-  new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(game));
+  new InstanceOfGame(getCurrentMinute(), 'gameID', new Game(game));
 
 export const mockReqObj: Partial<Request> = {
   body: {
@@ -26,7 +30,7 @@ export const mockReqObj: Partial<Request> = {
   header: jest.fn().mockImplementation((name: string) => {
     const headers = new Map<string, string>();
     const __current_game__ = {
-      gameInstanceID: 'game-ID',
+      gameInstanceID: 'gameID',
       playerID: 'player-2-ID',
     } as GamePlayerValidation;
 
@@ -55,12 +59,28 @@ export const mockRespObj: Partial<Response> = {
 };
 
 export const mockAddPlayersToGame = (game: InstanceOfGame) => {
-  game.instance.playersArray[0] = new Player('player1', 'player-1-ID');
-  game.instance.playersArray[0].order = 1;
-  game.instance.playersArray[0].avatar = new Avatar('XENOMORPH', Color.BLACK);
-  game.instance.playersArray[1] = new Player('player2', 'player-2-ID');
-  game.instance.playersArray[1].order = 2;
-  game.instance.playersArray[1].avatar = new Avatar('PREDATOR', Color.RED);
-  game.instance.instance.startSpace.land(game.instance.playersArray[0].avatar);
-  game.instance.instance.startSpace.land(game.instance.playersArray[1].avatar);
+  const p1: IPlayer = new Player('player1', 'player-1-ID');
+  const p2: IPlayer = new Player('player2', 'player-2-ID');
+
+  const a1: IAvatar = new Avatar('XENOMORPH', Color.BLACK);
+  const a2: IAvatar = new Avatar('PREDATOR', Color.RED);
+
+  p1.avatar = a1;
+  p2.avatar = a2;
+
+  p1.order = 1;
+  p2.order = 2;
+
+  game.instance.playersArray[0] = p1;
+  game.instance.playersArray[1] = p2;
+
+  game.instance.instance.startSpace.land(a1);
+  game.instance.instance.startSpace.land(a2);
+};
+
+export const mockGameWithPlayersAdded = (): InstanceOfGame => {
+  const instance = new ChutesAndLadders(5, 5);
+  const game = mockMakeGame(instance);
+  mockAddPlayersToGame(game);
+  return game;
 };

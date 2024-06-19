@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/chains-for-games",
+  "name": "@bgdk/chains-for-games",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

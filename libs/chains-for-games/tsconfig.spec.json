@@ -12,7 +12,7 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts",
-    "src/tests/__mocks__.ts"
+    "src/**/*.ts",
+    "__mocks__/*.ts"
   ]
 }

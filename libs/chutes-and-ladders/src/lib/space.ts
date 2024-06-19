@@ -1,4 +1,5 @@
-import { IAvatar, ISpace, SpaceType } from './interfaces';
+import { IAvatar, ISpace } from './interfaces';
+import { SpaceType } from '@bgdk/game-types';
 
 export class Space implements ISpace {
   Value: string;
@@ -12,8 +13,6 @@ export class Space implements ISpace {
   constructor(spaceType: SpaceType, spaceValue: string | number) {
     this.Type = spaceType;
     this.Value = String(spaceValue);
-    this.Previous;
-    this.Next;
     this.Special = null;
     this.AvatarsInSpace = [];
     this.Display = String(this.Value);

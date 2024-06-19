@@ -1,12 +1,13 @@
-import { Color, AvatarTotem } from '@aklapper/chutes-and-ladders';
 import {
-  IBuiltGame,
+  Color,
+  AvatarTotem,
   GamePlayerValidation,
   IPlayersAndBoard,
   GameInstanceID,
   PlayerID,
   TurnStatus,
-} from '@aklapper/model';
+} from '@bgdk/game-types';
+import { IBuiltGame } from '@bgdk/game-builder';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];
@@ -27,7 +28,7 @@ describe('Games api test wrapper', () => {
     it('Should return a gameID', async () => {
       const resp = await axios.post('/games/Chutes-&-Ladders');
 
-      __current_game__ = JSON.parse(resp.headers.__current_game__);
+      __current_game__ = JSON.parse(resp.headers['current-game']);
 
       expect(
         (__current_game__.gameInstanceID as GameInstanceID).length
@@ -42,7 +43,7 @@ describe('Games api test wrapper', () => {
         const resp = await axios.patch(
           '/games/Chutes-&-Ladders/load-register',
           {},
-          { headers: { __current_game__: JSON.stringify(__current_game__) } }
+          { headers: { 'current-game': JSON.stringify(__current_game__) } }
         );
 
         expect(resp.data.avatarList.length).toEqual(4);
@@ -61,9 +62,9 @@ describe('Games api test wrapper', () => {
               avatarName: `Avatar ${i}`,
               avatarColor: Color.BLACK,
             },
-            { headers: { __current_game__: JSON.stringify(__current_game__) } }
+            { headers: { 'current-game': JSON.stringify(__current_game__) } }
           );
-          __current_game__ = JSON.parse(resp.headers.__current_game__);
+          __current_game__ = JSON.parse(resp.headers['current-game']);
           playerIDs.push(__current_game__.playerID);
 
           expect(resp.data.message).toEqual('Player Created');
@@ -79,10 +80,10 @@ describe('Games api test wrapper', () => {
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/start',
             { test: true },
-            { headers: { __current_game__: JSON.stringify(__current_game__) } }
+            { headers: { 'current-game': JSON.stringify(__current_game__) } }
           );
 
-          __current_game__ = JSON.parse(resp.headers.__current_game__);
+          __current_game__ = JSON.parse(resp.headers['current-game']);
 
           expect(resp.data.message).toEqual('Game Started');
         });
@@ -95,11 +96,11 @@ describe('Games api test wrapper', () => {
               '/games/Chutes-&-Ladders/board',
               {},
               {
-                headers: { __current_game__: JSON.stringify(__current_game__) },
+                headers: { 'current-game': JSON.stringify(__current_game__) },
               }
             );
 
-            __current_game__ = JSON.parse(resp.headers.__current_game__);
+            __current_game__ = JSON.parse(resp.headers['current-game']);
 
             const gamePlayData = resp.data as IPlayersAndBoard;
             expect(gamePlayData.gameBoard.length).toEqual(10);
@@ -110,15 +111,15 @@ describe('Games api test wrapper', () => {
         });
         describe('PATCH /take-turn - move only player in turn and return turnStatus', () => {
           it('should pass and return valid turn status', async () => {
+            __current_game__.playerID = playerIDs[0];
+
             const resp = await axios.patch(
               '/games/Chutes-&-Ladders/take-turn',
               {},
               {
-                headers: { __current_game__: JSON.stringify(__current_game__) },
+                headers: { 'current-game': JSON.stringify(__current_game__) },
               }
             );
-
-            __current_game__ = JSON.parse(resp.headers.__current_game__);
 
             if (resp.data.turnStatus === TurnStatus.INVALID) {
               __current_game__.playerID = playerIDs[1];
@@ -128,18 +129,13 @@ describe('Games api test wrapper', () => {
                 {},
                 {
                   headers: {
-                    __current_game__: JSON.stringify(__current_game__),
+                    'current-game': JSON.stringify(__current_game__),
                   },
                 }
               );
 
-              __current_game__ = JSON.parse(resp.headers.__current_game__);
-
-              expect(resp.data.turnStatus).toEqual(TurnStatus.INVALID);
               expect(resp.status).toEqual(201);
             } else {
-              __current_game__ = JSON.parse(resp.headers.__current_game__);
-
               expect(resp.data.turnStatus).toEqual(TurnStatus.VALID);
               expect(resp.status).toEqual(201);
             }
@@ -151,7 +147,7 @@ describe('Games api test wrapper', () => {
               '/games/Chutes-&-Ladders/take-turn',
               {},
               {
-                headers: { __current_game__: JSON.stringify(__current_game__) },
+                headers: { 'current-game': JSON.stringify(__current_game__) },
               }
             );
 

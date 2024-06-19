@@ -7,8 +7,6 @@ export class Player implements IPlayer {
   Avatar!: IAvatar;
   constructor(name: string, id: string) {
     this.Name = name;
-    this.Order;
-    this.Avatar;
     this.Id = id;
   }
 
@@ -32,7 +30,7 @@ export class Player implements IPlayer {
     return this.Avatar;
   }
 
-  set avatar(avatar) {
+  set avatar(avatar: IAvatar) {
     this.Avatar = avatar;
   }
 }

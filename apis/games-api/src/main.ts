@@ -1,4 +1,5 @@
-import { AllGamesMap, InstanceMap, reaper } from '@aklapper/model';
+import { AllGamesMap } from '@bgdk/all-games-map';
+import { InstanceTimeMap, reaper } from './instance-time-map/instance-time-map';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as path from 'path';
@@ -13,10 +14,9 @@ const corsOptions: CorsOptions = {
   exposedHeaders: '*',
   optionsSuccessStatus: 204,
   allowedHeaders: '*',
-  preflightContinue: true,
 };
 
-const instanceMap = new InstanceMap();
+const instanceMap = new InstanceTimeMap();
 const allGamesMap = new AllGamesMap();
 
 app.set('instanceMap', instanceMap);

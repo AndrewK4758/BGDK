@@ -1,16 +1,7 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
-import {
-  GameContextKeys,
-  getCurrentMinute,
-  InstanceOfGame,
-  TurnStatus,
-} from '@aklapper/model';
-
-import {
-  ChutesAndLadders,
-  Player,
-  SpaceType,
-} from '@aklapper/chutes-and-ladders';
+import { Context, ContextBuilder } from '@bgdk/chain';
+import { GameContextKeys, TurnStatus, SpaceType } from '@bgdk/game-types';
+import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
+import { Player } from '@bgdk/chutes-and-ladders';
 import {
   moveAvatar,
   rollDice,
@@ -21,8 +12,7 @@ import {
 } from '../index';
 
 import {
-  mockAddPlayersToGame,
-  mockMakeGame,
+  mockGameWithPlayersAdded,
   mockReqObj,
   mockRespObj,
 } from '__mocks__/mocks';
@@ -32,25 +22,25 @@ interface ICtxOutput {
 }
 
 let ctx: Context,
-  game: InstanceOfGame,
+  game: IInstanceOfGame,
   output: ICtxOutput,
   turnStatus: TurnStatus;
-
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-  game = game = mockMakeGame(new ChutesAndLadders(5, 5));
-  turnStatus = TurnStatus.NOT_READY;
-  output = { turnStatus: turnStatus };
-
-  mockAddPlayersToGame(game);
-
-  ctx.put(GameContextKeys.ACTION, 'take-turn');
-  ctx.put(GameContextKeys.GAME, game);
-  ctx.put(GameContextKeys.REQUEST, mockReqObj);
-  ctx.put(GameContextKeys.RESPONSE, mockRespObj);
-});
-
 describe('should execute all steps of taking turn', () => {
+  beforeAll(() => {
+    game = mockGameWithPlayersAdded();
+
+    ctx = ContextBuilder.build();
+    turnStatus = TurnStatus.NOT_READY;
+    output = { turnStatus: turnStatus };
+
+    ctx.put(GameContextKeys.ACTION, 'take-turn');
+    ctx.put(GameContextKeys.REQUEST, mockReqObj);
+    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.GAME, game);
+  });
+  afterAll(() => {
+    ctx.state.clear();
+  });
   describe('test take turn command in chain', () => {
     it('should fail because game is in NOT_READY state when receiving a turn ', () => {
       const commandResult = takeTurn.execute(ctx);

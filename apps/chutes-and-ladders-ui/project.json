@@ -1,0 +1,71 @@
+{
+  "name": "chutes-and-ladders-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/chutes-and-ladders-ui/src",
+  "projectType": "application",
+  "scripts": {
+    "start": "vite"
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/chutes-and-ladders-ui"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "chutes-and-ladders-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "chutes-and-ladders-ui:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "chutes-and-ladders-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "chutes-and-ladders-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "chutes-and-ladders-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "chutes-and-ladders-ui:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/chutes-and-ladders-ui",
+        "testFiles": ["./tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

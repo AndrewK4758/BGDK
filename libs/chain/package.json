@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/chain",
+  "name": "@bgdk/chain",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

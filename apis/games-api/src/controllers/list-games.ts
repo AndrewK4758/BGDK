@@ -7,14 +7,14 @@ import {
   resetGameChain,
   startGameChain,
   turnChain,
-} from '@aklapper/chains-for-games';
-import { GameBuilder, IBuiltGame } from '@aklapper/model';
+} from '@bgdk/chains-for-games';
+import { GameBuilder, IBuiltGame } from '@bgdk/game-builder';
 
 const gb = new GameBuilder();
 const games: IBuiltGame[] = [];
 
 export const ChutesAndLaddersGame = gb
-  .seId('0')
+  .setId('0')
   .setName('Chutes & Ladders')
   .setDescription('First Game')
   .setImageURL('ChutesAndLaddersT.webp')
@@ -51,13 +51,21 @@ export const ChutesAndLaddersGame = gb
 games.push(ChutesAndLaddersGame);
 
 export const TicTacToe = gb
-  .seId('1')
+  .setId('1')
   .setName('Tic Tac Toe')
   .setDescription('Second Game Placeholder')
   .setImageURL('TicTacToeT.webp')
   .setRule(1, 'SETUP', `The game is played on a 3x3 grid`)
-  .setRule(2, 'TURNS', `Players take turns marking an empty square with their symbol (X or O)`)
-  .setRule(3, 'WIN', `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`)
+  .setRule(
+    2,
+    'TURNS',
+    `Players take turns marking an empty square with their symbol (X or O)`
+  )
+  .setRule(
+    3,
+    'WIN',
+    `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`
+  )
   .setGameFunctionality([])
   .build();
 

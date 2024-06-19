@@ -4,9 +4,6 @@
   "sourceRoot": "apis/games-api/src",
   "projectType": "application",
   "tags": [],
-  "scripts": {
-    "start": "node ./main.js"
-  },
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",

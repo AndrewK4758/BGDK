@@ -1,61 +1,79 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { AvatarTotem } from '@aklapper/chutes-and-ladders';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { getCurrentMinute } from '@bgdk/instance-of-game';
 import {
-  deRefContextObject,
+  AvatarTotem,
   GameContextKeys,
   GamePlayerValidation,
-  getCurrentMinute,
   IRegisterFormValues,
   PlayerID,
-} from '@aklapper/model';
+} from '@bgdk/game-types';
 import ShortUniqueId from 'short-unique-id';
 
 export const registerAction = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'register') {
+  if (
+    context.get(GameContextKeys.ACTION) &&
+    context.getString(GameContextKeys.ACTION) === 'register'
+  ) {
     context.put(GameContextKeys.NEXT, 'create-playerID');
     return true;
-  }
-  return false;
+  } else return false;
 });
 export const createPlayerID = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'create-playerID') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'create-playerID'
+  ) {
     const playerID = new ShortUniqueId().rnd();
     context.put('playerID', playerID as string);
     context.put(GameContextKeys.NEXT, 'register-on-game');
     return true;
   } else return false;
 });
-export const registerOnGameInstance = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'register-on-game') {
-    const { req, game } = deRefContextObject(context);
-    console.log(`ID OF GAME: ${game.gameInstanceID}`);
+export const registerOnGameInstance = CommandBuilder.build(
+  (context: Context) => {
+    if (
+      context.get(GameContextKeys.NEXT) &&
+      context.getString(GameContextKeys.NEXT) === 'register-on-game'
+    ) {
+      const { req, game } = deRefContextObject(context);
+      console.log(`ID OF GAME: ${game.gameInstanceID}`);
 
-    const { playerName, avatarName, avatarColor } = req.body as IRegisterFormValues;
+      const { playerName, avatarName, avatarColor } =
+        req.body as IRegisterFormValues;
 
-    context.put('avatarName', avatarName);
-    const playerID = context.get('playerID') as PlayerID;
+      context.put('avatarName', avatarName);
+      const playerID = context.get('playerID') as PlayerID;
 
-    game.instance.register(playerName, playerID, avatarName, avatarColor);
-    context.put(GameContextKeys.NEXT, 'filter-avatar');
+      game.instance.register(playerName, playerID, avatarName, avatarColor);
+      context.put(GameContextKeys.NEXT, 'filter-avatar');
 
-    return true;
-  } else return false;
-});
+      return true;
+    } else return false;
+  }
+);
 export const filterAvatar = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'filter-avatar') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'filter-avatar'
+  ) {
     const { game } = deRefContextObject(context);
 
     const avatarName = context.get('avatarName');
-    game.instance.instance.avatarList = game.instance.instance.avatarList.filter(
-      (a: AvatarTotem) => a.name !== avatarName
-    );
+    game.instance.instance.avatarList =
+      game.instance.instance.avatarList.filter(
+        (a: AvatarTotem) => a.name !== avatarName
+      );
 
     context.put(GameContextKeys.NEXT, 'update-last-active');
     return true;
   } else return false;
 });
 export const updateLastActive = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'update-last-active') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'update-last-active'
+  ) {
     const { game } = deRefContextObject(context);
 
     game.updateLastActive(getCurrentMinute());
@@ -66,7 +84,10 @@ export const updateLastActive = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 export const playerCreated = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'player-created') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'player-created'
+  ) {
     const { req, resp } = deRefContextObject(context);
 
     const __current_game__: GamePlayerValidation = JSON.parse(
@@ -83,6 +104,13 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
 });
 
 export const registerChain = ChainBuilder.build(
-  [registerAction, createPlayerID, registerOnGameInstance, filterAvatar, updateLastActive, playerCreated],
+  [
+    registerAction,
+    createPlayerID,
+    registerOnGameInstance,
+    filterAvatar,
+    updateLastActive,
+    playerCreated,
+  ],
   false
 );

@@ -11,17 +11,25 @@
     "importHelpers": true,
     "target": "ESNext",
     "module": "NodeNext",
-    "esModuleInterop": true,
     "lib": ["ESNext", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aklapper/chain": ["libs/chain/src/index.ts"],
-      "@aklapper/chains-for-games": ["libs/chains-for-games/src/index.ts"],
-      "@aklapper/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
-      "@aklapper/model": ["libs/model/src/index.ts"],
-      "@aklapper/react-components": ["libs/react-components/src/index.ts"]
+      "@bgdk/all-games-map": ["libs/models/all-games-map/src/index.ts"],
+      "@bgdk/chain": ["libs/chain/src/index.ts"],
+      "@bgdk/chains-for-games": ["libs/chains-for-games/src/index.ts"],
+      "@bgdk/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
+      "@bgdk/de-referencing-utilities": [
+        "libs/models/de-referencing-utilities/src/index.ts"
+      ],
+      "@bgdk/game": ["libs/game/src/index.ts"],
+      "@bgdk/game-builder": ["libs/models/game-builder/src/index.ts"],
+      "@bgdk/game-types": ["libs/game-types/src/index.ts"],
+      "@bgdk/instance-of-game": ["libs/models/instance-of-game/src/index.ts"],
+
+      "@bgdk/react-components": ["libs/react-components/src/index.ts"],
+      "@bgdk/rule": ["libs/models/rule/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

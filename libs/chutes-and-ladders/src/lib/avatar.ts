@@ -1,13 +1,14 @@
-import { Color, IAvatar, ISpace } from './interfaces';
+import { IAvatar, ISpace } from './interfaces';
+import { Color } from '@bgdk/game-types';
 
 export class Avatar implements IAvatar {
   Name: string;
   Color: Color;
   Location!: ISpace;
+
   constructor(name: string, color: Color) {
     this.Name = name;
     this.Color = color;
-    this.Location;
   }
 
   get name() {
@@ -24,19 +25,6 @@ export class Avatar implements IAvatar {
 
   set location(location: ISpace) {
     this.Location = location;
-  }
-
-  move(numberOfSpaces: number): void {
-    const locBeforeMove: ISpace = this.location;
-    const locAfterMove: ISpace | null =
-      numberOfSpaces > 0
-        ? this._moveForward(numberOfSpaces)
-        : this._moveBackward(Math.abs(numberOfSpaces));
-
-    if (locAfterMove) {
-      locBeforeMove.leave();
-      locAfterMove.land(this);
-    }
   }
 
   _moveForward(numberOfSpaces: number) {
@@ -57,5 +45,18 @@ export class Avatar implements IAvatar {
       numberOfSpaces--;
     }
     return avatarCurLocation;
+  }
+
+  move(numberOfSpaces: number): void {
+    const locBeforeMove: ISpace = this.location;
+    const locAfterMove: ISpace | null =
+      numberOfSpaces > 0
+        ? this._moveForward(numberOfSpaces)
+        : this._moveBackward(Math.abs(numberOfSpaces));
+
+    if (locAfterMove) {
+      locBeforeMove.leave();
+      locAfterMove.land(this);
+    }
   }
 }

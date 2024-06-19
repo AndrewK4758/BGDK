@@ -1,18 +1,29 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { GameBoard } from '@aklapper/chutes-and-ladders';
-import { deRefContextObject, GameContextKeys, IPlayersAndBoard, IRegisterFormValues } from '@aklapper/model';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import {
+  GameBoard,
+  GameContextKeys,
+  GameInstanceID,
+  IPlayersAndBoard,
+  IRegisterFormValues,
+} from '@bgdk/game-types';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { IPlayer } from '@bgdk/chutes-and-ladders';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'board') {
+  if (
+    context.get(GameContextKeys.ACTION) &&
+    context.getString(GameContextKeys.ACTION) === 'board'
+  ) {
     const { game } = deRefContextObject(context);
 
-    const activePlayersArray: IRegisterFormValues[] = game.instance.playersArray.map((p) => {
-      return {
-        playerName: p.name,
-        avatarName: p.avatar.name,
-        avatarColor: p.avatar.color,
-      };
-    });
+    const activePlayersArray: IRegisterFormValues[] =
+      game.instance.playersArray.map((p: IPlayer) => {
+        return {
+          playerName: p.name,
+          avatarName: p.avatar.name,
+          avatarColor: p.avatar.color,
+        };
+      });
     context.put('active-players-in-game', activePlayersArray);
     context.put(GameContextKeys.NEXT, 'ready-to-play-check');
     return true;
@@ -20,7 +31,10 @@ export const activePlayers = CommandBuilder.build((context: Context) => {
 });
 
 export const readyToPlayCheck = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'ready-to-play-check') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'ready-to-play-check'
+  ) {
     const { game } = deRefContextObject(context);
 
     const playerInTurn = game.instance.readyToPlay
@@ -33,7 +47,10 @@ export const readyToPlayCheck = CommandBuilder.build((context: Context) => {
 });
 
 export const checkIfWinner = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'check-if-winner') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'check-if-winner'
+  ) {
     const { game } = deRefContextObject(context);
 
     const winner = game.instance.haveWinner;
@@ -50,16 +67,24 @@ export const checkIfWinner = CommandBuilder.build((context: Context) => {
 });
 
 export const activeDataToSend = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'active-data-to-send') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'active-data-to-send'
+  ) {
     const { game, req, resp } = deRefContextObject(context);
 
     const activeDataToSend: IPlayersAndBoard = {
       playerInTurn: context.get('player-in-turn') as string,
       gameBoard: game.instance.instance.displayGameBoard() as GameBoard,
-      activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
+      activePlayersInGame: context.get(
+        'active-players-in-game'
+      ) as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
-    resp.setHeader('current-game', req.header('current-game') as string);
+    resp.setHeader(
+      'current-game',
+      req.header('current-game') as GameInstanceID
+    );
     context.put(GameContextKeys.OUTPUT, activeDataToSend);
     return true;
   } else return false;

@@ -1,6 +1,11 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { Player } from '@aklapper/chutes-and-ladders'; // move to model
-import { deRefContextObject, GameContextKeys, getCurrentMinute, getPlayerID, TurnStatus } from '@aklapper/model';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { Player } from '@bgdk/chutes-and-ladders';
+import {
+  deRefContextObject,
+  getPlayerID,
+} from '@bgdk/de-referencing-utilities';
+import { getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameContextKeys, TurnStatus } from '@bgdk/game-types';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
   if (
@@ -29,7 +34,7 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'verify-player'
   ) {
-    const { req, game, resp } = deRefContextObject(context);
+    const { req, game /*resp*/ } = deRefContextObject(context);
 
     const playerTakingTurn = getPlayerID(req);
 
@@ -38,7 +43,10 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
       context.put(GameContextKeys.NEXT, 'roll-dice');
       return true;
     } else {
-      resp.setHeader('current-game', req.header('current-game') as string);
+      // resp.setHeader(
+      //   'current-game',
+      //   req.header('current-game') as GameInstanceID
+      // );
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.INVALID });
       return false;
     }
@@ -91,11 +99,14 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'rotate-player'
   ) {
-    const { game, req, resp } = deRefContextObject(context);
+    const { game /*req, resp*/ } = deRefContextObject(context);
 
     game.instance.rotatePlayers();
 
-    resp.setHeader('current-game', req.header('current-game') as string);
+    // resp.setHeader(
+    //   'current-game',
+    //   req.header('current-game') as GameInstanceID
+    // );
     return true;
   } else return false;
 });

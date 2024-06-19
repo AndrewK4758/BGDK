@@ -8,7 +8,8 @@ import Text from '../../text/text';
 export interface PlayersInGameProps {
   component: ElementType;
   id: string | number;
-  sx?: SxProps;
+  boxSx?: SxProps;
+  textSx: SxProps;
   playerVariant: Variant;
   playerName: string;
   avatarColor: string;
@@ -18,7 +19,8 @@ export interface PlayersInGameProps {
 export function PlayersInGame({
   component,
   id,
-  sx,
+  boxSx,
+  textSx,
   playerVariant,
   playerName,
   avatarColor,
@@ -28,13 +30,13 @@ export function PlayersInGame({
     <Box
       component={component}
       key={id}
-      width={'100%'}
+      width={'fit-content'}
       whiteSpace={'preserve'}
-      sx={{ display: 'flex', paddingX: '1.5rem' }}
+      sx={boxSx}
     >
-      <Text titleVariant={playerVariant} titleText={playerName} sx={{ flex: '0 1 auto' }} />
-      <Text titleVariant={playerVariant} titleText={avatarColor} sx={sx} />
-      <Text titleVariant={playerVariant} titleText={avatarName} sx={{ flex: '0 1 auto' }} />
+      <Text titleVariant={playerVariant} titleText={playerName} sx={textSx} />
+      <Text titleVariant={playerVariant} titleText={avatarColor} sx={textSx} />
+      <Text titleVariant={playerVariant} titleText={avatarName} sx={textSx} />
     </Box>
   );
 }
