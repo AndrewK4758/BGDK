@@ -1,0 +1,278 @@
+{
+  "634381744296924481apps/games-ui/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "apps/games-ui"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/apps/games-ui"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "apps/games-ui"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "apps/games-ui"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "3337460796111860396libs/chain/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chain"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chain"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "6050514246253150345libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "16394131645012910560libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13610223685363850836libs/model/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/model"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/model"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/model"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/model"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "17743670019224121834libs/react-components/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/react-components"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/react-components"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  }
+}
