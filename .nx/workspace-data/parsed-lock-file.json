@@ -18,6 +18,78 @@
         "hash": "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="
       }
     },
+    "npm:@apidevtools/json-schema-ref-parser": {
+      "type": "npm",
+      "name": "npm:@apidevtools/json-schema-ref-parser",
+      "data": {
+        "version": "9.1.2",
+        "packageName": "@apidevtools/json-schema-ref-parser",
+        "hash": "sha512-r1w81DpR+KyRWd3f+rk6TNqMgedmAxZP5v5KWlXQWlgMUUtyEJch0DKEci1SorPMiSeM8XPl7MZ3miJ60JIpQg=="
+      }
+    },
+    "npm:argparse@2.0.1": {
+      "type": "npm",
+      "name": "npm:argparse@2.0.1",
+      "data": {
+        "version": "2.0.1",
+        "packageName": "argparse",
+        "hash": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
+      }
+    },
+    "npm:argparse": {
+      "type": "npm",
+      "name": "npm:argparse",
+      "data": {
+        "version": "1.0.10",
+        "packageName": "argparse",
+        "hash": "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg=="
+      }
+    },
+    "npm:js-yaml@4.1.0": {
+      "type": "npm",
+      "name": "npm:js-yaml@4.1.0",
+      "data": {
+        "version": "4.1.0",
+        "packageName": "js-yaml",
+        "hash": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
+      }
+    },
+    "npm:js-yaml": {
+      "type": "npm",
+      "name": "npm:js-yaml",
+      "data": {
+        "version": "3.14.1",
+        "packageName": "js-yaml",
+        "hash": "sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g=="
+      }
+    },
+    "npm:@apidevtools/openapi-schemas": {
+      "type": "npm",
+      "name": "npm:@apidevtools/openapi-schemas",
+      "data": {
+        "version": "2.1.0",
+        "packageName": "@apidevtools/openapi-schemas",
+        "hash": "sha512-Zc1AlqrJlX3SlpupFGpiLi2EbteyP7fXmUOGup6/DnkRgjP9bgMM/ag+n91rsv0U1Gpz0H3VILA/o3bW7Ua6BQ=="
+      }
+    },
+    "npm:@apidevtools/swagger-methods": {
+      "type": "npm",
+      "name": "npm:@apidevtools/swagger-methods",
+      "data": {
+        "version": "3.0.2",
+        "packageName": "@apidevtools/swagger-methods",
+        "hash": "sha512-QAkD5kK2b1WfjDS/UQn/qQkbwF31uqRjPTrsCs5ZG9BQGAkjwvqGFjjPqAuzac/IYzpPtRzjCP1WrTuAIjMrXg=="
+      }
+    },
+    "npm:@apidevtools/swagger-parser": {
+      "type": "npm",
+      "name": "npm:@apidevtools/swagger-parser",
+      "data": {
+        "version": "10.0.3",
+        "packageName": "@apidevtools/swagger-parser",
+        "hash": "sha512-sNiLY51vZOmSPFZA5TF35KZ2HbgYklQnTSDnkghamzLb3EkNtcQnrBQEj5AOCxHpTtXpqMCRM1CrmV2rG6nw4g=="
+      }
+    },
     "npm:@babel/code-frame": {
       "type": "npm",
       "name": "npm:@babel/code-frame",
@@ -1566,24 +1638,6 @@
         "hash": "sha512-F0twR8U1ZU67JIEtekUcLkXkoO5mMMmgGD8sK/xUFzJ805jxHQl92hImFAqqXMyMYjSPOyUPAwHYhB72g5sTXw=="
       }
     },
-    "npm:argparse@2.0.1": {
-      "type": "npm",
-      "name": "npm:argparse@2.0.1",
-      "data": {
-        "version": "2.0.1",
-        "packageName": "argparse",
-        "hash": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
-      }
-    },
-    "npm:argparse": {
-      "type": "npm",
-      "name": "npm:argparse",
-      "data": {
-        "version": "1.0.10",
-        "packageName": "argparse",
-        "hash": "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg=="
-      }
-    },
     "npm:brace-expansion@1.1.11": {
       "type": "npm",
       "name": "npm:brace-expansion@1.1.11",
@@ -1618,24 +1672,6 @@
         "version": "11.12.0",
         "packageName": "globals",
         "hash": "sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA=="
-      }
-    },
-    "npm:js-yaml@4.1.0": {
-      "type": "npm",
-      "name": "npm:js-yaml@4.1.0",
-      "data": {
-        "version": "4.1.0",
-        "packageName": "js-yaml",
-        "hash": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
-      }
-    },
-    "npm:js-yaml": {
-      "type": "npm",
-      "name": "npm:js-yaml",
-      "data": {
-        "version": "3.14.1",
-        "packageName": "js-yaml",
-        "hash": "sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g=="
       }
     },
     "npm:json-schema-traverse@0.4.1": {
@@ -2149,6 +2185,15 @@
         "version": "1.4.15",
         "packageName": "@jridgewell/sourcemap-codec",
         "hash": "sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg=="
+      }
+    },
+    "npm:@jsdevtools/ono": {
+      "type": "npm",
+      "name": "npm:@jsdevtools/ono",
+      "data": {
+        "version": "7.1.3",
+        "packageName": "@jsdevtools/ono",
+        "hash": "sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg=="
       }
     },
     "npm:@leichtgewicht/ip-codec": {
@@ -2707,6 +2752,24 @@
         "version": "10.9.2",
         "packageName": "ts-node",
         "hash": "sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ=="
+      }
+    },
+    "npm:yaml@1.10.2": {
+      "type": "npm",
+      "name": "npm:yaml@1.10.2",
+      "data": {
+        "version": "1.10.2",
+        "packageName": "yaml",
+        "hash": "sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg=="
+      }
+    },
+    "npm:yaml": {
+      "type": "npm",
+      "name": "npm:yaml",
+      "data": {
+        "version": "2.0.0-1",
+        "packageName": "yaml",
+        "hash": "sha512-W7h5dEhywMKenDJh2iX/LABkbFnBxasD27oyXWDS/feDsxiw0dD5ncXdYXgkvAsXIY2MpW/ZKkr9IU30DBdMNQ=="
       }
     },
     "npm:@nx/linter": {
@@ -5526,6 +5589,15 @@
         "hash": "sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w=="
       }
     },
+    "npm:call-me-maybe": {
+      "type": "npm",
+      "name": "npm:call-me-maybe",
+      "data": {
+        "version": "1.0.2",
+        "packageName": "call-me-maybe",
+        "hash": "sha512-HpX65o1Hnr9HH25ojC1YGs7HCQLq0GCOibSaWER0eNpgJ/Z1MZv2mTc7+xh6WOPxbRVcmgbv4hGU+uSQ/2xFZQ=="
+      }
+    },
     "npm:callsites": {
       "type": "npm",
       "name": "npm:callsites",
@@ -5785,6 +5857,15 @@
         "version": "7.2.0",
         "packageName": "commander",
         "hash": "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw=="
+      }
+    },
+    "npm:commander@6.2.0": {
+      "type": "npm",
+      "name": "npm:commander@6.2.0",
+      "data": {
+        "version": "6.2.0",
+        "packageName": "commander",
+        "hash": "sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q=="
       }
     },
     "npm:commander@2.20.3": {
@@ -6673,9 +6754,9 @@
       "type": "npm",
       "name": "npm:electron-to-chromium",
       "data": {
-        "version": "1.4.804",
+        "version": "1.4.806",
         "packageName": "electron-to-chromium",
-        "hash": "sha512-gXMMs2m7aUTdZpORQAvMCyH0JHywSpZxjblSc/C81aDr34jh0hmpplTFcM4AYrYALVmiVT/r63oA3tEG1BPVRw=="
+        "hash": "sha512-nkoEX2QIB8kwCOtvtgwhXWy2IHVcOLQZu9Qo36uaGB835mdX/h8uLRlosL6QIhLVUnAiicXRW00PwaPZC74Nrg=="
       }
     },
     "npm:emittery": {
@@ -7024,9 +7105,9 @@
       "type": "npm",
       "name": "npm:eslint-plugin-react",
       "data": {
-        "version": "7.34.2",
+        "version": "7.34.3",
         "packageName": "eslint-plugin-react",
-        "hash": "sha512-2HCmrU+/JNigDN6tg55cRDKCQWicYAPB38JGSFDQt95jDm8rrvSUo7YPkOIm5l6ts1j1zCvysNcasvfTMQzUOw=="
+        "hash": "sha512-aoW4MV891jkUulwDApQbPYTVZmeuSyFrudpbTAQuj5Fv8VL+o6df2xIGpw8B0hPjAaih1/Fb0om9grCdyFYemA=="
       }
     },
     "npm:eslint-plugin-react-hooks": {
@@ -7828,6 +7909,15 @@
         "version": "7.2.3",
         "packageName": "glob",
         "hash": "sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q=="
+      }
+    },
+    "npm:glob@7.1.6": {
+      "type": "npm",
+      "name": "npm:glob@7.1.6",
+      "data": {
+        "version": "7.1.6",
+        "packageName": "glob",
+        "hash": "sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA=="
       }
     },
     "npm:glob-to-regexp": {
@@ -9540,6 +9630,15 @@
         "hash": "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
       }
     },
+    "npm:lodash.mergewith": {
+      "type": "npm",
+      "name": "npm:lodash.mergewith",
+      "data": {
+        "version": "4.6.2",
+        "packageName": "lodash.mergewith",
+        "hash": "sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ=="
+      }
+    },
     "npm:lodash.uniq": {
       "type": "npm",
       "name": "npm:lodash.uniq",
@@ -10143,6 +10242,15 @@
         "hash": "sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ=="
       }
     },
+    "npm:openapi-types": {
+      "type": "npm",
+      "name": "npm:openapi-types",
+      "data": {
+        "version": "12.1.3",
+        "packageName": "openapi-types",
+        "hash": "sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw=="
+      }
+    },
     "npm:opener": {
       "type": "npm",
       "name": "npm:opener",
@@ -10372,9 +10480,9 @@
       "type": "npm",
       "name": "npm:piscina",
       "data": {
-        "version": "4.5.1",
+        "version": "4.6.0",
         "packageName": "piscina",
-        "hash": "sha512-DVhySLPfqAW+uRH9dF0bjA2xEWr5ANLAzkYXx5adSLMFnwssSIVJYhg0FlvgYsnT/khILQJ3WkjqbAlBvt+maw=="
+        "hash": "sha512-VofazM7TCa/2cYhbtZQFyxJJIKe1JYZ5JBTxGMOo770CYupdVpHNvMrX+fuL+mACQ10ISWbzXFBmYjZvzELG5w=="
       }
     },
     "npm:pkg-types": {
@@ -11844,6 +11952,42 @@
         "hash": "sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw=="
       }
     },
+    "npm:swagger-jsdoc": {
+      "type": "npm",
+      "name": "npm:swagger-jsdoc",
+      "data": {
+        "version": "6.2.8",
+        "packageName": "swagger-jsdoc",
+        "hash": "sha512-VPvil1+JRpmJ55CgAtn8DIcpBs0bL5L3q5bVQvF4tAW/k/9JYSj7dCpaYCAv5rufe0vcCbBRQXGvzpkWjvLklQ=="
+      }
+    },
+    "npm:swagger-parser": {
+      "type": "npm",
+      "name": "npm:swagger-parser",
+      "data": {
+        "version": "10.0.3",
+        "packageName": "swagger-parser",
+        "hash": "sha512-nF7oMeL4KypldrQhac8RyHerJeGPD1p2xDh900GPvc+Nk7nWP6jX2FcC7WmkinMoAmoO774+AFXcWsW8gMWEIg=="
+      }
+    },
+    "npm:swagger-ui-dist": {
+      "type": "npm",
+      "name": "npm:swagger-ui-dist",
+      "data": {
+        "version": "5.17.14",
+        "packageName": "swagger-ui-dist",
+        "hash": "sha512-CVbSfaLpstV65OnSjbXfVd6Sta3q3F7Cj/yYuvHMp1P90LztOLs6PfUnKEVAeiIVQt9u2SaPwv0LiH/OyMjHRw=="
+      }
+    },
+    "npm:swagger-ui-express": {
+      "type": "npm",
+      "name": "npm:swagger-ui-express",
+      "data": {
+        "version": "5.0.1",
+        "packageName": "swagger-ui-express",
+        "hash": "sha512-SrNU3RiBGTLLmFU8GIJdOdanJTl4TOmT27tt3bWWHppqYmAZ6IDuEuBvMU6nZq0zLEe6b/1rACXCgLZqO6ZfrA=="
+      }
+    },
     "npm:symbol-tree": {
       "type": "npm",
       "name": "npm:symbol-tree",
@@ -12708,15 +12852,6 @@
         "hash": "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA=="
       }
     },
-    "npm:yaml": {
-      "type": "npm",
-      "name": "npm:yaml",
-      "data": {
-        "version": "1.10.2",
-        "packageName": "yaml",
-        "hash": "sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg=="
-      }
-    },
     "npm:yargs": {
       "type": "npm",
       "name": "npm:yargs",
@@ -12772,6 +12907,66 @@
     {
       "source": "npm:@ampproject/remapping",
       "target": "npm:@jridgewell/trace-mapping",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/json-schema-ref-parser",
+      "target": "npm:@jsdevtools/ono",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/json-schema-ref-parser",
+      "target": "npm:@types/json-schema",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/json-schema-ref-parser",
+      "target": "npm:call-me-maybe",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/json-schema-ref-parser",
+      "target": "npm:js-yaml@4.1.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:js-yaml@4.1.0",
+      "target": "npm:argparse@2.0.1",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:openapi-types",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:@apidevtools/json-schema-ref-parser",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:@apidevtools/openapi-schemas",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:@apidevtools/swagger-methods",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:@jsdevtools/ono",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:call-me-maybe",
+      "type": "static"
+    },
+    {
+      "source": "npm:@apidevtools/swagger-parser",
+      "target": "npm:z-schema",
       "type": "static"
     },
     {
@@ -17196,7 +17391,7 @@
     },
     {
       "source": "npm:cosmiconfig@6.0.0",
-      "target": "npm:yaml",
+      "target": "npm:yaml@1.10.2",
       "type": "static"
     },
     {
@@ -20156,7 +20351,7 @@
     },
     {
       "source": "npm:cosmiconfig@7.1.0",
-      "target": "npm:yaml",
+      "target": "npm:yaml@1.10.2",
       "type": "static"
     },
     {
@@ -23486,7 +23681,7 @@
     },
     {
       "source": "npm:cosmiconfig@7.1.0",
-      "target": "npm:yaml",
+      "target": "npm:yaml@1.10.2",
       "type": "static"
     },
     {
@@ -27561,7 +27756,7 @@
     },
     {
       "source": "npm:cosmiconfig@7.1.0",
-      "target": "npm:yaml",
+      "target": "npm:yaml@1.10.2",
       "type": "static"
     },
     {
@@ -29117,6 +29312,96 @@
     {
       "source": "npm:svgo",
       "target": "npm:picocolors",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:commander@6.2.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:doctrine",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:glob@7.1.6",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:lodash.mergewith",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:swagger-parser",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-jsdoc",
+      "target": "npm:yaml",
+      "type": "static"
+    },
+    {
+      "source": "npm:brace-expansion@1.1.11",
+      "target": "npm:balanced-match",
+      "type": "static"
+    },
+    {
+      "source": "npm:brace-expansion@1.1.11",
+      "target": "npm:concat-map",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:fs.realpath",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:inflight",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:inherits",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:minimatch@3.1.2",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:once",
+      "type": "static"
+    },
+    {
+      "source": "npm:glob@7.1.6",
+      "target": "npm:path-is-absolute",
+      "type": "static"
+    },
+    {
+      "source": "npm:minimatch@3.1.2",
+      "target": "npm:brace-expansion@1.1.11",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-parser",
+      "target": "npm:@apidevtools/swagger-parser",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-ui-express",
+      "target": "npm:express",
+      "type": "static"
+    },
+    {
+      "source": "npm:swagger-ui-express",
+      "target": "npm:swagger-ui-dist",
       "type": "static"
     },
     {
