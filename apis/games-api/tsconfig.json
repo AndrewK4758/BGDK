@@ -10,9 +10,5 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "compilerOptions": {
-    // "rootDirs": ["../.", "../apps/.", "../libs/."],
-    // "composite": true,
-    // "declaration": true
-  }
+  "compilerOptions": {}
 }

@@ -5,6 +5,7 @@ module.exports = {
   output: {
     path: join(__dirname, '../../dist/apis/games-api'),
   },
+  mode: 'production',
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
@@ -12,8 +13,7 @@ module.exports = {
       main: './src/main.ts',
       tsConfig: './tsconfig.app.json',
       assets: ['./src/assets'],
-      optimization: false,
-      outputHashing: 'none',
+      outputHashing: false,
     }),
   ],
 };

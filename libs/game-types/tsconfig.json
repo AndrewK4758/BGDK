@@ -6,10 +6,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "rootDirs": ["../."],
-    "composite": true,
-    "declaration": true
+    "noFallthroughCasesInSwitch": true
   },
   "files": [],
   "include": [],

@@ -60,8 +60,8 @@ const router = createBrowserRouter([
                 action: registerPlayerAndAvatarAction,
                 loader: loadGameBoardAndAvatarInTurn,
                 id: 'gameBoard',
-                errorElement: <NotEnoughPlayersError />,
                 Component: ActiveGameSession,
+                errorElement: <NotEnoughPlayersError />,
                 children: [
                   {
                     index: true,
@@ -83,6 +83,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default function App() {
+const App = () => {
   return <RouterProvider router={router} fallbackElement={<Waiting />} />;
-}
+};
+export default App;

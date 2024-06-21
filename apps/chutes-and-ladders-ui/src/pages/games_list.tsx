@@ -6,6 +6,7 @@ import ImageList from '@mui/material/ImageList';
 import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 
+
 const breakpointsGameListText: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '4rem',
@@ -20,6 +21,8 @@ const breakpointsImageListText: SxProps = {
     },
   },
 };
+
+
 
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];

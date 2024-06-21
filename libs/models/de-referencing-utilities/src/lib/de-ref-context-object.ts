@@ -3,6 +3,7 @@ import { GameContextKeys } from '@bgdk/game-types';
 import { Context } from '@bgdk/chain';
 import { Request, Response } from 'express';
 
+
 export type ContextData = {
   action: string;
   game: IInstanceOfGame;
@@ -20,6 +21,7 @@ export const deRefContextObject = (context: Context): ContextData => {
   const next = context.get(GameContextKeys.NEXT) as string;
   const output = context.get(GameContextKeys.OUTPUT) as object;
 
+
   return {
     action: action,
     game: game,
@@ -29,3 +31,4 @@ export const deRefContextObject = (context: Context): ContextData => {
     output: output,
   };
 };
+

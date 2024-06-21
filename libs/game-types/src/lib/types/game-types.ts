@@ -26,6 +26,7 @@ export const enum GameContextKeys {
   ACTION = 'ACTION',
   NEXT = 'NEXT-HANDLER',
   OUTPUT = 'OUT',
+  SOCKET = 'SOCKET',
 }
 
 export enum TurnStatus {
