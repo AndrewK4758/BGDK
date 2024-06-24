@@ -34,7 +34,7 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'verify-player'
   ) {
-    const { req, game /*resp*/ } = deRefContextObject(context);
+    const { req, game } = deRefContextObject(context);
 
     const playerTakingTurn = getPlayerID(req);
 
@@ -43,10 +43,6 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
       context.put(GameContextKeys.NEXT, 'roll-dice');
       return true;
     } else {
-      // resp.setHeader(
-      //   'current-game',
-      //   req.header('current-game') as GameInstanceID
-      // );
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.INVALID });
       return false;
     }

@@ -3,7 +3,10 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "esModuleInterop": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "ESNext"
   },
   "include": [
     "jest.config.ts",

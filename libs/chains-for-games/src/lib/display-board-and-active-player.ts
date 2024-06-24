@@ -7,7 +7,8 @@ import {
   IRegisterFormValues,
 } from '@bgdk/game-types';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { IPlayer } from '@bgdk/chutes-and-ladders';
+import { IPlayer } from '@bgdk/game-types';
+import { TakeTurn } from '@bgdk/games-api-sockets';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (
@@ -73,9 +74,12 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
   ) {
     const { game, req, resp } = deRefContextObject(context);
 
+    const gameBoard = game.instance.instance.displayGameBoard() as GameBoard;
+
+    TakeTurn.takeTurn(gameBoard);
     const activeDataToSend: IPlayersAndBoard = {
       playerInTurn: context.get('player-in-turn') as string,
-      gameBoard: game.instance.instance.displayGameBoard() as GameBoard,
+      gameBoard: null,
       activePlayersInGame: context.get(
         'active-players-in-game'
       ) as IRegisterFormValues[],

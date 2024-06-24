@@ -3,9 +3,12 @@ import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import { InstanceTimeMap, reaper } from './instance-time-map/instance-time-map';
+import {
+  InstanceTimeMap,
+  reaper,
+} from './services/instance-time-map/instance-time-map';
 import { GameRoutes } from './routes/game_routes';
-import SocketBuilder from './services/web-sockets/socket-io';
+import { PlaySockets, SocketBuilder } from '@bgdk/games-api-sockets';
 
 const app = express();
 const router = express.Router();
@@ -19,6 +22,15 @@ export const corsOptions: CorsOptions = {
 };
 
 export const httpServer = http.createServer(app);
+
+const socket1 = PlaySockets.Create();
+
+// add multiple websockets for board, active player, start game, take turn, reset
+
+export const io = SocketBuilder.getSocket(httpServer, corsOptions);
+io.setSocketHandlers([
+  { path: '/games/Chutes-&-Ladders/play', handler: socket1 },
+]);
 
 const instanceMap = new InstanceTimeMap();
 const allGamesMap = new AllGamesMap();
@@ -40,18 +52,5 @@ const server = httpServer.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api/v1`);
 });
 server.on('error', console.error);
+
 export default app;
-
-const socket1 = SocketBuilder.BuildSocket(httpServer);
-
-socket1.listenEvent('connection');
-
-socket1.listenEvent('hello', (data) => {
-  console.log(data);
-});
-
-socket1.listenEvent('hello back', (data) => {
-  console.log(data);
-});
-
-socket1.emitEvent('hello back', 'hello from the server');

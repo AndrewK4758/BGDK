@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ShowGameBoard from '../components/game_board/show_game_board';
 import Layout from '../components/layout/Layout';
 import Waiting from '../components/layout/waiting';
 import { NoGameError, NotEnoughPlayersError } from '../errors/error';
@@ -15,6 +14,8 @@ import takeTurn from '../services/action_functions/take_turn';
 import loadGameBoardAndAvatarInTurn from '../services/loader_functions/load_game_board_and_avatar_in_turn';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
+
+//finalize structure of router to incorporate the state of ActiveGameSession components into web sockets
 
 const router = createBrowserRouter([
   {
@@ -57,15 +58,15 @@ const router = createBrowserRouter([
               },
               {
                 path: 'play',
-                action: registerPlayerAndAvatarAction,
                 loader: loadGameBoardAndAvatarInTurn,
-                id: 'gameBoard',
+                action: registerPlayerAndAvatarAction,
                 Component: ActiveGameSession,
+                id: 'gameBoard',
                 errorElement: <NotEnoughPlayersError />,
                 children: [
                   {
                     index: true,
-                    Component: ShowGameBoard,
+                    Component: null,
                     action: takeTurn,
                   },
                 ],

@@ -119,6 +119,123 @@
         "implicitDependencies": []
       }
     },
+    "games-api-sockets": {
+      "name": "games-api-sockets",
+      "type": "lib",
+      "data": {
+        "root": "libs/web-sockets/games-api-sockets",
+        "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/web-sockets/games-api-sockets",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/.eslintrc.json",
+              "{projectRoot}/.eslintrc.json",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "executor": "nx:run-commands",
+            "configurations": {}
+          },
+          "test": {
+            "options": {
+              "cwd": "libs/web-sockets/games-api-sockets",
+              "command": "jest"
+            },
+            "metadata": {
+              "technologies": [
+                "jest"
+              ],
+              "description": "Run Jest Tests"
+            },
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js",
+              {
+                "externalDependencies": [
+                  "jest"
+                ]
+              }
+            ],
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/web-sockets/games-api-sockets"
+            ],
+            "executor": "nx:run-commands",
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/vite:build",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/web-sockets/games-api-sockets",
+              "main": "libs/web-sockets/games-api-sockets/src/index.ts",
+              "tsConfig": "libs/web-sockets/games-api-sockets/tsconfig.lib.json",
+              "assets": [
+                "libs/web-sockets/games-api-sockets/*.md"
+              ],
+              "configFile": "libs/web-sockets/games-api-sockets/vite.config.mts",
+              "buildLibsFromSource": true
+            },
+            "configurations": {}
+          },
+          "serve": {
+            "options": {
+              "cwd": "libs/web-sockets/games-api-sockets",
+              "command": "vite serve"
+            },
+            "executor": "nx:run-commands",
+            "configurations": {}
+          },
+          "preview": {
+            "options": {
+              "cwd": "libs/web-sockets/games-api-sockets",
+              "command": "vite preview"
+            },
+            "executor": "nx:run-commands",
+            "configurations": {}
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "build",
+              "spa": true
+            },
+            "configurations": {}
+          }
+        },
+        "metadata": {},
+        "name": "games-api-sockets",
+        "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/web-sockets/games-api-sockets/src",
+        "projectType": "library",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
     "instance-of-game": {
       "name": "instance-of-game",
       "type": "lib",
@@ -781,7 +898,9 @@
               "tsConfig": "libs/chains-for-games/tsconfig.lib.json",
               "assets": [
                 "libs/chains-for-games/*.md"
-              ]
+              ],
+              "buildLibsFromSource": true,
+              "configFile": "libs/chains-for-games/vite.config.ts"
             },
             "configurations": {}
           },
@@ -1242,7 +1361,9 @@
             "executor": "@nx/js:node",
             "defaultConfiguration": "development",
             "options": {
-              "buildTarget": "games-api:build"
+              "buildTarget": "games-api:build",
+              "watch": true,
+              "runBuildTargetDependencies": true
             },
             "configurations": {
               "development": {
@@ -5022,9 +5143,9 @@
       "type": "npm",
       "name": "npm:@swc/cli",
       "data": {
-        "version": "0.3.12",
+        "version": "0.3.14",
         "packageName": "@swc/cli",
-        "hash": "sha512-h7bvxT+4+UDrLWJLFHt6V+vNAcUNii2G4aGSSotKz1ECEk4MyEh5CWxmeSscwuz5K3i+4DWTgm4+4EyMCQKn+g=="
+        "hash": "sha512-0vGqD6FSW67PaZUZABkA+ADKsX7OUY/PwNEz1SbQdCvVk/e4Z36Gwh7mFVBQH9RIsMonTyhV1RHkwkGnEfR3zQ=="
       }
     },
     "npm:@swc/core": {
@@ -5139,9 +5260,9 @@
       "type": "npm",
       "name": "npm:@swc/types",
       "data": {
-        "version": "0.1.8",
+        "version": "0.1.9",
         "packageName": "@swc/types",
-        "hash": "sha512-RNFA3+7OJFNYY78x0FYwi1Ow+iF1eF5WvmfY1nXPOEH4R2p/D4Cr1vzje7dNAI2aLFqpv8Wyz4oKSWqIZArpQA=="
+        "hash": "sha512-qKnCno++jzcJ4lM4NTfYifm1EFSCeIfKiAHAfkENZAV5Kl9PjJIyd2yeeVv6c/2CckuLyv2NmRC5pv6pm2WQBg=="
       }
     },
     "npm:@swc/counter": {
@@ -5571,9 +5692,9 @@
       "type": "npm",
       "name": "npm:@types/node",
       "data": {
-        "version": "18.19.37",
+        "version": "18.19.39",
         "packageName": "@types/node",
-        "hash": "sha512-Pi53fdVMk7Ig5IfAMltQQMgtY7xLzHaEous8IQasYsdQbYK3v90FkxI3XYQCe/Qme58pqp14lXJIsFmGP8VoZQ=="
+        "hash": "sha512-nPwTRDKUctxw3di5b4TfT3I0sWDiWoPQCZjXhvdkINntwr8lcoVCKsTgnXeRubKIlfnV+eN/HYk6Jb40tbcEAQ=="
       }
     },
     "npm:@types/node-forge": {
@@ -6030,18 +6151,18 @@
       "type": "npm",
       "name": "npm:@vue/compiler-core",
       "data": {
-        "version": "3.4.29",
+        "version": "3.4.30",
         "packageName": "@vue/compiler-core",
-        "hash": "sha512-TFKiRkKKsRCKvg/jTSSKK7mYLJEQdUiUfykbG49rubC9SfDyvT2JrzTReopWlz2MxqeLyxh9UZhvxEIBgAhtrg=="
+        "hash": "sha512-ZL8y4Xxdh8O6PSwfdZ1IpQ24PjTAieOz3jXb/MDTfDtANcKBMxg1KLm6OX2jofsaQGYfIVzd3BAG22i56/cF1w=="
       }
     },
     "npm:@vue/compiler-dom": {
       "type": "npm",
       "name": "npm:@vue/compiler-dom",
       "data": {
-        "version": "3.4.29",
+        "version": "3.4.30",
         "packageName": "@vue/compiler-dom",
-        "hash": "sha512-A6+iZ2fKIEGnfPJejdB7b1FlJzgiD+Y/sxxKwJWg1EbJu6ZPgzaPQQ51ESGNv0CP6jm6Z7/pO6Ia8Ze6IKrX7w=="
+        "hash": "sha512-+16Sd8lYr5j/owCbr9dowcNfrHd+pz+w2/b5Lt26Oz/kB90C9yNbxQ3bYOvt7rI2bxk0nqda39hVcwDFw85c2Q=="
       }
     },
     "npm:@vue/language-core": {
@@ -6057,9 +6178,9 @@
       "type": "npm",
       "name": "npm:@vue/shared",
       "data": {
-        "version": "3.4.29",
+        "version": "3.4.30",
         "packageName": "@vue/shared",
-        "hash": "sha512-hQ2gAQcBO/CDpC82DCrinJNgOHI2v+FA7BDW4lMSPeBpQ7sRe2OLHWe5cph1s7D8DUQAwRt18dBDfJJ220APEA=="
+        "hash": "sha512-CLg+f8RQCHQnKvuHY9adMsMaQOcqclh6Z5V9TaoMgy0ut0tz848joZ7/CYFFyF/yZ5i2yaw7Fn498C+CNZVHIg=="
       }
     },
     "npm:@webassemblyjs/ast": {
@@ -8361,9 +8482,9 @@
       "type": "npm",
       "name": "npm:electron-to-chromium",
       "data": {
-        "version": "1.4.807",
+        "version": "1.4.810",
         "packageName": "electron-to-chromium",
-        "hash": "sha512-kSmJl2ZwhNf/bcIuCH/imtNOKlpkLDn2jqT5FJ+/0CXjhnFaOa9cOe9gHKKy71eM49izwuQjZhKk+lWQ1JxB7A=="
+        "hash": "sha512-Kaxhu4T7SJGpRQx99tq216gCq2nMxJo+uuT6uzz9l8TVN2stL7M06MIIXAtr9jsrLs2Glflgf2vMQRepxawOdQ=="
       }
     },
     "npm:emittery": {
@@ -10251,9 +10372,9 @@
       "type": "npm",
       "name": "npm:is-core-module",
       "data": {
-        "version": "2.13.1",
+        "version": "2.14.0",
         "packageName": "is-core-module",
-        "hash": "sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw=="
+        "hash": "sha512-a5dFJih5ZLYlRtDc0dZWP7RiKr6xIKzmn/oAYCDvdLThadVgyJwlaoQPmRtMSpz+rk0OGAgIu+TcM9HUF0fk1A=="
       }
     },
     "npm:is-data-view": {
@@ -11763,9 +11884,9 @@
       "type": "npm",
       "name": "npm:object-inspect",
       "data": {
-        "version": "1.13.1",
+        "version": "1.13.2",
         "packageName": "object-inspect",
-        "hash": "sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ=="
+        "hash": "sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g=="
       }
     },
     "npm:object-is": {
@@ -14193,9 +14314,9 @@
       "type": "npm",
       "name": "npm:v8-to-istanbul",
       "data": {
-        "version": "9.2.0",
+        "version": "9.3.0",
         "packageName": "v8-to-istanbul",
-        "hash": "sha512-/EH/sDgxU2eGxajKdwLCDmQ4FWq+kpi3uCmBGpw1xJtnAxEjlD8j8PEiGWpCIMIs3ciNAgH0d3TTJiUkYzyZjA=="
+        "hash": "sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA=="
       }
     },
     "npm:validate-npm-package-name": {
@@ -14665,6 +14786,38 @@
         "type": "static"
       }
     ],
+    "games-api-sockets": [
+      {
+        "source": "games-api-sockets",
+        "target": "npm:socket.io",
+        "type": "static"
+      },
+      {
+        "source": "games-api-sockets",
+        "target": "game-types",
+        "type": "static"
+      },
+      {
+        "source": "games-api-sockets",
+        "target": "npm:cors",
+        "type": "static"
+      },
+      {
+        "source": "games-api-sockets",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "games-api-sockets",
+        "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "games-api-sockets",
+        "target": "npm:@nx/vite",
+        "type": "static"
+      }
+    ],
     "instance-of-game": [
       {
         "source": "instance-of-game",
@@ -14745,6 +14898,11 @@
       },
       {
         "source": "chutes-and-ladders-ui",
+        "target": "npm:socket.io-client",
+        "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
         "target": "npm:react-dom",
         "type": "static"
       },
@@ -14766,11 +14924,6 @@
       {
         "source": "chutes-and-ladders-ui",
         "target": "npm:@mui/icons-material",
-        "type": "static"
-      },
-      {
-        "source": "chutes-and-ladders-ui",
-        "target": "npm:socket.io-client",
         "type": "static"
       },
       {
@@ -14898,7 +15051,7 @@
       },
       {
         "source": "chains-for-games",
-        "target": "chutes-and-ladders",
+        "target": "games-api-sockets",
         "type": "static"
       },
       {
@@ -14909,6 +15062,11 @@
       {
         "source": "chains-for-games",
         "target": "npm:short-unique-id",
+        "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "chutes-and-ladders",
         "type": "static"
       },
       {
@@ -15113,7 +15271,7 @@
       },
       {
         "source": "games-api",
-        "target": "npm:socket.io",
+        "target": "games-api-sockets",
         "type": "static"
       },
       {

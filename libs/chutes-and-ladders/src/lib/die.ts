@@ -1,4 +1,4 @@
-import { IDie } from './interfaces';
+import { IDie } from '@bgdk/game-types';
 import { generateRandomNumber } from './utils';
 
 export class Die implements IDie {

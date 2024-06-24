@@ -1,13 +1,13 @@
 import { IRegisterFormValues } from '@bgdk/game-types';
 import axios from 'axios';
 import { ActionFunction, ActionFunctionArgs } from 'react-router-dom';
-import { getGameInstanceInfo } from '../utils';
+import { getGameInstanceInfo } from '../utils/utils';
 
 const registerPlayerAndAvatarAction: ActionFunction = async ({
   request,
   params,
 }: ActionFunctionArgs) => {
-  const baseURL = import.meta.env.VITE_API_SERVER_URL;
+  const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   const id = params.id;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
 

@@ -1,5 +1,5 @@
-import { ChutesAndLadders, IPlayer } from '@bgdk/chutes-and-ladders';
-import { Color, SpaceType } from '@bgdk/game-types';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { Color, SpaceType, IPlayer } from '@bgdk/game-types';
 
 export interface IGame {
   instance: ChutesAndLadders;

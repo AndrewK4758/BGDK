@@ -1,5 +1,5 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { GameContextKeys, ITestCtxOutput } from '@bgdk/game-types';
+import { GameBoard, GameContextKeys } from '@bgdk/game-types';
 import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
 import {
   createPlayerID,
@@ -13,12 +13,12 @@ import {
 import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 
-let ctx: Context, game: IInstanceOfGame, output: ITestCtxOutput;
+let ctx: Context, game: IInstanceOfGame; //, output: GameBoard;
 
 describe('test register chain', () => {
   beforeAll(() => {
     game = mockMakeGame(new ChutesAndLadders(5, 5));
-    output = { message: 'Player Created' };
+    // output = [];
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
@@ -82,7 +82,7 @@ describe('test register chain', () => {
       const commandResult = playerCreated.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
+      expect((ctx.get(GameContextKeys.OUTPUT) as GameBoard).length).toEqual(10);
     });
   });
 });
