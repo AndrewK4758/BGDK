@@ -1,5 +1,6 @@
 import { Board } from './board';
 import { Die } from './die';
+import LiteSpace from './lite-space';
 import { Space } from './space';
 import { rangeSelector } from './utils';
 import {
@@ -177,12 +178,13 @@ export class ChutesAndLadders {
     let indexOfSpace = 1;
 
     while (space) {
-      const liteSpace: ILiteSpace = {
-        Value: space['value'],
-        Type: space['type'],
-        AvatarsInSpace: space['avatarsInSpace'],
-        Display: space['display'],
-      };
+      const liteSpace = LiteSpace.MakeSpace();
+
+      liteSpace.Value = space['value'];
+      liteSpace.Type = space['type'];
+      liteSpace.AvatarsInSpace = space['avatarsInSpace'];
+      liteSpace.Display = space['display'];
+      
 
       const rowCount = rowFinder(indexOfSpace);
       row.push(liteSpace);

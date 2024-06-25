@@ -38,12 +38,10 @@ const breakpointsSpaceSx: SxProps = {
 
 const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => (
   <Fragment key={i + 100}>
-    <Grid key={e.Display} sx={breakpointsRowSx}>
+    <Grid key={e.display} sx={breakpointsRowSx}>
       <Text
         titleVariant="body2"
-        titleText={
-          e.AvatarsInSpace.length ? e.AvatarsInSpace[0].name : e.Display
-        }
+        titleText={e.occupied ? e.avatarsInSpace[0].name : e.display}
         sx={breakpointsSpaceSx}
       />
     </Grid>
