@@ -1,5 +1,5 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { IPlayer } from '@bgdk/chutes-and-ladders';
+import { IPlayer } from '@bgdk/game-types';
 import { IGame } from '@bgdk/game';
 import { GameBoard, GameContextKeys } from '@bgdk/game-types';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';

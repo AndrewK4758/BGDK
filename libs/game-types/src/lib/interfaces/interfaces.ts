@@ -1,19 +1,4 @@
 import { Color, SpaceType } from '../types/game-types';
-<<<<<<< HEAD
-
-export interface ILiteSpace {
-  Value: string;
-  Type: SpaceType;
-  AvatarsInSpace: IAvatar[];
-  Display: string | number;
-  get value(): string;
-  get type(): SpaceType;
-  get avatarsInSpace(): IAvatar[];
-  get occupied(): boolean;
-  get display(): string | number;
-}
-=======
->>>>>>> main
 
 export interface IPlayer {
   Name: string;
@@ -37,6 +22,18 @@ export interface IAvatar {
   get location(): ISpace;
   set location(location: ISpace);
   move(numberOfSpaces: number): void;
+}
+
+export interface ILiteSpace {
+  Value: string;
+  Type: SpaceType;
+  Display: string | number;
+  AvatarsInSpace: IAvatar[];
+  get value(): string;
+  get type(): SpaceType;
+  get display(): string | number;
+  get avatarsInSpace(): IAvatar[];
+  get occupied(): boolean;
 }
 
 export interface ISpace {

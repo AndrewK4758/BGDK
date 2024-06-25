@@ -1,4 +1,4 @@
-import SocketBuilder from '../lib/socket-manager';
+import { SocketBuilder } from '../lib/socket-manager';
 
 describe('gamesApiSockets', () => {
   it('should work', () => {
