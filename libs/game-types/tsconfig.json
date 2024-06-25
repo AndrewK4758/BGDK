@@ -7,15 +7,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-<<<<<<< HEAD
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
-=======
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
->>>>>>> main
+
   },
   "files": [],
   "include": [],

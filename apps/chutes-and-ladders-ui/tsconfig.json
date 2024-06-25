@@ -5,9 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "module": "NodeNext"
   },
   "files": [],
   "include": [],

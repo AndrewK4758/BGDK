@@ -11,8 +11,6 @@
     }
   ],
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "module": "NodeNext"
   }
 }

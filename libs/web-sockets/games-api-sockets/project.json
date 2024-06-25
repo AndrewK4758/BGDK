@@ -4,7 +4,6 @@
   "sourceRoot": "libs/web-sockets/games-api-sockets/src",
   "projectType": "library",
   "tags": [],
-  "// targets": "to see all targets run: nx show project games-api-sockets --web",
   "targets": {
     "build": {
       "executor": "@nx/vite:build",

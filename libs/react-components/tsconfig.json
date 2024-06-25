@@ -5,10 +5,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["vite/client"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "types": ["vite/client"]
   },
   "files": [],
   "include": ["src/**/*.tsx", "src/**/*.css", "src/**/*.ts"],
