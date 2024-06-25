@@ -28,7 +28,6 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "games-api:build",
-        "watch": true,
         "runBuildTargetDependencies": true
       },
       "configurations": {

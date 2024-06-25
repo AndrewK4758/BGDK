@@ -14,6 +14,8 @@ module.exports = {
       tsConfig: './tsconfig.app.json',
       assets: ['./src/assets'],
       outputHashing: false,
+      watch: true,
+      progress: true,
     }),
   ],
 };
