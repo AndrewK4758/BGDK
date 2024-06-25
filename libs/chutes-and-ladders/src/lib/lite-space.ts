@@ -1,6 +1,6 @@
 import { IAvatar, ILiteSpace, SpaceType } from '@bgdk/game-types';
 
-export default class LiteSpace implements ILiteSpace {
+export class LiteSpace implements ILiteSpace {
   Value!: string;
   Type!: SpaceType;
   Display!: string | number;

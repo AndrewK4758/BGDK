@@ -4,8 +4,8 @@
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "vite/client"],
     "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "composite": true
   },
   "include": [],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

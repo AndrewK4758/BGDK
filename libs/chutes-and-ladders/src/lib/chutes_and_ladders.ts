@@ -1,20 +1,14 @@
 import { Board } from './board';
 import { Die } from './die';
-<<<<<<< HEAD
-import LiteSpace from './lite-space';
-=======
->>>>>>> main
 import { Space } from './space';
+import { LiteSpace } from './lite-space';
 import { rangeSelector } from './utils';
 import {
   AvatarTotem,
   Color,
   SpaceType,
   GameBoard,
-<<<<<<< HEAD
   ILiteSpace,
-=======
->>>>>>> main
   ISpace,
   IDie,
 } from '@bgdk/game-types';
@@ -190,7 +184,6 @@ export class ChutesAndLadders {
       liteSpace.Type = space['type'];
       liteSpace.AvatarsInSpace = space['avatarsInSpace'];
       liteSpace.Display = space['display'];
-      
 
       const rowCount = rowFinder(indexOfSpace);
       row.push(liteSpace);
@@ -238,4 +231,3 @@ export class ChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
-
