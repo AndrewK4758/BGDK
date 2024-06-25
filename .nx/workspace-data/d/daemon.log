@@ -27353,3 +27353,1394 @@ The "nx/js/dependencies-and-lockfile" plugin threw an error while creating depen
 [NX Daemon Server] - 2024-06-25T13:41:23.746Z - Done responding to the client null
 [NX Daemon Server] - 2024-06-25T13:41:23.746Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
 [NX Daemon Server] - 2024-06-25T13:41:23.747Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:38.424Z - Started listening on: /tmp/cb0e5d0a56c3f9875625/d.sock
+[NX Daemon Server] - 2024-06-25T13:45:38.425Z - [WATCHER]: Subscribed to changes within: /home/ak475826/Projects/BGDK (native)
+[NX Daemon Server] - 2024-06-25T13:45:38.428Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:38.429Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:38.430Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:38.431Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:38.516Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-06-25T13:45:38.516Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-25T13:45:38.516Z - [REQUEST]: 
+
+ NX   Failed to parse npm lockfile
+
+Please open an issue at `https://github.com/nrwl/nx/issues/new?template=1-bug.yml` and provide a reproduction.
+
+Original error: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+
+
+SyntaxError: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+    at JSON.parse (<anonymous>)
+    at parsePackageLockFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/lock-file/npm-parser.js:20:26)
+    at getNpmLockfileNodes (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/lock-file/npm-parser.js:26:18)
+    at getLockFileNodes (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/lock-file/lock-file.js:46:57)
+    at exports.createNodes (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:47:64)
+    at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:47:33
+    at Array.map (<anonymous>)
+    at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:45:35)
+    at LoadedNxPlugin.createNodes (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:24:76)
+    at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:34)
+
+Error reading '/home/ak475826/Projects/BGDK/.nx/workspace-data/file-map.json'. Continue the process without the cache.
+Error: InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/file-map.json at 165:1
+  163 |       {
+  164 |         "file": ".gitignore",
+> 165 | <<<<<<< HEAD
+      | ^^^^^^^
+  166 |         "hash": "13212993843369124560"
+  167 |       },
+  168 |       {
+
+    at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+    at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+    at readFileMapCache (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/nx-deps-cache.js:42:49)
+    at createAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:229:274)
+    at processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:160:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+    at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+    at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+[NX Daemon Server] - 2024-06-25T13:45:38.688Z - Error detected when creating a project graph: Failed to create project graph. See above for errors
+[NX Daemon Server] - 2024-06-25T13:45:38.689Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:38.689Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:38.689Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 258. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:38.690Z - Time taken for 'Load Nx Plugin: /home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/project-json/build-nodes/package-json-next-to-project-json' 84.20684400002938ms
+[NX Daemon Server] - 2024-06-25T13:45:38.690Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:38.690Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:38.691Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:38.691Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-25T13:45:38.691Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:39.186Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:39.186Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:39.186Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:39.186Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:39.187Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:39.221Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-25T13:45:39.221Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:39.221Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:39.221Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:39.222Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:39.222Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:39.222Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:39.222Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:39.223Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:39.223Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:39.223Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:39.223Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:39.223Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:40.227Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:40.227Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:40.227Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:40.227Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:40.228Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:40.264Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-25T13:45:40.264Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:40.264Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:40.264Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:40.265Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:40.265Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:40.265Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:40.265Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:40.266Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:40.266Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:40.266Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:40.266Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:40.267Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:44.270Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:44.270Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:44.270Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:44.270Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:44.271Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:44.295Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-25T13:45:44.296Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:44.296Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:44.296Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:44.296Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:44.297Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:44.297Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:44.297Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-25T13:45:44.297Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:44.297Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:44.298Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:44.298Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-25T13:45:44.298Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:53.301Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:53.301Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:53.302Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:53.302Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-25T13:45:53.302Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:53.330Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-25T13:45:53.330Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:53.330Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:45:53.330Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:45:53.331Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:53.331Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:53.331Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:53.331Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:53.332Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:45:53.332Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+  AggregateCreateNodesError: An error occurred while processing files for the @nx/eslint/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/eslint-4393011795395336301.hash at 6287:1
+    6285 |     }
+    6286 |   },
+  > 6287 | <<<<<<< HEAD
+         | ^^^^^^^
+    6288 |   "668294567238684499": {},
+    6289 |   "14873175612479663552": {
+    6290 |     "libs/chains-for-games": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 2)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/jest/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/jest-7930610538513362720.hash at 6272:1
+    6270 |     }
+    6271 |   },
+  > 6272 | <<<<<<< HEAD
+         | ^^^^^^^
+    6273 |   "7387956424453375280": {
+    6274 | =======
+    6275 |   "16937252332966725913": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 3)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the @nx/vite/plugin plugin.
+    - InvalidSymbol in /home/ak475826/Projects/BGDK/.nx/workspace-data/vite-10538225559886866074.hash at 9662:1
+    9660 |     "metadata": {}
+    9661 |   },
+  > 9662 | <<<<<<< HEAD
+         | ^^^^^^^
+    9663 |   "3425448559979757906libs/chains-for-games/vite.config.mts": {
+    9664 | =======
+    9665 |   "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+  
+      at LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:48:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async Promise.all (index 4)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+AggregateCreateNodesError: An error occurred while processing files for the nx/js/dependencies-and-lockfile plugin.
+    - package-lock.json: Expected property name or '}' in JSON at position 420555 (line 11527 column 1)
+      at createNodesFromFiles (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/utils.js:58:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async LoadedNxPlugin.createNodes.<computed> (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:41:28)
+      at async Promise.all (index 5)
+      at async processFilesAndCreateAndSerializeProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)
+      at async getCachedSerializedProjectGraphPromise (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:46:16)
+      at async handleRequestProjectGraph (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+      at async handleResult (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:130:16)
+      at async handleMessage (/home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:89:9)
+      at async /home/ak475826/Projects/BGDK/node_modules/nx/src/daemon/server/server.js:55:9
+The "nx/js/dependencies-and-lockfile" plugin threw an error while creating dependencies:
+    Error: InvalidSymbol in /home/ak475826/Projects/BGDK/tsconfig.base.json at 9:1
+       7 |     "sourceMap": true,
+       8 |     "noUnusedLocals": true,
+    >  9 | <<<<<<< HEAD
+         | ^^^^^^^
+      10 | =======
+      11 |     "moduleResolution": "Node16",
+      12 | >>>>>>> main
+    
+        at parseJson (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/json.js:27:15)
+        at readJsonFile (/home/ak475826/Projects/BGDK/node_modules/nx/src/utils/fileutils.js:22:37)
+        at TargetProjectLocator.getRootTsConfig (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:228:50)
+        at new TargetProjectLocator (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/target-project-locator.js:32:30)
+        at buildExplicitDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/project-graph/build-dependencies/build-dependencies.js:22:34)
+        at Object.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/plugins/js/index.js:79:92)
+        at LoadedNxPlugin.createDependencies (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/plugins/internal-api.js:57:59)
+        at /home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:226:47
+        at Array.map (<anonymous>)
+        at updateProjectGraphWithPlugins (/home/ak475826/Projects/BGDK/node_modules/nx/src/project-graph/build-project-graph.js:223:47)
+[NX Daemon Server] - 2024-06-25T13:45:53.332Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-25T13:45:53.332Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2024-06-25T13:45:53.332Z - Established a connection. Number of open connections: 2
