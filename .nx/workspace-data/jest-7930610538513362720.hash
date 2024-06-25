@@ -6269,12 +6269,20 @@
       }
     }
   },
+<<<<<<< HEAD
   "7387956424453375280": {
+=======
+  "16937252332966725913": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "libs/chains-for-games"
+=======
+          "cwd": "libs/chutes-and-ladders"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6294,17 +6302,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/libs/chains-for-games"
+=======
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "11051978006738778706": {
+=======
+  "7466257421094433593": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/game-types"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6324,17 +6344,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/game-types"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "15400240351824944986": {
+=======
+  "16371916030628439296": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/chutes-and-ladders"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6354,17 +6386,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "15724365612851740446": {
+=======
+  "4160780396743929227": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/game-types"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6384,17 +6428,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/game-types"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "15069546633414500414": {
+=======
+  "13788704478368440118": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/chutes-and-ladders"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6414,17 +6470,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "6392648871915829152": {
+=======
+  "16679177729522361748": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "libs/web-sockets/games-api-sockets"
+=======
+          "cwd": "libs/game-types"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6444,17 +6512,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/libs/web-sockets/games-api-sockets"
+=======
+          "{workspaceRoot}/coverage/libs/game-types"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "16615016858039855074": {
+=======
+  "10831437223144100157": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "libs/web-sockets/games-api-sockets"
+=======
+          "cwd": "libs/game-types"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6474,17 +6554,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/libs/web-sockets/games-api-sockets"
+=======
+          "{workspaceRoot}/coverage/libs/game-types"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "5688683189748422338": {
+=======
+  "6316164093047157605": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/chutes-and-ladders"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6504,17 +6596,29 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "5454654098803395059": {
+=======
+  "643122466090329082": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
         "options": {
+<<<<<<< HEAD
           "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/chutes-and-ladders"
+>>>>>>> main
         },
         "metadata": {
           "technologies": [
@@ -6534,132 +6638,19 @@
           }
         ],
         "outputs": [
+<<<<<<< HEAD
           "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+>>>>>>> main
         ]
       }
     }
   },
+<<<<<<< HEAD
   "13543172585164584953": {
-    "targets": {
-      "test": {
-        "command": "jest",
-        "options": {
-          "cwd": "apis/games-api"
-        },
-        "metadata": {
-          "technologies": [
-            "jest"
-          ],
-          "description": "Run Jest Tests"
-        },
-        "cache": true,
-        "inputs": [
-          "default",
-          "^production",
-          "{workspaceRoot}/jest.preset.js",
-          {
-            "externalDependencies": [
-              "jest"
-            ]
-          }
-        ],
-        "outputs": [
-          "{workspaceRoot}/coverage/apps/games-api"
-        ]
-      }
-    }
-  },
-  "13853106293161736979": {
-    "targets": {
-      "test": {
-        "command": "jest",
-        "options": {
-          "cwd": "apps/chutes-and-ladders-ui"
-        },
-        "metadata": {
-          "technologies": [
-            "jest"
-          ],
-          "description": "Run Jest Tests"
-        },
-        "cache": true,
-        "inputs": [
-          "default",
-          "^production",
-          "{workspaceRoot}/jest.preset.js",
-          {
-            "externalDependencies": [
-              "jest"
-            ]
-          }
-        ],
-        "outputs": [
-          "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
-        ]
-      }
-    }
-  },
-  "14165346892359393830": {
-    "targets": {
-      "test": {
-        "command": "jest",
-        "options": {
-          "cwd": "apps/chutes-and-ladders-ui"
-        },
-        "metadata": {
-          "technologies": [
-            "jest"
-          ],
-          "description": "Run Jest Tests"
-        },
-        "cache": true,
-        "inputs": [
-          "default",
-          "^production",
-          "{workspaceRoot}/jest.preset.js",
-          {
-            "externalDependencies": [
-              "jest"
-            ]
-          }
-        ],
-        "outputs": [
-          "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
-        ]
-      }
-    }
-  },
-  "2956227258795747670": {
-    "targets": {
-      "test": {
-        "command": "jest",
-        "options": {
-          "cwd": "libs/web-sockets/games-api-sockets"
-        },
-        "metadata": {
-          "technologies": [
-            "jest"
-          ],
-          "description": "Run Jest Tests"
-        },
-        "cache": true,
-        "inputs": [
-          "default",
-          "^production",
-          "{workspaceRoot}/jest.preset.js",
-          {
-            "externalDependencies": [
-              "jest"
-            ]
-          }
-        ],
-        "outputs": [
-          "{workspaceRoot}/coverage/libs/web-sockets/games-api-sockets"
-        ]
-      }
-    }
-  },
-  "4703543741529673528": {
+=======
+  "6631304521481104591": {
     "targets": {
       "test": {
         "command": "jest",
@@ -6689,6 +6680,700 @@
       }
     }
   },
+  "3197286737742537468": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+  "12482002917952571290": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+  "15155736032213431667": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+  "16893206900504712048": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+  "9540896090742894651": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+  "13859868506580609950": {
+>>>>>>> main
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "apis/games-api"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/apps/games-api"
+        ]
+      }
+    }
+  },
+<<<<<<< HEAD
+  "13853106293161736979": {
+=======
+  "6241245102098354819": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "apis/games-api"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/apps/games-api"
+        ]
+      }
+    }
+  },
+  "6391438598436512240": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "apis/games-api"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/apps/games-api"
+        ]
+      }
+    }
+  },
+  "8739795254381726725": {
+>>>>>>> main
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+        ]
+      }
+    }
+  },
+<<<<<<< HEAD
+  "14165346892359393830": {
+=======
+  "12165325771678708322": {
+>>>>>>> main
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+<<<<<<< HEAD
+          "cwd": "apps/chutes-and-ladders-ui"
+=======
+          "cwd": "libs/chains-for-games"
+>>>>>>> main
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+<<<<<<< HEAD
+          "{workspaceRoot}/coverage/apps/chutes-and-ladders-ui"
+=======
+          "{workspaceRoot}/coverage/libs/chains-for-games"
+>>>>>>> main
+        ]
+      }
+    }
+  },
+<<<<<<< HEAD
+  "2956227258795747670": {
+=======
+  "2182244417498991576": {
+>>>>>>> main
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+<<<<<<< HEAD
+          "cwd": "libs/web-sockets/games-api-sockets"
+=======
+          "cwd": "libs/chains-for-games"
+>>>>>>> main
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+<<<<<<< HEAD
+          "{workspaceRoot}/coverage/libs/web-sockets/games-api-sockets"
+=======
+          "{workspaceRoot}/coverage/libs/chains-for-games"
+>>>>>>> main
+        ]
+      }
+    }
+  },
+<<<<<<< HEAD
+  "4703543741529673528": {
+=======
+  "40883974865539383": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chains-for-games"
+        ]
+      }
+    }
+  },
+  "5443329756279405063": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chains-for-games"
+        ]
+      }
+    }
+  },
+  "4921897347863779770": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/game"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/game"
+        ]
+      }
+    }
+  },
+  "16165372213533930990": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/all-games-map"
+        ]
+      }
+    }
+  },
+  "18127461269605004688": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/de-referencing-utilities"
+        ]
+      }
+    }
+  },
+  "13332026028536915170": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/de-referencing-utilities"
+        ]
+      }
+    }
+  },
+  "12832074890423989587": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/game-builder"
+        ]
+      }
+    }
+  },
+  "8113974510765137833": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/game-builder"
+        ]
+      }
+    }
+  },
+  "4309587167840701692": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/instance-of-game"
+        ]
+      }
+    }
+  },
+  "18442437602015037793": {
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/models/rule"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/models/rule"
+        ]
+      }
+    }
+  },
+  "11291027902388112674": {
+>>>>>>> main
+    "targets": {
+      "test": {
+        "command": "jest",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "metadata": {
+          "technologies": [
+            "jest"
+          ],
+          "description": "Run Jest Tests"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          "{workspaceRoot}/jest.preset.js",
+          {
+            "externalDependencies": [
+              "jest"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/coverage/libs/chutes-and-ladders"
+        ]
+      }
+    }
+  },
+<<<<<<< HEAD
   "14201294113564685404": {
     "targets": {
       "test": {
@@ -6780,6 +7465,9 @@
     }
   },
   "15702017093758886136": {
+=======
+  "16335130142012409954": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
@@ -6809,6 +7497,7 @@
       }
     }
   },
+<<<<<<< HEAD
   "7158781836257351930": {
     "targets": {
       "test": {
@@ -7050,6 +7739,9 @@
     }
   },
   "17546407457852105160": {
+=======
+  "8685852522726264047": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",
@@ -7079,6 +7771,7 @@
       }
     }
   },
+<<<<<<< HEAD
   "11304914775462981106": {
     "targets": {
       "test": {
@@ -7290,6 +7983,9 @@
     }
   },
   "6895900124995449578": {
+=======
+  "12999252513339266207": {
+>>>>>>> main
     "targets": {
       "test": {
         "command": "jest",

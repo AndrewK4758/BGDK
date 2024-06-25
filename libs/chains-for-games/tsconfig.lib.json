@@ -2,8 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
+<<<<<<< HEAD
     "types": ["node", "vite/client"],
 
+=======
+    "types": ["node", "vite/client"]
+>>>>>>> main
   },
   "include": [],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

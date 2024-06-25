@@ -1,11 +1,16 @@
+import { IAllGamesMap } from '@bgdk/all-games-map';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
+<<<<<<< HEAD
 import { IInstanceTimeMap } from '../services/instance-time-map/instance-time-map';
 import { IAllGamesMap } from '@bgdk/all-games-map';
+=======
+>>>>>>> main
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/game-types';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
+import { IInstanceTimeMap } from '../instance-time-map/instance-time-map';
 
 //NEED TO IMPLEMENT PUTTING THE REF TO THE GAME CLASS IN THE GAME BUILDER AND
 //FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME

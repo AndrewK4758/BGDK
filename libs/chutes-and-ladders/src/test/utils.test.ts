@@ -1,5 +1,5 @@
 import { Die } from '../lib/die';
-import { IDie } from '../lib/interfaces';
+import { IDie } from '../../../game-types/src/lib/interfaces/interfaces';
 import {
   generateRandomNumber,
   rollDice,

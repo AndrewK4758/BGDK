@@ -1,4 +1,5 @@
 import { Color, SpaceType } from '../types/game-types';
+<<<<<<< HEAD
 
 export interface ILiteSpace {
   Value: string;
@@ -11,6 +12,8 @@ export interface ILiteSpace {
   get occupied(): boolean;
   get display(): string | number;
 }
+=======
+>>>>>>> main
 
 export interface IPlayer {
   Name: string;

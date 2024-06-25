@@ -1,6 +1,9 @@
 import { Board } from './board';
 import { Die } from './die';
+<<<<<<< HEAD
 import LiteSpace from './lite-space';
+=======
+>>>>>>> main
 import { Space } from './space';
 import { rangeSelector } from './utils';
 import {
@@ -8,7 +11,10 @@ import {
   Color,
   SpaceType,
   GameBoard,
+<<<<<<< HEAD
   ILiteSpace,
+=======
+>>>>>>> main
   ISpace,
   IDie,
 } from '@bgdk/game-types';

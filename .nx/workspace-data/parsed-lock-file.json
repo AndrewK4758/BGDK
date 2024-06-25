@@ -3640,9 +3640,9 @@
       "type": "npm",
       "name": "npm:@testing-library/dom",
       "data": {
-        "version": "10.1.0",
+        "version": "10.2.0",
         "packageName": "@testing-library/dom",
-        "hash": "sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA=="
+        "hash": "sha512-CytIvb6tVOADRngTHGWNxH8LPgO/3hi/BdCEHOf7Qd2GvZVClhVP0Wo/QHzWhpki49Bk0b4VT6xpt3fx8HTSIw=="
       }
     },
     "npm:@testing-library/react": {
@@ -4216,72 +4216,72 @@
       "type": "npm",
       "name": "npm:@typescript-eslint/eslint-plugin",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/eslint-plugin",
-        "hash": "sha512-kZqi+WZQaZfPKnsflLJQCz6Ze9FFSMfXrrIOcyargekQxG37ES7DJNpJUE9Q/X5n3yTIP/WPutVNzgknQ7biLg=="
+        "hash": "sha512-aAJd6bIf2vvQRjUG3ZkNXkmBpN+J7Wd0mfQiiVCJMu9Z5GcZZdcc0j8XwN/BM97Fl7e3SkTXODSk4VehUv7CGw=="
       }
     },
     "npm:@typescript-eslint/parser": {
       "type": "npm",
       "name": "npm:@typescript-eslint/parser",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/parser",
-        "hash": "sha512-1ELDPlnLvDQ5ybTSrMhRTFDfOQEOXNM+eP+3HT/Yq7ruWpciQw+Avi73pdEbA4SooCawEWo3dtYbF68gN7Ed1A=="
+        "hash": "sha512-8lKUOebNLcR0D7RvlcloOacTOWzOqemWEWkKSVpMZVF/XVcwjPR+3MD08QzbW9TCGJ+DwIc6zUSGZ9vd8cO1IA=="
       }
     },
     "npm:@typescript-eslint/scope-manager": {
       "type": "npm",
       "name": "npm:@typescript-eslint/scope-manager",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/scope-manager",
-        "hash": "sha512-adbXNVEs6GmbzaCpymHQ0MB6E4TqoiVbC0iqG3uijR8ZYfpAXMGttouQzF4Oat3P2GxDVIrg7bMI/P65LiQZdg=="
+        "hash": "sha512-gPrFSsoYcsffYXTOZ+hT7fyJr95rdVe4kGVX1ps/dJ+DfmlnjFN/GcMxXcVkeHDKqsq6uAcVaQaIi3cFffmAbA=="
       }
     },
     "npm:@typescript-eslint/type-utils": {
       "type": "npm",
       "name": "npm:@typescript-eslint/type-utils",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/type-utils",
-        "hash": "sha512-aWDbLu1s9bmgPGXSzNCxELu+0+HQOapV/y+60gPXafR8e2g1Bifxzevaa+4L2ytCWm+CHqpELq4CSoN9ELiwCg=="
+        "hash": "sha512-/MzmgNd3nnbDbOi3LfasXWWe292+iuo+umJ0bCCMCPc1jLO/z2BQmWUUUXvXLbrQey/JgzdF/OV+I5bzEGwJkQ=="
       }
     },
     "npm:@typescript-eslint/types": {
       "type": "npm",
       "name": "npm:@typescript-eslint/types",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/types",
-        "hash": "sha512-7K7HMcSQIAND6RBL4kDl24sG/xKM13cA85dc7JnmQXw2cBDngg7c19B++JzvJHRG3zG36n9j1i451GBzRuHchw=="
+        "hash": "sha512-mL7zNEOQybo5R3AavY+Am7KLv8BorIv7HCYS5rKoNZKQD9tsfGUpO4KdAn3sSUvTiS4PQkr2+K0KJbxj8H9NDg=="
       }
     },
     "npm:@typescript-eslint/typescript-estree": {
       "type": "npm",
       "name": "npm:@typescript-eslint/typescript-estree",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/typescript-estree",
-        "hash": "sha512-uxNr51CMV7npU1BxZzYjoVz9iyjckBduFBP0S5sLlh1tXYzHzgZ3BR9SVsNed+LmwKrmnqN3Kdl5t7eZ5TS1Yw=="
+        "hash": "sha512-k5d0VuxViE2ulIO6FbxxSZaxqDVUyMbXcidC8rHvii0I56XZPv8cq+EhMns+d/EVIL41sMXqRbK3D10Oza1bbA=="
       }
     },
     "npm:@typescript-eslint/utils": {
       "type": "npm",
       "name": "npm:@typescript-eslint/utils",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/utils",
-        "hash": "sha512-h5MzFBD5a/Gh/fvNdp9pTfqJAbuQC4sCN2WzuXme71lqFJsZtLbjxfSk4r3p02WIArOF9N94pdsLiGutpDbrXQ=="
+        "hash": "sha512-CMmVVELns3nak3cpJhZosDkm63n+DwBlDX8g0k4QUa9BMnF+lH2lr3d130M1Zt1xxmB3LLk3NV7KQCq86ZBBhQ=="
       }
     },
     "npm:@typescript-eslint/visitor-keys": {
       "type": "npm",
       "name": "npm:@typescript-eslint/visitor-keys",
       "data": {
-        "version": "7.13.1",
+        "version": "7.14.1",
         "packageName": "@typescript-eslint/visitor-keys",
-        "hash": "sha512-k/Bfne7lrP7hcb7m9zSsgcBmo+8eicqqfNAJ7uUY+jkTFpKeH2FSkWpFRtimBxgkyvqfu9jTPRbYOvud6isdXA=="
+        "hash": "sha512-Crb+F75U1JAEtBeQGxSKwI60hZmmzaqA3z9sYsVm8X7W5cwLEm5bRe0/uXS6+MR/y8CVpKSR/ontIAIEPFcEkA=="
       }
     },
     "npm:@ungap/structured-clone": {
@@ -6826,9 +6826,15 @@
       "type": "npm",
       "name": "npm:electron-to-chromium",
       "data": {
+<<<<<<< HEAD
         "version": "1.4.810",
         "packageName": "electron-to-chromium",
         "hash": "sha512-Kaxhu4T7SJGpRQx99tq216gCq2nMxJo+uuT6uzz9l8TVN2stL7M06MIIXAtr9jsrLs2Glflgf2vMQRepxawOdQ=="
+=======
+        "version": "1.4.811",
+        "packageName": "electron-to-chromium",
+        "hash": "sha512-CDyzcJ5XW78SHzsIOdn27z8J4ist8eaFLhdto2hSMSJQgsiwvbv2fbizcKUICryw1Wii1TI/FEkvzvJsR3awrA=="
+>>>>>>> main
       }
     },
     "npm:emittery": {
@@ -7024,9 +7030,9 @@
       "type": "npm",
       "name": "npm:es-module-lexer",
       "data": {
-        "version": "1.5.3",
+        "version": "1.5.4",
         "packageName": "es-module-lexer",
-        "hash": "sha512-i1gCgmR9dCl6Vil6UKPI/trA69s08g/syhiDK9TG0Nf1RJjjFI+AzoWW7sPufzkgYAn861skuCwJa0pIIHYxvg=="
+        "hash": "sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw=="
       }
     },
     "npm:es-object-atoms": {

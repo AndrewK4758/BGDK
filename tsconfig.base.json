@@ -6,6 +6,10 @@
     "declarationMap": true,
     "sourceMap": true,
     "noUnusedLocals": true,
+<<<<<<< HEAD
+=======
+    "moduleResolution": "Node16",
+>>>>>>> main
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
