@@ -1,5 +1,4 @@
-import { IAvatar, ISpace } from './interfaces';
-import { Color } from '@bgdk/game-types';
+import { Color, IAvatar, ISpace } from '@bgdk/game-types';
 
 export class Avatar implements IAvatar {
   Name: string;

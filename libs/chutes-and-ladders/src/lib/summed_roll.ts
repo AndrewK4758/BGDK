@@ -1,4 +1,4 @@
-import { ISummedRoll } from './interfaces';
+import { ISummedRoll } from '@bgdk/game-types';
 
 export class SummedRoll implements ISummedRoll {
   RollValues: number[];

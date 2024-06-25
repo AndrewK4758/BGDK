@@ -2,10 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "types": ["node", "vite/client"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "types": ["node", "vite/client"]
   },
   "include": [],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]

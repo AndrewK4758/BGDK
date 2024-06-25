@@ -5472,5 +5472,2581 @@
       }
     },
     "metadata": {}
+  },
+  "17883712984415450212apps/chutes-and-ladders-ui/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/apps/games-ui"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "10331717183032073702libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "4833330056848308776libs/chain/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chain"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chain"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "2262274788373257965libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "4644090309778502021libs/game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "1156035053383866775libs/models/all-games-map/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/all-games-map"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "18175023445092493608libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "11675394768438336551libs/models/de-referencing-utilities/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/de-referencing-utilities"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "9077431607537585980libs/models/game-builder/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/game-builder"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "15569265929124612973libs/models/instance-of-game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/libs/dist/libs/instance-of-game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "6818552499569860493libs/models/rule/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/rule"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/rule"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "5315270648015662054libs/react-components/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/react-components"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/react-components"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "4434389593870024360apps/chutes-and-ladders-ui/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/apps/games-ui"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "14487194719895457539libs/chain/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chain"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chain"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chain"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "5847777333219423117libs/models/game-builder/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/game-builder"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "14918084175971119900libs/models/de-referencing-utilities/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/de-referencing-utilities"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "2756289375739119745libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13470936211836463153libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "3427269818060738771libs/models/rule/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/rule"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/rule"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "2732038598679620613libs/game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "6285251723666796193libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "18168687276624017274libs/models/all-games-map/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/all-games-map"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "4230841716385201667libs/models/instance-of-game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/libs/dist/libs/instance-of-game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13250389783654130013libs/react-components/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/react-components"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/react-components"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "9380569902423157188libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "15902812610943467463libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "40113442124421028libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "16826651056561668007libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "15419390513577613509libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "15072895537132767074libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "2965630632224249197libs/game-types/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game-types"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game-types"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game-types"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "12248801516596616610libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "12659435931830806768libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13732066317077067851libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "11235727829243167651libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "17391852613809908380libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "5262714948886961566libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "212371383154796139libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "16981044557448421128libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "3366325469779618793apps/chutes-and-ladders-ui/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/apps/games-ui"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "apps/chutes-and-ladders-ui"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "8120401172223686756libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "11338225972269469945libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "4457140249526039576libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "8194312000554357592libs/chains-for-games/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chains-for-games"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chains-for-games"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "8663961634324721925libs/game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "5355929599033927295libs/models/all-games-map/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/all-games-map"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/all-games-map"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "12779039897153523839libs/models/de-referencing-utilities/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/de-referencing-utilities"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "6034334690246509111libs/models/de-referencing-utilities/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/de-referencing-utilities"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/de-referencing-utilities"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13373028103125011788libs/models/game-builder/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/game-builder"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "7301059665108107005libs/models/game-builder/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/game-builder"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/game-builder"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "933219964631447libs/models/instance-of-game/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/libs/dist/libs/instance-of-game"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/instance-of-game"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "7796597768328652092libs/models/rule/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/models/rule"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/models/rule"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/models/rule"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "12092208434957862726libs/react-components/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/react-components"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/react-components"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/react-components"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "13457126101598644905libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "2660928369472800489libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
+  },
+  "8821779973374971059libs/chutes-and-ladders/vite.config.mts": {
+    "targets": {
+      "build": {
+        "command": "vite build",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        },
+        "cache": true,
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          {
+            "externalDependencies": [
+              "vite"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/libs/chutes-and-ladders"
+        ]
+      },
+      "serve": {
+        "command": "vite serve",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "preview": {
+        "command": "vite preview",
+        "options": {
+          "cwd": "libs/chutes-and-ladders"
+        }
+      },
+      "serve-static": {
+        "executor": "@nx/web:file-server",
+        "options": {
+          "buildTarget": "build",
+          "spa": true
+        }
+      }
+    },
+    "metadata": {}
   }
 }

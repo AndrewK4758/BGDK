@@ -1,4 +1,4 @@
-import { Color, SpaceType } from '@bgdk/game-types';
+import { Color, SpaceType } from '../types/game-types';
 
 export interface IPlayer {
   Name: string;

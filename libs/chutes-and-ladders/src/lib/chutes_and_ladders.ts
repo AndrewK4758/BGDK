@@ -1,9 +1,15 @@
 import { Board } from './board';
 import { Die } from './die';
-import { ISpace, IDie } from './interfaces';
 import { Space } from './space';
 import { rangeSelector } from './utils';
-import { AvatarTotem, Color, SpaceType, GameBoard } from '@bgdk/game-types';
+import {
+  AvatarTotem,
+  Color,
+  SpaceType,
+  GameBoard,
+  ISpace,
+  IDie,
+} from '@bgdk/game-types';
 
 const TOTAL_SPACES = 100;
 const START = 1;

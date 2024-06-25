@@ -4,7 +4,10 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext"
   },
   "files": [],
   "include": [],

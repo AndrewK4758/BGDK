@@ -1,10 +1,13 @@
-import { IBoard, ISpace } from './interfaces';
+import { IBoard, ISpace } from '@bgdk/game-types';
 
 export class Board implements IBoard {
   TotalSpaces: number;
   SpaceMaker;
 
-  constructor(totalSpaces: number, spaceMaker: (indexOfSpace: number) => ISpace) {
+  constructor(
+    totalSpaces: number,
+    spaceMaker: (indexOfSpace: number) => ISpace
+  ) {
     this.TotalSpaces = totalSpaces;
     this.SpaceMaker = spaceMaker;
     this.boardSetup();
@@ -12,7 +15,11 @@ export class Board implements IBoard {
 
   boardSetup(): ISpace {
     let space = this.SpaceMaker(this.TotalSpaces);
-    for (let indexOfSpace = this.TotalSpaces - 1; indexOfSpace > 0; indexOfSpace--) {
+    for (
+      let indexOfSpace = this.TotalSpaces - 1;
+      indexOfSpace > 0;
+      indexOfSpace--
+    ) {
       space.previous = this.SpaceMaker(indexOfSpace);
       space.previous.next = space;
       space = space.previous;
