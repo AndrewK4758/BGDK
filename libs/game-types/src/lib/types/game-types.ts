@@ -1,3 +1,6 @@
+import { ILiteSpace } from '../interfaces/interfaces';
+// Make all properties on all classes that have getters/setter private
+
 export enum Color {
   RED = 'Red',
   WHITE = 'White',
@@ -36,7 +39,7 @@ export enum TurnStatus {
   GAME_WON = 'GAME WON',
 }
 
-export type GameBoard = string[][];
+export type GameBoard = ILiteSpace[][];
 
 export type AvatarTotem = {
   id: number;
@@ -77,7 +80,7 @@ export interface IRegisterFormValues {
 }
 
 export interface IPlayersAndBoard {
-  gameBoard: GameBoard;
+  gameBoard: ILiteSpace[][] | null;
   activePlayersInGame: IRegisterFormValues[];
   playerInTurn?: string;
   winner?: string;

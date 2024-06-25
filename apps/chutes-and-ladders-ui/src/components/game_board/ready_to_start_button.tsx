@@ -2,7 +2,7 @@ import { Theme } from '@bgdk/react-components';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { getGameInstanceInfo } from '../../services/utils';
+import { getGameInstanceInfo } from '../../services/utils/utils';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 
@@ -23,7 +23,7 @@ const breakpointsStartGameButtonFormButton: SxProps = {
 };
 
 export default function ReadyToStart() {
-  const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
+  const __baseURL__ = import.meta.env.VITE_REST_API_SERVER_URL;
   const params = useParams();
 
   const id = params.id;
@@ -35,7 +35,7 @@ export default function ReadyToStart() {
       {},
       { headers: { 'current-game': __current_game__ } }
     );
-    console.log(resp.data.message);
+    console.log(resp.data.gameStatus);
   };
 
   return (

@@ -1,12 +1,11 @@
 import {
   Avatar,
   ChutesAndLadders,
-  IPlayer,
   Player,
   generateRandomNumber,
 } from '@bgdk/chutes-and-ladders';
 import { IGame } from '../interfaces/interfaces';
-import { Color, SpaceType } from '@bgdk/game-types';
+import { Color, SpaceType, IPlayer } from '@bgdk/game-types';
 
 export class Game implements IGame {
   instance: ChutesAndLadders;

@@ -27,7 +27,9 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "games-api:build"
+        "buildTarget": "games-api:build",
+        "watch": true,
+        "runBuildTargetDependencies": true
       },
       "configurations": {
         "development": {
@@ -50,4 +52,3 @@
     }
   }
 }
-    

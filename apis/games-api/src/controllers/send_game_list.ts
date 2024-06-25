@@ -12,5 +12,6 @@ export const sendGameList = async (req: Request, resp: Response) => {
       imageURL: game.imageURL,
     };
   }) as IBuiltGame[];
+
   resp.status(200).json(gamesToSend);
 };

@@ -6,10 +6,14 @@
     "declarationMap": true,
     "sourceMap": true,
     "noUnusedLocals": true,
+<<<<<<< HEAD
+=======
     "moduleResolution": "Node16",
+>>>>>>> main
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "moduleResolution": "NodeNext",
     "target": "ESNext",
     "module": "CommonJS",
     "lib": ["ESNext", "dom"],
@@ -27,8 +31,10 @@
       "@bgdk/game": ["libs/game/src/index.ts"],
       "@bgdk/game-builder": ["libs/models/game-builder/src/index.ts"],
       "@bgdk/game-types": ["libs/game-types/src/index.ts"],
+      "@bgdk/games-api-sockets": [
+        "libs/web-sockets/games-api-sockets/src/index.ts"
+      ],
       "@bgdk/instance-of-game": ["libs/models/instance-of-game/src/index.ts"],
-
       "@bgdk/react-components": ["libs/react-components/src/index.ts"],
       "@bgdk/rule": ["libs/models/rule/src/index.ts"]
     }

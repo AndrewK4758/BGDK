@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ActionFunctionArgs } from 'react-router-dom';
-import { getGameInstanceInfo } from '../utils';
+import { getGameInstanceInfo } from '../utils/utils';
 
 const takeTurn = async ({ params }: ActionFunctionArgs) => {
-  const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
+  const __baseURL__ = import.meta.env.VITE_REST_API_SERVER_URL;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
   const id = params.id;
 

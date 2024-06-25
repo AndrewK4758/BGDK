@@ -88,7 +88,7 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'player-created'
   ) {
-    const { req, resp } = deRefContextObject(context);
+    const { req, resp, game } = deRefContextObject(context);
 
     const __current_game__: GamePlayerValidation = JSON.parse(
       req.header('current-game') as string
@@ -98,7 +98,9 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
 
     resp.setHeader('current-game', JSON.stringify(__current_game__));
 
-    context.put(GameContextKeys.OUTPUT, { message: 'Player Created' });
+    context.put(GameContextKeys.OUTPUT, {
+      message: game.instance.instance.displayGameBoard(),
+    });
     return true;
   } else return false;
 });

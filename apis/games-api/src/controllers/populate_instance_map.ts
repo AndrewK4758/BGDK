@@ -1,6 +1,11 @@
 import { IAllGamesMap } from '@bgdk/all-games-map';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
+<<<<<<< HEAD
+import { IInstanceTimeMap } from '../services/instance-time-map/instance-time-map';
+import { IAllGamesMap } from '@bgdk/all-games-map';
+=======
+>>>>>>> main
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/game-types';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Request, Response } from 'express';

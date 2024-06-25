@@ -1,9 +1,7 @@
 import {
-  IAvatar,
   Avatar,
   Player,
   ChutesAndLadders,
-  IPlayer,
 } from '../libs/chutes-and-ladders/src';
 import { Color } from '../libs/game-types/src';
 import { Game } from '../libs/game/src';
@@ -11,6 +9,10 @@ import {
   GamePlayerValidation,
   IRegisterFormValues,
 } from '../libs/game-types/src/lib/types/game-types';
+import {
+  IAvatar,
+  IPlayer,
+} from '../libs/game-types/src/lib/interfaces/interfaces';
 import {
   InstanceOfGame,
   getCurrentMinute,

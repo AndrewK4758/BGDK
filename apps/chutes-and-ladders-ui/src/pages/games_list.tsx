@@ -23,7 +23,6 @@ const breakpointsImageListText: SxProps = {
 };
 
 
-
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
   const media = useMediaQuery(Theme.breakpoints.up('tablet'));

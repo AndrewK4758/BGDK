@@ -1,7 +1,7 @@
 import { Theme } from '@bgdk/react-components';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { getGameInstanceInfo } from '../../services/utils';
+import { getGameInstanceInfo } from '../../services/utils/utils';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 
@@ -20,7 +20,7 @@ export default function ResetGame() {
   const id = params.id;
 
   const handleResetGame = async () => {
-    const __baseURL__ = import.meta.env.VITE_API_SERVER_URL;
+    const __baseURL__ = import.meta.env.VITE_REST_API_SERVER_URL;
     const __current_game__ = JSON.stringify(getGameInstanceInfo());
     try {
       await axios.patch(

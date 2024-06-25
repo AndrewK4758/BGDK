@@ -1,15 +1,12 @@
 import { IRegisterLoaderAndFilter } from '@bgdk/game-types';
 import { Text, Theme } from '@bgdk/react-components';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
 import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import RegisterPlayerAndAvatarForm from '../components/formik_form_components/register_player_and_avatar_formik';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import IconButton from '@mui/material/IconButton';
-import { SxProps } from '@mui/material';
-
-import { useEffect, useRef } from 'react';
-import { io, ManagerOptions, Socket } from 'socket.io-client';
 
 const breakpointsRegisterPlayerTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
@@ -37,38 +34,10 @@ const handleCopyGameLinkToClipboard = (
   gameLocatordata: string
 ): Promise<void> => navigator.clipboard.writeText(gameLocatordata);
 
-/* TRIAL FOR SOCKET.IO IMPLEMENTATON */
-const url = 'http://localhost:3333';
-
-const options: Partial<ManagerOptions> = {
-  autoConnect: false,
-};
-
 export default function RegisterPlayerAndAvatarOnGame() {
   const loader = useRouteLoaderData('registerData') as IRegisterLoaderAndFilter;
   const location = useLocation();
 
-  /* TRIAL FOR SOCKET.IO IMPLEMENTATON */
-  const socketRef = useRef<Socket>();
-  useEffect(() => {
-    socketRef.current = io(url, options);
-    const { current: socket } = socketRef;
-    socket.connect();
-
-    socket.on('connect', () => {
-      console.log(`client info: ${socket.id}`);
-    });
-
-    socket.emit('hello', 'send me to server');
-
-    socket.emit('hello back', 'FUCKING FINALLY');
-
-    socket.on('hello back', (data) => console.log(data + 'from server emit'));
-
-    return () => {
-      socket.disconnect();
-    };
-  });
   const gameID = loader.gamePlayerIDs.gameInstanceID;
   const playerID = loader.gamePlayerIDs.playerID;
 

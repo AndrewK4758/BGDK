@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: join(__dirname, '../../dist/apis/games-api'),
   },
-  mode: 'production',
+  mode: 'development',
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',

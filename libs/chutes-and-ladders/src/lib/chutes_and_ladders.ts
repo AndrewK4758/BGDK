@@ -1,5 +1,9 @@
 import { Board } from './board';
 import { Die } from './die';
+<<<<<<< HEAD
+import LiteSpace from './lite-space';
+=======
+>>>>>>> main
 import { Space } from './space';
 import { rangeSelector } from './utils';
 import {
@@ -7,6 +11,10 @@ import {
   Color,
   SpaceType,
   GameBoard,
+<<<<<<< HEAD
+  ILiteSpace,
+=======
+>>>>>>> main
   ISpace,
   IDie,
 } from '@bgdk/game-types';
@@ -167,20 +175,25 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
-  //make space lite
   //firestore db deploy in firebase
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
-    let row: string[] = [];
+    let row: ILiteSpace[] = [];
 
     let indexOfSpace = 1;
 
     while (space) {
+      const liteSpace = LiteSpace.MakeSpace();
+
+      liteSpace.Value = space['value'];
+      liteSpace.Type = space['type'];
+      liteSpace.AvatarsInSpace = space['avatarsInSpace'];
+      liteSpace.Display = space['display'];
+      
+
       const rowCount = rowFinder(indexOfSpace);
-      if (space.occupied)
-        row.push(`${space.avatarsInSpace[0].name}${'\n'}${space.display}`);
-      else row.push(space.display);
+      row.push(liteSpace);
 
       if (row.length === ROWS) {
         row = rowCount % 2 !== 0 ? row : row.reverse();
@@ -225,3 +238,4 @@ export class ChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
+

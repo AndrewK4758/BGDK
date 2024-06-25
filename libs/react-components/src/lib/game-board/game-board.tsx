@@ -5,10 +5,11 @@ import RenderList from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
 import { Fragment } from 'react/jsx-runtime';
+import { ILiteSpace } from '@bgdk/game-types';
 
 /* eslint-disable-next-line */
 export interface GameBoardProps {
-  row: string[];
+  row: ILiteSpace[];
   columns: number;
   container: boolean | undefined;
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse' | undefined;
@@ -33,10 +34,16 @@ const breakpointsSpaceSx: SxProps = {
   },
 };
 
-const gameBoardRowMap = (e: string, i: number, arr: string[]) => (
-  <Fragment key={e}>
-    <Grid key={e} sx={breakpointsRowSx}>
-      <Text titleVariant="body2" titleText={e} sx={breakpointsSpaceSx} />
+// Explore best way to render game board with websocket
+
+const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => (
+  <Fragment key={i + 100}>
+    <Grid key={e.display} sx={breakpointsRowSx}>
+      <Text
+        titleVariant="body2"
+        titleText={e.occupied ? e.avatarsInSpace[0].name : e.display}
+        sx={breakpointsSpaceSx}
+      />
     </Grid>
   </Fragment>
 );
