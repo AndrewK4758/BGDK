@@ -12200,3 +12200,22 @@
 [NX Daemon Server] - 2024-06-25T13:39:08.052Z - Done responding to the client project-graph
 [NX Daemon Server] - 2024-06-25T13:39:08.052Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 2.
 [NX Daemon Server] - 2024-06-25T13:39:08.055Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:48:43.794Z - Started listening on: /tmp/cb0e5d0a56c3f9875625/d.sock
+[NX Daemon Server] - 2024-06-25T13:48:43.795Z - [WATCHER]: Subscribed to changes within: /home/ak475826/Projects/BGDK (native)
+[NX Daemon Server] - 2024-06-25T13:48:43.800Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:48:43.800Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-25T13:48:43.801Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-25T13:48:43.802Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:48:43.885Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-06-25T13:48:43.885Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-25T13:48:43.885Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-25T13:48:44.136Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-25T13:48:44.138Z - Time taken for 'total for creating and serializing project graph' 333.8857999999309ms
+[NX Daemon Server] - 2024-06-25T13:48:44.138Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-25T13:48:44.138Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 334. Response time: 2.
+[NX Daemon Server] - 2024-06-25T13:48:44.142Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-25T13:48:44.142Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-25T13:48:44.143Z - Time taken for 'total for creating and serializing project graph' 0.08183100004680455ms
+[NX Daemon Server] - 2024-06-25T13:48:44.143Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-25T13:48:44.143Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-25T13:48:44.146Z - Established a connection. Number of open connections: 2
