@@ -2,13 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "esModuleInterop": true,
     "types": [
       "jest",
       "node",
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts"
-    ]
+    ],
+    "esModuleInterop": true,
+    "composite": true
   },
   "include": [
     "jest.config.ts",
@@ -20,6 +21,9 @@
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "../../libs/react-components/tsconfig.spec.json",
+    "../../libs/game-types/tsconfig.spec.json",
+    "../../libs/chutes-and-ladders/tsconfig.spec.json"
   ]
 }

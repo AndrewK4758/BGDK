@@ -1,6 +1,7 @@
 import { ButtonFormAction, Theme } from '@bgdk/react-components';
 import { useParams } from 'react-router-dom';
 import { SxProps } from '@mui/material';
+import { Dispatch, SetStateAction } from 'react';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.info.main,
@@ -11,7 +12,15 @@ const breakpointsTakeTurnButton: SxProps = {
   },
 };
 
-export default function TakeTurn() {
+interface TakeTurnProps {
+  buttonPress: boolean;
+  setButtonPress: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function TakeTurn({
+  buttonPress,
+  setButtonPress,
+}: TakeTurnProps) {
   const params = useParams();
   const id = params.id;
 
@@ -23,6 +32,7 @@ export default function TakeTurn() {
       name="Take Turn"
       value={'take-turn'}
       type="submit"
+      handleSubmit={() => setButtonPress(!buttonPress)}
       sx={breakpointsTakeTurnButton}
       buttonText="Take Turn"
     />

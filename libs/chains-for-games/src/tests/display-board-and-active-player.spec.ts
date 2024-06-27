@@ -73,7 +73,7 @@ describe('test display board and active player chain', () => {
       ) as IPlayersAndBoard;
 
       expect(commandResult).toBeTruthy();
-      expect(dataToSendFromCtx.playerInTurn).toEqual(
+      expect(dataToSendFromCtx.avatarInTurn).toEqual(
         'Waiting for game to start'
       );
       // expect(dataToSendFromCtx.gameBoard.length).toEqual(10);

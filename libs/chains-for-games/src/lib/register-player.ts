@@ -37,7 +37,6 @@ export const registerOnGameInstance = CommandBuilder.build(
       context.getString(GameContextKeys.NEXT) === 'register-on-game'
     ) {
       const { req, game } = deRefContextObject(context);
-      console.log(`ID OF GAME: ${game.gameInstanceID}`);
 
       const { playerName, avatarName, avatarColor } =
         req.body as IRegisterFormValues;
@@ -88,7 +87,7 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'player-created'
   ) {
-    const { req, resp, game } = deRefContextObject(context);
+    const { req, resp } = deRefContextObject(context);
 
     const __current_game__: GamePlayerValidation = JSON.parse(
       req.header('current-game') as string
@@ -99,7 +98,7 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
     resp.setHeader('current-game', JSON.stringify(__current_game__));
 
     context.put(GameContextKeys.OUTPUT, {
-      message: game.instance.instance.displayGameBoard(),
+      message: 'Player Created',
     });
     return true;
   } else return false;

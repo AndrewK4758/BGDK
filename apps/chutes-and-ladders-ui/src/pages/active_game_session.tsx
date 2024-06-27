@@ -1,14 +1,21 @@
-import { IPlayersAndBoard } from '@bgdk/game-types';
+import {
+  GameBoard,
+  GamePlayerValidation,
+  IPlayersAndBoard,
+  IRegisterFormValues,
+} from '@bgdk/game-types';
 import { Text, Theme } from '@bgdk/react-components';
+import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { useRouteLoaderData } from 'react-router-dom';
 import ActiveAvatars from '../components/game_board/active_avatars';
 import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
-import TakeTurn from '../components/game_board/take_turn';
-import { SxProps } from '@mui/material';
 import ShowGameBoard from '../components/game_board/show_game_board';
+import TakeTurn from '../components/game_board/take_turn';
+import { io, ManagerOptions, Socket } from 'socket.io-client';
+import { getGameInstanceInfo } from '../services/utils/utils';
+import { useEffect, useRef, useState } from 'react';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   marginTop: '2rem',
@@ -32,34 +39,92 @@ const breakpointsBottomMenuButtonsBox: SxProps = {
   },
 };
 
-// incorporate all loader data into websocket
-
 export default function ActiveGameSession() {
-  const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
+  const [board, setBoard] = useState<GameBoard>();
+  const [activePlayersInGame, setActivePlayersInGame] = useState<
+    IRegisterFormValues[]
+  >([]);
+  const [winner, setWinner] = useState<string | undefined>(undefined);
+  const [avatarInTurn, setAvatarInTurn] = useState<string | undefined>(
+    undefined
+  );
+  const [buttonPress, setButtonPress] = useState<boolean>(false);
 
-  const activePlayersInGame = loader.activePlayersInGame;
-  const playerInTurn = loader.playerInTurn as string;
+  const managerOptions: Partial<ManagerOptions> = {
+    autoConnect: false,
+    query: getGameInstanceInfo() as GamePlayerValidation,
+  };
+  const client = io(import.meta.env.VITE_WS_SERVER_URL, managerOptions);
+
+  const socketRef = useRef<Socket>(client);
+
+  const socket = socketRef.current;
+
+  useEffect(() => {
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('SOCKET ID: ', socket.id);
+    });
+
+    socket.on(
+      'game-data',
+      ({
+        gameBoard,
+        activePlayersInGame,
+        winner,
+        avatarInTurn,
+      }: IPlayersAndBoard) => {
+        console.log(avatarInTurn);
+        console.log(...activePlayersInGame);
+        console.log(winner);
+        console.log(...gameBoard);
+        setBoard(gameBoard);
+        setActivePlayersInGame(activePlayersInGame);
+        setWinner(winner);
+        setAvatarInTurn(avatarInTurn);
+      }
+    );
+
+    socket.on('no-game-error', (error) => {
+      console.log(error);
+
+      return () => {
+        socket.disconnect();
+      };
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket, setBoard, buttonPress]);
 
   return (
     <>
       <Container component={'section'} sx={{ marginBottom: '2rem' }}>
-        <ActiveAvatars playersInGame={activePlayersInGame} />
-        <ReadyToStart />
+        <ActiveAvatars avatarsInGame={activePlayersInGame} winner={winner} />
+
+        <ReadyToStart
+          buttonPress={buttonPress}
+          setButtonPress={setButtonPress}
+        />
       </Container>
       <Box component={'section'} sx={{ height: '55vh' }}>
-        <ShowGameBoard />
+        {board && <ShowGameBoard board={board as GameBoard} />}
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>
           <Text
             titleVariant="h2"
-            titleText={playerInTurn}
+            titleText={avatarInTurn}
             sx={breakpointsPlayerInTurnText}
           />
         </Box>
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          <TakeTurn />
-          <ResetGame />
+          <TakeTurn buttonPress={buttonPress} setButtonPress={setButtonPress} />
+          <ResetGame
+            buttonPress={buttonPress}
+            setButtonPress={setButtonPress}
+          />
         </Container>
       </Container>
     </>

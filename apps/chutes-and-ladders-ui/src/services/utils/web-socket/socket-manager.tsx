@@ -1,22 +1,19 @@
 import { Manager, ManagerOptions } from 'socket.io-client';
-import { getGameInstanceInfo } from '../utils';
 
-/* TRIAL FOR SOCKET.IO IMPLEMENTATON */
+/* LOOK INTO CREATING DYNAMIC PATHS TO MIMIC REST URI */
 
 export default class SocketManager {
-  #io: Manager;
+  #manager: Manager;
 
   constructor(url: string, managerOptions: Partial<ManagerOptions>) {
-    this.#io = new Manager(url, managerOptions);
+    this.#manager = new Manager(url, managerOptions);
   }
 
-  static BuildSocket = () =>
-    new SocketManager(import.meta.env.VITE_WS_SERVER_URL, {
-      autoConnect: false,
-      extraHeaders: getGameInstanceInfo(),
-    });
-
-  get manager() {
-    return this.#io;
-  }
+  static BuildSocket = (managerOptions: Partial<ManagerOptions>) => {
+    const manager = new SocketManager(
+      import.meta.env.VITE_WS_SERVER_URL,
+      managerOptions
+    );
+    return manager.#manager;
+  };
 }

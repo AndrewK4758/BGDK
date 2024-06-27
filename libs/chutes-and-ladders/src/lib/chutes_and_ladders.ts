@@ -180,10 +180,9 @@ export class ChutesAndLadders {
     while (space) {
       const liteSpace = LiteSpace.MakeSpace();
 
-      liteSpace.Value = space['value'];
-      liteSpace.Type = space['type'];
-      liteSpace.AvatarsInSpace = space['avatarsInSpace'];
-      liteSpace.Display = space['display'];
+      liteSpace.Display = space.occupied
+        ? space.avatarsInSpace[0].name
+        : space['display'];
 
       const rowCount = rowFinder(indexOfSpace);
       row.push(liteSpace);

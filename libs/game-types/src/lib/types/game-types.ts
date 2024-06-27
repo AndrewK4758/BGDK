@@ -30,6 +30,7 @@ export const enum GameContextKeys {
   NEXT = 'NEXT-HANDLER',
   OUTPUT = 'OUT',
   SOCKET = 'SOCKET',
+  IO = 'IO',
 }
 
 export enum TurnStatus {
@@ -80,9 +81,9 @@ export interface IRegisterFormValues {
 }
 
 export interface IPlayersAndBoard {
-  gameBoard: ILiteSpace[][] | null;
   activePlayersInGame: IRegisterFormValues[];
-  playerInTurn?: string;
+  gameBoard: GameBoard;
+  avatarInTurn?: string;
   winner?: string;
 }
 

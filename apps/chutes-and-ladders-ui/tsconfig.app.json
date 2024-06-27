@@ -10,7 +10,8 @@
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
       "vite/client"
-    ]
+    ],
+    "composite": true
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -20,7 +21,19 @@
     "src/**/*.spec.js",
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
-    "src/**/*.test.jsx"
+    "src/**/*.test.jsx",
+    "../../libs/**/*.spec.tsx",
+    "../../libs/**/*.spec.ts",
+    "../../libs/**/*.test.tsx",
+    "../../libs/**/*.test.ts"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/**/*.tsx",
+    "../../libs/**/*.ts",
+    "../../libs/**/tsconfig.lib.json"
+  ]
 }

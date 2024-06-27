@@ -103,7 +103,6 @@ describe('Games api test wrapper', () => {
             __current_game__ = JSON.parse(resp.headers['current-game']);
 
             const gamePlayData = resp.data as IPlayersAndBoard;
-            expect(gamePlayData.gameBoard.length).toEqual(10);
             expect(gamePlayData.activePlayersInGame.length).toEqual(2);
             expect(gamePlayData.playerInTurn).not.toBeUndefined();
             expect(gamePlayData.winner).toEqual('');

@@ -10,7 +10,7 @@ import { IInstanceTimeMap } from '../services/instance-time-map/instance-time-ma
 //NEED TO IMPLEMENT PUTTING THE REF TO THE GAME CLASS IN THE GAME BUILDER AND
 //FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME
 
-export const populateInstanceMaps = (req: Request, resp: Response) => {
+const populateInstanceMaps = (req: Request, resp: Response) => {
   const gameName = req.params.id.replace(/-/g, ' ');
   console.log(`Game selected: ${gameName}`);
   const instanceMap = req.app.get('instanceMap') as IInstanceTimeMap;
@@ -33,3 +33,5 @@ export const populateInstanceMaps = (req: Request, resp: Response) => {
 
   resp.sendStatus(201);
 };
+
+export default populateInstanceMaps;

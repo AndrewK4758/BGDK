@@ -5,7 +5,7 @@ import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import { Request, Response } from 'express';
 import { ChutesAndLaddersGame } from './list-games';
 
-export const performAction = (req: Request, resp: Response) => {
+const performAction = (req: Request, resp: Response) => {
   console.log('Perform Action Called');
   const game = getActiveGame(req) as IInstanceOfGame;
   console.log(
@@ -27,3 +27,5 @@ export const performAction = (req: Request, resp: Response) => {
     resp.sendStatus(404);
   }
 };
+
+export default performAction;

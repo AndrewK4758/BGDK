@@ -1,4 +1,4 @@
-export * from './lib/display-board-and-active-player';
+export * from './lib/active-game-display-chain';
 export * from './lib/load-register';
 export * from './lib/log-action';
 export * from './lib/output-response';

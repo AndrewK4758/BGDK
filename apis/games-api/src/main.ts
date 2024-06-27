@@ -3,12 +3,14 @@ import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
+import { Server } from 'socket.io';
+import { GameRoutes } from './routes/game_routes';
 import {
   InstanceTimeMap,
   reaper,
 } from './services/instance-time-map/instance-time-map';
-import { GameRoutes } from './routes/game_routes';
-import { PlaySockets, SocketBuilder } from '@bgdk/games-api-sockets';
+import performActionWs from './controllers/perform_action_web_socket_context';
+// import { GamePlayerValidation } from '@bgdk/game-types';
 
 const app = express();
 const router = express.Router();
@@ -21,19 +23,15 @@ export const corsOptions: CorsOptions = {
   allowedHeaders: '*',
 };
 
-export const httpServer = http.createServer(app);
-
-const socket1 = PlaySockets.Create();
-
-// add multiple websockets for board, active player, start game, take turn, reset
-
-export const io = SocketBuilder.getSocket(httpServer, corsOptions);
-io.setSocketHandlers([
-  { path: '/games/Chutes-&-Ladders/play', handler: socket1 },
-]);
-
 const instanceMap = new InstanceTimeMap();
 const allGamesMap = new AllGamesMap();
+
+export const httpServer = http.createServer(app);
+export const io = new Server(httpServer, {
+  cleanupEmptyChildNamespaces: true,
+  cors: corsOptions,
+  transports: ['websocket', 'polling'],
+});
 
 app.set('instanceMap', instanceMap);
 app.set('allGamesMap', allGamesMap);
@@ -47,10 +45,16 @@ new GameRoutes(router);
 
 reaper(instanceMap);
 
+io.on('connection', async (socket) => {
+  const room = socket.handshake.query.gameInstanceID as string;
+  socket.join(room);
+  performActionWs(io, room);
+});
+
 const port = process.env.PORT || 3333;
 const server = httpServer.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api/v1`);
 });
-server.on('error', console.error);
 
-export default app;
+server.on('error', console.error);
+export { app };

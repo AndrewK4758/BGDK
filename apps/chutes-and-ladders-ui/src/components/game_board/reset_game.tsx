@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getGameInstanceInfo } from '../../services/utils/utils';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
+import { Dispatch, SetStateAction } from 'react';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
@@ -15,7 +16,15 @@ const breakpointsResetGameButton: SxProps = {
   },
 };
 
-export default function ResetGame() {
+interface ResetGameProps {
+  buttonPress: boolean;
+  setButtonPress: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function ResetGame({
+  buttonPress,
+  setButtonPress,
+}: ResetGameProps) {
   const params = useParams();
   const id = params.id;
 
@@ -28,6 +37,7 @@ export default function ResetGame() {
         {},
         { headers: { 'current-game': __current_game__ } }
       );
+      setButtonPress(!buttonPress);
       return null;
     } catch (error) {
       console.log(error);

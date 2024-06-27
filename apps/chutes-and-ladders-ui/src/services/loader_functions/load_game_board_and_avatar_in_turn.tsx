@@ -20,9 +20,9 @@ const loadGameBoardAndAvatarInTurn: LoaderFunction = async ({
     );
 
     const activePlayerDataToSend: IPlayersAndBoard = {
+      gameBoard: [[]],
       winner: resp.data.message,
-      gameBoard: resp.data.gameBoard,
-      playerInTurn: resp.data.playerInTurn,
+      avatarInTurn: resp.data.playerInTurn,
       activePlayersInGame: resp.data.activePlayersInGame,
     };
     console.log(activePlayerDataToSend);

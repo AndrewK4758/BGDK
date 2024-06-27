@@ -7,6 +7,14 @@
     "moduleResolution": "NodeNext",
     "composite": true
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*.test.ts",
+    "../../../libs/**/*.jest.config.ts",
+    "../../../libs/react-components/**/*.ts"
+  ],
+  "include": ["src/**/*.ts", "../../../libs/**/*.ts"]
 }

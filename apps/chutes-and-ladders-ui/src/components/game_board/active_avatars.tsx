@@ -1,9 +1,8 @@
 import { Player } from '@bgdk/chutes-and-ladders';
-import { IPlayersAndBoard, IRegisterFormValues } from '@bgdk/game-types';
+import { IRegisterFormValues } from '@bgdk/game-types';
 import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
-import { SxProps, Box } from '@mui/material';
+import { Box, SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsActiveGameTitleContainer: SxProps = {
@@ -61,12 +60,16 @@ const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
   </Fragment>
 );
 
+interface ActiveAvatarsProps {
+  avatarsInGame: IRegisterFormValues[];
+  winner: string | undefined;
+}
+
 export default function ActiveAvatars({
-  playersInGame,
-}: {
-  playersInGame: IRegisterFormValues[];
-}) {
-  const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
+  avatarsInGame,
+  winner,
+}: ActiveAvatarsProps) {
+  // const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
 
   return (
     <Container component={'section'} sx={breakpointsActiveGameTitleContainer}>
@@ -75,14 +78,14 @@ export default function ActiveAvatars({
         titleText="Active Players in Game"
         sx={breakpointsActiveGameTitleText}
       />
-      {!loader.winner ? (
+      {!winner ? (
         <Box sx={breakpointsPlayersInGameBox}>
-          <RenderList data={playersInGame} listMapCallback={playersInGameMap} />
+          <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
         </Box>
       ) : (
         <Text
           titleVariant="h2"
-          titleText={loader.winner}
+          titleText={winner}
           sx={breakpointsActiveGameTitleText}
         />
       )}

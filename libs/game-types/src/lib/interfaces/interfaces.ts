@@ -25,12 +25,12 @@ export interface IAvatar {
 }
 
 export interface ILiteSpace {
-  Value: string;
-  Type: SpaceType;
+  // Value: string;
+  // Type: SpaceType;
   Display: string | number;
   AvatarsInSpace: IAvatar[];
-  get value(): string;
-  get type(): SpaceType;
+  // get value(): string;
+  // get type(): SpaceType;
   get display(): string | number;
   get avatarsInSpace(): IAvatar[];
   get occupied(): boolean;

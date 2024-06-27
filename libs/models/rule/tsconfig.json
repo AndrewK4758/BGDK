@@ -10,7 +10,8 @@
     "module": "NodeNext"
   },
   "files": [],
-  "include": [],
+  "include": ["../../libs/**/*.ts"],
+  "exclude": ["../../libs/**/*.spec.ts", "../../libs/**/*.test.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

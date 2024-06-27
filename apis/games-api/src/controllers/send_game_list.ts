@@ -2,7 +2,7 @@ import { IBuiltGame } from '@bgdk/game-builder';
 import { Request, Response } from 'express';
 import { games } from './list-games';
 
-export const sendGameList = async (req: Request, resp: Response) => {
+const sendGameList = async (req: Request, resp: Response) => {
   const gamesToSend = games.map((game) => {
     return {
       name: game.name,
@@ -15,3 +15,5 @@ export const sendGameList = async (req: Request, resp: Response) => {
 
   resp.status(200).json(gamesToSend);
 };
+
+export default sendGameList;

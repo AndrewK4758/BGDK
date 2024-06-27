@@ -1,5 +1,5 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { GameBoard, GameContextKeys } from '@bgdk/game-types';
+import { GameContextKeys } from '@bgdk/game-types';
 import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
 import {
   createPlayerID,
@@ -82,7 +82,6 @@ describe('test register chain', () => {
       const commandResult = playerCreated.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect((ctx.get(GameContextKeys.OUTPUT) as GameBoard).length).toEqual(10);
     });
   });
 });

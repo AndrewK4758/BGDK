@@ -36,17 +36,19 @@ const breakpointsSpaceSx: SxProps = {
 
 // Explore best way to render game board with websocket
 
-const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => (
-  <Fragment key={i + 100}>
-    <Grid key={e.display} sx={breakpointsRowSx}>
-      <Text
-        titleVariant="body2"
-        titleText={e.occupied ? e.avatarsInSpace[0].name : e.display}
-        sx={breakpointsSpaceSx}
-      />
-    </Grid>
-  </Fragment>
-);
+const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => {
+  return (
+    <Fragment key={i + 100}>
+      <Grid key={e.Display} sx={breakpointsRowSx}>
+        <Text
+          titleVariant="body2"
+          titleText={e.Display}
+          sx={breakpointsSpaceSx}
+        />
+      </Grid>
+    </Fragment>
+  );
+};
 
 export function GameBoardMap({
   row,

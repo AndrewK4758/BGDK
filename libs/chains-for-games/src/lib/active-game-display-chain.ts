@@ -8,7 +8,6 @@ import {
 } from '@bgdk/game-types';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import { IPlayer } from '@bgdk/game-types';
-import { TakeTurn } from '@bgdk/games-api-sockets';
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (
@@ -72,25 +71,29 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'active-data-to-send'
   ) {
-    const { game, req, resp } = deRefContextObject(context);
+    const { req, resp, game, io } = deRefContextObject(context);
 
-    const gameBoard = game.instance.instance.displayGameBoard() as GameBoard;
-
-    TakeTurn.takeTurn(gameBoard);
     const activeDataToSend: IPlayersAndBoard = {
-      playerInTurn: context.get('player-in-turn') as string,
-      gameBoard: null,
+      avatarInTurn: context.get('player-in-turn') as string,
+      gameBoard: game.instance.instance.displayGameBoard() as GameBoard,
       activePlayersInGame: context.get(
         'active-players-in-game'
       ) as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
-    resp.setHeader(
-      'current-game',
-      req.header('current-game') as GameInstanceID
-    );
-    context.put(GameContextKeys.OUTPUT, activeDataToSend);
-    return true;
+
+    if (io) {
+      console.log('In io.emit event handler');
+      io.to(game.gameInstanceID).emit('game-data', activeDataToSend);
+      return false;
+    } else {
+      resp.setHeader(
+        'current-game',
+        req.header('current-game') as GameInstanceID
+      );
+      context.put(GameContextKeys.OUTPUT, activeDataToSend);
+      return true;
+    }
   } else return false;
 });
 
