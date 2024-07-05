@@ -1,4 +1,4 @@
-import { GamePlayerValidation } from '@bgdk/game-types';
+import { GamePlayerValidation } from '@bgdk/types-game';
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 const joinGameAction = async ({ request }: ActionFunctionArgs) => {

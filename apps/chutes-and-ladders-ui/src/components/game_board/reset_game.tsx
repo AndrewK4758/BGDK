@@ -1,10 +1,10 @@
 import { Theme } from '@bgdk/react-components';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { getGameInstanceInfo } from '../../services/utils/utils';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import { Dispatch, SetStateAction } from 'react';
+import { useParams } from 'react-router-dom';
+import { getGameInstanceInfo } from '../../services/utils/utils';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',

@@ -1,11 +1,6 @@
-import { Minute, GameInstanceID, GamesInMinute } from '@bgdk/game-types';
 import { getCurrentMinute } from '@bgdk/instance-of-game';
-
-//move to api because not shared. Nothing that holds state belongs in model
-export interface IInstanceTimeMap {
-  Map: Map<Minute, GamesInMinute>;
-  addGameInstance(minute: Minute, gameInstanceID: GameInstanceID): void;
-}
+import { IInstanceTimeMap } from '@bgdk/types-api';
+import { GameInstanceID, GamesInMinute, Minute } from '@bgdk/types-game';
 
 export class InstanceTimeMap implements IInstanceTimeMap {
   Map: Map<Minute, GamesInMinute>;

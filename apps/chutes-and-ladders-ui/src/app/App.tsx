@@ -11,7 +11,6 @@ import joinGameAction from '../services/action_functions/join_game_action';
 import registerGameInstanceOnServerAction from '../services/action_functions/register_game_on_server_action';
 import registerPlayerAndAvatarAction from '../services/action_functions/register_player_avatar_action';
 import takeTurn from '../services/action_functions/take_turn';
-// import loadGameBoardAndAvatarInTurn from '../services/loader_functions/load_game_board_and_avatar_in_turn';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
 

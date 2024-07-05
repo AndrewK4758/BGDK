@@ -7,11 +7,12 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ESNext"
   },
   "files": [],
-  "include": ["../libs/**/*.ts"],
-  "exclude": ["../libs/**/*.spec.ts", "../libs/**/*.test.ts"],
+
   "references": [
     {
       "path": "./tsconfig.lib.json"

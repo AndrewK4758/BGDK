@@ -1,10 +1,10 @@
-import { AvatarTotem } from '@bgdk/game-types';
+import { AvatarTotem } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useField } from 'formik';
-import { Theme } from '../../theme/theme';
 import Text from '../../text/text';
+import { Theme } from '../../theme/theme';
 
 interface IAvatarColorSelectValues {
   name: string;
@@ -16,13 +16,7 @@ interface IAvatarColorSelectValues {
   selectSx: SxProps;
 }
 
-export function SelectMenu({
-  label,
-  mapCallback,
-  labelSx,
-  selectSx,
-  ...props
-}: IAvatarColorSelectValues) {
+export function SelectMenu({ label, mapCallback, labelSx, selectSx, ...props }: IAvatarColorSelectValues) {
   const [field, meta] = useField(props);
 
   const data = props.data;

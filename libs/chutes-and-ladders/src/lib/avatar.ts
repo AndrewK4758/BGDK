@@ -1,4 +1,4 @@
-import { Color, IAvatar, ISpace } from '@bgdk/game-types';
+import { Color, IAvatar, ISpace } from '@bgdk/types-game';
 
 export class Avatar implements IAvatar {
   Name: string;
@@ -49,9 +49,7 @@ export class Avatar implements IAvatar {
   move(numberOfSpaces: number): void {
     const locBeforeMove: ISpace = this.location;
     const locAfterMove: ISpace | null =
-      numberOfSpaces > 0
-        ? this._moveForward(numberOfSpaces)
-        : this._moveBackward(Math.abs(numberOfSpaces));
+      numberOfSpaces > 0 ? this._moveForward(numberOfSpaces) : this._moveBackward(Math.abs(numberOfSpaces));
 
     if (locAfterMove) {
       locBeforeMove.leave();

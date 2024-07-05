@@ -1,0 +1,14 @@
+version: "3.8"
+services: 
+  frontend:
+    build:
+      context: ./
+      dockerfile: apps/chutes-and-ladders-ui/Dockerfile
+    ports:
+        - "4200:4200"
+  backend: 
+    build:
+      context: ./
+      dockerfile: apis/games-api/Dockerfile
+    ports:
+      - "3333:3333"

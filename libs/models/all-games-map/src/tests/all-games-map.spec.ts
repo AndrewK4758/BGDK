@@ -1,23 +1,16 @@
-import { AllGamesMap } from '../lib/all-games-map';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Game } from '@bgdk/game';
-import { Minute, GameInstanceID } from '@bgdk/game-types';
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameInstanceID, Minute } from '@bgdk/types-game';
+import { AllGamesMap } from '../lib/all-games-map';
 
-let activeGame: InstanceOfGame,
-  minute: Minute,
-  gameInstanceID: GameInstanceID,
-  allGamesMap: AllGamesMap;
+let activeGame: InstanceOfGame, minute: Minute, gameInstanceID: GameInstanceID, allGamesMap: AllGamesMap;
 
 describe('test AllGamesMapClass', () => {
   beforeAll(() => {
     minute = getCurrentMinute();
     gameInstanceID = 'G@Me!D';
-    activeGame = new InstanceOfGame(
-      minute,
-      gameInstanceID,
-      new Game(new ChutesAndLadders(5, 5))
-    );
+    activeGame = new InstanceOfGame(minute, gameInstanceID, new Game(new ChutesAndLadders(5, 5)));
     allGamesMap = new AllGamesMap();
   });
 

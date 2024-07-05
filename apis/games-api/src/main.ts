@@ -1,16 +1,15 @@
-import { AllGamesMap } from '@bgdk/all-games-map';
+import { getActiveGameWS } from '@bgdk/de-referencing-utilities';
+import { GameInstanceID } from '@bgdk/types-game';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { Server } from 'socket.io';
-import { GameRoutes } from './routes/game_routes';
-import {
-  InstanceTimeMap,
-  reaper,
-} from './services/instance-time-map/instance-time-map';
+import useAllGamesMap, { allGamesMap } from './controllers/middleware/all-games-map';
+import useInstanceTimeMap from './controllers/middleware/instance-map';
 import performActionWs from './controllers/perform_action_web_socket_context';
-// import { GamePlayerValidation } from '@bgdk/game-types';
+import GameRoutes from './routes/game_routes';
 
 const app = express();
 const router = express.Router();
@@ -23,32 +22,35 @@ export const corsOptions: CorsOptions = {
   allowedHeaders: '*',
 };
 
-const instanceMap = new InstanceTimeMap();
-const allGamesMap = new AllGamesMap();
-
 export const httpServer = http.createServer(app);
 export const io = new Server(httpServer, {
   cleanupEmptyChildNamespaces: true,
   cors: corsOptions,
-  transports: ['websocket', 'polling'],
 });
 
-app.set('instanceMap', instanceMap);
-app.set('allGamesMap', allGamesMap);
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.enable('trust proxy');
+app.use(useInstanceTimeMap);
+app.use(useAllGamesMap);
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
-app.enable('trust proxy');
 
 new GameRoutes(router);
 
-reaper(instanceMap);
+io.on('connection', socket => {
+  socket.on('create-room', gameInstanceID => {
+    const room = gameInstanceID as GameInstanceID;
+    console.log(`in room: ${room}`);
+    socket.join(room);
+    const game = getActiveGameWS(room, allGamesMap);
+    socket.data = game;
+  });
 
-io.on('connection', async (socket) => {
-  const room = socket.handshake.query.gameInstanceID as string;
-  socket.join(room);
-  performActionWs(io, room);
+  socket.on('action', data => {
+    const game: IInstanceOfGame = socket.data;
+    performActionWs(io, game, data.action);
+  });
 });
 
 const port = process.env.PORT || 3333;
@@ -57,4 +59,4 @@ const server = httpServer.listen(port, () => {
 });
 
 server.on('error', console.error);
-export { app };
+export default app;

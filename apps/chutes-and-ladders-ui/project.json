@@ -43,7 +43,7 @@
     },
     "preview": {
       "executor": "@nx/vite:preview-server",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "buildTarget": "chutes-and-ladders-ui:build"
       },
@@ -66,6 +66,10 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/chutes-and-ladders-ui/Dockerfile . -t chutes-and-ladders-ui"
     }
   }
 }

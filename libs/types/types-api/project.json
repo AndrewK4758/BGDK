@@ -1,0 +1,19 @@
+{
+  "name": "types-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/types-api/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/types-api",
+        "main": "libs/types/types-api/src/index.ts",
+        "tsConfig": "libs/types/types-api/tsconfig.lib.json",
+        "assets": ["libs/types/types-api/*.md"]
+      }
+    }
+  }
+}

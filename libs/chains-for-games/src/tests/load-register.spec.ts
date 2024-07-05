@@ -1,17 +1,18 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys, ILoadRegisterData, Color } from '@bgdk/game-types';
-import { loadRegister, sendLoadRegister } from '../index';
+import { Color, GameContextKeys, ILoadRegisterData } from '@bgdk/types-game';
 import {
   mockGameWithPlayersAdded,
   mockReqObj,
   mockRespObj,
 } from '__mocks__/mocks';
+import { loadRegister, sendLoadRegister } from '../index';
 
 let ctx: Context, game: IInstanceOfGame;
 describe('test load register chain', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded();
+    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
     ctx = ContextBuilder.build();
 
     ctx.put(GameContextKeys.ACTION, 'load-register');
@@ -28,15 +29,11 @@ describe('test load register chain', () => {
     it('should add avatar list and color list to context object', () => {
       const commandResult = loadRegister.execute(ctx);
 
-      const avatarListAndColors = ctx.get(
-        GameContextKeys.OUTPUT
-      ) as ILoadRegisterData;
+      const avatarListAndColors = ctx.get(GameContextKeys.OUTPUT) as ILoadRegisterData;
 
       expect(commandResult).toBeTruthy();
       expect(ctx.get(GameContextKeys.NEXT)).toEqual('send-load-register-data');
-      expect(avatarListAndColors.avatarList).toEqual(
-        game.instance.instance.avatarList
-      );
+      expect(avatarListAndColors.avatarList).toEqual(game.instance.instance.avatarList);
       expect(avatarListAndColors.avatarColorList).toEqual(Color);
       expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(avatarListAndColors);
     });

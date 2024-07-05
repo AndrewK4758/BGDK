@@ -3,8 +3,11 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
     "types": ["jest", "node"],
     "composite": true
   },
-  "include": ["jest.config.ts", "src/**/*.ts"]
+  "include": ["jest.config.ts", "src/**/*.ts", "../../libs/**/**.ts"]
 }

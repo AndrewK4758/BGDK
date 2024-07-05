@@ -1,4 +1,3 @@
-// import styles from './heading-with-details.module.css';
 import { Box, ListItem, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';

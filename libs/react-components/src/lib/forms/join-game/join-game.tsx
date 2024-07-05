@@ -12,14 +12,16 @@ export interface JoinGameProps extends FormActionProps {
   breakpointsJoinGameText?: SxProps;
   breakpointsJoinGameLabel?: SxProps;
 }
+export type httpMethod = 'get' | 'options' | 'post' | 'put' | 'patch' | 'delete' | 'undefined';
 
 export interface FormActionProps {
-  method: 'get' | 'post' | 'put' | 'delete' | 'patch' | undefined;
+  method: httpMethod;
   action: string | undefined;
   handleSubmit?: () => unknown;
   name: string;
   value?: string | number | readonly string[] | undefined;
   type: 'text' | 'file';
+  variant: 'outlined' | 'text' | 'contained';
   sx?: SxProps;
   buttonText: string;
   buttonType: 'button' | 'submit' | undefined;
@@ -33,6 +35,7 @@ export function JoinGame({
   action,
   type,
   name,
+  variant,
   buttonType,
   buttonText,
 }: JoinGameProps) {
@@ -47,7 +50,7 @@ export function JoinGame({
     <Formik
       initialValues={{ gamePath: '' }}
       validationSchema={validationSchema}
-      onSubmit={(values) =>
+      onSubmit={values =>
         submit(values, {
           encType: 'application/json',
           method: 'patch',
@@ -66,7 +69,7 @@ export function JoinGame({
           labelSx={breakpointsJoinGameLabel}
         />
         <br />
-        <Button type={buttonType} sx={breakpointsJoinGameButton}>
+        <Button type={buttonType} variant={variant} sx={breakpointsJoinGameButton}>
           {buttonText}
         </Button>
       </Form>

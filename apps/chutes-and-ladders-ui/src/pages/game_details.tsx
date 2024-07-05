@@ -1,17 +1,12 @@
 import { IBuiltGame } from '@bgdk/game-builder';
+import { HeadingWithDetails, RenderList, Text, Theme } from '@bgdk/react-components';
 import { IRule } from '@bgdk/rule';
-import {
-  HeadingWithDetails,
-  RenderList,
-  Text,
-  Theme,
-} from '@bgdk/react-components';
+import { SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import { useParams, useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 import RegisterGame from '../components/register_game';
-import { SxProps } from '@mui/material';
 
 const breakpointsGameDetailsTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
@@ -72,30 +67,15 @@ const GameDetails = () => {
   if (selectedGame) {
     const gameDetails: IRule[] = selectedGame.rules;
     return (
-      <Container
-        component={'div'}
-        sx={{ flexDirection: 'column', marginTop: '1.5rem' }}
-      >
-        <Text
-          titleVariant="h1"
-          titleText={selectedName}
-          sx={breakpointsGameDetailsTitle}
-        />
+      <Container component={'div'} sx={{ flexDirection: 'column', marginTop: '1.5rem' }}>
+        <Text titleVariant="h1" titleText={selectedName} sx={breakpointsGameDetailsTitle} />
         <List component={'ul'}>
           <RenderList data={gameDetails} listMapCallback={listRulesCallback} />
         </List>
-        <RegisterGame
-          registerGameButtonSx={breakpointsGameDetailsRegisterButton}
-        />
+        <RegisterGame registerGameButtonSx={breakpointsGameDetailsRegisterButton} />
       </Container>
     );
-  } else
-    return (
-      <Text
-        titleVariant="h1"
-        titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'}
-      />
-    );
+  } else return <Text titleVariant="h1" titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'} />;
 };
 
 export default GameDetails;

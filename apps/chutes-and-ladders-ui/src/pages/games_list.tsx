@@ -33,7 +33,7 @@ const GamesList = () => {
         type="a"
         to={`${e.name.replace(/ /g, '-')}`}
         id={e.name}
-        srcSet={e.imageURL}
+        srcSet={`./src/assets/${e.imageURL}`}
         loading="lazy"
         alt={`${e.name} game picture`}
         style={{

@@ -1,16 +1,16 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { IPlayer } from '@bgdk/game-types';
-import { IGame } from '@bgdk/game';
-import { GameBoard, GameContextKeys } from '@bgdk/game-types';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { IGame } from '@bgdk/game';
 import { IInstanceOfGame } from '@bgdk/instance-of-game';
+import { GameBoard, GameContextKeys, IPlayer } from '@bgdk/types-game';
 import { mockGameWithPlayersAdded } from '__mocks__/mocks';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
 
 let ctx: Context, game: IInstanceOfGame, player1: IPlayer, player2: IPlayer;
 describe('test reset game chain', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded();
+    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
     ctx = ContextBuilder.build();
 
     player1 = game.instance.playersArray[0];
@@ -29,16 +29,9 @@ describe('test reset game chain', () => {
     it('should show start space as empty then return both players to startspace', () => {
       expect(game.instance.instance.startSpace.occupied).toBeFalsy();
 
-      if (
-        !game.instance.instance.startSpace.next.special &&
-        !game.instance.instance.startSpace.next.next.special
-      ) {
-        expect(
-          game.instance.instance.startSpace.next.avatarsInSpace[0].name
-        ).toBe('XENOMORPH');
-        expect(
-          game.instance.instance.startSpace.next.next.avatarsInSpace[0].name
-        ).toBe('PREDATOR');
+      if (!game.instance.instance.startSpace.next.special && !game.instance.instance.startSpace.next.next.special) {
+        expect(game.instance.instance.startSpace.next.avatarsInSpace[0].name).toBe('XENOMORPH');
+        expect(game.instance.instance.startSpace.next.next.avatarsInSpace[0].name).toBe('PREDATOR');
       }
 
       const commandResult = resetGame.execute(ctx);

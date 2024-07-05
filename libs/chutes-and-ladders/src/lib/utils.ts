@@ -1,18 +1,14 @@
-import { IDie, ISummedRoll } from '@bgdk/game-types';
+import { IDie, ISummedRoll } from '@bgdk/types-game';
 
 export const generateRandomNumber = (upperBound: number): number => {
   return Math.floor(Math.random() * upperBound) + 1;
 };
 
 export const rollDice = (dice: IDie[]): number[] => {
-  return dice.map((shake) => shake.roll());
+  return dice.map(shake => shake.roll());
 };
 
-export const rollSingleDiceMultipleTimes = (
-  count: number,
-  die: IDie,
-  rolls: Array<number> = []
-): number[] => {
+export const rollSingleDiceMultipleTimes = (count: number, die: IDie, rolls: Array<number> = []): number[] => {
   if (count > 0) {
     rolls.push(die.roll());
     rollSingleDiceMultipleTimes(count - 1, die, rolls);
@@ -20,11 +16,7 @@ export const rollSingleDiceMultipleTimes = (
   return rolls;
 };
 
-export const rollMultipleDiceMultipleTimes = (
-  totalRolls: number,
-  dice: IDie[],
-  rolls: number[][] = []
-): number[][] => {
+export const rollMultipleDiceMultipleTimes = (totalRolls: number, dice: IDie[], rolls: number[][] = []): number[][] => {
   if (totalRolls > 0) {
     rolls.push(rollDice(dice));
     rollMultipleDiceMultipleTimes(totalRolls - 1, dice, rolls);
@@ -33,11 +25,7 @@ export const rollMultipleDiceMultipleTimes = (
 };
 
 //WHY RETURN AS ISummedRoll rather than create an instance of new SummedRoll for the sum of Die
-export const rollSingleDiceMultipleTimesAndSum = (
-  count: number,
-  dice: IDie,
-  rolls: number[] = []
-): ISummedRoll => {
+export const rollSingleDiceMultipleTimesAndSum = (count: number, dice: IDie, rolls: number[] = []): ISummedRoll => {
   if (count > 0) {
     rolls.push(dice.roll());
     rollSingleDiceMultipleTimesAndSum(count - 1, dice, rolls);
@@ -49,7 +37,7 @@ export const rollSingleDiceMultipleTimesAndSum = (
 };
 
 export const rollMultipleDiceAndSum = (dice: IDie[]): ISummedRoll => {
-  const rolls = dice.map((shake) => shake.roll());
+  const rolls = dice.map(shake => shake.roll());
   return {
     rollValues: rolls,
     sum: rolls.reduce((a, b) => a + b, 0),

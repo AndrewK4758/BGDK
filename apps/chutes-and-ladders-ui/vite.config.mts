@@ -1,5 +1,5 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
+import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
@@ -10,6 +10,9 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    fs: {
+      allow: [searchForWorkspaceRoot(process.cwd()), '/libs/react-components/fonts'],
+    },
   },
 
   preview: {
@@ -25,7 +28,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/games-ui',
+    outDir: '../../dist/apps/chutes-and-ladders-ui',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -33,5 +36,7 @@ export default defineConfig({
     },
     target: 'modules',
   },
-  envDir: './',
+  logLevel: 'info',
+  appType: 'spa',
+  envDir: './env',
 });

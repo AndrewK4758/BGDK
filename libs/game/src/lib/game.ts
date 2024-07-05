@@ -4,22 +4,26 @@ import {
   Player,
   generateRandomNumber,
 } from '@bgdk/chutes-and-ladders';
+import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
 import { IGame } from '../interfaces/interfaces';
-import { Color, SpaceType, IPlayer } from '@bgdk/game-types';
 
 export class Game implements IGame {
-  instance: ChutesAndLadders;
+  game: ChutesAndLadders;
   playersArray: IPlayer[];
   playerInTurn!: IPlayer;
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
   constructor(instance: ChutesAndLadders) {
-    this.instance = instance;
+    this.game = instance;
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
     this.currentPlayer = 0;
+  }
+
+  get instance(): ChutesAndLadders {
+    return this.game;
   }
 
   register(playerName: string, id: string, avatarName: string, color: Color) {
@@ -37,8 +41,7 @@ export class Game implements IGame {
 
   verifyReadyToPlay() {
     return (this.readyToPlay =
-      this.playersArray.length >= this.instance.MIN_PLAYERS &&
-      this.playersArray.length <= this.instance.MAX_PLAYERS
+      this.playersArray.length >= this.instance.MIN_PLAYERS && this.playersArray.length <= this.instance.MAX_PLAYERS
         ? true
         : false);
   }

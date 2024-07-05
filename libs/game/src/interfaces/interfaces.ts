@@ -1,20 +1,17 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { Color, SpaceType, IPlayer } from '@bgdk/game-types';
+import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
 
 export interface IGame {
-  instance: ChutesAndLadders;
+  game: unknown;
   playersArray: IPlayer[];
   playerInTurn: IPlayer;
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
 
-  register(
-    playerName: string,
-    id: string,
-    avatarName: string,
-    color: Color
-  ): void;
+  get instance(): ChutesAndLadders;
+
+  register(playerName: string, id: string, avatarName: string, color: Color): void;
   generatePlayerOrder(player: IPlayer): void;
   verifyReadyToPlay(): boolean;
   rotatePlayers(): void;

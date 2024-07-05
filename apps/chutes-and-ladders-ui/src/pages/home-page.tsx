@@ -44,6 +44,7 @@ const breakpointsJoinGameText: SxProps = {
 };
 
 export default function HomePage() {
+  sessionStorage.clear();
   return (
     <Home
       breakpointsHomeText={breakpointsHomeText}

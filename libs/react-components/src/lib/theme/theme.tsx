@@ -1,5 +1,5 @@
-import createTheme from '@mui/material/styles/createTheme';
 import darkScrollbar from '@mui/material/darkScrollbar';
+import createTheme from '@mui/material/styles/createTheme';
 import './theme.module.css';
 
 declare module '@mui/material' {
@@ -207,4 +207,3 @@ export const Theme = createTheme({
     },
   },
 });
-

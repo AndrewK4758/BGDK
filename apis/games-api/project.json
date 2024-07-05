@@ -8,7 +8,7 @@
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "target": "node",
         "compiler": "tsc",
@@ -16,11 +16,17 @@
         "main": "apis/games-api/src/main.ts",
         "tsConfig": "apis/games-api/tsconfig.app.json",
         "assets": ["apis/games-api/src/assets"],
-        "webpackConfig": "apis/games-api/webpack.config.js"
+        "webpackConfig": "apis/games-api/webpack.config.js",
+        "watch": true,
+        "deleteOutputPath": true
       },
       "configurations": {
-        "development": {},
-        "production": {}
+        "development": {
+          "watch": true
+        },
+        "production": {
+          "watch": false
+        }
       }
     },
     "serve": {
@@ -28,11 +34,12 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "games-api:build",
-        "runBuildTargetDependencies": true
+        "watch": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "games-api:build:development"
+          "buildTarget": "games-api:build:development",
+          "watch": true
         },
         "production": {
           "buildTarget": "games-api:build:production"
@@ -48,6 +55,10 @@
       "options": {
         "jestConfig": "apis/games-api/jest.config.ts"
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apis/games-api/Dockerfile . -t games-api"
     }
   }
 }

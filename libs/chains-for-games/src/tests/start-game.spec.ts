@@ -1,25 +1,15 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys } from '@bgdk/game-types';
-import {
-  sendStartGameStatus,
-  setAvatarsOnStart,
-  setPlayerInTurn,
-  startGame,
-  verifyReadyToPlay,
-} from '../index';
-
-import {
-  mockGameWithPlayersAdded,
-  mockReqObj,
-  mockRespObj,
-} from '__mocks__/mocks';
+import { GameContextKeys } from '@bgdk/types-game';
+import { sendStartGameStatus, setAvatarsOnStart, setPlayerInTurn, startGame, verifyReadyToPlay } from '../index';
+import { mockGameWithPlayersAdded, mockReqObj, mockRespObj } from '__mocks__/mocks';
 
 let ctx: Context, game: IInstanceOfGame;
 
 describe('execute all steps of starting a game', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded();
+    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, 'start');
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
@@ -34,9 +24,7 @@ describe('execute all steps of starting a game', () => {
       const commandResult = startGame.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect(ctx.getString(GameContextKeys.NEXT)).toEqual(
-        'verify-ready-to-play'
-      );
+      expect(ctx.getString(GameContextKeys.NEXT)).toEqual('verify-ready-to-play');
     });
 
     it('should fail', () => {
@@ -78,7 +66,7 @@ describe('execute all steps of starting a game', () => {
       const commandResult = setAvatarsOnStart.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      game.instance.playersArray.forEach((p) => {
+      game.instance.playersArray.forEach(p => {
         expect(p.avatar.location).toEqual(game.instance.instance.startSpace);
         expect(p.order).toBeTruthy();
       });
@@ -102,9 +90,7 @@ describe('execute all steps of starting a game', () => {
 
       expect(commandResult).toBeTruthy();
       expect(game.instance.playerInTurn).toEqual(game.instance.playersArray[0]);
-      expect(game.instance.playerInTurn).not.toEqual(
-        game.instance.playersArray[1]
-      );
+      expect(game.instance.playerInTurn).not.toEqual(game.instance.playersArray[1]);
     });
   });
 

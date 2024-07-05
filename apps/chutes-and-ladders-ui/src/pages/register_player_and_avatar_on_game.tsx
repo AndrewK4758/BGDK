@@ -1,5 +1,5 @@
-import { IRegisterLoaderAndFilter } from '@bgdk/game-types';
 import { Text, Theme } from '@bgdk/react-components';
+import { IRegisterLoaderAndFilter } from '@bgdk/types-game';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -30,9 +30,8 @@ const breakpointsCopyIcon: SxProps = {
   },
 };
 
-const handleCopyGameLinkToClipboard = (
-  gameLocatordata: string
-): Promise<void> => navigator.clipboard.writeText(gameLocatordata);
+const handleCopyGameLinkToClipboard = (gameLocatordata: string): Promise<void> =>
+  navigator.clipboard.writeText(gameLocatordata);
 
 export default function RegisterPlayerAndAvatarOnGame() {
   const loader = useRouteLoaderData('registerData') as IRegisterLoaderAndFilter;
@@ -41,34 +40,17 @@ export default function RegisterPlayerAndAvatarOnGame() {
   const gameID = loader.gamePlayerIDs.gameInstanceID;
   const playerID = loader.gamePlayerIDs.playerID;
 
-  const gameLocatordata = location.pathname
-    .replace('register', `${gameID}`)
-    .slice(1);
+  const gameLocatordata = location.pathname.replace('register', `${gameID}`).slice(1);
 
   return (
     <>
-      <Container
-        component={'section'}
-        sx={{ borderBottom: `5px solid ${Theme.palette.background.paper}` }}
-      >
+      <Container component={'section'} sx={{ borderBottom: `5px solid ${Theme.palette.background.paper}` }}>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text
-            titleVariant="h2"
-            titleText={'Game ID:'}
-            sx={breakpointsRegisterPlayerTitle}
-          />
-          <Text
-            titleVariant="body1"
-            titleText={gameID}
-            sx={breakpointsRegisterPlayerTitleValue}
-          />
+          <Text titleVariant="h2" titleText={'Game ID:'} sx={breakpointsRegisterPlayerTitle} />
+          <Text titleVariant="body1" titleText={gameID} sx={breakpointsRegisterPlayerTitleValue} />
         </Box>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text
-            titleVariant="h2"
-            titleText={'Player ID: '}
-            sx={breakpointsRegisterPlayerTitle}
-          />
+          <Text titleVariant="h2" titleText={'Player ID: '} sx={breakpointsRegisterPlayerTitle} />
           <Text
             titleVariant="body1"
             titleText={`${playerID ? playerID : 'Please Register'}`}
@@ -76,26 +58,15 @@ export default function RegisterPlayerAndAvatarOnGame() {
           />
         </Box>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text
-            titleVariant="h2"
-            titleText={'Game Link:'}
-            sx={breakpointsRegisterPlayerTitle}
-          />
-          <Text
-            titleVariant="body1"
-            titleText={gameLocatordata}
-            sx={breakpointsRegisterPlayerTitleValue}
-          />
+          <Text titleVariant="h2" titleText={'Game Link:'} sx={breakpointsRegisterPlayerTitle} />
+          <Text titleVariant="body1" titleText={gameLocatordata} sx={breakpointsRegisterPlayerTitleValue} />
           <IconButton
             onClick={() => handleCopyGameLinkToClipboard(gameLocatordata)}
             sx={{
               '&:hover': { backgroundColor: Theme.palette.primary.main },
             }}
           >
-            <ContentCopyIcon
-              titleAccess="Copy Game Link"
-              sx={breakpointsCopyIcon}
-            />
+            <ContentCopyIcon titleAccess="Copy Game Link" sx={breakpointsCopyIcon} />
           </IconButton>
         </Box>
       </Container>

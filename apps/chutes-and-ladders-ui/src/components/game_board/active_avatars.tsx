@@ -1,6 +1,6 @@
 import { Player } from '@bgdk/chutes-and-ladders';
-import { IRegisterFormValues } from '@bgdk/game-types';
 import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
+import { IRegisterFormValues } from '@bgdk/types-game';
 import { Box, SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
 import { Fragment } from 'react/jsx-runtime';
@@ -65,29 +65,18 @@ interface ActiveAvatarsProps {
   winner: string | undefined;
 }
 
-export default function ActiveAvatars({
-  avatarsInGame,
-  winner,
-}: ActiveAvatarsProps) {
+export default function ActiveAvatars({ avatarsInGame, winner }: ActiveAvatarsProps) {
   // const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
 
   return (
     <Container component={'section'} sx={breakpointsActiveGameTitleContainer}>
-      <Text
-        titleVariant="h2"
-        titleText="Active Players in Game"
-        sx={breakpointsActiveGameTitleText}
-      />
+      <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
       {!winner ? (
         <Box sx={breakpointsPlayersInGameBox}>
           <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
         </Box>
       ) : (
-        <Text
-          titleVariant="h2"
-          titleText={winner}
-          sx={breakpointsActiveGameTitleText}
-        />
+        <Text titleVariant="h2" titleText={winner} sx={breakpointsActiveGameTitleText} />
       )}
     </Container>
   );

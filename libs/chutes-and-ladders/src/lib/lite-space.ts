@@ -1,30 +1,13 @@
-import { IAvatar, ILiteSpace /*SpaceType*/ } from '@bgdk/game-types';
+import { IAvatar, ILiteSpace } from '@bgdk/types-game';
 
 export class LiteSpace implements ILiteSpace {
-  // Value!: string;
-  // Type!: SpaceType;
-  Display!: string | number;
-  AvatarsInSpace!: IAvatar[];
+  display: string;
+  avatarsInSpace: IAvatar[];
 
-  // get value() {
-  //   return this.Value;
-  // }
-
-  // get type() {
-  //   return this.Type;
-  // }
-
-  get display() {
-    return this.Display;
+  constructor(display: string, avatarsInSpace: IAvatar[]) {
+    this.display = display;
+    this.avatarsInSpace = avatarsInSpace;
   }
 
-  get avatarsInSpace() {
-    return this.AvatarsInSpace;
-  }
-
-  get occupied() {
-    return this.AvatarsInSpace.length > 0;
-  }
-
-  static MakeSpace = () => new LiteSpace();
+  static MakeSpace = (display: string, avatarsInSpace: IAvatar[]) => new LiteSpace(display, avatarsInSpace);
 }

@@ -1,8 +1,7 @@
-import { Minute, GameInstanceID } from '@bgdk/game-types';
 import { IGame } from '@bgdk/game';
+import { GameInstanceID, Minute } from '@bgdk/types-game';
 
-export const getCurrentMinute = (): Minute =>
-  (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
+export const getCurrentMinute = (): Minute => (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
 
 export interface IInstanceOfGame {
   gameInstanceID: GameInstanceID;

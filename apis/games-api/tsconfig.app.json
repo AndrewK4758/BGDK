@@ -4,9 +4,10 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node", "express"],
     "esModuleInterop": true,
+    "composite": true,
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext",
-    "composite": true
+    "target": "ESNext"
   },
   "exclude": [
     "jest.config.ts",

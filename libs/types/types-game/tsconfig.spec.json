@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "esModuleInterop": true,
+    "types": ["jest", "node"],
+    "composite": true
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "../../../apis/games-api/**/*.spec.ts",
+    "../../../libs/**/*.spec.ts",
+    "../../../apis/games-api/**/*.test.ts",
+    "../../../libs/**/*.test.ts"
+  ]
+}

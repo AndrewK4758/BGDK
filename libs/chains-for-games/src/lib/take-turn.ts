@@ -5,7 +5,7 @@ import {
   getPlayerID,
 } from '@bgdk/de-referencing-utilities';
 import { getCurrentMinute } from '@bgdk/instance-of-game';
-import { GameContextKeys, TurnStatus } from '@bgdk/game-types';
+import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
   if (

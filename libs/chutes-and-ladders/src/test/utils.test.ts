@@ -1,13 +1,13 @@
+import { IDie } from '@bgdk/types-game';
 import { Die } from '../lib/die';
-import { IDie } from '../../../game-types/src/lib/interfaces/interfaces';
 import {
   generateRandomNumber,
+  rangeSelector,
   rollDice,
   rollMultipleDiceAndSum,
   rollMultipleDiceMultipleTimes,
   rollSingleDiceMultipleTimes,
   rollSingleDiceMultipleTimesAndSum,
-  rangeSelector,
 } from '../lib/utils';
 
 let D1: IDie,
@@ -126,5 +126,5 @@ describe('Test all utils functions', () => {
 });
 
 console.log(
-  'An 6 sided die would be optimum because it would take, at min, 19 rounds if someone were to roll an 8 at each turn and not land on any chutes or ladders spaces. \n Also, each player would have the ability to progress far enough through one row on one turn to increase the probability of landing on a chute or ladder space'
+  'An 6 sided die would be optimum because it would take, at min, 19 rounds if someone were to roll an 8 at each turn and not land on any chutes or ladders spaces. \n Also, each player would have the ability to progress far enough through one row on one turn to increase the probability of landing on a chute or ladder space',
 );

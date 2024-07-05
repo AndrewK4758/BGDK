@@ -1,4 +1,3 @@
-// import styles from './main.module.css';
 import { SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
 import { ElementType } from 'react';
@@ -14,12 +13,7 @@ export interface MainProps {
 
 export function Main({ component, maxWidth, breakpointsMain, id }: MainProps) {
   return (
-    <Container
-      component={component}
-      id={id}
-      maxWidth={maxWidth}
-      sx={breakpointsMain}
-    >
+    <Container component={component} id={id} maxWidth={maxWidth} sx={breakpointsMain}>
       <Outlet />
     </Container>
   );

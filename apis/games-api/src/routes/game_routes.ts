@@ -3,7 +3,7 @@ import performAction from '../controllers/perform_action_context_object';
 import populateInstanceMaps from '../controllers/populate_instance_map';
 import sendGameList from '../controllers/send_game_list';
 
-export class GameRoutes {
+export default class GameRoutes {
   constructor(router: Router) {
     router.use(express.json());
     //----------------------------//

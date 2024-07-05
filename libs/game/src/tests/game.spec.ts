@@ -1,7 +1,7 @@
-import { Game } from '../lib/game';
-import { IGame } from '../interfaces/interfaces';
 import { ChutesAndLadders, Space } from '@bgdk/chutes-and-ladders';
-import { Color, SpaceType, IPlayer } from '@bgdk/game-types';
+import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
+import { IGame } from '../interfaces/interfaces';
+import { Game } from '../lib/game';
 
 let game: IGame, instance: ChutesAndLadders, playerInTurn: IPlayer;
 
@@ -19,12 +19,7 @@ describe('Test the game class', () => {
       expect(game.instance).not.toBeFalsy();
     });
     it('should verify 1 player is in the player array', () => {
-      game.register(
-        'player-1',
-        'player',
-        game.instance.avatarList[0].name,
-        Color.WHITE
-      );
+      game.register('player-1', 'player', game.instance.avatarList[0].name, Color.WHITE);
       playerInTurn = game.playersArray[0];
       expect(game.playersArray.length).toEqual(1);
     });
@@ -41,12 +36,7 @@ describe('Test the game class', () => {
     });
 
     it('should verify the ready to play prop is true', () => {
-      game.register(
-        'player-2',
-        'reyalp',
-        game.instance.avatarList[1].name,
-        Color.RED
-      );
+      game.register('player-2', 'reyalp', game.instance.avatarList[1].name, Color.RED);
 
       const status = game.verifyReadyToPlay();
 

@@ -1,6 +1,6 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { GameContextKeys } from '@bgdk/game-types';
 import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
+import { GameContextKeys } from '@bgdk/types-game';
 import {
   createPlayerID,
   filterAvatar,
@@ -10,15 +10,14 @@ import {
   updateLastActive,
 } from '../index';
 
-import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
 
-let ctx: Context, game: IInstanceOfGame; //, output: GameBoard;
+let ctx: Context, game: IInstanceOfGame;
 
 describe('test register chain', () => {
   beforeAll(() => {
     game = mockMakeGame(new ChutesAndLadders(5, 5));
-    // output = [];
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
@@ -60,11 +59,7 @@ describe('test register chain', () => {
 
       const commandResult = filterAvatar.execute(ctx);
       expect(commandResult).toBeTruthy();
-      expect(
-        game.instance.instance.avatarList.find(
-          (a) => a.name === game.instance.playersArray[0].name
-        )
-      ).toBeFalsy();
+      expect(game.instance.instance.avatarList.find(a => a.name === game.instance.playersArray[0].name)).toBeFalsy();
       expect(ctx.get(GameContextKeys.NEXT)).toEqual('update-last-active');
     });
 

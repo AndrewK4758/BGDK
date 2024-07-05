@@ -2,14 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": [
-      "jest",
-      "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts"
-    ],
+    "types": ["jest", "node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts"],
     "esModuleInterop": true,
-    "composite": true
+    "composite": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   },
   "include": [
     "jest.config.ts",
@@ -22,8 +20,6 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "../../libs/react-components/tsconfig.spec.json",
-    "../../libs/game-types/tsconfig.spec.json",
-    "../../libs/chutes-and-ladders/tsconfig.spec.json"
+    "../../libs/**/*.(spec|test).ts"
   ]
 }

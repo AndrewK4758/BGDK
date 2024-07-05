@@ -1,13 +1,14 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import {
   GameBoard,
   GameContextKeys,
   GameInstanceID,
+  IPlayer,
   IPlayersAndBoard,
   IRegisterFormValues,
-} from '@bgdk/game-types';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { IPlayer } from '@bgdk/game-types';
+} from '@bgdk/types-game';
+
 
 export const activePlayers = CommandBuilder.build((context: Context) => {
   if (

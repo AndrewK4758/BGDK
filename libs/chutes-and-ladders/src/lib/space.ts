@@ -1,4 +1,4 @@
-import { SpaceType, IAvatar, ISpace } from '@bgdk/game-types';
+import { SpaceType, IAvatar, ISpace } from '@bgdk/types-game';
 
 export class Space implements ISpace {
   Value: string;

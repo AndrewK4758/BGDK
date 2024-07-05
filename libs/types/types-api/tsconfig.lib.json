@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "declaration": true,
+    "types": ["node", "vite/client"],
+    "composite": true
+  },
+  "include": ["src/**/*.ts", "../../../libs/**/*.ts", "../types-api/**/*.ts"],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*.test.ts",
+    "../../../libs/react-components/**/*.ts"
+  ]
+}

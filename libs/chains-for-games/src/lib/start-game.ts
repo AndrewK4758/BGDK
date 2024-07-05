@@ -1,7 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { Player } from '@bgdk/chutes-and-ladders';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID } from '@bgdk/game-types';
+import { GameContextKeys, GameInstanceID } from '@bgdk/types-game';
 
 export const startGame = CommandBuilder.build((context: Context) => {
   if (

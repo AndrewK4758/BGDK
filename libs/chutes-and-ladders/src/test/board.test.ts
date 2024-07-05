@@ -1,7 +1,6 @@
+import { ISpace, SpaceType } from '@bgdk/types-game';
 import { Board } from '../lib/board';
 import { Space } from '../lib/space';
-import { ISpace } from '../../../game-types/src/lib/interfaces/interfaces';
-import { SpaceType } from '@bgdk/game-types';
 
 let space: ISpace;
 

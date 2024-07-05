@@ -1,13 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import { getCurrentMinute } from '@bgdk/instance-of-game';
-import {
-  AvatarTotem,
-  GameContextKeys,
-  GamePlayerValidation,
-  IRegisterFormValues,
-  PlayerID,
-} from '@bgdk/game-types';
+import { AvatarTotem, GameContextKeys, GamePlayerValidation, IRegisterFormValues, PlayerID } from '@bgdk/types-game';
 import ShortUniqueId from 'short-unique-id';
 
 export const registerAction = CommandBuilder.build((context: Context) => {

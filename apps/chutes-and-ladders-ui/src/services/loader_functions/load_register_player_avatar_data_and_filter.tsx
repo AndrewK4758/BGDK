@@ -1,11 +1,9 @@
-import { IRegisterLoaderAndFilter } from '@bgdk/game-types';
+import { IRegisterLoaderAndFilter } from '@bgdk/types-game';
 import axios from 'axios';
 import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import { getGameInstanceInfo } from '../utils/utils';
 
-const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
-  params,
-}: LoaderFunctionArgs) => {
+const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
   const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   const id = params.id;
 
@@ -19,7 +17,7 @@ const loadPlayerAvatarRegisterFilterData: LoaderFunction = async ({
         headers: {
           'current-game': __current_game__,
         },
-      }
+      },
     );
 
     if (resp.data.errorMessage) {

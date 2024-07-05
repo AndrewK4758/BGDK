@@ -1,17 +1,9 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import {
-  GameContextKeys,
-  IPlayersAndBoard,
-  IRegisterFormValues,
-} from '@bgdk/game-types';
 import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import {
-  activeDataToSend,
-  activePlayers,
-  checkIfWinner,
-  readyToPlayCheck,
-} from '../index';
+import { GameContextKeys, IPlayersAndBoard, IRegisterFormValues } from '@bgdk/types-game';
+import { activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
 
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import {
   mockGameWithPlayersAdded,
   mockReqObj,
@@ -21,7 +13,7 @@ import {
 let ctx: Context, game: IInstanceOfGame;
 describe('test display board and active player chain', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded();
+    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
     ctx = ContextBuilder.build();
 
     ctx.put(GameContextKeys.ACTION, 'board');
@@ -38,9 +30,7 @@ describe('test display board and active player chain', () => {
     const commandResult = activePlayers.execute(ctx);
 
     expect(commandResult).toBeTruthy();
-    expect(
-      (ctx.get('active-players-in-game') as IRegisterFormValues[]).length
-    ).toEqual(2);
+    expect((ctx.get('active-players-in-game') as IRegisterFormValues[]).length).toEqual(2);
     expect(ctx.getString(GameContextKeys.NEXT)).toEqual('ready-to-play-check');
   });
   describe(`Test the chain that checks and displays active instances' active players, ready to play prop, check if winner prop, data sent to client to show active game info`, () => {
@@ -59,24 +49,18 @@ describe('test display board and active player chain', () => {
 
       expect(commandResult).toBeTruthy();
       expect(ctx.get('winner-message')).toEqual('');
-      expect(ctx.getString(GameContextKeys.NEXT)).toEqual(
-        'active-data-to-send'
-      );
+      expect(ctx.getString(GameContextKeys.NEXT)).toEqual('active-data-to-send');
     });
 
     it('should add all data necessary to show active game details to context object', () => {
       ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
       const commandResult = activeDataToSend.execute(ctx);
 
-      const dataToSendFromCtx = ctx.get(
-        GameContextKeys.OUTPUT
-      ) as IPlayersAndBoard;
+      const dataToSendFromCtx = ctx.get(GameContextKeys.OUTPUT) as IPlayersAndBoard;
 
       expect(commandResult).toBeTruthy();
-      expect(dataToSendFromCtx.avatarInTurn).toEqual(
-        'Waiting for game to start'
-      );
-      // expect(dataToSendFromCtx.gameBoard.length).toEqual(10);
+      expect(dataToSendFromCtx.avatarInTurn).toEqual('Waiting for game to start');
+      expect(dataToSendFromCtx.gameBoard.length).toEqual(10);
       expect(dataToSendFromCtx.activePlayersInGame.length).toEqual(2);
       expect(dataToSendFromCtx.winner).toEqual('');
     });

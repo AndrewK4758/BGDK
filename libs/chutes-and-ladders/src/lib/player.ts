@@ -1,4 +1,4 @@
-import { IAvatar, IPlayer } from '@bgdk/game-types';
+import { IAvatar, IPlayer } from '@bgdk/types-game';
 
 export class Player implements IPlayer {
   Id: string;

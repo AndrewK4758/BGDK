@@ -1,12 +1,12 @@
+import { GameBoard, SpaceType } from '@bgdk/types-game';
 import {
-  MAX_SPECIAL_DISTANCE,
-  TOTAL_SPACES,
-  START,
-  ROWS,
-  uniqueSpecialValues,
   ChutesAndLadders,
+  MAX_SPECIAL_DISTANCE,
+  ROWS,
+  START,
+  TOTAL_SPACES,
+  uniqueSpecialValues,
 } from '../lib/chutes_and_ladders.js';
-import { GameBoard, SpaceType } from '@bgdk/game-types';
 import { Space } from '../lib/space';
 
 let game: ChutesAndLadders;

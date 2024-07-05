@@ -1,12 +1,6 @@
-// TEST CASES FOR SPACE MODULE
-
-import { Space } from '../lib/space';
+import { Color, IAvatar, ISpace, SpaceType } from '@bgdk/types-game';
 import { Avatar } from '../lib/avatar';
-import {
-  IAvatar,
-  ISpace,
-} from '../../../game-types/src/lib/interfaces/interfaces';
-import { SpaceType, Color } from '@bgdk/game-types';
+import { Space } from '../lib/space';
 
 // Setup of spaces & avatars
 let s1: ISpace,

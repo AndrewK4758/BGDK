@@ -1,5 +1,5 @@
-import { GameBoard, ILiteSpace } from '@bgdk/game-types';
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
+import { GameBoard } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';
@@ -11,16 +11,9 @@ const breakpointsGameBoardBox: SxProps = {
   },
 };
 
-const gameBoardMap = (e: ILiteSpace[], i: number, arr: GameBoard) => (
+const gameBoardMap = (e: string[], i: number, arr: GameBoard) => (
   <Fragment key={`row ${i}`}>
-    <GameBoardMap
-      row={e}
-      columns={10}
-      container={true}
-      direction="row"
-      wrap="wrap"
-      id={`Row ${i}`}
-    />
+    <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
   </Fragment>
 );
 

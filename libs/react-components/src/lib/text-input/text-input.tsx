@@ -1,10 +1,9 @@
-// import styles from './text-input.module.css';
+import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
-import { Theme } from '../theme/theme';
-import { SxProps } from '@mui/material';
 import Text from '../text/text';
+import { Theme } from '../theme/theme';
 /* eslint-disable-next-line */
 
 export interface TextInputProps {
@@ -17,12 +16,7 @@ export interface TextInputProps {
   labelSx?: SxProps;
 }
 
-export function TextInput({
-  label,
-  textSx,
-  labelSx,
-  ...props
-}: TextInputProps) {
+export function TextInput({ label, textSx, labelSx, ...props }: TextInputProps) {
   const [field, meta] = useField(props);
   return (
     <>

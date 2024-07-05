@@ -1,9 +1,9 @@
-import { AvatarTotem, Color, ILoadRegisterData } from '@bgdk/game-types';
 import { SelectMenu, TextInput, Theme } from '@bgdk/react-components';
+import { AvatarTotem, Color, ILoadRegisterData } from '@bgdk/types-game';
 import { MenuItem, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -71,12 +71,7 @@ const avatarColorMap = (e: Color, i: number, arr: string[]) => (
 );
 
 const avatarListMap = (e: AvatarTotem, i: number, arr: AvatarTotem[]) => (
-  <MenuItem
-    key={e.name}
-    value={e.name}
-    divider={true}
-    sx={breakpointsSelectMenuSxProps}
-  >
+  <MenuItem key={e.name} value={e.name} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e.name}
   </MenuItem>
 );
@@ -103,7 +98,7 @@ export default function RegisterPlayerAndAvatarForm() {
     <Formik
       initialValues={{ playerName: '', avatarName: '', avatarColor: '' }}
       validationSchema={validationSchema}
-      onSubmit={(values) =>
+      onSubmit={values =>
         submit(values, {
           method: 'patch',
           action: `/games/${id}/play`,
@@ -137,7 +132,7 @@ export default function RegisterPlayerAndAvatarForm() {
             selectSx={breakpointsRegisterPlayerSelectInput}
           />
         </Container>
-        <Button type="submit" sx={breakpointsRegisterPlayerButton}>
+        <Button type="submit" variant="outlined" sx={breakpointsRegisterPlayerButton}>
           Register
         </Button>
       </Form>

@@ -1,15 +1,13 @@
-// import styles from './game-board.module.css';
 import { SxProps } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import { Fragment } from 'react/jsx-runtime';
 import RenderList from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
-import { Fragment } from 'react/jsx-runtime';
-import { ILiteSpace } from '@bgdk/game-types';
 
 /* eslint-disable-next-line */
 export interface GameBoardProps {
-  row: ILiteSpace[];
+  row: string[];
   columns: number;
   container: boolean | undefined;
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse' | undefined;
@@ -36,37 +34,17 @@ const breakpointsSpaceSx: SxProps = {
 
 // Explore best way to render game board with websocket
 
-const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => {
-  return (
-    <Fragment key={i + 100}>
-      <Grid key={e.Display} sx={breakpointsRowSx}>
-        <Text
-          titleVariant="body2"
-          titleText={e.Display}
-          sx={breakpointsSpaceSx}
-        />
-      </Grid>
-    </Fragment>
-  );
-};
+const gameBoardRowMap = (e: string, i: number, arr: string[]) => (
+  <Fragment key={e + ' space fragment'}>
+    <Grid key={e} sx={breakpointsRowSx}>
+      <Text titleVariant="body2" titleText={e} sx={breakpointsSpaceSx} />
+    </Grid>
+  </Fragment>
+);
 
-export function GameBoardMap({
-  row,
-  columns,
-  container,
-  direction,
-  wrap,
-  id,
-  gridSx,
-}: GameBoardProps) {
+export function GameBoardMap({ row, columns, container, direction, wrap, id, gridSx }: GameBoardProps) {
   return (
-    <Grid
-      columns={columns}
-      container={container}
-      direction={direction}
-      wrap={wrap}
-      key={id}
-    >
+    <Grid columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
       <RenderList data={row} listMapCallback={gameBoardRowMap} />
     </Grid>
   );

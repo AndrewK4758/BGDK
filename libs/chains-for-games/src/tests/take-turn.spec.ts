@@ -1,33 +1,18 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { GameContextKeys, TurnStatus, SpaceType } from '@bgdk/game-types';
+import { ChutesAndLadders, Player } from '@bgdk/chutes-and-ladders';
 import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
-import { Player } from '@bgdk/chutes-and-ladders';
-import {
-  moveAvatar,
-  rollDice,
-  rotatePlayer,
-  takeTurn,
-  verifyPlayer,
-  wonGame,
-} from '../index';
-
-import {
-  mockGameWithPlayersAdded,
-  mockReqObj,
-  mockRespObj,
-} from '__mocks__/mocks';
+import { GameContextKeys, SpaceType, TurnStatus } from '@bgdk/types-game';
+import { moveAvatar, rollDice, rotatePlayer, takeTurn, verifyPlayer, wonGame } from '../index';
+import { mockGameWithPlayersAdded, mockReqObj, mockRespObj } from '__mocks__/mocks';
 
 interface ICtxOutput {
   turnStatus: TurnStatus;
 }
 
-let ctx: Context,
-  game: IInstanceOfGame,
-  output: ICtxOutput,
-  turnStatus: TurnStatus;
+let ctx: Context, game: IInstanceOfGame, output: ICtxOutput, turnStatus: TurnStatus;
 describe('should execute all steps of taking turn', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded();
+    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
 
     ctx = ContextBuilder.build();
     turnStatus = TurnStatus.NOT_READY;
@@ -86,9 +71,7 @@ describe('should execute all steps of taking turn', () => {
       const commandResult = verifyPlayer.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect(ctx.get('player-taking-turn')).toEqual(
-        game.instance.playerInTurn as Player
-      );
+      expect(ctx.get('player-taking-turn')).toEqual(game.instance.playerInTurn as Player);
     });
 
     it('should fail due to incorrect player taking turn', () => {
@@ -117,9 +100,7 @@ describe('should execute all steps of taking turn', () => {
 
       expect(commandResult).toBeTruthy();
       expect(ctx.get('moveDist')).toBeGreaterThanOrEqual(1);
-      expect(ctx.get('moveDist')).toBeLessThanOrEqual(
-        game.instance.instance.DIE.sides
-      );
+      expect(ctx.get('moveDist')).toBeLessThanOrEqual(game.instance.instance.DIE.sides);
     });
     it('should fail', () => {
       ctx.put(GameContextKeys.NEXT, 'something-else');
@@ -144,9 +125,7 @@ describe('should execute all steps of taking turn', () => {
       const commandResult = moveAvatar.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect(
-        (ctx.get('player-taking-turn') as Player).avatar.location.type
-      ).toEqual(SpaceType.NORMAL);
+      expect((ctx.get('player-taking-turn') as Player).avatar.location.type).toEqual(SpaceType.NORMAL);
       expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
     });
 
@@ -180,8 +159,7 @@ describe('should execute all steps of taking turn', () => {
       playerTakingTurn.avatar.location = game.instance.instance.startSpace;
 
       while (playerTakingTurn.avatar.location.next) {
-        playerTakingTurn.avatar.location =
-          playerTakingTurn.avatar.location.next;
+        playerTakingTurn.avatar.location = playerTakingTurn.avatar.location.next;
       }
 
       ctx.put('player-taking-turn', playerTakingTurn);

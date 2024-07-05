@@ -1,5 +1,3 @@
-// import styles from './render-list.module.css';
-
 /* eslint-disable-next-line */
 export interface RenderListProps {
   data: unknown[];

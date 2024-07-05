@@ -1,10 +1,10 @@
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import { SxProps } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import Text from '../../text/text';
-import { SxProps } from '@mui/material';
 
 export interface HeaderMenuProps {
   breakpointsMenu?: SxProps;

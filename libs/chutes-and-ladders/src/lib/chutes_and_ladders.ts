@@ -1,17 +1,9 @@
+import { AvatarTotem, Color, GameBoard, IDie, ISpace, SpaceType } from '@bgdk/types-game';
 import { Board } from './board';
 import { Die } from './die';
-import { Space } from './space';
 import { LiteSpace } from './lite-space';
+import { Space } from './space';
 import { rangeSelector } from './utils';
-import {
-  AvatarTotem,
-  Color,
-  SpaceType,
-  GameBoard,
-  ILiteSpace,
-  ISpace,
-  IDie,
-} from '@bgdk/game-types';
 
 const TOTAL_SPACES = 100;
 const START = 1;
@@ -54,10 +46,7 @@ const createDumpValueChute = (indexOfSpace: number): ISpace => {
   const distToTraverseChute = rangeSelector(minDist, maxValForRand);
   const dumpValueChute = indexOfSpace - distToTraverseChute;
 
-  if (
-    checkIfSpecialSpace(dumpValueChute) ||
-    specialsDumps.has(dumpValueChute)
-  ) {
+  if (checkIfSpecialSpace(dumpValueChute) || specialsDumps.has(dumpValueChute)) {
     return createDumpValueChute(indexOfSpace);
   } else {
     const specialSpace = new Space(SpaceType.NORMAL, dumpValueChute) as ISpace;
@@ -68,24 +57,17 @@ const createDumpValueChute = (indexOfSpace: number): ISpace => {
 
 const createDumpValueLadder = (indexOfSpace: number): ISpace => {
   const findMinDist = (indexOfSpace: number): number =>
-    ROWS - (indexOfSpace % ROWS) === 0
-      ? ROWS - (indexOfSpace % ROWS) + 1
-      : ROWS - (indexOfSpace % ROWS);
+    ROWS - (indexOfSpace % ROWS) === 0 ? ROWS - (indexOfSpace % ROWS) + 1 : ROWS - (indexOfSpace % ROWS);
 
   const findMaxValForRand = (indexOfSpace: number): number =>
-    TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE
-      ? MAX_SPECIAL_DISTANCE
-      : TOTAL_SPACES - indexOfSpace;
+    TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace;
 
   const maxValForRand = findMaxValForRand(indexOfSpace);
   const minDist = findMinDist(indexOfSpace);
   const distToTraverseLadder = rangeSelector(minDist, maxValForRand);
   const dumpValueLadder = indexOfSpace + distToTraverseLadder;
 
-  if (
-    checkIfSpecialSpace(dumpValueLadder) ||
-    specialsDumps.has(dumpValueLadder)
-  ) {
+  if (checkIfSpecialSpace(dumpValueLadder) || specialsDumps.has(dumpValueLadder)) {
     return createDumpValueLadder(indexOfSpace);
   } else {
     const specialSpace = new Space(SpaceType.NORMAL, dumpValueLadder) as ISpace;
@@ -98,7 +80,7 @@ function rowFinder(indexOfSpace: number) {
   return Math.floor(indexOfSpace / ROWS);
 }
 
-export { MAX_SPECIAL_DISTANCE, TOTAL_SPACES, START, ROWS, uniqueSpecialValues };
+export { MAX_SPECIAL_DISTANCE, ROWS, START, TOTAL_SPACES, uniqueSpecialValues };
 
 export class ChutesAndLadders {
   CHUTES: number;
@@ -170,22 +152,22 @@ export class ChutesAndLadders {
   };
 
   //firestore db deploy in firebase
+
+  // socket.io will only accept string being sent on event handler, if object, recursion error
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
-    let row: ILiteSpace[] = [];
+    let row: string[] = [];
 
     let indexOfSpace = 1;
 
     while (space) {
-      const liteSpace = LiteSpace.MakeSpace();
+      const display = space.occupied ? space.avatarsInSpace[0].name : space['display'];
 
-      liteSpace.Display = space.occupied
-        ? space.avatarsInSpace[0].name
-        : space['display'];
+      const liteSpace = LiteSpace.MakeSpace(display, space.avatarsInSpace);
 
       const rowCount = rowFinder(indexOfSpace);
-      row.push(liteSpace);
+      row.push(liteSpace.display);
 
       if (row.length === ROWS) {
         row = rowCount % 2 !== 0 ? row : row.reverse();
@@ -199,15 +181,11 @@ export class ChutesAndLadders {
     return gameBoard.reverse();
   }
 
-  specialValuesMaker = (
-    min: number = minSpecialRangeValue(),
-    max: number = TOTAL_SPACES
-  ): Map<number, ISpace> => {
+  specialValuesMaker = (min: number = minSpecialRangeValue(), max: number = TOTAL_SPACES): Map<number, ISpace> => {
     if (uniqueSpecialValues.size < this.CHUTES + this.LADDERS) {
       const specialValue = rangeSelector(min, max);
 
-      if (uniqueSpecialValues.has(specialValue))
-        this.specialValuesMaker(min, max);
+      if (uniqueSpecialValues.has(specialValue)) this.specialValuesMaker(min, max);
       else {
         const space = specialSpaceSelector(specialValue) as ISpace;
 

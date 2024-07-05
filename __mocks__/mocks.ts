@@ -1,23 +1,8 @@
-import {
-  Avatar,
-  Player,
-  ChutesAndLadders,
-} from '../libs/chutes-and-ladders/src';
-import { Color } from '../libs/game-types/src';
-import { Game } from '../libs/game/src';
-import {
-  GamePlayerValidation,
-  IRegisterFormValues,
-} from '../libs/game-types/src/lib/types/game-types';
-import {
-  IAvatar,
-  IPlayer,
-} from '../libs/game-types/src/lib/interfaces/interfaces';
-import {
-  InstanceOfGame,
-  getCurrentMinute,
-} from '../libs/models/instance-of-game/src';
 import { Request, Response } from 'express';
+import { Avatar, ChutesAndLadders, Player } from '../libs/chutes-and-ladders/src';
+import { Game } from '../libs/game/src';
+import { InstanceOfGame, getCurrentMinute } from '../libs/models/instance-of-game/src';
+import { Color, GamePlayerValidation, IAvatar, IPlayer, IRegisterFormValues } from '../libs/types/types-game/src';
 
 export const mockMakeGame = (game: ChutesAndLadders) =>
   new InstanceOfGame(getCurrentMinute(), 'gameID', new Game(game));
@@ -43,21 +28,17 @@ export const mockReqObj: Partial<Request> = {
 };
 
 export const mockRespObj: Partial<Response> = {
-  setHeader: jest
-    .fn()
-    .mockImplementation((name: string, headerValue: string) => {
-      const headers = new Map<string, string>();
+  setHeader: jest.fn().mockImplementation((name: string, headerValue: string) => {
+    const headers = new Map<string, string>();
 
-      headers.set(name, headerValue);
-    }),
-  status: jest.fn().mockImplementation((code) => {
+    headers.set(name, headerValue);
+  }),
+  status: jest.fn().mockImplementation(code => {
     mockRespObj.status = code;
     return mockRespObj;
   }),
-  sendStatus: jest
-    .fn()
-    .mockImplementation((result) => (mockRespObj.status = result)),
-  json: jest.fn().mockImplementation((result) => (mockRespObj.json = result)),
+  sendStatus: jest.fn().mockImplementation(result => (mockRespObj.status = result)),
+  json: jest.fn().mockImplementation(result => (mockRespObj.json = result)),
 };
 
 export const mockAddPlayersToGame = (game: InstanceOfGame) => {
@@ -80,8 +61,7 @@ export const mockAddPlayersToGame = (game: InstanceOfGame) => {
   game.instance.instance.startSpace.land(a2);
 };
 
-export const mockGameWithPlayersAdded = (): InstanceOfGame => {
-  const instance = new ChutesAndLadders(5, 5);
+export const mockGameWithPlayersAdded = (instance: ChutesAndLadders): InstanceOfGame => {
   const game = mockMakeGame(instance);
   mockAddPlayersToGame(game);
   return game;

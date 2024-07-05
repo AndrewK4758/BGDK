@@ -1,5 +1,5 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { GameContextKeys } from '@bgdk/game-types';
+import { GameContextKeys } from '@bgdk/types-game';
 import { logAction } from '../index';
 
 let ctx: Context;

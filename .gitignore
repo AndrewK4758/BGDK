@@ -40,3 +40,7 @@ Thumbs.db
 vite.config.mts.timestamp-*
 .nx/cache
 .nx/workspace-data
+
+# env
+./env/*
+.env.*

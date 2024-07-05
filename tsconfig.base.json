@@ -21,18 +21,14 @@
       "@bgdk/chain": ["libs/chain/src/index.ts"],
       "@bgdk/chains-for-games": ["libs/chains-for-games/src/index.ts"],
       "@bgdk/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
-      "@bgdk/de-referencing-utilities": [
-        "libs/models/de-referencing-utilities/src/index.ts"
-      ],
+      "@bgdk/de-referencing-utilities": ["libs/models/de-referencing-utilities/src/index.ts"],
       "@bgdk/game": ["libs/game/src/index.ts"],
       "@bgdk/game-builder": ["libs/models/game-builder/src/index.ts"],
-      "@bgdk/game-types": ["libs/game-types/src/index.ts"],
-      "@bgdk/games-api-sockets": [
-        "libs/web-sockets/games-api-sockets/src/index.ts"
-      ],
       "@bgdk/instance-of-game": ["libs/models/instance-of-game/src/index.ts"],
       "@bgdk/react-components": ["libs/react-components/src/index.ts"],
-      "@bgdk/rule": ["libs/models/rule/src/index.ts"]
+      "@bgdk/rule": ["libs/models/rule/src/index.ts"],
+      "@bgdk/types-api": ["libs/types/types-api/src/index.ts"],
+      "@bgdk/types-game": ["libs/types/types-game/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
