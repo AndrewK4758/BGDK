@@ -6,13 +6,12 @@
     "composite": true
   },
 
-  "include": ["../libs/**/*.ts"],
+  "include": ["../chutes-and-ladders/**/*.ts", "../types/types-game/**/*.ts", "src/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../libs/**/*.spec.ts",
-    "../libs/**/*.test.ts",
-    "../libs/react-components/**/*.ts"
+    "../../libs/**/*.spec.ts",
+    "../../libs/**/*.test.ts"
   ]
 }

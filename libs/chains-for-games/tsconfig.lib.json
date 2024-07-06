@@ -5,14 +5,21 @@
     "types": ["node", "vite/client"],
     "composite": true
   },
-  "include": ["../../libs/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../models/de-referencing-utilities/**/*.ts",
+    "../chain/**/*.ts",
+    "../types/**/*.ts",
+    "../models/all-games-map/**/*.ts",
+    "../models/instance-of-game/**/*.ts",
+    "../game/**/*.ts",
+    "../chutes-and-ladders/**/*.ts"
+  ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../libs/**/*jest.config.ts",
     "../../libs/**/*.spec.ts",
-    "../../libs/**/*.test.ts",
-    "../../libs/react-components/**/*.ts"
+    "../../libs/**/*.test.ts"
   ]
 }

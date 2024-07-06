@@ -6,12 +6,19 @@
     "types": ["node", "vite/client"],
     "composite": true
   },
-  "include": ["src/**/*.ts", "../../../libs/**/*.ts", "../types-api/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../../models/all-games-map/**/*.ts",
+    "../../models/instance-of-game/**/*.ts",
+    "../../game/**/*.ts",
+    "../../chutes-and-ladders/**/*.ts",
+    "../types-game/**/*.ts"
+  ],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
+    "../../../libs/**/*jest.config.ts",
     "../../../libs/**/*.spec.ts",
-    "../../../libs/**/*.test.ts",
-    "../../../libs/react-components/**/*.ts"
+    "../../../libs/**/*.test.ts"
   ]
 }
