@@ -9,5 +9,5 @@
     "types": ["jest", "node"],
     "composite": true
   },
-  "include": ["jest.config.ts", "src/**/*.ts", "../../libs/**/**.ts"]
+  "include": ["jest.config.ts", "src/**/*.ts", "../src/**/*.ts"]
 }

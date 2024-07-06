@@ -5,12 +5,7 @@
     "moduleResolution": "Bundler",
     "target": "ESNext",
     "outDir": "../../dist/out-tsc",
-    "types": [
-      "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts",
-      "vite/client"
-    ],
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "composite": true
   },
   "exclude": [
@@ -25,15 +20,22 @@
     "../../libs/**/*.spec.tsx",
     "../../libs/**/*.spec.ts",
     "../../libs/**/*.test.tsx",
-    "../../libs/**/*.test.ts"
+    "../../libs/**/*.test.ts",
+    "../../libs/**/*jest.config.ts"
   ],
   "include": [
     "src/**/*.js",
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../libs/**/*.tsx",
-    "../../libs/**/*.ts",
-    "../../libs/**/tsconfig.lib.json"
+    "../../libs/react-components/**/*.tsx",
+    "../../libs/react-components/**/*.ts",
+    "../../libs/types/types-game/**/*.ts",
+    "../../libs/chutes-and-ladders/**/*.ts",
+    "../../libs/models/game-builder/**/*.ts",
+    "../../libs/chain/**/*.ts",
+    "../../libs/game/**/*.ts",
+    "../../libs/models/rule/**/*.ts",
+    "../../libs/types/types-game/**/*.ts"
   ]
 }

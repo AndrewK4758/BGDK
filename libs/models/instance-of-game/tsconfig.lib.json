@@ -5,6 +5,18 @@
     "types": ["node", "vite/client"],
     "composite": true
   },
-  "include": [],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": [
+    "src/**/*.ts",
+    "../../game/**/*.ts",
+    "../../chutes-and-ladders/**/*.ts",
+    "../../types/types-game/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../../libs/**/*jest.config.ts",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*.test.ts"
+  ]
 }

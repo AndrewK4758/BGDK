@@ -10,9 +10,6 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
-    fs: {
-      allow: [searchForWorkspaceRoot(process.cwd()), '/libs/react-components/fonts'],
-    },
   },
 
   preview: {
