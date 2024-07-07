@@ -3,7 +3,7 @@ import { Board } from './board';
 import { Die } from './die';
 import { LiteSpace } from './lite-space';
 import { Space } from './space';
-import { rangeSelector } from './utils';
+import { rangeSelector, rowFinder } from './utils';
 
 const TOTAL_SPACES = 100;
 const START = 1;
@@ -75,10 +75,6 @@ const createDumpValueLadder = (indexOfSpace: number): ISpace => {
     return specialSpace;
   }
 };
-
-function rowFinder(indexOfSpace: number) {
-  return Math.floor(indexOfSpace / ROWS);
-}
 
 export { MAX_SPECIAL_DISTANCE, ROWS, START, TOTAL_SPACES, uniqueSpecialValues };
 
@@ -157,25 +153,13 @@ export class ChutesAndLadders {
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
-    let row: string[] = [];
-
-    let indexOfSpace = 1;
 
     while (space) {
       const display = space.occupied ? space.avatarsInSpace[0].name : space['display'];
 
-      const liteSpace = LiteSpace.MakeSpace(display, space.avatarsInSpace);
+      const liteSpace = LiteSpace.MakeSpace(display);
 
-      const rowCount = rowFinder(indexOfSpace);
-      row.push(liteSpace.display);
-
-      if (row.length === ROWS) {
-        row = rowCount % 2 !== 0 ? row : row.reverse();
-        gameBoard.push(row);
-        row = [];
-      }
-
-      indexOfSpace++;
+      gameBoard.push(liteSpace.display);
       space = space.next;
     }
     return gameBoard.reverse();

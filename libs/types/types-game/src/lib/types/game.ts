@@ -37,7 +37,7 @@ export enum TurnStatus {
   GAME_WON = 'GAME WON',
 }
 
-export type GameBoard = string[][];
+export type GameBoard = string[];
 
 export type AvatarTotem = {
   id: number;

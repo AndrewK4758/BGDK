@@ -3,6 +3,7 @@ import { GameBoard } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';
+import { rowFinder } from '@bgdk/chutes-and-ladders';
 
 const breakpointsGameBoardBox: SxProps = {
   border: `5px solid ${Theme.palette.success.main}`,
@@ -25,10 +26,28 @@ interface ShowGameBoardProps {
  *
  * @returns a rendered game board
  */
-const ShowGameBoard = ({ board }: ShowGameBoardProps) => (
-  <Box component={'section'} sx={breakpointsGameBoardBox}>
-    {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
-  </Box>
-);
+const ShowGameBoard = ({ board }: ShowGameBoardProps) => {
+  const maxRowLength = 10;
+  let indexOfSpace = 1;
+  let row: string[] = [];
+  const gameBoard: string[][] = [];
+  board.forEach(s => {
+    const rowCount = rowFinder(indexOfSpace);
+    row.push(s);
+
+    if (row.length === maxRowLength) {
+      row = rowCount % 2 !== 0 ? row : row.reverse();
+      gameBoard.push(row);
+      row = [];
+    }
+    indexOfSpace++;
+  });
+
+  return (
+    <Box component={'section'} sx={breakpointsGameBoardBox}>
+      {board && <RenderList data={gameBoard} listMapCallback={gameBoardMap} />}
+    </Box>
+  );
+};
 
 export default ShowGameBoard;

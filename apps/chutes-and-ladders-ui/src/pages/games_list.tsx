@@ -22,7 +22,6 @@ const breakpointsImageListText: SxProps = {
   },
 };
 
-
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
   const media = useMediaQuery(Theme.breakpoints.up('tablet'));
@@ -33,7 +32,7 @@ const GamesList = () => {
         type="a"
         to={`${e.name.replace(/ /g, '-')}`}
         id={e.name}
-        srcSet={e.imageURL}
+        srcSet={`./images/${e.imageURL}`}
         loading="lazy"
         alt={`${e.name} game picture`}
         style={{
@@ -55,20 +54,10 @@ const GamesList = () => {
           justifyItems: 'center',
         }}
       >
-        <Text
-          titleVariant="h1"
-          titleText={'Games'}
-          sx={breakpointsGameListText}
-        />
+        <Text titleVariant="h1" titleText={'Games'} sx={breakpointsGameListText} />
       </Container>
       <Container component={'div'}>
-        <ImageList
-          variant="standard"
-          cols={media ? 2 : 1}
-          rowHeight={media ? 365 : 200}
-          gap={12}
-          sx={{ m: 0 }}
-        >
+        <ImageList variant="standard" cols={media ? 2 : 1} rowHeight={media ? 365 : 200} gap={12} sx={{ m: 0 }}>
           <RenderList data={games} listMapCallback={listGamesMap} />
         </ImageList>
       </Container>

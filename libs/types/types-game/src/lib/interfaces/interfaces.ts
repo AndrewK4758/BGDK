@@ -26,7 +26,6 @@ export interface IAvatar {
 
 export interface ILiteSpace {
   display: string;
-  avatarsInSpace: IAvatar[];
 }
 
 export interface ISpace {

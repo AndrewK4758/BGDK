@@ -13,10 +13,10 @@ const performAction = (req: IReqObjMaps, resp: Response) => {
   if (game) {
     const { action } = req.params;
     const ctx = ContextBuilder.build();
+    ctx.put(GameContextKeys.ACTION, action);
     ctx.put(GameContextKeys.GAME, game);
     ctx.put(GameContextKeys.REQUEST, req);
     ctx.put(GameContextKeys.RESPONSE, resp);
-    ctx.put(GameContextKeys.ACTION, action);
     ctx.put(GameContextKeys.NEXT, '');
 
     ChutesAndLaddersGame.chain.execute(ctx);

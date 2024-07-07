@@ -95,14 +95,11 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
     context.get(GameContextKeys.NEXT) &&
     context.getString(GameContextKeys.NEXT) === 'rotate-player'
   ) {
-    const { game /*req, resp*/ } = deRefContextObject(context);
-
+    const { game } = deRefContextObject(context);
     game.instance.rotatePlayers();
 
-    // resp.setHeader(
-    //   'current-game',
-    //   req.header('current-game') as GameInstanceID
-    // );
+    context.put(GameContextKeys.ACTION, 'board');
+
     return true;
   } else return false;
 });
