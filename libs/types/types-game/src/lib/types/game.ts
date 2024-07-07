@@ -1,3 +1,5 @@
+import { ILiteSpace } from '../interfaces/interfaces';
+
 export enum Color {
   RED = 'Red',
   WHITE = 'White',
@@ -37,7 +39,7 @@ export enum TurnStatus {
   GAME_WON = 'GAME WON',
 }
 
-export type GameBoard = string[];
+export type GameBoard = ILiteSpace[];
 
 export type AvatarTotem = {
   id: number;

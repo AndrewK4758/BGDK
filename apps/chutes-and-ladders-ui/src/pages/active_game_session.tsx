@@ -57,7 +57,7 @@ export default function ActiveGameSession() {
 
   useEffect(() => {
     socket.emit('action', { action: 'board' });
-    socket.on('game-data', async ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
+    socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
       setBoard(gameBoard);
       setActivePlayersInGame(activePlayersInGame);
       setWinner(winner as string);
@@ -76,7 +76,7 @@ export default function ActiveGameSession() {
         <ReadyToStart buttonPress={buttonPress} setButtonPress={setButtonPress} />
       </Container>
       <Box component={'section'} sx={{ height: '55vh' }}>
-        {board && <ShowGameBoard board={board} />}
+        {board && <ShowGameBoard board={board as GameBoard} />}
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>

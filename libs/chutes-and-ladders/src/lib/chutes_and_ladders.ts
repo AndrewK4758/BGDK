@@ -159,7 +159,7 @@ export class ChutesAndLadders {
 
       const liteSpace = LiteSpace.MakeSpace(display);
 
-      gameBoard.push(liteSpace.display);
+      gameBoard.push(liteSpace);
       space = space.next;
     }
     return gameBoard.reverse();
