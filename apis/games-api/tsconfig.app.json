@@ -9,7 +9,7 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext"
   },
-  "include": ["src/**/*.ts", "../../libs/**/*.ts"],
+  "include": ["src/**/*.ts", "../../libs/**/*.ts", "src/services/swagger/swagger-setup.ts", "src/main.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",

@@ -1,25 +1,37 @@
-import { IPlayersAndBoard } from '@bgdk/types-game';
+import { IActiveGameInfo } from '@bgdk/types-game';
+import { Socket } from 'socket.io-client';
 
 export enum ActionType {
   BOARD = 'board',
   TAKE_TURN = 'take-turn',
+  START = 'start',
+  RESET = 'reset',
 }
 
 export interface Action {
   type: ActionType;
-  payload: IPlayersAndBoard;
+  payload?: IActiveGameInfo;
+  socket?: Socket;
 }
 
-const socketReducer = (state: IPlayersAndBoard, action: Action) => {
-  const { type } = action;
-  const { gameBoard, activePlayersInGame, avatarInTurn, winner } = action.payload;
+const socketReducer = (state: IActiveGameInfo, action: Action) => {
+  const { type, socket } = action;
   switch (type) {
     case ActionType.BOARD:
+      // eslint-disable-next-line no-case-declarations
+      const { gameBoard, activePlayersInGame, avatarInTurn, winner } = action.payload as IActiveGameInfo;
       return { ...state, gameBoard, activePlayersInGame, avatarInTurn, winner };
     case ActionType.TAKE_TURN:
-      return state;
+      if (socket) socket.emit('action', { action: ActionType.BOARD });
+      return { ...state };
+    case ActionType.START:
+      if (socket) socket.emit('action', { action: ActionType.BOARD });
+      return { ...state };
+    case ActionType.RESET:
+      if (socket) socket.emit('action', { action: ActionType.BOARD });
+      return { ...state };
     default:
-      return state;
+      throw new Error('Error in reducer');
   }
 };
 

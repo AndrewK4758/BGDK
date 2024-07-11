@@ -3,7 +3,7 @@ import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Response } from 'express';
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
 
 export type ContextData = {
   action: string;
@@ -12,7 +12,6 @@ export type ContextData = {
   resp: Response;
   next: string;
   output: object;
-  socket: Socket;
   io: Server;
 };
 
@@ -23,7 +22,6 @@ export const deRefContextObject = (context: Context): ContextData => {
   const resp = context.get(GameContextKeys.RESPONSE) as Response;
   const next = context.get(GameContextKeys.NEXT) as string;
   const output = context.get(GameContextKeys.OUTPUT) as object;
-  const socket = context.get(GameContextKeys.SOCKET) as Socket;
   const io = context.get(GameContextKeys.IO) as Server;
 
   return {
@@ -33,7 +31,6 @@ export const deRefContextObject = (context: Context): ContextData => {
     resp: resp,
     next: next,
     output: output,
-    socket: socket,
     io: io,
   };
 };

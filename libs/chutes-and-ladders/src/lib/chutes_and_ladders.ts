@@ -42,7 +42,7 @@ const createDumpValueChute = (indexOfSpace: number): ISpace => {
     indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
 
   const maxValForRand = findMaxValForRand(indexOfSpace);
-  const minDist = (indexOfSpace % ROWS) + 1;
+  const minDist = (indexOfSpace % ROWS) + 2;
   const distToTraverseChute = rangeSelector(minDist, maxValForRand);
   const dumpValueChute = indexOfSpace - distToTraverseChute;
 

@@ -12,6 +12,9 @@ describe('test instance map class', () => {
     gameInstanceID = 'G@Me!D';
     instanceMap = new InstanceTimeMap();
   });
+  afterAll(() => {
+    instanceMap.Map.clear();
+  });
   test('Instance Map', () => {
     instanceMap.addGameInstance(minute, gameInstanceID);
 

@@ -1,7 +1,12 @@
-import { ButtonFormAction, Theme } from '@bgdk/react-components';
+import { Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
-import { Dispatch, SetStateAction } from 'react';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import { Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
+import { Socket } from 'socket.io-client';
+import { Action, ActionType } from '../../hooks/socket-reducer';
+import { getGameInstanceInfo } from '../../services/utils/utils';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.info.main,
@@ -13,25 +18,35 @@ const breakpointsTakeTurnButton: SxProps = {
 };
 
 interface TakeTurnProps {
-  buttonPress: boolean;
-  setButtonPress: Dispatch<SetStateAction<boolean>>;
+  dispatch: Dispatch<Action>;
+  socket: Socket;
 }
 
-export default function TakeTurn({ buttonPress, setButtonPress }: TakeTurnProps) {
+export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
   const params = useParams();
   const id = params.id;
 
+  const handleTakeTurn = async () => {
+    const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
+    const __current_game__ = JSON.stringify(getGameInstanceInfo());
+    try {
+      const resp = await axios.patch(
+        `${baseURL}/games/${id}/take-turn`,
+        {},
+        { headers: { 'current-game': __current_game__ } },
+      );
+      console.log(resp.data.message);
+      dispatch({ type: ActionType.TAKE_TURN, socket: socket });
+      return null;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
+
   return (
-    <ButtonFormAction
-      method="patch"
-      action={`/games/${id}/play?index`}
-      variant="outlined"
-      name="Take Turn"
-      value={'take-turn'}
-      type="submit"
-      handleSubmit={() => setButtonPress(!buttonPress)}
-      sx={breakpointsTakeTurnButton}
-      buttonText="Take Turn"
-    />
+    <Button variant="outlined" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
+      Take Turn
+    </Button>
   );
 }

@@ -1,5 +1,4 @@
 import { Chain, ChainBuilder, Command } from '@bgdk/chain';
-import { IGame } from '@bgdk/game';
 import { IRule, Rule } from '@bgdk/rule';
 
 export interface IBuiltGame {
@@ -10,7 +9,6 @@ export interface IBuiltGame {
   rules: IRule[];
   chain: Chain;
   commands: Command[];
-  instance: IGame;
 }
 
 export interface IGameBuilder {
@@ -51,11 +49,7 @@ export class GameBuilder implements IGameBuilder {
   }
 
   setRule(order: number, title: string, value: string): IGameBuilder {
-    const rule = new Rule()
-      .setOrder(order)
-      .setValue(value)
-      .setTitle(title)
-      .build();
+    const rule = new Rule().setOrder(order).setValue(value).setTitle(title).build();
     this.Game.rules.push(rule);
     return this;
   }

@@ -17,7 +17,6 @@
         "tsConfig": "apis/games-api/tsconfig.app.json",
         "assets": ["apis/games-api/src/assets"],
         "webpackConfig": "apis/games-api/webpack.config.js",
-        "watch": true,
         "deleteOutputPath": true
       },
       "configurations": {
@@ -42,7 +41,8 @@
           "watch": true
         },
         "production": {
-          "buildTarget": "games-api:build:production"
+          "buildTarget": "games-api:build:production",
+          "watch": false
         }
       }
     },
@@ -55,10 +55,6 @@
       "options": {
         "jestConfig": "apis/games-api/jest.config.ts"
       }
-    },
-    "docker-build": {
-      "dependsOn": ["build"],
-      "command": "docker build -f apis/games-api/Dockerfile . -t games-api"
     }
   }
 }

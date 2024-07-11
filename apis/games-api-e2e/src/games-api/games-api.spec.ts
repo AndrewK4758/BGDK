@@ -13,6 +13,10 @@ import axios from 'axios';
 let __current_game__: GamePlayerValidation, playerIDs: string[];
 
 describe('Games api test wrapper', () => {
+  afterAll(() => {
+    __current_game__ = {};
+    playerIDs = [];
+  });
   describe('GET Games ', () => {
     it("should return an array of games names and id's", async () => {
       const resp = await axios.get(`/games`);
@@ -77,8 +81,10 @@ describe('Games api test wrapper', () => {
         it('Should verify the min/max number of players in a game, set the randomly decided player order, place players in startSpace, set the player in turn to the player order', async () => {
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/start',
-            { test: true },
-            { headers: { 'current-game': JSON.stringify(__current_game__) } },
+            {},
+            {
+              headers: { 'current-game': JSON.stringify(__current_game__) },
+            },
           );
 
           __current_game__ = JSON.parse(resp.headers['current-game']);
@@ -101,6 +107,7 @@ describe('Games api test wrapper', () => {
             __current_game__ = JSON.parse(resp.headers['current-game']);
 
             const gamePlayData = resp.data as IPlayersAndBoard;
+            expect(gamePlayData.gameBoard.length).toEqual(100);
             expect(gamePlayData.activePlayersInGame.length).toEqual(2);
             expect(gamePlayData.avatarInTurn).not.toBeUndefined();
             expect(gamePlayData.winner).toEqual('');
@@ -117,10 +124,9 @@ describe('Games api test wrapper', () => {
                 headers: { 'current-game': JSON.stringify(__current_game__) },
               },
             );
-
+            console.log(resp.data.turnStatus);
             if (resp.data.turnStatus === TurnStatus.INVALID) {
               __current_game__.playerID = playerIDs[1];
-
               const resp = await axios.patch(
                 '/games/Chutes-&-Ladders/take-turn',
                 {},
@@ -132,9 +138,10 @@ describe('Games api test wrapper', () => {
               );
 
               expect(resp.status).toEqual(201);
-            } else {
               expect(resp.data.turnStatus).toEqual(TurnStatus.VALID);
+            } else {
               expect(resp.status).toEqual(201);
+              expect(resp.data.turnStatus).toEqual(TurnStatus.VALID);
             }
           });
           it('should fail and return invalid turn status', async () => {

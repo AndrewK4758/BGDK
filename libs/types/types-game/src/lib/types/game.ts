@@ -28,7 +28,6 @@ export const enum GameContextKeys {
   ACTION = 'ACTION',
   NEXT = 'NEXT-HANDLER',
   OUTPUT = 'OUT',
-  SOCKET = 'SOCKET',
   IO = 'IO',
 }
 
@@ -40,6 +39,7 @@ export enum TurnStatus {
 }
 
 export type GameBoard = ILiteSpace[];
+export type Built_GameBoard = GameBoard[];
 
 export type AvatarTotem = {
   id: number;
@@ -79,11 +79,18 @@ export interface IRegisterFormValues {
   avatarColor: Color;
 }
 
-export interface IPlayersAndBoard {
+export interface IActivePlayersInGame {
   activePlayersInGame: IRegisterFormValues[];
-  gameBoard: GameBoard;
   avatarInTurn?: string;
   winner?: string;
+}
+
+export interface IActiveGameInfo extends IActivePlayersInGame {
+  gameBoard: Built_GameBoard;
+}
+
+export interface IPlayersAndBoard extends IActivePlayersInGame {
+  gameBoard: GameBoard;
 }
 
 export interface ITestCtxOutput {

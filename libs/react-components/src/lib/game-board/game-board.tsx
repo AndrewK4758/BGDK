@@ -36,8 +36,8 @@ const breakpointsSpaceSx: SxProps = {
 // Explore best way to render game board with websocket
 
 const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => (
-  <Fragment key={e.display + ' space fragment'}>
-    <Grid key={e.display} sx={breakpointsRowSx}>
+  <Fragment key={e.display}>
+    <Grid sx={breakpointsRowSx}>
       <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
     </Grid>
   </Fragment>

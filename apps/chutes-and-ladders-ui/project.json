@@ -11,7 +11,7 @@
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/chutes-and-ladders-ui"
       },

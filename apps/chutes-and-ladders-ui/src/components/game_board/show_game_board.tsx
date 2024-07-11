@@ -1,9 +1,8 @@
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
-import { GameBoard, ILiteSpace } from '@bgdk/types-game';
+import { GameBoard, ILiteSpace, Built_GameBoard } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';
-import { rowFinder } from '@bgdk/chutes-and-ladders';
 
 const breakpointsGameBoardBox: SxProps = {
   border: `5px solid ${Theme.palette.success.main}`,
@@ -13,43 +12,23 @@ const breakpointsGameBoardBox: SxProps = {
 };
 
 const gameBoardMap = (e: ILiteSpace[], i: number, arr: GameBoard) => (
-  <Fragment key={`row ${i}`}>
+  <Fragment key={Math.random().toFixed(4)}>
     <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
   </Fragment>
 );
 
 interface ShowGameBoardProps {
-  board: GameBoard;
+  board: Built_GameBoard;
 }
 
 /**
  *
  * @returns a rendered game board
  */
-const ShowGameBoard = ({ board }: ShowGameBoardProps) => {
-  const gameBoard: ILiteSpace[][] = [];
-  if (board) {
-    const maxRowLength = 10;
-    let indexOfSpace = 1;
-    let row: ILiteSpace[] = [];
-    board.forEach(s => {
-      const rowCount = rowFinder(indexOfSpace);
-      row.push(s);
-
-      if (row.length === maxRowLength) {
-        row = rowCount % 2 !== 0 ? row : row.reverse();
-        gameBoard.push(row);
-        row = [];
-      }
-      indexOfSpace++;
-    });
-  }
-
-  return (
-    <Box component={'section'} sx={breakpointsGameBoardBox}>
-      {board && <RenderList data={gameBoard} listMapCallback={gameBoardMap} />}
-    </Box>
-  );
-};
+const ShowGameBoard = ({ board }: ShowGameBoardProps) => (
+  <Box component={'section'} sx={breakpointsGameBoardBox}>
+    {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
+  </Box>
+);
 
 export default ShowGameBoard;
