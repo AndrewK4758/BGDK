@@ -14,6 +14,7 @@ module.exports = {
       assets: ['./src/assets'],
       outputHashing: false,
       progress: true,
+      watch: true,
     }),
   ],
 };

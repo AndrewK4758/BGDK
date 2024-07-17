@@ -45,6 +45,7 @@ export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
   };
 
   return (
+    
     <Button variant="outlined" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
       Take Turn
     </Button>

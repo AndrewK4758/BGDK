@@ -1,8 +1,8 @@
-import express, { NextFunction, Router, Request, Response } from 'express';
+import { IReqObjMaps } from '@bgdk/types-api';
+import express, { NextFunction, Request, Response, Router } from 'express';
 import performAction from '../controllers/perform_action_context_object';
 import populateInstanceMaps from '../controllers/populate_instance_map';
 import sendGameList from '../controllers/send_game_list';
-import { IReqObjMaps } from '@bgdk/types-api';
 
 export default class GameRoutes {
   constructor(router: Router) {

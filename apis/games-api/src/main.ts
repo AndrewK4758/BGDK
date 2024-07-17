@@ -41,4 +41,5 @@ const server = httpServer.listen(port, () => {
 });
 
 server.on('error', console.error);
+
 export default app;

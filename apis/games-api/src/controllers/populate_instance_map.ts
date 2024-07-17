@@ -1,11 +1,10 @@
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
 import { Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-// import games from './list-games';
-import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 
 //NEED TO IMPLEMENT PUTTING THE REF TO THE GAME CLASS IN THE GAME BUILDER AND
 //FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME
@@ -16,8 +15,6 @@ const populateInstanceMaps = (req: IReqObjMaps, resp: Response) => {
 
   const minute: Minute = getCurrentMinute();
   const gameID: GameInstanceID = new ShortUniqueId().rnd();
-
-  // const game = games.find(({ name }) => name === 'Chutes & Ladders');
 
   const game: Game = new Game(new ChutesAndLadders(5,5));
 
