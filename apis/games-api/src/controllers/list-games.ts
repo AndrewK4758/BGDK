@@ -26,14 +26,14 @@ export const ChutesAndLaddersGame = gb
   for children who can’t read. Fun pictures help kids
   understand the rewards of doing good deeds as
   they climb up the ladders and the consequences of
-  naughty ones as they slide down the chutes.`
+  naughty ones as they slide down the chutes.`,
   )
   .setRule(
     2,
     'SETUP',
     `Everyone
     chooses a pawn to play. Any extra pawns are out of
-    #1. Now get ready for the fun! `
+    #1. Now get ready for the fun! `,
   )
   .setGameFunctionality([
     logActionChain,
@@ -45,9 +45,7 @@ export const ChutesAndLaddersGame = gb
     activeGameDisplayChain,
     outputContextResponseChain,
   ])
-
   .build();
-
 games.push(ChutesAndLaddersGame);
 
 export const TicTacToe = gb
@@ -56,19 +54,11 @@ export const TicTacToe = gb
   .setDescription('Second Game Placeholder')
   .setImageURL('TicTacToeT.webp')
   .setRule(1, 'SETUP', `The game is played on a 3x3 grid`)
-  .setRule(
-    2,
-    'TURNS',
-    `Players take turns marking an empty square with their symbol (X or O)`
-  )
-  .setRule(
-    3,
-    'WIN',
-    `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`
-  )
+  .setRule(2, 'TURNS', `Players take turns marking an empty square with their symbol (X or O)`)
+  .setRule(3, 'WIN', `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`)
   .setGameFunctionality([])
   .build();
 
 games.push(TicTacToe);
 
-export { games };
+export default games;

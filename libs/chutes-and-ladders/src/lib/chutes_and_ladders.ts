@@ -79,10 +79,10 @@ const createDumpValueLadder = (indexOfSpace: number): ISpace => {
 export { MAX_SPECIAL_DISTANCE, ROWS, START, TOTAL_SPACES, uniqueSpecialValues };
 
 export class ChutesAndLadders {
-  CHUTES: number;
-  LADDERS: number;
   MAX_PLAYERS: number;
   MIN_PLAYERS: number;
+  CHUTES: number;
+  LADDERS: number;
   DIE: IDie;
   startSpace!: ISpace;
   colorList: typeof Color;

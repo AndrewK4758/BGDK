@@ -10,11 +10,8 @@ import RegisterPlayerAndAvatarOnGame from '../pages/register_player_and_avatar_o
 import joinGameAction from '../services/action_functions/join_game_action';
 import registerGameInstanceOnServerAction from '../services/action_functions/register_game_on_server_action';
 import registerPlayerAndAvatarAction from '../services/action_functions/register_player_avatar_action';
-import takeTurn from '../services/action_functions/take_turn';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
-
-
 
 const router = createBrowserRouter([
   {
@@ -61,13 +58,6 @@ const router = createBrowserRouter([
                 Component: ActiveGameSession,
                 id: 'gameBoard',
                 errorElement: <NotEnoughPlayersError />,
-                children: [
-                  {
-                    index: true,
-                    Component: null,
-                    action: takeTurn,
-                  },
-                ],
               },
             ],
           },

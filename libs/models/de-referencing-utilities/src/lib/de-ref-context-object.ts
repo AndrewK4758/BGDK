@@ -1,5 +1,5 @@
 import { Context } from '@bgdk/chain';
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
+import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Response } from 'express';
@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 
 export type ContextData = {
   action: string;
-  game: IInstanceOfGame;
+  game: InstanceOfGame;
   req: IReqObjMaps;
   resp: Response;
   next: string;
@@ -17,7 +17,7 @@ export type ContextData = {
 
 export const deRefContextObject = (context: Context): ContextData => {
   const action = context.get(GameContextKeys.ACTION) as string;
-  const game = context.get(GameContextKeys.GAME) as IInstanceOfGame;
+  const game = context.get(GameContextKeys.GAME) as InstanceOfGame;
   const req = context.get(GameContextKeys.REQUEST) as IReqObjMaps;
   const resp = context.get(GameContextKeys.RESPONSE) as Response;
   const next = context.get(GameContextKeys.NEXT) as string;

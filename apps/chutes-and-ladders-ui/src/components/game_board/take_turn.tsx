@@ -35,7 +35,7 @@ export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
         {},
         { headers: { 'current-game': __current_game__ } },
       );
-      console.log(resp.data.message);
+      console.log(resp.data.turnStatus);
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });
       return null;
     } catch (err) {

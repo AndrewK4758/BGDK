@@ -4,8 +4,8 @@ import { corsOptions } from '../../main';
 import { GameInstanceID } from '@bgdk/types-game';
 import { getActiveGameWS } from '@bgdk/de-referencing-utilities';
 import { allGamesMap } from '../../controllers/middleware/all-games-map';
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import performActionWs from '../../controllers/perform_action_web_socket_context';
+import { InstanceOfGame } from '@bgdk/instance-of-game';
+import performAction from '../../controllers/perform_action_context_object';
 
 interface SocketAction {
   action: string;
@@ -34,8 +34,8 @@ export default class SocketServer {
     });
 
     socket.on('action', ({ action }: SocketAction) => {
-      const game: IInstanceOfGame = socket.data;
-      performActionWs(game, action);
+      const game: InstanceOfGame = socket.data;
+      performAction(undefined, undefined, game, action);
     });
   };
 }

@@ -1,6 +1,6 @@
 import { IBuiltGame } from '@bgdk/game-builder';
 import { Request, Response } from 'express';
-import { games } from './list-games';
+import  games from './list-games';
 
 const sendGameList = async (req: Request, resp: Response) => {
   const gamesToSend = games.map((game) => {
