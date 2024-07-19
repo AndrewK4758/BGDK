@@ -1,5 +1,6 @@
 import { Color, SpaceType } from '../types/game';
 
+
 export interface IPlayer {
   Name: string;
   Id: string;
@@ -26,7 +27,6 @@ export interface IAvatar {
 
 export interface ILiteSpace {
   display: string;
-  avatarsInSpace: IAvatar[];
 }
 
 export interface ISpace {

@@ -2,7 +2,6 @@ import { GameBoard, SpaceType } from '@bgdk/types-game';
 import {
   ChutesAndLadders,
   MAX_SPECIAL_DISTANCE,
-  ROWS,
   START,
   TOTAL_SPACES,
   uniqueSpecialValues,
@@ -64,9 +63,7 @@ describe('Test connectivity of spaces within Board', () => {
   describe('test display game board method', () => {
     it('will return a 2D array of length 10', () => {
       const gameBoard: GameBoard = game.displayGameBoard();
-
-      expect(gameBoard.length).toEqual(ROWS);
-      expect(gameBoard[0].length).toEqual(ROWS);
+      expect(gameBoard.length).toEqual(TOTAL_SPACES);
     });
   });
 });

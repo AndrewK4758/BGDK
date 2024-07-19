@@ -1,3 +1,5 @@
+import { ILiteSpace } from '../interfaces/interfaces';
+
 export enum Color {
   RED = 'Red',
   WHITE = 'White',
@@ -26,7 +28,6 @@ export const enum GameContextKeys {
   ACTION = 'ACTION',
   NEXT = 'NEXT-HANDLER',
   OUTPUT = 'OUT',
-  SOCKET = 'SOCKET',
   IO = 'IO',
 }
 
@@ -37,11 +38,13 @@ export enum TurnStatus {
   GAME_WON = 'GAME WON',
 }
 
-export type GameBoard = string[][];
+export type GameBoard = ILiteSpace[];
+export type Built_GameBoard = GameBoard[];
 
 export type AvatarTotem = {
   id: number;
   name: string;
+  image: string;
 };
 
 export type Minute = number;
@@ -75,13 +78,21 @@ export interface IRegisterFormValues {
   playerName: string;
   avatarName: string;
   avatarColor: Color;
+  avatarImage?: string;
 }
 
-export interface IPlayersAndBoard {
+export interface IActivePlayersInGame {
   activePlayersInGame: IRegisterFormValues[];
-  gameBoard: GameBoard;
   avatarInTurn?: string;
   winner?: string;
+}
+
+export interface IActiveGameInfo extends IActivePlayersInGame {
+  gameBoard: Built_GameBoard;
+}
+
+export interface IPlayersAndBoard extends IActivePlayersInGame {
+  gameBoard: GameBoard;
 }
 
 export interface ITestCtxOutput {

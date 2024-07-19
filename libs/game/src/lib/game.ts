@@ -14,15 +14,19 @@ export class Game implements IGame {
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
+  MIN_PLAYERS!: number;
+  MAX_PLAYERS!: number;
   constructor(instance: ChutesAndLadders) {
-    this.game = instance;
+    this.game = instance
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
     this.currentPlayer = 0;
+    this.MAX_PLAYERS = this.game.MAX_PLAYERS,
+    this.MIN_PLAYERS = this.game.MIN_PLAYERS
   }
 
-  get instance(): ChutesAndLadders {
+  get instance() {
     return this.game;
   }
 
@@ -41,7 +45,7 @@ export class Game implements IGame {
 
   verifyReadyToPlay() {
     return (this.readyToPlay =
-      this.playersArray.length >= this.instance.MIN_PLAYERS && this.playersArray.length <= this.instance.MAX_PLAYERS
+      this.playersArray.length >= this.MIN_PLAYERS && this.playersArray.length <= this.MAX_PLAYERS
         ? true
         : false);
   }

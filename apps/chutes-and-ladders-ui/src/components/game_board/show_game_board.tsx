@@ -1,5 +1,5 @@
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
-import { GameBoard } from '@bgdk/types-game';
+import { GameBoard, ILiteSpace, Built_GameBoard } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';
@@ -11,24 +11,26 @@ const breakpointsGameBoardBox: SxProps = {
   },
 };
 
-const gameBoardMap = (e: string[], i: number, arr: GameBoard) => (
-  <Fragment key={`row ${i}`}>
+const gameBoardMap = (e: ILiteSpace[], i: number, arr: GameBoard) => (
+  <Fragment key={Math.random().toFixed(4)}>
     <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
   </Fragment>
 );
 
 interface ShowGameBoardProps {
-  board: GameBoard;
+  board: Built_GameBoard;
 }
 
 /**
  *
  * @returns a rendered game board
  */
-const ShowGameBoard = ({ board }: ShowGameBoardProps) => (
-  <Box component={'section'} sx={breakpointsGameBoardBox}>
-    {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
-  </Box>
-);
+const ShowGameBoard = ({ board }: ShowGameBoardProps) => {
+  return (
+    <Box component={'section'} sx={breakpointsGameBoardBox}>
+      {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
+    </Box>
+  );
+};
 
 export default ShowGameBoard;

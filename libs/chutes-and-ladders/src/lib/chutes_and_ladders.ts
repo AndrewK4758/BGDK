@@ -1,9 +1,10 @@
 import { AvatarTotem, Color, GameBoard, IDie, ISpace, SpaceType } from '@bgdk/types-game';
+import AvatarTotems from './avatar-totems';
 import { Board } from './board';
 import { Die } from './die';
 import { LiteSpace } from './lite-space';
 import { Space } from './space';
-import { rangeSelector } from './utils';
+import { rangeSelector, rowFinder } from './utils';
 
 const TOTAL_SPACES = 100;
 const START = 1;
@@ -42,7 +43,7 @@ const createDumpValueChute = (indexOfSpace: number): ISpace => {
     indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
 
   const maxValForRand = findMaxValForRand(indexOfSpace);
-  const minDist = (indexOfSpace % ROWS) + 1;
+  const minDist = (indexOfSpace % ROWS) + 2;
   const distToTraverseChute = rangeSelector(minDist, maxValForRand);
   const dumpValueChute = indexOfSpace - distToTraverseChute;
 
@@ -76,28 +77,22 @@ const createDumpValueLadder = (indexOfSpace: number): ISpace => {
   }
 };
 
-function rowFinder(indexOfSpace: number) {
-  return Math.floor(indexOfSpace / ROWS);
-}
-
 export { MAX_SPECIAL_DISTANCE, ROWS, START, TOTAL_SPACES, uniqueSpecialValues };
 
 export class ChutesAndLadders {
-  CHUTES: number;
-  LADDERS: number;
   MAX_PLAYERS: number;
   MIN_PLAYERS: number;
+  CHUTES: number;
+  LADDERS: number;
   DIE: IDie;
   startSpace!: ISpace;
   colorList: typeof Color;
   avatarList: AvatarTotem[];
-
   /**
    *
    * @param {Number} chutes number of chutes
    * @param {Number} ladders number of ladders
    */
-
   constructor(chutes: number, ladders: number) {
     this.CHUTES = chutes;
     this.LADDERS = ladders;
@@ -106,12 +101,7 @@ export class ChutesAndLadders {
     this.MIN_PLAYERS = 2;
     this.makeGameBoard();
     this.colorList = Color;
-    this.avatarList = [
-      { id: 1, name: 'XENOMORPH' },
-      { id: 2, name: 'PREDATOR' },
-      { id: 3, name: 'TERMINATOR' },
-      { id: 4, name: 'ROBOCOP' },
-    ];
+    this.avatarList = AvatarTotems.totemsList;
   }
 
   spaceMaker = (indexOfSpace: number): ISpace => {
@@ -151,31 +141,37 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
+  addAvatarSvgToDisplay = (name: string) => {
+    switch (name) {
+      case AvatarTotems.totemsList[0].name:
+        return AvatarTotems.totemsList[0].image;
+      case AvatarTotems.totemsList[1].name:
+        return AvatarTotems.totemsList[1].image;
+      case AvatarTotems.totemsList[2].name:
+        return AvatarTotems.totemsList[2].image;
+      case AvatarTotems.totemsList[3].name:
+        return AvatarTotems.totemsList[3].image;
+      default:
+        throw Error('Avatar not in list');
+    }
+  };
   //firestore db deploy in firebase
 
   // socket.io will only accept string being sent on event handler, if object, recursion error
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
-    let row: string[] = [];
-
-    let indexOfSpace = 1;
-
+    let display;
     while (space) {
-      const display = space.occupied ? space.avatarsInSpace[0].name : space['display'];
-
-      const liteSpace = LiteSpace.MakeSpace(display, space.avatarsInSpace);
-
-      const rowCount = rowFinder(indexOfSpace);
-      row.push(liteSpace.display);
-
-      if (row.length === ROWS) {
-        row = rowCount % 2 !== 0 ? row : row.reverse();
-        gameBoard.push(row);
-        row = [];
+      if (space.occupied) {
+        console.log(space.avatarsInSpace[0].name);
+        display = this.addAvatarSvgToDisplay(space.avatarsInSpace[0].name);
+      } else {
+        display = space['display'];
       }
+      const liteSpace = LiteSpace.MakeSpace(display);
 
-      indexOfSpace++;
+      gameBoard.push(liteSpace);
       space = space.next;
     }
     return gameBoard.reverse();

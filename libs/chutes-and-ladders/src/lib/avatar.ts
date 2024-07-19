@@ -4,7 +4,6 @@ export class Avatar implements IAvatar {
   Name: string;
   Color: Color;
   Location!: ISpace;
-
   constructor(name: string, color: Color) {
     this.Name = name;
     this.Color = color;

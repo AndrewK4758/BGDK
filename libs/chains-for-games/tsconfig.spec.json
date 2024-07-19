@@ -13,7 +13,8 @@
     "src/**/*.ts",
     "../../__mocks__/**/*.ts",
     "../../libs/**/*.spec.ts",
-    "../../libs/**/*.test.ts"
+    "../../libs/**/*.test.ts",
+    "../../libs/**/*.ts"
   ],
   "exclude": ["../../libs/react-components/**/*.ts"]
 }

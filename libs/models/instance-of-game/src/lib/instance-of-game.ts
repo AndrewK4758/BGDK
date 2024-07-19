@@ -1,5 +1,6 @@
 import { IGame } from '@bgdk/game';
 import { GameInstanceID, Minute } from '@bgdk/types-game';
+import { Game } from '@bgdk/game';
 
 export const getCurrentMinute = (): Minute => (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
 
@@ -15,8 +16,8 @@ export class InstanceOfGame implements IInstanceOfGame {
   gameInstanceID: GameInstanceID;
   instanceTime: Minute;
   lastActive: Minute;
-  instance: IGame;
-  constructor(minute: Minute, gameInstanceID: GameInstanceID, instance: IGame) {
+  instance: Game;
+  constructor(minute: Minute, gameInstanceID: GameInstanceID, instance: Game) {
     this.instanceTime = minute;
     this.lastActive = minute;
     this.gameInstanceID = gameInstanceID;

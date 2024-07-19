@@ -1,23 +1,16 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
-import { Player } from '@bgdk/chutes-and-ladders';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID } from '@bgdk/types-game';
+import { GameContextKeys, GameInstanceID, IPlayer } from '@bgdk/types-game';
 
 export const startGame = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.ACTION) &&
-    context.getString(GameContextKeys.ACTION) === 'start'
-  ) {
+  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'start') {
     context.put(GameContextKeys.NEXT, 'verify-ready-to-play');
     return true;
   } else return false;
 });
 
 export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'verify-ready-to-play'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'verify-ready-to-play') {
     const { game } = deRefContextObject(context);
 
     const readyToPlay = game.instance.verifyReadyToPlay();
@@ -43,7 +36,7 @@ export const setAvatarsOnStart = CommandBuilder.build((context: Context) => {
   ) {
     const { game } = deRefContextObject(context);
 
-    game.instance.playersArray.forEach((p: Player, i: number) => {
+    game.instance.playersArray.forEach((p: IPlayer, i: number) => {
       if (p.avatar.location) p.avatar.location.leave();
       else p.order = i + 1;
       game.instance.instance.startSpace.land(p.avatar);
@@ -56,10 +49,7 @@ export const setAvatarsOnStart = CommandBuilder.build((context: Context) => {
 });
 
 export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'set-player-in-turn'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'set-player-in-turn') {
     const { game } = deRefContextObject(context);
 
     game.instance.playerInTurn = game.instance.playersArray[0];
@@ -70,27 +60,15 @@ export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
 });
 
 export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'send-start-game-status'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-start-game-status') {
     const { req, resp } = deRefContextObject(context);
-    resp.setHeader(
-      'current-game',
-      req.header('current-game') as GameInstanceID
-    );
+    resp.setHeader('current-game', req.header('current-game') as GameInstanceID);
     context.put(GameContextKeys.OUTPUT, { message: 'Game Started' });
     return true;
   } else return false;
 });
 
 export const startGameChain = ChainBuilder.build(
-  [
-    startGame,
-    verifyReadyToPlay,
-    setAvatarsOnStart,
-    setPlayerInTurn,
-    sendStartGameStatus,
-  ],
-  false
+  [startGame, verifyReadyToPlay, setAvatarsOnStart, setPlayerInTurn, sendStartGameStatus],
+  false,
 );

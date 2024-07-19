@@ -1,0 +1,24 @@
+{
+  "name": "data-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/data-api/data-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "data-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "data-api:build:development"
+        },
+        "production": {
+          "buildTarget": "data-api:build:production"
+        }
+      }
+    }
+  }
+}

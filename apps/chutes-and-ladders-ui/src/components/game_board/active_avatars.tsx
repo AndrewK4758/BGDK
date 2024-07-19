@@ -54,7 +54,6 @@ const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
       textSx={{ color: e.avatarColor, ...breakpointsPlayersInGameText }}
       playerVariant="body1"
       playerName={`${e.playerName}: `}
-      avatarColor={`${e.avatarColor} `}
       avatarName={e.avatarName}
     />
   </Fragment>
@@ -66,8 +65,6 @@ interface ActiveAvatarsProps {
 }
 
 export default function ActiveAvatars({ avatarsInGame, winner }: ActiveAvatarsProps) {
-  // const loader = useRouteLoaderData('gameBoard') as IPlayersAndBoard;
-
   return (
     <Container component={'section'} sx={breakpointsActiveGameTitleContainer}>
       <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />

@@ -3,12 +3,8 @@ import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys, IPlayersAndBoard, IRegisterFormValues } from '@bgdk/types-game';
 import { activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
 
-import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import {
-  mockGameWithPlayersAdded,
-  mockReqObj,
-  mockRespObj,
-} from '__mocks__/mocks';
+import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
+import { mockGameWithPlayersAdded, mockReqObj, mockRespObj } from '__mocks__/mocks';
 
 let ctx: Context, game: IInstanceOfGame;
 describe('test display board and active player chain', () => {
@@ -60,7 +56,7 @@ describe('test display board and active player chain', () => {
 
       expect(commandResult).toBeTruthy();
       expect(dataToSendFromCtx.avatarInTurn).toEqual('Waiting for game to start');
-      expect(dataToSendFromCtx.gameBoard.length).toEqual(10);
+      expect(dataToSendFromCtx.gameBoard.length).toEqual(TOTAL_SPACES);
       expect(dataToSendFromCtx.activePlayersInGame.length).toEqual(2);
       expect(dataToSendFromCtx.winner).toEqual('');
     });

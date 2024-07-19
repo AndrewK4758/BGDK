@@ -2,8 +2,10 @@ import { Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
+import { Socket } from 'socket.io-client';
+import { Action, ActionType } from '../../hooks/socket-reducer';
 import { getGameInstanceInfo } from '../../services/utils/utils';
 
 const breakpointsResetGameButton: SxProps = {
@@ -17,14 +19,11 @@ const breakpointsResetGameButton: SxProps = {
 };
 
 interface ResetGameProps {
-  buttonPress: boolean;
-  setButtonPress: Dispatch<SetStateAction<boolean>>;
+  dispatch: Dispatch<Action>;
+  socket: Socket;
 }
 
-export default function ResetGame({
-  buttonPress,
-  setButtonPress,
-}: ResetGameProps) {
+export default function ResetGame({ dispatch, socket }: ResetGameProps) {
   const params = useParams();
   const id = params.id;
 
@@ -32,12 +31,8 @@ export default function ResetGame({
     const __baseURL__ = import.meta.env.VITE_REST_API_SERVER_URL;
     const __current_game__ = JSON.stringify(getGameInstanceInfo());
     try {
-      await axios.patch(
-        `${__baseURL__}/games/${id}/reset`,
-        {},
-        { headers: { 'current-game': __current_game__ } }
-      );
-      setButtonPress(!buttonPress);
+      await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, { headers: { 'current-game': __current_game__ } });
+      dispatch({ type: ActionType.RESET, socket: socket });
       return null;
     } catch (error) {
       console.log(error);
@@ -46,13 +41,8 @@ export default function ResetGame({
   };
 
   return (
-    <Button
-      onClick={handleResetGame}
-      variant="outlined"
-      type="button"
-      sx={breakpointsResetGameButton}
-    >
-      Reset{' '}
+    <Button onClick={handleResetGame} variant="outlined" type="button" sx={breakpointsResetGameButton}>
+      Reset
     </Button>
   );
 }
