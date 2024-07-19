@@ -59,7 +59,7 @@ export default function ActiveGameSession() {
   useEffect(() => {
     socket.emit('action', { action: ActionType.BOARD });
     socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
-      const gameBoard2: Built_GameBoard = [];
+      const gameBoardClient: Built_GameBoard = [];
       const maxRowLength = 10;
       let indexOfSpace = 1;
       let row: ILiteSpace[] = [];
@@ -69,7 +69,7 @@ export default function ActiveGameSession() {
 
         if (row.length === maxRowLength) {
           row = rowCount % 2 !== 0 ? row : row.reverse();
-          gameBoard2.push(row);
+          gameBoardClient.push(row);
           row = [];
         }
         indexOfSpace++;
@@ -77,12 +77,16 @@ export default function ActiveGameSession() {
 
       dispatch({
         type: ActionType.BOARD,
-        payload: { gameBoard: gameBoard2, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
+        payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
       });
     });
     socket.on('no-game-error', error => {
       console.log(error);
     });
+
+    return () => {
+      if (socket) socket.disconnect();
+    };
   }, [socket]);
 
   return (

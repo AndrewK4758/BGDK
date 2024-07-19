@@ -8,7 +8,7 @@ const registerPlayerAndAvatarAction: ActionFunction = async ({ request, params }
   const id = params.id;
   const __current_game__ = JSON.stringify(getGameInstanceInfo());
 
-  const data = await request.json();
+  const data: IRegisterFormValues = await request.json();
 
   const avatarName = data.avatarName;
   const playerName = data.playerName;

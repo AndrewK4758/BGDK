@@ -5,6 +5,7 @@ import RenderList from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
 import { ILiteSpace } from '@bgdk/types-game';
+import { CSSProperties } from 'react';
 
 /* eslint-disable-next-line */
 export interface GameBoardProps {
@@ -22,6 +23,8 @@ const breakpointsRowSx: SxProps = {
   flex: '1 0 10%',
   height: '5.4vh',
   border: `3px solid ${Theme.palette.success.main}`,
+  alignContent: 'center',
+  justifyContent: 'center',
   [Theme.breakpoints.down('laptop')]: {
     border: `1.5px solid ${Theme.palette.success.main}`,
   },
@@ -33,15 +36,26 @@ const breakpointsSpaceSx: SxProps = {
   },
 };
 
-// Explore best way to render game board with websocket
+const avatarSize: CSSProperties = {
+  width: '100%',
+  height: '100%',
+};
 
-const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => (
-  <Fragment key={e.display}>
-    <Grid sx={breakpointsRowSx}>
-      <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
-    </Grid>
-  </Fragment>
-);
+const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => {
+  console.log(e.display);
+  const DisplayValue = () => {
+    if (e.display.indexOf('g') === e.display.length - 1)
+      return <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />;
+    else return <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />;
+  };
+  return (
+    <Fragment key={e.display}>
+      <Grid sx={breakpointsRowSx}>
+        <DisplayValue />
+      </Grid>
+    </Fragment>
+  );
+};
 
 export function GameBoardMap({ row, columns, container, direction, wrap, id, gridSx }: GameBoardProps) {
   return (

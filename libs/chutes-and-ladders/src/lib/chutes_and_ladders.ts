@@ -1,4 +1,5 @@
 import { AvatarTotem, Color, GameBoard, IDie, ISpace, SpaceType } from '@bgdk/types-game';
+import AvatarTotems from './avatar-totems';
 import { Board } from './board';
 import { Die } from './die';
 import { LiteSpace } from './lite-space';
@@ -87,13 +88,11 @@ export class ChutesAndLadders {
   startSpace!: ISpace;
   colorList: typeof Color;
   avatarList: AvatarTotem[];
-
   /**
    *
    * @param {Number} chutes number of chutes
    * @param {Number} ladders number of ladders
    */
-
   constructor(chutes: number, ladders: number) {
     this.CHUTES = chutes;
     this.LADDERS = ladders;
@@ -102,12 +101,7 @@ export class ChutesAndLadders {
     this.MIN_PLAYERS = 2;
     this.makeGameBoard();
     this.colorList = Color;
-    this.avatarList = [
-      { id: 1, name: 'XENOMORPH' },
-      { id: 2, name: 'PREDATOR' },
-      { id: 3, name: 'TERMINATOR' },
-      { id: 4, name: 'ROBOCOP' },
-    ];
+    this.avatarList = AvatarTotems.totemsList;
   }
 
   spaceMaker = (indexOfSpace: number): ISpace => {
@@ -147,16 +141,34 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
+  addAvatarSvgToDisplay = (name: string) => {
+    switch (name) {
+      case AvatarTotems.totemsList[0].name:
+        return AvatarTotems.totemsList[0].image;
+      case AvatarTotems.totemsList[1].name:
+        return AvatarTotems.totemsList[1].image;
+      case AvatarTotems.totemsList[2].name:
+        return AvatarTotems.totemsList[2].image;
+      case AvatarTotems.totemsList[3].name:
+        return AvatarTotems.totemsList[3].image;
+      default:
+        throw Error('Avatar not in list');
+    }
+  };
   //firestore db deploy in firebase
 
   // socket.io will only accept string being sent on event handler, if object, recursion error
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: ISpace = this.startSpace;
-
+    let display;
     while (space) {
-      const display = space.occupied ? space.avatarsInSpace[0].name : space['display'];
-
+      if (space.occupied) {
+        console.log(space.avatarsInSpace[0].name);
+        display = this.addAvatarSvgToDisplay(space.avatarsInSpace[0].name);
+      } else {
+        display = space['display'];
+      }
       const liteSpace = LiteSpace.MakeSpace(display);
 
       gameBoard.push(liteSpace);

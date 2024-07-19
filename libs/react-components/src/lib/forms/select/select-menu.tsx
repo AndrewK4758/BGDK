@@ -16,10 +16,8 @@ interface IAvatarColorSelectValues {
   selectSx: SxProps;
 }
 
-export function SelectMenu({ label, mapCallback, labelSx, selectSx, ...props }: IAvatarColorSelectValues) {
+export function SelectMenu({ label, mapCallback, labelSx, selectSx, data, ...props }: IAvatarColorSelectValues) {
   const [field, meta] = useField(props);
-
-  const data = props.data;
 
   return (
     <>

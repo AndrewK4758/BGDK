@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   displayName: 'games-api-e2e',
-  preset: '../../jest.preset.js',
+  preset: '../../../jest.preset.js',
   globalSetup: '<rootDir>/src/support/global-setup.ts',
   globalTeardown: '<rootDir>/src/support/global-teardown.ts',
   setupFiles: ['<rootDir>/src/support/test-setup.ts'],
@@ -15,5 +15,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'js', 'html', 'mts'],
-  coverageDirectory: '../../coverage/games-api-e2e',
+  coverageDirectory: '../../../coverage/games-api/games-api-e2e',
 };

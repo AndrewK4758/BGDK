@@ -1,15 +1,19 @@
 import { SelectMenu, TextInput, Theme } from '@bgdk/react-components';
 import { AvatarTotem, Color, ILoadRegisterData } from '@bgdk/types-game';
-import { MenuItem, SxProps } from '@mui/material';
+import { SxProps } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { Form, Formik } from 'formik';
+import { CSSProperties } from 'react';
 import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 
 const breakpointsSelectMenuSxProps: SxProps = {
   color: Theme.palette.primary.main,
   backgroundColor: Theme.palette.info.main,
+  display: 'flex',
+  justifyContent: 'space-between',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
   },
@@ -64,6 +68,11 @@ const breakpointsFormContianer: SxProps = {
   },
 };
 
+const breakpointsAvatarPicture: CSSProperties = {
+  width: '64px',
+  height: '64px',
+};
+
 const avatarColorMap = (e: Color, i: number, arr: string[]) => (
   <MenuItem key={e} value={e} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e}
@@ -73,6 +82,7 @@ const avatarColorMap = (e: Color, i: number, arr: string[]) => (
 const avatarListMap = (e: AvatarTotem, i: number, arr: AvatarTotem[]) => (
   <MenuItem key={e.name} value={e.name} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e.name}
+    <img src={`./game-avatars/${e.image}`} alt={`${e.name} avatar`} style={breakpointsAvatarPicture} />
   </MenuItem>
 );
 
@@ -83,6 +93,7 @@ export default function RegisterPlayerAndAvatarForm() {
 
   const colors = Object.values(data.avatarColorList) as Color[];
   const avatars = data.avatarList as AvatarTotem[];
+
   const id = params.id;
 
   const validationSchema = Yup.object({

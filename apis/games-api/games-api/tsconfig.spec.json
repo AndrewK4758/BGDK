@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"],
     "esModuleInterop": true,
     "composite": true
@@ -12,16 +12,16 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../libs/**/*.ts",
+    "../../../libs/**/*.ts",
     "src/services/swagger/swagger-setup.ts",
     "src/main.ts"
   ],
   "exclude": [
-    "../../libs/react-components/**/*.ts",
-    "../../libs/**/*.spec.ts",
-    "../../libs/**/*.test.ts",
-    "../../libs/**/*.jest.config.ts",
-    "../../libs/**/*.json",
-    "../../libs/**/*.md"
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*.test.ts",
+    "../../../libs/**/*.jest.config.ts",
+    "../../../libs/**/*.json",
+    "../../../libs/**/*.md"
   ]
 }

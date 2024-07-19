@@ -44,6 +44,7 @@ export type Built_GameBoard = GameBoard[];
 export type AvatarTotem = {
   id: number;
   name: string;
+  image: string;
 };
 
 export type Minute = number;
@@ -77,6 +78,7 @@ export interface IRegisterFormValues {
   playerName: string;
   avatarName: string;
   avatarColor: Color;
+  avatarImage?: string;
 }
 
 export interface IActivePlayersInGame {

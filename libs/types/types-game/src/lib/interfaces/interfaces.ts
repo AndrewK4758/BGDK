@@ -1,5 +1,6 @@
 import { Color, SpaceType } from '../types/game';
 
+
 export interface IPlayer {
   Name: string;
   Id: string;

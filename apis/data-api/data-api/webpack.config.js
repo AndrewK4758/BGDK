@@ -3,18 +3,20 @@ const { join } = require('path');
 
 module.exports = {
   output: {
-    path: join(__dirname, '../../dist/apis/games-api'),
+    path: join(__dirname, '../../../dist/apis/data-api'),
   },
-  target: 'async-node',
   plugins: [
     new NxAppWebpackPlugin({
+      target: 'node',
       compiler: 'tsc',
       main: './src/main.ts',
       tsConfig: './tsconfig.app.json',
       assets: ['./src/assets'],
-      outputHashing: false,
+      optimization: false,
+      outputHashing: 'none',
       progress: true,
       watch: true,
+      verbose: true,
     }),
   ],
 };
