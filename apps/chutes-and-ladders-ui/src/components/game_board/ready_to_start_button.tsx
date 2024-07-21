@@ -9,6 +9,7 @@ import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
 
+
 const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
   justifyItems: 'center',

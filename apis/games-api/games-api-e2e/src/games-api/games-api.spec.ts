@@ -59,11 +59,13 @@ describe('Games api test wrapper', () => {
         let name;
         for (let i = 1; i < 3; i++) {
           name = i === 1 ? 'XENOMORPH' : 'PREDATOR';
+
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/register',
             {
               playerName: `Player ${i}`,
               avatarName: name,
+
               avatarColor: Color.BLACK,
             },
             { headers: { 'current-game': JSON.stringify(__current_game__) } },

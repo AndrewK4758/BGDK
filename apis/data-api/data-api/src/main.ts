@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 });
 
 const port = process.env.PORT || 4444;
+
 const server = httpServer.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api/v1`);
 });

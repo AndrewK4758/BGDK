@@ -27,6 +27,7 @@
         "production": {
           "watch": false,
           "generatePackageJson": true
+
         }
       }
     },

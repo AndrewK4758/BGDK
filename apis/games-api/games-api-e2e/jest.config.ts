@@ -16,4 +16,6 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html', 'mts'],
   coverageDirectory: '../../../coverage/games-api/games-api/games-api-e2e',
+=======
+
 };
