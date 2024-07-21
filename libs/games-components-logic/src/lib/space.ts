@@ -1,17 +1,19 @@
-import { SpaceType, IAvatar, ISpace } from '@bgdk/types-game';
+import { SpaceType } from '@bgdk/types-game';
+import { ISpace } from '../interfaces/space';
+import { Avatar } from '../lib/avatar';
 
 export class Space implements ISpace {
   Value: string;
   Type: SpaceType;
-  Previous!: ISpace;
-  Next!: ISpace;
-  Special: ISpace | null;
-  AvatarsInSpace: IAvatar[];
+  Previous!: Space;
+  Next!: Space;
+  Special: Space | null;
+  AvatarsInSpace: Avatar[];
   Display: string;
 
   constructor(spaceType: SpaceType, spaceValue: string | number) {
     this.Type = spaceType;
-    this.Value = String(spaceValue);
+    this.Value = String(spaceValue) as string;
     this.Special = null;
     this.AvatarsInSpace = [];
     this.Display = String(this.Value);
@@ -25,27 +27,27 @@ export class Space implements ISpace {
     return this.Type;
   }
 
-  get previous(): ISpace {
+  get previous(): Space {
     return this.Previous;
   }
 
-  set previous(previous: ISpace) {
+  set previous(previous: Space) {
     this.Previous = previous;
   }
 
-  get next(): ISpace {
+  get next(): Space {
     return this.Next;
   }
 
-  set next(next: ISpace) {
+  set next(next: Space) {
     this.Next = next;
   }
 
-  get special(): ISpace | null {
+  get special(): Space | null {
     return this.Special;
   }
 
-  set special(special: ISpace) {
+  set special(special: Space) {
     this.Special = special;
   }
 
@@ -65,7 +67,7 @@ export class Space implements ISpace {
     this.Display = String(displayToken);
   }
 
-  land(avatar: IAvatar): void {
+  land(avatar: Avatar): void {
     this.ifOccupied();
     if (this.special) {
       this.special.land(avatar);

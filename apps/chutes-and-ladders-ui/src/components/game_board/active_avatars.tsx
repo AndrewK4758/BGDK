@@ -1,4 +1,4 @@
-import { Player } from '@bgdk/chutes-and-ladders';
+import { Player } from '@bgdk/games-components-logic';
 import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
 import { IRegisterFormValues } from '@bgdk/types-game';
 import { Box, SxProps } from '@mui/material';

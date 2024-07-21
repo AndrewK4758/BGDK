@@ -24,6 +24,7 @@
       "@bgdk/de-referencing-utilities": ["libs/models/de-referencing-utilities/src/index.ts"],
       "@bgdk/game": ["libs/game/src/index.ts"],
       "@bgdk/game-builder": ["libs/models/game-builder/src/index.ts"],
+      "@bgdk/games-components-logic": ["libs/games-components-logic/src/index.ts"],
       "@bgdk/instance-of-game": ["libs/models/instance-of-game/src/index.ts"],
       "@bgdk/react-components": ["libs/react-components/src/index.ts"],
       "@bgdk/rule": ["libs/models/rule/src/index.ts"],

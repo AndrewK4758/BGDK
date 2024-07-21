@@ -1,8 +1,8 @@
-import { ISpace, SpaceType } from '@bgdk/types-game';
+import { SpaceType } from '@bgdk/types-game';
 import { Board } from '../lib/board';
 import { Space } from '../lib/space';
 
-let space: ISpace;
+let space: Space;
 
 describe('Test connection of spaces within the boardSetup method', () => {
   beforeEach(() => {

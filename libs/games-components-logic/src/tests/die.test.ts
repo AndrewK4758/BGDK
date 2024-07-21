@@ -1,7 +1,6 @@
-import { IDie } from '@bgdk/types-game';
 import { Die } from '../lib/die';
 
-let D1: IDie, D2: IDie, D1_Sides: number, D2_Sides: number, minSideValue: number, max: number, min: number;
+let D1: Die, D2: Die, D1_Sides: number, D2_Sides: number, minSideValue: number, max: number, min: number;
 describe('Test funcntionality of Die Class', () => {
   beforeEach(() => {
     D1 = new Die(6);

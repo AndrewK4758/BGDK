@@ -1,13 +1,13 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { IPlayer } from '@bgdk/types-game';
+import { Player } from '@bgdk/games-components-logic';
 
-export interface IGame{
-  instance: ChutesAndLadders ;
-  playersArray: IPlayer[];
-  playerInTurn: IPlayer;
+export interface IGame {
+  instance: ChutesAndLadders;
+  playersArray: Player[];
+  playerInTurn: Player;
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
-  MIN_PLAYERS: number,
-  MAX_PLAYERS: number
+  MIN_PLAYERS: number;
+  MAX_PLAYERS: number;
 }

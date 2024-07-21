@@ -1,8 +1,9 @@
-import { ChutesAndLadders, Space } from '@bgdk/chutes-and-ladders';
-import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { Color, SpaceType } from '@bgdk/types-game';
 import { Game } from '../lib/game';
+import { Player, Space } from '@bgdk/games-components-logic';
 
-let game: Game, instance: ChutesAndLadders, playerInTurn: IPlayer;
+let game: Game, instance: ChutesAndLadders, playerInTurn: Player;
 
 describe('Test the game class', () => {
   beforeAll(() => {
@@ -43,7 +44,7 @@ describe('Test the game class', () => {
     });
 
     it('should change the current player prop to 1 index in player array', () => {
-      const p2: IPlayer = game.playersArray[1];
+      const p2: Player = game.playersArray[1];
 
       expect(game.playerInTurn).toEqual(playerInTurn);
 

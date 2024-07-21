@@ -1,5 +1,6 @@
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
-import { GameBoard, ILiteSpace, Built_GameBoard } from '@bgdk/types-game';
+import { GameBoard, ILiteSpace } from '@bgdk/games-components-logic';
+import { Built_GameBoard } from '../../pages/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';

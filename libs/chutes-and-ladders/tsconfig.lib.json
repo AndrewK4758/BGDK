@@ -3,9 +3,12 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "vite/client"],
-    "composite": true
+    "composite": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ESNext"
   },
-  "include": ["src/**/*.ts", "../types/types-game/**/*.ts"],
+  "include": ["src/**/*.ts", "../types/types-game/**/*.ts", "../game-components-logic/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",

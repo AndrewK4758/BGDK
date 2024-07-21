@@ -1,18 +1,17 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, ILoadRegisterData } from '@bgdk/types-game';
-import {
-  mockGameWithPlayersAdded,
-  mockReqObj,
-  mockRespObj,
-} from '__mocks__/mocks';
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { Game } from '@bgdk/game';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { loadRegister, sendLoadRegister } from '../index';
 
-let ctx: Context, game: IInstanceOfGame;
+let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders;
 describe('test load register chain', () => {
-  beforeAll(() => {
-    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
+  beforeEach(() => {
+    instance = new ChutesAndLadders(5, 5);
+    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(instance));
+
     ctx = ContextBuilder.build();
 
     ctx.put(GameContextKeys.ACTION, 'load-register');
@@ -22,8 +21,11 @@ describe('test load register chain', () => {
     ctx.put(GameContextKeys.OUTPUT, {});
     ctx.put(GameContextKeys.GAME, game);
   });
+
+  afterEach(() => ctx.state.clear());
+
   afterAll(() => {
-    ctx.state.clear();
+    jest.clearAllMocks();
   });
   describe('test the load-register endpoint chain', () => {
     it('should add avatar list and color list to context object', () => {

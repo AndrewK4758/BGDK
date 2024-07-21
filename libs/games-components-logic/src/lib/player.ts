@@ -1,10 +1,11 @@
-import { IAvatar, IPlayer } from '@bgdk/types-game';
+import { IPlayer } from '../interfaces/player';
+import { Avatar } from './avatar';
 
 export class Player implements IPlayer {
   Id: string;
   Name: string;
   Order!: number;
-  Avatar!: IAvatar;
+  Avatar!: Avatar;
   constructor(name: string, id: string) {
     this.Name = name;
     this.Id = id;
@@ -26,11 +27,11 @@ export class Player implements IPlayer {
     this.Order = order;
   }
 
-  get avatar(): IAvatar {
+  get avatar(): Avatar {
     return this.Avatar;
   }
 
-  set avatar(avatar: IAvatar) {
+  set avatar(avatar: Avatar) {
     this.Avatar = avatar;
   }
 }

@@ -1,4 +1,5 @@
-import { GameBoard, SpaceType } from '@bgdk/types-game';
+import { SpaceType } from '@bgdk/types-game';
+import { GameBoard } from '@bgdk/games-components-logic';
 import {
   ChutesAndLadders,
   MAX_SPECIAL_DISTANCE,
@@ -6,7 +7,7 @@ import {
   TOTAL_SPACES,
   uniqueSpecialValues,
 } from '../lib/chutes_and_ladders.js';
-import { Space } from '../lib/space';
+import { Space } from '@bgdk/games-components-logic';
 
 let game: ChutesAndLadders;
 
@@ -14,6 +15,8 @@ describe('Test connectivity of spaces within Board', () => {
   beforeAll(() => {
     game = new ChutesAndLadders(5, 5);
   });
+
+  afterAll(() => jest.clearAllMocks());
 
   describe('test constants in chutes and ladders instance', () => {
     it('should test min, max players and max special distance', () => {

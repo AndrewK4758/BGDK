@@ -1,6 +1,7 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { getCurrentMinute, IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys } from '@bgdk/types-game';
+import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
+import { Game } from '@bgdk/game';
+import { GameContextKeys, Color } from '@bgdk/types-game';
 import {
   createPlayerID,
   filterAvatar,
@@ -9,15 +10,15 @@ import {
   registerOnGameInstance,
   updateLastActive,
 } from '../index';
-
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { mockMakeGame, mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 
-let ctx: Context, game: IInstanceOfGame;
+let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders;
 
 describe('test register chain', () => {
-  beforeAll(() => {
-    game = mockMakeGame(new ChutesAndLadders(5, 5));
+  beforeEach(() => {
+    instance = new ChutesAndLadders(5, 5);
+    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(instance));
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.REQUEST, mockReqObj);
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
@@ -25,8 +26,11 @@ describe('test register chain', () => {
     ctx.put(GameContextKeys.NEXT, '');
     ctx.put(GameContextKeys.GAME, game);
   });
+
+  afterEach(() => ctx.state.clear());
+
   afterAll(() => {
-    ctx.state.clear();
+    jest.clearAllMocks();
   });
   describe('register chain test', () => {
     it('should return true for register action', () => {
@@ -54,8 +58,8 @@ describe('test register chain', () => {
     });
 
     it('should filter avatar selected from player selection', () => {
+      game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
       ctx.put(GameContextKeys.NEXT, 'filter-avatar');
-      registerOnGameInstance.execute(ctx);
 
       const commandResult = filterAvatar.execute(ctx);
       expect(commandResult).toBeTruthy();

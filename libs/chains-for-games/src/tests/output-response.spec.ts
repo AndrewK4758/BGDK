@@ -7,12 +7,13 @@ let ctx: Context, output: ITestCtxOutput;
 
 describe('test output response chain', () => {
   beforeAll(() => {
+    jest.clearAllMocks();
     ctx = ContextBuilder.build();
     output = { message: 'output to client as json' } as ITestCtxOutput;
     ctx.put(GameContextKeys.RESPONSE, mockRespObj);
   });
   afterAll(() => {
-    ctx.state.clear();
+    jest.clearAllMocks();
   });
   describe('adds out prop of context obj to response obj', () => {
     it('should put the value of the out property on the context object onto the response object to send to client', () => {

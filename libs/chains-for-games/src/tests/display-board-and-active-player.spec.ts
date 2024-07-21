@@ -1,15 +1,21 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys, IPlayersAndBoard, IRegisterFormValues } from '@bgdk/types-game';
+import { IPlayersAndBoard } from '../index';
+import { Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
 import { activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
-
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { Game } from '@bgdk/game';
 import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
-import { mockGameWithPlayersAdded, mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 
-let ctx: Context, game: IInstanceOfGame;
+let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders;
 describe('test display board and active player chain', () => {
-  beforeAll(() => {
-    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
+  beforeEach(() => {
+    instance = new ChutesAndLadders(5, 5);
+    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(instance));
+
+    game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+    game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
     ctx = ContextBuilder.build();
 
     ctx.put(GameContextKeys.ACTION, 'board');
@@ -18,8 +24,12 @@ describe('test display board and active player chain', () => {
     ctx.put(GameContextKeys.GAME, game);
   });
 
-  afterAll(() => {
+  afterEach(() => {
     ctx.state.clear();
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   it('should return all players registered in the game instance', () => {
@@ -50,6 +60,28 @@ describe('test display board and active player chain', () => {
 
     it('should add all data necessary to show active game details to context object', () => {
       ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
+
+      const playerInTurn = game.instance.readyToPlay
+        ? game.instance.playerInTurn.avatar.name
+        : 'Waiting for game to start';
+
+      const activePlayersInGame: IRegisterFormValues[] = [
+        {
+          playerName: game.instance.playersArray[0].name,
+          avatarName: game.instance.playersArray[0].avatar.name,
+          avatarColor: game.instance.playersArray[0].avatar.color,
+        },
+        {
+          playerName: game.instance.playersArray[1].name,
+          avatarName: game.instance.playersArray[1].avatar.name,
+          avatarColor: game.instance.playersArray[1].avatar.color,
+        },
+      ];
+
+      ctx.put('active-players-in-game', activePlayersInGame);
+      ctx.put('player-in-turn', playerInTurn);
+      ctx.put('winner-message', '');
+
       const commandResult = activeDataToSend.execute(ctx);
 
       const dataToSendFromCtx = ctx.get(GameContextKeys.OUTPUT) as IPlayersAndBoard;

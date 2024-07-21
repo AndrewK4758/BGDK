@@ -1,6 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID, IPlayer } from '@bgdk/types-game';
+import { GameContextKeys, GameInstanceID, TurnStatus } from '@bgdk/types-game';
+import { Player } from '@bgdk/games-components-logic';
 
 export const startGame = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'start') {
@@ -21,7 +22,7 @@ export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
       return true;
     } else {
       context.put(GameContextKeys.OUTPUT, {
-        gameStatus: 'Game Not Ready to Start',
+        gameStatus: TurnStatus.NOT_READY,
       });
       return false;
     }
@@ -36,7 +37,7 @@ export const setAvatarsOnStart = CommandBuilder.build((context: Context) => {
   ) {
     const { game } = deRefContextObject(context);
 
-    game.instance.playersArray.forEach((p: IPlayer, i: number) => {
+    game.instance.playersArray.forEach((p: Player, i: number) => {
       if (p.avatar.location) p.avatar.location.leave();
       else p.order = i + 1;
       game.instance.instance.startSpace.land(p.avatar);

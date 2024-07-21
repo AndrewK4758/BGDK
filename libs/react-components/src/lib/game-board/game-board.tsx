@@ -4,7 +4,7 @@ import { Fragment } from 'react/jsx-runtime';
 import RenderList from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
-import { ILiteSpace } from '@bgdk/types-game';
+import { ILiteSpace } from '@bgdk/games-components-logic';
 import { CSSProperties } from 'react';
 
 /* eslint-disable-next-line */

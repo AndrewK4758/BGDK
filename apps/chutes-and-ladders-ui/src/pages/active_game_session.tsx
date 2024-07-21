@@ -1,6 +1,7 @@
-import { rowFinder } from '@bgdk/chutes-and-ladders';
+import { IPlayersAndBoard } from '@bgdk/chains-for-games';
+import { GameBoard, ILiteSpace, rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
-import { Built_GameBoard, IActiveGameInfo, ILiteSpace, IPlayersAndBoard } from '@bgdk/types-game';
+import { IActivePlayersInGame } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -10,8 +11,8 @@ import ActiveAvatars from '../components/game_board/active_avatars';
 import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
 import ShowGameBoard from '../components/game_board/show_game_board';
-import TakeTurn from '../components/game_board/take_turn';
 import socketReducer, { ActionType } from '../components/game_board/socket-reducer';
+import TakeTurn from '../components/game_board/take_turn';
 import { getGameInstanceInfo } from '../services/utils/utils';
 import ClientSocket from '../services/utils/web-socket/socket-instance';
 
@@ -36,6 +37,12 @@ const breakpointsBottomMenuButtonsBox: SxProps = {
     flexDirection: 'column',
   },
 };
+
+export type Built_GameBoard = GameBoard[];
+
+export interface IActiveGameInfo extends IActivePlayersInGame {
+  gameBoard: Built_GameBoard;
+}
 
 const socketInit = () => {
   return { gameBoard: [[]], activePlayersInGame: [], avatarInTurn: '', winner: '' } as IActiveGameInfo;

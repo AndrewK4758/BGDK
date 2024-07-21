@@ -1,5 +1,3 @@
-import { ILiteSpace } from '../interfaces/interfaces';
-
 export enum Color {
   RED = 'Red',
   WHITE = 'White',
@@ -37,9 +35,6 @@ export enum TurnStatus {
   NOT_READY = 'GAME NOT READY',
   GAME_WON = 'GAME WON',
 }
-
-export type GameBoard = ILiteSpace[];
-export type Built_GameBoard = GameBoard[];
 
 export type AvatarTotem = {
   id: number;
@@ -85,14 +80,6 @@ export interface IActivePlayersInGame {
   activePlayersInGame: IRegisterFormValues[];
   avatarInTurn?: string;
   winner?: string;
-}
-
-export interface IActiveGameInfo extends IActivePlayersInGame {
-  gameBoard: Built_GameBoard;
-}
-
-export interface IPlayersAndBoard extends IActivePlayersInGame {
-  gameBoard: GameBoard;
 }
 
 export interface ITestCtxOutput {

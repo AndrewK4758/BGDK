@@ -1,4 +1,4 @@
-import { IActiveGameInfo } from '@bgdk/types-game';
+import { IActiveGameInfo } from '../pages/active_game_session';
 import { Socket } from 'socket.io-client';
 
 export enum ActionType {

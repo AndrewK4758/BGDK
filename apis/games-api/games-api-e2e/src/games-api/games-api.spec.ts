@@ -1,21 +1,13 @@
-import {
-  Color,
-  AvatarTotem,
-  GamePlayerValidation,
-  IPlayersAndBoard,
-  GameInstanceID,
-  PlayerID,
-  TurnStatus,
-} from '@bgdk/types-game';
+import { Color, AvatarTotem, GamePlayerValidation, GameInstanceID, PlayerID, TurnStatus } from '@bgdk/types-game';
 import { IBuiltGame } from '@bgdk/game-builder';
+import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];
 
 describe('Games api test wrapper', () => {
   afterAll(() => {
-    __current_game__ = {};
-    playerIDs = [];
+    jest.clearAllMocks();
   });
   describe('GET Games ', () => {
     it("should return an array of games names and id's", async () => {

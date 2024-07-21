@@ -1,4 +1,3 @@
-import { IDie } from '@bgdk/types-game';
 import { Die } from '../lib/die';
 import {
   generateRandomNumber,
@@ -10,8 +9,8 @@ import {
   rollSingleDiceMultipleTimesAndSum,
 } from '../lib/utils';
 
-let D1: IDie,
-  D2: IDie,
+let D1: Die,
+  D2: Die,
   D1_Sides: number,
   D2_Sides: number,
   max: number,

@@ -1,29 +1,24 @@
-import {
-  Avatar,
-  ChutesAndLadders,
-  Player,
-  generateRandomNumber,
-} from '@bgdk/chutes-and-ladders';
-import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { Avatar, generateRandomNumber, Player } from '@bgdk/games-components-logic';
+import { Color, SpaceType } from '@bgdk/types-game';
 import { IGame } from '../interfaces/interfaces';
 
 export class Game implements IGame {
   game: ChutesAndLadders;
-  playersArray: IPlayer[];
-  playerInTurn!: IPlayer;
+  playersArray: Player[];
+  playerInTurn!: Player;
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
   MIN_PLAYERS!: number;
   MAX_PLAYERS!: number;
   constructor(instance: ChutesAndLadders) {
-    this.game = instance
+    this.game = instance;
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
     this.currentPlayer = 0;
-    this.MAX_PLAYERS = this.game.MAX_PLAYERS,
-    this.MIN_PLAYERS = this.game.MIN_PLAYERS
+    (this.MAX_PLAYERS = this.game.MAX_PLAYERS), (this.MIN_PLAYERS = this.game.MIN_PLAYERS);
   }
 
   get instance() {
@@ -37,7 +32,7 @@ export class Game implements IGame {
     this.generatePlayerOrder(player);
   }
 
-  generatePlayerOrder(player: IPlayer) {
+  generatePlayerOrder(player: Player) {
     const unshiftOrPush = generateRandomNumber(2);
     if (unshiftOrPush === 1) this.playersArray.push(player);
     if (unshiftOrPush === 2) this.playersArray.unshift(player);
@@ -45,9 +40,7 @@ export class Game implements IGame {
 
   verifyReadyToPlay() {
     return (this.readyToPlay =
-      this.playersArray.length >= this.MIN_PLAYERS && this.playersArray.length <= this.MAX_PLAYERS
-        ? true
-        : false);
+      this.playersArray.length >= this.MIN_PLAYERS && this.playersArray.length <= this.MAX_PLAYERS ? true : false);
   }
 
   rotatePlayers() {

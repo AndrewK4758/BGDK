@@ -1,4 +1,4 @@
-import { ILiteSpace } from '@bgdk/types-game';
+import { ILiteSpace } from '../interfaces/lite-space';
 
 export class LiteSpace implements ILiteSpace {
   display: string;

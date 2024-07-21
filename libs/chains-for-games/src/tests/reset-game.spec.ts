@@ -1,38 +1,47 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { IGame } from '@bgdk/game';
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameBoard, GameContextKeys, IPlayer } from '@bgdk/types-game';
-import { mockGameWithPlayersAdded } from '__mocks__/mocks';
+import { Game } from '@bgdk/game';
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameContextKeys, Color } from '@bgdk/types-game';
 import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
+import { GameBoard, Player } from '@bgdk/games-components-logic';
 
-let ctx: Context, game: IInstanceOfGame, player1: IPlayer, player2: IPlayer;
+let ctx: Context,
+  instanceOfGame: InstanceOfGame,
+  player1: Player,
+  player2: Player,
+  instance: ChutesAndLadders,
+  game: Game;
 describe('test reset game chain', () => {
   beforeAll(() => {
-    game = mockGameWithPlayersAdded(new ChutesAndLadders(5, 5));
-    ctx = ContextBuilder.build();
+    instance = new ChutesAndLadders(5, 5);
+    game = new Game(instance);
+    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
+    instanceOfGame.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+    instanceOfGame.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
 
-    player1 = game.instance.playersArray[0];
-    player2 = game.instance.playersArray[1];
+    player1 = instanceOfGame.instance.playersArray[0];
+    player2 = instanceOfGame.instance.playersArray[1];
+
+    instanceOfGame.instance.instance.startSpace.land(player1.avatar);
+    instanceOfGame.instance.instance.startSpace.land(player2.avatar);
 
     player1.avatar.move(1);
     player2.avatar.move(2);
 
+    ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, 'reset');
-    ctx.put(GameContextKeys.GAME, game);
+    ctx.put(GameContextKeys.GAME, instanceOfGame);
   });
+
   afterAll(() => {
-    ctx.state.clear();
+    jest.clearAllMocks();
   });
+
   describe('it should reset game', () => {
     it('should show start space as empty then return both players to startspace', () => {
-      expect(game.instance.instance.startSpace.occupied).toBeFalsy();
-
-      if (!game.instance.instance.startSpace.next.special && !game.instance.instance.startSpace.next.next.special) {
-        expect(game.instance.instance.startSpace.next.avatarsInSpace[0].name).toBe('XENOMORPH');
-        expect(game.instance.instance.startSpace.next.next.avatarsInSpace[0].name).toBe('PREDATOR');
-      }
+      expect(instanceOfGame.instance.instance.startSpace.occupied).toBeFalsy();
 
       const commandResult = resetGame.execute(ctx);
 
@@ -45,7 +54,7 @@ describe('test reset game chain', () => {
       const commandResult = flipHaveWinnerFlag.execute(ctx);
 
       expect(commandResult).toBeTruthy();
-      expect((ctx.get(GameContextKeys.GAME) as IGame).haveWinner).toBeFalsy();
+      expect((ctx.get(GameContextKeys.GAME) as Game).haveWinner).toBeFalsy();
     });
 
     it('should make new gameboard and send to start game chain', () => {

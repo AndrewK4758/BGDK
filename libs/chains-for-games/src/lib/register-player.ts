@@ -32,8 +32,7 @@ export const registerOnGameInstance = CommandBuilder.build(
     ) {
       const { req, game } = deRefContextObject(context);
 
-      const { playerName, avatarName, avatarColor } =
-        req.body as IRegisterFormValues;
+      const { playerName, avatarName, avatarColor } = req.body as IRegisterFormValues;
 
       context.put('avatarName', avatarName);
       const playerID = context.get('playerID') as PlayerID;

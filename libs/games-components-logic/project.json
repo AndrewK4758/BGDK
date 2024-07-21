@@ -1,0 +1,19 @@
+{
+  "name": "games-components-logic",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/games-components-logic/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/games-components-logic",
+        "main": "libs/games-components-logic/src/index.ts",
+        "tsConfig": "libs/games-components-logic/tsconfig.lib.json",
+        "assets": ["libs/games-components-logic/*.md"]
+      }
+    }
+  }
+}

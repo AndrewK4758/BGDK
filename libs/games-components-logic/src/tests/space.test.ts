@@ -1,21 +1,21 @@
-import { Color, IAvatar, ISpace, SpaceType } from '@bgdk/types-game';
 import { Avatar } from '../lib/avatar';
 import { Space } from '../lib/space';
+import { SpaceType, Color } from '@bgdk/types-game';
 
 // Setup of spaces & avatars
-let s1: ISpace,
-  Ladder: ISpace,
-  s3: ISpace,
-  s4: ISpace,
-  s5: ISpace,
-  s6: ISpace,
-  s7: ISpace,
-  s8: ISpace,
-  Chute: ISpace,
-  s10: ISpace,
-  avatar1: IAvatar,
-  avatar2: IAvatar,
-  cur: ISpace;
+let s1: Space,
+  Ladder: Space,
+  s3: Space,
+  s4: Space,
+  s5: Space,
+  s6: Space,
+  s7: Space,
+  s8: Space,
+  Chute: Space,
+  s10: Space,
+  avatar1: Avatar,
+  avatar2: Avatar,
+  cur: Space;
 
 describe('Run all Space tests', () => {
   beforeEach(() => {

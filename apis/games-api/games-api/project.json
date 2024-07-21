@@ -23,7 +23,9 @@
         "watch": true
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "watch": true
+        },
         "production": {
           "watch": false
         }

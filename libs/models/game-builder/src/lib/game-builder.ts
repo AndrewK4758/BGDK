@@ -1,5 +1,5 @@
 import { Chain, ChainBuilder, Command } from '@bgdk/chain';
-import { IRule, Rule } from '@bgdk/rule';
+import { Rule, IRule } from '@bgdk/rule';
 
 export interface IBuiltGame {
   id: string;

@@ -1,4 +1,5 @@
-import { IDie, ISummedRoll } from '@bgdk/types-game';
+import { IDie } from '../interfaces/die';
+import { ISummedRoll } from '../interfaces/summed-roll';
 
 export const generateRandomNumber = (upperBound: number): number => {
   return Math.floor(Math.random() * upperBound) + 1;
