@@ -24,11 +24,12 @@ app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send({ message: 'Welcome to data-api!' });
 });
 
-const port = process.env.PORT || 3333;
+const port = process.env.PORT || 4444;
+
 const server = httpServer.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api/v1`);
 });

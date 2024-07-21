@@ -19,14 +19,15 @@
         "webpackConfig": "apis/games-api/games-api/webpack.config.js",
         "deleteOutputPath": true,
         "progress": true,
-        "verbose": true
+        "verbose": true,
+        "watch": true
       },
       "configurations": {
-        "development": {
-          "watch": true
-        },
+        "development": {},
         "production": {
-          "watch": false
+          "watch": false,
+          "generatePackageJson": true
+
         }
       }
     },

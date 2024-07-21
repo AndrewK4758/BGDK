@@ -9,13 +9,14 @@ import { ChutesAndLaddersGame } from './list-games';
 
 const performAction = (req: IReqObjMaps, resp: Response, gameWS: InstanceOfGame, actionWS: string) => {
   console.log('Perform Action Called');
-  if (actionWS) {
+  if (!req && !resp) {
+
     if (gameWS) {
       const ctx = ContextBuilder.build();
       ctx.put(GameContextKeys.ACTION, actionWS);
       ctx.put(GameContextKeys.IO, SocketServer.instance.io);
       ctx.put(GameContextKeys.GAME, gameWS);
-      
+
       ChutesAndLaddersGame.chain.execute(ctx);
     } else {
       SocketServer.instance.io.emit('no-game-error', 'GAME NOT FOUND');
@@ -32,7 +33,7 @@ const performAction = (req: IReqObjMaps, resp: Response, gameWS: InstanceOfGame,
       ctx.put(GameContextKeys.REQUEST, req);
       ctx.put(GameContextKeys.RESPONSE, resp);
       ctx.put(GameContextKeys.NEXT, '');
-      
+
       ChutesAndLaddersGame.chain.execute(ctx);
     } else {
       resp.sendStatus(404);

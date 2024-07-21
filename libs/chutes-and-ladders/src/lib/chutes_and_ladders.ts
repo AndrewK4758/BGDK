@@ -164,7 +164,6 @@ export class ChutesAndLadders {
     let display;
     while (space) {
       if (space.occupied) {
-        console.log(space.avatarsInSpace[0].name);
         display = this.addAvatarSvgToDisplay(space.avatarsInSpace[0].name);
       } else {
         display = space['display'];
