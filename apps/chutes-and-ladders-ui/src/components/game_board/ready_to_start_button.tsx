@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { getGameInstanceInfo } from '../../services/utils/utils';
 import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
-import { Action, ActionType } from '../../hooks/socket-reducer';
+import { Action, ActionType } from './socket-reducer';
 
 const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',

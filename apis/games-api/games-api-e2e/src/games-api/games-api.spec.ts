@@ -56,12 +56,14 @@ describe('Games api test wrapper', () => {
     describe('PATCH Formik form submission to register player/avatar', () => {
       playerIDs = [];
       it('Should return status of 200 and update players array', async () => {
+        let name;
         for (let i = 1; i < 3; i++) {
+          name = i === 1 ? 'XENOMORPH' : 'PREDATOR';
           const resp = await axios.patch(
             '/games/Chutes-&-Ladders/register',
             {
               playerName: `Player ${i}`,
-              avatarName: `Avatar ${i}`,
+              avatarName: name,
               avatarColor: Color.BLACK,
             },
             { headers: { 'current-game': JSON.stringify(__current_game__) } },

@@ -1,9 +1,8 @@
 import { ChutesAndLadders, Space } from '@bgdk/chutes-and-ladders';
 import { Color, IPlayer, SpaceType } from '@bgdk/types-game';
-import { IGame } from '../interfaces/interfaces';
 import { Game } from '../lib/game';
 
-let game: IGame, instance: ChutesAndLadders, playerInTurn: IPlayer;
+let game: Game, instance: ChutesAndLadders, playerInTurn: IPlayer;
 
 describe('Test the game class', () => {
   beforeAll(() => {

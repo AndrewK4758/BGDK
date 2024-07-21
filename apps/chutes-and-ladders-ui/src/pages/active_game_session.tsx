@@ -11,7 +11,7 @@ import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
 import ShowGameBoard from '../components/game_board/show_game_board';
 import TakeTurn from '../components/game_board/take_turn';
-import socketReducer, { ActionType } from '../hooks/socket-reducer';
+import socketReducer, { ActionType } from '../components/game_board/socket-reducer';
 import { getGameInstanceInfo } from '../services/utils/utils';
 import ClientSocket from '../services/utils/web-socket/socket-instance';
 

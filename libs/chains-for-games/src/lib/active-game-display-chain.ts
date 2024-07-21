@@ -83,15 +83,12 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
       winner: context.get('winner-message') as string,
     };
 
-    if (io) {
+    if (!resp) {
       console.log('In io.emit event handler');
       io.to(game.gameInstanceID).emit('game-data', activeDataToSend);
       return false;
     } else {
-      resp.setHeader(
-        'current-game',
-        req.header('current-game') as GameInstanceID
-      );
+      resp.setHeader('current-game', req.header('current-game') as GameInstanceID);
       context.put(GameContextKeys.OUTPUT, activeDataToSend);
       return true;
     }
