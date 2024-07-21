@@ -25,9 +25,7 @@
       "configurations": {
         "development": {},
         "production": {
-          "watch": false,
-          "generatePackageJson": true
-
+          "watch": false
         }
       }
     },

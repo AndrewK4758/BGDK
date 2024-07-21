@@ -12,7 +12,7 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/__mocks__/mocks.ts"]
+    "sharedGlobals": ["{workspaceRoot}/__mocks__/mocks.ts", "{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
     {

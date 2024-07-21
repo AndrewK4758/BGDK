@@ -15,5 +15,5 @@ const sendGameList = async (req: Request, resp: Response) => {
 
   resp.status(200).json(gamesToSend);
 };
-
+ 
 export default sendGameList;
