@@ -4,7 +4,8 @@
   "plugins": ["@nx"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.json"],
+      "parser": "jsonc-eslint-parser",
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -18,7 +19,8 @@
               }
             ]
           }
-        ]
+        ],
+        "@nx/dependency-checks": "error"
       }
     },
     {

@@ -1,7 +1,10 @@
 {
   "name": "@bgdk/game-builder",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@bgdk/chain": "0.0.1",
+    "@bgdk/rule": "0.0.1"
+  },
   "main": "./index.js",
   "module": "./index.mjs",
   "typings": "./index.d.ts",

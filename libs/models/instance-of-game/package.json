@@ -1,7 +1,10 @@
 {
   "name": "@bgdk/instance-of-game",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@bgdk/game": "0.0.1",
+    "@bgdk/types-game": "0.0.1"
+  },
   "main": "./index.js",
   "module": "./index.mjs",
   "typings": "./index.d.ts",
