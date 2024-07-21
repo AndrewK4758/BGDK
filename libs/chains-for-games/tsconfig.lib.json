@@ -7,19 +7,28 @@
   },
   "include": [
     "src/**/*.ts",
-    "../models/de-referencing-utilities/**/*.ts",
-    "../chain/**/*.ts",
-    "../types/**/*.ts",
-    "../models/all-games-map/**/*.ts",
-    "../models/instance-of-game/**/*.ts",
-    "../game/**/*.ts",
-    "../chutes-and-ladders/**/*.ts"
+    "../models/de-referencing-utilities/src/**/*.ts",
+    "../chain/src/**/*.ts",
+    "../types/types-api/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../models/all-games-map/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../chutes-and-ladders/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../libs/**/*.spec.ts",
-    "../../libs/**/*.test.ts"
+    "../models/de-referencing-utilities/src/tests/**/*.ts",
+    "../chain/src/tests/**/*.ts",
+    "../types/types-api/src/tests/**/*.ts",
+    "../types/types-game/src/tests/**/*.ts",
+    "../models/all-games-map/src/tests/**/*.ts",
+    "../models/instance-of-game/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts",
+    "../chutes-and-ladders/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts"
   ]
 }

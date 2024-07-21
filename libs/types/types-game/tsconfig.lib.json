@@ -5,13 +5,6 @@
     "types": ["node", "vite/client"],
     "composite": true
   },
-  "include": ["src/**/*.ts", "../../**/*.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../../**/*.spec.ts",
-    "../../**/*.test.ts",
-    "../../**/*.jest.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

@@ -1,5 +1,5 @@
 import { SpaceType } from '@bgdk/types-game';
-import { IAvatar } from '../interfaces/avatar';
+import { Avatar } from '../lib/avatar';
 
 export interface ISpace {
   Value: string;
@@ -7,7 +7,7 @@ export interface ISpace {
   Previous: ISpace;
   Next: ISpace;
   Special: ISpace | null;
-  AvatarsInSpace: IAvatar[];
+  AvatarsInSpace: Avatar[];
   Display: string | number;
   get value(): string;
   get type(): SpaceType;
@@ -18,11 +18,11 @@ export interface ISpace {
   get special(): ISpace | null;
   set special(special: ISpace);
   get occupied(): boolean;
-  get avatarsInSpace(): IAvatar[];
+  get avatarsInSpace(): Avatar[];
   get display(): string;
   set display(displayToken: string);
 
-  land(avatar: IAvatar): void;
+  land(avatar: Avatar): void;
   leave(): void;
   ifOccupied(): void;
 }

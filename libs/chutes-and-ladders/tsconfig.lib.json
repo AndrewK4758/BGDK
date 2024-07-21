@@ -8,12 +8,12 @@
     "module": "NodeNext",
     "target": "ESNext"
   },
-  "include": ["src/**/*.ts", "../types/types-game/**/*.ts", "../game-components-logic/**/*.ts"],
+  "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts", "../games-components-logic/src/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../libs/**/*.spec.ts",
-    "../../libs/**/*.test.ts"
+    "../types/types-game/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts"
   ]
 }

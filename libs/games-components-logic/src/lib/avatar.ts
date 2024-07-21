@@ -1,11 +1,11 @@
 import { Color } from '@bgdk/types-game';
 import { IAvatar } from '../interfaces/avatar';
-import { ISpace } from '../interfaces/space';
+import { Space } from './space';
 
 export class Avatar implements IAvatar {
   Name: string;
   Color: Color;
-  Location!: ISpace;
+  Location!: Space;
   constructor(name: string, color: Color) {
     this.Name = name;
     this.Color = color;
@@ -23,12 +23,12 @@ export class Avatar implements IAvatar {
     return this.Location;
   }
 
-  set location(location: ISpace) {
+  set location(location: Space) {
     this.Location = location;
   }
 
-  _moveForward(numberOfSpaces: number): ISpace | null {
-    let avatarCurLocation: ISpace = this.location;
+  _moveForward(numberOfSpaces: number): Space | null {
+    let avatarCurLocation: Space = this.location;
     while (numberOfSpaces > 0) {
       if (!avatarCurLocation.next) return null;
       else avatarCurLocation = avatarCurLocation.next;
@@ -37,8 +37,8 @@ export class Avatar implements IAvatar {
     return avatarCurLocation;
   }
 
-  _moveBackward(numberOfSpaces: number): ISpace | null {
-    let avatarCurLocation: ISpace = this.location;
+  _moveBackward(numberOfSpaces: number): Space | null {
+    let avatarCurLocation: Space = this.location;
     while (numberOfSpaces > 0) {
       if (!avatarCurLocation.previous) return null;
       else avatarCurLocation = avatarCurLocation.previous;
@@ -48,8 +48,8 @@ export class Avatar implements IAvatar {
   }
 
   move(numberOfSpaces: number): void {
-    const locBeforeMove: ISpace = this.location;
-    const locAfterMove: ISpace | null =
+    const locBeforeMove: Space = this.location;
+    const locAfterMove: Space | null =
       numberOfSpaces > 0 ? this._moveForward(numberOfSpaces) : this._moveBackward(Math.abs(numberOfSpaces));
 
     if (locAfterMove) {

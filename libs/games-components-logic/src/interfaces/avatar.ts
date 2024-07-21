@@ -1,15 +1,15 @@
 import { Color } from '@bgdk/types-game';
-import { ISpace } from './space';
+import { Space } from '../lib/space';
 
 export interface IAvatar {
   Name: string;
   Color: Color;
-  Location: ISpace | undefined;
+  Location: Space | undefined;
   get name(): string;
   get color(): Color;
-  get location(): ISpace;
-  set location(location: ISpace);
+  get location(): Space;
+  set location(location: Space);
   move(numberOfSpaces: number): void;
-  _moveForward(numberOfSpaces: number): ISpace | null;
-  _moveBackward(numberOfSpaces: number): ISpace | null;
+  _moveForward(numberOfSpaces: number): Space | null;
+  _moveBackward(numberOfSpaces: number): Space | null;
 }

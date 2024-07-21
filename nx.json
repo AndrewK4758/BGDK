@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -12,7 +15,10 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/__mocks__/mocks.ts", "{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/__mocks__/mocks.ts",
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "plugins": [
     {
@@ -34,7 +40,10 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apis/games-api/games-api-e2e/**/*", "apis/data-api/data-api-e2e/**/*"]
+      "exclude": [
+        "apis/games-api/games-api-e2e/**/*",
+        "apis/data-api/data-api-e2e/**/*"
+      ]
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -68,8 +77,13 @@
   "targetDefaults": {
     "@nx/vite:build": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   }
 }

@@ -26,6 +26,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.css",
-    "../types/types-game/**/*.ts"
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts"
   ]
 }

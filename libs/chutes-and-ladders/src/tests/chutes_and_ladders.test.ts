@@ -12,11 +12,9 @@ import { Space } from '@bgdk/games-components-logic';
 let game: ChutesAndLadders;
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     game = new ChutesAndLadders(5, 5);
   });
-
-  afterAll(() => jest.clearAllMocks());
 
   describe('test constants in chutes and ladders instance', () => {
     it('should test min, max players and max special distance', () => {

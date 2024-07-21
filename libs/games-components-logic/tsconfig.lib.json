@@ -15,13 +15,6 @@
     "composite": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src/**/*.ts", "../**/*.ts", "vite.config.mts"],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../../**/*.spec.ts",
-    "../../**/*.test.ts",
-    "../../**/*.jest.ts"
-  ]
+  "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "../types/types-game/src/tests/**/*.ts"]
 }

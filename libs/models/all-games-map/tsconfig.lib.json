@@ -7,17 +7,20 @@
   },
   "include": [
     "src/**/*.ts",
-    "../instance-of-game/**/*.ts",
-    "../../game/**/*.ts",
-    "../../chutes-and-ladders/**/*.ts",
-    "../../types/types-game/**/*.ts"
+    "../instance-of-game/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../chutes-and-ladders/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../../libs/**/*jest.config.ts",
-    "../../../libs/**/*.spec.ts",
-    "../../../libs/**/*.test.ts"
+    "../instance-of-game/src/tests/**/*.ts",
+    "../../game/src/tests/**/*.ts",
+    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../../types/types-game/src/tests/**/*.ts",
+    "../../games-components-logic/src/tests/**/*.ts"
   ]
 }
