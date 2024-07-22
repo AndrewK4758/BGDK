@@ -26,6 +26,10 @@ let ctx: Context,
 describe('should execute all steps of taking turn', () => {
   beforeAll(() => {
     ctx = ContextBuilder.build();
+
+    req = mockReqObj();
+    resp = mockRespObj();
+
     instance = new ChutesAndLadders(5, 5);
     game = new Game(instance);
     instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
@@ -45,9 +49,6 @@ describe('should execute all steps of taking turn', () => {
 
     turnStatus = TurnStatus.NOT_READY;
     output = { turnStatus: turnStatus };
-
-    req = mockReqObj();
-    resp = mockRespObj();
 
     ctx.put(GameContextKeys.ACTION, 'take-turn');
     ctx.put(GameContextKeys.REQUEST, req);

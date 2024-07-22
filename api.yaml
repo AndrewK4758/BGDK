@@ -13,7 +13,7 @@ env: flex
 
 inbound_services:
 - warmup
-entrypoint: ./dist/apis/games-api
+entrypoint: 'npm'
 
 # liveness_check:
   # path: "/liveness_check"
