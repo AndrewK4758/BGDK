@@ -12,7 +12,7 @@ import { Space } from '@bgdk/games-components-logic';
 let game: ChutesAndLadders;
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     game = new ChutesAndLadders(5, 5);
   });
 

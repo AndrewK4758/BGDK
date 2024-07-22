@@ -1,7 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID, IRegisterFormValues, IActivePlayersInGame } from '@bgdk/types-game';
-import { Player, GameBoard } from '@bgdk/games-components-logic';
+import { GameBoard, Player } from '@bgdk/games-components-logic';
+import { GameContextKeys, GameInstanceID, IActivePlayersInGame, IRegisterFormValues } from '@bgdk/types-game';
 
 export interface IPlayersAndBoard extends IActivePlayersInGame {
   gameBoard: GameBoard;

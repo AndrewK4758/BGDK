@@ -3,14 +3,12 @@ import { GameContextKeys } from '@bgdk/types-game';
 import { logAction } from '../index';
 
 let ctx: Context;
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-  ctx.put(GameContextKeys.ACTION, 'ACTION');
-});
-afterAll(() => {
-  ctx.state.clear();
-});
 describe('it should log the action property to the console', () => {
+  beforeAll(() => {
+    ctx = ContextBuilder.build();
+    ctx.put(GameContextKeys.ACTION, 'ACTION');
+  });
+
   it('logs action off context to console', () => {
     const commandResult = logAction.execute(ctx);
 

@@ -1,12 +1,12 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { Player, Avatar } from '@bgdk/games-components-logic';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys, SpaceType, TurnStatus, Color } from '@bgdk/types-game';
-import { moveAvatar, rollDice, rotatePlayer, takeTurn, verifyPlayer, wonGame } from '../index';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Game } from '@bgdk/game';
+import { Avatar, Player } from '@bgdk/games-components-logic';
+import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
+import { Color, GameContextKeys, SpaceType, TurnStatus } from '@bgdk/types-game';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
+import { moveAvatar, rollDice, rotatePlayer, takeTurn, verifyPlayer, wonGame } from '../index';
 
 interface ICtxOutput {
   turnStatus: TurnStatus;
@@ -14,10 +14,8 @@ interface ICtxOutput {
 
 let ctx: Context,
   instanceOfGame: InstanceOfGame,
-  game: Game,
   output: ICtxOutput,
   turnStatus: TurnStatus,
-  instance: ChutesAndLadders,
   avatar1: Avatar,
   avatar2: Avatar,
   req: Partial<Request>,
@@ -30,9 +28,7 @@ describe('should execute all steps of taking turn', () => {
     req = mockReqObj();
     resp = mockRespObj();
 
-    instance = new ChutesAndLadders(5, 5);
-    game = new Game(instance);
-    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
+    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
 
     instanceOfGame.instance.register('avatar1', 'p-1-id', 'XENOMORPH', Color.RED);
     instanceOfGame.instance.register('avatar2', 'p-2-id', 'PREDATOR', Color.BLACK);

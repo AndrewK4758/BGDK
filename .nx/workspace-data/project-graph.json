@@ -16178,12 +16178,12 @@
       },
       {
         "source": "chains-for-games",
-        "target": "game",
+        "target": "chutes-and-ladders",
         "type": "static"
       },
       {
         "source": "chains-for-games",
-        "target": "chutes-and-ladders",
+        "target": "game",
         "type": "static"
       },
       {

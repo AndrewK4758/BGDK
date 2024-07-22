@@ -1,7 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID, TurnStatus } from '@bgdk/types-game';
 import { Player } from '@bgdk/games-components-logic';
+import { GameContextKeys, GameInstanceID, TurnStatus } from '@bgdk/types-game';
 
 export const startGame = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'start') {
