@@ -12,7 +12,9 @@
         "outputPath": "dist/libs/chains-for-games",
         "main": "libs/chains-for-games/src/index.ts",
         "tsConfig": "libs/chains-for-games/tsconfig.lib.json",
-        "assets": ["libs/chains-for-games/*.md"]
+        "assets": ["libs/chains-for-games/*.md"],
+        "buildLibsFromSource": true,
+        "configFile": "libs/chains-for-games/vite.config.mts"
       }
     }
   }

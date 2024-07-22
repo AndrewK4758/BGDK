@@ -1,16 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "jsx": "preserve",
     "outDir": "../../dist/out-tsc",
-    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": [
-      "node",
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts",
-      "vite/client"
-    ]
+    "target": "ESNext",
+    "composite": true,
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client", "jest"]
   },
   "exclude": [
     "**/*.spec.ts",
@@ -20,7 +17,16 @@
     "**/*.spec.js",
     "**/*.test.js",
     "**/*.spec.jsx",
-    "**/*.test.jsx"
+    "**/*.test.jsx",
+    "**/*.spec.ts"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.css",
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts"
+  ]
 }

@@ -3,3 +3,4 @@
 /coverage
 /.nx/cache
 .gitignore
+/.nx/workspace-data

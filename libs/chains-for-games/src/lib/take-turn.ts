@@ -1,12 +1,11 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { Player } from '@aklapper/chutes-and-ladders'; // move to model
-import { deRefContextObject, GameContextKeys, getCurrentMinute, getPlayerID, TurnStatus } from '@aklapper/model';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject, getPlayerID } from '@bgdk/de-referencing-utilities';
+import { getCurrentMinute } from '@bgdk/instance-of-game';
+import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
+import { Player } from '@bgdk/games-components-logic';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.ACTION) &&
-    context.getString(GameContextKeys.ACTION) === 'take-turn'
-  ) {
+  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'take-turn') {
     const { game, req, resp } = deRefContextObject(context);
 
     if (!game.instance.readyToPlay) {
@@ -25,11 +24,8 @@ export const takeTurn = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 export const verifyPlayer = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'verify-player'
-  ) {
-    const { req, game, resp } = deRefContextObject(context);
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'verify-player') {
+    const { req, game } = deRefContextObject(context);
 
     const playerTakingTurn = getPlayerID(req);
 
@@ -38,33 +34,28 @@ export const verifyPlayer = CommandBuilder.build((context: Context) => {
       context.put(GameContextKeys.NEXT, 'roll-dice');
       return true;
     } else {
-      resp.setHeader('current-game', req.header('current-game') as string);
       context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.INVALID });
       return false;
     }
   } else return false;
 });
 export const rollDice = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'roll-dice'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'roll-dice') {
     const { game } = deRefContextObject(context);
 
     const moveDist = game.instance.instance.DIE.roll();
-    context.put('moveDist', moveDist as number);
+    context.put('move-dist', moveDist as number);
     context.put(GameContextKeys.NEXT, 'move-avatar');
     return true;
   } else return false;
 });
 export const moveAvatar = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'move-avatar'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'move-avatar') {
     const playerTakingTurn = context.get('player-taking-turn') as Player;
-    const moveDist = context.get('moveDist') as number;
+
+    const moveDist = context.get('move-dist') as number;
     playerTakingTurn.avatar.move(moveDist);
+
     context.put('player-taking-turn', playerTakingTurn);
     context.put(GameContextKeys.NEXT, 'won-game');
     context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.VALID });
@@ -72,10 +63,7 @@ export const moveAvatar = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 export const wonGame = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'won-game'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'won-game') {
     const { game } = deRefContextObject(context);
 
     const playerTakingTurn = context.get('player-taking-turn') as Player;
@@ -87,20 +75,11 @@ export const wonGame = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 export const rotatePlayer = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'rotate-player'
-  ) {
-    const { game, req, resp } = deRefContextObject(context);
-
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'rotate-player') {
+    const { game } = deRefContextObject(context);
     game.instance.rotatePlayers();
-
-    resp.setHeader('current-game', req.header('current-game') as string);
     return true;
   } else return false;
 });
 
-export const turnChain = ChainBuilder.build(
-  [takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer],
-  false
-);
+export const turnChain = ChainBuilder.build([takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer], false);

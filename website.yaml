@@ -2,14 +2,14 @@ runtime: nodejs22
 
 service: default
 
-instance_class: F2
+instance_class: f2
 
 handlers:
 
 # Serve all static files with url ending with a file extension
 - url: /(.*\..+)$
-  static_files: dist/apps/games-ui/\1
-  upload: dist/apps/games-ui/(.*\..+)$
+  static_files: dist/apps/chutes-and-ladders-ui/\1
+  upload: dist/apps/chutes-and-ladders-ui/(.*\..+)$
   secure: always
   http_headers:
     Access-Control-Allow-Origin: "*"
@@ -18,8 +18,8 @@ handlers:
 
 # Catch all handler to index.html
 - url: /(.*)
-  static_files: dist/apps/games-ui/index.html
-  upload: dist/apps/games-ui/index.html
+  static_files: dist/apps/chutes-and-ladders-ui/index.html
+  upload: dist/apps/chutes-and-ladders-ui/index.html
   secure: always
   http_headers:
     Access-Control-Allow-Origin: "*"
@@ -28,5 +28,6 @@ handlers:
 
 env_variables:
   VITE_API_SERVER_URL: 'https://api-dot-games-424800.uc.r.appspot.com/api/v1'
+  VITE_WS_SERVER_URL: 'https://api-dot-games-424800.uc.r.appspot.com'
 
 

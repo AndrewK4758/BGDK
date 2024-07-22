@@ -1,3 +1,4 @@
+import darkScrollbar from '@mui/material/darkScrollbar';
 import createTheme from '@mui/material/styles/createTheme';
 import './theme.module.css';
 
@@ -36,8 +37,8 @@ const __greyDefault = '#404040';
 
 //text main?
 const __rustColor = '#ff3d00';
-let Theme = createTheme();
-Theme = createTheme(Theme, {
+
+export const Theme = createTheme({
   palette: {
     common: {
       black: __greyDark,
@@ -94,12 +95,10 @@ Theme = createTheme(Theme, {
       fontSize: '8rem',
       color: __rustColor,
       textShadow: `2px 1px ${__primaryLight}`,
-      [Theme.breakpoints.up('laptop')]: {
-        fontSize: '3rem',
-      },
     },
     h2: {
       fontSize: '4rem',
+      fontFamily: 'Jersey25',
       color: __primaryMain,
       textShadow: `2px 1px ${__primaryContrast}`,
     },
@@ -121,38 +120,36 @@ Theme = createTheme(Theme, {
       textShadow: `2px 1px ${__primaryLight}`,
     },
     body1: {
+      fontFamily: 'Jersey25',
       color: __greyDark,
       fontSize: '2rem',
     },
     body2: {
+      fontFamily: 'Jersey25',
       fontWeight: 100,
       fontSize: '1.5rem',
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        main: darkScrollbar(),
+      },
+    },
     MuiContainer: {
       variants: [
-        {
-          props: { component: 'main' },
-          style: {
-            position: 'absolute',
-            top: 65,
-            bottom: 65,
-            left: 0,
-            right: 0,
-            backgroundColor: __greyLight,
-            zIndex: 9,
-            paddingTop: '1.5rem',
-          },
-        },
         {
           props: { component: 'div' },
           style: {
             gap: 4,
-            textAlign: 'center',
             display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            textAlign: 'center',
             justifyContent: 'center',
             alignContent: 'center',
+            margin: 0,
+            padding: 0,
           },
         },
         {
@@ -161,52 +158,10 @@ Theme = createTheme(Theme, {
             display: 'flex',
             flexWrap: 'wrap',
             margin: 0,
+            padding: 0,
           },
         },
       ],
-      defaultProps: {
-        disableGutters: false,
-        maxWidth: false,
-      },
-    },
-    MuiPaper: {
-      variants: [
-        {
-          props: { component: 'footer' },
-          style: {
-            position: 'absolute',
-            top: 'calc(100% - 65px)',
-            bottom: 0,
-            right: 0,
-            left: 0,
-            textAlign: 'center',
-            alignContent: 'center',
-            zIndex: 10,
-          },
-        },
-      ],
-      defaultProps: {
-        color: 'transparent',
-      },
-    },
-    MuiAppBar: {
-      variants: [
-        {
-          props: { component: 'header' },
-          style: {
-            display: 'flex',
-            flexDirection: 'row',
-            position: 'absolute',
-            top: 0,
-            zIndex: 10,
-            backgroundColor: __greyDark,
-            boxShadow: `0px 7px 8px -4px ${__rustColor}, 0px 12px 17px 2px ${__primaryLight}, 0px 5px 22px 4px ${__primaryDark}`,
-          },
-        },
-      ],
-      defaultProps: {
-        color: 'transparent',
-      },
     },
     MuiButton: {
       variants: [
@@ -217,7 +172,6 @@ Theme = createTheme(Theme, {
             backgroundColor: __greyDefault,
             width: 230,
             height: 70,
-            marginTop: '1%',
             fontSize: 34,
           },
         },
@@ -253,5 +207,3 @@ Theme = createTheme(Theme, {
     },
   },
 });
-
-export { Theme };

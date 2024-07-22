@@ -1,0 +1,12 @@
+{
+  "name": "@bgdk/all-games-map",
+  "version": "0.0.1",
+  "dependencies": {
+    "@bgdk/instance-of-game": "0.0.1",
+    "@bgdk/types-game": "0.0.1"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
+}

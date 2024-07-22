@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "types": ["node", "vite/client"],
+    "composite": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "../instance-of-game/src/**/*.ts",
+    "../all-games-map/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../chain/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../types/types-api/src/**/*.ts",
+    "../../chutes-and-ladders/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../instance-of-game/src/tests/**/*.ts",
+    "../all-games-map/src/tests/**/*.ts",
+    "../../game/src/tests/**/*.ts",
+    "../../chain/src/tests/**/*.ts",
+    "../../types/types-game/src/tests/**/*.ts",
+    "../../types/types-api/src/tests/**/*.ts",
+    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../../games-components-logic/src/tests/**/*.ts"
+  ]
+}

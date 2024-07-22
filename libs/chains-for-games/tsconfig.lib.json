@@ -2,8 +2,33 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["node", "vite/client"]
+    "types": ["node", "vite/client"],
+    "composite": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": [
+    "src/**/*.ts",
+    "../models/de-referencing-utilities/src/**/*.ts",
+    "../chain/src/**/*.ts",
+    "../types/types-api/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../models/all-games-map/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../chutes-and-ladders/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../models/de-referencing-utilities/src/tests/**/*.ts",
+    "../chain/src/tests/**/*.ts",
+    "../types/types-api/src/tests/**/*.ts",
+    "../types/types-game/src/tests/**/*.ts",
+    "../models/all-games-map/src/tests/**/*.ts",
+    "../models/instance-of-game/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts",
+    "../chutes-and-ladders/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts"
+  ]
 }

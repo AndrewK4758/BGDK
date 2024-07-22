@@ -1,11 +1,14 @@
-import { Context, ContextBuilder } from '@aklapper/chain';
-import { GameContextKeys } from '@aklapper/model';
+import { Context, ContextBuilder } from '@bgdk/chain';
+import { GameContextKeys } from '@bgdk/types-game';
 import { logAction } from '../index';
 
 let ctx: Context;
 beforeAll(() => {
   ctx = ContextBuilder.build();
   ctx.put(GameContextKeys.ACTION, 'ACTION');
+});
+afterAll(() => {
+  ctx.state.clear();
 });
 describe('it should log the action property to the console', () => {
   it('logs action off context to console', () => {

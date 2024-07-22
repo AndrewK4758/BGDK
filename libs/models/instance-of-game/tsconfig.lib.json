@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "types": ["node", "vite/client"],
+    "composite": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../chutes-and-ladders/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../game/src/tests/**/*.ts",
+    "../../types/types-game/src/tests/**/*.ts",
+    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../../games-components-logic/src/tests/**/*.ts"
+  ]
+}

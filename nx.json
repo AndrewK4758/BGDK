@@ -15,7 +15,10 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/__mocks__/mocks.ts",
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "plugins": [
     {
@@ -38,7 +41,8 @@
         "targetName": "test"
       },
       "exclude": [
-        "apis/games-api-e2e/**/*"
+        "apis/games-api/games-api-e2e/**/*",
+        "apis/data-api/data-api-e2e/**/*"
       ]
     },
     {

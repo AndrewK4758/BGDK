@@ -1,22 +1,17 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { Player } from '@aklapper/chutes-and-ladders';
-import { deRefContextObject, GameContextKeys } from '@aklapper/model';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { GameContextKeys, GameInstanceID, TurnStatus } from '@bgdk/types-game';
+import { Player } from '@bgdk/games-components-logic';
 
 export const startGame = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.ACTION) &&
-    context.getString(GameContextKeys.ACTION) === 'start'
-  ) {
+  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'start') {
     context.put(GameContextKeys.NEXT, 'verify-ready-to-play');
     return true;
   } else return false;
 });
 
 export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
-  if (
-    context.get(GameContextKeys.NEXT) &&
-    context.getString(GameContextKeys.NEXT) === 'verify-ready-to-play'
-  ) {
+  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'verify-ready-to-play') {
     const { game } = deRefContextObject(context);
 
     const readyToPlay = game.instance.verifyReadyToPlay();
@@ -27,7 +22,7 @@ export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
       return true;
     } else {
       context.put(GameContextKeys.OUTPUT, {
-        gameStatus: 'Game Not Ready to Start',
+        gameStatus: TurnStatus.NOT_READY,
       });
       return false;
     }
@@ -43,9 +38,8 @@ export const setAvatarsOnStart = CommandBuilder.build((context: Context) => {
     const { game } = deRefContextObject(context);
 
     game.instance.playersArray.forEach((p: Player, i: number) => {
-      if (p.avatar.location) {
-        p.avatar.location.leave();
-      } else p.order = i + 1;
+      if (p.avatar.location) p.avatar.location.leave();
+      else p.order = i + 1;
       game.instance.instance.startSpace.land(p.avatar);
     });
 
@@ -69,7 +63,7 @@ export const setPlayerInTurn = CommandBuilder.build((context: Context) => {
 export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-start-game-status') {
     const { req, resp } = deRefContextObject(context);
-    resp.setHeader('current-game', req.header('current-game') as string);
+    resp.setHeader('current-game', req.header('current-game') as GameInstanceID);
     context.put(GameContextKeys.OUTPUT, { message: 'Game Started' });
     return true;
   } else return false;
@@ -77,5 +71,5 @@ export const sendStartGameStatus = CommandBuilder.build((context: Context) => {
 
 export const startGameChain = ChainBuilder.build(
   [startGame, verifyReadyToPlay, setAvatarsOnStart, setPlayerInTurn, sendStartGameStatus],
-  false
+  false,
 );

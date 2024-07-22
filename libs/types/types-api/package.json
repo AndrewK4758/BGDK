@@ -1,0 +1,13 @@
+{
+  "name": "@bgdk/types-api",
+  "version": "0.0.1",
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "@bgdk/all-games-map": "0.0.1",
+    "express": "^4.18.1"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
+}

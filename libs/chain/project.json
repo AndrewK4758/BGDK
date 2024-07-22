@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/chain",
-        "main": "libs/chain/src/index.ts",
+        "main": "libs/chain/src/index.mts",
         "tsConfig": "libs/chain/tsconfig.lib.json",
         "assets": ["libs/chain/*.md"]
       }

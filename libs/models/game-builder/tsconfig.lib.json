@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "types": ["node", "vite/client"],
+    "composite": true
+  },
+  "include": ["src/**/*.ts", "../rule/src/**/*.ts", "../../chain/src/**/*.ts"],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../rule/src/tests/**/*.ts",
+    "../../chain/src/tests/**/*.ts"
+  ]
+}

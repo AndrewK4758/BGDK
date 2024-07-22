@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "declaration": true,
+    "types": ["node", "vite/client"],
+    "composite": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "../../models/all-games-map/src/**/*.ts",
+    "../../models/instance-of-game/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../chutes-and-ladders/src/**/*.ts",
+    "../types-game/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../models/all-games-map/src/tests/**/*.ts",
+    "../../models/instance-of-game/src/tests/**/*.ts",
+    "../../game/src/tests/**/*.ts",
+    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../types-game/src/tests/**/*.ts",
+    "../../games-components-logic/src/tests/**/*.ts"
+  ]
+}

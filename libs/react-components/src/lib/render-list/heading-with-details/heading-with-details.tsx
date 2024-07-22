@@ -1,4 +1,3 @@
-// import styles from './heading-with-details.module.css';
 import { Box, ListItem, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';
@@ -8,29 +7,31 @@ import Text from '../../text/text';
 export interface HeadingWithDetailsProps {
   component: ElementType;
   id: string | number;
-  sx?: SxProps;
   titleVariant: Variant;
   titleText: string | undefined;
+  titleSx?: SxProps;
   valueVariant: Variant;
   valueText: string;
+  valueSx?: SxProps;
 }
 
 export function HeadingWithDetails({
   component,
   id,
-  sx,
   titleVariant,
   titleText,
+  titleSx,
   valueVariant,
   valueText,
+  valueSx,
 }: HeadingWithDetailsProps) {
   return (
-    <Box component={'div'} key={id} sx={sx}>
+    <Box component={'div'} key={id}>
       <ListItem component={component}>
-        <Text titleVariant={titleVariant} titleText={titleText} />
+        <Text titleVariant={titleVariant} titleText={titleText} sx={titleSx} />
       </ListItem>
-      <ListItem component={component} sx={sx}>
-        <Text titleVariant={valueVariant} titleText={valueText} sx={{ paddingX: '1rem' }} />
+      <ListItem component={component}>
+        <Text titleVariant={valueVariant} titleText={valueText} sx={valueSx} />
       </ListItem>
     </Box>
   );

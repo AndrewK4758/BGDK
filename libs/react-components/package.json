@@ -1,5 +1,5 @@
 {
-  "name": "@aklapper/react-components",
+  "name": "@bgdk/react-components",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -8,5 +8,19 @@
       "import": "./index.mjs",
       "require": "./index.js"
     }
+  },
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "@mui/icons-material": "^5.15.18",
+    "@mui/material": "^5.15.18",
+    "@vitejs/plugin-react": "^4.2.0",
+    "formik": "^2.4.6",
+    "react": "^18.3.1",
+    "react-router-dom": "6.25.1",
+    "vite": "5.3.4",
+    "vite-plugin-dts": "^3.8.1",
+    "yup": "^1.4.0",
+    "@bgdk/games-components-logic": "0.0.1",
+    "@nx/vite": "19.5.1"
   }
 }

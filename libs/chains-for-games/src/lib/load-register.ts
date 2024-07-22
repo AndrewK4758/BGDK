@@ -1,8 +1,12 @@
-import { ChainBuilder, CommandBuilder, Context } from '@aklapper/chain';
-import { deRefContextObject, GameContextKeys, ILoadRegisterData } from '@aklapper/model';
+import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { GameContextKeys, GameInstanceID, ILoadRegisterData } from '@bgdk/types-game';
 
 export const loadRegister = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'load-register') {
+  if (
+    context.get(GameContextKeys.ACTION) &&
+    context.getString(GameContextKeys.ACTION) === 'load-register'
+  ) {
     const { game } = deRefContextObject(context);
 
     const avatarNameAndColorLoaderData: ILoadRegisterData = {
@@ -17,12 +21,20 @@ export const loadRegister = CommandBuilder.build((context: Context) => {
 });
 
 export const sendLoadRegister = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-load-register-data') {
+  if (
+    context.get(GameContextKeys.NEXT) &&
+    context.getString(GameContextKeys.NEXT) === 'send-load-register-data'
+  ) {
     const { req, resp } = deRefContextObject(context);
-    const __current_game__ = req.header('current-game') as string;
-    resp.setHeader('current-game', __current_game__);
+    resp.setHeader(
+      'current-game',
+      req.header('current-game') as GameInstanceID
+    );
     return true;
   } else return false;
 });
 
-export const loadRegisterChain = ChainBuilder.build([loadRegister, sendLoadRegister], false);
+export const loadRegisterChain = ChainBuilder.build(
+  [loadRegister, sendLoadRegister],
+  false
+);

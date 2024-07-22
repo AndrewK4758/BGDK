@@ -1,7 +1,14 @@
 {
-  "name": "@aklapper/chains-for-games",
+  "name": "@bgdk/chains-for-games",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@bgdk/chain": "0.0.1",
+    "@bgdk/de-referencing-utilities": "0.0.1",
+    "@bgdk/types-game": "0.0.1",
+    "@bgdk/instance-of-game": "0.0.1",
+    "short-unique-id": "^5.2.0",
+    "@bgdk/games-components-logic": "0.0.1"
+  },
   "main": "./index.js",
   "module": "./index.mjs",
   "typings": "./index.d.ts",
