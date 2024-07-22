@@ -11,9 +11,9 @@ service: api
 
 # env: flex
 
-inbound_services:
-  - warmup
-entrypoint: 'npm'
+# inbound_services:
+#   - warmup
+# entrypoint: 'npm'
 
 # liveness_check:
 # path: "/liveness_check"
@@ -39,10 +39,10 @@ handlers:
 # manual_scaling:
 #   instances: 1
 
-resources:
-  cpu: 2
-  memory_gb: 4
-  disk_size_gb: 10
+# resources:
+#   cpu: 2
+#   memory_gb: 4
+#   disk_size_gb: 10
 # runtime: nodejs22
 #
 # env: flex
