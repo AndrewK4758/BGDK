@@ -2,30 +2,42 @@ import { Context, ContextBuilder } from '@bgdk/chain';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
-import { Color, GameContextKeys, TurnStatus } from '@bgdk/types-game';
+import { GameContextKeys, Color, TurnStatus } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { Request, Response } from 'express';
 import { sendStartGameStatus, setAvatarsOnStart, setPlayerInTurn, startGame, verifyReadyToPlay } from '../index';
+import { Request, Response } from 'express';
 
-let ctx: Context, instanceOfGame: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
+let ctx: Context,
+  instanceOfGame: InstanceOfGame,
+  game: Game,
+  instance: ChutesAndLadders,
+  req: Partial<Request>,
+  resp: Partial<Response>;
 
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-
-  req = mockReqObj();
-  resp = mockRespObj();
-
-  instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
-
-  instanceOfGame.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
-  instanceOfGame.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-  ctx.put(GameContextKeys.ACTION, 'start');
-  ctx.put(GameContextKeys.REQUEST, req);
-  ctx.put(GameContextKeys.RESPONSE, resp);
-  ctx.put(GameContextKeys.GAME, instanceOfGame);
-});
 describe('execute all steps of starting a game', () => {
+  beforeAll(() => {
+    ctx = ContextBuilder.build();
+
+    instance = new ChutesAndLadders(5, 5);
+    game = new Game(instance);
+    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
+
+    game.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+    game.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+    req = mockReqObj();
+    resp = mockRespObj();
+
+    ctx.put(GameContextKeys.ACTION, 'start');
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
+    ctx.put(GameContextKeys.GAME, instanceOfGame);
+  });
+
+  afterAll(() => {
+    ctx.state.clear();
+  });
+
   it('should verify the context action is start and send to next-handler', () => {
     const commandResult = startGame.execute(ctx);
 
@@ -47,12 +59,12 @@ describe('execute all steps of starting a game', () => {
 
     expect(commandResult).toBeTruthy();
     expect(ctx.get('ready-to-play')).toBeTruthy();
-    expect(instanceOfGame.instance.playersArray.length).toEqual(2);
+    expect(game.playersArray.length).toEqual(2);
   });
 
   it('should fail and put message on out prop of ctx obj', () => {
     ctx.put(GameContextKeys.NEXT, 'verify-ready-to-play');
-    instanceOfGame.instance.playersArray.splice(1);
+    game.playersArray.splice(1);
     const output = { gameStatus: TurnStatus.NOT_READY };
 
     const commandResult = verifyReadyToPlay.execute(ctx);
@@ -68,8 +80,8 @@ describe('execute all steps of starting a game', () => {
     const commandResult = setAvatarsOnStart.execute(ctx);
 
     expect(commandResult).toBeTruthy();
-    instanceOfGame.instance.playersArray.forEach(p => {
-      expect(p.avatar.location).toEqual(instanceOfGame.instance.instance.startSpace);
+    game.playersArray.forEach(p => {
+      expect(p.avatar.location).toEqual(game.instance.startSpace);
       expect(p.order).toBeTruthy();
     });
   });
@@ -84,8 +96,8 @@ describe('execute all steps of starting a game', () => {
     ctx.put(GameContextKeys.NEXT, 'set-player-in-turn');
     const commandResult = setPlayerInTurn.execute(ctx);
     expect(commandResult).toBeTruthy();
-    expect(instanceOfGame.instance.playerInTurn).toEqual(instanceOfGame.instance.playersArray[0]);
-    expect(instanceOfGame.instance.playerInTurn).not.toEqual(instanceOfGame.instance.playersArray[1]);
+    expect(game.playerInTurn).toEqual(game.playersArray[0]);
+    expect(game.playerInTurn).not.toEqual(game.playersArray[1]);
   });
 
   it('should pass and add a message to the out prop of ctx obj', () => {

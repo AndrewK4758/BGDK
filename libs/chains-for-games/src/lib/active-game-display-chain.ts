@@ -78,5 +78,5 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
 
 export const activeGameDisplayChain = ChainBuilder.build(
   [activePlayers, readyToPlayCheck, checkIfWinner, activeDataToSend],
-  false
+  false,
 );

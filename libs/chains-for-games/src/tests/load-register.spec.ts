@@ -44,4 +44,3 @@ describe('test load register chain', () => {
     expect(commandResult).toBeTruthy();
   });
 });
-

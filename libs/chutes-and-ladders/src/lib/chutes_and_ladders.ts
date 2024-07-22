@@ -96,8 +96,8 @@ export class ChutesAndLadders {
     this.LADDERS = ladders;
     this.startSpace = new Space(SpaceType.START, 'START');
     this.makeGameBoard();
-    this.avatarList = AvatarTotems.totemsList;
     this.colorList = Color;
+    this.avatarList = AvatarTotems.totemsList;
     this.DIE = new Die(6);
   }
 
@@ -122,7 +122,7 @@ export class ChutesAndLadders {
     }
   };
 
-  makeGameBoard = (): void => {
+  makeGameBoard = () => {
     uniqueSpecialValues.clear();
     specialsDumps.clear();
     this.specialValuesMaker();
@@ -133,7 +133,7 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
-  addAvatarSvgToDisplay = (name: string): string => {
+  addAvatarSvgToDisplay = (name: string) => {
     switch (name) {
       case AvatarTotems.totemsList[0].name:
         return AvatarTotems.totemsList[0].image;

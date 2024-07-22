@@ -82,4 +82,3 @@ describe('test display board and active player chain', () => {
     expect(dataToSendFromCtx.winner).toEqual('');
   });
 });
-

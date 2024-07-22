@@ -34,4 +34,3 @@ describe('test output response chain', () => {
     expect(ctx.get(GameContextKeys.OUTPUT)).toBeFalsy();
   });
 });
-

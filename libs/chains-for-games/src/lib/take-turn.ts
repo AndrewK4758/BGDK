@@ -82,4 +82,7 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 
-export const turnChain = ChainBuilder.build([takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer], false);
+export const turnChain = ChainBuilder.build(
+  [takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer],
+  false,
+);
