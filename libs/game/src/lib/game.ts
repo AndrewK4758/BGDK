@@ -18,7 +18,8 @@ export class Game implements IGame {
     this.readyToPlay = false;
     this.haveWinner = false;
     this.currentPlayer = 0;
-    (this.MAX_PLAYERS = this.game.MAX_PLAYERS), (this.MIN_PLAYERS = this.game.MIN_PLAYERS);
+    this.MAX_PLAYERS = this.game.MAX_PLAYERS;
+    this.MIN_PLAYERS = this.game.MIN_PLAYERS;
   }
 
   get instance() {

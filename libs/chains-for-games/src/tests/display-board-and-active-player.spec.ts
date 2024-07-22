@@ -10,15 +10,14 @@ import { IPlayersAndBoard, activeDataToSend, activePlayers, checkIfWinner, ready
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 describe('test display board and active player chain', () => {
   beforeEach(() => {
+    ctx = ContextBuilder.build();
+    req = mockReqObj();
+    resp = mockRespObj();
+
     game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
 
     game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
     game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-    ctx = ContextBuilder.build();
-
-    req = mockReqObj();
-    resp = mockRespObj();
 
     ctx.put(GameContextKeys.ACTION, 'board');
     ctx.put(GameContextKeys.REQUEST, req);
@@ -52,11 +51,7 @@ describe('test display board and active player chain', () => {
   });
 
   it('should add all data necessary to show active game details to context object', () => {
-    ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
-
-    const playerInTurn = game.instance.readyToPlay
-      ? game.instance.playerInTurn.avatar.name
-      : 'Waiting for game to start';
+    const playerInTurn = 'Waiting for game to start';
 
     const activePlayersInGame: IRegisterFormValues[] = [
       {
@@ -75,10 +70,12 @@ describe('test display board and active player chain', () => {
     ctx.put('player-in-turn', playerInTurn);
     ctx.put('winner-message', '');
 
+    ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
+
     const commandResult = activeDataToSend.execute(ctx);
 
     const dataToSendFromCtx = ctx.get(GameContextKeys.OUTPUT) as IPlayersAndBoard;
-
+    console.log(dataToSendFromCtx);
     expect(commandResult).toBeTruthy();
     expect(dataToSendFromCtx.avatarInTurn).toEqual('Waiting for game to start');
     expect(dataToSendFromCtx.gameBoard.length).toEqual(TOTAL_SPACES);
