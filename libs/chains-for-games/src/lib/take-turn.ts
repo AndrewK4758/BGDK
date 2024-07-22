@@ -44,7 +44,7 @@ export const rollDice = CommandBuilder.build((context: Context) => {
     const { game } = deRefContextObject(context);
 
     const moveDist = game.instance.instance.DIE.roll();
-    context.put('moveDist', moveDist as number);
+    context.put('move-dist', moveDist as number);
     context.put(GameContextKeys.NEXT, 'move-avatar');
     return true;
   } else return false;
@@ -52,8 +52,10 @@ export const rollDice = CommandBuilder.build((context: Context) => {
 export const moveAvatar = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'move-avatar') {
     const playerTakingTurn = context.get('player-taking-turn') as Player;
-    const moveDist = context.get('moveDist') as number;
+
+    const moveDist = context.get('move-dist') as number;
     playerTakingTurn.avatar.move(moveDist);
+
     context.put('player-taking-turn', playerTakingTurn);
     context.put(GameContextKeys.NEXT, 'won-game');
     context.put(GameContextKeys.OUTPUT, { turnStatus: TurnStatus.VALID });

@@ -6,8 +6,9 @@ import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Game } from '@bgdk/game';
 import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { Request, Response } from 'express';
 
-let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders;
+let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders, req: Partial<Request>, resp: Partial<Response>;
 describe('test display board and active player chain', () => {
   beforeEach(() => {
     instance = new ChutesAndLadders(5, 5);
@@ -18,18 +19,17 @@ describe('test display board and active player chain', () => {
 
     ctx = ContextBuilder.build();
 
+    req = mockReqObj();
+    resp = mockRespObj();
+
     ctx.put(GameContextKeys.ACTION, 'board');
-    ctx.put(GameContextKeys.REQUEST, mockReqObj);
-    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
     ctx.put(GameContextKeys.GAME, game);
   });
 
   afterEach(() => {
     ctx.state.clear();
-  });
-
-  afterAll(() => {
-    jest.clearAllMocks();
   });
 
   it('should return all players registered in the game instance', () => {

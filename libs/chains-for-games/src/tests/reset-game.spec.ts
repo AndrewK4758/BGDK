@@ -35,10 +35,6 @@ describe('test reset game chain', () => {
     ctx.put(GameContextKeys.GAME, instanceOfGame);
   });
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
-
   describe('it should reset game', () => {
     it('should show start space as empty then return both players to startspace', () => {
       expect(instanceOfGame.instance.instance.startSpace.occupied).toBeFalsy();

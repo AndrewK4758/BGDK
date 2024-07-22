@@ -42,7 +42,6 @@ const avatarSize: CSSProperties = {
 };
 
 const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => {
-  console.log(e.display);
   const DisplayValue = () => {
     if (e.display.indexOf('g') === e.display.length - 1)
       return <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />;

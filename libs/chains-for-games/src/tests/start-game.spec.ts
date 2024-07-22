@@ -5,11 +5,17 @@ import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys, Color, TurnStatus } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { sendStartGameStatus, setAvatarsOnStart, setPlayerInTurn, startGame, verifyReadyToPlay } from '../index';
+import { Request, Response } from 'express';
 
-let ctx: Context, instanceOfGame: InstanceOfGame, game: Game, instance: ChutesAndLadders;
+let ctx: Context,
+  instanceOfGame: InstanceOfGame,
+  game: Game,
+  instance: ChutesAndLadders,
+  req: Partial<Request>,
+  resp: Partial<Response>;
 
 describe('execute all steps of starting a game', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     ctx = ContextBuilder.build();
 
     instance = new ChutesAndLadders(5, 5);
@@ -19,18 +25,17 @@ describe('execute all steps of starting a game', () => {
     game.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
     game.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
 
+    req = mockReqObj();
+    resp = mockRespObj();
+
     ctx.put(GameContextKeys.ACTION, 'start');
-    ctx.put(GameContextKeys.REQUEST, mockReqObj);
-    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
     ctx.put(GameContextKeys.GAME, instanceOfGame);
   });
 
-  afterEach(() => {
-    ctx.state.clear();
-  });
-
   afterAll(() => {
-    jest.clearAllMocks();
+    ctx.state.clear();
   });
 
   it('should verify the context action is start and send to next-handler', () => {

@@ -12,16 +12,22 @@ import {
 } from '../index';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { Request, Response } from 'express';
 
-let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders;
+let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders, req: Partial<Request>, resp: Partial<Response>;
 
 describe('test register chain', () => {
   beforeEach(() => {
     instance = new ChutesAndLadders(5, 5);
     game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(instance));
+
     ctx = ContextBuilder.build();
-    ctx.put(GameContextKeys.REQUEST, mockReqObj);
-    ctx.put(GameContextKeys.RESPONSE, mockRespObj);
+
+    req = mockReqObj();
+    resp = mockRespObj();
+
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
     ctx.put(GameContextKeys.ACTION, 'register');
     ctx.put(GameContextKeys.NEXT, '');
     ctx.put(GameContextKeys.GAME, game);
@@ -29,9 +35,6 @@ describe('test register chain', () => {
 
   afterEach(() => ctx.state.clear());
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
   describe('register chain test', () => {
     it('should return true for register action', () => {
       expect(registerAction.execute(ctx)).toBeTruthy();
