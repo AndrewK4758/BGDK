@@ -6,7 +6,11 @@ let space: Space;
 
 describe('Test connection of spaces within the boardSetup method', () => {
   beforeEach(() => {
-    space = new Board(100, () => new Space(SpaceType.NORMAL, 'space')).boardSetup();
+    space = new Board(
+      100,
+      new Space(SpaceType.START, 'START'),
+      () => new Space(SpaceType.NORMAL, 'space'),
+    ).boardSetup();
   });
 
   test('test traversing entire list', () => {

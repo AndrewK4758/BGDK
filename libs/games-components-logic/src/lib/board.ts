@@ -23,5 +23,7 @@ export class Board implements IBoard {
     space.previous = this.StartSpace;
     space.previous.next = space;
     space = space.previous;
+
+    return space;
   }
 }
