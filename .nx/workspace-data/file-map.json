@@ -150,32 +150,16 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "tsconfig.base.json",
-        "hash": "14782118791412454897"
-      },
-      {
-        "file": "docker-compose.yml",
-        "hash": "7395274311194407266"
-      },
-      {
-        "file": "api.yaml",
-        "hash": "9895021038619541232"
-      },
-      {
-        "file": "dispatch.yaml",
-        "hash": "6319116405105854956"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "17151361553086222863"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
-      },
-      {
         "file": "website.yaml",
         "hash": "17140406020307498516"
+      },
+      {
+        "file": "__mocks__/mocks.ts",
+        "hash": "4613163832101995528"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "9802956178745117989"
       },
       {
         "file": ".vscode/settings.json",
@@ -186,32 +170,60 @@
         "hash": "14244150804932717168"
       },
       {
-        "file": "__mocks__/mocks.ts",
-        "hash": "4613163832101995528"
+        "file": ".vscode/extensions.json",
+        "hash": "4934098906304722861"
       },
       {
-        "file": ".gitignore",
-        "hash": "14792400884932106105"
+        "file": "nx.json",
+        "hash": "16330309663112976984"
       },
       {
-        "file": ".eslintignore",
-        "hash": "3815833690501639164"
+        "file": "package-lock.json",
+        "hash": "17151361553086222863"
+      },
+      {
+        "file": "api.yaml",
+        "hash": "9895021038619541232"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "5108860596682862656"
       },
       {
         "file": ".gcloudignore",
         "hash": "14575140511607010884"
       },
       {
-        "file": ".prettierrc",
-        "hash": "9802956178745117989"
+        "file": ".eslintignore",
+        "hash": "3815833690501639164"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "453073486294401906"
       },
       {
         "file": ".prettierignore",
         "hash": "6790244420441770749"
       },
       {
-        "file": ".vscode/extensions.json",
-        "hash": "4934098906304722861"
+        "file": "tsconfig.base.json",
+        "hash": "14782118791412454897"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "7395274311194407266"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "16757757177935638162"
+      },
+      {
+        "file": "dispatch.yaml",
+        "hash": "6319116405105854956"
       },
       {
         "file": "package.json",
@@ -222,20 +234,8 @@
         "hash": "9752298648827472389"
       },
       {
-        "file": "nx.json",
-        "hash": "16330309663112976984"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "5108860596682862656"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "4417099618437359270"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "16757757177935638162"
+        "file": ".gitignore",
+        "hash": "14792400884932106105"
       }
     ],
     "projectFileMap": {
@@ -669,7 +669,7 @@
         },
         {
           "file": "libs/chutes-and-ladders/src/tests/chutes_and_ladders.test.ts",
-          "hash": "3574032311653825456",
+          "hash": "8570348797565985050",
           "deps": [
             "types-game",
             "games-components-logic"
