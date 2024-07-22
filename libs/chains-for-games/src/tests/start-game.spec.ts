@@ -9,24 +9,23 @@ import { sendStartGameStatus, setAvatarsOnStart, setPlayerInTurn, startGame, ver
 
 let ctx: Context, instanceOfGame: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+
+  req = mockReqObj();
+  resp = mockRespObj();
+
+  instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
+
+  instanceOfGame.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+  instanceOfGame.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+  ctx.put(GameContextKeys.ACTION, 'start');
+  ctx.put(GameContextKeys.REQUEST, req);
+  ctx.put(GameContextKeys.RESPONSE, resp);
+  ctx.put(GameContextKeys.GAME, instanceOfGame);
+});
 describe('execute all steps of starting a game', () => {
-  beforeAll(() => {
-    ctx = ContextBuilder.build();
-
-    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
-
-    instanceOfGame.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
-    instanceOfGame.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-    req = mockReqObj();
-    resp = mockRespObj();
-
-    ctx.put(GameContextKeys.ACTION, 'start');
-    ctx.put(GameContextKeys.REQUEST, req);
-    ctx.put(GameContextKeys.RESPONSE, resp);
-    ctx.put(GameContextKeys.GAME, instanceOfGame);
-  });
-
   it('should verify the context action is start and send to next-handler', () => {
     const commandResult = startGame.execute(ctx);
 

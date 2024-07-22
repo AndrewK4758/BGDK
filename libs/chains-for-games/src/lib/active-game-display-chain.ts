@@ -63,8 +63,7 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
       activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
-    console.log(game);
-    console.log(activeDataToSend);
+
     if (!req && !resp) {
       console.log('In io.emit event handler');
       io.to(game.gameInstanceID).emit('game-data', activeDataToSend);

@@ -1188,78 +1188,34 @@
         "root": "libs/chains-for-games",
         "targets": {
           "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "libs/chains-for-games",
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/.eslintrc.json",
-              "{projectRoot}/.eslintrc.json",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
+            "executor": "@nx/eslint:lint",
             "outputs": [
               "{options.outputFile}"
             ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "npx eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
+            "options": {
+              "lintFilePatterns": [
+                "libs/chains-for-games/**/*.{ts,tsx,js,jsx}",
+                "libs/chains-for-games/package.json"
+              ]
             },
-            "executor": "nx:run-commands",
             "configurations": {},
             "parallelism": true
           },
           "test": {
-            "options": {
-              "cwd": "libs/chains-for-games",
-              "command": "jest"
-            },
-            "metadata": {
-              "technologies": [
-                "jest"
-              ],
-              "description": "Run Jest Tests",
-              "help": {
-                "command": "npx jest --help",
-                "example": {
-                  "options": {
-                    "coverage": true
-                  }
-                }
-              }
-            },
-            "cache": true,
-            "inputs": [
-              "default",
-              "^production",
-              "{workspaceRoot}/jest.preset.js",
-              {
-                "externalDependencies": [
-                  "jest"
-                ]
-              }
-            ],
+            "executor": "@nx/jest:jest",
             "outputs": [
-              "{workspaceRoot}/coverage/libs/chains-for-games"
+              "{workspaceRoot}/coverage/{projectRoot}"
             ],
-            "executor": "nx:run-commands",
+            "options": {
+              "jestConfig": "libs/chains-for-games/jest.config.ts",
+              "reportsDirectory": "../../coverage/libs/chains-for-games",
+              "testFiles": [
+                "./src/tests/*"
+              ],
+              "ci": true,
+              "runInBand": true,
+              "verbose": true
+            },
             "configurations": {},
             "parallelism": true
           },
