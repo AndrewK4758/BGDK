@@ -1,8 +1,8 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject, getPlayerID } from '@bgdk/de-referencing-utilities';
+import { Player } from '@bgdk/games-components-logic';
 import { getCurrentMinute } from '@bgdk/instance-of-game';
 import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
-import { Player } from '@bgdk/games-components-logic';
 
 export const takeTurn = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'take-turn') {
@@ -82,4 +82,7 @@ export const rotatePlayer = CommandBuilder.build((context: Context) => {
   } else return false;
 });
 
-export const turnChain = ChainBuilder.build([takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer], false);
+export const turnChain = ChainBuilder.build(
+  [takeTurn, verifyPlayer, rollDice, moveAvatar, wonGame, rotatePlayer],
+  false,
+);

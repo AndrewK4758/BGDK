@@ -1,37 +1,29 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { IPlayersAndBoard } from '../index';
-import { Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
-import { activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
-import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
-import { Game } from '@bgdk/game';
 import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
+import { Game } from '@bgdk/game';
+import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
+import { IPlayersAndBoard, activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
 
-let ctx: Context, game: InstanceOfGame, instance: ChutesAndLadders, req: Partial<Request>, resp: Partial<Response>;
+let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
+beforeEach(() => {
+  ctx = ContextBuilder.build();
+  req = mockReqObj();
+  resp = mockRespObj();
+
+  game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
+
+  game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+  game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+  ctx.put(GameContextKeys.ACTION, 'board');
+  ctx.put(GameContextKeys.REQUEST, req);
+  ctx.put(GameContextKeys.RESPONSE, resp);
+  ctx.put(GameContextKeys.GAME, game);
+});
 describe('test display board and active player chain', () => {
-  beforeEach(() => {
-    instance = new ChutesAndLadders(5, 5);
-    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(instance));
-
-    game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
-    game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-    ctx = ContextBuilder.build();
-
-    req = mockReqObj();
-    resp = mockRespObj();
-
-    ctx.put(GameContextKeys.ACTION, 'board');
-    ctx.put(GameContextKeys.REQUEST, req);
-    ctx.put(GameContextKeys.RESPONSE, resp);
-    ctx.put(GameContextKeys.GAME, game);
-  });
-
-  afterEach(() => {
-    ctx.state.clear();
-  });
-
   it('should return all players registered in the game instance', () => {
     const commandResult = activePlayers.execute(ctx);
 
@@ -39,58 +31,54 @@ describe('test display board and active player chain', () => {
     expect((ctx.get('active-players-in-game') as IRegisterFormValues[]).length).toEqual(2);
     expect(ctx.getString(GameContextKeys.NEXT)).toEqual('ready-to-play-check');
   });
-  describe(`Test the chain that checks and displays active instances' active players, ready to play prop, check if winner prop, data sent to client to show active game info`, () => {
-    it('should check if game is ready to play and put player in turn on ctx object to display', () => {
-      ctx.put(GameContextKeys.NEXT, 'ready-to-play-check');
-      const commandResult = readyToPlayCheck.execute(ctx);
+  it('should check if game is ready to play and put player in turn on ctx object to display', () => {
+    ctx.put(GameContextKeys.NEXT, 'ready-to-play-check');
+    const commandResult = readyToPlayCheck.execute(ctx);
 
-      expect(commandResult).toBeTruthy();
-      expect(ctx.get('player-in-turn')).toEqual('Waiting for game to start');
-      expect(ctx.getString(GameContextKeys.NEXT)).toEqual('check-if-winner');
-    });
+    expect(commandResult).toBeTruthy();
+    expect(ctx.get('player-in-turn')).toEqual('Waiting for game to start');
+    expect(ctx.getString(GameContextKeys.NEXT)).toEqual('check-if-winner');
+  });
 
-    it('should check if player in turn has won', () => {
-      ctx.put(GameContextKeys.NEXT, 'check-if-winner');
-      const commandResult = checkIfWinner.execute(ctx);
+  it('should check if player in turn has won', () => {
+    ctx.put(GameContextKeys.NEXT, 'check-if-winner');
+    const commandResult = checkIfWinner.execute(ctx);
 
-      expect(commandResult).toBeTruthy();
-      expect(ctx.get('winner-message')).toEqual('');
-      expect(ctx.getString(GameContextKeys.NEXT)).toEqual('active-data-to-send');
-    });
+    expect(commandResult).toBeTruthy();
+    expect(ctx.get('winner-message')).toEqual('');
+    expect(ctx.getString(GameContextKeys.NEXT)).toEqual('active-data-to-send');
+  });
 
-    it('should add all data necessary to show active game details to context object', () => {
-      ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
+  it('should add all data necessary to show active game details to context object', () => {
+    const playerInTurn = 'Waiting for game to start';
 
-      const playerInTurn = game.instance.readyToPlay
-        ? game.instance.playerInTurn.avatar.name
-        : 'Waiting for game to start';
+    const activePlayersInGame: IRegisterFormValues[] = [
+      {
+        playerName: game.instance.playersArray[0].name,
+        avatarName: game.instance.playersArray[0].avatar.name,
+        avatarColor: game.instance.playersArray[0].avatar.color,
+      },
+      {
+        playerName: game.instance.playersArray[1].name,
+        avatarName: game.instance.playersArray[1].avatar.name,
+        avatarColor: game.instance.playersArray[1].avatar.color,
+      },
+    ];
 
-      const activePlayersInGame: IRegisterFormValues[] = [
-        {
-          playerName: game.instance.playersArray[0].name,
-          avatarName: game.instance.playersArray[0].avatar.name,
-          avatarColor: game.instance.playersArray[0].avatar.color,
-        },
-        {
-          playerName: game.instance.playersArray[1].name,
-          avatarName: game.instance.playersArray[1].avatar.name,
-          avatarColor: game.instance.playersArray[1].avatar.color,
-        },
-      ];
+    ctx.put('active-players-in-game', activePlayersInGame);
+    ctx.put('player-in-turn', playerInTurn);
+    ctx.put('winner-message', '');
 
-      ctx.put('active-players-in-game', activePlayersInGame);
-      ctx.put('player-in-turn', playerInTurn);
-      ctx.put('winner-message', '');
+    ctx.put(GameContextKeys.NEXT, 'active-data-to-send');
 
-      const commandResult = activeDataToSend.execute(ctx);
+    const commandResult = activeDataToSend.execute(ctx);
 
-      const dataToSendFromCtx = ctx.get(GameContextKeys.OUTPUT) as IPlayersAndBoard;
+    const dataToSendFromCtx = ctx.get(GameContextKeys.OUTPUT) as IPlayersAndBoard;
 
-      expect(commandResult).toBeTruthy();
-      expect(dataToSendFromCtx.avatarInTurn).toEqual('Waiting for game to start');
-      expect(dataToSendFromCtx.gameBoard.length).toEqual(TOTAL_SPACES);
-      expect(dataToSendFromCtx.activePlayersInGame.length).toEqual(2);
-      expect(dataToSendFromCtx.winner).toEqual('');
-    });
+    expect(commandResult).toBeTruthy();
+    expect(dataToSendFromCtx.avatarInTurn).toEqual('Waiting for game to start');
+    expect(dataToSendFromCtx.gameBoard.length).toEqual(TOTAL_SPACES);
+    expect(dataToSendFromCtx.activePlayersInGame.length).toEqual(2);
+    expect(dataToSendFromCtx.winner).toEqual('');
   });
 });

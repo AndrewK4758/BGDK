@@ -16,6 +16,25 @@
         "buildLibsFromSource": true,
         "configFile": "libs/chains-for-games/vite.config.mts"
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/chains-for-games/jest.config.ts",
+        "reportsDirectory": "../../coverage/libs/chains-for-games",
+        "testFiles": ["./src/tests/*"],
+        "ci": true,
+        "runInBand": true,
+        "verbose": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/chains-for-games/**/*.{ts,tsx,js,jsx}", "libs/chains-for-games/package.json"]
+      }
     }
   }
 }

@@ -81,7 +81,7 @@ export class ChutesAndLadders {
   CHUTES: number;
   LADDERS: number;
   DIE: Die;
-  startSpace!: Space;
+  startSpace: Space;
   colorList: typeof Color;
   avatarList: AvatarTotem[];
   /**
@@ -90,14 +90,15 @@ export class ChutesAndLadders {
    * @param {Number} ladders number of ladders
    */
   constructor(chutes: number, ladders: number) {
+    this.MIN_PLAYERS = 2;
+    this.MAX_PLAYERS = 4;
     this.CHUTES = chutes;
     this.LADDERS = ladders;
-    this.DIE = new Die(6);
-    this.MAX_PLAYERS = 4;
-    this.MIN_PLAYERS = 2;
+    this.startSpace = new Space(SpaceType.START, 'START');
     this.makeGameBoard();
     this.colorList = Color;
     this.avatarList = AvatarTotems.totemsList;
+    this.DIE = new Die(6);
   }
 
   spaceMaker = (indexOfSpace: number): Space => {
@@ -115,11 +116,6 @@ export class ChutesAndLadders {
         space = new Space(SpaceType.FINISH, 'Finish');
         return space;
 
-      case indexOfSpace === START:
-        space = new Space(SpaceType.START, 'Start');
-        this.startSpace = space;
-        return space;
-
       default:
         space = new Space(SpaceType.NORMAL, indexOfSpace);
         return space;
@@ -130,7 +126,7 @@ export class ChutesAndLadders {
     uniqueSpecialValues.clear();
     specialsDumps.clear();
     this.specialValuesMaker();
-    new Board(TOTAL_SPACES, this.spaceMaker);
+    new Board(TOTAL_SPACES, this.startSpace, this.spaceMaker);
     chuteCount = 0;
     ladderCount = 0;
     chuteSpecialCount = 5;

@@ -1,7 +1,7 @@
 import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID, IRegisterFormValues, IActivePlayersInGame } from '@bgdk/types-game';
-import { Player, GameBoard } from '@bgdk/games-components-logic';
+import { GameBoard, Player } from '@bgdk/games-components-logic';
+import { GameContextKeys, GameInstanceID, IActivePlayersInGame, IRegisterFormValues } from '@bgdk/types-game';
 
 export interface IPlayersAndBoard extends IActivePlayersInGame {
   gameBoard: GameBoard;
@@ -28,9 +28,8 @@ export const readyToPlayCheck = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'ready-to-play-check') {
     const { game } = deRefContextObject(context);
 
-    const playerInTurn = game.instance.readyToPlay
-      ? game.instance.playerInTurn.avatar.name
-      : 'Waiting for game to start';
+    const playerInTurn =
+      game.instance.readyToPlay === true ? game.instance.playerInTurn.avatar.name : 'Waiting for game to start';
     context.put('player-in-turn', playerInTurn);
     context.put(GameContextKeys.NEXT, 'check-if-winner');
     return true;
@@ -64,6 +63,7 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
       activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };
+
     if (!req && !resp) {
       console.log('In io.emit event handler');
       io.to(game.gameInstanceID).emit('game-data', activeDataToSend);
@@ -78,5 +78,5 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
 
 export const activeGameDisplayChain = ChainBuilder.build(
   [activePlayers, readyToPlayCheck, checkIfWinner, activeDataToSend],
-  false
+  false,
 );
