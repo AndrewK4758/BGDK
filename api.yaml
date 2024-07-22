@@ -9,7 +9,7 @@ service: api
 # env_variables:
 #   APP_RUNTIME_ENVIRONMENT: ['npm': 'start']
 
-env: flex
+# env: flex
 
 inbound_services:
 - warmup
@@ -36,8 +36,8 @@ handlers:
   script: None
   secure: always
 
-manual_scaling:
-  instances: 1
+# manual_scaling:
+#   instances: 1
 
 resources:
   cpu: 2
