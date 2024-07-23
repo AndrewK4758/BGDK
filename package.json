@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/apis/games-api/main.js"
-  },
-  "engines": {
-    "node": "22.x.x"
+    "start": "node ./dist/apis/games-api/main.js",
+    "build": "npx nx affected -t lint test build"
   },
   "private": true,
   "dependencies": {

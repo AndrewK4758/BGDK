@@ -4,8 +4,8 @@ steps:
     args: ['install']
 
   # Run tests
-  - name: 'gcr.io/cloud-builders/npx'
-    args: ['nx affected -t lint test build']
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
 
 # Specify the images to be pushed to the Container Registry
 images:
