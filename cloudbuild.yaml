@@ -7,9 +7,9 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
 
-# Specify the images to be pushed to the Container Registry
-images:
-   - 'gcr.io/$PROJECT_ID/games-api:latest'
+  # Deploy to App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', 'api.yaml']
 
 # Optional: Define a timeout for the build
 timeout: '1600s'

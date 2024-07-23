@@ -12,7 +12,7 @@ import { Space } from '@bgdk/games-components-logic';
 let game: ChutesAndLadders;
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     game = new ChutesAndLadders(5, 5);
   });
 
@@ -59,7 +59,7 @@ describe('Test connectivity of spaces within Board', () => {
     expect(space.type).toEqual(SpaceType.LADDER);
   });
 
-  it('will return a 2D array of length 10', () => {
+  it(`will return a array of length ${TOTAL_SPACES}`, () => {
     const gameBoard: GameBoard = game.displayGameBoard();
     expect(gameBoard.length).toEqual(TOTAL_SPACES);
   });

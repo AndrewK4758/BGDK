@@ -1213,7 +1213,6 @@
                 "./src/tests/*"
               ],
               "ci": true,
-              "runInBand": true,
               "verbose": true
             },
             "configurations": {},
@@ -16703,11 +16702,6 @@
       {
         "source": "react-components",
         "target": "npm:@nx/vite",
-        "type": "static"
-      },
-      {
-        "source": "react-components",
-        "target": "npm:@testing-library/react",
         "type": "static"
       }
     ],
