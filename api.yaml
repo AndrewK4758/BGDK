@@ -1,4 +1,4 @@
-runtime: nodejs22
+runtime: nodejs
 
 runtime_config:
   operating_system: 'ubuntu22'
