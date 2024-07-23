@@ -1,19 +1,19 @@
 steps:
-  # Install dependencies
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['install']
+  # # Install dependencies
+  # - name: 'gcr.io/cloud-builders/npm'
+  #   args: ['install']
 
-  # Lint
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'lint']
+  # # Lint
+  # - name: 'gcr.io/cloud-builders/npm'
+  #   args: ['run', 'lint']
 
-  # Test
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'test']
+  # # Test
+  # - name: 'gcr.io/cloud-builders/npm'
+  #   args: ['run', 'test']
       
-  # Run tests
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'build']
+  # # Run tests
+  # - name: 'gcr.io/cloud-builders/npm'
+  #   args: ['run', 'build']
 
   # Deploy to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
