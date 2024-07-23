@@ -9,7 +9,7 @@ steps:
 
 # Specify the images to be pushed to the Container Registry
 images:
-  - 'gcr.io/$PROJECT_ID/dist/apis/games-api'
+   - 'gcr.io/$PROJECT_ID/games-api:latest'
 
 # Optional: Define a timeout for the build
 timeout: '1600s'

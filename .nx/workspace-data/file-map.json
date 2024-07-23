@@ -149,64 +149,28 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "README.md",
-        "hash": "14244150804932717168"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "17547703187098464777"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "16757757177935638162"
-      },
-      {
-        "file": "cloudbuild.yaml",
-        "hash": "16324893503574504544"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "9752298648827472389"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "9802956178745117989"
-      },
-      {
-        "file": "dispatch.yaml",
-        "hash": "6319116405105854956"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "5108860596682862656"
-      },
-      {
-        "file": ".gcloudignore",
-        "hash": "14575140511607010884"
-      },
-      {
         "file": ".vscode/settings.json",
         "hash": "12951700725653194509"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "14792400884932106105"
       },
       {
         "file": "__mocks__/mocks.ts",
         "hash": "4613163832101995528"
       },
       {
-        "file": "website.yaml",
-        "hash": "17140406020307498516"
+        "file": "api.yaml",
+        "hash": "2260716588678680909"
       },
       {
-        "file": "package.json",
-        "hash": "1104474702440634632"
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "5108860596682862656"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "4934098906304722861"
       },
       {
         "file": "tsconfig.base.json",
@@ -221,8 +185,20 @@
         "hash": "10984777785428827340"
       },
       {
-        "file": "api.yaml",
-        "hash": "2260716588678680909"
+        "file": "cloudbuild.yaml",
+        "hash": "3044503233380046840"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "14792400884932106105"
+      },
+      {
+        "file": "package.json",
+        "hash": "1104474702440634632"
+      },
+      {
+        "file": "dispatch.yaml",
+        "hash": "6319116405105854956"
       },
       {
         "file": ".eslintignore",
@@ -233,8 +209,32 @@
         "hash": "6790244420441770749"
       },
       {
-        "file": ".vscode/extensions.json",
-        "hash": "4934098906304722861"
+        "file": ".github/workflows/ci.yml",
+        "hash": "17547703187098464777"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "9752298648827472389"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "9802956178745117989"
+      },
+      {
+        "file": ".gcloudignore",
+        "hash": "14575140511607010884"
+      },
+      {
+        "file": "README.md",
+        "hash": "14244150804932717168"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "16757757177935638162"
+      },
+      {
+        "file": "website.yaml",
+        "hash": "17140406020307498516"
       }
     ],
     "projectFileMap": {
