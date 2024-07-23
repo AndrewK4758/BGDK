@@ -7,7 +7,7 @@ runtime_config:
 service: api
 
 env_variables:
-  APP_RUNTIME_ENVIRONMENT: ['npm': 'start']
+  APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
 
 env: flex
 
