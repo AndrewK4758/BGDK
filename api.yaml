@@ -2,7 +2,6 @@ runtime: nodejs22
 
 runtime_config:
   operating_system: 'ubuntu22'
-  runtime_version: '22'
 
 service: api
 
