@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/apis/games-api/main.js",
-    "build": "npx nx run-many -t lint test build"
+    "lint": "npx nx lint games-api",
+    "test": "npx nx test games-api",
+    "build": "npx nx run games-api:build:production"
   },
   "private": true,
   "dependencies": {
