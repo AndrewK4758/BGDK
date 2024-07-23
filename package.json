@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node ./dist/apis/games-api/main.js"
   },
+  "engines": {
+    "node": "22.x.x"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",

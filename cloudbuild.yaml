@@ -1,0 +1,15 @@
+steps:
+  # Install dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+
+  # Run tests
+  - name: 'gcr.io/cloud-builders/npx'
+    args: ['nx affected -t lint test build']
+
+# Specify the images to be pushed to the Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/dist/apis/games-api'
+
+# Optional: Define a timeout for the build
+timeout: '1600s'
