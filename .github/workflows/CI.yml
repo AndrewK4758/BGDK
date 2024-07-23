@@ -1,4 +1,4 @@
-name: CI
+name: BGDK Full Build
 
 on:
   push:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,9 +26,9 @@ jobs:
       # - run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
 
       # Cache node_modules
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22.x'
           cache: 'npm'
 
       - run: npm ci --legacy-peer-deps
@@ -37,3 +38,8 @@ jobs:
       # - run: npx nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: npx nx affected -t lint test build
+      - name: Prod artifacts
+        uses: actions/upload-artifact@v4  
+        with:
+          name: dist 
+          path: dist/**
