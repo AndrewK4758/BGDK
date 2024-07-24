@@ -6,7 +6,7 @@ runtime_config:
 service: api
 
 env_variables:
-  APP_RUNTIME_ENVIRONMENT: ['npm', 'install', 'npm', 'lint', 'npm', 'test', 'npm', 'build', 'npm', 'start']
+  APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
 
 env: flex
 
