@@ -8,6 +8,13 @@
     "test": "npx nx test games-api",
     "build": "npx nx run games-api:build:production"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndrewK4758/BGDK.git"
+  },
+  "engines": {
+    "node": ">=20.x"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
