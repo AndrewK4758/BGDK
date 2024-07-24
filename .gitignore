@@ -39,8 +39,11 @@ testem.log
 Thumbs.db
 vite.config.mts.timestamp-*
 .nx/cache
-.nx/workspace-data
+.nx/workspace-data/*
 
 # env
 ./env/*
 .env.*
+
+.nx/workspace-data/d/daemon.log
+.nx/workspace-data/file-map.json
