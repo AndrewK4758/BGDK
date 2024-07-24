@@ -8,13 +8,20 @@ service: api
 env_variables:
   APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
 
-env: flex
+# env: flex
 
 inbound_services:
   - warmup
 entrypoint: 'dist/apis/games-api'
 
 # liveness_check:
+# path: "/liveness_check"
+# check_interval_sec: 30
+# timeout_sec: 4
+# failure_threshold: 2
+# success_threshold: 2
+#
+#
 # path: "/liveness_check"
 # check_interval_sec: 30
 # timeout_sec: 4
@@ -29,18 +36,25 @@ entrypoint: 'dist/apis/games-api'
 # success_threshold: 2
 # app_start_timeout_sec: 600
 #
+# path: "/readiness_check"
+# timeout_sec: 4
+# failure_threshold: 2
+# success_threshold: 2
+# app_start_timeout_sec: 600
+#
 
 handlers:
   - url: /.*
     script: None
     secure: always
+  - url: /.*
+    script: None
+    secure: always
 
-manual_scaling:
-  instances: 1
+# manual_scaling:
+#   instances: 1
 
 resources:
   cpu: 2
   memory_gb: 4
   disk_size_gb: 10
-
-

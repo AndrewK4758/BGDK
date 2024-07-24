@@ -16203,6 +16203,11 @@
         "source": "de-referencing-utilities",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "de-referencing-utilities",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "games-api-e2e": [
@@ -16257,6 +16262,11 @@
         "source": "instance-of-game",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "instance-of-game",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "games-components-logic": [
@@ -16273,6 +16283,11 @@
       {
         "source": "games-components-logic",
         "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "games-components-logic",
+        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
@@ -16366,6 +16381,11 @@
         "source": "chutes-and-ladders-ui",
         "target": "npm:@vitejs/plugin-react",
         "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders-ui",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "data-api-e2e": [
@@ -16410,6 +16430,11 @@
         "source": "all-games-map",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "all-games-map",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "game-builder": [
@@ -16431,6 +16456,11 @@
       {
         "source": "game-builder",
         "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "game-builder",
+        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
@@ -16514,6 +16544,11 @@
         "source": "games-api",
         "target": "npm:swagger-jsdoc",
         "type": "static"
+      },
+      {
+        "source": "games-api",
+        "target": "npm:@nx/webpack",
+        "type": "static"
       }
     ],
     "chutes-and-ladders": [
@@ -16536,6 +16571,11 @@
         "source": "chutes-and-ladders",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "chutes-and-ladders",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "data-api": [
@@ -16547,6 +16587,11 @@
       {
         "source": "data-api",
         "target": "npm:express",
+        "type": "static"
+      },
+      {
+        "source": "data-api",
+        "target": "npm:@nx/webpack",
         "type": "static"
       }
     ],
@@ -16605,6 +16650,11 @@
         "source": "chains-for-games",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "chains-for-games",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "react-components": [
@@ -16662,6 +16712,11 @@
         "source": "react-components",
         "target": "games-components-logic",
         "type": "static"
+      },
+      {
+        "source": "react-components",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "types-game": [
@@ -16673,6 +16728,11 @@
       {
         "source": "types-game",
         "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "types-game",
+        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
@@ -16701,6 +16761,11 @@
         "source": "types-api",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "types-api",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "rule": [
@@ -16713,6 +16778,11 @@
         "source": "rule",
         "target": "npm:vite-plugin-dts",
         "type": "static"
+      },
+      {
+        "source": "rule",
+        "target": "npm:@nx/vite",
+        "type": "static"
       }
     ],
     "chain": [
@@ -16724,6 +16794,11 @@
       {
         "source": "chain",
         "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "chain",
+        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
@@ -16751,6 +16826,11 @@
       {
         "source": "game",
         "target": "npm:vite-plugin-dts",
+        "type": "static"
+      },
+      {
+        "source": "game",
+        "target": "npm:@nx/vite",
         "type": "static"
       }
     ],
