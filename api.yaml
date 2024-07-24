@@ -2,20 +2,26 @@ runtime: nodejs
 
 runtime_config:
   operating_system: 'ubuntu22'
-  runtime_version: '22'
 
 service: api
 
-# env_variables:
-#   APP_RUNTIME_ENVIRONMENT: ['npm': 'start']
+env_variables:
+  APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
 
 # env: flex
 
 inbound_services:
   - warmup
-entrypoint: 'npm'
+entrypoint: 'dist/apis/games-api'
 
 # liveness_check:
+# path: "/liveness_check"
+# check_interval_sec: 30
+# timeout_sec: 4
+# failure_threshold: 2
+# success_threshold: 2
+#
+#
 # path: "/liveness_check"
 # check_interval_sec: 30
 # timeout_sec: 4
@@ -30,8 +36,17 @@ entrypoint: 'npm'
 # success_threshold: 2
 # app_start_timeout_sec: 600
 #
+# path: "/readiness_check"
+# timeout_sec: 4
+# failure_threshold: 2
+# success_threshold: 2
+# app_start_timeout_sec: 600
+#
 
 handlers:
+  - url: /.*
+    script: None
+    secure: always
   - url: /.*
     script: None
     secure: always
@@ -43,33 +58,3 @@ resources:
   cpu: 2
   memory_gb: 4
   disk_size_gb: 10
-# runtime: nodejs22
-#
-# env: flex
-#
-# service: api
-#
-# inbound_services:
-# - warmup
-#
-# liveness_check:
-# path: "/liveness_check"
-# check_interval_sec: 30
-# timeout_sec: 4
-# failure_threshold: 2
-# success_threshold: 2
-#
-# readiness_check:
-# path: "/readiness_check"
-# timeout_sec: 4
-# failure_threshold: 2
-# success_threshold: 2
-# app_start_timeout_sec: 300
-#
-# handlers:
-# - url: /.*
-# script: None
-# secure: always
-#
-# automatic_scaling:
-# min_num_instances: 1

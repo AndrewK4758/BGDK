@@ -25,7 +25,6 @@
         "reportsDirectory": "../../coverage/libs/chains-for-games",
         "testFiles": ["./src/tests/*"],
         "ci": true,
-        "runInBand": true,
         "verbose": true
       }
     },

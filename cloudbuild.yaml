@@ -1,0 +1,8 @@
+steps:
+
+  # Deploy to App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', 'api.yaml']
+
+# Optional: Define a timeout for the build
+timeout: '1600s'
