@@ -8,7 +8,7 @@ service: api
 env_variables:
   APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
 
-# env: flex
+env: flex
 
 inbound_services:
   - warmup
