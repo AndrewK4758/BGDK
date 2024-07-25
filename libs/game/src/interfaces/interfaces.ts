@@ -1,8 +1,8 @@
-import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Player } from '@bgdk/games-components-logic';
+import { AllGameTypes } from '../types/all-games-types';
 
 export interface IGame {
-  instance: ChutesAndLadders;
+  instance: AllGameTypes;
   playersArray: Player[];
   playerInTurn: Player;
   readyToPlay: boolean;

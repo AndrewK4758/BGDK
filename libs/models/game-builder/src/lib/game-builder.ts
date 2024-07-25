@@ -8,7 +8,7 @@ export interface IBuiltGame {
   imageURL?: string;
   rules: IRule[];
   chain: Chain;
-  commands: Command[];
+  instance<T>(): T;
 }
 
 export interface IGameBuilder {
@@ -18,6 +18,7 @@ export interface IGameBuilder {
   setImageURL(imageURL: string): IGameBuilder;
   setRule(order: number, value: string, title: string): IGameBuilder;
   setGameFunctionality(commands: Command[]): IGameBuilder;
+  setInstance<T>(instance: () => T): IGameBuilder;
   build(): IBuiltGame;
 }
 
@@ -55,16 +56,20 @@ export class GameBuilder implements IGameBuilder {
   }
 
   setGameFunctionality(commands: Command[]): IGameBuilder {
-    this.#Game.commands = commands;
+    this.#Game.chain = ChainBuilder.build(commands, true);
+    return this;
+  }
+
+  setInstance<T>(instance: () => T): IGameBuilder {
+    this.#Game.instance<T> = instance;
     return this;
   }
 
   build(): IBuiltGame {
-    this.#Game.chain = ChainBuilder.build(this.#Game.commands, true);
     const gameBuildComplete = Object.assign(new Object() as IBuiltGame, this.#Game);
     this.#Game = {} as IBuiltGame;
     this.#Game.rules = [];
-    this.#Game.commands = [];
+    this.#Game.instance<null> = () => null;
 
     return gameBuildComplete;
   }

@@ -45,10 +45,10 @@ export const rollMultipleDiceAndSum = (dice: IDie[]): ISummedRoll => {
   } as ISummedRoll;
 };
 
-export const rangeSelector = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min) + min);
-};
+export const rangeSelector = (min: number, max: number): number => Math.floor(Math.random() * (max - min) + min);
 
-export const rowFinder = (indexOfSpace: number) => {
-  return Math.floor(indexOfSpace / 10);
-};
+export const rowFinder = (indexOfSpace: number, totalSpaces: number): number =>
+  Math.floor(indexOfSpace / Math.ceil(rowMaker(totalSpaces)));
+
+
+export const rowMaker = (totalSpaces: number): number => Math.ceil(Math.sqrt(totalSpaces));

@@ -1,10 +1,10 @@
-import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Avatar, generateRandomNumber, Player } from '@bgdk/games-components-logic';
 import { Color, SpaceType } from '@bgdk/types-game';
 import { IGame } from '../interfaces/interfaces';
+import { AllGameTypes } from '../types/all-games-types';
 
 export class Game implements IGame {
-  game: ChutesAndLadders;
+  game: AllGameTypes;
   playersArray: Player[];
   playerInTurn!: Player;
   readyToPlay: boolean;
@@ -12,7 +12,7 @@ export class Game implements IGame {
   currentPlayer: number;
   MIN_PLAYERS!: number;
   MAX_PLAYERS!: number;
-  constructor(instance: ChutesAndLadders) {
+  constructor(instance: AllGameTypes) {
     this.game = instance;
     this.playersArray = [];
     this.readyToPlay = false;

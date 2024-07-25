@@ -8,7 +8,9 @@ import {
   startGameChain,
   turnChain,
 } from '@bgdk/chains-for-games';
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { GameBuilder, IBuiltGame } from '@bgdk/game-builder';
+import { TicTacToe } from '@bgdk/tic-tac-toe';
 
 const gb = new GameBuilder();
 const games: IBuiltGame[] = [];
@@ -45,10 +47,11 @@ export const ChutesAndLaddersGame = gb
     activeGameDisplayChain,
     outputContextResponseChain,
   ])
+  .setInstance(() => new ChutesAndLadders(5, 5))
   .build();
 games.push(ChutesAndLaddersGame);
 
-export const TicTacToe = gb
+export const TicTacToeGame = gb
   .setId('1')
   .setName('Tic Tac Toe')
   .setDescription('Second Game Placeholder')
@@ -56,9 +59,19 @@ export const TicTacToe = gb
   .setRule(1, 'SETUP', `The game is played on a 3x3 grid`)
   .setRule(2, 'TURNS', `Players take turns marking an empty square with their symbol (X or O)`)
   .setRule(3, 'WIN', `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`)
-  .setGameFunctionality([])
+  .setGameFunctionality([
+    logActionChain,
+    loadRegisterChain,
+    registerChain,
+    turnChain,
+    resetGameChain,
+    startGameChain,
+    activeGameDisplayChain,
+    outputContextResponseChain,
+  ])
+  .setInstance<TicTacToe>(() => new TicTacToe())
   .build();
 
-games.push(TicTacToe);
+games.push(TicTacToeGame);
 
 export default games;

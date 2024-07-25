@@ -3,15 +3,22 @@ import express, { NextFunction, Request, Response, Router } from 'express';
 import performAction from '../controllers/perform_action_context_object';
 import populateInstanceMaps from '../controllers/populate_instance_map';
 import sendGameList from '../controllers/send_game_list';
-
+import useAllGamesMap from '../controllers/middleware/all-games-map';
+import useInstanceTimeMap from '../controllers/middleware/instance-map';
+import useGameSpecificChain from '../controllers/middleware/game-specific-chain';
 export default class GameRoutes {
   constructor(router: Router) {
     router.use(express.json());
+    router.use('/games/*', useAllGamesMap);
+    router.use('/games/*', useInstanceTimeMap);
+    router.use('/games/:id/*', useGameSpecificChain);
 
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);
-    router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response)=>performAction(req, resp, undefined, undefined));
-    router.patch('/join-game', (req: IReqObjMaps, resp: Response)=>performAction(req, resp, undefined, undefined));
+    router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response) =>
+      performAction(req, resp, undefined, undefined),
+    );
+    router.patch('/join-game', (req: IReqObjMaps, resp: Response) => performAction(req, resp, undefined, undefined));
 
     // GAE HEALH CHECKS
     router.all('/readiness_check', (err: Error, req: Request, resp: Response, next: NextFunction) => {

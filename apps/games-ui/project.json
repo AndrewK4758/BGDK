@@ -1,0 +1,72 @@
+{
+  "name": "games-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/games-ui/src",
+  "projectType": "application",
+  "scripts": {
+    "start": "vite"
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/games-ui"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "games-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "games-ui:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "games-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "games-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "games-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "games-ui:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/games-ui/jest.config.ts",
+        "reportsDirectory": "../../coverage/apps/games-ui",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

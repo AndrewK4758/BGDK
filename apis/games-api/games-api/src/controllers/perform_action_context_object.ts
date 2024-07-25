@@ -5,7 +5,7 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Response } from 'express';
 import SocketServer from '../services/socket-io/socket-server';
-import { ChutesAndLaddersGame } from './list-games';
+import { activeGameDisplayChain } from '@bgdk/chains-for-games';
 
 const performAction = async (req: IReqObjMaps, resp: Response, gameWS: InstanceOfGame, actionWS: string) => {
   console.log('Perform Action Called');
@@ -16,7 +16,7 @@ const performAction = async (req: IReqObjMaps, resp: Response, gameWS: InstanceO
       ctx.put(GameContextKeys.IO, SocketServer.instance.io);
       ctx.put(GameContextKeys.GAME, gameWS);
 
-      ChutesAndLaddersGame.chain.execute(ctx);
+      activeGameDisplayChain.execute(ctx);
     } else {
       SocketServer.instance.io.emit('no-game-error', 'GAME NOT FOUND');
     }
@@ -32,7 +32,7 @@ const performAction = async (req: IReqObjMaps, resp: Response, gameWS: InstanceO
       ctx.put(GameContextKeys.RESPONSE, resp);
       ctx.put(GameContextKeys.NEXT, '');
 
-      ChutesAndLaddersGame.chain.execute(ctx);
+      req.gameSpecificChain.execute(ctx);
     } else {
       resp.sendStatus(404);
     }

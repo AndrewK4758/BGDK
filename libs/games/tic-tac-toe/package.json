@@ -1,0 +1,12 @@
+{
+  "name": "@bgdk/tic-tac-toe",
+  "version": "0.0.1",
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "@bgdk/games-components-logic": "0.0.1"
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
+}

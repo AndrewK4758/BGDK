@@ -16,7 +16,7 @@
       "path": "./tsconfig.lib.json"
     },
     {
-      "path": "../../apps/chutes-and-ladders-ui/tsconfig.app.json"
+      "path": "../../apps/games-ui/tsconfig.app.json"
     }
   ],
   "extends": "../../tsconfig.base.json"

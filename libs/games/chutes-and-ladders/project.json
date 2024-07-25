@@ -1,0 +1,29 @@
+{
+  "name": "chutes-and-ladders",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/games/chutes-and-ladders/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/games/chutes-and-ladders",
+        "main": "libs/games/chutes-and-ladders/src/index.ts",
+        "tsConfig": "libs/games/chutes-and-ladders/tsconfig.lib.json",
+        "assets": ["libs/games/chutes-and-ladders/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/games/chutes-and-ladders/**/*.{ts,tsx,js,jsx}",
+          "libs/games/chutes-and-ladders/package.json"
+        ]
+      }
+    }
+  }
+}

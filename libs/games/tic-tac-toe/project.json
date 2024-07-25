@@ -1,0 +1,19 @@
+{
+  "name": "tic-tac-toe",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/games/tic-tac-toe/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/games/tic-tac-toe",
+        "main": "libs/games/tic-tac-toe/src/index.ts",
+        "tsConfig": "libs/games/tic-tac-toe/tsconfig.lib.json",
+        "assets": ["libs/games/tic-tac-toe/*.md"]
+      }
+    }
+  }
+}

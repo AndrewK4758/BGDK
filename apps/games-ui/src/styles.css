@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Jersey25';
+  src: url('../fonts/Jersey25-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Jersey25-Charted';
+  src: url('../fonts/Jersey25Charted-Regular.ttf') format('truetype');
+}
+
+* {
+  -webkit-font-smoothining: antialiased;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
