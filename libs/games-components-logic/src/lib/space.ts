@@ -64,7 +64,7 @@ export class Space implements ISpace {
   }
 
   set display(displayToken: string) {
-    this.Display = String(displayToken);
+    this.Display = displayToken;
   }
 
   land(avatar: Avatar): void {
@@ -87,4 +87,5 @@ export class Space implements ISpace {
       this.avatarsInSpace[0].move(1);
     }
   }
+
 }

@@ -4,8 +4,4 @@ export interface RenderListProps {
   listMapCallback(e: unknown, i: number, arr: unknown[]): JSX.Element;
 }
 
-export function RenderList({ data, listMapCallback }: RenderListProps) {
-  return <>{data.map(listMapCallback)}</>;
-}
-
-export default RenderList;
+export const RenderList = ({ data, listMapCallback }: RenderListProps) => <>{data.map(listMapCallback)}</>;

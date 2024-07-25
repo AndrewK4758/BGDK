@@ -26,12 +26,11 @@ interface ShowGameBoardProps {
  *
  * @returns a rendered game board
  */
-const ShowGameBoard = ({ board }: ShowGameBoardProps) => {
-  return (
-    <Box component={'section'} sx={breakpointsGameBoardBox}>
-      {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
-    </Box>
-  );
-};
+const ShowGameBoard = ({ board }: ShowGameBoardProps) => (
+  <Box component={'section'} sx={breakpointsGameBoardBox}>
+    {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
+  </Box>
+);
+
 
 export default ShowGameBoard;

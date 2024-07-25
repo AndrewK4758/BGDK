@@ -1,11 +1,11 @@
 import { SxProps } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Fragment } from 'react/jsx-runtime';
-import RenderList from '../render-list/render-list';
+import { RenderList } from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
 import { ILiteSpace } from '@bgdk/games-components-logic';
-import { CSSProperties } from 'react';
+import { CSSProperties, Dispatch, SetStateAction } from 'react';
 
 /* eslint-disable-next-line */
 export interface GameBoardProps {
@@ -17,6 +17,7 @@ export interface GameBoardProps {
   id: string | number;
   gridSx?: SxProps;
   rowSx?: SxProps;
+  setStateAction?: Dispatch<SetStateAction<number | unknown>>;
 }
 
 const breakpointsRowSx: SxProps = {
