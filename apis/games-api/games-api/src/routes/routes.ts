@@ -3,25 +3,24 @@ import express, { NextFunction, Request, Response, Router } from 'express';
 import performAction from '../controllers/perform_action_context_object';
 import populateInstanceMaps from '../controllers/populate_instance_map';
 import sendGameList from '../controllers/send_game_list';
-import useAllGamesMap from '../controllers/middleware/all-games-map';
-import useInstanceTimeMap from '../controllers/middleware/instance-map';
-import useGameSpecificChain from '../controllers/middleware/game-specific-chain';
+import useAllGamesMap from '../middleware/all-games-map';
+import useInstanceTimeMap from '../middleware/instance-map';
+import useGameSpecificChain from '../middleware/game-specific-chain';
 export default class GameRoutes {
   constructor(router: Router) {
+    // ROUTER MIDDLEWARE
     router.use(express.json());
     router.use('/games/*', useAllGamesMap);
     router.use('/games/*', useInstanceTimeMap);
     router.use('/games/:id/*', useGameSpecificChain);
-
+    // ENDPOINTS
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);
-    router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response) =>
-      performAction(req, resp, undefined, undefined),
-    );
-    router.patch('/join-game', (req: IReqObjMaps, resp: Response) => performAction(req, resp, undefined, undefined));
+    router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response) => performAction(req, resp, null, null));
+    router.patch('/join-game', (req: IReqObjMaps, resp: Response) => performAction(req, resp, null, null));
 
     // GAE HEALH CHECKS
-    router.all('/readiness_check', (err: Error, req: Request, resp: Response, next: NextFunction) => {
+    router.all('/readiness_check', (err: Error, _req: Request, resp: Response, next: NextFunction) => {
       if (err) {
         console.log(err);
       } else {
@@ -30,7 +29,7 @@ export default class GameRoutes {
       next();
     });
 
-    router.all('/liveness_check', (err: Error, req: Request, resp: Response, next: NextFunction) => {
+    router.all('/liveness_check', (err: Error, _req: Request, resp: Response, next: NextFunction) => {
       if (err) {
         console.log(err);
       } else {

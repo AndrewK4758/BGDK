@@ -3,7 +3,7 @@ import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import swaggerUi from 'swagger-ui-express';
-import GameRoutes from './routes/game_routes';
+import GameRoutes from './routes/routes';
 import SocketServer from './services/socket-io/socket-server';
 import specs from './services/swagger/swagger-setup';
 

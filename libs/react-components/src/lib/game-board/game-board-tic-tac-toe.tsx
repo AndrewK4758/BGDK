@@ -1,14 +1,13 @@
 import { SxProps } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Fragment } from 'react/jsx-runtime';
-import { RenderList } from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
 import { ILiteSpace } from '@bgdk/games-components-logic';
-import { CSSProperties } from 'react';
+import { CSSProperties, MouseEvent } from 'react';
 
 /* eslint-disable-next-line */
-export interface GameBoardProps {
+export interface GameBoardPropsTicTacToe {
   row: ILiteSpace[];
   columns: number;
   container: boolean | undefined;
@@ -17,6 +16,7 @@ export interface GameBoardProps {
   id: string | number;
   gridSx?: SxProps;
   rowSx?: SxProps;
+  setStateAction: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 }
 
 const breakpointsRowSx: SxProps = {
@@ -41,27 +41,32 @@ const avatarSize: CSSProperties = {
   height: '100%',
 };
 
-const gameBoardRowMap = (e: ILiteSpace, i: number, arr: string[]) => {
-  const DisplayValue = () => {
-    if (e.display.indexOf('g') === e.display.length - 1)
-      return <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />;
-    else return <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />;
-  };
-  return (
-    <Fragment key={e.display}>
-      <Grid sx={breakpointsRowSx}>
-        <DisplayValue />
-      </Grid>
-    </Fragment>
-  );
-};
-
-export function GameBoardMap({ row, columns, container, direction, wrap, id, gridSx }: GameBoardProps) {
+export function GameBoardMapTicTacToe({
+  row,
+  columns,
+  container,
+  direction,
+  wrap,
+  id,
+  setStateAction,
+}: GameBoardPropsTicTacToe) {
   return (
     <Grid columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
-      <RenderList data={row} listMapCallback={gameBoardRowMap} />
+      {row.map((e, _i, _arr) => {
+        return (
+          <Fragment key={e.display}>
+            <Grid component={'div'} sx={breakpointsRowSx} onClick={e => setStateAction(e)}>
+              {e.display.indexOf('g') === e.display.length - 1 ? (
+                <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />
+              ) : (
+                <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
+              )}
+            </Grid>
+          </Fragment>
+        );
+      })}
     </Grid>
   );
 }
 
-export default GameBoardMap;
+export default GameBoardMapTicTacToe;

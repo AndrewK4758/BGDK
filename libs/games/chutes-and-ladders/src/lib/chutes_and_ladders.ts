@@ -102,23 +102,21 @@ export class ChutesAndLadders {
   }
 
   spaceMaker = (indexOfSpace: number): Space => {
-    let space: Space;
     switch (true) {
       case specialsDumps.has(indexOfSpace):
-        space = specialsDumps.get(indexOfSpace) as Space;
-        return space;
+        return specialsDumps.get(indexOfSpace) as Space;
 
       case uniqueSpecialValues.has(indexOfSpace):
-        space = uniqueSpecialValues.get(indexOfSpace) as Space;
-        return space;
+        return uniqueSpecialValues.get(indexOfSpace) as Space;
 
       case indexOfSpace === TOTAL_SPACES:
-        space = new Space(SpaceType.FINISH, 'Finish');
-        return space;
+        return new Space(SpaceType.FINISH, 'Finish');
+
+      case indexOfSpace === START:
+        return this.startSpace;
 
       default:
-        space = new Space(SpaceType.NORMAL, indexOfSpace);
-        return space;
+        return new Space(SpaceType.NORMAL, indexOfSpace);
     }
   };
 
@@ -126,7 +124,7 @@ export class ChutesAndLadders {
     uniqueSpecialValues.clear();
     specialsDumps.clear();
     this.specialValuesMaker();
-    new Board(TOTAL_SPACES, this.startSpace, this.spaceMaker);
+    new Board(TOTAL_SPACES, this.spaceMaker);
     chuteCount = 0;
     ladderCount = 0;
     chuteSpecialCount = 5;

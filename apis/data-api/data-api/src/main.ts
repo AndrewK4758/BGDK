@@ -2,8 +2,7 @@ import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-// import swaggerUi from 'swagger-ui-express';
-// import GameRoutes from './routes/game_routes';
+import Routes from './routes/routes';
 
 const app = express();
 const router = express.Router();
@@ -27,7 +26,9 @@ app.use('/api/v1', router);
 app.get('/', (req, res) => {
   res.send({ message: 'Welcome to data-api!' });
 });
-     
+
+new Routes(router);
+
 const port = process.env.PORT || 4444;
 
 const server = httpServer.listen(port, () => {

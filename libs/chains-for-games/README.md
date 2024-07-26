@@ -1,11 +1,6 @@
-# chains-for-games
+# Todos
 
-This library was generated with [Nx](https://nx.dev).
+### Tic Tac Toe
 
-## Building
-
-Run `nx build chains-for-games` to build the library.
-
-## Running unit tests
-
-Run `nx test chains-for-games` to execute the unit tests via [Jest](https://jestjs.io).
+  - Create the command for the take-turn action of tic tac toe
+  - Implement into full tic tac toe game chain

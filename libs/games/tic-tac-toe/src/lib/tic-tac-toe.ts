@@ -35,10 +35,11 @@ export class TicTacToe {
   }
 
   makeGameBoard = () => {
-    new Board(TOTAL_SPACES, this.startSpace, this.spaceMaker);
+    new Board(TOTAL_SPACES, this.spaceMaker);
   };
 
-  spaceMaker = (indexOfSpace: number) => new Space(SpaceType.NORMAL, indexOfSpace);
+  spaceMaker = (indexOfSpace: number) =>
+    indexOfSpace === 1 ? this.startSpace : new Space(SpaceType.NORMAL, indexOfSpace);
 
   addAvatarSvgToDisplay = (name: string) => {
     switch (name) {

@@ -3,7 +3,7 @@ import * as http from 'http';
 import { corsOptions } from '../../main';
 import { GameInstanceID } from '@bgdk/types-game';
 import { getActiveGameWS } from '@bgdk/de-referencing-utilities';
-import { allGamesMap } from '../../controllers/middleware/all-games-map';
+import { allGamesMap } from '../../middleware/all-games-map';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import performAction from '../../controllers/perform_action_context_object';
 

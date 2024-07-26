@@ -1,5 +1,5 @@
 import { IReqObjMaps } from '@bgdk/types-api';
-import games from '../list-games';
+import games from '../controllers/list-games';
 import { Response, NextFunction } from 'express';
 
 const useGameSpecificChain = (req: IReqObjMaps, resp: Response, next: NextFunction) => {

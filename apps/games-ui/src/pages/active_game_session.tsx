@@ -6,11 +6,13 @@ import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Fragment, useEffect, useReducer, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import ActiveAvatars from '../components/game_board/active_avatars';
 import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
 import ShowGameBoard from '../components/game_board/show_game_board';
+import ShowGameBoardTicTacToe from '../components/game_board/show-game-board-tic-tac-toe';
 import socketReducer, { ActionType } from '../components/game_board/socket-reducer';
 import TakeTurn from '../components/game_board/take_turn';
 import { getGameInstanceInfo } from '../services/utils/utils';
@@ -51,6 +53,9 @@ const socketInit = () => {
 export default function ActiveGameSession() {
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
   const socketRef = useRef<Socket>(ClientSocket);
+  const params = useParams();
+
+  const id = params.id;
 
   const socket = socketRef.current;
 
@@ -103,7 +108,8 @@ export default function ActiveGameSession() {
         <ReadyToStart dispatch={dispatch} socket={socket} />
       </Container>
       <Box component={'section'} sx={{ height: '55vh' }}>
-        <ShowGameBoard board={state.gameBoard} />
+        {id === 'Chutes-&-Ladders' && <ShowGameBoard board={state.gameBoard} />}
+        {id === 'Tic-Tac-Toe' && <ShowGameBoardTicTacToe board={state.gameBoard} />}
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>

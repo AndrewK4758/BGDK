@@ -1,4 +1,4 @@
-import { IAllGamesMap } from '@bgdk/all-games-map';
+import { AllGamesMap } from '@bgdk/all-games-map';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
@@ -11,5 +11,5 @@ export const getActiveGame = (req: IReqObjMaps) => {
   return req.allGamesMap.AllGames.get(gameInstanceID) as InstanceOfGame;
 };
 
-export const getActiveGameWS = (gameID: GameInstanceID, allGamesMap: IAllGamesMap) =>
+export const getActiveGameWS = (gameID: GameInstanceID, allGamesMap: AllGamesMap) =>
   allGamesMap.AllGames.get(gameID) as InstanceOfGame;

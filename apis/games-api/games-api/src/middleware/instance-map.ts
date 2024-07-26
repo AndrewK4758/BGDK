@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { InstanceTimeMap, reaper } from '../../services/instance-time-map/instance-time-map';
+import { InstanceTimeMap, reaper } from '../services/instance-time-map/instance-time-map';
 import { IReqObjMaps } from '@bgdk/types-api';
 
 export const instanceMap = new InstanceTimeMap();

@@ -12,7 +12,7 @@ const breakpointsGameBoardBox: SxProps = {
   },
 };
 
-const gameBoardMap = (e: ILiteSpace[], i: number, arr: GameBoard) => (
+const gameBoardMap = (e: ILiteSpace[], i: number, _arr: GameBoard) => (
   <Fragment key={Math.random().toFixed(4)}>
     <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
   </Fragment>
@@ -31,6 +31,5 @@ const ShowGameBoard = ({ board }: ShowGameBoardProps) => (
     {board && <RenderList data={board} listMapCallback={gameBoardMap} />}
   </Box>
 );
-
 
 export default ShowGameBoard;
