@@ -1,6 +1,10 @@
 steps:
 
-  # Lint project
+  # Install Deps
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+
+  # Lint, Test, Build
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
     
