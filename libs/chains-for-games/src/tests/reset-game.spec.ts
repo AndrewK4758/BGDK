@@ -5,7 +5,7 @@ import { Game } from '@bgdk/game';
 import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { GameContextKeys, Color } from '@bgdk/types-game';
 import { resetGame } from '../lib/commands/action-reset-game/reset-game-start';
-import { flipHaveWinnerFlag } from '../lib/commands/action-reset-game/flip-have-winner';
+import { flipHaveWinnerFlag } from '../lib/commands/action-reset-game/flip-winner-flag';
 import { makeNewGameBoard } from '../lib/commands/action-reset-game/make-new-game-board';
 import { GameBoard, Player } from '@bgdk/games-components-logic';
 import { mockReqObj } from '__mocks__/mocks';

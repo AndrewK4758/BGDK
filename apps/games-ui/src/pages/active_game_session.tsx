@@ -5,7 +5,7 @@ import { IActivePlayersInGame } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Fragment, useEffect, useReducer, useRef, MouseEvent, useState } from 'react';
+import { Fragment, useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import ActiveAvatars from '../components/game_board/active_avatars';
@@ -53,7 +53,7 @@ const socketInit = () => {
 
 export default function ActiveGameSession() {
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
-  const [position, setPosition] = useState<string | null>(null);
+  const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
   const socketRef = useRef<Socket>(ClientSocket);
   const params = useParams();
 
@@ -92,7 +92,7 @@ export default function ActiveGameSession() {
         }
         indexOfSpace++;
       });
-      console.log(gameBoardClient);
+
       dispatch({
         type: ActionType.BOARD,
         payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
@@ -107,12 +107,6 @@ export default function ActiveGameSession() {
     };
   }, [socket, id]);
 
-  const handlePosition = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>): void => {
-    e.preventDefault();
-    console.log(e.currentTarget.textContent, 'event');
-    setPosition(e.currentTarget.textContent);
-  };
-
   return (
     <>
       <Container component={'section'} sx={{ marginBottom: '2rem' }}>
@@ -121,7 +115,9 @@ export default function ActiveGameSession() {
       </Container>
       <Box component={'section'} sx={{ height: '55vh' }}>
         {id === 'Chutes-&-Ladders' && <ShowGameBoard board={state.gameBoard} />}
-        {id === 'Tic-Tac-Toe' && <ShowGameBoardTicTacToe board={state.gameBoard} setStateAction={handlePosition} />}
+        {id === 'Tic-Tac-Toe' && (
+          <ShowGameBoardTicTacToe board={state.gameBoard} setStateAction={setSpace} state={space} />
+        )}
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>
@@ -130,7 +126,7 @@ export default function ActiveGameSession() {
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
           <Fragment key={Math.random().toFixed(4)}>
             {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}
-            {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={position} />}
+            {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={space} />}
             <ResetGame dispatch={dispatch} socket={socket} />
           </Fragment>
         </Container>

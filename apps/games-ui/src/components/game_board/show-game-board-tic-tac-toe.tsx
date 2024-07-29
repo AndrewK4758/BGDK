@@ -2,7 +2,7 @@ import { GameBoardMapTicTacToe, Theme } from '@bgdk/react-components';
 import { Built_GameBoard } from '../../pages/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Fragment, MouseEvent } from 'react';
+import { Fragment } from 'react';
 
 const breakpointsGameBoardBox: SxProps = {
   border: `5px solid ${Theme.palette.success.main}`,
@@ -13,7 +13,8 @@ const breakpointsGameBoardBox: SxProps = {
 
 interface ShowGameBoardProps {
   board: Built_GameBoard;
-  setStateAction: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
+  state: (EventTarget & HTMLDivElement) | undefined;
+  setStateAction: (e: EventTarget & HTMLDivElement) => void;
 }
 
 /**
@@ -21,7 +22,7 @@ interface ShowGameBoardProps {
  * @returns a rendered game board
  */
 
-const ShowGameBoardTicTacToe = ({ board, setStateAction }: ShowGameBoardProps) => {
+const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps) => {
   return (
     <Box component={'section'} sx={breakpointsGameBoardBox}>
       {board.map((e, i, _arr): JSX.Element => {
@@ -34,6 +35,7 @@ const ShowGameBoardTicTacToe = ({ board, setStateAction }: ShowGameBoardProps) =
               direction="row"
               wrap="wrap"
               id={`Row ${i}`}
+              state={state}
               setStateAction={setStateAction}
             />
           </Fragment>

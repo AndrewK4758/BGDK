@@ -8,7 +8,7 @@ export const resetGame = CommandBuilder.build((context: Context) => {
     const { game, req } = deRefContextObject(context);
     context.put('req-params-id', req.params['id'] as string);
     game.updateLastActive(getCurrentMinute());
-    context.put(GameContextKeys.NEXT, 'flip-have-winner-flag');
+    context.put(GameContextKeys.NEXT, 'flip-winner-flag');
     return true;
   } else return false;
 });

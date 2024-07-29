@@ -14,7 +14,7 @@ export const verifyPlayerTakingTurn = CommandBuilder.build((context: Context) =>
       context.put('player-taking-turn', game.instance.playerInTurn as Player);
 
       const nextCommand = nextCommandMap.get(req.params['id'])?.get(context.getString(GameContextKeys.NEXT));
-      console.log(nextCommand);
+
       context.put(GameContextKeys.NEXT, nextCommand);
       return true;
     } else {

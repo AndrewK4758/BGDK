@@ -4,7 +4,7 @@ import { Fragment } from 'react/jsx-runtime';
 import Text from '../text/text';
 import { Theme } from '../theme/theme';
 import { ILiteSpace } from '@bgdk/games-components-logic';
-import { CSSProperties, MouseEvent } from 'react';
+import { CSSProperties } from 'react';
 
 /* eslint-disable-next-line */
 export interface GameBoardPropsTicTacToe {
@@ -16,7 +16,8 @@ export interface GameBoardPropsTicTacToe {
   id: string | number;
   gridSx?: SxProps;
   rowSx?: SxProps;
-  setStateAction: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
+  state: (EventTarget & HTMLDivElement) | undefined;
+  setStateAction: (e: EventTarget & HTMLDivElement) => void;
 }
 
 const breakpointsRowSx: SxProps = {
@@ -48,6 +49,7 @@ export function GameBoardMapTicTacToe({
   direction,
   wrap,
   id,
+  state,
   setStateAction,
 }: GameBoardPropsTicTacToe) {
   return (
@@ -55,7 +57,12 @@ export function GameBoardMapTicTacToe({
       {row.map((e, _i, _arr) => {
         return (
           <Fragment key={Math.random().toFixed(4)}>
-            <Grid component={'div'} sx={breakpointsRowSx} onClick={e => setStateAction(e)}>
+            <Grid
+              component={'div'}
+              sx={breakpointsRowSx}
+              onClick={e => setStateAction(e.currentTarget)}
+              style={state?.textContent === e.display ? { backgroundColor: '#FFD300' } : {}}
+            >
               {e.display.indexOf('g') === e.display.length - 1 ? (
                 <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />
               ) : (

@@ -9,8 +9,7 @@ export const setAvatarOnStartChutesAndLadders = CommandBuilder.build((context: C
       const { game } = deRefContextObject(context);
 
       game.instance.playersArray.forEach((p: Player, i: number) => {
-        if (p.avatar.location) p.avatar.location.leave();
-        else p.order = i + 1;
+        p.order = i + 1;
         game.instance.instance.startSpace.land(p.avatar);
       });
 
