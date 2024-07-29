@@ -1,6 +1,6 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
 import { GameContextKeys } from '@bgdk/types-game';
-import { logAction } from '../index';
+import { logAction } from '../lib/commands/action-log/log-actions-start';
 
 let ctx: Context;
 describe('it should log the action property to the console', () => {

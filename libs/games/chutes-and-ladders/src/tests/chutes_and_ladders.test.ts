@@ -1,5 +1,5 @@
 import { SpaceType } from '@bgdk/types-game';
-import { GameBoard } from '@bgdk/games-components-logic';
+import { GameBoard, rangeSelector } from '@bgdk/games-components-logic';
 import {
   ChutesAndLadders,
   MAX_SPECIAL_DISTANCE,
@@ -9,13 +9,14 @@ import {
 } from '../lib/chutes_and_ladders.js';
 import { Space } from '@bgdk/games-components-logic';
 
-let game: ChutesAndLadders;
+let game: ChutesAndLadders, gameBoard: GameBoard;
+
+beforeAll(() => {
+  game = new ChutesAndLadders(5, 5);
+  gameBoard = game.displayGameBoard();
+});
 
 describe('Test connectivity of spaces within Board', () => {
-  beforeEach(() => {
-    game = new ChutesAndLadders(5, 5);
-  });
-
   it('should test min, max players and max special distance', () => {
     expect(game.MIN_PLAYERS).toEqual(2);
     expect(game.MAX_PLAYERS).toEqual(4);
@@ -37,7 +38,8 @@ describe('Test connectivity of spaces within Board', () => {
   });
 
   it('should return a normal space', () => {
-    const space = game.spaceMaker(2);
+    const value = rangeSelector(2, 99);
+    const space = uniqueSpecialValues.has(value) ? game.spaceMaker(rangeSelector(2, 99)) : game.spaceMaker(value);
     expect(space.type).toEqual(SpaceType.NORMAL);
   });
   it('should return the finish space', () => {
@@ -47,20 +49,17 @@ describe('Test connectivity of spaces within Board', () => {
   it('should return a chute space', () => {
     const indexOfSpace = Array.from(uniqueSpecialValues.keys())[0];
 
-    console.log(indexOfSpace);
-
     const space = game.spaceMaker(indexOfSpace);
     expect(space.type).toEqual(SpaceType.CHUTE);
   });
   it('should return a ladder space', () => {
-    const indexOfSpace = Array.from(uniqueSpecialValues.keys())[3];
-    console.log(indexOfSpace);
+    const indexOfSpace = Array.from(uniqueSpecialValues.keys())[uniqueSpecialValues.size - 1];
+
     const space = game.spaceMaker(indexOfSpace);
     expect(space.type).toEqual(SpaceType.LADDER);
   });
 
   it(`will return a array of length ${TOTAL_SPACES}`, () => {
-    const gameBoard: GameBoard = game.displayGameBoard();
     expect(gameBoard.length).toEqual(TOTAL_SPACES);
   });
 });

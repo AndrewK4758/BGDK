@@ -1,5 +1,4 @@
-import { GameBoardMapTicTacToe, /*RenderList,*/ Theme } from '@bgdk/react-components';
-// import { GameBoard, ILiteSpace } from '@bgdk/games-components-logic';
+import { GameBoardMapTicTacToe, Theme } from '@bgdk/react-components';
 import { Built_GameBoard } from '../../pages/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -14,6 +13,7 @@ const breakpointsGameBoardBox: SxProps = {
 
 interface ShowGameBoardProps {
   board: Built_GameBoard;
+  setStateAction: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 }
 
 /**
@@ -21,14 +21,7 @@ interface ShowGameBoardProps {
  * @returns a rendered game board
  */
 
-const ShowGameBoardTicTacToe = ({ board }: ShowGameBoardProps) => {
-  const handlePosition = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>): void => {
-    e.preventDefault();
-    if (e) {
-      console.log(e.currentTarget.textContent, 'event');
-    }
-  };
-
+const ShowGameBoardTicTacToe = ({ board, setStateAction }: ShowGameBoardProps) => {
   return (
     <Box component={'section'} sx={breakpointsGameBoardBox}>
       {board.map((e, i, _arr): JSX.Element => {
@@ -36,12 +29,12 @@ const ShowGameBoardTicTacToe = ({ board }: ShowGameBoardProps) => {
           <Fragment key={Math.random().toFixed(4)}>
             <GameBoardMapTicTacToe
               row={e}
-              columns={10}
+              columns={3}
               container={true}
               direction="row"
               wrap="wrap"
               id={`Row ${i}`}
-              setStateAction={handlePosition}
+              setStateAction={setStateAction}
             />
           </Fragment>
         );

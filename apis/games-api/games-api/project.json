@@ -8,7 +8,7 @@
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "target": "node",
         "compiler": "tsc",
@@ -19,7 +19,8 @@
         "webpackConfig": "apis/games-api/games-api/webpack.config.js",
         "deleteOutputPath": true,
         "progress": true,
-        "verbose": true
+        "verbose": true,
+        "watch": true
       },
       "configurations": {
         "development": {

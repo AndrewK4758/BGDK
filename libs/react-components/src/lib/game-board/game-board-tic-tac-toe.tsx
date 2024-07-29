@@ -54,7 +54,7 @@ export function GameBoardMapTicTacToe({
     <Grid columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
       {row.map((e, _i, _arr) => {
         return (
-          <Fragment key={e.display}>
+          <Fragment key={Math.random().toFixed(4)}>
             <Grid component={'div'} sx={breakpointsRowSx} onClick={e => setStateAction(e)}>
               {e.display.indexOf('g') === e.display.length - 1 ? (
                 <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />

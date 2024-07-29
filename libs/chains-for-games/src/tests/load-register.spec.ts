@@ -5,7 +5,8 @@ import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, ILoadRegisterData } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
-import { loadRegister, sendLoadRegister } from '../index';
+import { loadRegister } from '../lib/commands/action-load-register/load-register-start';
+import { sendLoadRegister } from '../lib/commands/action-load-register/send-load-register-data';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 describe('test load register chain', () => {

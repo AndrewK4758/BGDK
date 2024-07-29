@@ -1,6 +1,6 @@
+import { Board, Die, GameBoard, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
 import { AvatarTotem, Color, SpaceType } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
-import { Board, Die, Space, rangeSelector, rowFinder, LiteSpace, GameBoard } from '@bgdk/games-components-logic';
 
 const TOTAL_SPACES = 100;
 const START = 1;
@@ -13,20 +13,22 @@ let ladderCount = 0;
 let chuteSpecialCount = 5;
 let ladderSpecialCount = 5;
 
-function checkIfSpecialSpace(indexOfSpace: number) {
+const checkIfSpecialSpace = (indexOfSpace: number) => {
   return uniqueSpecialValues.has(indexOfSpace);
-}
+};
+
+const checkIfSpecialDumpSpace = (indexOfSpace: number) => {
+  return specialsDumps.has(indexOfSpace);
+};
 
 const specialSpaceSelector = (indexOfSpace: number) => {
   const row = rowFinder(indexOfSpace, TOTAL_SPACES);
   if (chuteCount === ladderCount || row === ROWS - 1) {
-    const space = new Space(SpaceType.CHUTE, indexOfSpace);
     chuteCount++;
-    return space;
+    return new Space(SpaceType.CHUTE, indexOfSpace);
   } else {
-    const space = new Space(SpaceType.LADDER, indexOfSpace);
     ladderCount++;
-    return space;
+    return new Space(SpaceType.LADDER, indexOfSpace);
   }
 };
 
@@ -34,40 +36,40 @@ const minSpecialRangeValue = () => {
   return (ROWS - 1) ** 2 + 1;
 };
 
+const findMaxValForRandChute = (indexOfSpace: number): number =>
+  indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
+
+const findMaxValForRandLadder = (indexOfSpace: number): number =>
+  TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace;
+
+const findMinDist = (indexOfSpace: number): number => ROWS - (indexOfSpace % ROWS);
+
 const createDumpValueChute = (indexOfSpace: number): Space => {
-  const findMaxValForRand = (indexOfSpace: number): number =>
-    indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
-
-  const maxValForRand = findMaxValForRand(indexOfSpace);
-  const minDist = (indexOfSpace % ROWS) + 2;
+  const maxValForRand = findMaxValForRandChute(indexOfSpace);
+  const minDist = (indexOfSpace % ROWS) + 1;
   const distToTraverseChute = rangeSelector(minDist, maxValForRand);
-  const dumpValueChute = indexOfSpace - distToTraverseChute;
+  const value = indexOfSpace - distToTraverseChute;
+  const dumpValueChute = value === 1 ? 2 : value;
 
-  if (checkIfSpecialSpace(dumpValueChute) || specialsDumps.has(dumpValueChute)) {
+  if (checkIfSpecialSpace(dumpValueChute) || checkIfSpecialDumpSpace(dumpValueChute)) {
     return createDumpValueChute(indexOfSpace);
   } else {
-    const specialSpace = new Space(SpaceType.NORMAL, dumpValueChute) as Space;
+    const specialSpace = new Space(SpaceType.NORMAL, dumpValueChute);
     specialsDumps.set(dumpValueChute, specialSpace);
     return specialSpace;
   }
 };
 
 const createDumpValueLadder = (indexOfSpace: number): Space => {
-  const findMinDist = (indexOfSpace: number): number =>
-    ROWS - (indexOfSpace % ROWS) === 0 ? ROWS - (indexOfSpace % ROWS) + 1 : ROWS - (indexOfSpace % ROWS);
-
-  const findMaxValForRand = (indexOfSpace: number): number =>
-    TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace;
-
-  const maxValForRand = findMaxValForRand(indexOfSpace);
+  const maxValForRand = findMaxValForRandLadder(indexOfSpace);
   const minDist = findMinDist(indexOfSpace);
   const distToTraverseLadder = rangeSelector(minDist, maxValForRand);
   const dumpValueLadder = indexOfSpace + distToTraverseLadder;
 
-  if (checkIfSpecialSpace(dumpValueLadder) || specialsDumps.has(dumpValueLadder)) {
+  if (checkIfSpecialSpace(dumpValueLadder) || checkIfSpecialDumpSpace(dumpValueLadder)) {
     return createDumpValueLadder(indexOfSpace);
   } else {
-    const specialSpace = new Space(SpaceType.NORMAL, dumpValueLadder) as Space;
+    const specialSpace = new Space(SpaceType.NORMAL, dumpValueLadder);
     specialsDumps.set(dumpValueLadder, specialSpace);
     return specialSpace;
   }
@@ -88,6 +90,7 @@ export class ChutesAndLadders {
    *
    * @param {Number} chutes number of chutes
    * @param {Number} ladders number of ladders
+   * @returns Active instance of Chutes And Ladders Game
    */
   constructor(chutes: number, ladders: number) {
     this.MIN_PLAYERS = 2;
@@ -168,7 +171,8 @@ export class ChutesAndLadders {
 
   specialValuesMaker = (min: number = minSpecialRangeValue(), max: number = TOTAL_SPACES): Map<number, Space> => {
     if (uniqueSpecialValues.size < this.CHUTES + this.LADDERS) {
-      const specialValue = rangeSelector(min, max);
+      const value = rangeSelector(min, max);
+      const specialValue = value === 1 ? 2 : value;
 
       if (uniqueSpecialValues.has(specialValue)) this.specialValuesMaker(min, max);
       else {

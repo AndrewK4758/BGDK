@@ -7,6 +7,7 @@ import {
   resetGameChain,
   startGameChain,
   turnChain,
+  turnChainTicTacToe,
 } from '@bgdk/chains-for-games';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { GameBuilder, IBuiltGame } from '@bgdk/game-builder';
@@ -47,7 +48,7 @@ export const ChutesAndLaddersGame = gb
     activeGameDisplayChain,
     outputContextResponseChain,
   ])
-  .setInstance(() => new ChutesAndLadders(5, 5))
+  .setInstance<ChutesAndLadders>(() => new ChutesAndLadders(5, 5))
   .build();
 games.push(ChutesAndLaddersGame);
 
@@ -63,7 +64,7 @@ export const TicTacToeGame = gb
     logActionChain,
     loadRegisterChain,
     registerChain,
-    turnChain,
+    turnChainTicTacToe,
     resetGameChain,
     startGameChain,
     activeGameDisplayChain,

@@ -5,14 +5,11 @@ import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
-import {
-  createPlayerID,
-  filterAvatar,
-  playerCreated,
-  registerAction,
-  registerOnGameInstance,
-  updateLastActive,
-} from '../index';
+import { createPlayerID } from '../lib/commands/action-register-player/create-player-id';
+import { filterSelectedAvatar } from '../lib/commands/action-register-player/filter-selected-avatar';
+import { playerCreated } from '../lib/commands/action-register-player/player-created';
+import { registerOnGameInstance } from '../lib/commands/action-register-player/register-game-instance';
+import { registerAction } from '../lib/commands/action-register-player/register-player-start';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 
@@ -60,18 +57,9 @@ describe('test register chain', () => {
     game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
     ctx.put(GameContextKeys.NEXT, 'filter-avatar');
 
-    const commandResult = filterAvatar.execute(ctx);
+    const commandResult = filterSelectedAvatar.execute(ctx);
     expect(commandResult).toBeTruthy();
     expect(game.instance.instance.avatarList.find(a => a.name === game.instance.playersArray[0].name)).toBeFalsy();
-    expect(ctx.get(GameContextKeys.NEXT)).toEqual('update-last-active');
-  });
-
-  it('should update the last active property in InstanceOfGame', () => {
-    ctx.put(GameContextKeys.NEXT, 'update-last-active');
-    const commandResult = updateLastActive.execute(ctx);
-
-    expect(commandResult).toBeTruthy();
-    expect(game.lastActive).toEqual(getCurrentMinute());
     expect(ctx.get(GameContextKeys.NEXT)).toEqual('player-created');
   });
 

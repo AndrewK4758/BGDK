@@ -1,6 +1,5 @@
-import { Footer, Header, Main } from '@bgdk/react-components';
+import { Footer, Header, Main, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
-import { Theme } from '@bgdk/react-components';
 
 const breakpointsAppBar: SxProps = {
   paddingX: '1rem',

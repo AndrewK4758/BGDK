@@ -1,4 +1,4 @@
-import { ChainBuilder, CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 
 export const logAction = CommandBuilder.build((context: Context) => {
@@ -8,5 +8,3 @@ export const logAction = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
-
-export const logActionChain = ChainBuilder.build([logAction], false);

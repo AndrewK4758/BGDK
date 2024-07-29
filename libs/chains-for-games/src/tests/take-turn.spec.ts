@@ -3,7 +3,12 @@ import { Player, Avatar } from '@bgdk/games-components-logic';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys, SpaceType, TurnStatus, Color } from '@bgdk/types-game';
-import { moveAvatar, rollDice, rotatePlayer, takeTurn, verifyPlayer, wonGame } from '../index';
+import { moveAvatar } from '../lib/commands/action-take-turn/move-avatar';
+import { rollDice } from '../lib/commands/action-take-turn/roll-dice';
+import { rotatePlayer } from '../lib/commands/action-take-turn/rotate-player';
+import { takeTurnStart } from '../lib/commands/action-take-turn/take-turn-start';
+import { verifyPlayerTakingTurn } from '../lib/commands/action-take-turn/verify-player-taking-turn';
+import { wonGameCheckChutesAndLadders } from '../lib/commands/action-take-turn/won-game-chutes-and-ladders';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Game } from '@bgdk/game';
 import { Request, Response } from 'express';
@@ -23,40 +28,42 @@ let ctx: Context,
   req: Partial<Request>,
   resp: Partial<Response>;
 
+beforeAll(() => {
+  ctx = ContextBuilder.build();
+  instance = new ChutesAndLadders(5, 5);
+  game = new Game(instance);
+  instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
+
+  instanceOfGame.instance.register('avatar1', 'p-1-id', 'XENOMORPH', Color.RED);
+  instanceOfGame.instance.register('avatar2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+  avatar1 = instanceOfGame.instance.playersArray[0].avatar;
+  avatar2 = instanceOfGame.instance.playersArray[1].avatar;
+
+  instanceOfGame.instance.instance.startSpace.land(avatar1);
+  instanceOfGame.instance.instance.startSpace.land(avatar2);
+
+  instanceOfGame.instance.playerInTurn = instanceOfGame.instance.playersArray.find(
+    ({ id }) => id === 'p-2-id',
+  ) as Player;
+
+  turnStatus = TurnStatus.NOT_READY;
+  output = { turnStatus: turnStatus };
+
+  req = mockReqObj();
+  resp = mockRespObj();
+
+  if (req.params) req.params['id'] = 'Chutes-&-Ladders';
+
+  ctx.put(GameContextKeys.ACTION, 'take-turn');
+  ctx.put(GameContextKeys.REQUEST, req);
+  ctx.put(GameContextKeys.RESPONSE, resp);
+  ctx.put(GameContextKeys.GAME, instanceOfGame);
+});
+
 describe('should execute all steps of taking turn', () => {
-  beforeAll(() => {
-    ctx = ContextBuilder.build();
-    instance = new ChutesAndLadders(5, 5);
-    game = new Game(instance);
-    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
-
-    instanceOfGame.instance.register('avatar1', 'p-1-id', 'XENOMORPH', Color.RED);
-    instanceOfGame.instance.register('avatar2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-    avatar1 = instanceOfGame.instance.playersArray[0].avatar;
-    avatar2 = instanceOfGame.instance.playersArray[1].avatar;
-
-    instanceOfGame.instance.instance.startSpace.land(avatar1);
-    instanceOfGame.instance.instance.startSpace.land(avatar2);
-
-    instanceOfGame.instance.playerInTurn = instanceOfGame.instance.playersArray.find(
-      ({ id }) => id === 'p-2-id',
-    ) as Player;
-
-    turnStatus = TurnStatus.NOT_READY;
-    output = { turnStatus: turnStatus };
-
-    req = mockReqObj();
-    resp = mockRespObj();
-
-    ctx.put(GameContextKeys.ACTION, 'take-turn');
-    ctx.put(GameContextKeys.REQUEST, req);
-    ctx.put(GameContextKeys.RESPONSE, resp);
-    ctx.put(GameContextKeys.GAME, instanceOfGame);
-  });
-
   it('should fail because game is in NOT_READY state when receiving a turn ', () => {
-    const commandResult = takeTurn.execute(ctx);
+    const commandResult = takeTurnStart.execute(ctx);
 
     expect(commandResult).toBeFalsy();
     expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
@@ -67,7 +74,7 @@ describe('should execute all steps of taking turn', () => {
     instanceOfGame.instance.haveWinner = true;
 
     output = { turnStatus: TurnStatus.GAME_WON };
-    const commandResult = takeTurn.execute(ctx);
+    const commandResult = takeTurnStart.execute(ctx);
 
     expect(commandResult).toBeFalsy();
     expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
@@ -77,7 +84,7 @@ describe('should execute all steps of taking turn', () => {
     instanceOfGame.instance.readyToPlay = true;
     instanceOfGame.instance.haveWinner = false;
 
-    const commandResult = takeTurn.execute(ctx);
+    const commandResult = takeTurnStart.execute(ctx);
 
     expect(commandResult).toBeTruthy();
     expect(instanceOfGame.lastActive).toEqual(getCurrentMinute());
@@ -86,7 +93,7 @@ describe('should execute all steps of taking turn', () => {
 
   it('should fail for incorrect ACTION on ctx obj', () => {
     ctx.put(GameContextKeys.ACTION, 'register');
-    const commandResult = takeTurn.execute(ctx);
+    const commandResult = takeTurnStart.execute(ctx);
 
     expect(commandResult).toBeFalsy();
   });
@@ -94,7 +101,7 @@ describe('should execute all steps of taking turn', () => {
   it('should pass to roll-dice', () => {
     ctx.put(GameContextKeys.NEXT, 'verify-player');
 
-    const commandResult = verifyPlayer.execute(ctx);
+    const commandResult = verifyPlayerTakingTurn.execute(ctx);
 
     expect(commandResult).toBeTruthy();
     expect(ctx.get('player-taking-turn')).toEqual(instanceOfGame.instance.playerInTurn as Player);
@@ -105,7 +112,7 @@ describe('should execute all steps of taking turn', () => {
 
     instanceOfGame.instance.playerInTurn = new Player('player', 'id');
     output = { turnStatus: TurnStatus.INVALID };
-    const commandResult = verifyPlayer.execute(ctx);
+    const commandResult = verifyPlayerTakingTurn.execute(ctx);
     expect(commandResult).toBeFalsy();
     expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
 
@@ -115,7 +122,7 @@ describe('should execute all steps of taking turn', () => {
   it('should fail for incorrect next-handler', () => {
     ctx.put(GameContextKeys.NEXT, 'something-else');
 
-    const commandResult = verifyPlayer.execute(ctx);
+    const commandResult = verifyPlayerTakingTurn.execute(ctx);
 
     expect(commandResult).toBeFalsy();
   });
@@ -167,7 +174,7 @@ describe('should execute all steps of taking turn', () => {
     playerTakingTurn.avatar.location = instanceOfGame.instance.instance.startSpace;
 
     ctx.put('player-taking-turn', playerTakingTurn);
-    const commandResult = wonGame.execute(ctx);
+    const commandResult = wonGameCheckChutesAndLadders.execute(ctx);
 
     expect(commandResult).toBeTruthy();
     expect(ctx.getString(GameContextKeys.NEXT)).toEqual('rotate-player');
@@ -185,7 +192,7 @@ describe('should execute all steps of taking turn', () => {
 
     ctx.put('player-taking-turn', playerTakingTurn);
 
-    const commandResult = wonGame.execute(ctx);
+    const commandResult = wonGameCheckChutesAndLadders.execute(ctx);
 
     expect(commandResult).toBeFalsy();
     expect(instanceOfGame.instance.haveWinner).toBeTruthy();

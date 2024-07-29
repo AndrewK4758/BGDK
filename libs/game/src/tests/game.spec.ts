@@ -30,7 +30,7 @@ describe('Test the game class', () => {
       expect(game.playerInTurn.id).toEqual('player');
     });
     it('should verify the ready to play prop is false', () => {
-      const status = game.verifyReadyToPlay();
+      const status = game.verifyReadyToPlay(instance.MIN_PLAYERS, instance.MAX_PLAYERS);
 
       expect(status).toEqual(false);
     });
@@ -38,7 +38,7 @@ describe('Test the game class', () => {
     it('should verify the ready to play prop is true', () => {
       game.register('player-2', 'reyalp', game.instance.avatarList[1].name, Color.RED);
 
-      const status = game.verifyReadyToPlay();
+      const status = game.verifyReadyToPlay(instance.MIN_PLAYERS, instance.MAX_PLAYERS);
 
       expect(status).toEqual(true);
     });

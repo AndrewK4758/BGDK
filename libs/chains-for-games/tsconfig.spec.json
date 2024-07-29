@@ -6,6 +6,31 @@
     "types": ["jest", "node"],
     "composite": true
   },
-  "include": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.ts", "../../__mocks__/**/*.ts"],
-  "exclude": []
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.ts",
+    "../../__mocks__/**/*.ts",
+    "../models/de-referencing-utilities/src/**/*.ts",
+    "../chain/src/**/*.ts",
+    "../types/types-api/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../models/all-games-map/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../games/**/*/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": [
+    "../models/de-referencing-utilities/src/tests/**/*.ts",
+    "../chain/src/tests/**/*.ts",
+    "../types/types-api/src/tests/**/*.ts",
+    "../types/types-game/src/tests/**/*.ts",
+    "../models/all-games-map/src/tests/**/*.ts",
+    "../models/instance-of-game/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts",
+    "../games/**/*/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts"
+  ]
 }

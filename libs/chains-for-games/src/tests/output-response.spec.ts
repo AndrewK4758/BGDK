@@ -2,7 +2,7 @@ import { Context, ContextBuilder } from '@bgdk/chain';
 import { GameContextKeys, ITestCtxOutput } from '@bgdk/types-game';
 import { mockRespObj } from '__mocks__/mocks';
 import { Response } from 'express';
-import { outputContextResponse } from '../index';
+import { outputContextResponse } from '../lib/commands/action-output/output-context-response';
 
 let ctx: Context, output: ITestCtxOutput, resp: Partial<Response>;
 

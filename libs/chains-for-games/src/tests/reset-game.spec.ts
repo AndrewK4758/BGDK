@@ -4,15 +4,20 @@ import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import { Game } from '@bgdk/game';
 import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { GameContextKeys, Color } from '@bgdk/types-game';
-import { flipHaveWinnerFlag, makeGameBoard, resetGame } from '../index';
+import { resetGame } from '../lib/commands/action-reset-game/reset-game-start';
+import { flipHaveWinnerFlag } from '../lib/commands/action-reset-game/flip-have-winner';
+import { makeNewGameBoard } from '../lib/commands/action-reset-game/make-new-game-board';
 import { GameBoard, Player } from '@bgdk/games-components-logic';
+import { mockReqObj } from '__mocks__/mocks';
+import { Request } from 'express';
 
 let ctx: Context,
   instanceOfGame: InstanceOfGame,
   player1: Player,
   player2: Player,
   instance: ChutesAndLadders,
-  game: Game;
+  game: Game,
+  req: Partial<Request>;
 describe('test reset game chain', () => {
   beforeAll(() => {
     instance = new ChutesAndLadders(5, 5);
@@ -30,9 +35,14 @@ describe('test reset game chain', () => {
     player1.avatar.move(1);
     player2.avatar.move(2);
 
+    req = mockReqObj();
+
+    if (req.params) req.params['id'] = 'Chutes-&-Ladders';
+
     ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, 'reset');
     ctx.put(GameContextKeys.GAME, instanceOfGame);
+    ctx.put(GameContextKeys.REQUEST, req);
   });
 
   describe('it should reset game', () => {
@@ -59,7 +69,7 @@ describe('test reset game chain', () => {
 
       const oldBoard: GameBoard = game.instance.instance.displayGameBoard();
 
-      const commandResult = makeGameBoard.execute(ctx);
+      const commandResult = makeNewGameBoard.execute(ctx);
 
       const newBoard: GameBoard = game.instance.instance.displayGameBoard();
 

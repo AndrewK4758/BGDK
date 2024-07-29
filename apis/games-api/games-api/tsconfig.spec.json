@@ -14,5 +14,5 @@
     "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts"
   ],
-  "exclude": []
+  "exclude": ["../../../libs/react-components/**/*"]
 }

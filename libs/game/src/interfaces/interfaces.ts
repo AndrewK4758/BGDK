@@ -8,6 +8,4 @@ export interface IGame {
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
-  MIN_PLAYERS: number;
-  MAX_PLAYERS: number;
 }

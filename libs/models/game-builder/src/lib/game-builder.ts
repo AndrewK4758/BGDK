@@ -7,7 +7,7 @@ export interface IBuiltGame {
   description?: string;
   imageURL?: string;
   rules: IRule[];
-  chain: Chain;
+  chain: Chain | null;
   instance<T>(): T;
 }
 
@@ -69,6 +69,7 @@ export class GameBuilder implements IGameBuilder {
     const gameBuildComplete = Object.assign(new Object() as IBuiltGame, this.#Game);
     this.#Game = {} as IBuiltGame;
     this.#Game.rules = [];
+    this.#Game.chain = null;
     this.#Game.instance<null> = () => null;
 
     return gameBuildComplete;

@@ -2,15 +2,15 @@ import { Board, Die, Space, LiteSpace } from '@bgdk/games-components-logic';
 import { SpaceType, Color, AvatarTotem } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
 
-export const WINNING_POSITIONS: number[][] = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-  [1, 4, 7],
-  [2, 5, 8],
-  [3, 6, 9],
-  [1, 5, 9],
-  [3, 5, 7],
+export const WINNING_POSITIONS: string[][] = [
+  ['1', '2', '3'],
+  ['4', '5', '6'],
+  ['7', '8', '9'],
+  ['1', '4', '7'],
+  ['2', '5', '8'],
+  ['3', '6', '9'],
+  ['1', '5', '9'],
+  ['3', '5', '7'],
 ];
 export const TOTAL_SPACES = 9;
 export const ROWS = Math.sqrt(TOTAL_SPACES);
@@ -18,7 +18,6 @@ export const ROWS = Math.sqrt(TOTAL_SPACES);
 export class TicTacToe {
   MIN_PLAYERS: number;
   MAX_PLAYERS: number;
-  board: Space[];
   startSpace: Space;
   avatarList: AvatarTotem[];
   colorList: typeof Color;
@@ -26,7 +25,6 @@ export class TicTacToe {
   constructor() {
     this.MIN_PLAYERS = 2;
     this.MAX_PLAYERS = 2;
-    this.board = [];
     this.startSpace = new Space(SpaceType.NORMAL, 1);
     this.makeGameBoard();
     this.colorList = Color;

@@ -5,7 +5,7 @@ import { IActivePlayersInGame } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Fragment, useEffect, useReducer, useRef } from 'react';
+import { Fragment, useEffect, useReducer, useRef, MouseEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import ActiveAvatars from '../components/game_board/active_avatars';
@@ -17,6 +17,7 @@ import socketReducer, { ActionType } from '../components/game_board/socket-reduc
 import TakeTurn from '../components/game_board/take_turn';
 import { getGameInstanceInfo } from '../services/utils/utils';
 import ClientSocket from '../services/utils/web-socket/socket-instance';
+import TakeTurnTicTacToe from '../components/game_board/take-turn-tic-tac-toe';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   marginTop: '2rem',
@@ -52,6 +53,7 @@ const socketInit = () => {
 
 export default function ActiveGameSession() {
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
+  const [position, setPosition] = useState<string | null>(null);
   const socketRef = useRef<Socket>(ClientSocket);
   const params = useParams();
 
@@ -60,12 +62,14 @@ export default function ActiveGameSession() {
   const socket = socketRef.current;
 
   useEffect(() => {
-    socket.connect();
+    if (!socket.connected) {
+      socket.connect();
 
-    socket.on('connect', () => {
-      console.log(`Player connected with ID: ${socket.id}`);
-    });
-    socket.emit('create-room', getGameInstanceInfo()?.gameInstanceID);
+      socket.on('connect', () => {
+        console.log(`Player connected with ID: ${socket.id}`);
+      });
+      socket.emit('create-room', getGameInstanceInfo()?.gameInstanceID);
+    }
   });
 
   useEffect(() => {
@@ -75,18 +79,20 @@ export default function ActiveGameSession() {
       const maxRowLength = Math.sqrt(gameBoard.length);
       let indexOfSpace = 1;
       let row: ILiteSpace[] = [];
-      gameBoard.forEach(s => {
+      gameBoard.forEach((s: ILiteSpace) => {
         const rowCount = rowFinder(indexOfSpace, gameBoard.length);
         row.push(s);
 
         if (row.length === maxRowLength) {
-          row = rowCount % 2 !== 0 ? row : row.reverse();
+          if (id === 'Chutes-&-Ladders') {
+            row = rowCount % 2 !== 0 ? row : row.reverse();
+          }
           gameBoardClient.push(row);
           row = [];
         }
         indexOfSpace++;
       });
-
+      console.log(gameBoardClient);
       dispatch({
         type: ActionType.BOARD,
         payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
@@ -99,7 +105,13 @@ export default function ActiveGameSession() {
     return () => {
       if (socket) socket.disconnect();
     };
-  }, [socket]);
+  }, [socket, id]);
+
+  const handlePosition = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>): void => {
+    e.preventDefault();
+    console.log(e.currentTarget.textContent, 'event');
+    setPosition(e.currentTarget.textContent);
+  };
 
   return (
     <>
@@ -109,7 +121,7 @@ export default function ActiveGameSession() {
       </Container>
       <Box component={'section'} sx={{ height: '55vh' }}>
         {id === 'Chutes-&-Ladders' && <ShowGameBoard board={state.gameBoard} />}
-        {id === 'Tic-Tac-Toe' && <ShowGameBoardTicTacToe board={state.gameBoard} />}
+        {id === 'Tic-Tac-Toe' && <ShowGameBoardTicTacToe board={state.gameBoard} setStateAction={handlePosition} />}
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>
@@ -117,7 +129,8 @@ export default function ActiveGameSession() {
         </Box>
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
           <Fragment key={Math.random().toFixed(4)}>
-            <TakeTurn dispatch={dispatch} socket={socket} />
+            {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}
+            {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={position} />}
             <ResetGame dispatch={dispatch} socket={socket} />
           </Fragment>
         </Container>

@@ -7,9 +7,9 @@
   },
   "include": [
     "src/**/*.ts",
+    "../../games/**/*/src/**/*.ts",
     "../../game/src/**/*.ts",
     "../../types/types-game/src/**/*.ts",
-    "../../chutes-and-ladders/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts"
   ],
   "exclude": [
@@ -18,7 +18,7 @@
     "src/**/*.test.ts",
     "../../game/src/tests/**/*.ts",
     "../../types/types-game/src/tests/**/*.ts",
-    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../../games/**/*/src/tests/**/*.ts",
     "../../games-components-logic/src/tests/**/*.ts"
   ]
 }

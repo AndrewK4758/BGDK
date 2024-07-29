@@ -4,6 +4,7 @@ import { Color, GamePlayerValidation, IRegisterFormValues } from '../libs/types/
 
 export const mockReqObj = (): Partial<Request> => {
   const req: Partial<Request> = {
+    params: {},
     body: {
       playerName: 'Player Name',
       avatarName: 'XENOMORPH',

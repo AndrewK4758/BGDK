@@ -10,16 +10,12 @@ export class Game implements IGame {
   readyToPlay: boolean;
   haveWinner: boolean;
   currentPlayer: number;
-  MIN_PLAYERS!: number;
-  MAX_PLAYERS!: number;
   constructor(instance: AllGameTypes) {
     this.game = instance;
     this.playersArray = [];
     this.readyToPlay = false;
     this.haveWinner = false;
     this.currentPlayer = 0;
-    this.MAX_PLAYERS = this.game.MAX_PLAYERS;
-    this.MIN_PLAYERS = this.game.MIN_PLAYERS;
   }
 
   get instance() {
@@ -39,9 +35,8 @@ export class Game implements IGame {
     if (unshiftOrPush === 2) this.playersArray.unshift(player);
   }
 
-  verifyReadyToPlay() {
-    return (this.readyToPlay =
-      this.playersArray.length >= this.MIN_PLAYERS && this.playersArray.length <= this.MAX_PLAYERS ? true : false);
+  verifyReadyToPlay(min: number, max: number) {
+    return (this.readyToPlay = this.playersArray.length >= min && this.playersArray.length <= max ? true : false);
   }
 
   rotatePlayers() {

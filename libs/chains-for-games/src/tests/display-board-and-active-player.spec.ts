@@ -5,7 +5,11 @@ import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
-import { IPlayersAndBoard, activeDataToSend, activePlayers, checkIfWinner, readyToPlayCheck } from '../index';
+import { IPlayersAndBoard } from '../index';
+import { activeDataToSend } from '../lib/commands/action-board/active-game-data-to-send';
+import { boardStart } from '../lib/commands/action-board/board-start';
+import { readyToPlayCheck } from '../lib/commands/action-board/ready-to-play';
+import { checkIfWinner } from '../lib/commands/action-board/check-if-winner';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 beforeEach(() => {
@@ -25,7 +29,7 @@ beforeEach(() => {
 });
 describe('test display board and active player chain', () => {
   it('should return all players registered in the game instance', () => {
-    const commandResult = activePlayers.execute(ctx);
+    const commandResult = boardStart.execute(ctx);
 
     expect(commandResult).toBeTruthy();
     expect((ctx.get('active-players-in-game') as IRegisterFormValues[]).length).toEqual(2);

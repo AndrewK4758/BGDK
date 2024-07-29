@@ -34,6 +34,7 @@ export enum TurnStatus {
   INVALID = 'INVALID PLAYER',
   NOT_READY = 'GAME NOT READY',
   GAME_WON = 'GAME WON',
+  NULL_SELECT = 'NOTHING SELECTED',
 }
 
 export type AvatarTotem = {

@@ -11,9 +11,17 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.ts",
-    "../../../libs/**/*jest.config.ts",
-    "../../../libs/**/*.spec.ts",
-    "../../../libs/**/*.test.ts"
+    "../instance-of-game/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../games/**/*/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
   ],
-  "exclude": ["../../../libs/react-components/**/*.ts"]
+  "exclude": [
+    "../instance-of-game/src/tests/**/*.ts",
+    "../../game/src/tests/**/*.ts",
+    "../../games/**/*/src/tests/**/*.ts",
+    "../../types/types-game/src/tests/**/*.ts",
+    "../../games-components-logic/src/tests/**/*.ts"
+  ]
 }

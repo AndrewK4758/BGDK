@@ -9,7 +9,7 @@
     "src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
     "../../game/src/**/*.ts",
-    "../../chutes-and-ladders/src/**/*.ts",
+    "../../games/**/*/src/**/*.ts",
     "../../types/types-game/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts"
   ],
@@ -19,7 +19,7 @@
     "src/**/*.test.ts",
     "../instance-of-game/src/tests/**/*.ts",
     "../../game/src/tests/**/*.ts",
-    "../../chutes-and-ladders/src/tests/**/*.ts",
+    "../../games/**/*/src/tests/**/*.ts",
     "../../types/types-game/src/tests/**/*.ts",
     "../../games-components-logic/src/tests/**/*.ts"
   ]

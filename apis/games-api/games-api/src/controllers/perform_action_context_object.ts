@@ -24,8 +24,8 @@ const performAction = async (req: IReqObjMaps, resp: Response, gameWS: InstanceO
   } else {
     // if rest-api objects
     const game = getActiveGame(req) as InstanceOfGame;
-    console.log(`Got Game: ${JSON.stringify(game.gameInstanceID)}: ${game.instance.instance.constructor.name}`);
     if (game) {
+      console.log(`Got Game: ${game.gameInstanceID}: ${game.instance.instance.constructor.name}`);
       const { action } = req.params;
       const ctx = ContextBuilder.build();
       ctx.put(GameContextKeys.ACTION, action);
