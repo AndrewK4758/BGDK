@@ -14,6 +14,17 @@
         "tsConfig": "libs/chain/tsconfig.lib.json",
         "assets": ["libs/chain/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/chain/jest.config.ts",
+        "reportsDirectory": "../../coverage/libs/chain",
+        "testFiles": ["./src/tests/*"],
+        "ci": true,
+        "verbose": true
+      }
     }
   }
 }

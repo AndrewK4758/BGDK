@@ -2,14 +2,17 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "types": ["node", "vite/client"],
     "composite": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["jest", "node"]
   },
   "include": [
-    "src/**/*.ts",
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
     "../../models/all-games-map/src/**/*.ts",
     "../../models/instance-of-game/src/**/*.ts",
     "../../game/src/**/*.ts",
@@ -19,9 +22,6 @@
     "../../chain/src/**/*.ts"
   ],
   "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "../../models/all-games-map/src/tests/**/*.ts",

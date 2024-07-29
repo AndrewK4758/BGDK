@@ -1,8 +1,8 @@
 import { CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import { Player } from '@bgdk/games-components-logic';
-import { GameContextKeys } from '@bgdk/types-game';
 import { WINNING_POSITIONS } from '@bgdk/tic-tac-toe';
+import { GameContextKeys } from '@bgdk/types-game';
 
 export const wonGameCheckTicTacToe = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'won-game') {
