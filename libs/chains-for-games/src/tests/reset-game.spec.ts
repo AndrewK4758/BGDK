@@ -55,7 +55,7 @@ describe('test reset game chain', () => {
     });
 
     it('should flip have winner flag on game', () => {
-      ctx.put(GameContextKeys.NEXT, 'flip-have-winner-flag');
+      ctx.put(GameContextKeys.NEXT, 'flip-winner-flag');
 
       const commandResult = flipHaveWinnerFlag.execute(ctx);
 
