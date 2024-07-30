@@ -23,10 +23,6 @@ app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
-app.get('/', (req, res) => {
-  res.send({ message: 'Welcome to data-api!' });
-});
-
 new Routes(router);
 
 const port = process.env.PORT || 4444;

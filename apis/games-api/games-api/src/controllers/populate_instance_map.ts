@@ -20,7 +20,6 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
   const selectedGame = games.find(({ name }) => name === gameName);
 
   if (!selectedGame) {
-    console.log(resp.header('current-game'));
     resp.status(400).json(error());
   } else {
     const game = new Game(selectedGame.instance());
@@ -35,7 +34,6 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
     };
     resp.setHeader('current-game', JSON.stringify(__current_game__));
 
-    console.log(resp.header('current-game'));
     resp.sendStatus(201);
   }
 };

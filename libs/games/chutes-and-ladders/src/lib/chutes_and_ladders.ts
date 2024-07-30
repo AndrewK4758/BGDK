@@ -13,14 +13,29 @@ let ladderCount = 0;
 let chuteSpecialCount = 5;
 let ladderSpecialCount = 5;
 
+/**
+ * 
+ * @param indexOfSpace is the location in the game board array for start of chute or ladder
+ * @returns boolean if the index of space is already taken by another chute or ladder space
+*/
 const checkIfSpecialSpace = (indexOfSpace: number) => {
   return uniqueSpecialValues.has(indexOfSpace);
 };
 
+/**
+ * 
+ * @param indexOfSpace is the location in the game board array for end of chute or ladder
+ * @returns boolean if the index of space is already taken by another chute or ladder dump space
+ */
 const checkIfSpecialDumpSpace = (indexOfSpace: number) => {
   return specialsDumps.has(indexOfSpace);
 };
 
+/**
+ * 
+ * @param indexOfSpace index of space to be made into a chute or ladders Space instance
+ * @returns an instance of chute or ladder Space
+ */
 const specialSpaceSelector = (indexOfSpace: number) => {
   const row = rowFinder(indexOfSpace, TOTAL_SPACES);
   if (chuteCount === ladderCount || row === ROWS - 1) {
@@ -32,24 +47,49 @@ const specialSpaceSelector = (indexOfSpace: number) => {
   }
 };
 
+/**
+ * 
+ * @returns the initial minimum number for a perfect square for random special space selection
+ */
 const minSpecialRangeValue = () => {
   return (ROWS - 1) ** 2 + 1;
 };
 
+/**
+ * 
+ * @param indexOfSpace index of space in the game board array
+ * @returns the max distance a chute can traverse according to the index of space in the game board array
+ */
 const findMaxValForRandChute = (indexOfSpace: number): number =>
   indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
 
+/**
+ * 
+ * @param indexOfSpace index of space in the game board array
+ * @returns the max distance a ladder can traverse according to the index of space in the game board array
+ */
 const findMaxValForRandLadder = (indexOfSpace: number): number =>
-  TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace;
+  TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace - 1;
+
+/**
+ * 
+ * @param indexOfSpace index of space in the game board array
+ * @returns the minimum distance needed to traverse for specific Chute or Ladder
+ */
 
 const findMinDist = (indexOfSpace: number): number => ROWS - (indexOfSpace % ROWS);
+
+/**
+ * 
+ * @param indexOfSpace index of space in the game board array
+ * @returns a Normal space for special property of a Chute space
+ */
 
 const createDumpValueChute = (indexOfSpace: number): Space => {
   const maxValForRand = findMaxValForRandChute(indexOfSpace);
   const minDist = (indexOfSpace % ROWS) + 1;
-  const distToTraverseChute = rangeSelector(minDist, maxValForRand);
-  const value = indexOfSpace - distToTraverseChute;
-  const dumpValueChute = value === 1 ? 2 : value;
+  const tempChuteValue = rangeSelector(indexOfSpace - minDist, indexOfSpace - maxValForRand);
+  const dumpValueChute = tempChuteValue === 1 ? 2 : tempChuteValue;
 
   if (checkIfSpecialSpace(dumpValueChute) || checkIfSpecialDumpSpace(dumpValueChute)) {
     return createDumpValueChute(indexOfSpace);
@@ -60,11 +100,16 @@ const createDumpValueChute = (indexOfSpace: number): Space => {
   }
 };
 
+/**
+ * 
+ * @param indexOfSpace index of space in the game board array
+ * @returns a Normal space for special property of a Ladder space
+ */
+
 const createDumpValueLadder = (indexOfSpace: number): Space => {
   const maxValForRand = findMaxValForRandLadder(indexOfSpace);
   const minDist = findMinDist(indexOfSpace);
-  const distToTraverseLadder = rangeSelector(minDist, maxValForRand);
-  const dumpValueLadder = indexOfSpace + distToTraverseLadder;
+  const dumpValueLadder = rangeSelector(indexOfSpace + minDist, indexOfSpace + maxValForRand);
 
   if (checkIfSpecialSpace(dumpValueLadder) || checkIfSpecialDumpSpace(dumpValueLadder)) {
     return createDumpValueLadder(indexOfSpace);
@@ -102,6 +147,11 @@ export class ChutesAndLadders {
     this.DIE = new Die(6);
   }
 
+  /**
+   *
+   * @param indexOfSpace index of space in the game board array
+   * @returns the cooresponding space type according to the index number
+   */
   spaceMaker = (indexOfSpace: number): Space => {
     switch (true) {
       case specialsDumps.has(indexOfSpace):
@@ -132,6 +182,11 @@ export class ChutesAndLadders {
     ladderSpecialCount = 5;
   };
 
+  /**
+   *
+   * @param name Avatar name
+   * @returns the cooresponding svg image associated with the name of the selected Avatar
+   */
   addAvatarSvgToDisplay = (name: string) => {
     switch (name) {
       case AvatarTotems.totemsList[0].name:
@@ -149,6 +204,11 @@ export class ChutesAndLadders {
   //firestore db deploy in firebase
 
   // socket.io will only accept string being sent on event handler, if object, recursion error
+
+  /**
+   *
+   * @returns a complete game board array of LiteSpace instances
+   */
   displayGameBoard(): GameBoard {
     const gameBoard: GameBoard = [];
     let space: Space = this.startSpace;
@@ -167,12 +227,18 @@ export class ChutesAndLadders {
     return gameBoard.reverse();
   }
 
+  /**
+   *
+   * @param min Minimum number in the range used to select special space indexes
+   * @param max Maximum number in the range used to select special space indexes
+   * @returns A map containing the index of each special Space with the Space instance that coorespondes
+   */
   specialValuesMaker = (min: number = minSpecialRangeValue(), max: number = TOTAL_SPACES): Map<number, Space> => {
     if (uniqueSpecialValues.size < this.CHUTES + this.LADDERS) {
       const value = rangeSelector(min, max);
       const specialValue = value === 1 ? 2 : value;
 
-      if (uniqueSpecialValues.has(specialValue)) this.specialValuesMaker(min, max);
+      if (uniqueSpecialValues.has(specialValue) || specialsDumps.has(specialValue)) this.specialValuesMaker(min, max);
       else {
         const space = specialSpaceSelector(specialValue) as Space;
 

@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/models/all-games-map/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/models/all-games-map",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

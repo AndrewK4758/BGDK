@@ -15,7 +15,6 @@ export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
     if (readyToPlay) {
       context.put('ready-to-play', readyToPlay);
       const gameName = (context.get('req-params-id') as string) ?? (req.params['id'] as string);
-      console.log(gameName);
       const nextCommand = nextCommandMap.get(gameName)?.get(context.getString(GameContextKeys.NEXT));
       context.put(GameContextKeys.NEXT, nextCommand);
       return true;

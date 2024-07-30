@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/chain/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/chain",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

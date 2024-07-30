@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/games-components-logic/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/games-components-logic",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

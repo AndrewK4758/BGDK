@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/models/rule/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/models/rule",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

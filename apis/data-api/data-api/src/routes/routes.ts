@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import getArtisis from './artists';
+import getArtisis from '../controllers/artists';
 
 export default class Routes {
   constructor(router: Router) {

@@ -23,9 +23,7 @@
       "options": {
         "jestConfig": "libs/chains-for-games/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/chains-for-games",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     },
     "lint": {

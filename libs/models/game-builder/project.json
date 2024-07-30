@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/models/game-builder/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/models/game-builder",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

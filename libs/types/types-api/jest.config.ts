@@ -7,6 +7,5 @@ export default {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/types-api',
-  passWithNoTests: true,
+  coverageDirectory: '../../../coverage/libs/types/types-api',
 };

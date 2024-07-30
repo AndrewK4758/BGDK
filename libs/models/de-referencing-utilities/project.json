@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/models/de-referencing-utilities/jest.config.ts",
         "reportsDirectory": "../../../coverage/libs/models/de-referencing-utilities",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

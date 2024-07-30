@@ -21,9 +21,7 @@
       "options": {
         "jestConfig": "libs/games/tic-tac-toe/jest.config.ts",
         "reportsDirectory": "../../../coverage/libs/games/tic-tac-toe",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

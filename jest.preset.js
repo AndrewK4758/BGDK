@@ -1,9 +1,10 @@
 const nxPreset = require('@nx/jest/preset').default;
-const path = require('path');
+
 module.exports = {
   ...nxPreset,
-  testEnvironmentOptions: {},
-  modulePaths: ['<rootDir>/__mocks__'],
+  modulePaths: ['<rootDir>/__mocks__/*'],
+  passWithNoTests: true,
   verbose: true,
-  clearMocks: true,
+  ci: true,
+  collectCoverage: true,
 };

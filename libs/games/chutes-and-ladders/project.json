@@ -31,9 +31,7 @@
       "options": {
         "jestConfig": "libs/games/chutes-and-ladders/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/games/chutes-and-ladders",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true
+        "testFiles": ["./src/tests/*"]
       }
     }
   }

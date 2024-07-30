@@ -20,11 +20,8 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/types/types-api/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/types/types-api",
-        "testFiles": ["./src/tests/*"],
-        "ci": true,
-        "verbose": true,
-        "passWithNoTests": true
+        "reportsDirectory": "../../../coverage/libs/types/types-api",
+        "testFiles": ["./src/tests/*"]
       }
     }
   }
