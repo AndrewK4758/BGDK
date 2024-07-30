@@ -1,11 +1,11 @@
 import { ContextBuilder } from '@bgdk/chain';
+import { activeGameDisplayChain } from '@bgdk/chains-for-games';
 import { getActiveGame } from '@bgdk/de-referencing-utilities';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Response } from 'express';
 import SocketServer from '../services/socket-io/socket-server';
-import { activeGameDisplayChain } from '@bgdk/chains-for-games';
 
 const performAction = async (req: IReqObjMaps, resp: Response, gameWS: InstanceOfGame, actionWS: string) => {
   console.log('Perform Action Called');

@@ -1,4 +1,4 @@
-import { Minute, GamesInMinute, GameInstanceID } from '@bgdk/types-game';
+import { GameInstanceID, GamesInMinute, Minute } from '@bgdk/types-game';
 
 export interface IInstanceTimeMap {
   Map: Map<Minute, GamesInMinute>;

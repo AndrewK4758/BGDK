@@ -6,17 +6,17 @@ import {
   START,
   TOTAL_SPACES,
   uniqueSpecialValues,
+  specialsDumps,
 } from '../lib/chutes_and_ladders.js';
 import { Space } from '@bgdk/games-components-logic';
 
 let game: ChutesAndLadders, gameBoard: GameBoard;
-
-beforeAll(() => {
-  game = new ChutesAndLadders(5, 5);
-  gameBoard = game.displayGameBoard();
-});
-
 describe('Test connectivity of spaces within Board', () => {
+  beforeAll(() => {
+    game = new ChutesAndLadders(5, 5);
+    gameBoard = game.displayGameBoard();
+  });
+
   it('should test min, max players and max special distance', () => {
     expect(game.MIN_PLAYERS).toEqual(2);
     expect(game.MAX_PLAYERS).toEqual(4);
@@ -38,8 +38,14 @@ describe('Test connectivity of spaces within Board', () => {
   });
 
   it('should return a normal space', () => {
-    const value = rangeSelector(2, 99);
-    const space = uniqueSpecialValues.has(value) ? game.spaceMaker(rangeSelector(2, 99)) : game.spaceMaker(value);
+    const findRandVal = () => {
+      const val = rangeSelector(2, 99);
+
+      if (uniqueSpecialValues.has(val) || specialsDumps.has(val)) return findRandVal();
+      else return val;
+    };
+
+    const space = game.spaceMaker(findRandVal());
     expect(space.type).toEqual(SpaceType.NORMAL);
   });
   it('should return the finish space', () => {

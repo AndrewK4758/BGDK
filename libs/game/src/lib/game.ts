@@ -3,6 +3,7 @@ import { Color, SpaceType } from '@bgdk/types-game';
 import { IGame } from '../interfaces/interfaces';
 import { AllGameTypes } from '../types/all-games-types';
 
+
 export class Game implements IGame {
   game: AllGameTypes;
   playersArray: Player[];

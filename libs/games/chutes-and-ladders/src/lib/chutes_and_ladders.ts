@@ -2,12 +2,12 @@ import { Board, Die, GameBoard, LiteSpace, Space, rangeSelector, rowFinder } fro
 import { AvatarTotem, Color, SpaceType } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
 
-const TOTAL_SPACES = 100;
-const START = 1;
-const ROWS: number = Math.ceil(TOTAL_SPACES / Math.sqrt(TOTAL_SPACES));
-const MAX_SPECIAL_DISTANCE = 40;
-const uniqueSpecialValues = new Map<number, Space>();
-const specialsDumps = new Map<number, Space>();
+export const TOTAL_SPACES = 100;
+export const START = 1;
+export const ROWS: number = Math.ceil(TOTAL_SPACES / Math.sqrt(TOTAL_SPACES));
+export const MAX_SPECIAL_DISTANCE = 40;
+export const uniqueSpecialValues = new Map<number, Space>();
+export const specialsDumps = new Map<number, Space>();
 let chuteCount = 0;
 let ladderCount = 0;
 let chuteSpecialCount = 5;
@@ -74,8 +74,6 @@ const createDumpValueLadder = (indexOfSpace: number): Space => {
     return specialSpace;
   }
 };
-
-export { MAX_SPECIAL_DISTANCE, ROWS, START, TOTAL_SPACES, uniqueSpecialValues };
 
 export class ChutesAndLadders {
   MAX_PLAYERS: number;
@@ -197,3 +195,4 @@ export class ChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
+

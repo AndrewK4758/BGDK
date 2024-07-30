@@ -8,6 +8,7 @@ import {
   rollSingleDiceMultipleTimes,
   rollSingleDiceMultipleTimesAndSum,
 } from '../lib/utils';
+import { SummedRoll } from '../lib/summed_roll';
 
 let D1: Die,
   D2: Die,
@@ -17,7 +18,8 @@ let D1: Die,
   min: number,
   count: number,
   totalRolls: number,
-  minSideValue: number;
+  minSideValue: number,
+  summedRoll: SummedRoll;
 
 describe('Test all utils functions', () => {
   beforeEach(() => {
@@ -30,6 +32,7 @@ describe('Test all utils functions', () => {
     min = 0;
     count = 10;
     totalRolls = 10;
+    summedRoll = new SummedRoll([D1_Sides, D2_Sides]);
   });
 
   test('TesD1: IDie, D1: IDie, ...dice: [IDie]generation', () => {
@@ -121,6 +124,11 @@ describe('Test all utils functions', () => {
 
       min++;
     }
+  });
+
+  test('SummedRoll class', () => {
+    expect(summedRoll.rollValues).toEqual([D1_Sides, D2_Sides]);
+    expect(summedRoll.sum).toEqual(D1_Sides + D2_Sides);
   });
 });
 

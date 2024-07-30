@@ -1,17 +1,17 @@
 import { Context, ContextBuilder } from '@bgdk/chain';
-import { Player, Avatar } from '@bgdk/games-components-logic';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import { Game } from '@bgdk/game';
+import { Avatar, Player } from '@bgdk/games-components-logic';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys, SpaceType, TurnStatus, Color } from '@bgdk/types-game';
+import { Color, GameContextKeys, SpaceType, TurnStatus } from '@bgdk/types-game';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { Request, Response } from 'express';
 import { moveAvatar } from '../lib/commands/action-take-turn/move-avatar';
 import { rollDice } from '../lib/commands/action-take-turn/roll-dice';
 import { rotatePlayer } from '../lib/commands/action-take-turn/rotate-player';
 import { takeTurnStart } from '../lib/commands/action-take-turn/take-turn-start';
 import { verifyPlayerTakingTurn } from '../lib/commands/action-take-turn/verify-player-taking-turn';
 import { wonGameCheckChutesAndLadders } from '../lib/commands/action-take-turn/won-game-chutes-and-ladders';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { Game } from '@bgdk/game';
-import { Request, Response } from 'express';
 
 interface ICtxOutput {
   turnStatus: TurnStatus;
@@ -28,40 +28,40 @@ let ctx: Context,
   req: Partial<Request>,
   resp: Partial<Response>;
 
-beforeAll(() => {
-  ctx = ContextBuilder.build();
-  instance = new ChutesAndLadders(5, 5);
-  game = new Game(instance);
-  instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
-
-  instanceOfGame.instance.register('avatar1', 'p-1-id', 'XENOMORPH', Color.RED);
-  instanceOfGame.instance.register('avatar2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-  avatar1 = instanceOfGame.instance.playersArray[0].avatar;
-  avatar2 = instanceOfGame.instance.playersArray[1].avatar;
-
-  instanceOfGame.instance.instance.startSpace.land(avatar1);
-  instanceOfGame.instance.instance.startSpace.land(avatar2);
-
-  instanceOfGame.instance.playerInTurn = instanceOfGame.instance.playersArray.find(
-    ({ id }) => id === 'p-2-id',
-  ) as Player;
-
-  turnStatus = TurnStatus.NOT_READY;
-  output = { turnStatus: turnStatus };
-
-  req = mockReqObj();
-  resp = mockRespObj();
-
-  if (req.params) req.params['id'] = 'Chutes-&-Ladders';
-
-  ctx.put(GameContextKeys.ACTION, 'take-turn');
-  ctx.put(GameContextKeys.REQUEST, req);
-  ctx.put(GameContextKeys.RESPONSE, resp);
-  ctx.put(GameContextKeys.GAME, instanceOfGame);
-});
-
 describe('should execute all steps of taking turn', () => {
+  beforeAll(() => {
+    ctx = ContextBuilder.build();
+    instance = new ChutesAndLadders(5, 5);
+    game = new Game(instance);
+    instanceOfGame = new InstanceOfGame(getCurrentMinute(), 'game-ID', game);
+
+    instanceOfGame.instance.register('avatar1', 'p-1-id', 'XENOMORPH', Color.RED);
+    instanceOfGame.instance.register('avatar2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+    avatar1 = instanceOfGame.instance.playersArray[0].avatar;
+    avatar2 = instanceOfGame.instance.playersArray[1].avatar;
+
+    instanceOfGame.instance.instance.startSpace.land(avatar1);
+    instanceOfGame.instance.instance.startSpace.land(avatar2);
+
+    instanceOfGame.instance.playerInTurn = instanceOfGame.instance.playersArray.find(
+      ({ id }) => id === 'p-2-id',
+    ) as Player;
+
+    turnStatus = TurnStatus.NOT_READY;
+    output = { turnStatus: turnStatus };
+
+    req = mockReqObj();
+    resp = mockRespObj();
+
+    if (req.params) req.params['id'] = 'Chutes-&-Ladders';
+
+    ctx.put(GameContextKeys.ACTION, 'take-turn');
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
+    ctx.put(GameContextKeys.GAME, instanceOfGame);
+  });
+
   it('should fail because game is in NOT_READY state when receiving a turn ', () => {
     const commandResult = takeTurnStart.execute(ctx);
 
@@ -133,7 +133,7 @@ describe('should execute all steps of taking turn', () => {
 
     expect(commandResult).toBeTruthy();
     expect(ctx.get('move-dist')).toBeGreaterThanOrEqual(1);
-    expect(ctx.get('move-dist')).toBeLessThanOrEqual(instanceOfGame.instance.instance.DIE.sides);
+    expect(ctx.get('move-dist')).toBeLessThanOrEqual((instanceOfGame.instance.instance as ChutesAndLadders).DIE.sides);
   });
   it('should fail', () => {
     ctx.put(GameContextKeys.NEXT, 'something-else');
@@ -147,7 +147,7 @@ describe('should execute all steps of taking turn', () => {
     ctx.put(GameContextKeys.NEXT, 'move-avatar');
     output = { turnStatus: TurnStatus.VALID };
 
-    const moveDist = instanceOfGame.instance.instance.DIE.roll() as number;
+    const moveDist = (instanceOfGame.instance.instance as ChutesAndLadders).DIE.roll() as number;
 
     ctx.put('player-taking-turn', instanceOfGame.instance.playerInTurn);
     ctx.put('move-dist', moveDist);

@@ -25,7 +25,6 @@ export const rollMultipleDiceMultipleTimes = (totalRolls: number, dice: IDie[], 
   return rolls;
 };
 
-//WHY RETURN AS ISummedRoll rather than create an instance of new SummedRoll for the sum of Die
 export const rollSingleDiceMultipleTimesAndSum = (count: number, dice: IDie, rolls: number[] = []): ISummedRoll => {
   if (count > 0) {
     rolls.push(dice.roll());

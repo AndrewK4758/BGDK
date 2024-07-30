@@ -25,13 +25,15 @@ export const mockReqObj = (): Partial<Request> => {
   };
   return req;
 };
+const headers = new Map<string, string>();
 
 export const mockRespObj = (): Partial<Response> => {
   const resp: Partial<Response> = {
     setHeader: jest.fn().mockImplementation((name: string, headerValue: string) => {
-      const headers = new Map<string, string>();
-
       headers.set(name, headerValue);
+    }),
+    header: jest.fn().mockImplementation(name => {
+      return headers.get(name);
     }),
     status: jest.fn().mockImplementation(code => {
       resp.status = code;

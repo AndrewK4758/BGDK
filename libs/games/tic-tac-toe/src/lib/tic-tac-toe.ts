@@ -1,4 +1,4 @@
-import { Board, Die, Space, LiteSpace } from '@bgdk/games-components-logic';
+import { Board, Space, LiteSpace } from '@bgdk/games-components-logic';
 import { SpaceType, Color, AvatarTotem } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
 
@@ -21,7 +21,7 @@ export class TicTacToe {
   startSpace: Space;
   avatarList: AvatarTotem[];
   colorList: typeof Color;
-  DIE: Die;
+
   constructor() {
     this.MIN_PLAYERS = 2;
     this.MAX_PLAYERS = 2;
@@ -29,7 +29,6 @@ export class TicTacToe {
     this.makeGameBoard();
     this.colorList = Color;
     this.avatarList = AvatarTotems.totemsList;
-    this.DIE = new Die(6);
   }
 
   makeGameBoard = () => {
@@ -45,10 +44,6 @@ export class TicTacToe {
         return AvatarTotems.totemsList[0].image;
       case AvatarTotems.totemsList[1].name:
         return AvatarTotems.totemsList[1].image;
-      case AvatarTotems.totemsList[2].name:
-        return AvatarTotems.totemsList[2].image;
-      case AvatarTotems.totemsList[3].name:
-        return AvatarTotems.totemsList[3].image;
       default:
         throw Error('Avatar not in list');
     }

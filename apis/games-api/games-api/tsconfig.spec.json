@@ -12,7 +12,8 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/**/*/src/**/*.ts"
+    "../../../libs/**/*/src/**/*.ts",
+    "../../../__mocks__/**/*.ts"
   ],
   "exclude": ["../../../libs/react-components/**/*"]
 }

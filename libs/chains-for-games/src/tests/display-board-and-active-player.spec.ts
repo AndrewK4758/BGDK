@@ -8,26 +8,27 @@ import { Request, Response } from 'express';
 import { IPlayersAndBoard } from '../index';
 import { activeDataToSend } from '../lib/commands/action-board/active-game-data-to-send';
 import { boardStart } from '../lib/commands/action-board/board-start';
-import { readyToPlayCheck } from '../lib/commands/action-board/ready-to-play';
 import { checkIfWinner } from '../lib/commands/action-board/check-if-winner';
+import { readyToPlayCheck } from '../lib/commands/action-board/ready-to-play';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
-beforeEach(() => {
-  ctx = ContextBuilder.build();
-  req = mockReqObj();
-  resp = mockRespObj();
 
-  game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
-
-  game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
-  game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
-
-  ctx.put(GameContextKeys.ACTION, 'board');
-  ctx.put(GameContextKeys.REQUEST, req);
-  ctx.put(GameContextKeys.RESPONSE, resp);
-  ctx.put(GameContextKeys.GAME, game);
-});
 describe('test display board and active player chain', () => {
+  beforeEach(() => {
+    ctx = ContextBuilder.build();
+    req = mockReqObj();
+    resp = mockRespObj();
+
+    game = new InstanceOfGame(getCurrentMinute(), 'game-ID', new Game(new ChutesAndLadders(5, 5)));
+
+    game.instance.register('player1', 'p-1-id', 'XENOMORPH', Color.RED);
+    game.instance.register('player2', 'p-2-id', 'PREDATOR', Color.BLACK);
+
+    ctx.put(GameContextKeys.ACTION, 'board');
+    ctx.put(GameContextKeys.REQUEST, req);
+    ctx.put(GameContextKeys.RESPONSE, resp);
+    ctx.put(GameContextKeys.GAME, game);
+  });
   it('should return all players registered in the game instance', () => {
     const commandResult = boardStart.execute(ctx);
 

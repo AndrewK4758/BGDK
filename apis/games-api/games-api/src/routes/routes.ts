@@ -6,6 +6,7 @@ import sendGameList from '../controllers/send_game_list';
 import useAllGamesMap from '../middleware/all-games-map';
 import useInstanceTimeMap from '../middleware/instance-map';
 import useGameSpecificChain from '../middleware/game-specific-chain';
+
 export default class GameRoutes {
   constructor(router: Router) {
     // ROUTER MIDDLEWARE

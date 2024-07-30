@@ -1,9 +1,9 @@
-import { IBuiltGame } from '@bgdk/game-builder';
+import type { IBuiltGame } from '@bgdk/game-builder';
 import { Request, Response } from 'express';
-import games from './list-games';
+import games from '../data/games-list';
 
-const sendGameList = async (req: Request, resp: Response) => {
-  const gamesToSend = games.map((game) => {
+const sendGameList = async (_req: Request, resp: Response): Promise<void> => {
+  const gamesToSend = games.map(game => {
     return {
       name: game.name,
       id: game.id,
@@ -15,5 +15,5 @@ const sendGameList = async (req: Request, resp: Response) => {
 
   resp.status(200).json(gamesToSend);
 };
- 
+
 export default sendGameList;

@@ -23,7 +23,8 @@
         "reportsDirectory": "../../coverage/libs/types/types-game",
         "testFiles": ["./src/tests/*"],
         "ci": true,
-        "verbose": true
+        "verbose": true,
+        "passWithNoTests": true
       }
     }
   }
