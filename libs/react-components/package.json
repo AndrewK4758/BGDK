@@ -20,6 +20,7 @@
     "vite": "5.3.4",
     "vite-plugin-dts": "^3.8.1",
     "yup": "^1.4.0",
-    "@bgdk/games-components-logic": "0.0.1"
+    "@bgdk/games-components-logic": "0.0.1",
+    "@nx/vite": "19.5.4"
   }
 }

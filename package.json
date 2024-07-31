@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./dist/apis/games-api/main.js",
     "build": "npx nx run games-api:build:production",
-    "lint": "npx nx run-many -t=lint --verbose",
-    "test": "npx nx run-many -t=test --verbose"
+    "prepare": "npx nx run-many -t=lint,test"
   },
   "keywords": [
     "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"

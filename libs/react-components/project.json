@@ -20,6 +20,13 @@
           "mode": "production"
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/react-components/**/*.{ts,tsx,js,jsx}", "libs/react-components/package.json"]
+      }
     }
   }
 }
