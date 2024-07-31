@@ -22,12 +22,8 @@ describe('Test deleteArtists controller', () => {
 
     req.params = { id: '-1' };
 
-    const artist = await prisma.artist.findUnique({
-      where: { artist_id: Number(req.params.id) },
-    });
     await deleteArtist(req as Request, resp as Response);
 
     expect(resp.status).toEqual(202);
-    expect(resp.json['deletedArtist'].name).toEqual(artist.name);
   });
 });

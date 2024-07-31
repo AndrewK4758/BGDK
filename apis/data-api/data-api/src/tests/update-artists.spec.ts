@@ -3,28 +3,33 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import updateArtist from '../controllers/update-artists';
 
-let req: Partial<Request>, resp: Partial<Response>, prisma: PrismaClient;
+let req: Partial<Request>, resp: Partial<Response>, prisma: PrismaClient, id: number;
 describe('Test getArtists controller', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
     prisma = new PrismaClient();
     req = mockReqObj();
     resp = mockRespObj();
+    id = -3;
+
+    req.body = { name: 'UPDATED IN JEST UPDATE TEST', artist_id: id };
   });
 
   afterAll(async () => {
+    await prisma.artist.delete({
+      where: {
+        artist_id: id,
+      },
+    });
     await prisma.$disconnect();
   });
 
   it('Should return a status of 202 and a json object with the artists name changed in Chinook database', async () => {
-    const artistID = await prisma.artist.create({
+    await prisma.artist.create({
       data: {
-        name: 'CREATED IN JEST',
+        artist_id: id,
+        name: 'CREATED IN JEST UPDATE TEST',
       },
     });
-
-    console.log(artistID);
-    const id = artistID.artist_id;
-    req.body = { name: 'UPDATED IN JEST TEST', artist_id: id };
 
     await updateArtist(req as Request, resp as Response);
 

@@ -20,7 +20,12 @@
             ]
           }
         ],
-        "@nx/dependency-checks": "error"
+        "@nx/dependency-checks": [
+          "error",
+          {
+            "checkObsoleteDependencies": false
+          }
+        ]
       }
     },
     {

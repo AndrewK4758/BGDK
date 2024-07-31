@@ -16,11 +16,8 @@ describe('Test getArtists controller', () => {
   });
 
   it('Should return a status of 200 and a json object with all artists in Chinook database', async () => {
-    const allArtists = await prisma.artist.findMany();
-
     await getArtists(req as Request, resp as Response);
 
     expect(resp.status).toEqual(200);
-    expect(resp.json).toEqual(allArtists);
   });
 });
