@@ -16,7 +16,15 @@ describe('Test getArtists controller', () => {
   });
 
   it('Should return a status of 202 and a json object with the artists name changed in Chinook database', async () => {
-    req.body = { name: 'UPDATED IN JEST TEST', artist_id: 279 };
+    const artistID = await prisma.artist.create({
+      data: {
+        name: 'CREATED IN JEST',
+      },
+    });
+
+    console.log(artistID);
+    const id = artistID.artist_id;
+    req.body = { name: 'UPDATED IN JEST TEST', artist_id: id };
 
     await updateArtist(req as Request, resp as Response);
 

@@ -15,9 +15,7 @@ const postArtists = async (req: Request, resp: Response): Promise<void> => {
   const output = {
     newArtist: newArtist,
   };
-  newArtist ? resp.status(202) : resp.status(400);
-
-  resp.json(output);
+  newArtist !== undefined || null ? resp.status(202).json(output) : resp.status(400).json({ newArtist: undefined });
 };
 
 export default postArtists;

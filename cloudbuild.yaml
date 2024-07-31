@@ -4,10 +4,14 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
 
-  # Lint, Test, Build
+  # Lint
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'build']
+    args: ['run', 'lint --verbose']
     
+  # Test
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'test --verbose']
+      
   # Deploy to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'api.yaml']

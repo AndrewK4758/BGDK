@@ -17,7 +17,9 @@ const updateArtist = async (req: Request, resp: Response): Promise<void> => {
     updatedArtist: updatedArtist,
   };
 
-  updatedArtist !== undefined ? resp.status(202).json(output) : resp.status(400).json({ updatedArtist: undefined });
+  updatedArtist !== undefined || null
+    ? resp.status(202).json(output)
+    : resp.status(400).json({ updatedArtist: undefined });
 };
 
 export default updateArtist;
