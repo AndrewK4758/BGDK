@@ -1,5 +1,5 @@
 import { CommandBuilder, Context } from '@bgdk/chain';
-import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
+import type { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
 import { GameContextKeys } from '@bgdk/types-game';
 

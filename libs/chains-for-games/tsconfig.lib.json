@@ -15,7 +15,8 @@
     "../models/instance-of-game/src/**/*.ts",
     "../game/src/**/*.ts",
     "../games/**/*/src/**/*.ts",
-    "../games-components-logic/src/**/*.ts"
+    "../games-components-logic/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
@@ -29,6 +30,7 @@
     "../models/instance-of-game/src/tests/**/*.ts",
     "../game/src/tests/**/*.ts",
     "../games/**/*/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts"
+    "../games-components-logic/src/tests/**/*.ts",
+    "../games/chutes-and-ladders/src/tests**/*.ts"
   ]
 }
