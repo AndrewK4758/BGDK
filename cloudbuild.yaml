@@ -6,7 +6,7 @@ steps:
 
   # Lint
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'prepare']
+    args: ['run', 'build']
       
     # Deploy to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
