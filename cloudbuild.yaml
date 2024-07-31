@@ -1,16 +1,9 @@
 steps:
-
-  # Install Deps
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['install']
-
-  # Lint
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'build']
       
     # Deploy to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'api.yaml']
 
 # Optional: Define a timeout for the build
-timeout: '1600s'
+timeout: '1500s'
+
