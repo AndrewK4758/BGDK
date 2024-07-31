@@ -20,7 +20,7 @@ describe('Test getArtists controller', () => {
 
     await getArtists(req as Request, resp as Response);
 
-    expect(resp.status).toEqual(202);
+    expect(resp.status).toEqual(200);
     expect(resp.json).toEqual(allArtists);
   });
 });

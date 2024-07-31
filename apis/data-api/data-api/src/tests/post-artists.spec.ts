@@ -21,7 +21,7 @@ describe('Test postArtists controller', () => {
 
     await postArtists(req as Request, resp as Response);
 
-    expect(resp.status).toEqual(202);
+    expect(resp.status).toEqual(201);
     expect(resp.json['newArtist'].name).toEqual(req.body.name);
   });
 });
