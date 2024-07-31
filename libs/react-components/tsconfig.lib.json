@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "outDir": "../../dist/out-tsc",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -18,7 +18,9 @@
     "**/*.test.js",
     "**/*.spec.jsx",
     "**/*.test.jsx",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "../games-components-logic/src/test/**/*.ts",
+    "../types/types-game/src/test/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
