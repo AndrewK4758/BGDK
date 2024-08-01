@@ -4,20 +4,16 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
 import { Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import games from '../data/games-list';
-import { error } from '../errors/error';
-
-//NEED TO IMPLEMENT PUTTING THE REF TO THE GAME CLASS IN THE GAME BUILDER AND
-//FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME
+import { error } from '../errors/not-a-game-error';
 
 const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<void> => {
   const gameName = req.selectedGameName;
   console.log(`Game selected: ${gameName}`);
 
+  const selectedGame = req.selectedGame;
+
   const minute: Minute = getCurrentMinute();
   const gameID: GameInstanceID = new ShortUniqueId().rnd();
-
-  const selectedGame = games.find(({ name }) => name === gameName);
 
   if (!selectedGame) {
     resp.status(400).json(error());
@@ -39,4 +35,3 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
 };
 
 export default populateInstanceMaps;
-  

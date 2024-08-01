@@ -3,7 +3,7 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Response } from 'express';
 import populateInstanceMaps from '../controllers/populate_instance_map';
-import { error } from '../errors/error';
+import { error } from '../errors/not-a-game-error';
 import { InstanceTimeMap } from '../services/instance-time-map/instance-time-map';
 
 let req: Partial<IReqObjMaps>, resp: Partial<Response>;

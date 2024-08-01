@@ -38,16 +38,19 @@ export const ChutesAndLaddersGame = gb
     chooses a pawn to play. Any extra pawns are out of
     #1. Now get ready for the fun! `,
   )
-  .setGameFunctionality([
-    logActionChain,
-    loadRegisterChain,
-    registerChain,
-    turnChain,
-    resetGameChain,
-    startGameChain,
-    activeGameDisplayChain,
-    outputContextResponseChain,
-  ])
+  .setGameFunctionality(
+    [
+      logActionChain,
+      loadRegisterChain,
+      registerChain,
+      turnChain,
+      resetGameChain,
+      startGameChain,
+      activeGameDisplayChain,
+      outputContextResponseChain,
+    ],
+    true,
+  )
   .setInstance<ChutesAndLadders>(() => new ChutesAndLadders(5, 5))
   .build();
 games.push(ChutesAndLaddersGame);
@@ -60,16 +63,19 @@ export const TicTacToeGame = gb
   .setRule(1, 'SETUP', `The game is played on a 3x3 grid`)
   .setRule(2, 'TURNS', `Players take turns marking an empty square with their symbol (X or O)`)
   .setRule(3, 'WIN', `The first player to get three of their marks in a row (up, down, across, or diagonally) wins`)
-  .setGameFunctionality([
-    logActionChain,
-    loadRegisterChain,
-    registerChain,
-    turnChainTicTacToe,
-    resetGameChain,
-    startGameChain,
-    activeGameDisplayChain,
-    outputContextResponseChain,
-  ])
+  .setGameFunctionality(
+    [
+      logActionChain,
+      loadRegisterChain,
+      registerChain,
+      turnChainTicTacToe,
+      resetGameChain,
+      startGameChain,
+      activeGameDisplayChain,
+      outputContextResponseChain,
+    ],
+    true,
+  )
   .setInstance<TicTacToe>(() => new TicTacToe())
   .build();
 

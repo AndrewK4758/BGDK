@@ -17,7 +17,7 @@ export interface IGameBuilder {
   setDescription(description: string): IGameBuilder;
   setImageURL(imageURL: string): IGameBuilder;
   setRule(order: number, value: string, title: string): IGameBuilder;
-  setGameFunctionality(commands: Command[]): IGameBuilder;
+  setGameFunctionality(commands: Command[], continueOnError: boolean): IGameBuilder;
   setInstance<T>(instance: () => T): IGameBuilder;
   build(): IBuiltGame;
 }
@@ -55,8 +55,8 @@ export class GameBuilder implements IGameBuilder {
     return this;
   }
 
-  setGameFunctionality(commands: Command[]): IGameBuilder {
-    this.#Game.chain = ChainBuilder.build(commands, true);
+  setGameFunctionality(commands: Command[], continueOnError: boolean): IGameBuilder {
+    this.#Game.chain = ChainBuilder.build(commands, continueOnError);
     return this;
   }
 

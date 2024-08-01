@@ -1,6 +1,5 @@
-import { IGame } from '@bgdk/game';
-import { GameInstanceID, Minute } from '@bgdk/types-game';
 import { Game } from '@bgdk/game';
+import { GameInstanceID, Minute } from '@bgdk/types-game';
 
 export const getCurrentMinute = (): Minute => (new Date().getHours() * 60 + new Date().getMinutes()) as Minute;
 
@@ -8,7 +7,7 @@ export interface IInstanceOfGame {
   gameInstanceID: GameInstanceID;
   instanceTime: Minute;
   lastActive: Minute;
-  instance: IGame;
+  instance: Game;
   updateLastActive(minute: Minute): void;
 }
 

@@ -7,12 +7,14 @@ import useAllGamesMap from '../middleware/all-games-map';
 import useInstanceTimeMap from '../middleware/instance-map';
 import useGameSpecificChain from '../middleware/game-specific-chain';
 import useSetSelectedGameName from '../middleware/set-game-name';
+import useSelectedGame from '../middleware/use-selected-game';
 
 export default class GameRoutes {
   constructor(router: Router) {
     // ROUTER MIDDLEWARE
     router.use(express.json());
     router.use('/games/:id', useSetSelectedGameName);
+    router.use('/games/:id', useSelectedGame);
     router.use('/games/:id', useAllGamesMap);
     router.use('/games/:id', useInstanceTimeMap);
     router.use('/games/:id/*', useGameSpecificChain);
