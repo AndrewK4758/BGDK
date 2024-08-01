@@ -18,6 +18,7 @@ describe('Test postArtists controller', () => {
         artist_id: id,
       },
     });
+
     await prisma.$disconnect();
   });
 

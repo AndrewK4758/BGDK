@@ -4,7 +4,7 @@ import { NextFunction, Response } from 'express';
 
 export const allGamesMap = new AllGamesMap();
 
-const useAllGamesMap = (req: IReqObjMaps, resp: Response, next: NextFunction) => {
+const useAllGamesMap = (req: IReqObjMaps, _resp: Response, next: NextFunction): void => {
   req.allGamesMap = allGamesMap;
   next();
 };

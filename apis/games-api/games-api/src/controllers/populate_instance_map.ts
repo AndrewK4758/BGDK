@@ -11,7 +11,7 @@ import { error } from '../errors/error';
 //FIND AND CALL THE GAME RATHER THAN THIS HARD CODE OF THE GAME
 
 const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<void> => {
-  const gameName = req.params['id'].replace(/-/g, ' ');
+  const gameName = req.selectedGameName;
   console.log(`Game selected: ${gameName}`);
 
   const minute: Minute = getCurrentMinute();

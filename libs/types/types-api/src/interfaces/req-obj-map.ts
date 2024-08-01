@@ -7,4 +7,5 @@ export interface IReqObjMaps extends Request {
   allGamesMap: IAllGamesMap;
   instanceMap: IInstanceTimeMap;
   gameSpecificChain: Chain;
+  selectedGameName: string;
 }

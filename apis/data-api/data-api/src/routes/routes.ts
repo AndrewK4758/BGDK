@@ -14,3 +14,4 @@ export default class Routes {
     router.patch('/artists', updateArtist);
   }
 }
+ 
