@@ -5,7 +5,7 @@ import populateInstanceMaps from '../controllers/populate_instance_map';
 import sendGameList from '../controllers/send_game_list';
 import useAllGamesMap from '../middleware/all-games-map';
 import useInstanceTimeMap from '../middleware/instance-map';
-import useGameSpecificChain from '../middleware/game-specific-chain';
+import useGameSpecificChain from '../middleware/use-game-specific-chain';
 import useSetSelectedGameName from '../middleware/set-game-name';
 import useSelectedGame from '../middleware/use-selected-game';
 
@@ -17,7 +17,7 @@ export default class GameRoutes {
     router.use('/games/:id', useSelectedGame);
     router.use('/games/:id', useAllGamesMap);
     router.use('/games/:id', useInstanceTimeMap);
-    router.use('/games/:id/*', useGameSpecificChain);
+    router.use('/games/:id/:action', useGameSpecificChain);
     // ENDPOINTS
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);

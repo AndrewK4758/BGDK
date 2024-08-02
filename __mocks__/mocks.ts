@@ -40,7 +40,10 @@ export const mockRespObj = (): Partial<Response> => {
       return resp;
     }),
     sendStatus: jest.fn().mockImplementation(result => (resp.status = result)),
-    json: jest.fn().mockImplementation(result => (resp.json = result)),
+    json: jest.fn().mockImplementation(result => {
+      resp.json = result;
+      return resp;
+    }),
   };
   return resp;
 };

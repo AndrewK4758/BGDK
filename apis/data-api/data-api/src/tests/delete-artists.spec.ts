@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import deleteArtist from '../controllers/delete-artists';
 
 let req: Partial<Request>, resp: Partial<Response>, prisma: PrismaClient;
+
 describe('Test deleteArtists controller', () => {
   beforeAll(() => {
     prisma = new PrismaClient();
@@ -17,13 +18,14 @@ describe('Test deleteArtists controller', () => {
 
   it('Should return a status of 202 and a json object with the deleted artist from Chinook database', async () => {
     await prisma.artist.create({
-      data: { artist_id: -1, name: 'ADDED TO DELETE' },
+      data: { artist_id: 0, name: 'ARTIST TO DELETE' },
     });
 
-    req.params = { id: '-1' };
+    req.params = { id: '0' };
 
     await deleteArtist(req as Request, resp as Response);
 
     expect(resp.status).toEqual(202);
+    expect(resp.json).toBeTruthy();
   });
 });

@@ -26,5 +26,6 @@ describe('Test postArtists controller', () => {
     await postArtists(req as Request, resp as Response);
     id = resp.json['newArtist'].artist_id;
     expect(resp.status).toEqual(201);
+    expect(resp.json).toBeTruthy();
   });
 });

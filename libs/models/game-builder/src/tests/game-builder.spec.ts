@@ -1,3 +1,4 @@
+import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { GameBuilder } from '../lib/game-builder';
 
 let gb: GameBuilder;
@@ -14,7 +15,8 @@ describe('Test Game Builder', () => {
       .setDescription('description of game 1')
       .setImageURL('http://imageOfGame1.com')
       .setRule(1, 'rule title', 'rule value')
-      .setGameFunctionality([])
+      .setGameFunctionality([], true)
+      .setInstance(() => new ChutesAndLadders(5, 5))
       .build();
 
     expect(game.name).toEqual('game 1');
@@ -24,5 +26,7 @@ describe('Test Game Builder', () => {
     expect(game.rules[0].title).toEqual('rule title');
     expect(game.rules[0].order).toEqual(1);
     expect(game.rules[0].value).toEqual('rule value');
+    expect(game.instance()).toBeInstanceOf(ChutesAndLadders);
+    expect(game.chain).toBeTruthy();
   });
 });

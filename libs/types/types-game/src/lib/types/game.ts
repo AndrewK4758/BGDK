@@ -51,6 +51,8 @@ export type PlayerID = string;
 
 export type GamesInMinute = GameInstanceID[];
 
+export type GameNameString = string;
+
 export type GamePlayerValidation = {
   gameInstanceID?: GameInstanceID;
   playerID?: string;

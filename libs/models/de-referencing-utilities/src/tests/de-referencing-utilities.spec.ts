@@ -6,13 +6,12 @@ import { deRefContextObject } from '../lib/de-ref-context-object';
 import { Game } from '@bgdk/game';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { IReqObjMaps } from '@bgdk/types-api';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
-let context: Context, req: IReqObjMaps, resp: Partial<Response>;
+let context: Context, req: Partial<Request>, resp: Partial<Response>;
 describe('Test de referencing context object', () => {
   beforeAll(() => {
-    req = mockReqObj() as IReqObjMaps;
+    req = mockReqObj();
     resp = mockRespObj();
 
     context = ContextBuilder.build();
