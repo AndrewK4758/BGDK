@@ -1,6 +1,8 @@
 import { SxProps } from '@mui/material';
 import JoinGame from '../forms/join-game/join-game';
 import Text from '../text/text';
+import ChatInput from '../../vertex-components/chat-input/chat-input';
+import Box from '@mui/material/Box';
 
 /* eslint-disable-next-line */
 export interface HomeProps {
@@ -9,6 +11,8 @@ export interface HomeProps {
   breakpointsJoinGameButton?: SxProps;
   breakpointsJoinGameText?: SxProps;
   breakpointsJoinGameLabel?: SxProps;
+  breakpointsChatInputText?: SxProps;
+  response: string | undefined;
 }
 
 export function Home({
@@ -17,6 +21,8 @@ export function Home({
   breakpointsJoinGameButton,
   breakpointsJoinGameText,
   breakpointsJoinGameLabel,
+  breakpointsChatInputText,
+  response,
 }: HomeProps) {
   return (
     <>
@@ -42,6 +48,20 @@ export function Home({
         breakpointsJoinGameButton={breakpointsJoinGameButton}
         breakpointsJoinGameText={breakpointsJoinGameText}
         breakpointsJoinGameLabel={breakpointsJoinGameLabel}
+      />
+      <br />
+      <Box component={'div'}>{response}</Box>
+      <ChatInput
+        method="post"
+        action="/?index"
+        type="text"
+        buttonText="Ask Astro"
+        buttonType="submit"
+        name="promptInput"
+        variant="outlined"
+        breakpointsChatInputButton={breakpointsJoinGameButton}
+        breakpointsChatInputLabel={breakpointsJoinGameLabel}
+        breakpointsChatInputText={breakpointsChatInputText}
       />
     </>
   );

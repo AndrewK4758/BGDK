@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
-import TextInput from '../../text-input/text-input';
+import TextInput from '../../text-input/formik-text-input';
 import { SxProps } from '@mui/material';
 
 /* eslint-disable-next-line */

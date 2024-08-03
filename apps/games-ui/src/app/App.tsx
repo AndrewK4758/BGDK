@@ -12,6 +12,7 @@ import registerGameInstanceOnServerAction from '../services/action_functions/reg
 import registerPlayerAndAvatarAction from '../services/action_functions/register_player_avatar_action';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
+import vertexSubmitAction from '../services/action_functions/vertex-submit-action';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
+        action: vertexSubmitAction,
       },
       {
         path: 'games',

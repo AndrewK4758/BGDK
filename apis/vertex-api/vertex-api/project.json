@@ -5,10 +5,36 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apis/vertex-api",
+        "main": "apis/vertex-api/vertex-api/src/main.ts",
+        "tsConfig": "apis/vertex-api/vertex-api/tsconfig.app.json",
+        "assets": ["apis/vertex-api/vertex-api/src/assets"],
+        "webpackConfig": "apis/vertex-api/vertex-api/webpack.config.js",
+        "deleteOutputPath": true,
+        "progress": true,
+        "verbose": true,
+        "watch": true
+      },
+      "configurations": {
+        "development": {
+          "watch": true
+        },
+        "production": {
+          "watch": false
+        }
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "options": {
         "buildTarget": "vertex-api:build",
         "runBuildTargetDependencies": false
@@ -21,6 +47,27 @@
           "buildTarget": "vertex-api:build:production"
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "configurations": {
+        "development": {
+          "fix": true
+        },
+        "production": {
+          "fix": false
+        }
+      }
+    }
+  },
+  "test": {
+    "executor": "@nx/jest:jest",
+    "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+    "options": {
+      "jestConfig": "apis/vertex-api/vertex-api/jest.config.ts",
+      "reportsDirectory": "../../coverage/libs/vertex-api",
+      "testFiles": ["./src/tests/*"]
     }
   }
 }
+

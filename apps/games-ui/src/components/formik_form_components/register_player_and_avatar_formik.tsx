@@ -1,4 +1,4 @@
-import { SelectMenu, TextInput, Theme } from '@bgdk/react-components';
+import { SelectMenu, FormikTextInput, Theme } from '@bgdk/react-components';
 import { AvatarTotem, Color, ILoadRegisterData } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
@@ -119,7 +119,7 @@ export default function RegisterPlayerAndAvatarForm() {
     >
       <Form>
         <Container component={'section'} sx={breakpointsFormContianer}>
-          <TextInput
+          <FormikTextInput
             type="text"
             name="playerName"
             label="Player Name"

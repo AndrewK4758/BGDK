@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useField } from 'formik';
 import Text from '../../text/text';
-import { Theme } from '../../theme/theme';
+import { Theme } from '../../../theme/theme';
 
 interface IAvatarColorSelectValues {
   name: string;

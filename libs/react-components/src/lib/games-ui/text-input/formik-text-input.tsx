@@ -3,10 +3,10 @@ import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import Text from '../text/text';
-import { Theme } from '../theme/theme';
+import { Theme } from '../../theme/theme';
 /* eslint-disable-next-line */
 
-export interface TextInputProps {
+export interface FormikTextInputProps {
   name: string;
   type: string;
   label: string;
@@ -16,7 +16,7 @@ export interface TextInputProps {
   labelSx?: SxProps;
 }
 
-export function TextInput({ label, textSx, labelSx, ...props }: TextInputProps) {
+export function FormikTextInput({ label, textSx, labelSx, ...props }: FormikTextInputProps) {
   const [field, meta] = useField(props);
   return (
     <>
@@ -44,4 +44,4 @@ export function TextInput({ label, textSx, labelSx, ...props }: TextInputProps) 
   );
 }
 
-export default TextInput;
+export default FormikTextInput;

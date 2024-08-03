@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';
 import Text from '../text/text';
-import { Theme } from '../theme/theme';
+import { Theme } from '../../theme/theme';
 import HeaderMenu from './header-menu/header-menu';
 
 /* eslint-disable-next-line */

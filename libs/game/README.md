@@ -1,11 +1,5 @@
-# game
+# Todo
 
-This library was generated with [Nx](https://nx.dev).
-
-## Building
-
-Run `nx build game` to build the library.
-
-## Running unit tests
-
-Run `nx test game` to execute the unit tests via [Jest](https://jestjs.io).
+### Add lobby to show active games
+  - [] Add ability for game creator to name game
+  - [] Add list of available clients connected to emit newly created game data

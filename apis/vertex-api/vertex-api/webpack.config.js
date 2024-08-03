@@ -3,7 +3,7 @@ const { join } = require('path');
 
 module.exports = {
   output: {
-    path: join(__dirname, '../../../dist/apis/vertex-api/vertex-api'),
+    path: join(__dirname, '../../../dist/apis/vertex-api'),
   },
   plugins: [
     new NxAppWebpackPlugin({
