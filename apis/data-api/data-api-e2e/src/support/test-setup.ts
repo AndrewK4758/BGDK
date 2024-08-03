@@ -8,5 +8,5 @@ module.exports = async function () {
   const host = process.env.HOST ?? 'localhost';
   const port = process.env.PORT ?? '4444';
 
-  axios.defaults.baseURL = `http://${host}:${port}`;
+  axios.defaults.baseURL = `http://${host}:${port}/api/v1`;
 };

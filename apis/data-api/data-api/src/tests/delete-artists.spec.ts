@@ -1,31 +1,17 @@
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-import deleteArtist from '../controllers/delete-artists';
+import createArtists from '../services/prisma/artist/create-artists';
+import deleteArtists from '../services/prisma/artist/delete-artist';
 
-let req: Partial<Request>, resp: Partial<Response>, prisma: PrismaClient;
+let id: number, name: string;
 
-describe('Test deleteArtists controller', () => {
-  beforeAll(() => {
-    prisma = new PrismaClient();
-    req = mockReqObj();
-    resp = mockRespObj();
+describe('Test createArtists service', () => {
+  beforeAll(async () => {
+    name = 'ARTIST TO DELETE';
+    id = (await createArtists(name)).artist_id;
   });
+  it('Should pass and return the value of the created artist_id and name', async () => {
+    const artist = await deleteArtists(id);
 
-  afterAll(async () => {
-    await prisma.$disconnect();
-  });
-
-  it('Should return a status of 202 and a json object with the deleted artist from Chinook database', async () => {
-    await prisma.artist.create({
-      data: { artist_id: 0, name: 'ARTIST TO DELETE' },
-    });
-
-    req.params = { id: '0' };
-
-    await deleteArtist(req as Request, resp as Response);
-
-    expect(resp.status).toEqual(202);
-    expect(resp.json).toBeTruthy();
+    expect(artist).toBeTruthy();
+    expect(artist.name).toEqual(name);
   });
 });

@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import findArtists from '../services/prisma/artist/find-artists';
+import findArtistError from '../errors/find-artist-error';
 
-const prisma = new PrismaClient();
+const getArtisis = async (_req: Request, resp: Response): Promise<void> => {
+  const allArtists = await findArtists();
 
-const getArtisis = async (_req: Request, resp: Response) => {
-  const allArtists = await prisma.artist.findMany();
-
-  resp.status(200).json(allArtists);
+  allArtists ? resp.status(200).json(allArtists) : resp.status(404).json(findArtistError());
 };
 
 export default getArtisis;

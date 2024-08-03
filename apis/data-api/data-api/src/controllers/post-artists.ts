@@ -1,21 +1,16 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import createArtists from '../services/prisma/artist/create-artists';
+import createArtistsError from '../errors/create-artist-error';
 
 const postArtists = async (req: Request, resp: Response): Promise<void> => {
   const { name } = req.body;
 
-  const newArtist = await prisma.artist.create({
-    data: {
-      name: name,
-    },
-  });
+  const newArtist = await createArtists(name);
 
   const output = {
     newArtist: newArtist,
   };
-  newArtist !== undefined || null ? resp.status(201).json(output) : resp.status(400).json({ newArtist: undefined });
+  newArtist ? resp.status(201).json(output) : resp.status(400).json(createArtistsError());
 };
 
 export default postArtists;
