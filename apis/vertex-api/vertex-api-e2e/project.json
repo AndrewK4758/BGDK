@@ -1,0 +1,17 @@
+{
+  "name": "vertex-api-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["vertex-api"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apis/vertex-api/vertex-api-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["vertex-api:build"]
+    }
+  }
+}

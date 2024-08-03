@@ -1,0 +1,26 @@
+{
+  "name": "vertex-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/vertex-api/vertex-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "vertex-api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "vertex-api:build:development"
+        },
+        "production": {
+          "buildTarget": "vertex-api:build:production"
+        }
+      }
+    }
+  }
+}
