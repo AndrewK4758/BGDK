@@ -45,7 +45,9 @@ vite.config.mts.timestamp-*
 ./env/*
 .env.*
 .env/*
+env/
 
 .nx/workspace-data/d/daemon.log
 .nx/workspace-data/file-map.json
-apis/vertex-api/vertex-api/env/.env
+
+

@@ -4,6 +4,8 @@ service: default
 
 instance_class: f2
 
+service_account: aklapper@games-424800.iam.gserviceaccount.com
+
 handlers:
 
 # Serve all static files with url ending with a file extension

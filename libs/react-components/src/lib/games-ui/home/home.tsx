@@ -12,59 +12,60 @@ export interface HomeProps {
   breakpointsJoinGameText?: SxProps;
   breakpointsJoinGameLabel?: SxProps;
   breakpointsChatInputText?: SxProps;
+  breakpointsChatResponse?: SxProps;
   response: string | undefined;
 }
 
-export function Home({
+export const Home = ({
   breakpointsHomeText,
   breakpointsHomeTextTitle,
   breakpointsJoinGameButton,
   breakpointsJoinGameText,
   breakpointsJoinGameLabel,
   breakpointsChatInputText,
+  breakpointsChatResponse,
   response,
-}: HomeProps) {
-  return (
-    <>
-      <Text titleVariant="h1" titleText="Welcome To My Game" sx={breakpointsHomeTextTitle} />
-      <Text
-        titleVariant="body1"
-        titleText={
-          <>
-            Click on MENU &#8658; SHOW GAMES to select your title <br /> OR <br /> Enter your link into the box below to
-            join active game
-          </>
-        }
-        sx={breakpointsHomeText}
-      />
-      <JoinGame
-        method="patch"
-        action="join-game"
-        type="text"
-        buttonText="Join Game"
-        buttonType="submit"
-        name="gamePath"
-        variant="outlined"
-        breakpointsJoinGameButton={breakpointsJoinGameButton}
-        breakpointsJoinGameText={breakpointsJoinGameText}
-        breakpointsJoinGameLabel={breakpointsJoinGameLabel}
-      />
-      <br />
-      <Box component={'div'}>{response}</Box>
-      <ChatInput
-        method="post"
-        action="/?index"
-        type="text"
-        buttonText="Ask Astro"
-        buttonType="submit"
-        name="promptInput"
-        variant="outlined"
-        breakpointsChatInputButton={breakpointsJoinGameButton}
-        breakpointsChatInputLabel={breakpointsJoinGameLabel}
-        breakpointsChatInputText={breakpointsChatInputText}
-      />
-    </>
-  );
-}
+}: HomeProps) => (
+  <>
+    <Text titleVariant="h1" titleText="Welcome To My Game" sx={breakpointsHomeTextTitle} />
+    <Text
+      titleVariant="body1"
+      titleText={
+        <>
+          Click on MENU &#8658; SHOW GAMES to select your title <br /> OR <br /> Enter your link into the box below to
+          join active game
+        </>
+      }
+      sx={breakpointsHomeText}
+    />
+    <JoinGame
+      method="patch"
+      action="join-game"
+      type="text"
+      buttonText="Join Game"
+      buttonType="submit"
+      name="gamePath"
+      variant="outlined"
+      breakpointsJoinGameButton={breakpointsJoinGameButton}
+      breakpointsJoinGameText={breakpointsJoinGameText}
+      breakpointsJoinGameLabel={breakpointsJoinGameLabel}
+    />
+    <br />
+    <Box component={'div'} sx={breakpointsChatResponse}>
+      {response}
+    </Box>
+    <ChatInput
+      method="post"
+      action="/?index"
+      type="text"
+      buttonText="Ask Astro"
+      buttonType="submit"
+      name="promptInput"
+      variant="outlined"
+      breakpointsChatInputButton={breakpointsJoinGameButton}
+      breakpointsChatInputLabel={breakpointsJoinGameLabel}
+      breakpointsChatInputText={breakpointsChatInputText}
+    />
+  </>
+);
 
-export default Home;

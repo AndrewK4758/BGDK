@@ -10,6 +10,8 @@ env_variables:
 
 env: flex
 
+service_account: aklapper@games-424800.iam.gserviceaccount.com
+
 inbound_services:
   - warmup
 entrypoint: 'dist/apis/games-api'

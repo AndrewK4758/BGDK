@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model all_games_map {
+  minute_of_day Int      @id(map: "AllGamesMap_pkey") @db.SmallInt
+  active_games  String[] @map("active-games")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  id         Int    @id @default(autoincrement()) @db.SmallInt
+  first_name String
+  last_name  String
+  email      String
+}
