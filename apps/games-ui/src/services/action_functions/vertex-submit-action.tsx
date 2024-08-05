@@ -5,7 +5,8 @@ const vertexSubmitAction: ActionFunction = async ({ request }: ActionFunctionArg
   const { promptInput } = await request.json();
 
   const resp = await axios.post('http://localhost:5555/api/v1/vertex', { input: promptInput });
-  return resp.data;
+  const { vertexOutput } = resp.data;
+  return vertexOutput;
 };
 
 export default vertexSubmitAction;

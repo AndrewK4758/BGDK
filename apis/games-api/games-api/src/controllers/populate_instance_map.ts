@@ -4,6 +4,7 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
 import { Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
+import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map';
 
 const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<void> => {
   const selectedGame = req.selectedGame;
@@ -16,6 +17,8 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
   const activeGame = new InstanceOfGame(minute, gameID, game);
   req.allGamesMap.addGame(gameID, activeGame);
   req.instanceMap.addGameInstance(minute, gameID);
+
+  await updateInstanceTimeMap(minute, gameID);
 
   const __current_game__: GamePlayerValidation = {
     gameInstanceID: gameID,

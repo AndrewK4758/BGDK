@@ -3,11 +3,12 @@ import { InstanceTimeMap, reaper } from '../services/instance-time-map/instance-
 import { IReqObjMaps } from '@bgdk/types-api';
 
 export const instanceMap = new InstanceTimeMap();
-reaper(instanceMap);
 
 const useInstanceTimeMap = (req: IReqObjMaps, _resp: Response, next: NextFunction): void => {
   req.instanceMap = instanceMap;
-
   next();
 };
+
+reaper(instanceMap);
+
 export default useInstanceTimeMap;

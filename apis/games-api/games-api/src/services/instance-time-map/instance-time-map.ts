@@ -1,6 +1,8 @@
 import { getCurrentMinute } from '@bgdk/instance-of-game';
 import { IInstanceTimeMap } from '@bgdk/types-api';
 import { GameInstanceID, GamesInMinute, Minute } from '@bgdk/types-game';
+import updateInstanceTimeMap from '../prisma/instance-time-map/update-instance-time-map';
+import getInstanceTimeMapValue from '../prisma/instance-time-map/get-one-value-instance-time-map';
 
 export class InstanceTimeMap implements IInstanceTimeMap {
   Map: Map<Minute, GamesInMinute>;
@@ -18,20 +20,22 @@ export class InstanceTimeMap implements IInstanceTimeMap {
 }
 
 export const reaper = (instanceTimeMap: IInstanceTimeMap) => {
-  const now = new Date();
-  const startTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-
+  const dayInMilli = 24 * 60 * 60 * 1000;
   setTimeout(() => {
-    let previousDay = instanceTimeMap.Map.get(2000);
-    previousDay = [];
+    setInterval(async () => {
+      const currentMinute = getCurrentMinute();
+      const minute = currentMinute === 1440 ? 0 : currentMinute + 1;
 
-    setInterval(() => {
-      const minute = getCurrentMinute();
-      let valsToMove = instanceTimeMap.Map.get(minute);
-      if (valsToMove && previousDay) {
-        previousDay.push(...valsToMove);
-        valsToMove = [];
+      if (minute === 0) {
+        instanceTimeMap.Map.set(2000, []);
+        await updateInstanceTimeMap(2000, null);
       }
-    }, 60 * 1000);
-  }, startTime.getTime() - now.getTime());
+      const dayOldGames = instanceTimeMap.Map.get(minute);
+      const dayOldGamesDB = await getInstanceTimeMapValue(minute);
+      dayOldGamesDB.games_in_minute.forEach(async game => await updateInstanceTimeMap(2000, game));
+      instanceTimeMap.Map.get(2000).push(...dayOldGames);
+      await updateInstanceTimeMap(minute, null);
+      instanceTimeMap.Map.set(minute, []);
+    }, 59 * 1000);
+  }, dayInMilli);
 };

@@ -15,12 +15,16 @@
     "../../types/types-api/src/**/*.ts",
     "../../chutes-and-ladders/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts",
-    "../../games/**/*/src/**/*.ts"
+    "../../games/**/*/src/**/*.ts",
+    "../../models/game-builder/src/**/*.ts",
+    "../../models/rule/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
+    "../../models/game-builder/src/tests/**/*.ts",
+    "../../models/rule/src/tests/**/*.ts",
     "../instance-of-game/src/tests/**/*.ts",
     "../all-games-map/src/tests/**/*.ts",
     "../../game/src/tests/**/*.ts",

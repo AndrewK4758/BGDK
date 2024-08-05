@@ -7,7 +7,6 @@ import gameNotInList from '../errors/game-not-in-list';
 const useSelectedGame = async (req: IReqObjMaps, resp: Response, next: NextFunction): Promise<void> => {
   const selectedGame: IBuiltGame = games.find(({ name }) => name === req.selectedGameName);
   if (selectedGame) {
-    console.log(`Game Found In List: ${req.selectedGameName} `);
     req.selectedGame = selectedGame;
     next();
   } else {

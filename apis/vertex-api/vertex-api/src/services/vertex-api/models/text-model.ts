@@ -7,8 +7,9 @@ const generativeTextModel = vertexAI.getGenerativeModel({
   model: textModel,
   safetySettings: [
     { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+    { category: HarmCategory.HARM_CATEGORY_UNSPECIFIED, threshold: HarmBlockThreshold.BLOCK_NONE },
   ],
-  generationConfig: { responseMimeType: 'application/json' },
+  generationConfig: { responseMimeType: 'text/plain' },
 });
 
 export default generativeTextModel;

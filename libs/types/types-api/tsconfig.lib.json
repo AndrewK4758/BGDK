@@ -13,6 +13,8 @@
     "src/**/*.ts",
     "../../models/all-games-map/src/**/*.ts",
     "../../models/instance-of-game/src/**/*.ts",
+    "../../models/game-builder/src/**/*.ts",
+    "../../models/rule/src/**/*.ts",
     "../../game/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
     "../types-game/src/**/*.ts",
@@ -22,6 +24,8 @@
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
+    "../../models/game-builder/src/tests/**/*.ts",
+    "../../models/rule/src/tests/**/*.ts",
     "../../models/all-games-map/src/tests/**/*.ts",
     "../../models/instance-of-game/src/tests/**/*.ts",
     "../../game/src/tests/**/*.ts",
