@@ -4,6 +4,7 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
 
 export const getActiveGame = (req: IReqObjMaps) => {
+
   const __current_game__ = JSON.parse(req.header('current-game') as string) as GamePlayerValidation;
 
   const gameInstanceID = __current_game__.gameInstanceID as GameInstanceID;

@@ -1,4 +1,16 @@
 {
   "jest.enable": true,
-  "jest.rootPath": "./"
+  "jest.rootPath": "./",
+  "jestrunner.jestPath": "./node_modules/.bin/jest",
+  "jest.runMode": {
+    "type": "on-demand",
+    "showInlineError": true,
+    "coverage": true
+  },
+  "jest.outputConfig": {
+    "revealOn": "run",
+    "revealWithFocus": "test-results",
+    "clearOnRun": "both"
+  },
+  "jestrunner.codeLens": ["run", "debug"]
 }

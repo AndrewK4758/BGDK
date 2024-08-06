@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["chinook", "games"]
 }
 
 model album {
@@ -14,12 +16,14 @@ model album {
   track     track[]
 
   @@index([artist_id])
+  @@schema("chinook")
 }
 
 model artist {
   name      String? @db.VarChar(120)
   artist_id Int     @id @default(autoincrement())
 
+  @@schema("chinook")
 }
 
 model customer {
@@ -42,7 +46,7 @@ model customer {
 
   @@unique([first_name, last_name, email], map: "uq_customer_id")
   @@index([support_rep_id])
-
+  @@schema("chinook")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -57,6 +61,7 @@ model customer_review {
   invoice        invoice  @relation(fields: [invoice_id], references: [invoice_id], onDelete: NoAction, onUpdate: NoAction, map: "invoice_id_track_id_fkey")
   track          track    @relation(fields: [track_id], references: [track_id], onDelete: NoAction, onUpdate: NoAction, map: "track_id_review_fkey")
 
+  @@schema("chinook")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -83,7 +88,7 @@ model employee {
   track_discount   track_discount[]
 
   @@index([reports_to])
-
+  @@schema("chinook")
 }
 
 model genre {
@@ -91,6 +96,7 @@ model genre {
   name     String? @db.VarChar(120)
   track    track[]
 
+  @@schema("chinook")
 }
 
 model invoice {
@@ -109,7 +115,7 @@ model invoice {
 
   @@unique([customer_id, invoice_date], map: "uq_invoice_submit")
   @@index([customer_id])
-
+  @@schema("chinook")
 }
 
 model invoice_line {
@@ -123,7 +129,7 @@ model invoice_line {
 
   @@index([invoice_id])
   @@index([track_id])
-
+  @@schema("chinook")
 }
 
 model media_type {
@@ -131,6 +137,7 @@ model media_type {
   name          String? @db.VarChar(120)
   track         track[]
 
+  @@schema("chinook")
 }
 
 model playlist {
@@ -138,6 +145,7 @@ model playlist {
   name           String?          @db.VarChar(120)
   playlist_track playlist_track[]
 
+  @@schema("chinook")
 }
 
 model playlist_track {
@@ -149,7 +157,7 @@ model playlist_track {
   @@id([playlist_id, track_id])
   @@index([playlist_id])
   @@index([track_id])
-
+  @@schema("chinook")
 }
 
 model track {
@@ -173,7 +181,7 @@ model track {
   @@index([album_id])
   @@index([genre_id])
   @@index([media_type_id])
-
+  @@schema("chinook")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -187,4 +195,37 @@ model track_discount {
   employee          employee @relation(fields: [employee_id], references: [employee_id], onDelete: NoAction, onUpdate: NoAction, map: "track_discound_employee_fk")
   track             track    @relation(fields: [track_id], references: [track_id], onDelete: NoAction, onUpdate: NoAction, map: "track_discount_track_fkey")
 
+  @@schema("chinook")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model active_game_state {
+  game_id                   String @id
+  players_array             Json[] @db.Json
+  player_in_turn            Int    @db.SmallInt
+  special_space_values      Int[]  @db.SmallInt
+  special_space_dump_values Int[]  @db.SmallInt
+
+  @@schema("games")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model instance_time_map {
+  minute_of_day   Int      @id @db.SmallInt
+  games_in_minute String[]
+
+  @@schema("games")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  id              Int      @id @db.SmallInt
+  first_name      String
+  last_name       String
+  email           String
+  created_on      DateTime @db.Date
+  hours_logged_in Int?     @db.SmallInt
+  active_games    String[]
+
+  @@schema("games")
 }

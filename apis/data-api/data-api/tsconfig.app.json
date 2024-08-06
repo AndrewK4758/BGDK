@@ -9,5 +9,5 @@
     "types": ["node", "express"]
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "../../../libs/prisma/**/*.ts"]
 }

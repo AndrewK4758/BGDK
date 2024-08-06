@@ -1,5 +1,5 @@
 import { artist } from '@prisma/client';
-import prisma from '../client/client-instance/prisma-client';
+import { prisma } from '@bgdk/prisma';
 
 const deleteArtists = async (id: number): Promise<artist> => {
   try {

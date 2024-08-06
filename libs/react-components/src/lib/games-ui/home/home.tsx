@@ -2,7 +2,7 @@ import { SxProps } from '@mui/material';
 import JoinGame from '../forms/join-game/join-game';
 import Text from '../text/text';
 import ChatInput from '../../vertex-components/chat-input/chat-input';
-import Box from '@mui/material/Box';
+
 
 /* eslint-disable-next-line */
 export interface HomeProps {
@@ -51,9 +51,7 @@ export const Home = ({
       breakpointsJoinGameLabel={breakpointsJoinGameLabel}
     />
     <br />
-    <Box component={'div'} sx={breakpointsChatResponse}>
-      {response}
-    </Box>
+    <Text titleVariant="body1" titleText={response} sx={breakpointsChatResponse} />
     <ChatInput
       method="post"
       action="/?index"

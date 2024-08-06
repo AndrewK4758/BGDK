@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-describe('GET /', () => {
+describe('POST /vertex', () => {
   it('should return a message', async () => {
-    const res = await axios.get(`/`);
+    const resp = await axios.post(`/vertex`, { input: 'test' });
 
-    expect(res.status).toBe(200);
-    expect(res.data).toEqual({ message: 'Hello API' });
+    expect(resp.status).toBe(200);
+    expect(resp.data.vertexOutput).toBeTruthy();
   });
 });

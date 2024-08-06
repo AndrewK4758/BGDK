@@ -1,7 +1,6 @@
 import { Home, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import { useActionData } from 'react-router-dom';
-import { GenerateContentResponse } from '@google-cloud/vertexai';
 
 const breakpointsHomeTextTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
@@ -77,8 +76,7 @@ const breakpointsChatResponse: SxProps = {
 };
 
 export default function HomePage() {
-  sessionStorage.clear();
-  const response = useActionData() as GenerateContentResponse;
+  const response = useActionData() as string;
   return (
     <Home
       breakpointsHomeText={breakpointsHomeText}
@@ -88,7 +86,7 @@ export default function HomePage() {
       breakpointsJoinGameLabel={breakpointsJoinGameLabel}
       breakpointsChatInputText={breakpointsChatInputText}
       breakpointsChatResponse={breakpointsChatResponse}
-      response={response as string}
+      response={response}
     />
   );
 }

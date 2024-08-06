@@ -1,5 +1,5 @@
 import { GameInstanceID, Minute } from '@bgdk/types-game';
-import prisma from '../client/prisma-client';
+import { prisma } from '@bgdk/prisma';
 
 const updateInstanceTimeMap = async (minute: Minute, gameID: GameInstanceID): Promise<void> => {
   try {

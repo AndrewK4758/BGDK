@@ -8,7 +8,8 @@
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
+      "dependsOn": ["^test"],
       "options": {
         "target": "node",
         "compiler": "tsc",
@@ -19,25 +20,25 @@
         "webpackConfig": "apis/games-api/games-api/webpack.config.js",
         "deleteOutputPath": true,
         "progress": true,
-        "verbose": true,
-        "watch": true
+        "verbose": true
       },
       "configurations": {
         "development": {
-          "watch": true
+          "watch": true,
+          "verbose": true
         },
         "production": {
-          "watch": false
+          "watch": false,
+          "verbose": true
         }
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "options": {
-        "buildTarget": "games-api:build",
-        "watch": true
+        "buildTarget": "games-api:build"
       },
       "configurations": {
         "development": {
