@@ -5,7 +5,8 @@
     "@bgdk/types-game": "0.0.1",
     "@bgdk/all-games-map": "0.0.1",
     "express": "^4.18.1",
-    "@bgdk/chain": "0.0.1"
+    "@bgdk/chain": "0.0.1",
+    "@bgdk/game-builder": "0.0.1"
   },
   "main": "./index.js",
   "module": "./index.mjs",

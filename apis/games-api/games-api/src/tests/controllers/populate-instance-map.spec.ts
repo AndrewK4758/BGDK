@@ -2,9 +2,9 @@ import { AllGamesMap } from '@bgdk/all-games-map';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Response } from 'express';
-import populateInstanceMaps from '../controllers/populate_instance_map';
-import { InstanceTimeMap } from '../services/instance-time-map/instance-time-map';
-import games from '../data/games-list';
+import populateInstanceMaps from '../../controllers/populate_instance_map';
+import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map';
+import games from '../../data/games-list';
 
 let req: Partial<IReqObjMaps>, resp: Partial<Response>;
 

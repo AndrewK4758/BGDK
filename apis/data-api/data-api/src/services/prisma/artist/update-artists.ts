@@ -1,5 +1,5 @@
 import { artist } from '@prisma/client';
-import prisma from '../prisma-client';
+import prisma from '../client/client-instance/prisma-client';
 
 const updateArtist = async (artist_id: number, name: string): Promise<artist> => {
   try {

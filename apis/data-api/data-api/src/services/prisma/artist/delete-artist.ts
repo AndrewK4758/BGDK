@@ -1,5 +1,5 @@
 import { artist } from '@prisma/client';
-import prisma from '../prisma-client';
+import prisma from '../client/client-instance/prisma-client';
 
 const deleteArtists = async (id: number): Promise<artist> => {
   try {

@@ -58,6 +58,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
+      "dependsOn": ["^lint"],
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apis/games-api/games-api/jest.config.ts",

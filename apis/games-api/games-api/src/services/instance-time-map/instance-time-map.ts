@@ -20,22 +20,22 @@ export class InstanceTimeMap implements IInstanceTimeMap {
 }
 
 export const reaper = (instanceTimeMap: IInstanceTimeMap) => {
-  const dayInMilli = 24 * 60 * 60 * 1000;
+  const dayMinusOneMinuteInMilli = 24 * 60 * 59 * 1000;
   setTimeout(() => {
     setInterval(async () => {
       const currentMinute = getCurrentMinute();
-      const minute = currentMinute === 1440 ? 0 : currentMinute + 1;
+      const minuteAhead = currentMinute === 1440 ? 0 : currentMinute + 1;
 
-      if (minute === 0) {
+      if (minuteAhead === 0) {
         instanceTimeMap.Map.set(2000, []);
         await updateInstanceTimeMap(2000, null);
       }
-      const dayOldGames = instanceTimeMap.Map.get(minute);
-      const dayOldGamesDB = await getInstanceTimeMapValue(minute);
+      const dayOldGames = instanceTimeMap.Map.get(minuteAhead);
+      const dayOldGamesDB = await getInstanceTimeMapValue(minuteAhead);
       dayOldGamesDB.games_in_minute.forEach(async game => await updateInstanceTimeMap(2000, game));
       instanceTimeMap.Map.get(2000).push(...dayOldGames);
-      await updateInstanceTimeMap(minute, null);
-      instanceTimeMap.Map.set(minute, []);
-    }, 59 * 1000);
-  }, dayInMilli);
+      await updateInstanceTimeMap(minuteAhead, null);
+      instanceTimeMap.Map.set(minuteAhead, []);
+    }, 60 * 1000);
+  }, dayMinusOneMinuteInMilli);
 };

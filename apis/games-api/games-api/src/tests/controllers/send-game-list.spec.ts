@@ -1,6 +1,6 @@
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 import { Request, Response } from 'express';
-import sendGameList from '../controllers/send_game_list';
+import sendGameList from '../../controllers/send_game_list';
 
 let req: Partial<Request>, resp: Partial<Response>;
 describe('Test send game list controller', () => {

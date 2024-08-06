@@ -8,8 +8,7 @@
     "@bgdk/instance-of-game": "0.0.1",
     "short-unique-id": "^5.2.0",
     "@bgdk/games-components-logic": "0.0.1",
-    "@bgdk/tic-tac-toe": "0.0.1",
-    "@aklapper/chutes-and-ladders": "0.0.1"
+    "@bgdk/tic-tac-toe": "0.0.1"
   },
   "main": "./index.js",
   "module": "./index.mjs",

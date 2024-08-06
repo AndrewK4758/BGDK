@@ -16,9 +16,21 @@ model users {
   created_on      DateTime @db.Date
   hours_logged_in Int?     @db.SmallInt
   active_games    String[]
+
 }
 
 model instance_time_map {
   minute_of_day   Int      @id @db.SmallInt
   games_in_minute String[]
+
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model active_game_state {
+  game_id                   String @id(map: "game_id")
+  players_array             Json[] @db.Json
+  player_in_turn            Int    @db.SmallInt
+  special_space_values      Int[]  @db.SmallInt
+  special_space_dump_values Int[]  @db.SmallInt
+
 }

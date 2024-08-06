@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { IReqObjMaps } from '@bgdk/types-api';
-import useSetSelectedGameName from '../middleware/set-game-name';
+import useSetSelectedGameName from '../../middleware/set-game-name';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks';
 
 let req: Partial<IReqObjMaps>, resp: Partial<Response>, next: NextFunction;
