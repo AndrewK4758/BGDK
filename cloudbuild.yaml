@@ -1,9 +1,32 @@
 steps:
-      
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'install']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'generate']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'lint']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'test']
+
     # Deploy to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'api.yaml']
 
+logsBucket: 'gs://logs-cloudbuild'
+options:
+  logging: GCS_ONLY
+
+artifacts:
+  objects:
+    location: 'gs://bgdk-build-for-deploy'
+    paths: ['dist/apis/games/api/*']
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
