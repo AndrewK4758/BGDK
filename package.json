@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/apis/games-api/main.js",
-    "lint": "npx nx run-many -t=lint --exclude data-api,vertex-api,react-components,games-ui",
-    "build": "npx nx run-many -t=build --exclude data-api,vertex-api,react-components,games-ui",
-    "test": "npx nx run-many -t=test --exclude data-api,vertex-api,react-components,games-ui",
+    "lint": "npx nx run-many -t=lint --exclude=data-api,vertex-api,react-components,games-ui",
+    "build": "npx nx run-many -t=build --exclude=data-api,vertex-api,react-components,games-ui",
+    "test": "npx nx run-many -t=test --exclude=data-api,vertex-api,react-components,games-ui",
     "generate": "npm --prefix ./libs/prisma run generate"
   },
   "keywords": [
