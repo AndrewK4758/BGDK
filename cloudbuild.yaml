@@ -20,6 +20,8 @@ steps:
     args: ['app', 'deploy', 'api.yaml']
 
 logsBucket: 'gs://logs-cloudbuild'
+options:
+  logging: LEGACY
 
 artifacts:
   objects:
