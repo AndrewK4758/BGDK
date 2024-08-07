@@ -5,11 +5,11 @@ steps:
 
   - name: 'node'
     entrypoint: 'npm'
-    args: ['run', 'build']
+    args: ['run', 'generate']
 
   - name: 'node'
     entrypoint: 'npm'
-    args: ['run', 'generate']
+    args: ['run', 'build']
 
   - name: 'node'
     entrypoint: 'npm'
