@@ -34,7 +34,7 @@ options:
 artifacts:
   objects:
     location: 'gs://bgdk-build-for-deploy'
-    paths: ['*.*']
+    paths: ['dist/*']
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
