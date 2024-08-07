@@ -1,5 +1,4 @@
 steps:
-
   - name: 'node'
     entrypoint: 'npm'
     args: ['install']
@@ -34,7 +33,11 @@ options:
 artifacts:
   objects:
     location: 'gs://bgdk-build-for-deploy'
+<<<<<<< HEAD
     paths: ['dist/*']
+=======
+    paths: ['**']
+>>>>>>> 5c717e02f36b191c757d6c8e735139eaae48c940
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
