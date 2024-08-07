@@ -10,7 +10,8 @@
   "jest.outputConfig": {
     "revealOn": "run",
     "revealWithFocus": "test-results",
-    "clearOnRun": "both"
+    "clearOnRun": "none"
   },
-  "jestrunner.codeLens": ["run", "debug"]
+  "jestrunner.codeLens": ["run", "debug", "coverage"],
+  "testing.openTesting": "neverOpen"
 }

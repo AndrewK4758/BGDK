@@ -7,4 +7,5 @@ module.exports = {
   verbose: true,
   collectCoverage: true,
   passWithNoTests: true,
+  maxWorkers: 2,
 };

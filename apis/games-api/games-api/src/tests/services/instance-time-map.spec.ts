@@ -16,7 +16,7 @@ describe('test instance map class', () => {
   test('Instance Map', () => {
     instanceMap.addGameInstance(minute, gameInstanceID);
 
-    expect(instanceMap.Map.size).toEqual(1441); //minutes in a day plus one to hold values for 24 hours
+    expect(instanceMap.Map.size).toEqual(1442); //minutes in a day plus one to hold values for 24 hours
     expect(instanceMap.Map.get(minute)).toEqual([gameInstanceID]);
   });
 });

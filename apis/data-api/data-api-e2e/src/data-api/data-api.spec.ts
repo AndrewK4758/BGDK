@@ -1,11 +1,7 @@
 import axios from 'axios';
+import { artist } from '@prisma/client';
 
-interface IArtist {
-  artist_id?: number;
-  name?: string;
-}
-
-let dataPost: IArtist, dataUpdate: IArtist, artist_id: number;
+let dataPost: { name: string }, dataUpdate: artist, artist_id: number;
 describe('Test all endpoints for artist CRUD', () => {
   beforeAll(() => {
     dataPost = { name: 'POSTED IN JEST' };

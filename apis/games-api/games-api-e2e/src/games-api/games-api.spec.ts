@@ -155,6 +155,18 @@ describe('Games api test wrapper', () => {
             expect(resp.status).toEqual(201);
           });
         });
+        describe('PATCH /reset to test new board and active players on startSpace', () => {
+          it('Should pass and log VALID-PLAYER to console', async () => {
+            const resp = await axios.patch(
+              '/games/Chutes-&-Ladders/reset',
+              {},
+              { headers: { 'current-game': JSON.stringify(__current_game__) } },
+            );
+
+            expect(resp.data.message).toEqual('Game Started');
+            expect(resp.status).toEqual(201);
+          });
+        });
       });
     });
   });
