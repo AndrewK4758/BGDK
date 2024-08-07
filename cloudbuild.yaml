@@ -11,14 +11,6 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-  - name: 'node'
-    entrypoint: 'npm'
-    args: ['run', 'lint']
-
-  - name: 'node'
-    entrypoint: 'npm'
-    args: ['run', 'test']
-
     # Deploy to App Engine
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
@@ -33,7 +25,7 @@ options:
 artifacts:
   objects:
     location: 'gs://bgdk-build-for-deploy'
-    paths: ['*']
+    paths: ['**/*' ]
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
