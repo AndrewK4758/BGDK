@@ -8,7 +8,7 @@ export class InstanceTimeMap implements IInstanceTimeMap {
   Map: Map<Minute, GamesInMinute>;
   constructor() {
     this.Map = new Map<Minute, GamesInMinute>();
-    for (let i = 0; i < 24 * 60; i++) {
+    for (let i = 0; i <= 24 * 60; i++) {
       this.Map.set(i, []);
     }
     this.Map.set(2000, []);

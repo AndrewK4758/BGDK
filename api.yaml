@@ -6,11 +6,18 @@ runtime_config:
 service: api
 
 env_variables:
-  APP_RUNTIME_ENVIRONMENT: ['npm', 'start']
+  INSTANCE_CONNECTION_NAME: games-424800:us-central1:games
+  DB_USER: postgres
+  DB_PASS: 11560000
+  DB_NAME: chinook
+  GCLOUD_SQL_APP_ENGINE_URL: "postgresql://postgres:11560000@localhost/chinook?host=/cloudsql/games-424800:us-central1:games/"
 
 env: flex
 
 service_account: aklapper@games-424800.iam.gserviceaccount.com
+
+beta_settings:
+  cloud_sql_instances: games-424800:us-central1:games
 
 inbound_services:
   - warmup
