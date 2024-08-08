@@ -15,7 +15,7 @@
 
 
 # Node.js dependencies:
-node_modules/
-
-aklapper.code-workspace
+node_modules/*
 .github/*
+.nx/*
+package-lock.json

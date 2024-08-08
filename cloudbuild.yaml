@@ -23,12 +23,17 @@ steps:
       "dist",
       'package.json',
       '__mocks__',
-      '.*',
+      '.eslintignore',
+      '.editorconfig',
+      '.gcloudignore',
+      '.gitignore',
+      '.prettierignore',
+      '.prettierrc',
       '*.ts',
       '*.js',
       '*.json',
       '*.md',
-      '!package-lock.json',
+      '*.yaml',
       'gs://bgdk-build-for-deploy'
     ]
 
