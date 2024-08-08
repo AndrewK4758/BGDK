@@ -21,19 +21,6 @@ steps:
       "cp",
       "--recursive",
       "dist",
-      'package.json',
-      '__mocks__',
-      '.eslintignore',
-      '.editorconfig',
-      '.gcloudignore',
-      '.gitignore',
-      '.prettierignore',
-      '.prettierrc',
-      '*.ts',
-      '*.js',
-      '*.json',
-      '*.md',
-      '*.yaml',
       'gs://bgdk-build-for-deploy'
     ]
 

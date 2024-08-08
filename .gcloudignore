@@ -15,7 +15,7 @@
 
 
 # Node.js dependencies:
-node_modules/*
+node_modules
 .github/*
-.nx/*
+.nx
 package-lock.json
