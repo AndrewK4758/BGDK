@@ -1,7 +1,7 @@
 import { HarmBlockThreshold, HarmCategory } from '@google-cloud/vertexai';
 import vertexAI from '../client/vertex-api';
 
-const textModel = 'gemini-1.0-pro';
+const textModel = 'gemini-1.5-pro-001';
 
 const generativeTextModel = vertexAI.getGenerativeModel({
   model: textModel,

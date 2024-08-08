@@ -10,6 +10,7 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
   const selectedGame = req.selectedGame;
 
   const minute: Minute = getCurrentMinute();
+  console.log(minute);
   const gameID: GameInstanceID = new ShortUniqueId().rnd();
 
   const game = new Game(selectedGame.instance());
