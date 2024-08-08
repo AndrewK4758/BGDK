@@ -12,6 +12,8 @@ steps:
   - name: 'node'
     entrypoint: 'npm'
     args: ['run', 'build']
+    env:
+      - 'PG_AE_URL=${_PG_AE_URL}'
 
   - name: "gcr.io/cloud-builders/gcloud-slim"
     args: [
