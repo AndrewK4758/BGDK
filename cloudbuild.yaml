@@ -11,6 +11,16 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
+  - name: "gcr.io/cloud-builders/gcloud-slim"
+    args: [
+      "storage",
+      "-m",
+      "cp",
+      "--recursive",
+      "build",
+      'gs://bgdk-build-for-deploy'
+    ]
+
     # Deploy to App Engine
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
@@ -22,10 +32,11 @@ logsBucket: 'gs://logs-cloudbuild'
 options:
   logging: LEGACY
 
-artifacts:
-  objects:
-    location: 'gs://bgdk-build-for-deploy'
-    paths: ['**/*', "!node_modules/**/*" ]
+# artifacts:
+#   objects:
+#     location: 'gs://bgdk-build-for-deploy'
+#     paths: ['!**/*', "!node_modules/**/*" ]
+
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
