@@ -25,7 +25,11 @@ options:
 artifacts:
   objects:
     location: 'gs://bgdk-build-for-deploy'
+<<<<<<< HEAD
     paths: ['**/*', '!node_modules' ]
+=======
+    paths: ['**/*', "!node_modules/**/*" ]
+>>>>>>> fc04d944d124721ce934c90b672a35feade9c3fc
 # Optional: Define a timeout for the build
 timeout: '1500s'
 
