@@ -10,8 +10,9 @@ env_variables:
   DB_USER: postgres
   DB_PASS: 11560000
   DB_NAME: chinook
-  GCLOUD_SQL_APP_ENGINE_URL: "postgresql://postgres:11560000@localhost/chinook?host=/cloudsql/games-424800:us-central1:games/"
+  SQL_APP_ENGINE_URL: "postgresql://postgres:11560000@localhost/chinook?host=/cloudsql/games-424800:us-central1:games/"
   GCLOUD_STORAGE_BUCKET: gs://bgdk-build-for-deploy
+  DB_URL_SSL: "postgresql://postgres:11560000@34.72.219.44:5432/chinook?sslidentity=../secrets/client-identity.p12&sslpassword=11560000&sslcert=../secrets/server-ca.pem"
 
 env: flex
 
