@@ -15,6 +15,12 @@
         "tsConfig": "libs/prisma/tsconfig.lib.json",
         "assets": ["libs/prisma/*.md"]
       }
+    },
+    "generate": {
+      "command": "npx prisma generate",
+      "options": {
+        "cwd": "./libs/prisma"
+      }
     }
   }
 }

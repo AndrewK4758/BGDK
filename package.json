@@ -7,8 +7,8 @@
     "lint": "npx nx run-many -t=lint --exclude=data-api,vertex-api,react-components,games-ui",
     "build": "npx nx run-many -t=build --exclude=data-api,vertex-api,react-components,games-ui",
     "test": "npx nx run-many -t=test --exclude=data-api,vertex-api,react-components,games-ui",
-    "generate": "npm --prefix ./libs/prisma run generate",
-    "gcp-build": "npm --prefix ./libs/prisma run generate && npx nx run-many -t=build --exclude=data-api,vertex-api,react-components,games-ui,data-api-e2e,vertex-api-e2e"
+    "generate": "npx nx run prisma:generate",
+    "gcp-build": "npx nx run prisma:generate && npx nx run-many -t=build --exclude=data-api,vertex-api,react-components,games-ui,data-api-e2e,vertex-api-e2e"
   },
   "keywords": [
     "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"

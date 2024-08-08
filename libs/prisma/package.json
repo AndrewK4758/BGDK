@@ -1,12 +1,14 @@
 {
-  "private": true,
-  "scripts": {
-    "generate": "npx prisma generate"
-  },
+  "name": "@bgdk/prisma",
+  "version": "0.0.1",
   "dependencies": {
     "@nx/vite": "19.5.7",
     "@prisma/client": "5.18.0",
     "vite": "5.3.5",
     "vite-plugin-dts": "^3.8.1"
-  }
+  },
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "private": true
 }
