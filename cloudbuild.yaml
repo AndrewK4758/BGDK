@@ -16,7 +16,7 @@ steps:
       "storage",
       "cp",
       "--recursive",
-      "build",
+      "dist",
       'gs://bgdk-build-for-deploy'
     ]
 
