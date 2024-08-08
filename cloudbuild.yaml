@@ -17,6 +17,7 @@ steps:
       "cp",
       "--recursive",
       "dist",
+      'package.json',
       'gs://bgdk-build-for-deploy'
     ]
 
