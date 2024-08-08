@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("GCLOUD_SQL_APP_ENGINE_URL")
+  url      = env("SQL_APP_ENGINE_URL")
   schemas  = ["chinook", "games"]
 }
 
