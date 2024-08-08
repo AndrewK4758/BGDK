@@ -33,7 +33,7 @@ steps:
 serviceAccount: aklapper@games-424800.iam.gserviceaccount.com
 
 availableSecrets:
-  secretsManager:
+  secretManager:
   - versionName: projects/games-424800/secrets/PG_AE_URL/versions/latest
     env: 'PG_AE_URL'
 
