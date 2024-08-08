@@ -3,10 +3,13 @@ generator client {
   previewFeatures = ["multiSchema"]
 }
 
+
+
 datasource db {
   provider = "postgresql"
-  url      = env("SQL_APP_ENGINE_URL")
+  url      = env("DB_URL_SSL")
   schemas  = ["chinook", "games"]
+
 }
 
 model active_game_state {

@@ -6,10 +6,14 @@ steps:
   - name: 'node'
     entrypoint: 'npm'
     args: ['run', 'generate']
+    secretEnv:
+      - 'PG_AE_URL'
 
   - name: 'node'
     entrypoint: 'npm'
     args: ['run', 'build']
+    env:
+      - 'PG_AE_URL=${_PG_AE_URL}'
 
   - name: "gcr.io/cloud-builders/gcloud-slim"
     args: [
@@ -28,14 +32,15 @@ steps:
 
 serviceAccount: aklapper@games-424800.iam.gserviceaccount.com
 
+availableSecrets:
+  secretsManager:
+  - versionName: projects/games-424800/secrets/PG_AE_URL/versions/latest
+    env: 'PG_AE_URL'
+
+# Store logs in bucket
 logsBucket: 'gs://logs-cloudbuild'
 options:
   logging: LEGACY
-
-# artifacts:
-#   objects:
-#     location: 'gs://bgdk-build-for-deploy'
-#     paths: ['!**/*', "!node_modules/**/*" ]
 
 # Optional: Define a timeout for the build
 timeout: '1600s'
