@@ -1,0 +1,42 @@
+runtime: nodejs
+
+runtime_config:
+  operating_system: 'ubuntu22'
+
+service: api
+
+env_variables:
+  INSTANCE_CONNECTION_NAME: games-424800:us-central1:games
+  DB_USER: postgres
+  DB_PASS: 11560000
+  DB_NAME: chinook
+  PG_AE_URL: "postgresql://postgres:11560000@localhost/chinook?host=/cloudsql/games-424800:us-central1:games/"
+  GCLOUD_STORAGE_BUCKET: gs://bgdk-build-for-deploy
+  NODE_ENV: 'production'
+
+env: flex
+
+service_account: aklapper@games-424800.iam.gserviceaccount.com
+
+beta_settings:
+  cloud_sql_instances: games-424800:us-central1:games
+
+inbound_services:
+  - warmup
+entrypoint: 'dist/apis/vertex-api'
+
+handlers:
+  - url: /.*
+    script: None
+    secure: always
+  - url: /.*
+    script: None
+    secure: always
+
+manual_scaling:
+  instances: 1
+
+resources:
+  cpu: 2
+  memory_gb: 4
+  disk_size_gb: 10
