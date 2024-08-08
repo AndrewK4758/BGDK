@@ -13,3 +13,4 @@ const getInstanceTimeMapValue = async (minute: Minute): Promise<instance_time_ma
 };
 
 export default getInstanceTimeMapValue;
+

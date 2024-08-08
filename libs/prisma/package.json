@@ -1,5 +1,12 @@
 {
+  "private": true,
   "scripts": {
     "generate": "npx prisma generate"
+  },
+  "dependencies": {
+    "@nx/vite": "19.5.7",
+    "@prisma/client": "5.18.0",
+    "vite": "5.3.5",
+    "vite-plugin-dts": "^3.8.1"
   }
 }

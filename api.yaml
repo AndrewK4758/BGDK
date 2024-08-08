@@ -9,8 +9,8 @@ env_variables:
   INSTANCE_CONNECTION_NAME: games-424800:us-central1:games
   DB_USER: postgres
   DB_PASS: 11560000
-  DB_NAME: chinook
-  PG_AE_URL: "postgresql://postgres:11560000@localhost/chinook?host=/cloudsql/games-424800:us-central1:games/"
+  DB_NAME: bgdk
+  PG_AE_URL: "postgresql://postgres:11560000@localhost/bgdk?host=/cloudsql/games-424800:us-central1:games/"
   GCLOUD_STORAGE_BUCKET: gs://bgdk-build-for-deploy
   NODE_ENV: 'production'
 
