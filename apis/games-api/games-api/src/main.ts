@@ -32,8 +32,9 @@ app.use('/api/v1', router);
 new GameRoutes(router);
 
 const port = process.env.PORT || 3333;
-const server = httpServer.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api/v1`);
+const host = process.env.NODE_ENV === 'development' ? 'localhost' : '35.239.121.216';
+const server = httpServer.listen(port, Number(host), () => {
+  console.log(`Listening at http://${host}:${port}/api/v1`);
 });
 
 server.on('error', console.error);

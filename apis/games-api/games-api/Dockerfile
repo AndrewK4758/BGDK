@@ -4,10 +4,11 @@
 # Tip: Modify "docker-build" options in project.json to change docker build args.
 #
 # Run the container with `docker run -p 3000:3000 -t games-api`.
-FROM docker.io/node:22.6.0-bullseye
+FROM docker.io/node:22.6.0-bookworm
 
-ENV HOST=0.0.0.0
+ENV HOST=localhost
 ENV PORT=8080
+ENV NODE_ENV=production
 
 WORKDIR /home/app
 

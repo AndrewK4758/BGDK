@@ -67,7 +67,6 @@
     },
     "docker-build": {
       "dependsOn": ["build"],
-      "options": {},
       "command": "docker build -f apis/games-api/games-api/Dockerfile . -t games-api"
     }
   }
