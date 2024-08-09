@@ -8,7 +8,7 @@
     "build": "npx nx run games-api:build:production",
     "test": "npx nx test games-api",
     "generate": "npx nx run prisma:generate",
-    "gcp-build": "npx nx run prisma:generate"
+    "gcp-build": "npx nx run prisma:generate && npx nx run games-api:build:production"
   },
   "keywords": [
     "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"
