@@ -4,11 +4,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/apis/games-api/main.js",
-    "lint": "npx nx run-many -t=lint --exclude=data-api,vertex-api,react-components,games-ui",
-    "build": "npx nx run-many -t=build --exclude=data-api,vertex-api,react-components,games-ui",
-    "test": "npx nx run-many -t=test --exclude=data-api,vertex-api,react-components,games-ui",
+    "lint": "npx nx lint games-api",
+    "build": "npx nx run games-api:build:production",
+    "test": "npx nx test games-api",
     "generate": "npx nx run prisma:generate",
-    "gcp-build": "npx nx run prisma:generate && npx nx run games-api:build:production"
+    "gcp-build": "npx nx run prisma:generate"
   },
   "keywords": [
     "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"
@@ -19,7 +19,8 @@
     "url": "https://github.com/AndrewK4758/BGDK.git"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=20.x",
+    "npm": "10.x"
   },
   "private": true,
   "dependencies": {

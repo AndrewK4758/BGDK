@@ -32,9 +32,8 @@ app.use('/api/v1', router);
 new GameRoutes(router);
 
 const port = process.env.PORT || 3333;
-const host = process.env.NODE_ENV === 'development' ? 'localhost' : 'api-dot-games-424800.uc.r.appspot.com';
 const server = httpServer.listen(port, () => {
-  console.log(`Listening at http://${host}:${port}/api/v1`);
+  console.log(`Listening at http://localhost:${port}/api/v1`);
 });
 
 server.on('error', console.error);

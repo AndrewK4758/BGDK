@@ -23,7 +23,8 @@ beta_settings:
 
 inbound_services:
   - warmup
-entrypoint: 'gs://bgdk-build-for-deploy/dist/apis/games-api'
+
+entrypoint: 'gs://bgdk-build-for-deploy/dist/apis/games-api/main.js'
 
 handlers:
   - url: /.*

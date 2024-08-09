@@ -8,7 +8,7 @@
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "target": "node",
         "compiler": "tsc",
@@ -51,7 +51,10 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -61,6 +64,11 @@
         "reportsDirectory": "../../coverage/libs/games-api",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "options": {},
+      "command": "docker build -f apis/games-api/games-api/Dockerfile . -t games-api"
     }
   }
 }

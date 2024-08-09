@@ -6,8 +6,18 @@ steps:
   - name: 'node'
     entrypoint: 'npm'
     args: ['run', 'generate']
-    secretEnv:
-      - 'PG_AE_URL'
+    env:
+      - 'PG_AE_URL=${_PG_AE_URL}'
+
+  - name: 'node'
+    entrypoint: 'npm'
+    args: ['run', 'lint']
+
+  - name: 'node'
+    entrypoint: 'npm'
+    args: ['run', 'test']
+    env:
+      - 'PG_AE_URL=${_PG_AE_URL}'
 
   - name: 'node'
     entrypoint: 'npm'
@@ -27,7 +37,7 @@ steps:
     # Deploy to App Engine
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: ['app', 'deploy', 'api.yaml']
+    args: ['app', 'deploy', 'api.yaml', '--source=gs://bgdk-build-for-deploy/dist/apis/games-api/main.js']
 
 serviceAccount: aklapper@games-424800.iam.gserviceaccount.com
 
@@ -39,7 +49,7 @@ availableSecrets:
 # Store logs in bucket
 logsBucket: 'gs://logs-cloudbuild'
 options:
-  logging: LEGACY
+  logging: CLOUD_LOGGING_ONLY
 
 # Optional: Define a timeout for the build
 timeout: '1600s'
