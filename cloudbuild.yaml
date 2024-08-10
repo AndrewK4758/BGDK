@@ -36,11 +36,6 @@ steps:
 
 serviceAccount: aklapper@games-424800.iam.gserviceaccount.com
 
-availableSecrets:
-  secretManager:
-  - versionName: projects/games-424800/secrets/PG_AE_URL/versions/latest
-    env: 'PG_AE_URL'
-
 # Store logs in bucket
 logsBucket: 'gs://logs-cloudbuild'
 options:
