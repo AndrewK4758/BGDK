@@ -28,8 +28,7 @@
         "webpackConfig": "apis/vertex-api/vertex-api/webpack.config.js",
         "deleteOutputPath": true,
         "progress": true,
-        "verbose": true,
-        "watch": true
+        "verbose": true
       },
       "configurations": {
         "development": {

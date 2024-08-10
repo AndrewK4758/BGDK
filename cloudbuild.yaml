@@ -39,7 +39,7 @@ serviceAccount: aklapper@games-424800.iam.gserviceaccount.com
 # Store logs in bucket
 logsBucket: 'gs://logs-cloudbuild'
 options:
-  logging: GCS_ONLY
+  logging: LEGACY
 
 # Optional: Define a timeout for the build
 timeout: '1600s'

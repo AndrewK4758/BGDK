@@ -5,7 +5,6 @@ module.exports = {
   output: {
     path: join(__dirname, '../../../dist/apis/vertex-api'),
   },
-  watch: true,
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
