@@ -12,7 +12,7 @@ const breakpointsAppBar: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
     height: '35px',
     bottom: 0,
-    top: 'calc(100vh - 95px)',
+    top: 'calc(100vh - 100px)',
     boxShadow: `0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
   },
   [Theme.breakpoints.up('laptop')]: {
@@ -63,7 +63,7 @@ const breakpointsMain: SxProps = {
   overflowY: 'scroll',
   [Theme.breakpoints.down('laptop')]: {
     top: 0,
-    bottom: 115,
+    bottom: 100,
     paddingY: 0,
   },
 };

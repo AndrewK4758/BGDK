@@ -13,17 +13,14 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/games-ui",
-        "verbose": true
+        "outputPath": "dist/apps/games-ui"
       },
       "configurations": {
         "development": {
           "mode": "development"
         },
         "production": {
-          "mode": "production",
-          "buildLibsFromSource": true,
-          "verbose": true
+          "mode": "production"
         }
       }
     },
