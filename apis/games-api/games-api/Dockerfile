@@ -7,7 +7,7 @@
 FROM docker.io/node:22.6.0-bookworm
 
 ENV HOST=localhost
-ENV PORT=8080
+ENV PORT=3000
 ENV NODE_ENV=production
 
 WORKDIR /home/app
@@ -26,6 +26,6 @@ WORKDIR /home/app
 
 COPY dist/apis/games-api games-api/
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ "node", "games-api/main.js" ]

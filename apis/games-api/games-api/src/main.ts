@@ -31,11 +31,10 @@ app.use('/api/v1', router);
 
 new GameRoutes(router);
 
-const port = parseInt(process.env.PORT) || 3333;
-const host = process.env.HOST || 'localhost';
+const port = parseInt(process.env.PORT) || 3000;
 
-const server = httpServer.listen(port, host, () => {
-  console.log(`Listening at https://${host}:${port}/api/v1`);
+const server = httpServer.listen(port, () => {
+  console.log(`Listening on ${port}/api/v1`);
 });
 
 server.on('error', console.error);

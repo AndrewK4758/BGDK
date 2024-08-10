@@ -25,11 +25,10 @@ app.use('/api/v1', router);
 
 new VertexApiRoutes(router);
 
-const port = process.env.PORT || 5555;
-const host = process.env.NODE_ENV === 'development' ? 'localhost' : 'api-dot-games-424800.uc.r.appspot.com';
+const port = process.env.PORT || 5000;
 
 const server = httpServer.listen(port, () => {
-  console.log(`Listening at http://${host}:${port}/api/v1`);
+  console.log(`Listening on ${port}/api/v1`);
 });
 
 server.on('error', console.error);

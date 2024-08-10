@@ -4,7 +4,9 @@ import { ActionFunction, ActionFunctionArgs } from 'react-router-dom';
 const vertexSubmitAction: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const { promptInput } = await request.json();
 
-  const resp = await axios.post('http://localhost:5555/api/v1/vertex', { input: promptInput });
+  const baseUrl = import.meta.env.VITE_VERTEX_API_SERVER_URL;
+
+  const resp = await axios.post(`${baseUrl}/vertex`, { input: promptInput });
   const { vertexOutput } = resp.data;
   return vertexOutput;
 };
