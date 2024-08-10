@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/apis/games-api/main.js",
-    "lint": "npx nx lint games-api",
-    "build": "npx nx run games-api:build:production",
-    "test": "npx nx test games-api",
-    "generate": "npx nx run prisma:generate",
-    "gcp-build": "npx nx run prisma:generate && npx nx run games-api:build:production"
+    "start games-api": "node ./dist/apis/games-api/main.js",
+    "start vertex-api": "node ./dist/apis/vertex-api/main.js",
+    "lint": "npx nx run-many -t=lint --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
+    "build": "npx nx run-many -t=build --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
+    "test": "npx nx run-many -t=test --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
+    "generate": "npx nx run prisma:generate"
   },
   "keywords": [
     "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"
