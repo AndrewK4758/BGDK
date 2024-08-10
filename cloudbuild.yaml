@@ -44,7 +44,7 @@ availableSecrets:
 # Store logs in bucket
 logsBucket: 'gs://logs-cloudbuild'
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: GCS_ONLY
 
 # Optional: Define a timeout for the build
 timeout: '1600s'
