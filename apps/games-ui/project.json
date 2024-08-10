@@ -22,7 +22,8 @@
         },
         "production": {
           "mode": "production",
-          "buildLibsFromSource": true
+          "buildLibsFromSource": true,
+          "verbose": true
         }
       }
     },

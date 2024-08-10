@@ -16,7 +16,7 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
     Access-Control-Expose-Headers: "*"
-    
+
 
 # Catch all handler to index.html
 - url: /(.*)
@@ -26,4 +26,4 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
     Access-Control-Expose-Headers: "*"
-    
+

@@ -60,18 +60,18 @@ const breakpointsChatInputText: SxProps = {
 const breakpointsChatResponse: SxProps = {
   backgroundColor: Theme.palette.info.main,
   width: '100%',
-  height: '100%',
+  height: 'fit-content',
   borderRadius: '15px',
-  justifySelf: 'center',
-  alignSelf: 'center',
+  justifyContent: 'center',
+  alignContent: 'center',
   color: Theme.palette.primary.main,
   border: `5px solid ${Theme.palette.success.main}`,
   boxShadow: Theme.shadows[14],
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     textAlign: 'center',
-    height: 35,
-    width: 230,
+    minHeight: 'fit-content',
+    width: '100%',
   },
 };
 
