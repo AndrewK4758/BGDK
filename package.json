@@ -5,9 +5,9 @@
   "scripts": {
     "start games-api": "node ./dist/apis/games-api/main.js",
     "start vertex-api": "node ./dist/apis/vertex-api/main.js",
-    "lint": "npx nx run-many -t=lint --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
-    "build": "npx nx run-many -t=build --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
-    "test": "npx nx run-many -t=test --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-apie2e,react-components",
+    "lint": "npx nx run-many -t=lint --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
+    "build": "npx nx run-many -t=build --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
+    "test": "npx nx run-many -t=test --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
     "generate": "npx nx run prisma:generate"
   },
   "keywords": [
