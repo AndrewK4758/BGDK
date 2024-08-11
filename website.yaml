@@ -6,6 +6,10 @@ instance_class: f2
 
 service_account: aklapper@games-424800.iam.gserviceaccount.com
 
+env_variables:
+  GCLOUD_STORAGE_BUCKET: gs://bgdk-build-for-deploy
+  NODE_ENV: 'production'
+
 handlers:
 
 # Serve all static files with url ending with a file extension

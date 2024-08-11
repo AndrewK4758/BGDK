@@ -7,9 +7,9 @@ export interface IRegisterUser {
   firstName: string;
   lastName: string;
   email: email;
-  createdOn: Date;
-  hoursLoggedIn: number;
-  activeGames: GameInstanceID[];
+  createdOn?: Date;
+  hoursLoggedIn?: number;
+  activeGames?: GameInstanceID[];
   password: string;
-  friends: string[];
+  friends?: string[];
 }
