@@ -10,7 +10,7 @@ ENV HOST=localhost
 ENV PORT=3000
 ENV NODE_ENV=production
 
-WORKDIR /home/app
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -18,11 +18,11 @@ RUN npm install
 
 COPY libs/prisma prisma/
 
-WORKDIR /home/app/prisma/
+WORKDIR /app/prisma/
 
 RUN npx prisma generate
 
-WORKDIR /home/app
+WORKDIR /app
 
 COPY dist/apis/games-api games-api/
 

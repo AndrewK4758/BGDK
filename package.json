@@ -8,12 +8,13 @@
     "lint": "npx nx run-many -t=lint --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
     "build": "npx nx run-many -t=build --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
     "test": "npx nx run-many -t=test --exclude=games-ui,data-api,data-api-e2e,games-api-e2e,vertex-api-e2e,react-components",
-    "generate": "npx nx run prisma:generate"
+    "generate": "npx nx run prisma:generate",
+    "docker games-api": "npx nx run games-api:docker-build"
   },
   "keywords": [
-    "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, ExpressJS"
+    "HTML, Typescript, NodeJS, JavaScript, React, React Router, Nx, MonoRepo, Chutes & Ladders, Tic Tac Toe, API, APP, Library, Libs, Web Development, WebSockets, FrontEnd, BackEnd, FullStack, Board Game, Google Cloud, Google App Engine, Vite, Jest, Express GenerativeAI Vertex Gemini"
   ],
-  "homepage": "https://andrew-k.us",
+  "homepage": "https://www.andrew-k.us",
   "repository": {
     "type": "git",
     "url": "https://github.com/AndrewK4758/BGDK.git"

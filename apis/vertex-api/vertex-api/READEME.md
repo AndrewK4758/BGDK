@@ -1,8 +1,8 @@
 # TODO
 
- - [] Connect VERTEX API
+ - [x] Connect VERTEX API
  - [] Create generative models for
-    - [] Text
+    - [x] Text
     - [] Image
     - [] Audio
     - [] Video ?
