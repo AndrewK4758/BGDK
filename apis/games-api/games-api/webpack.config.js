@@ -18,6 +18,7 @@ module.exports = {
       progress: true,
       watch: true,
       verbose: true,
+
     }),
   ],
 };

@@ -27,13 +27,14 @@ model instance_time_map {
 }
 
 model users {
-  id              Int      @id @db.SmallInt
-  first_name      String
-  last_name       String
-  email           String
-  created_on      DateTime @db.Date
-  hours_logged_in Int?     @db.SmallInt
-  active_games    String[]
+  first_name  String   @db.VarChar(255)
+  last_name   String   @db.VarChar(255)
+  email       String   @unique(map: "email") @db.VarChar(255)
+  created_on  DateTime @db.Date
+  password    String   @db.VarChar(255)
+  id          String   @id @db.VarChar(6)
+  player_name String   @db.VarChar(255)
+  role        String?  @db.VarChar(8)
 
   @@schema("games")
 }

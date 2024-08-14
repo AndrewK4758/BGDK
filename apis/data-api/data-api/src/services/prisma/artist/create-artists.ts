@@ -1,5 +1,5 @@
-import { artist } from '@prisma/client';
 import { prisma } from '@bgdk/prisma';
+import { artist } from '@prisma/client';
 
 const createArtists = async (name: string): Promise<artist> => {
   try {

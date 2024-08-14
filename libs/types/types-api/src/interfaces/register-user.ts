@@ -1,15 +1,11 @@
 import { GameInstanceID } from '@bgdk/types-game';
+import { USER_ROLE } from '../types/register-user';
+import { IRegisterUserClient } from './register-user-client';
 
-export type email = `${string}@${string}.${string}`; // /^[a-zA-Z0-9. _%+\\-!~]+@[a-zA-Z0-9-_.]+.[a-zA-Z]{2,}$/gi;
-
-export interface IRegisterUser {
+export interface IRegisterUser extends IRegisterUserClient {
   id: string;
-  firstName: string;
-  lastName: string;
-  email: email;
-  createdOn?: Date;
-  hoursLoggedIn?: number;
+  createdOn: Date;
   activeGames?: GameInstanceID[];
-  password: string;
   friends?: string[];
+  role: USER_ROLE;
 }

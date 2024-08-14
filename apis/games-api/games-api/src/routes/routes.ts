@@ -8,17 +8,23 @@ import useInstanceTimeMap from '../middleware/instance-map';
 import useGameSpecificChain from '../middleware/use-game-specific-chain';
 import useSetSelectedGameName from '../middleware/set-game-name';
 import useSelectedGame from '../middleware/use-selected-game';
+import registerUser from '../controllers/register-user';
+import loginUser from '../controllers/login-user';
+import authenticateUser from '../middleware/authenticate-user';
 
 export default class GameRoutes {
   constructor(router: Router) {
     // ROUTER MIDDLEWARE
     router.use(express.json());
+    router.use('/', authenticateUser);
     router.use('/games/:id', useSetSelectedGameName);
     router.use('/games/:id', useSelectedGame);
     router.use('/games/:id', useAllGamesMap);
     router.use('/games/:id', useInstanceTimeMap);
     router.use('/games/:id/:action', useGameSpecificChain);
     // ENDPOINTS
+    router.post('/register', registerUser);
+    router.patch('/login', loginUser);
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);
     router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response) => performAction(req, resp, null, null));

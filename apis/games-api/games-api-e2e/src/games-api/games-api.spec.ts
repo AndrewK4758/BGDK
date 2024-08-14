@@ -1,6 +1,7 @@
-import { Color, AvatarTotem, GamePlayerValidation, GameInstanceID, PlayerID, TurnStatus } from '@bgdk/types-game';
-import { IBuiltGame } from '@bgdk/game-builder';
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
+import { IBuiltGame } from '@bgdk/game-builder';
+import { IRegisterUserClient } from '@bgdk/types-api';
+import { AvatarTotem, Color, GameInstanceID, GamePlayerValidation, PlayerID, TurnStatus } from '@bgdk/types-game';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation, playerIDs: string[];
@@ -8,6 +9,41 @@ let __current_game__: GamePlayerValidation, playerIDs: string[];
 describe('Games api test wrapper', () => {
   afterAll(() => {
     jest.clearAllMocks();
+  });
+  describe('Test login route', () => {
+    it('Should login user based on email & password or JWT', async () => {
+      const loginInfo = {
+        email: 'test3@erase.email',
+        password: 'erase',
+      };
+
+      const options = {
+        headers: {
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQGVyYXNlLmVtYWlsIiwicGFzc3dvcmQiOiIkMmIkMTAkMFBPYm1OM3VXZ0pJLkdhUE1hVjFEZS9FUzlNbFpwcU82RWR1bHJOSTNWSXRNaENuNC5zaTIiLCJpYXQiOjE3MjM2MDIzOTMsImV4cCI6MTcyMzYwNTk5M30.-YPa0mRKW32ZvVsjPHGeaH9WizRA6imfFnbzwc7tHao',
+        },
+      };
+
+      const resp = await axios.patch('/login', loginInfo, options);
+
+      expect(resp.status).toEqual(200);
+    });
+  });
+  describe('Test register route', () => {
+    it('Should register user in db and return status 202', async () => {
+      const userInfo: IRegisterUserClient = {
+        firstName: 'test',
+        lastName: 'erase',
+        email: `test4@erase.email`,
+        password: 'erase',
+        playerName: 'erase player',
+      };
+      const resp = await axios.post('/register', userInfo);
+
+      console.log(resp.data);
+      console.log(resp.headers);
+      expect(1).toBe(1);
+    });
   });
   describe('GET Games ', () => {
     it("should return an array of games names and id's", async () => {

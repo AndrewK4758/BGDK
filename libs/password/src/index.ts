@@ -1,1 +1,2 @@
-export * from './lib/password';
+export * from './lib/make-password';
+export * from './lib/check-password';

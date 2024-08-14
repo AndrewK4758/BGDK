@@ -9,5 +9,14 @@
     "types": ["jest", "node"],
     "composite": true
   },
-  "include": ["jest.config.ts", "src/**/*.ts", "../src/**/*.ts"]
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "../../../libs/**/*/src/**/*.ts",
+    "../../../__mocks__/**/*.ts"
+  ],
+  "exclude": ["../../../libs/react-components/**/*"]
 }
