@@ -3,7 +3,7 @@ import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { useSubmit } from 'react-router-dom';
-import { FormActionProps } from '../../games-ui/forms/join-game/join-game';
+import { FormActionProps } from '../../../interfaces/form-action-props';
 import TextInput from '../../games-ui/text-input/formik-text-input';
 import * as Yup from 'yup';
 

@@ -1,3 +1,5 @@
+export * from './interfaces/form-action-props';
+export * from './lib/games-ui/register-user/register-user';
 export * from './lib/vertex-components/chat-input/chat-input';
 export * from './lib/games-ui/button/button-form-action';
 export * from './lib/games-ui/footer/footer';

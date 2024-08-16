@@ -1,5 +1,6 @@
 import { Footer, Header, Main, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
+import { NormalCssProperties } from '@mui/material/styles/createMixins';
 
 const breakpointsAppBar: SxProps = {
   paddingX: '1rem',
@@ -21,13 +22,15 @@ const breakpointsAppBar: SxProps = {
   },
 };
 
-const breakpointsText: SxProps = {
+const breakpointsText: SxProps | NormalCssProperties = {
   flex: '1 0 auto',
   textAlign: 'end',
   alignSelf: 'center',
-  [Theme.breakpoints.down('laptop')]: {
-    fontSize: '2rem',
-  },
+  textDecoration: 'none',
+  color: Theme.palette.primary.main,
+  // [Theme.breakpoints.down('laptop')]: {
+  //   fontSize: '2rem',
+  // },
 };
 
 const breakpointsFooter: SxProps = {
@@ -68,22 +71,19 @@ const breakpointsMain: SxProps = {
   },
 };
 
-export default function Layout() {
-  return (
-    <>
-      <Header
-        component={'header'}
-        titleText={'Games App'}
-        headerTextVariant={'h2'}
-        sxAppBar={breakpointsAppBar}
-        sxText={breakpointsText}
-      />
-      <Main component={'main'} id={'main-container'} maxWidth={false} breakpointsMain={breakpointsMain} />
-      <Footer
-        component={'footer'}
-        breakpointsFooter={breakpointsFooter}
-        breakpointsFooterText={breakpointsFooterText}
-      />
-    </>
-  );
-}
+const Layout = () => (
+  <>
+    <Header
+      component={'header'}
+      registerLabelText={'Register'}
+      headerTextVariant={'h2'}
+      sxAppBar={breakpointsAppBar}
+      sxText={breakpointsText}
+      registerLinkText={breakpointsText as NormalCssProperties}
+    />
+    <Main component={'main'} id={'main-container'} maxWidth={false} breakpointsMain={breakpointsMain} />
+    <Footer component={'footer'} breakpointsFooter={breakpointsFooter} breakpointsFooterText={breakpointsFooterText} />
+  </>
+);
+
+export default Layout;

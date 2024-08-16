@@ -5,38 +5,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DB_URL_SSL")
+  url      = env("DB_URL_DEV")
   schemas  = ["chinook", "games"]
-}
-
-model active_game_state {
-  game_id                   String @id
-  players_array             Json[] @db.Json
-  player_in_turn            Int    @db.SmallInt
-  special_space_values      Int[]  @db.SmallInt
-  special_space_dump_values Int[]  @db.SmallInt
-
-  @@schema("games")
-}
-
-model instance_time_map {
-  minute_of_day   Int      @id @db.SmallInt
-  games_in_minute String[]
-
-  @@schema("games")
-}
-
-model users {
-  first_name  String   @db.VarChar(255)
-  last_name   String   @db.VarChar(255)
-  email       String   @unique(map: "email") @db.VarChar(255)
-  created_on  DateTime @db.Date
-  password    String   @db.VarChar(255)
-  id          String   @id @db.VarChar(6)
-  player_name String   @db.VarChar(255)
-  role        String?  @db.VarChar(8)
-
-  @@schema("games")
 }
 
 model album {
@@ -226,4 +196,36 @@ model track_discount {
   track             track    @relation(fields: [track_id], references: [track_id], onDelete: NoAction, onUpdate: NoAction, map: "track_discount_track_fkey")
 
   @@schema("chinook")
+}
+
+model active_game_state {
+  game_id                   String @id
+  players_array             Json[] @db.Json
+  player_in_turn            Int    @db.SmallInt
+  special_space_values      Int[]  @db.SmallInt
+  special_space_dump_values Int[]  @db.SmallInt
+
+  @@schema("games")
+}
+
+model instance_time_map {
+  minute_of_day   Int      @id @db.SmallInt
+  games_in_minute String[]
+
+  @@schema("games")
+}
+
+model users {
+  id           String   @id(map: "games_pkey") @db.VarChar(6)
+  first_name   String   @db.VarChar(255)
+  last_name    String   @db.VarChar(255)
+  email        String   @unique(map: "email") @db.VarChar(255)
+  created_on   DateTime @db.Date
+  password     String   @db.VarChar(255)
+  player_name  String   @db.VarChar(255)
+  active_games String[] @db.VarChar(255)
+  friends      String[] @db.VarChar(255)
+  role         String   @db.VarChar(8)
+
+  @@schema("games")
 }

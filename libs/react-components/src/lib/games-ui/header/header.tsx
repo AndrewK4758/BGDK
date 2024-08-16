@@ -1,8 +1,10 @@
 import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import { NormalCssProperties } from '@mui/material/styles/createMixins';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';
-import Text from '../text/text';
+import { Link as LinkRR } from 'react-router-dom';
 import { Theme } from '../../theme/theme';
 import HeaderMenu from './header-menu/header-menu';
 
@@ -24,17 +26,22 @@ const breakpointsMenu = {
 
 export interface HeaderProps {
   component: ElementType;
-  titleText: string;
+  registerLabelText: string;
   headerTextVariant: Variant;
   sxAppBar?: SxProps;
   sxText?: SxProps;
+  registerLinkText?: NormalCssProperties;
 }
 
-export function Header({ component, titleText, headerTextVariant, sxAppBar, sxText }: HeaderProps) {
+export function Header({ component, registerLabelText, sxAppBar, sxText, registerLinkText }: HeaderProps) {
   return (
     <AppBar component={component} sx={sxAppBar}>
       <HeaderMenu breakpointsMenuItem={breakpointsMenuItem} breakpointsMenu={breakpointsMenu} />
-      <Text titleVariant={headerTextVariant} titleText={titleText} sx={sxText} />
+      <Box sx={sxText}>
+        <LinkRR to={'/register-user'} style={registerLinkText}>
+          {registerLabelText}
+        </LinkRR>
+      </Box>
     </AppBar>
   );
 }

@@ -9,7 +9,16 @@
 }
 
 * {
-  -webkit-font-smoothining: antialiased;
+  -webkit-font-smoothing: antialiased;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 100px #404040 inset !important;
+  -webkit-text-fill-color: #ffd300 !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffd300;
 }

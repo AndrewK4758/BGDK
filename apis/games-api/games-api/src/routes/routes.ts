@@ -23,7 +23,7 @@ export default class GameRoutes {
     router.use('/games/:id', useInstanceTimeMap);
     router.use('/games/:id/:action', useGameSpecificChain);
     // ENDPOINTS
-    router.post('/register', registerUser);
+    router.post('/register-user', registerUser);
     router.patch('/login', loginUser);
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);

@@ -28,7 +28,12 @@ const addUser = async ({
       },
     });
   } catch (err) {
-    console.error(err);
+    if (err.meta.target[0] === 'email') {
+      console.error(err);
+      throw new Error('Email is already registered');
+    } else {
+      throw new Error(err.message);
+    }
   }
 };
 

@@ -1,5 +1,5 @@
 import addUser from '../../services/prisma/users/add-user';
-import type { IRegisterUser } from '@bgdk/types-api';
+import { USER_ROLE, type IRegisterUser } from '@bgdk/types-api';
 import ShortUniqueId from 'short-unique-id';
 
 describe('Test add user service', () => {
@@ -13,6 +13,7 @@ describe('Test add user service', () => {
       createdOn: new Date(),
       password: 'password',
       playerName: 'player-name',
+      role: USER_ROLE.USER,
     };
 
     const newUser = await addUser(userInfo);

@@ -2,21 +2,21 @@ import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
-import Text from '../text/text';
 import { Theme } from '../../theme/theme';
-/* eslint-disable-next-line */
+import Text from '../text/text';
 
 export interface FormikTextInputProps {
   name: string;
   type: string;
   label: string;
+  autoComplete: string;
   id?: string;
   placeholder?: string;
   textSx?: SxProps;
   labelSx?: SxProps;
 }
 
-export function FormikTextInput({ label, textSx, labelSx, ...props }: FormikTextInputProps) {
+export function FormikTextInput({ label, textSx, labelSx, autoComplete, ...props }: FormikTextInputProps) {
   const [field, meta] = useField(props);
   return (
     <>
@@ -24,7 +24,7 @@ export function FormikTextInput({ label, textSx, labelSx, ...props }: FormikText
         {label}
       </InputLabel>
       <TextField
-        autoComplete="off"
+        autoComplete={autoComplete}
         multiline={false}
         variant="filled"
         {...field}

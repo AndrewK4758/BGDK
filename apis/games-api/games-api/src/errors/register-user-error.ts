@@ -1,3 +1,5 @@
-const registerUserError = () => ({ errorMessage: 'Error registering user. Please refresh page and try again' });
+const registerUserError = (message: string) => ({
+  errorMessage: `Error registering user. \n ${message}`,
+});
 
 export default registerUserError;

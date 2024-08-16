@@ -1,53 +1,69 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { IBuiltGame } from '@bgdk/game-builder';
-import { IRegisterUserClient } from '@bgdk/types-api';
+import { EmailAddress, IRegisterUserClient } from '@bgdk/types-api';
 import { AvatarTotem, Color, GameInstanceID, GamePlayerValidation, PlayerID, TurnStatus } from '@bgdk/types-game';
 import axios from 'axios';
 
-let __current_game__: GamePlayerValidation, playerIDs: string[];
+let __current_game__: GamePlayerValidation,
+  playerIDs: string[],
+  firstName: string,
+  lastName: string,
+  email: EmailAddress,
+  password: string,
+  playerName: string,
+  bearer: string,
+  PERMENANT_EMAIL: EmailAddress,
+  PERMENANT_PASSWORD: string;
 
 describe('Games api test wrapper', () => {
+  beforeAll(() => {
+    bearer = '';
+    firstName = 'test';
+    lastName = 'erase';
+    email = 'email@test.email';
+    password = 'test';
+    playerName = 'Test Player';
+    PERMENANT_EMAIL = 'EMAIL@DO-NOT.ERASE';
+    PERMENANT_PASSWORD = 'DOnotERASE';
+  });
   afterAll(() => {
     jest.clearAllMocks();
-  });
-  describe('Test login route', () => {
-    it('Should login user based on email & password or JWT', async () => {
-      const loginInfo = {
-        email: 'test3@erase.email',
-        password: 'erase',
-      };
-
-      const options = {
-        headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQGVyYXNlLmVtYWlsIiwicGFzc3dvcmQiOiIkMmIkMTAkMFBPYm1OM3VXZ0pJLkdhUE1hVjFEZS9FUzlNbFpwcU82RWR1bHJOSTNWSXRNaENuNC5zaTIiLCJpYXQiOjE3MjM2MDIzOTMsImV4cCI6MTcyMzYwNTk5M30.-YPa0mRKW32ZvVsjPHGeaH9WizRA6imfFnbzwc7tHao',
-        },
-      };
-
-      const resp = await axios.patch('/login', loginInfo, options);
-
-      expect(resp.status).toEqual(200);
-    });
   });
   describe('Test register route', () => {
     it('Should register user in db and return status 202', async () => {
       const userInfo: IRegisterUserClient = {
-        firstName: 'test',
-        lastName: 'erase',
-        email: `test4@erase.email`,
-        password: 'erase',
-        playerName: 'erase player',
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        playerName: playerName,
       };
       const resp = await axios.post('/register', userInfo);
-
       console.log(resp.data);
       console.log(resp.headers);
-      expect(1).toBe(1);
+
+      expect(resp.status).toBe(201);
+    });
+  });
+  describe('Test login route', () => {
+    it('Should login user based on email & password or JWT', async () => {
+      const loginInfo = {
+        email: PERMENANT_EMAIL,
+        password: PERMENANT_PASSWORD,
+      };
+
+      const resp = await axios.patch('/login', loginInfo);
+
+      console.log(resp.headers);
+      bearer = resp.headers['authorization'];
+
+      expect(resp.status).toEqual(200);
+      expect(bearer).toBeTruthy();
     });
   });
   describe('GET Games ', () => {
     it("should return an array of games names and id's", async () => {
-      const resp = await axios.get(`/games`);
+      const resp = await axios.get(`/games`, { headers: { Authorization: bearer } });
 
       const data = resp.data as IBuiltGame[];
 
