@@ -11,11 +11,10 @@ const registerUserAction: ActionFunction = async ({ request }: ActionFunctionArg
   const reqHeaders = {
     headers: {
       'current-game': JSON.stringify(getGameInstanceInfo()),
-      Authorization: sessionStorage.getItem('token'),
     },
   };
   try {
-    await axios.post(
+    const resp = await axios.post(
       `${baseURL}/register-user`,
       {
         firstName: firstName,
@@ -26,7 +25,7 @@ const registerUserAction: ActionFunction = async ({ request }: ActionFunctionArg
       },
       reqHeaders,
     );
-
+    console.log(resp.data);
     return redirect('/');
   } catch (err) {
     console.error(err);

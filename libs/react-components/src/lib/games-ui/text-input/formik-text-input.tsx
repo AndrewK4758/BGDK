@@ -4,12 +4,14 @@ import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import { Theme } from '../../theme/theme';
 import Text from '../text/text';
-import { FocusEvent } from 'react';
+import { ElementType, FocusEvent, Fragment } from 'react';
 
 export interface FormikTextInputProps {
   name: string;
   type: string;
   label: string;
+  labelComponent: ElementType;
+  size?: string;
   autoComplete: string;
   id?: string;
   placeholder?: string;
@@ -18,12 +20,21 @@ export interface FormikTextInputProps {
   onBlurCB?: (event: FocusEvent<unknown>) => void;
 }
 
-export function FormikTextInput({ label, textSx, labelSx, autoComplete, onBlurCB, ...props }: FormikTextInputProps) {
+export function FormikTextInput({
+  label,
+  textSx,
+  labelSx,
+  autoComplete,
+  labelComponent,
+  size,
+  onBlurCB,
+  ...props
+}: FormikTextInputProps) {
   const [field, meta] = useField(props);
   if (onBlurCB) field.onBlur = onBlurCB;
   return (
-    <>
-      <InputLabel component={'h2'} variant="filled" sx={labelSx}>
+    <Fragment key={label}>
+      <InputLabel component={labelComponent} variant="filled" sx={labelSx}>
         {label}
       </InputLabel>
       <TextField
@@ -35,6 +46,7 @@ export function FormikTextInput({ label, textSx, labelSx, autoComplete, onBlurCB
         InputProps={{
           sx: textSx,
         }}
+        sx={textSx}
       />
       {meta.touched && meta.error ? (
         <Text
@@ -43,7 +55,7 @@ export function FormikTextInput({ label, textSx, labelSx, autoComplete, onBlurCB
           titleText={meta.error}
         />
       ) : null}
-    </>
+    </Fragment>
   );
 }
 

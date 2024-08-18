@@ -3,7 +3,7 @@ import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
-import { FocusEvent, useState } from 'react';
+import { FocusEvent, MouseEvent, useState } from 'react';
 import { useActionData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
@@ -41,8 +41,13 @@ const initialValues = {
 const breakpointsTextBoxSx: SxProps = {
   backgroundColor: Theme.palette.info.main,
   width: '30vw',
+  height: '3vw',
   justifySelf: 'center',
   alignSelf: 'center',
+  p: 0,
+  m: 0,
+  fontSize: '1.5rem',
+  borderRadius: '5px',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     textAlign: 'center',
@@ -53,15 +58,26 @@ const breakpointsTextBoxSx: SxProps = {
 
 const breakpointsButtonSx: SxProps = {
   backgroundColor: Theme.palette.info.main,
-  marginTop: '1rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
+    height: 25,
   },
 };
 
-export const RegisterUser = () => {
+const breakpointsLabelSx: SxProps = {
+  color: Theme.palette.primary.main,
+  textShadow: `1px 1px 1px #800080`,
+};
+
+type Anchor = 'right';
+
+interface RegisterUserProps {
+  toggleDrawer: (anchor: Anchor, open: boolean) => (event: MouseEvent) => void;
+  anchor: Anchor;
+}
+
+export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
   const [blurString, setBlurString] = useState<string>('');
   const submit = useSubmit();
   const action = useActionData() as IActionError;
@@ -78,65 +94,73 @@ export const RegisterUser = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={values => {
-        submit(values, { encType: 'application/json', method: 'POST', action: '/register-user' });
-      }}
+      onSubmit={values => submit(values, { encType: 'application/json', method: 'POST', action: '/register-user' })}
     >
       <Form method={'POST'} action={'/register-user'}>
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h3'}
           label="First Name"
           id="firstName"
           type={'text'}
           placeholder="Enter First Name Here"
           name={'firstName'}
           textSx={breakpointsTextBoxSx}
+          labelSx={breakpointsLabelSx}
         />
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h3'}
           label="Last Name"
           id="lastName"
           type={'text'}
           placeholder="Enter Last Name Here"
           name={'lastName'}
           textSx={breakpointsTextBoxSx}
+          labelSx={breakpointsLabelSx}
         />
         <FormikTextInput
           autoComplete="new-email"
+          labelComponent={'h3'}
           label="Email"
           id="email"
           type={'text'}
           placeholder="Enter Email Here"
           name={'email'}
           textSx={breakpointsTextBoxSx}
+          labelSx={breakpointsLabelSx}
           onBlurCB={onBlur}
         />
         <br />
         {blurString}
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h3'}
           label="Player Name"
           id="playerName"
           type={'text'}
           placeholder="Enter Player Name Here"
           name={'playerName'}
           textSx={breakpointsTextBoxSx}
+          labelSx={breakpointsLabelSx}
         />
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h3'}
           label="Password"
           id="password"
           type="password"
           placeholder="Enter Password Here"
           name="password"
           textSx={breakpointsTextBoxSx}
+          labelSx={breakpointsLabelSx}
         />
         <br />
         <Box component={'div'} style={{ whiteSpace: 'balance' }}>
           {action ? <ActionError errorMessage={action.errorMessage} /> : undefined}
         </Box>
         <br />
-        <Button type={'submit'} variant={'outlined'} sx={breakpointsButtonSx}>
+        <Button type={'submit'} variant={'outlined'} sx={breakpointsButtonSx} onClick={toggleDrawer(anchor, false)}>
           {'Register'}
         </Button>
         <Button type="reset" variant="outlined" sx={breakpointsButtonSx}>

@@ -1,4 +1,3 @@
-import { RegisterUser } from '@bgdk/react-components';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import Waiting from '../components/layout/waiting';
@@ -24,6 +23,11 @@ const router = createBrowserRouter([
     action: loginUserAction,
     id: 'activeUserData',
     children: [
+      {
+        index: true,
+        path: 'register-user',
+        action: registerUserAction,
+      },
       {
         index: true,
         Component: HomePage,
@@ -74,11 +78,6 @@ const router = createBrowserRouter([
         index: true,
         path: 'join-game',
         action: joinGameAction,
-      },
-      {
-        path: 'register-user',
-        Component: RegisterUser,
-        action: registerUserAction,
       },
     ],
   },

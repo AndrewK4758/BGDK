@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Login from '../login/login';
+import RegisterUser from './register-user';
 
 type Anchor = 'right';
 
-export const LoginDrawer = () => {
+export const RegisterDrawer = () => {
   const anchor = 'right';
   const [state, setState] = useState({
     right: false,
@@ -27,7 +27,7 @@ export const LoginDrawer = () => {
   const list = (anchor: Anchor) => (
     <Box sx={{ width: 'auto' }} role="presentation">
       <List>
-        <Login toggleDrawer={toggleDrawer} anchor={anchor} />
+        <RegisterUser toggleDrawer={toggleDrawer} anchor={anchor} />
       </List>
     </Box>
   );
@@ -45,7 +45,7 @@ export const LoginDrawer = () => {
           flex: '1 0 auto',
         }}
       >
-        {'Login'}
+        {'Register'}
       </Button>
       <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
         {list(anchor)}
@@ -54,4 +54,4 @@ export const LoginDrawer = () => {
   );
 };
 
-export default LoginDrawer;
+export default RegisterDrawer;

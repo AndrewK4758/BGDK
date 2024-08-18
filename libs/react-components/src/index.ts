@@ -1,4 +1,5 @@
-export * from './lib/games-ui/login-drawer/login-drawer';
+export * from './lib/games-ui/register-user/register-drawer';
+export * from './lib/games-ui/login/login-drawer';
 export * from './lib/games-ui/errors/action-error';
 export * from './lib/games-ui/login/login';
 export * from './interfaces/action-error';

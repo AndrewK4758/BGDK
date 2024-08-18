@@ -28,7 +28,6 @@ const breakpointsLoginButton: SxProps = {};
 type Anchor = 'right';
 
 interface LoginProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toggleDrawer: (anchor: Anchor, open: boolean) => (event: MouseEvent) => void;
   anchor: Anchor;
 }
@@ -48,6 +47,7 @@ export const Login = ({ toggleDrawer, anchor }: LoginProps) => {
       <Form method="PATCH" action="/">
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h2'}
           label="Email"
           id="email"
           type="email"
@@ -57,6 +57,7 @@ export const Login = ({ toggleDrawer, anchor }: LoginProps) => {
         />
         <FormikTextInput
           autoComplete="on"
+          labelComponent={'h2'}
           label="Password"
           id="password"
           type="password"

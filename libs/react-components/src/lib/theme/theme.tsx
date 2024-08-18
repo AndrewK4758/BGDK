@@ -105,6 +105,7 @@ export const Theme = createTheme({
     h3: {
       fontFamily: 'Jersey25',
       fontSize: '2.5rem',
+      color: __primaryMain,
       textShadow: `2px 1px ${__primaryContrast}`,
     },
     h4: {
