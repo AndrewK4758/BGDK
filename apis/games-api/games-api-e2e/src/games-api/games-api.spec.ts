@@ -74,7 +74,7 @@ describe('Games api test wrapper', () => {
 
   describe('POST Register Game button functionallity', () => {
     it('Should return a gameID', async () => {
-      const resp = await axios.post('/games/Chutes-&-Ladders');
+      const resp = await axios.post('/games/Chutes-&-Ladders', {}, { headers: { Authorization: bearer } });
 
       __current_game__ = JSON.parse(resp.headers['current-game']);
 

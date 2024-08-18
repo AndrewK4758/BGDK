@@ -30,6 +30,7 @@
       "@bgdk/prisma": ["libs/prisma/src/index.ts"],
       "@bgdk/react-components": ["libs/react-components/src/index.ts"],
       "@bgdk/rule": ["libs/models/rule/src/index.ts"],
+      "@bgdk/socket-io": ["libs/socket-io/src/index.ts"],
       "@bgdk/tic-tac-toe": ["libs/games/tic-tac-toe/src/index.ts"],
       "@bgdk/types-api": ["libs/types/types-api/src/index.ts"],
       "@bgdk/types-game": ["libs/types/types-game/src/index.ts"]

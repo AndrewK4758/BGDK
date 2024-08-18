@@ -15,6 +15,7 @@ const joinGameAction = async ({ request }: ActionFunctionArgs) => {
   };
 
   sessionStorage.setItem('__current_game__', JSON.stringify(__current_game__));
+
   return redirect(`/games/${id}/register`);
 };
 

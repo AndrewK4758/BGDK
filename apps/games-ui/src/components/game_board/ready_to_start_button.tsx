@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { getGameInstanceInfo } from '../../services/utils/utils';
+import getGameInstanceInfo from '../../services/utils/utils';
 import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
@@ -35,14 +35,15 @@ export default function ReadyToStart({ dispatch, socket }: ReadyToStartProps) {
   const params = useParams();
 
   const id = params.id;
-  const __current_game__ = JSON.stringify(getGameInstanceInfo());
+  const reqHeaders = {
+    headers: {
+      'current-game': JSON.stringify(getGameInstanceInfo()),
+      Authorization: sessionStorage.getItem('token'),
+    },
+  };
 
   const handleStartGame = async () => {
-    const resp = await axios.patch(
-      `${__baseURL__}/games/${id}/start`,
-      {},
-      { headers: { 'current-game': __current_game__ } },
-    );
+    const resp = await axios.patch(`${__baseURL__}/games/${id}/start`, {}, reqHeaders);
     dispatch({ type: ActionType.START, socket: socket });
     console.log(resp.data.message);
   };

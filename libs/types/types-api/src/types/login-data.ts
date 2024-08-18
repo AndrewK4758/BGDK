@@ -1,2 +1,2 @@
 import { EmailAddress } from './register-user';
-export type LoginData = { email: EmailAddress; password: string; playerName: string };
+export type LoginData = { userID: string; email: EmailAddress; password: string; playerName: string };

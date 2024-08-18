@@ -1,26 +1,47 @@
+import { SocketServer } from '@bgdk/socket-io';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
+import { ServerOptions } from 'socket.io';
 import swaggerUi from 'swagger-ui-express';
 import GameRoutes from './routes/routes';
-import SocketServer from './services/socket-io/socket-server';
+import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware';
+import socketBoardAction from './services/socket-io/socket-board-action';
 import specs from './services/swagger/swagger-setup';
+
+/**
+ * Add cleanup service to take games in users active_game col and compare last active to current minute and if
+ * greater than some timeframe, remove the game from active_game array
+ *
+ *
+ */
 
 const app = express();
 const router = express.Router();
 
 export const corsOptions: CorsOptions = {
-  origin: '*',
-  methods: '*',
-  exposedHeaders: '*',
+  origin: ['http://localhost:4200', 'http://localhost:3000', 'https://andrew-k.us'],
+  methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
+  exposedHeaders: ['*', 'Set-Cookie', 'authorization'],
   optionsSuccessStatus: 204,
-  allowedHeaders: '*',
+  allowedHeaders: ['Authorization', '*'],
+  credentials: true,
 };
 
-export const httpServer = http.createServer(app);
+const serverOptions: Partial<ServerOptions> = {
+  cleanupEmptyChildNamespaces: true,
+  cors: corsOptions,
+};
 
-new SocketServer(httpServer);
+const httpServer = http.createServer(app);
+
+export const socketServer = new SocketServer(
+  httpServer,
+  serverOptions,
+  [addGameToSocketInstance],
+  [['connection', socketBoardAction]],
+);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
 app.use(cors(corsOptions));

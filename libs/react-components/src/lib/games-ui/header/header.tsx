@@ -1,14 +1,14 @@
 import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import { NormalCssProperties } from '@mui/material/styles/createMixins';
+import Button from '@mui/material/Button';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';
-import { Link as LinkRR } from 'react-router-dom';
+import { useActionData } from 'react-router-dom';
 import { Theme } from '../../theme/theme';
+import Text from '../text/text';
 import HeaderMenu from './header-menu/header-menu';
-
-/* eslint-disable-next-line */
+import LoginDrawer from '../login-drawer/login-drawer';
 
 const breakpointsMenuItem: SxProps = {
   color: Theme.palette.primary.main,
@@ -24,26 +24,59 @@ const breakpointsMenu = {
   },
 };
 
+export interface ActiveUserData {
+  playerName: string;
+  friends: string[];
+  activeGames: string[];
+  thumbnail: string;
+}
+
 export interface HeaderProps {
   component: ElementType;
   registerLabelText: string;
   headerTextVariant: Variant;
   sxAppBar?: SxProps;
   sxText?: SxProps;
-  registerLinkText?: NormalCssProperties;
+  registerLinkText?: SxProps;
+  componentLogin: ElementType;
+  componentRegister: ElementType;
+  toPropRegister: string;
 }
 
-export function Header({ component, registerLabelText, sxAppBar, sxText, registerLinkText }: HeaderProps) {
+export const Header = ({
+  component,
+  registerLabelText,
+  sxAppBar,
+  sxText,
+  registerLinkText,
+  componentLogin,
+  componentRegister,
+  toPropRegister,
+}: HeaderProps) => {
+  const action = useActionData() as ActiveUserData;
+
   return (
     <AppBar component={component} sx={sxAppBar}>
       <HeaderMenu breakpointsMenuItem={breakpointsMenuItem} breakpointsMenu={breakpointsMenu} />
-      <Box sx={sxText}>
-        <LinkRR to={'/register-user'} style={registerLinkText}>
+      <Box component={componentLogin} sx={{ ...sxText }}>
+        {action && <Text titleText={`Welcome ${action.playerName}`} titleVariant="h2" sx={{ textAlign: 'center' }} />}
+      </Box>
+      <Box
+        component={componentRegister}
+        sx={{ ...sxText, flex: '0 1 18%', display: 'flex', alignItems: 'space-evenly' }}
+      >
+        <LoginDrawer />
+        <Button
+          href={toPropRegister}
+          variant="text"
+          fullWidth={false}
+          sx={{ ...registerLinkText, flex: '1 0 auto', fontSize: '2rem', p: 0, m: 0 }}
+        >
           {registerLabelText}
-        </LinkRR>
+        </Button>
       </Box>
     </AppBar>
   );
-}
+};
 
 export default Header;

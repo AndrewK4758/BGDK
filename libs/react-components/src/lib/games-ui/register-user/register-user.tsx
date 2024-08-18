@@ -1,11 +1,15 @@
 // import styles from './register-user.tsx.module.css';
 import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import { Form, Formik } from 'formik';
+import { FocusEvent, useState } from 'react';
 import { useActionData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import { IActionError } from '../../../interfaces/action-error';
 import { Theme } from '../../theme/theme';
+import ActionError from '../errors/action-error';
 import FormikTextInput from '../text-input/formik-text-input';
 
 YupPassword(Yup);
@@ -57,15 +61,18 @@ const breakpointsButtonSx: SxProps = {
   },
 };
 
-interface IActionError {
-  errorMessage: string;
-}
-
 export const RegisterUser = () => {
+  const [blurString, setBlurString] = useState<string>('');
   const submit = useSubmit();
   const action = useActionData() as IActionError;
 
-  const ActionError = () => (action ? action.errorMessage : undefined);
+  const onBlur = async (event: FocusEvent<unknown>) => {
+    const value = (event.target as HTMLInputElement).value;
+    const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
+
+    const resp = await axios.get(`${baseURL}/validate-user?email=${value}`);
+    setBlurString(resp.data.message);
+  };
 
   return (
     <Formik
@@ -102,7 +109,10 @@ export const RegisterUser = () => {
           placeholder="Enter Email Here"
           name={'email'}
           textSx={breakpointsTextBoxSx}
+          onBlurCB={onBlur}
         />
+        <br />
+        {blurString}
         <FormikTextInput
           autoComplete="on"
           label="Player Name"
@@ -123,7 +133,7 @@ export const RegisterUser = () => {
         />
         <br />
         <Box component={'div'} style={{ whiteSpace: 'balance' }}>
-          <ActionError />
+          {action ? <ActionError errorMessage={action.errorMessage} /> : undefined}
         </Box>
         <br />
         <Button type={'submit'} variant={'outlined'} sx={breakpointsButtonSx}>

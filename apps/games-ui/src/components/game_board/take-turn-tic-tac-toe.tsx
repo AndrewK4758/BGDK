@@ -6,7 +6,7 @@ import { Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
-import { getGameInstanceInfo } from '../../services/utils/utils';
+import getGameInstanceInfo from '../../services/utils/utils';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.info.main,

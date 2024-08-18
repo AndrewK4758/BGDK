@@ -6,7 +6,7 @@ import { Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
-import { getGameInstanceInfo } from '../../services/utils/utils';
+import getGameInstanceInfo from '../../services/utils/utils';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.info.main,
@@ -28,13 +28,14 @@ export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
 
   const handleTakeTurn = async () => {
     const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
-    const __current_game__ = JSON.stringify(getGameInstanceInfo());
+    const reqHeaders = {
+      headers: {
+        'current-game': JSON.stringify(getGameInstanceInfo()),
+        Authorization: sessionStorage.getItem('token'),
+      },
+    };
     try {
-      const resp = await axios.patch(
-        `${baseURL}/games/${id}/take-turn`,
-        {},
-        { headers: { 'current-game': __current_game__ } },
-      );
+      const resp = await axios.patch(`${baseURL}/games/${id}/take-turn`, {}, reqHeaders);
       console.log(resp.data.turnStatus);
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });
       return null;

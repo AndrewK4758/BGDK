@@ -1,9 +1,8 @@
-import { io, ManagerOptions } from 'socket.io-client';
+import { io, ManagerOptions, Socket } from 'socket.io-client';
 
-const managerOptions: Partial<ManagerOptions> = {
-  autoConnect: false,
-};
-
-const ClientSocket = io(import.meta.env.VITE_WS_SERVER_URL, managerOptions);
-
-export default ClientSocket;
+export default class ClientSocket {
+  Socket: Socket;
+  constructor(managerOptions: Partial<ManagerOptions>) {
+    this.Socket = io(import.meta.env.VITE_WS_SERVER_URL, managerOptions);
+  }
+}

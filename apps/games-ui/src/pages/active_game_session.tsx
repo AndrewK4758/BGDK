@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Fragment, useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Socket } from 'socket.io-client';
+import { ManagerOptions, Socket } from 'socket.io-client';
 import ActiveAvatars from '../components/game_board/active_avatars';
 import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
@@ -15,7 +15,7 @@ import ShowGameBoard from '../components/game_board/show_game_board';
 import ShowGameBoardTicTacToe from '../components/game_board/show-game-board-tic-tac-toe';
 import socketReducer, { ActionType } from '../components/game_board/socket-reducer';
 import TakeTurn from '../components/game_board/take_turn';
-import { getGameInstanceInfo } from '../services/utils/utils';
+import getGameInstanceInfo from '../services/utils/utils';
 import ClientSocket from '../services/utils/web-socket/socket-instance';
 import TakeTurnTicTacToe from '../components/game_board/take-turn-tic-tac-toe';
 
@@ -51,10 +51,16 @@ const socketInit = () => {
   return { gameBoard: [[]], activePlayersInGame: [], avatarInTurn: '', winner: '' } as IActiveGameInfo;
 };
 
-export default function ActiveGameSession() {
+const ActiveGameSession = () => {
+  const managerOptions: Partial<ManagerOptions> = {
+    autoConnect: false,
+    extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) },
+  };
+
+  const clientSocket = new ClientSocket(managerOptions);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
   const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
-  const socketRef = useRef<Socket>(ClientSocket);
+  const socketRef = useRef<Socket>(clientSocket.Socket);
   const params = useParams();
 
   const id = params.id;
@@ -64,7 +70,6 @@ export default function ActiveGameSession() {
   useEffect(() => {
     if (!socket.connected) {
       socket.connect();
-
       socket.on('connect', () => {
         console.log(`Player connected with ID: ${socket.id}`);
       });
@@ -98,8 +103,8 @@ export default function ActiveGameSession() {
         payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
       });
     });
-    socket.on('no-game-error', error => {
-      console.log(error);
+    socket.on('no-game-error', ({ errorMessage }) => {
+      console.error(errorMessage);
     });
 
     return () => {
@@ -133,4 +138,6 @@ export default function ActiveGameSession() {
       </Container>
     </>
   );
-}
+};
+
+export default ActiveGameSession;

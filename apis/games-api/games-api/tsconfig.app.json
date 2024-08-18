@@ -9,7 +9,13 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext"
   },
-  "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts", "src/services/swagger/swagger-setup.ts", "src/main.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../../../libs/**/*/src/**/*.ts",
+    "src/services/swagger/swagger-setup.ts",
+    "src/main.ts",
+    "src/services/prisma/users/update-user-active-games.ts"
+  ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",

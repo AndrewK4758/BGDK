@@ -2,25 +2,35 @@ import { IRegisterUserClient } from '@bgdk/types-api';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 import { ActionFunction, ActionFunctionArgs, redirect } from 'react-router-dom';
+import getGameInstanceInfo from '../utils/utils';
 
 const registerUserAction: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const { firstName, lastName, email, playerName, password }: IRegisterUserClient = await request.json();
   const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
-  console.log(baseURL);
-  try {
-    const resp = await axios.post(`${baseURL}/register-user`, {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      playerName: playerName,
-      password: password,
-    });
 
-    redirect('/');
-    return resp.data;
+  const reqHeaders = {
+    headers: {
+      'current-game': JSON.stringify(getGameInstanceInfo()),
+      Authorization: sessionStorage.getItem('token'),
+    },
+  };
+  try {
+    await axios.post(
+      `${baseURL}/register-user`,
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        playerName: playerName,
+        password: password,
+      },
+      reqHeaders,
+    );
+
+    return redirect('/');
   } catch (err) {
-    const { response } = err as AxiosError;
     console.error(err);
+    const { response } = err as AxiosError;
     return response?.data;
   }
 };

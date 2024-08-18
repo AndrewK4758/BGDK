@@ -5,8 +5,14 @@ const registerGameInstanceOnServerAction: ActionFunction = async ({ params }: Ac
   const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   const id = params.id;
 
+  const reqHeaders = {
+    headers: {
+      Authorization: sessionStorage.getItem('token'),
+    },
+  };
+
   try {
-    const resp = await axios.post(`${baseURL}/games/${id}`, {});
+    const resp = await axios.post(`${baseURL}/games/${id}`, {}, reqHeaders);
 
     sessionStorage.setItem('__current_game__', resp.headers['current-game']);
 

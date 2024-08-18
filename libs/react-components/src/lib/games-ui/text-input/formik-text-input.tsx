@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import { Theme } from '../../theme/theme';
 import Text from '../text/text';
+import { FocusEvent } from 'react';
 
 export interface FormikTextInputProps {
   name: string;
@@ -14,10 +15,12 @@ export interface FormikTextInputProps {
   placeholder?: string;
   textSx?: SxProps;
   labelSx?: SxProps;
+  onBlurCB?: (event: FocusEvent<unknown>) => void;
 }
 
-export function FormikTextInput({ label, textSx, labelSx, autoComplete, ...props }: FormikTextInputProps) {
+export function FormikTextInput({ label, textSx, labelSx, autoComplete, onBlurCB, ...props }: FormikTextInputProps) {
   const [field, meta] = useField(props);
+  if (onBlurCB) field.onBlur = onBlurCB;
   return (
     <>
       <InputLabel component={'h2'} variant="filled" sx={labelSx}>
@@ -27,8 +30,8 @@ export function FormikTextInput({ label, textSx, labelSx, autoComplete, ...props
         autoComplete={autoComplete}
         multiline={false}
         variant="filled"
-        {...field}
         {...props}
+        {...field}
         InputProps={{
           sx: textSx,
         }}

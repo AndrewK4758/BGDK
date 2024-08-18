@@ -4,7 +4,11 @@ import { Player } from '@bgdk/games-components-logic';
 import { GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
 
 export const boardStart = CommandBuilder.build((context: Context) => {
-  if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'board') {
+  if (
+    context.get(GameContextKeys.ACTION) &&
+    context.getString(GameContextKeys.ACTION) === 'board' &&
+    context.get(GameContextKeys.GAME)
+  ) {
     const { game } = deRefContextObject(context);
 
     const activePlayersArray: IRegisterFormValues[] = game.instance.playersArray.map((p: Player) => {

@@ -5,6 +5,7 @@ import { GameNameString } from '@bgdk/types-game';
 import { Request } from 'express';
 import { LoginData } from '../types/login-data';
 import { IInstanceTimeMap } from './instance-time-map';
+import { IInstanceOfGame } from '@bgdk/instance-of-game';
 
 export interface IReqObjMaps extends Request {
   allGamesMap: IAllGamesMap;
@@ -13,4 +14,5 @@ export interface IReqObjMaps extends Request {
   selectedGameName: GameNameString;
   selectedGame: IBuiltGame;
   loginData: LoginData;
+  activeGameInstance: IInstanceOfGame;
 }

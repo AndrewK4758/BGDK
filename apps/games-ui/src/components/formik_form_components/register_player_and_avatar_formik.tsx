@@ -120,6 +120,7 @@ export default function RegisterPlayerAndAvatarForm() {
       <Form>
         <Container component={'section'} sx={breakpointsFormContianer}>
           <FormikTextInput
+            autoComplete="off"
             type="text"
             name="playerName"
             label="Player Name"

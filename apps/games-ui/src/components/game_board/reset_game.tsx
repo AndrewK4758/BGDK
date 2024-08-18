@@ -6,7 +6,7 @@ import { Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
-import { getGameInstanceInfo } from '../../services/utils/utils';
+import getGameInstanceInfo from '../../services/utils/utils';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
@@ -29,9 +29,14 @@ export default function ResetGame({ dispatch, socket }: ResetGameProps) {
 
   const handleResetGame = async () => {
     const __baseURL__ = import.meta.env.VITE_REST_API_SERVER_URL;
-    const __current_game__ = JSON.stringify(getGameInstanceInfo());
+    const reqHeaders = {
+      headers: {
+        'current-game': JSON.stringify(getGameInstanceInfo()),
+        Authorization: sessionStorage.getItem('token'),
+      },
+    };
     try {
-      await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, { headers: { 'current-game': __current_game__ } });
+      await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, reqHeaders);
       dispatch({ type: ActionType.RESET, socket: socket });
       return null;
     } catch (error) {

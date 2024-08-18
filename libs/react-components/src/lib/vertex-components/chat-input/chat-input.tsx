@@ -51,6 +51,7 @@ export function ChatInput({
     >
       <Form method={method} action={action}>
         <TextInput
+          autoComplete="off"
           label="Prompt Input"
           placeholder="Enter prompt here"
           type={type}

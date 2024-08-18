@@ -64,6 +64,7 @@ export const Home = ({
       breakpointsChatInputLabel={breakpointsJoinGameLabel}
       breakpointsChatInputText={breakpointsChatInputText}
     />
+
   </>
 );
 

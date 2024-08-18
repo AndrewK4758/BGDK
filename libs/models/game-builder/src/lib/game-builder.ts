@@ -8,7 +8,7 @@ export interface IBuiltGame {
   imageURL?: string;
   rules: IRule[];
   chain: Chain | null;
-  instance<T>(): T;
+  instance(): unknown;
 }
 
 export interface IGameBuilder {
@@ -61,7 +61,7 @@ export class GameBuilder implements IGameBuilder {
   }
 
   setInstance<T>(instance: () => T): IGameBuilder {
-    this.#Game.instance<T> = instance;
+    this.#Game.instance = instance;
     return this;
   }
 
@@ -70,7 +70,7 @@ export class GameBuilder implements IGameBuilder {
     this.#Game = {} as IBuiltGame;
     this.#Game.rules = [];
     this.#Game.chain = null;
-    this.#Game.instance<null> = () => null;
+    this.#Game.instance = () => null;
 
     return gameBuildComplete;
   }

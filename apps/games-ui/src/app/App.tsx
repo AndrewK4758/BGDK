@@ -15,11 +15,14 @@ import registerPlayerAndAvatarAction from '../services/action_functions/register
 import vertexSubmitAction from '../services/action_functions/vertex-submit-action';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
+import loginUserAction from '../services/action_functions/login-action';
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: Layout,
+    action: loginUserAction,
+    id: 'activeUserData',
     children: [
       {
         index: true,

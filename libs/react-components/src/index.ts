@@ -1,3 +1,7 @@
+export * from './lib/games-ui/login-drawer/login-drawer';
+export * from './lib/games-ui/errors/action-error';
+export * from './lib/games-ui/login/login';
+export * from './interfaces/action-error';
 export * from './interfaces/form-action-props';
 export * from './lib/games-ui/register-user/register-user';
 export * from './lib/vertex-components/chat-input/chat-input';

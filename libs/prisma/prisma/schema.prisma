@@ -226,6 +226,7 @@ model users {
   active_games String[] @db.VarChar(255)
   friends      String[] @db.VarChar(255)
   role         String   @db.VarChar(8)
+  thumbnail    Bytes[]
 
   @@schema("games")
 }

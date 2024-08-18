@@ -22,15 +22,15 @@ const breakpointsAppBar: SxProps = {
   },
 };
 
-const breakpointsText: SxProps | NormalCssProperties = {
+const breakpointsText: SxProps = {
   flex: '1 0 auto',
   textAlign: 'end',
   alignSelf: 'center',
   textDecoration: 'none',
   color: Theme.palette.primary.main,
-  // [Theme.breakpoints.down('laptop')]: {
-  //   fontSize: '2rem',
-  // },
+  [Theme.breakpoints.down('laptop')]: {
+    fontSize: '2rem',
+  },
 };
 
 const breakpointsFooter: SxProps = {
@@ -75,11 +75,14 @@ const Layout = () => (
   <>
     <Header
       component={'header'}
+      componentLogin={'div'}
+      componentRegister={'div'}
       registerLabelText={'Register'}
       headerTextVariant={'h2'}
       sxAppBar={breakpointsAppBar}
       sxText={breakpointsText}
       registerLinkText={breakpointsText as NormalCssProperties}
+      toPropRegister={'/register-user'}
     />
     <Main component={'main'} id={'main-container'} maxWidth={false} breakpointsMain={breakpointsMain} />
     <Footer component={'footer'} breakpointsFooter={breakpointsFooter} breakpointsFooterText={breakpointsFooterText} />
