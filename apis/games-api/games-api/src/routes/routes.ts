@@ -8,22 +8,20 @@ import sendGameList from '../controllers/send_game_list';
 import validateUser from '../controllers/validate-user';
 import middlewareRouter from '../middleware/request-filter';
 import multer from 'multer';
-// import { fileURLToPath } from 'url';
-// import path from 'path';
 
 const router: Router = Router();
 
-// const urlPath = fileURLToPath();
-// const __dirname = path.dirname(urlPath);
-// console.log(__dirname);
-const uploadStorage = multer.diskStorage({
-  destination(req, file, callback) {
-    callback(null, `./apis/games-api/games-api/src/data/thumbnails`);
-  },
-  filename(req, file, callback) {
-    callback(null, `${new Date().getDate()} - ${file.originalname}`);
-  },
-});
+// const uploadStorage = multer.diskStorage({
+//   destination(req, file, callback) {
+//
+//     callback(null, `./apis/games-api/games-api/src/data/thumbnails`);
+//   },
+//   filename(req, file, callback) {
+//     callback(null, `${file.originalname}`);
+//   },
+// });
+
+const uploadStorage = multer.memoryStorage();
 const upload = multer({ storage: uploadStorage });
 
 export class GameRoutes {
