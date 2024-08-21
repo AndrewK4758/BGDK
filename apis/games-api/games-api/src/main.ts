@@ -1,11 +1,11 @@
 import { SocketServer } from '@bgdk/socket-io';
 import cors, { CorsOptions } from 'cors';
-import express from 'express';
+import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
 import swaggerUi from 'swagger-ui-express';
-import GameRoutes from './routes/routes';
+import router, { GameRoutes } from './routes/routes';
 import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware';
 import socketBoardAction from './services/socket-io/socket-board-action';
 import specs from './services/swagger/swagger-setup';
@@ -13,19 +13,16 @@ import specs from './services/swagger/swagger-setup';
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if
  * greater than some timeframe, remove the game from active_game array
- *
- *
  */
 
-const app = express();
-const router = express.Router();
+const app: Express = express();
 
 export const corsOptions: CorsOptions = {
   origin: ['http://localhost:4200', 'http://localhost:3000', 'https://andrew-k.us'],
   methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
-  exposedHeaders: ['*', 'Set-Cookie', 'authorization'],
+  exposedHeaders: ['*'],
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Authorization', '*'],
+  allowedHeaders: ['*', 'content-type', 'content-length'],
   credentials: true,
 };
 
@@ -36,6 +33,13 @@ const serverOptions: Partial<ServerOptions> = {
 
 const httpServer = http.createServer(app);
 
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+app.enable('trust proxy');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/api/v1', router);
+
 export const socketServer = new SocketServer(
   httpServer,
   serverOptions,
@@ -43,14 +47,7 @@ export const socketServer = new SocketServer(
   [['connection', socketBoardAction]],
 );
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-app.enable('trust proxy');
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/api/v1', router);
-
-new GameRoutes(router);
+new GameRoutes();
 
 const port = parseInt(process.env.PORT) || 3000;
 

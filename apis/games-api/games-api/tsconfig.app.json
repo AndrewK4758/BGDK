@@ -9,19 +9,12 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext"
   },
-  "include": [
-    "src/**/*.ts",
-    "../../../libs/**/*/src/**/*.ts",
-    "src/services/swagger/swagger-setup.ts",
-    "src/main.ts",
-    "src/services/prisma/users/update-user-active-games.ts"
-  ],
+  "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "../../../libs/react-components/**/*",
-    "../../../libs/**/*/src/tests/**/*.spec.ts",
-    "../../../libs/**/*/src/tests/**/*.test.ts"
+    "../../../libs/**/*/src/tests/**/*.ts"
   ]
 }

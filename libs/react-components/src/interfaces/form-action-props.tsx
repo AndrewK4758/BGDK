@@ -1,10 +1,11 @@
 import { SxProps } from '@mui/material';
+import { FormMethod } from 'react-router-dom';
 
-export type httpMethod = 'get' | 'options' | 'post' | 'put' | 'patch' | 'delete' | 'undefined';
+export type httpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 export interface FormActionProps {
-  method: httpMethod;
-  action: string | undefined;
+  method: FormMethod | httpMethod;
+  action?: string;
   handleSubmit?: () => unknown;
   name: string;
   value?: string | number | readonly string[] | undefined;

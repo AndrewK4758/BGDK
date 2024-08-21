@@ -20,7 +20,7 @@
     "**/*.test.jsx",
     "**/*.spec.ts",
     "../games-components-logic/src/test/**/*.ts",
-    "../types/types-game/src/test/**/*.ts"
+    "../types/**/*/src/test/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
@@ -29,6 +29,6 @@
     "src/**/*.tsx",
     "src/**/*.css",
     "../games-components-logic/src/**/*.ts",
-    "../types/types-game/src/**/*.ts"
+    "../types/**/*/src/**/*.ts"
   ]
 }

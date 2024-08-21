@@ -17,6 +17,7 @@ const loginUser = async (req: IReqObjMaps, resp: Response) => {
       return resp.status(401).json({ errorMessage: 'Incorrect password. Please try again' });
     }
     const activeUser = {
+      id: user.id,
       playerName: user.player_name,
       friends: user.friends,
       activeGames: user.active_games,

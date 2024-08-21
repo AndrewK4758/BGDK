@@ -1,57 +1,46 @@
 import { IReqObjMaps } from '@bgdk/types-api';
-import express, { NextFunction, Request, Response, Router } from 'express';
+import express, { Response, Router } from 'express';
 import loginUser from '../controllers/login-user';
 import performAction from '../controllers/perform_action_context_object';
 import populateInstanceMaps from '../controllers/populate_instance_map';
 import registerUser from '../controllers/register-user';
 import sendGameList from '../controllers/send_game_list';
 import validateUser from '../controllers/validate-user';
-import useAllGamesMap from '../middleware/all-games-map';
-// import authenticateUser from '../middleware/authenticate-user';
-import useInstanceTimeMap from '../middleware/instance-map';
-import useSetSelectedGameName from '../middleware/set-game-name';
-import useActiveGameInstance from '../middleware/use-active-game-instancce';
-import useGameSpecificChain from '../middleware/use-game-specific-chain';
-import useSelectedGame from '../middleware/use-selected-game';
+import middlewareRouter from '../middleware/request-filter';
+import multer from 'multer';
+// import { fileURLToPath } from 'url';
+// import path from 'path';
 
-export default class GameRoutes {
-  constructor(router: Router) {
+const router: Router = Router();
+
+// const urlPath = fileURLToPath();
+// const __dirname = path.dirname(urlPath);
+// console.log(__dirname);
+const uploadStorage = multer.diskStorage({
+  destination(req, file, callback) {
+    callback(null, `./apis/games-api/games-api/src/data/thumbnails`);
+  },
+  filename(req, file, callback) {
+    callback(null, `${new Date().getDate()} - ${file.originalname}`);
+  },
+});
+const upload = multer({ storage: uploadStorage });
+
+export class GameRoutes {
+  constructor() {
     // ROUTER MIDDLEWARE
     router.use(express.json());
-    // router.use('/', authenticateUser);
-    router.use('/games/:id', useSetSelectedGameName);
-    router.use('/games/:id', useSelectedGame);
-    router.use('/games/:id', useAllGamesMap);
-    router.use('/games/:id', useInstanceTimeMap);
-    router.use('/games/:id/:action', useActiveGameInstance);
-    router.use('/games/:id/:action', useGameSpecificChain);
+    router.use(express.urlencoded({ extended: true }));
+    router.use('/games', middlewareRouter);
     // ENDPOINTS
     router.get('/validate-user', validateUser);
-    router.post('/register-user', registerUser);
+    router.post('/register-user', upload.single('thumbnail'), registerUser);
     router.patch('/login', loginUser);
     router.get('/games', sendGameList);
     router.post('/games/:id', populateInstanceMaps);
     router.patch('/games/:id/:action', (req: IReqObjMaps, resp: Response) => performAction(req, resp, null, null));
     router.patch('/join-game', (req: IReqObjMaps, resp: Response) => performAction(req, resp, null, null));
-
-    // GAE HEALH CHECKS
-    router.all('/readiness_check', (err: Error, _req: Request, resp: Response, next: NextFunction) => {
-      if (err) {
-        console.log(err);
-      } else {
-        resp.status(200).send('Readiness ChecK: READY TO GO');
-      }
-      next();
-    });
-
-    router.all('/liveness_check', (err: Error, _req: Request, resp: Response, next: NextFunction) => {
-      if (err) {
-        console.log(err);
-      } else {
-        resp.status(200).send('Liveness Check: STILL LIVING');
-      }
-      next();
-    });
   }
 }
 
+export default router;

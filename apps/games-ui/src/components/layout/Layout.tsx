@@ -1,6 +1,6 @@
 import { Footer, Header, Main, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
-import { NormalCssProperties } from '@mui/material/styles/createMixins';
+import { Fragment } from 'react';
 
 const breakpointsAppBar: SxProps = {
   paddingX: '1rem',
@@ -72,21 +72,18 @@ const breakpointsMain: SxProps = {
 };
 
 const Layout = () => (
-  <>
+  <Fragment key={'Layout'}>
     <Header
-      component={'header'}
+      componentAppBar={'header'}
       componentLogin={'div'}
       componentRegister={'div'}
-      registerLabelText={'Register'}
-      headerTextVariant={'h2'}
       sxAppBar={breakpointsAppBar}
       sxText={breakpointsText}
-      registerLinkText={breakpointsText as NormalCssProperties}
-      toPropRegister={'/register-user'}
     />
     <Main component={'main'} id={'main-container'} maxWidth={false} breakpointsMain={breakpointsMain} />
     <Footer component={'footer'} breakpointsFooter={breakpointsFooter} breakpointsFooterText={breakpointsFooterText} />
-  </>
+  </Fragment>
 );
+
 
 export default Layout;

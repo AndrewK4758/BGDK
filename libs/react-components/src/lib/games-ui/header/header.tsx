@@ -1,66 +1,61 @@
 import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import { Variant } from '@mui/material/styles/createTypography';
-import { ElementType } from 'react';
-import { useActionData } from 'react-router-dom';
+import { ElementType, useContext, useEffect } from 'react';
 import { Theme } from '../../theme/theme';
 import Text from '../text/text';
 import HeaderMenu from './header-menu/header-menu';
 import LoginDrawer from '../login/login-drawer';
 import RegisterDrawer from '../register-user/register-drawer';
+import { ActiveUserContext } from '../context/active-user-context';
 
 const breakpointsMenuItem: SxProps = {
   color: Theme.palette.primary.main,
   backgroundColor: Theme.palette.info.main,
+  width: '100%',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
   },
 };
 
-const breakpointsMenu = {
+const breakpointsMenu: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '2rem',
   },
 };
 
 export interface ActiveUserData {
-  playerName: string;
-  friends: string[];
-  activeGames: string[];
-  thumbnail: string;
+  id: string | undefined;
+  playerName: string | undefined;
+  friends: string[] | undefined;
+  activeGames: string[] | undefined;
+  thumbnail: string | undefined;
 }
 
 export interface HeaderProps {
-  component: ElementType;
-  registerLabelText: string;
-  headerTextVariant: Variant;
-  sxAppBar?: SxProps;
-  sxText?: SxProps;
-  registerLinkText?: SxProps;
+  componentAppBar: ElementType;
   componentLogin: ElementType;
   componentRegister: ElementType;
-  toPropRegister: string;
+  sxAppBar?: SxProps;
+  sxText?: SxProps;
 }
 
-export const Header = ({
-  component,
-  registerLabelText,
-  sxAppBar,
-  sxText,
-  registerLinkText,
-  componentLogin,
-  componentRegister,
-  toPropRegister,
-}: HeaderProps) => {
-  const action = useActionData() as ActiveUserData;
+export const Header = ({ componentAppBar, componentLogin, componentRegister, sxAppBar, sxText }: HeaderProps) => {
+  const activeUser = useContext(ActiveUserContext);
 
+  useEffect(() => {
+    sessionStorage.setItem('user', JSON.stringify(activeUser.activeUser));
+  }, [activeUser.activeUser, activeUser.setActiveUser]);
   return (
-    <AppBar component={component} sx={sxAppBar}>
+    <AppBar component={componentAppBar} sx={sxAppBar}>
       <HeaderMenu breakpointsMenuItem={breakpointsMenuItem} breakpointsMenu={breakpointsMenu} />
-      <Box component={componentLogin} sx={{ ...sxText }}>
-        {action && action.playerName && (
-          <Text titleText={`Welcome ${action.playerName}`} titleVariant="h2" sx={{ textAlign: 'center' }} />
+      <Box component={componentLogin} sx={sxText}>
+        {activeUser.activeUser.playerName && (
+          <Text
+            titleText={`Welcome ${activeUser.activeUser.playerName}`}
+            titleVariant="h2"
+            sx={{ textAlign: 'center' }}
+          />
         )}
       </Box>
       <Box

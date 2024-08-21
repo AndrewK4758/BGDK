@@ -43,8 +43,8 @@ export function ChatInput({
       onSubmit={values => {
         submit(values, {
           encType: 'application/json',
-          method: 'post',
-          action: '/?index',
+          method: `${method}`,
+          action: `${action}`,
           replace: true,
         });
       }}
@@ -53,6 +53,7 @@ export function ChatInput({
         <TextInput
           autoComplete="off"
           label="Prompt Input"
+          labelComponent={'h2'}
           placeholder="Enter prompt here"
           type={type}
           name={name}

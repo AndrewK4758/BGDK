@@ -12,6 +12,7 @@ export interface MainProps {
 }
 
 export function Main({ component, maxWidth, breakpointsMain, id }: MainProps) {
+
   return (
     <Container component={component} id={id} maxWidth={maxWidth} sx={breakpointsMain}>
       <Outlet />

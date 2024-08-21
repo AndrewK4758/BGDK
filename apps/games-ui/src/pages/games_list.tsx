@@ -25,7 +25,7 @@ const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
   const media = useMediaQuery(Theme.breakpoints.up('tablet'));
 
-  const listGamesMap = (e: IBuiltGame, i: number, arr: IBuiltGame[]) => (
+  const listGamesMap = (e: IBuiltGame, _i: number, _arr: IBuiltGame[]) => (
     <Fragment key={e.id}>
       <ImageLink
         type="a"

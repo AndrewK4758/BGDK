@@ -226,7 +226,7 @@ model users {
   active_games String[] @db.VarChar(255)
   friends      String[] @db.VarChar(255)
   role         String   @db.VarChar(8)
-  thumbnail    Bytes[]
+  thumbnail    String?  @unique(map: "thumbnail") @db.VarChar(255)
 
   @@schema("games")
 }

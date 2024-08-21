@@ -25,7 +25,16 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../libs/**/*/src/**/*.ts",
-    "../../libs/**/*/src/**/*.tsx"
+    "../../libs/chains-for-games/**/*/src/**/*.ts",
+    "../../libs/game-builder/**/*/src/**/*.ts",
+    "../../libs/game/**/*/src/**/*.ts",
+    "../../libs/types/**/*/src/**/*.ts",
+    "../../libs/model/de-referencing-utilities/**/*/src/**/*.ts",
+    "../../libs/model/all-games-map/**/*/src/**/*.ts",
+    "../../libs/model/instance-of-game/**/*/src/**/*.ts",
+    "../../libs/model/game-builder/**/*/src/**/*.ts",
+    "../../libs/games/**/*/src/**/*.ts",
+    "../../libs/games-components-logic/**/*/src/**/*.ts",
+    "../../libs/react-components/**/*/src/**/*.tsx"
   ]
 }

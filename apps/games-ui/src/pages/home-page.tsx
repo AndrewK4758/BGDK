@@ -1,6 +1,6 @@
-import { Home, Theme } from '@bgdk/react-components';
-import { SxProps } from '@mui/material';
+import { Theme, JoinGame, Text, ChatInput } from '@bgdk/react-components';
 import { useActionData } from 'react-router-dom';
+import { SxProps } from '@mui/material';
 
 const breakpointsHomeTextTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
@@ -25,6 +25,8 @@ const breakpointsJoinGameButton: SxProps = {
 };
 
 const breakpointsJoinGameLabel: SxProps = {
+  m: 0,
+  marginBottom: 1,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '2rem',
     marginTop: 0,
@@ -73,18 +75,48 @@ const breakpointsChatResponse: SxProps = {
   },
 };
 
-export default function HomePage() {
+const Home = () => {
   const response = useActionData() as string;
   return (
-    <Home
-      breakpointsHomeText={breakpointsHomeText}
-      breakpointsHomeTextTitle={breakpointsHomeTextTitle}
-      breakpointsJoinGameButton={breakpointsJoinGameButton}
-      breakpointsJoinGameText={breakpointsJoinGameText}
-      breakpointsJoinGameLabel={breakpointsJoinGameLabel}
-      breakpointsChatInputText={breakpointsChatInputText}
-      breakpointsChatResponse={breakpointsChatResponse}
-      response={response}
-    />
+    <>
+      <Text titleVariant="h1" titleText="Welcome To My Game" sx={breakpointsHomeTextTitle} />
+      <Text
+        titleVariant="body1"
+        titleText={
+          <>
+            Login or Register to enjoy the best experience. <br /> THEN <br /> Click on MENU &#8658; SHOW GAMES to
+            select your title <br /> OR <br /> Enter your link into the box below to join active game
+          </>
+        }
+        sx={breakpointsHomeText}
+      />
+      <JoinGame
+        method="patch"
+        type="text"
+        buttonText="Join Game"
+        buttonType="submit"
+        name="gamePath"
+        variant="outlined"
+        breakpointsJoinGameButton={breakpointsJoinGameButton}
+        breakpointsJoinGameText={breakpointsJoinGameText}
+        breakpointsJoinGameLabel={breakpointsJoinGameLabel}
+      />
+      <br />
+      <Text titleVariant="body1" titleText={response} sx={breakpointsChatResponse} />
+      <ChatInput
+        method="post"
+        action="/?index"
+        type="text"
+        buttonText="Ask Astro"
+        buttonType="submit"
+        name="promptInput"
+        variant="outlined"
+        breakpointsChatInputButton={breakpointsJoinGameButton}
+        breakpointsChatInputLabel={breakpointsJoinGameLabel}
+        breakpointsChatInputText={breakpointsChatInputText}
+      />
+    </>
   );
-}
+};
+
+export default Home;

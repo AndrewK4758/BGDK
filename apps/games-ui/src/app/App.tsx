@@ -5,38 +5,29 @@ import { NoGameError, NotEnoughPlayersError } from '../errors/error';
 import ActiveGameSession from '../pages/active_game_session';
 import GameDetails from '../pages/game_details';
 import GamesList from '../pages/games_list';
-import HomePage from '../pages/home-page';
+import Home from '../pages/home-page';
 import RegisterPlayerAndAvatarOnGame from '../pages/register_player_and_avatar_on_game';
-import joinGameAction from '../services/action_functions/join_game_action';
-import registerUserAction from '../services/action_functions/register-user-action';
 import registerGameInstanceOnServerAction from '../services/action_functions/register_game_on_server_action';
 import registerPlayerAndAvatarAction from '../services/action_functions/register_player_avatar_action';
 import vertexSubmitAction from '../services/action_functions/vertex-submit-action';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
-import loginUserAction from '../services/action_functions/login-action';
+import ActiveUserProvider from '../context/active-user-context-provider';
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: Layout,
-    action: loginUserAction,
-    id: 'activeUserData',
     children: [
       {
         index: true,
-        path: 'register-user',
-        action: registerUserAction,
-      },
-      {
-        index: true,
-        Component: HomePage,
+        Component: Home,
         action: vertexSubmitAction,
       },
       {
         path: 'games',
-        loader: loadGameList,
         id: 'gameList',
+        loader: loadGameList,
         children: [
           {
             index: true,
@@ -54,14 +45,9 @@ const router = createBrowserRouter([
               {
                 path: 'register',
                 loader: loadPlayerAvatarRegisterFilterData,
+                Component: RegisterPlayerAndAvatarOnGame,
                 id: 'registerData',
                 errorElement: <NoGameError />,
-                children: [
-                  {
-                    index: true,
-                    Component: RegisterPlayerAndAvatarOnGame,
-                  },
-                ],
               },
               {
                 path: 'play',
@@ -74,16 +60,14 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        index: true,
-        path: 'join-game',
-        action: joinGameAction,
-      },
     ],
   },
 ]);
 
-const App = () => {
-  return <RouterProvider router={router} fallbackElement={<Waiting />} />;
-};
+const App = () => (
+  <ActiveUserProvider>
+    <RouterProvider router={router} fallbackElement={<Waiting />} />
+  </ActiveUserProvider>
+);
+
 export default App;

@@ -8,6 +8,9 @@ import { Form, Formik } from 'formik';
 import { CSSProperties } from 'react';
 import { useParams, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
+import { IRegisterUserClient } from '@bgdk/types-api';
+
+//AFTER API WORK ON AUTO SELECTING THE PLAYER NAME TO BE THE NAME OF THE REGISTERED USER
 
 const breakpointsSelectMenuSxProps: SxProps = {
   color: Theme.palette.primary.main,
@@ -39,7 +42,7 @@ const breakpointsRegisterPlayerLabel: SxProps = {
 };
 
 const breakpointsRegisterPlayerTextInput: SxProps = {
-  width: '35%',
+  width: '35vw',
   backgroundColor: Theme.palette.info.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '20px',
@@ -73,13 +76,19 @@ const breakpointsAvatarPicture: CSSProperties = {
   height: '64px',
 };
 
-const avatarColorMap = (e: Color, i: number, arr: string[]) => (
+const initialValues = {
+  playerName: '',
+  avatarName: '',
+  avatarColor: '',
+};
+
+const avatarColorMap = (e: Color, _i: number, _arr: string[]) => (
   <MenuItem key={e} value={e} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e}
   </MenuItem>
 );
 
-const avatarListMap = (e: AvatarTotem, i: number, arr: AvatarTotem[]) => (
+const avatarListMap = (e: AvatarTotem, _i: number, _arr: AvatarTotem[]) => (
   <MenuItem key={e.name} value={e.name} divider={true} sx={breakpointsSelectMenuSxProps}>
     {e.name}
     <img src={`./game-avatars/${e.image}`} alt={`${e.name} avatar`} style={breakpointsAvatarPicture} />
@@ -91,42 +100,42 @@ export default function RegisterPlayerAndAvatarForm() {
   const submit = useSubmit();
   const data = useRouteLoaderData('registerData') as ILoadRegisterData;
 
+  const user = JSON.parse(sessionStorage.getItem('user') as string) as IRegisterUserClient;
+
+  const validationSchema = Yup.object().shape({
+    playerName: Yup.string()
+      .min(2, 'Must be min of 2 characters')
+      .max(20, 'Must be 20 characters or less')
+      .required('Required, please enter player name')
+      .default(user.playerName),
+    avatarName: Yup.string().required('Required, please select avatar name'),
+    avatarColor: Yup.string().required('Required, please select avatar color'),
+  });
+
   const colors = Object.values(data.avatarColorList) as Color[];
   const avatars = data.avatarList as AvatarTotem[];
 
   const id = params.id;
 
-  const validationSchema = Yup.object({
-    playerName: Yup.string()
-      .min(2, 'Must be min of 2 characters')
-      .max(20, 'Must be 20 characters or less')
-      .required('Required, please enter player name'),
-    avatarName: Yup.string().required('Required, please select avatar name'),
-    avatarColor: Yup.string().required('Required, please select avatar color'),
-  });
-
   return (
     <Formik
-      initialValues={{ playerName: '', avatarName: '', avatarColor: '' }}
+      initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={values =>
-        submit(values, {
-          method: 'patch',
-          action: `/games/${id}/play`,
-          encType: 'application/json',
-        })
-      }
+      onSubmit={values => submit(values, { method: 'patch', action: `/games/${id}/play`, encType: 'application/json' })}
     >
       <Form>
         <Container component={'section'} sx={breakpointsFormContianer}>
-          <FormikTextInput
-            autoComplete="off"
-            type="text"
-            name="playerName"
-            label="Player Name"
-            textSx={breakpointsRegisterPlayerTextInput}
-            labelSx={breakpointsRegisterPlayerLabel}
-          />
+          {user.playerName ? null : (
+            <FormikTextInput
+              autoComplete="off"
+              labelComponent={'h2'}
+              type="text"
+              name="playerName"
+              label="Player Name"
+              textSx={breakpointsRegisterPlayerTextInput}
+              labelSx={breakpointsRegisterPlayerLabel}
+            />
+          )}
           <SelectMenu
             name="avatarName"
             label="Avatar Name"
@@ -145,7 +154,7 @@ export default function RegisterPlayerAndAvatarForm() {
           />
         </Container>
         <Button type="submit" variant="outlined" sx={breakpointsRegisterPlayerButton}>
-          Register
+          {'Register'}
         </Button>
       </Form>
     </Formik>

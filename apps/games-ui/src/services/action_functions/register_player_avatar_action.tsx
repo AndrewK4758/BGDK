@@ -1,3 +1,4 @@
+import { IRegisterUserClient } from '@bgdk/types-api';
 import { IRegisterFormValues } from '@bgdk/types-game';
 import axios from 'axios';
 import { ActionFunction, ActionFunctionArgs } from 'react-router-dom';
@@ -9,7 +10,10 @@ const registerPlayerAndAvatarAction: ActionFunction = async ({ request, params }
   const data: IRegisterFormValues = await request.json();
 
   const avatarName = data.avatarName;
-  const playerName = data.playerName;
+  const playerName =
+    data.playerName.length === 0
+      ? (JSON.parse(sessionStorage.getItem('user') as string).playerName as IRegisterUserClient)
+      : data.playerName;
   const avatarColor = data.avatarColor;
 
   const registerFormValues = {
@@ -21,7 +25,6 @@ const registerPlayerAndAvatarAction: ActionFunction = async ({ request, params }
   const reqHeaders = {
     headers: {
       'current-game': sessionStorage.getItem('__current_game__'),
-      Authorization: sessionStorage.getItem('token'),
     },
   };
 

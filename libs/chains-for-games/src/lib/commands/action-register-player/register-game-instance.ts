@@ -9,7 +9,7 @@ export const registerOnGameInstance = CommandBuilder.build((context: Context) =>
     const { playerName, avatarName, avatarColor } = req.body as IRegisterFormValues;
 
     context.put('avatarName', avatarName);
-    const playerID = context.get('playerID') as PlayerID;
+    const playerID = req.playerID ? req.playerID : (context.get('playerID') as PlayerID);
 
     game.instance.register(playerName, playerID, avatarName, avatarColor);
     context.put(GameContextKeys.NEXT, 'filter-avatar');

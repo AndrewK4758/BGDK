@@ -37,8 +37,8 @@ export default function RegisterPlayerAndAvatarOnGame() {
   const loader = useRouteLoaderData('registerData') as IRegisterLoaderAndFilter;
   const location = useLocation();
 
-  const gameID = loader.gamePlayerIDs.gameInstanceID;
-  const playerID = loader.gamePlayerIDs.playerID;
+  const gameID = loader.gamePlayerIDs.gameInstanceID ?? '';
+  const playerID = loader.gamePlayerIDs.playerID ?? '';
 
   const gameLocatordata = location.pathname.replace('register', `${gameID}`).slice(1);
 

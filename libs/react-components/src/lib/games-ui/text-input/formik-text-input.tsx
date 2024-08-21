@@ -18,6 +18,7 @@ export interface FormikTextInputProps {
   textSx?: SxProps;
   labelSx?: SxProps;
   onBlurCB?: (event: FocusEvent<unknown>) => void;
+  value?: string;
 }
 
 export function FormikTextInput({
@@ -27,11 +28,13 @@ export function FormikTextInput({
   autoComplete,
   labelComponent,
   size,
+  value,
   onBlurCB,
   ...props
 }: FormikTextInputProps) {
   const [field, meta] = useField(props);
   if (onBlurCB) field.onBlur = onBlurCB;
+
   return (
     <Fragment key={label}>
       <InputLabel component={labelComponent} variant="filled" sx={labelSx}>

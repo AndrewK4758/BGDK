@@ -11,7 +11,7 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
 
     const __current_game__: GamePlayerValidation = JSON.parse(req.header('current-game') as string);
 
-    __current_game__.playerID = context.get('playerID') as PlayerID;
+    __current_game__.playerID = req.playerID ? req.playerID : (context.get('playerID') as PlayerID);
 
     resp.setHeader('current-game', JSON.stringify(__current_game__));
 

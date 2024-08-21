@@ -1,3 +1,4 @@
+export * from './lib/games-ui/context/active-user-context';
 export * from './lib/games-ui/register-user/register-drawer';
 export * from './lib/games-ui/login/login-drawer';
 export * from './lib/games-ui/errors/action-error';
@@ -14,7 +15,6 @@ export * from './lib/games-ui/game-board/game-board';
 export * from './lib/games-ui/game-board/game-board-tic-tac-toe';
 export * from './lib/games-ui/header/header';
 export * from './lib/games-ui/header/header-menu/header-menu';
-export * from './lib/games-ui/home/home';
 export * from './lib/games-ui/main/main';
 export * from './lib/games-ui/render-list/heading-with-details/heading-with-details';
 export * from './lib/games-ui/render-list/image-link/image-link';

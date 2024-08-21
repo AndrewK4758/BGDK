@@ -13,8 +13,7 @@
     "src/**/*.d.ts",
     "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.ts",
-    "src/services/prisma/users/update-user-active-games.ts"
+    "../../../__mocks__/**/*.ts"
   ],
-  "exclude": ["../../../libs/react-components/**/*"]
+  "exclude": ["../../../libs/react-components/**/*", "../../../libs/**/*/src/tests/**/*.ts"]
 }

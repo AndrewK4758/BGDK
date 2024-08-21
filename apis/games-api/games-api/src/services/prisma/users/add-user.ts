@@ -11,6 +11,7 @@ const addUser = async ({
   createdOn,
   password,
   playerName,
+  thumbnail,
   role,
 }: IRegisterUser): Promise<users> => {
   const hashPassword = await generatePassword(password);
@@ -24,6 +25,7 @@ const addUser = async ({
         created_on: createdOn,
         password: hashPassword,
         player_name: playerName,
+        thumbnail: thumbnail as string,
         role: role,
       },
     });
