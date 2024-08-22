@@ -11,7 +11,7 @@ import FormikTextInput from '../text-input/formik-text-input';
 import Text from '../text/text';
 import registerUserAction from './actions/register-user-action';
 import updateFormOnChange from './events/add-file-to-form-on-change';
-import verifyEmailObBlur from './events/verify-email-ob-blur';
+import verifyEmailObBlur from './events/verify-email-on-blur';
 import {
   breakpointsButtonSx,
   breakpointsLabelSx,

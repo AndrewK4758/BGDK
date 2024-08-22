@@ -7,7 +7,7 @@ const registerUserAction = async (
   values: IRegisterUserClient,
   setRegisterError: Dispatch<SetStateAction<IActionError | null>>,
 ) => {
-  console.log('in subimt func');
+
   const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   const { firstName, lastName, email, playerName, password, thumbnail }: IRegisterUserClient = values;
 

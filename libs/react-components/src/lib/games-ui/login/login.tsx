@@ -1,67 +1,17 @@
 // import styles from './login.module.css';
-import { Theme } from '../../theme/theme';
-import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import YupPassword from 'yup-password';
-import FormikTextInput from '../text-input/formik-text-input';
+import { MouseEvent, useContext, useState } from 'react';
 import { IActionError } from '../../../interfaces/action-error';
-import ActionError from '../errors/action-error';
-import { MouseEvent, useState, useContext } from 'react';
-import axios, { AxiosError } from 'axios';
-import { GamePlayerValidation } from '@bgdk/types-game';
 import { ActiveUserContext } from '../context/active-user-context';
-
-YupPassword(Yup);
-
-const validationSchema = Yup.object({
-  email: Yup.string().email().required('Must enter valid email in the form email@email.email'),
-  password: Yup.string().password().required('Password is required'),
-});
-
-const initialValues = {
-  email: '',
-  password: '',
-};
-const breakpointsTextBoxSx: SxProps = {
-  backgroundColor: Theme.palette.info.main,
-  width: '30vw',
-  height: '5vw',
-  justifySelf: 'center',
-  alignSelf: 'center',
-  p: 0,
-  m: 0,
-  fontSize: '2rem',
-  borderRadius: '5px',
-  [Theme.breakpoints.down('laptop')]: {
-    fontSize: '17px',
-    textAlign: 'center',
-    height: 35,
-    width: 230,
-  },
-};
-
-const breakpointsButtonSx: SxProps = {
-  backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
-    fontSize: '17px',
-    width: 130,
-    height: 25,
-  },
-};
-
-const breakpointsLabelSx: SxProps = {
-  color: Theme.palette.primary.main,
-  textShadow: `1px 1px 1px #800080`,
-};
+import ActionError from '../errors/action-error';
+import FormikTextInput from '../text-input/formik-text-input';
+import loginUserAction from './actions/login-user-action';
+import verifyEmailOnBlur from './events/verify-login-email-on-blur';
+import { breakpointsButtonSx, breakpointsLabelSx, breakpointsTextBoxSx } from './styles/login-sx-props';
+import { initialValues, LoginDataProps, validationSchema } from './validations/login-validation-schema';
 
 type Anchor = 'right';
-
-interface LoginDataProps {
-  email: string;
-  password: string;
-}
 
 interface LoginProps {
   toggleDrawer: (anchor: Anchor, open: boolean) => (event: MouseEvent) => void;
@@ -70,31 +20,14 @@ interface LoginProps {
 
 export const Login = ({ toggleDrawer, anchor }: LoginProps) => {
   const [loginError, setLoginError] = useState<IActionError>({ errorMessage: '' });
+  const [noEmailError, setNoEmailError] = useState<string>('');
   const { setActiveUser } = useContext(ActiveUserContext);
-
-  const handleSubmit = async (values: LoginDataProps) => {
-    const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
-    try {
-      const resp = await axios.patch(`${baseURL}/login`, { email: values.email, password: values.password });
-
-      const gameID = sessionStorage.getItem('__current_game__')
-        ? (JSON.parse(sessionStorage.getItem('__current_game__') as string) as GamePlayerValidation).gameInstanceID
-        : '';
-      setActiveUser(resp.data);
-      const __current_game__ = { gameInstanceID: gameID, playerID: resp.data.id } as GamePlayerValidation;
-      sessionStorage.setItem('__current_game__', JSON.stringify(__current_game__));
-    } catch (err) {
-      console.error(err);
-      const { response } = err as AxiosError;
-      setLoginError(response?.data as IActionError);
-    }
-  };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values: LoginDataProps) => handleSubmit(values)}
+      onSubmit={(values: LoginDataProps) => loginUserAction(values, setActiveUser, setLoginError)}
     >
       <Form method="PATCH">
         <FormikTextInput
@@ -107,7 +40,10 @@ export const Login = ({ toggleDrawer, anchor }: LoginProps) => {
           name="email"
           textSx={breakpointsTextBoxSx}
           labelSx={breakpointsLabelSx}
+          onBlurCB={e => verifyEmailOnBlur(e, setNoEmailError)}
         />
+        <br />
+        {noEmailError && <ActionError errorMessage={noEmailError} />}
         <FormikTextInput
           autoComplete="on"
           labelComponent={'h2'}

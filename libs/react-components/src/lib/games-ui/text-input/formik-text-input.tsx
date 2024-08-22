@@ -50,6 +50,7 @@ export function FormikTextInput({
           sx: textSx,
         }}
         sx={textSx}
+        onBlur={onBlurCB}
       />
       {meta.touched && meta.error ? (
         <Text

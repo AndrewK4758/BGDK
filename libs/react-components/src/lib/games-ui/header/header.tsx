@@ -50,13 +50,30 @@ export const Header = ({ componentAppBar, componentLogin, componentRegister, sxA
     <AppBar component={componentAppBar} sx={sxAppBar}>
       <HeaderMenu breakpointsMenuItem={breakpointsMenuItem} breakpointsMenu={breakpointsMenu} />
       <Box component={componentLogin} sx={sxText}>
-        {activeUser.activeUser.playerName && (
-          <Text
-            titleText={`Welcome ${activeUser.activeUser.playerName}`}
-            titleVariant="h2"
-            sx={{ textAlign: 'center' }}
-          />
-        )}
+        <Box sx={{ flex: '1 0 50%' }}>
+          {activeUser.activeUser.playerName && (
+            <Text
+              titleText={`Welcome ${activeUser.activeUser.playerName}`}
+              titleVariant="h2"
+              sx={{ fontSize: '52px' }}
+            />
+          )}
+        </Box>
+        <Box sx={{ flex: '1 0 50%' }}>
+          {activeUser.activeUser.thumbnail && (
+            <img
+              src={activeUser.activeUser.thumbnail}
+              alt="active avatar"
+              style={{
+                width: '70px',
+                height: 'auto',
+                flex: '1 0 50%',
+                alignSelf: 'center',
+                borderRadius: '45px',
+              }}
+            />
+          )}
+        </Box>
       </Box>
       <Box
         component={componentRegister}

@@ -24,9 +24,11 @@ const breakpointsAppBar: SxProps = {
 
 const breakpointsText: SxProps = {
   flex: '1 0 auto',
-  textAlign: 'end',
+  textAlign: 'center',
   alignSelf: 'center',
   textDecoration: 'none',
+  display: 'flex',
+  height: '65px',
   color: Theme.palette.primary.main,
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '2rem',

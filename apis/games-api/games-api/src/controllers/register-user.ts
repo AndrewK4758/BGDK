@@ -20,9 +20,6 @@ const registerUser = async (req: Request, resp: Response) => {
     await buffer.save(thumbnail.buffer, {
       resumable: false,
       contentType: thumbnail.mimetype,
-      onUploadProgress: prog => {
-        console.log(prog);
-      },
     });
 
     const registerUser: IRegisterUser = {
