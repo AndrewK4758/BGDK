@@ -1,3 +1,4 @@
+export * from './lib/shared/waiting/waiting';
 export * from './lib/games-ui/context/active-user-context';
 export * from './lib/games-ui/register-user/register-drawer';
 export * from './lib/games-ui/login/login-drawer';

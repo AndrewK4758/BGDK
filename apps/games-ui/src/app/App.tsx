@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import Waiting from '../components/layout/waiting';
+import { Waiting } from '@bgdk/react-components';
 import { NoGameError, NotEnoughPlayersError } from '../errors/error';
 import ActiveGameSession from '../pages/active_game_session';
 import GameDetails from '../pages/game_details';

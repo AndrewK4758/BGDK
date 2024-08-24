@@ -2,10 +2,9 @@ import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import Routes from './routes/routes';
+import Routes, { router } from './routes/routes';
 
 const app = express();
-const router = express.Router();
 
 export const corsOptions: CorsOptions = {
   origin: '*',
@@ -23,7 +22,7 @@ app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
-new Routes(router);
+new Routes();
 
 const port = process.env.PORT || 4444;
 

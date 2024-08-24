@@ -1,10 +1,12 @@
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
+
 const { join } = require('path');
 
 module.exports = {
   output: {
     path: join(__dirname, '../../../dist/apis/data-api'),
   },
+  watch: process.env.NODE_ENV === 'production' ? false : true,
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',

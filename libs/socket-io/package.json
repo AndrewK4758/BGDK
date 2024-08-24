@@ -1,4 +1,9 @@
 {
   "name": "@bgdk/socket-io",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "tslib": "^2.6.3"
+  }
 }

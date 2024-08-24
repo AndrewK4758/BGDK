@@ -4,9 +4,9 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
+    "composite": true,
     "outDir": "../../dist/out-tsc",
-    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
-    "composite": true
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -35,6 +35,6 @@
     "../../libs/model/game-builder/**/*/src/**/*.ts",
     "../../libs/games/**/*/src/**/*.ts",
     "../../libs/games-components-logic/**/*/src/**/*.ts",
-    "../../libs/react-components/**/*/src/**/*.tsx"
+    "../../libs/react-components/src/**/*.tsx"
   ]
 }

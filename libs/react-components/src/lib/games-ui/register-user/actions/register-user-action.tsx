@@ -18,17 +18,17 @@ const registerUserAction = async (
     },
   };
 
-  const registerUserForm = new FormData();
-
-  registerUserForm.append('thumbnail', thumbnail as string | Blob);
-  registerUserForm.append('firstName', firstName);
-  registerUserForm.append('lastName', lastName);
-  registerUserForm.append('email', email);
-  registerUserForm.append('password', password);
-  registerUserForm.append('playerName', playerName);
+  const registerUserData = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    playerName: playerName,
+    password: password,
+    thumbnail: thumbnail,
+  };
 
   try {
-    const resp = await axios.post(`${baseURL}/register-user`, registerUserForm, reqHeaders);
+    const resp = await axios.postForm(`${baseURL}/register-user`, registerUserData, reqHeaders);
     console.log(resp.data);
     return resp.data;
   } catch (err) {
