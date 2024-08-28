@@ -16,15 +16,15 @@ export const corsOptions: CorsOptions = {
 
 export const httpServer = http.createServer(app);
 
-app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
 new Routes();
 
-const port = process.env.PORT || 4444;
+const port = process.env.PORT || 4000;
 
 
 const server = app.listen(port, () => {

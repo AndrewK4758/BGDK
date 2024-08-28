@@ -2,26 +2,23 @@
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Waiting } from '@bgdk/react-components';
-import Layout from '../layout/layout';
-import submitArtistAction from '../services/actions/submit-artist-action';
-import loadArtists from '../services/loaders/load-artists';
-// import Artist from '../components/artists/artist-base';
-import Album from '../components/albums/album-base';
-import Artist2 from '../components/artists/artist2';
 import Artist from '../components/artists/artist-base';
+// import axios from 'axios';
+import loadArtists from '../services/loaders/load-artists';
+
+// const baseURL = import.meta.env.VITE_DATA_API_URL;
+
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: Layout,
-    // id: 'artists',
-    // loader: loadArtists,
+    // Component: Layout,
+    Component: Artist,
+    id: 'artistsWithCount',
+    loader: loadArtists,
     children: [
       {
         index: true,
-        Component: Artist,
-        path: 'artist',
-
-        action: submitArtistAction,
+        path: 'details',
       },
       {
         index: true,

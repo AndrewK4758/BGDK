@@ -11,12 +11,12 @@ export interface TextProps {
   sx?: SxProps;
 }
 
-export function Text({ titleVariant, titleText, sx }: TextProps) {
-  return (
-    <Typography variant={titleVariant} sx={sx}>
-      {titleText}
-    </Typography>
-  );
-}
+export const Text = ({ titleVariant, titleText, sx }: TextProps) => (
+  <Typography variant={titleVariant} sx={sx}>
+    {titleText}
+  </Typography>
+);
+
+
 
 export default Text;

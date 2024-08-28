@@ -34,6 +34,7 @@
     "@mui/styled-engine-sc": "6.0.0-alpha.18",
     "@mui/types": "^7.2.15",
     "@mui/x-data-grid": "^7.14.0",
+    "@mui/x-tree-view": "^7.14.0",
     "@prisma/client": "^5.18.0",
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",

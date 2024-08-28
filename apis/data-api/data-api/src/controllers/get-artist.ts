@@ -6,7 +6,7 @@ const getArtist = async (req: Request, resp: Response) => {
   try {
     const artistID = req.params.id;
 
-    const artist = await findArtist(parseInt(artistID));
+    const artist = await findArtist(parseInt(artistID, 10));
 
     artist ? resp.status(200).json(artist) : resp.status(404).json(findArtistError());
   } catch (error) {
