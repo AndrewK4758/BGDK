@@ -64,6 +64,7 @@
   "devDependencies": {
     "@babel/core": "7.25.2",
     "@babel/preset-react": "^7.24.7",
+    "@mui/x-data-grid-generator": "^7.14.0",
     "@nx/devkit": "19.6.2",
     "@nx/eslint": "19.6.2",
     "@nx/eslint-plugin": "19.6.2",

@@ -9,7 +9,10 @@ const Layout = () => {
   return (
     <>
       <Box key={'header'} component={'header'}>
-        <Paper elevation={12} sx={{ position: 'fixed', left: 0, right: 0, top: 0, height: '80px', display: 'flex' }}>
+        <Paper
+          elevation={12}
+          sx={{ position: 'fixed', left: 0, right: 0, top: 0, height: '80px', display: 'flex', zIndex: 100 }}
+        >
           <Box sx={{ flex: '1 0 100%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
             <Button type="button" variant="contained" onClick={() => nav('artist')}>
               Artist
@@ -26,6 +29,7 @@ const Layout = () => {
             CLICK ON ARTIST OR ALBUM TO SEARCH OR ADD ENTRIES
           </Typography>
         )}
+
         <Outlet />
       </Container>
       <Box key={'footer'} component={'footer'}></Box>

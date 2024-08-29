@@ -17,7 +17,7 @@ const getArtists = async (req: Request, resp: Response, next: NextFunction): Pro
 
     const allArtists = await findArtists(query);
 
-    allArtists ? resp.status(200).json(allArtists) : resp.status(404).json(findArtistError());
+    allArtists ? resp.status(200).json({ allArtists: allArtists }) : resp.status(404).json(findArtistError());
   }
 };
 export default getArtists;

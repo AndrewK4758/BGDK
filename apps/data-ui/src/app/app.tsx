@@ -1,36 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Waiting } from '@bgdk/react-components';
 import Artist from '../components/artists/artist-base';
-// import axios from 'axios';
-import loadArtists from '../services/loaders/load-artists';
-
-// const baseURL = import.meta.env.VITE_DATA_API_URL;
+import loadArtistsCount from '../services/loaders/load-artists';
+import Layout from '../layout/layout';
+import SelectedArtistDetails from '../components/artists/selected-artist-details';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    // Component: Layout,
-    Component: Artist,
+    Component: Layout,
     id: 'artistsWithCount',
-    loader: loadArtists,
+    loader: loadArtistsCount,
     children: [
       {
-        index: true,
-        path: 'details',
-      },
-      {
-        index: true,
-        path: 'album',
-        // Component: Album,
+        path: 'artist',
+        Component: Artist,
       },
     ],
-  },
-  {
-    // index: true,
-    path: '/artist',
-    // action: submitArtistAction,
   },
 ]);
 

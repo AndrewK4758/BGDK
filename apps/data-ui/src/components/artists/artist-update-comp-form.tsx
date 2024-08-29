@@ -27,11 +27,11 @@ interface UpdateArtistProps {
 
 const UpdateArtist = ({ artist, setSubmitted, submitted, id, setDetails }: UpdateArtistProps) => {
   const formik = useFormik({
-    initialValues: artist,
+    initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: values => {
       setSubmitted(!submitted);
-      handleSubmitNewArtist(values);
+      handleUpdateArtistName(values);
     },
   });
   formik.handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +46,7 @@ const UpdateArtist = ({ artist, setSubmitted, submitted, id, setDetails }: Updat
           Update Artist
         </FormLabel>
         <TextField
-          name="artistName"
+          name="name"
           id={id}
           variant="outlined"
           placeholder="Enter New Name"
@@ -98,7 +98,6 @@ const handleViewDetailsClick = async (
   setDetails: Dispatch<SetStateAction<DetailsProps | undefined>>,
   id: string,
 ) => {
-  console.log(formik.values);
   try {
     const resp = await axios.get(`${baseURL}/artist/${id}`);
     const details = {
@@ -114,7 +113,7 @@ const handleViewDetailsClick = async (
   }
 };
 
-const handleSubmitNewArtist = async (values: artist) => {
+const handleUpdateArtistName = async (values: artist) => {
   const { artist_id, name } = values;
 
   const resp = await axios.patch(`${baseURL}/artists`, { artistID: artist_id, name: name });

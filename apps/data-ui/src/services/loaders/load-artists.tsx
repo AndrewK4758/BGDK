@@ -3,7 +3,7 @@ import { LoaderFunction } from 'react-router-dom';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-const loadArtists: LoaderFunction = async () => {
+const loadArtistsCount: LoaderFunction = async () => {
   try {
     const resp = await axios.get(`${baseURL}/artists-count`);
 
@@ -13,4 +13,4 @@ const loadArtists: LoaderFunction = async () => {
   }
 };
 
-export default loadArtists;
+export default loadArtistsCount;

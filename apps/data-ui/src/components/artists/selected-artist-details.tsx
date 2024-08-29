@@ -1,21 +1,25 @@
-import { AlbumWithTrack, DetailsProps } from './artist-base';
+import { DetailsProps } from './artist-base';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { album, track } from '@prisma/client';
+import { Dispatch, SetStateAction } from 'react';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState } from 'react';
 
 interface SelectedArtistDetailsProps {
   details: DetailsProps | undefined;
+  // submitted: boolean;
+  // setSubmitted: Dispatch<SetStateAction<boolean>>;
+  // id: string;
+  // setDetails: Dispatch<SetStateAction<DetailsProps | undefined>>;
 }
 
 const SelectedArtistDetails = ({ details }: SelectedArtistDetailsProps) => {
   if (details) {
     const { artist, album } = details;
-    console.log(details);
 
     const columns: GridColDef[] = [
       {
@@ -37,18 +41,15 @@ const SelectedArtistDetails = ({ details }: SelectedArtistDetailsProps) => {
         width: 500,
         renderCell: row => {
           console.log(row);
-          return Tracks({ tracks: row.row.track });
+          return row.row.track.map((track: track) => `${track.name}\n`);
         },
       },
     ];
-
-    const rows = album as AlbumWithTrack[];
 
     const getID = (row: album) => {
       return row.album_id;
     };
 
-    console.log(rows, 'rows');
     return (
       <>
         <Box key={'header'} component={'header'}>
@@ -60,8 +61,8 @@ const SelectedArtistDetails = ({ details }: SelectedArtistDetailsProps) => {
             </Box>
           </Paper>
         </Box>
-        <Box sx={{ height: '100vw' }}>
-          <DataGrid columns={columns} rows={album} getRowId={getID} getRowHeight={() => 'auto'} />
+        <Box>
+          <DataGrid autoHeight columns={columns} rows={album} getRowId={getID} getRowHeight={() => 'auto'} />
         </Box>
       </>
     );
@@ -70,36 +71,38 @@ const SelectedArtistDetails = ({ details }: SelectedArtistDetailsProps) => {
 
 export default SelectedArtistDetails;
 
-interface TrackProps {
-  tracks: track[];
-}
+// interface TrackProps {
+//   tracks: track[];
+// }
 
-export const Tracks = ({ tracks }: TrackProps) => {
-  const [action, setAction] = useState<{
-    itemId: string;
-    isExpanded: boolean;
-  } | null>(null);
+// export const Tracks = ({ tracks }: TrackProps) => {
+//   const [action, setAction] = useState<{
+//     itemId: string;
+//     isExpanded: boolean;
+//   } | null>(null);
 
-  const handleItemExpansionToggle = (event: React.SyntheticEvent, itemId: string, isExpanded: boolean) => {
-    setAction({ itemId, isExpanded });
-  };
+//   const handleItemExpansionToggle = (event: React.SyntheticEvent, itemId: string, isExpanded: boolean) => {
+//     setAction({ itemId: itemId, isExpanded: isExpanded });
+//   };
 
-  console.log(tracks);
-  const trackDetails = (): TreeViewBaseItem[] => [
-    {
-      id: `tracks`,
-      label: 'Tracks',
-      children: tracks.map(track => ({ id: `${track.track_id}`, label: `${track.name}` })),
-    },
-  ];
+//   const trackDetails = (): TreeViewBaseItem[] => [
+//     {
+//       id: `tracks`,
+//       label: 'Tracks',
+//       children: tracks.map(track => ({
+//         id: `${track.track_id}`,
+//         label: `${track.name}`,
+//       })),
+//     },
+//   ];
 
-  // const getTrackID = (row: TreeViewBaseItem) => {
-  //   console.log(row);
-  //   return `${row.children.id + 1000}`;
-  // };
-  return (
-    <Box sx={{ minHeight: 352, minWidth: 250 }}>
-      <RichTreeView items={trackDetails()} onItemExpansionToggle={handleItemExpansionToggle} />
-    </Box>
-  );
-};
+//   return (
+//     <Box sx={{ minHeight: 352, minWidth: 250 }}>
+//       <RichTreeView
+//         items={trackDetails()}
+//         onItemExpansionToggle={handleItemExpansionToggle}
+//         onClick={() => console.log(action)}
+//       />
+//     </Box>
+//   );
+// };
