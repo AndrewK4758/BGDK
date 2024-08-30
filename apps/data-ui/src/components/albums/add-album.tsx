@@ -1,39 +1,38 @@
 import { TextField } from '@mui/material';
 import { FormikProps, useFormik } from 'formik';
-import { Dispatch, SetStateAction, FocusEvent, ChangeEvent } from 'react';
+import { FocusEvent, ChangeEvent, MutableRefObject } from 'react';
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
 import { Form } from 'react-router-dom';
 import { Text } from '@bgdk/react-components';
 import Button from '@mui/material/Button';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { artist } from '@prisma/client';
+import { album } from '@prisma/client';
+import { GridApiCommunity } from '@mui/x-data-grid/internals';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-interface AddArtistProps {
-  rowCountState: number;
-  setRowCountState: Dispatch<SetStateAction<number>>;
-  COUNT: number;
+interface AddAlbumProps {
+  artistID: number;
+  apiRef: MutableRefObject<GridApiCommunity>;
 }
 
-const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) => {
+const AddAlbum = ({ artistID, apiRef }: AddAlbumProps) => {
   const formik = useFormik({
-    initialValues: { name: '', artist_id: COUNT + 1 } as artist,
+    initialValues: { title: '', album_id: 0, artist_id: 0 },
     onSubmit: values => {
-      setRowCountState(rowCountState + 1);
-      handleSubmitNewArtist(values, formik);
+      handleSubmitNewAlbum(values, formik, artistID, apiRef);
     },
     validateOnBlur: true,
   });
 
   formik.handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value;
-    formik.values.name = name;
+    const title = e.target.value;
+    formik.values.title = title;
   };
 
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
-    handleNewArtistBlur(e, formik);
+    handleNewAlbumBlur(e, formik, artistID);
   };
 
   return (
@@ -42,7 +41,7 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <>
             <FormLabel htmlFor="name" hidden>
-              Enter Artist Name
+              Enter Album Name
             </FormLabel>
             <TextField
               autoComplete="off"
@@ -50,15 +49,15 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
               id="name"
               variant="outlined"
               color="primary"
-              placeholder="Enter Artist Name"
+              placeholder="Enter Album Name"
               sx={{ flex: '1 0 50%' }}
               onChange={e => formik.handleChange(e)}
               onBlur={e => formik.handleBlur(e)}
             />
             <>
-              {formik.touched.name !== true ? <Text titleVariant="body1" titleText={formik.touched.name} /> : null}
-              {formik.errors.name && formik.touched.name === true ? (
-                <Text titleVariant="body1" titleText={formik.errors.name} />
+              {formik.touched.title !== true ? <Text titleVariant="body1" titleText={formik.touched.title} /> : null}
+              {formik.errors.title && formik.touched.title === true ? (
+                <Text titleVariant="body1" titleText={formik.errors.title} />
               ) : null}
             </>
           </>
@@ -77,32 +76,44 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
   );
 };
 
-const handleSubmitNewArtist = async (values: artist, formik: FormikProps<artist>) => {
-  const { name } = values;
+const handleSubmitNewAlbum = async (
+  values: album,
+  formik: FormikProps<album>,
+  artistID: number,
+  apiRef: MutableRefObject<GridApiCommunity>,
+) => {
   try {
-    const resp = await axios.post(`${baseURL}/artists`, { name: name });
+    const albumTitle = values.title;
+    console.log(albumTitle, artistID);
+    const resp = await axios.post(`${baseURL}/albums`, { title: albumTitle, artistID: artistID });
     console.log(resp.data);
+
+    if (resp.data.newAlbum) {
+      const { title, album_id } = resp.data.newAlbum;
+      apiRef.current.updateRows([{ album_id: album_id, title: title }]);
+    }
   } catch (error) {
     console.error(error);
     const errorMessage = ((error as AxiosError).response as AxiosResponse).data.errorMessage;
     console.log(errorMessage);
-    formik.setErrors({ name: errorMessage });
+    formik.setErrors({ title: errorMessage });
   }
 };
 
-const handleNewArtistBlur = async (
+const handleNewAlbumBlur = async (
   e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>,
-  formik: FormikProps<artist>,
+  formik: FormikProps<album>,
+  artistID: number,
 ) => {
   try {
-    const resp = await axios.get(`${baseURL}/artists?name=${e.target.value}`);
+    const resp = await axios.get(`${baseURL}/albums?title=${e.target.value}&artistID=${artistID}`);
     console.log(resp.data.message);
-    formik.setTouched({ name: resp.data.message }, true);
+    formik.setTouched({ title: resp.data.message }, true);
     return resp.data.message;
   } catch (error) {
-    formik.setErrors({ name: (error as Error).message });
+    formik.setErrors({ title: (error as Error).message });
     console.error(error);
   }
 };
 
-export default AddArtist;
+export default AddAlbum;

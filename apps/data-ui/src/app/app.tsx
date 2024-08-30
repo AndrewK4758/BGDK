@@ -1,10 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Waiting } from '@bgdk/react-components';
 import Artist from '../components/artists/artist-base';
-import loadArtistsCount from '../services/loaders/load-artists';
+import loadArtistsCount from '../services/loaders/load-artists-count';
 import Layout from '../layout/layout';
-import SelectedArtistDetails from '../components/artists/selected-artist-details';
+import SelectedArtistDetails from '../components/albums/artist-albums';
 
 const router = createBrowserRouter([
   {
@@ -14,8 +13,12 @@ const router = createBrowserRouter([
     loader: loadArtistsCount,
     children: [
       {
-        path: 'artist',
+        path: 'artists',
         Component: Artist,
+      },
+      {
+        path: 'albums',
+        Component: SelectedArtistDetails,
       },
     ],
   },

@@ -27,7 +27,7 @@ interface UpdateArtistProps {
 
 const UpdateArtist = ({ artist, setSubmitted, submitted, id, setDetails }: UpdateArtistProps) => {
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: artist,
     validationSchema: validationSchema,
     onSubmit: values => {
       setSubmitted(!submitted);
