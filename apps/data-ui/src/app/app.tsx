@@ -1,24 +1,59 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Waiting } from '@bgdk/react-components';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AlbumsOnArtist from '../components/albums/artist-albums';
 import Artist from '../components/artists/artist-base';
+import Tracks from '../components/tracks/album-tracks';
+import Layout from '../pages/layout/layout';
+import loadAlbumTracks from '../services/loaders/load-album-tracks';
+import loadArtistAlbums from '../services/loaders/load-artist-albums';
 import loadArtistsCount from '../services/loaders/load-artists-count';
-import Layout from '../layout/layout';
-import SelectedArtistDetails from '../components/albums/artist-albums';
+import Album from '../components/albums/album-base';
+import loadAlbumsCount from '../services/loaders/load-albums-count';
+import HomePage from '../pages/home-page';
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: Layout,
-    id: 'artistsWithCount',
-    loader: loadArtistsCount,
     children: [
       {
+        index: true,
+        // path: 'home',
+        Component: HomePage,
+      },
+      {
         path: 'artists',
+        id: 'artist-count',
         Component: Artist,
+        loader: loadArtistsCount,
+        children: [
+          {
+            path: ':artistID/album',
+            id: 'artist-albums',
+            Component: AlbumsOnArtist,
+            loader: loadArtistAlbums,
+            children: [
+              {
+                path: ':albumID/tracks',
+                loader: loadAlbumTracks,
+                Component: Tracks,
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'albums',
-        Component: SelectedArtistDetails,
+        id: 'albums-count',
+        Component: Album,
+        loader: loadAlbumsCount,
+        children: [
+          {
+            path: ':albumID/tracks',
+            Component: Tracks,
+            loader: loadAlbumTracks,
+          },
+        ],
       },
     ],
   },

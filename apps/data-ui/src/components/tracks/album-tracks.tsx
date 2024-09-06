@@ -1,61 +1,30 @@
+import { Text } from '@bgdk/react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import UploadIcon from '@mui/icons-material/Upload';
-import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { track } from '@prisma/client';
 import axios from 'axios';
-import { MutableRefObject, useCallback, useEffect, useState } from 'react';
-import { Prisma } from '@prisma/client';
-import { AlbumState } from '../albums/artist-albums';
+import { MutableRefObject, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
+import { AlbumTracks } from '../../services/loaders/load-album-tracks';
+import AddTrack from './add-track';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-const noSelectedArtistMessage =
-  ' No Artist & Album Details selected. Please navigate to Artists page and select the artist you would like to view';
+const Tracks = () => {
+  const { tracks } = useLoaderData() as AlbumTracks;
+  const params = useParams();
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 5,
+    page: 0,
+  });
 
-const initialState: track = {
-  track_id: 0,
-  album_id: 0,
-  name: '',
-  media_type_id: 0,
-  genre_id: 0,
-  composer: '',
-  milliseconds: 0,
-  bytes: 0,
-  unit_price: new Prisma.Decimal(0.0),
-};
-
-interface AlbumWithTracksProps {
-  details: AlbumState;
-}
-
-const AlbumWithTracks = ({ details }: AlbumWithTracksProps) => {
-  const [tracks, setTracks] = useState<track[]>([initialState]);
-
-  if (details === null) {
-    details = { albumTitle: noSelectedArtistMessage, albumID: 0 };
-  }
-
-  const { albumTitle, albumID } = details;
+  const albumID = parseInt(params.albumID as string, 10);
 
   const apiRef = useGridApiRef();
-
-  const loadTracks = useCallback(async () => {
-    try {
-      const resp = await axios.get(`${baseURL}/tracks/${albumID}`);
-
-      setTracks(resp.data.tracks as track[]);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [albumID]);
-
-  useEffect(() => {
-    loadTracks();
-  }, [loadTracks]);
 
   const columns: GridColDef[] = [
     {
@@ -126,7 +95,6 @@ const AlbumWithTracks = ({ details }: AlbumWithTracksProps) => {
             icon={<UploadIcon />}
             title="Update"
             onClick={() => {
-              console.log(params);
               handleUpdateTrack(params.row, apiRef);
             }}
           />,
@@ -149,38 +117,42 @@ const AlbumWithTracks = ({ details }: AlbumWithTracksProps) => {
   };
 
   return (
-    <Box component={'div'} key={'track-box'} sx={{ width: '100%' }}>
+    <Box component={'div'} key={'track-box'} sx={{ width: '100%', borderTop: '10px solid purple' }}>
       <Box key={'artist-title'} component={'header'}>
         <Paper
           key={'title-bar'}
           component={'div'}
-          elevation={12}
           sx={{ height: 'fit-content', display: 'flex', borderBottom: '3px solid purple' }}
         >
-          <Typography variant="h2" sx={{ flex: '1 0 100%', textAlign: 'center' }}>
-            {albumTitle}
-          </Typography>
+          <Text
+            titleVariant="h2"
+            titleText="Album Tracks"
+            sx={{ flex: '1 0 100%', textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
+          />
         </Paper>
       </Box>
-      <Box component={'div'} key={'add-track-box'}></Box>
+      <Box component={'div'} key={'add-track-box'} sx={{ paddingY: 1 }}>
+        <AddTrack albumID={albumID} apiRef={apiRef} />
+      </Box>
+
       <Box>
-        {details && (
-          <DataGrid
-            autoHeight
-            apiRef={apiRef}
-            columns={columns}
-            rows={tracks}
-            getRowId={getID}
-            getRowHeight={() => 'auto'}
-            pageSizeOptions={[1, 5, 10, 25, 50, 100]}
-          />
-        )}
+        <DataGrid
+          autoHeight
+          apiRef={apiRef}
+          columns={columns}
+          rows={tracks}
+          getRowId={getID}
+          getRowHeight={() => 'auto'}
+          pageSizeOptions={[1, 5, 10, 25]}
+          paginationModel={paginationModel}
+          onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
+        />
       </Box>
     </Box>
   );
 };
 
-export default AlbumWithTracks;
+export default Tracks;
 
 const handleUpdateTrack = async (values: track, apiRef: MutableRefObject<GridApiCommunity>) => {
   try {
@@ -207,7 +179,22 @@ const handleUpdateTrack = async (values: track, apiRef: MutableRefObject<GridApi
     console.log(resp.data);
 
     if (resp.data.updatedTracks) {
-      console.log(apiRef);
+      const { track_id, album_id, name, unit_price, genre_id, media_type_id, composer, milliseconds, bytes } =
+        resp.data.UpdatedTracks;
+
+      apiRef.current.updateRows([
+        {
+          track_id: track_id,
+          album_id: album_id,
+          name: name,
+          unit_price: unit_price,
+          genre_id: genre_id,
+          media_type_id: media_type_id,
+          composer: composer,
+          milliseconds: milliseconds,
+          bytes: bytes,
+        },
+      ]);
     }
   } catch (error) {
     console.error(error);
@@ -215,5 +202,19 @@ const handleUpdateTrack = async (values: track, apiRef: MutableRefObject<GridApi
 };
 
 const handleDeleteTrack = async (values: track, apiRef: MutableRefObject<GridApiCommunity>) => {
-  return 2;
+  try {
+    const { track_id } = values;
+
+    const resp = await axios.delete(`${baseURL}/tracks/${track_id}`, {
+      headers: { 'Content-Type': 'text/plain' },
+    });
+
+    console.log(resp.data);
+    if (resp.data.deletedTrack) {
+      const { track_id } = resp.data.deletedTrack;
+      apiRef.current.updateRows([{ track_id: track_id, _action: 'delete' }]);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };

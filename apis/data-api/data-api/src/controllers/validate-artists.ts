@@ -13,7 +13,7 @@ const validateArtists = async (req: Request, resp: Response) => {
 
     artist
       ? resp.status(200).json({ message: 'Artist Already Exists' })
-      : resp.status(200).json({ message: 'Artist Not in List. Please Submit to Continue' });
+      : resp.status(200).json({ message: 'Artist Not in List' });
   } catch (error) {
     console.error(error);
   }

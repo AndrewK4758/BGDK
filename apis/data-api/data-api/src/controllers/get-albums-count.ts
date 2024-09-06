@@ -1,16 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
 import { prisma } from '@bgdk/prisma';
 
-const getArtistCount = async (req: Request, resp: Response, next: NextFunction) => {
-  if (!req.query.count) next();
-  else {
+const getAlbumsCount = async (req: Request, resp: Response, next: NextFunction) => {
+  if (req.query.count) {
     try {
-      const count = await prisma.artist.count();
+      const count = await prisma.album.count();
       resp.status(200).json({ count: count });
     } catch (err) {
       console.error(err);
     }
-  }
+  } else next();
 };
 
-export default getArtistCount;
+export default getAlbumsCount;

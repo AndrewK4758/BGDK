@@ -1,4 +1,3 @@
-import { Text } from '@bgdk/react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
@@ -7,35 +6,32 @@ import Typography from '@mui/material/Typography';
 import {
   DataGrid,
   GridActionsCellItem,
-  GridRowParams,
   GridColDef,
   GridPaginationModel,
+  GridRowParams,
   useGridApiRef,
 } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
-import axios from 'axios';
-import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react';
-import { useRouteLoaderData, useNavigate, NavigateFunction } from 'react-router-dom';
-import AddArtist from './add-artist';
-import { initialValues } from './artist-update-comp-form';
 import { artist } from '@prisma/client';
+import axios from 'axios';
+import { MutableRefObject, useCallback, useLayoutEffect, useMemo, useState } from 'react';
+import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import loadArtists from '../../services/loaders/load-artists';
+import AddArtist from './add-artist';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-export interface ArtistWithAlbums {
-  artistName: string;
-  artistID: number;
-}
+const paginationModelInit = {
+  pageSize: 25,
+  page: 0,
+};
 
 const Artist = () => {
-  const COUNT = useRouteLoaderData('artistsWithCount') as number;
-  const nav = useNavigate();
-  const [rows, setRows] = useState<artist[]>([initialValues]);
+  const COUNT = useRouteLoaderData('artist-count') as number;
+  const [artists, setArtists] = useState<artist[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
-  const [paginationModel, setPaginationModel] = useState({
-    pageSize: 25,
-    page: 0,
-  });
+  const [paginationModel, setPaginationModel] = useState(paginationModelInit);
+  const nav = useNavigate();
 
   const apiRef = useGridApiRef();
 
@@ -52,20 +48,16 @@ const Artist = () => {
     setPaginationModel(newPaginationModel);
   };
 
-  const loadArtists = useCallback(async () => {
-    try {
-      const { pageSize, skip, cursor } = queryOptions;
-      const resp = await axios.get(`${baseURL}/artists?take=${pageSize}&skip=${skip}&cursor=${cursor}`);
+  const fetchArtists = useCallback(
+    (pageSize: number, skip: number, cursor: number) => loadArtists(pageSize, skip, cursor),
+    [],
+  );
 
-      setRows(resp.data.allArtists);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [queryOptions]);
-
-  useEffect(() => {
-    loadArtists();
-  }, [loadArtists]);
+  useLayoutEffect(() => {
+    fetchArtists(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
+      .then(({ allArtists }) => setArtists(allArtists))
+      .catch(err => console.error(err));
+  }, [fetchArtists, queryOptions]);
 
   const columns: GridColDef[] = [
     {
@@ -86,7 +78,7 @@ const Artist = () => {
     {
       field: 'update-delete',
       type: 'actions',
-      headerName: 'Actions',
+      headerName: 'Update / Delete',
       width: 120,
       getActions: (params: GridRowParams) => {
         return [
@@ -110,7 +102,7 @@ const Artist = () => {
     {
       field: 'details',
       type: 'actions',
-      headerName: 'Show Details',
+      headerName: 'Show Albums',
       width: 120,
       getActions: (params: GridRowParams) => {
         return [
@@ -118,7 +110,7 @@ const Artist = () => {
             label="Details"
             title="Details"
             icon={<DetailsIcon />}
-            onClick={() => handleShowAlbumDetailsForArtist(params.row, nav)}
+            onClick={() => nav(`${params.row.artist_id}/album`)}
           />,
         ];
       },
@@ -159,28 +151,28 @@ const Artist = () => {
             key={'add-artist-box'}
             sx={{ display: 'flex', paddingY: 1, borderBottom: '2px solid purple' }}
           >
-            <Text
-              titleVariant="body1"
-              titleText="Add New Artist"
-              sx={{ flex: '1 0 40%', alignContent: 'center', paddingLeft: 5, fontSize: '18px', fontWeight: 'bold' }}
-            />
             <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
           </Box>
-          <Box component={'div'} key={'artist-dataGrid'}>
+          <Box component={'div'} key={'artist-data-grid-wrapper'}>
             <DataGrid
+              autoHeight
+              aria-label="artist-data-grid"
               apiRef={apiRef}
-              rows={rows}
               columns={columns}
+              rows={artists}
               getRowId={getID}
-              autoHeight={true}
-              pageSizeOptions={[10, 25, 50, 100]}
-              rowCount={COUNT}
+              rowCount={rowCountState}
               getRowHeight={() => 'auto'}
+              pageSizeOptions={[10, 25, 50, 100]}
               paginationMode="server"
               onRowCountChange={newRowCount => setRowCountState(newRowCount)}
               onPaginationModelChange={handlePaginationModelChange}
               paginationModel={paginationModel}
+              sx={{ height: '500px' }}
             />
+          </Box>
+          <Box key={'albums-for-artist-box'} component={'div'}>
+            <Outlet />
           </Box>
         </Box>
       </Box>
@@ -192,8 +184,18 @@ export default Artist;
 const handleUpdateArtistName = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
   try {
     const { artist_id, name } = values;
-    const resp = await axios.patch(`${baseURL}/artists`, { artistID: artist_id, name: name });
+    const resp = await axios.patch(
+      `${baseURL}/artists`,
+      { artistID: artist_id, name: name },
+      {
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
 
+    if (resp.data) {
+      const { artist_id, name } = resp.data.updatedArtist;
+      apiRef.current.updateRows([{ artist_id: artist_id, name: name }]);
+    }
     console.log(resp.data);
   } catch (error) {
     console.error(error);
@@ -203,23 +205,16 @@ const handleUpdateArtistName = async (values: artist, apiRef: MutableRefObject<G
 const handleDeleteArtist = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
   try {
     const { artist_id } = values;
-    const resp = await axios.delete(`${baseURL}/artists/${artist_id}`);
+    const resp = await axios.delete(`${baseURL}/artists/${artist_id}`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-    apiRef.current.updateRows([{ artist_id: artist_id, _action: 'delete' }]);
     console.log(resp.data);
+    if (resp.data.deletedArtist) {
+      const { artist_id } = resp.data.deletedArtist;
+      apiRef.current.updateRows([{ artist_id: artist_id, _action: 'delete' }]);
+    }
   } catch (err) {
     console.error(err);
   }
-};
-
-const handleShowAlbumDetailsForArtist = (values: artist, nav: NavigateFunction) => {
-  const { artist_id, name } = values;
-
-  const details = {
-    artistName: name as string,
-    artistID: artist_id,
-  } as ArtistWithAlbums;
-
-  console.log(details);
-  nav('/albums', { state: details });
 };

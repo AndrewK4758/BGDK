@@ -6,7 +6,7 @@ const deleteArtist = async (req: Request, resp: Response): Promise<void> => {
   const { id } = req.params;
 
   try {
-    const deletedArtist = await deleteArtists(Number(id));
+    const deletedArtist = await deleteArtists(parseInt(id, 10));
 
     const output = {
       deletedArtist: deletedArtist,

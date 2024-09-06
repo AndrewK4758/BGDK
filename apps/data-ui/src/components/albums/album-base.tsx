@@ -1,126 +1,214 @@
-// import { Field, Form, Formik } from 'formik';
-// import * as Yup from 'yup';
-// import { useRouteLoaderData, useSubmit } from 'react-router-dom';
-// import { Box, Button, FormLabel, List, ListItem } from '@mui/material';
-// import { Text } from '@bgdk/react-components';
-// import { useLocation } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { album, track } from '@prisma/client';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DetailsIcon from '@mui/icons-material/Details';
+import UploadIcon from '@mui/icons-material/Upload';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridColDef,
+  GridPaginationModel,
+  GridRowParams,
+  useGridApiRef,
+} from '@mui/x-data-grid';
+import { GridApiCommunity } from '@mui/x-data-grid/internals';
+import { album } from '@prisma/client';
+import axios from 'axios';
+import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react';
+import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import AddAlbum from './add-album';
+import loadAlbums from '../../services/loaders/load-albums';
 
-// const initialValues = {
-//   title: '',
-// };
+const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-// type AlbumWithTracks = { album: album; tracks: track[] };
+const Album = () => {
+  const COUNT = useRouteLoaderData('albums-count') as number;
+  const nav = useNavigate();
+  const [albums, setAlbums] = useState<album[]>();
+  const [rowCountState, setRowCountState] = useState(COUNT);
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 25,
+    page: 0,
+  });
 
-// const Album = () => {
-//   const { state } = useLocation();
-//   const submit = useSubmit();
-//   const loader = useRouteLoaderData('artists') as [];
-//   const [tracks, setTracks] = useState<track[] | undefined>(undefined);
-//   const [tracksPendingSave, setTracksPendingSave] = useState<AlbumWithTracks[] | undefined>(undefined);
+  const apiRef = useGridApiRef<GridApiCommunity>();
 
-//   console.log(state.albumTitle);
-//   const handleCheckAlbum = (albumTitle: string) => {
-//     const albums = loader.filter((e: { artist_is: number; name: string; album: album }) => {
-//       console.log(e);
-//       if (e.album.title) {
-//         const titles = Object.values(e.album.title);
+  const queryOptions = useMemo(
+    () => ({
+      cursor: paginationModel.page === 0 ? 1 : paginationModel.pageSize * paginationModel.page,
+      pageSize: paginationModel.pageSize,
+      skip: paginationModel.page === 0 ? 0 : 1,
+    }),
+    [paginationModel],
+  );
 
-//         console.log(titles);
-//       }
-//     });
-//     // console.log(albums);
-//     return albums as album[];
-//   };
+  const handlePaginationModelChange = (newPaginationModel: GridPaginationModel) => {
+    setPaginationModel(newPaginationModel);
+  };
 
-//   handleCheckAlbum(state.albumTitle);
-//   const validationSchema = Yup.object().shape({
-//     title: Yup.string().max(64).required('Artist name must not be empty and not already in the artist list'),
-//   });
+  const fetchAlbums = useCallback(
+    async (pageSize: number, skip: number, cursor: number) => await loadAlbums(pageSize, skip, cursor),
+    [],
+  );
 
-//   const getTracks = async () => {
-//     const baseURL = import.meta.env.VITE_DATA_API_URL;
-//     const album = state.albumID;
-//     const resp = await axios.get(`${baseURL}/tracks?album=${album}`);
+  useEffect(() => {
+    fetchAlbums(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
+      .then(({ albums }) => setAlbums(albums))
+      .catch(err => console.error(err));
+  }, [fetchAlbums, queryOptions]);
 
-//     setTracks(resp.data);
-//   };
+  const columns: GridColDef[] = [
+    {
+      field: 'album_id',
+      headerName: 'Album ID',
+      type: 'number',
+      width: 80,
+    },
+    {
+      field: 'title',
+      headerName: 'Title',
+      type: 'string',
+      width: 620,
+      editable: true,
+    },
+    {
+      field: 'artist_id',
+      headerName: 'Artist ID',
+      type: 'number',
+      width: 80,
+    },
+    {
+      field: 'update-delete',
+      type: 'actions',
+      headerName: 'Actions',
+      width: 180,
+      getActions: (params: GridRowParams<album>) => {
+        return [
+          <GridActionsCellItem
+            label="Update"
+            icon={<UploadIcon />}
+            title="Update"
+            onClick={() => {
+              handleUpdateAlbumTitle(params.row, apiRef);
+            }}
+          />,
 
-//   useEffect(() => {
-//     if (tracks === undefined) {
-//       getTracks();
-//     }
-//   });
+          <GridActionsCellItem
+            label="Delete"
+            title="Delete"
+            icon={<DeleteForeverIcon />}
+            onClick={() => {
+              handleDeleteAlbum(params.row, apiRef);
+            }}
+          />,
+        ];
+      },
+    },
+    {
+      field: 'details',
+      type: 'actions',
+      headerName: 'Show Details',
+      width: 120,
+      getActions: (params: GridRowParams) => {
+        return [
+          <GridActionsCellItem
+            label="Details"
+            title="Details"
+            icon={<DetailsIcon />}
+            onClick={() => nav(`${params.row.album_id}/tracks`)}
+          />,
+        ];
+      },
+    },
+  ];
 
-//   const Tracks = () => {
-//     if (tracks !== undefined) {
-//       return (
-//         <Box sx={{ flex: '1 0 100%', height: 'fit-content' }}>
-//           <FormLabel sx={{ fontSize: '22px', fontWeight: 'bold' }}>{'Details'}</FormLabel>
-//           <List key={'track-list'}>
-//             <ListItem key={state.artistName} sx={{ fontSize: '18px', fontWeight: 'bold' }}>
-//               {`Artist: ${state.artistName}`}
-//             </ListItem>
-//             <ListItem key={state.albumTitle} sx={{ fontSize: '18px', fontWeight: 'bold' }}>
-//               {`Album: ${state.albumTitle}`}
-//             </ListItem>
-//             <ListItem key={'tracks'} sx={{ fontSize: '18px', fontWeight: 'bold' }}>
-//               {'Tracks:'}
-//             </ListItem>
-//             {tracks.map(track => (
-//               <ListItem key={track.name}>{track.name}</ListItem>
-//             ))}
-//           </List>
-//         </Box>
-//       );
-//     } else return undefined;
-//   };
+  const getID = (row: album) => {
+    return row.album_id;
+  };
 
-//   return (
-//     <Box sx={{ display: 'flex', width: '100%' }}>
-//       <Box
-//         sx={{
-//           flex: '1 0 50%',
-//           borderRight: '5px solid black',
-//           display: 'flex',
-//           flexDirection: 'column',
-//           justifyContent: 'center',
-//           height: '100%',
-//         }}
-//       >
-//         <Box sx={{ flex: '1 0 50%' }}>
-//           <Tracks />
-//         </Box>
-//       </Box>
-//       <Box sx={{ flex: '1 0 50%', display: 'flex', justifyContent: 'center' }}>
-//         <Formik
-//           initialValues={initialValues}
-//           validationSchema={validationSchema}
-//           onSubmit={values => submit(values, { action: 'album', encType: 'application/json', method: 'POST' })}
-//         >
-//           {formik => (
-//             <Form action="album" method="post">
-//               <FormLabel sx={{ fontSize: '22px', fontWeight: 'bold' }}>
-//                 Album Title
-//                 <br />
-//                 <Field name="title" placeholder={'Enter Album Title'} as="input" />
-//                 {formik.touched.title && formik.errors.title && (
-//                   <Text titleVariant="body1" titleText={formik.errors.title} />
-//                 )}
-//               </FormLabel>
+  return (
+    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box component={'div'} key={'album-box'} sx={{ width: '100%', border: '10px solid purple' }}>
+        <Box key={'albums-title'} component={'header'}>
+          <Paper key={'title-bar'} component={'div'} sx={{ height: 'fit-content', display: 'flex' }}>
+            <Typography
+              variant="h1"
+              sx={{
+                flex: '1 0 100%',
+                textAlign: 'center',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                borderBottom: '3px solid purple',
+              }}
+            >
+              {'All Albums'}
+            </Typography>
+          </Paper>
+        </Box>
+        <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, borderBottom: '3px solid purple' }}>
+          <AddAlbum apiRef={apiRef} />
+        </Box>
+        <Box>
+          <Box key={'all-albums-datagrid'}>
+            <DataGrid
+              autoHeight
+              apiRef={apiRef}
+              columns={columns}
+              rows={albums}
+              getRowId={getID}
+              rowCount={rowCountState}
+              getRowHeight={() => 'auto'}
+              pageSizeOptions={[10, 25, 50, 100]}
+              paginationMode="server"
+              onRowCountChange={newRowCount => setRowCountState(newRowCount)}
+              onPaginationModelChange={handlePaginationModelChange}
+              paginationModel={paginationModel}
+            />
+          </Box>
+          <Outlet />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
-//               <br />
-//               <Button variant="outlined" type="submit">
-//                 Submit
-//               </Button>
-//             </Form>
-//           )}
-//         </Formik>
-//       </Box>
-//     </Box>
-//   );
-// };
+export default Album;
 
-// export default Album;
+const handleDeleteAlbum = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
+  try {
+    const { album_id } = values;
+
+    const resp = await axios.delete(`${baseURL}/albums/${album_id}`, {
+      headers: { 'Content-Type': 'text/plain' },
+    });
+
+    console.log(resp.data);
+    if (resp.data.deletedAlbum) {
+      const { album_id } = resp.data.deletedAlbum;
+      apiRef.current.updateRows([{ album_id: album_id, _action: 'delete' }]);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const handleUpdateAlbumTitle = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
+  try {
+    const { album_id, title } = values;
+    const resp = await axios.patch(
+      `${baseURL}/albums`,
+      { albumID: album_id, title: title },
+      {
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
+
+    if (resp.data.updatedAlbum) {
+      const { album_id, title } = resp.data.updatedAlbum;
+      apiRef.current.updateRows([{ album_id: album_id, title: title }]);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

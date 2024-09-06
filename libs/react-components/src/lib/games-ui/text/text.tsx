@@ -17,6 +17,4 @@ export const Text = ({ titleVariant, titleText, sx }: TextProps) => (
   </Typography>
 );
 
-
-
 export default Text;

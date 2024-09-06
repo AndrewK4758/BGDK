@@ -5,8 +5,6 @@ const updateTracks = async (req: Request, resp: Response) => {
   try {
     const { trackData } = req.body;
 
-    console.log(req.body);
-
     const updatedTrack = await updateTrack(trackData);
 
     resp.status(200).json({ updatedTrack: updatedTrack });

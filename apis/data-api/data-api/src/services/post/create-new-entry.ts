@@ -2,12 +2,12 @@ import { prisma } from '@bgdk/prisma';
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 
-const getArtistAlbums = (query: Prisma.albumFindManyArgs<DefaultArgs>) => {
+const createNewEntry = async (query: Prisma.artistCreateArgs<DefaultArgs>) => {
   try {
-    return prisma.album.findMany(query);
+    return prisma.artist.create(query);
   } catch (err) {
     console.error(err);
   }
 };
 
-export default getArtistAlbums;
+export default createNewEntry;

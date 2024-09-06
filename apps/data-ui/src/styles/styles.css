@@ -6,5 +6,6 @@
   font-size: inherit;
   word-spacing: inherit;
   letter-spacing: inherit;
+  box-sizing: content-box;
 }
 

@@ -3,15 +3,19 @@ import updateArtist from '../services/prisma/artist/update-artists';
 import updateArtistError from '../errors/update-artist-error';
 
 const updateArtists = async (req: Request, resp: Response): Promise<void> => {
-  const { artistID, name } = req.body;
+  try {
+    const { artistID, name } = req.body;
 
-  const updatedArtist = await updateArtist(artistID, name);
+    const updatedArtist = await updateArtist(artistID, name);
 
-  const output = {
-    updatedArtist: updatedArtist,
-  };
+    const output = {
+      updatedArtist: updatedArtist,
+    };
 
-  updatedArtist ? resp.status(202).json(output) : resp.status(400).json(updateArtistError());
+    updatedArtist ? resp.status(202).json(output) : resp.status(400).json(updateArtistError());
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export default updateArtists;
