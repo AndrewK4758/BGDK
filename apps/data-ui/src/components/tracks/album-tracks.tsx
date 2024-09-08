@@ -4,15 +4,14 @@ import UploadIcon from '@mui/icons-material/Upload';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
-import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { track } from '@prisma/client';
-import axios from 'axios';
-import { MutableRefObject, useState } from 'react';
+import { useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import handleDeleteTrack from '../../services/events/handle-delete-track';
+import handleUpdateTrack from '../../services/events/handle-update-track';
 import { AlbumTracks } from '../../services/loaders/load-album-tracks';
 import AddTrack from './add-track';
-
-const baseURL = import.meta.env.VITE_DATA_API_URL;
+import { Container } from '@mui/material';
 
 const Tracks = () => {
   const { tracks } = useLoaderData() as AlbumTracks;
@@ -31,54 +30,54 @@ const Tracks = () => {
       field: 'track_id',
       headerName: 'Track ID',
       type: 'number',
-      width: 80,
+      width: 40,
     },
     {
       field: 'name',
       headerName: 'Name',
       type: 'string',
-      width: 240,
+      width: 200,
       editable: true,
     },
     {
       field: 'unit_price',
       type: 'number',
-      width: 80,
+      width: 40,
       headerName: 'Unit Price',
       editable: true,
     },
     {
       field: 'genre_id',
       type: 'number',
-      width: 80,
+      width: 40,
       headerName: 'Genre ID',
       editable: true,
     },
     {
       field: 'media_type_id',
       type: 'number',
-      width: 110,
+      width: 40,
       headerName: 'Media Type ID',
       editable: true,
     },
     {
       field: 'composer',
       type: 'string',
-      width: 180,
+      width: 140,
       headerName: 'Composer',
       editable: true,
     },
     {
       field: 'milliseconds',
       type: 'number',
-      width: 90,
+      width: 40,
       headerName: 'Milliseconds',
       editable: true,
     },
     {
       field: 'bytes',
       type: 'number',
-      width: 95,
+      width: 40,
       headerName: 'Bytes',
       editable: true,
     },
@@ -87,7 +86,7 @@ const Tracks = () => {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Actions',
-      width: 120,
+      width: 100,
       getActions: (params: GridRowParams<track>) => {
         return [
           <GridActionsCellItem
@@ -117,21 +116,17 @@ const Tracks = () => {
   };
 
   return (
-    <Box component={'div'} key={'track-box'} sx={{ width: '100%', borderTop: '10px solid purple' }}>
-      <Box key={'artist-title'} component={'header'}>
-        <Paper
-          key={'title-bar'}
-          component={'div'}
-          sx={{ height: 'fit-content', display: 'flex', borderBottom: '3px solid purple' }}
-        >
+    <Box component={'div'} key={'track-box'} sx={{ borderTop: '3px solid purple' }}>
+      <Container key={'artist-title'} component={'div'}>
+        <Paper key={'title-bar'} component={'div'} elevation={6} sx={{ height: '2rem', display: 'flex' }}>
           <Text
             titleVariant="h2"
             titleText="Album Tracks"
             sx={{ flex: '1 0 100%', textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
           />
         </Paper>
-      </Box>
-      <Box component={'div'} key={'add-track-box'} sx={{ paddingY: 1 }}>
+      </Container>
+      <Box component={'div'} key={'add-track-box'} sx={{ marginTop: 1 }}>
         <AddTrack albumID={albumID} apiRef={apiRef} />
       </Box>
 
@@ -153,68 +148,3 @@ const Tracks = () => {
 };
 
 export default Tracks;
-
-const handleUpdateTrack = async (values: track, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { track_id, album_id, name, unit_price, genre_id, media_type_id, composer, milliseconds, bytes } = values;
-
-    const trackData = {
-      track_id: track_id,
-      album_id: album_id,
-      name: name,
-      unit_price: unit_price,
-      genre_id: genre_id,
-      media_type_id: media_type_id,
-      composer: composer,
-      milliseconds: milliseconds,
-      bytes: bytes,
-    };
-
-    const resp = await axios.patch(
-      `${baseURL}/tracks`,
-      { trackData: trackData },
-      { headers: { 'Content-Type': 'application/json' } },
-    );
-
-    console.log(resp.data);
-
-    if (resp.data.updatedTracks) {
-      const { track_id, album_id, name, unit_price, genre_id, media_type_id, composer, milliseconds, bytes } =
-        resp.data.UpdatedTracks;
-
-      apiRef.current.updateRows([
-        {
-          track_id: track_id,
-          album_id: album_id,
-          name: name,
-          unit_price: unit_price,
-          genre_id: genre_id,
-          media_type_id: media_type_id,
-          composer: composer,
-          milliseconds: milliseconds,
-          bytes: bytes,
-        },
-      ]);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const handleDeleteTrack = async (values: track, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { track_id } = values;
-
-    const resp = await axios.delete(`${baseURL}/tracks/${track_id}`, {
-      headers: { 'Content-Type': 'text/plain' },
-    });
-
-    console.log(resp.data);
-    if (resp.data.deletedTrack) {
-      const { track_id } = resp.data.deletedTrack;
-      apiRef.current.updateRows([{ track_id: track_id, _action: 'delete' }]);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};

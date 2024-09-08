@@ -14,13 +14,12 @@ import {
 } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
-import axios from 'axios';
-import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
-import AddAlbum from './add-album';
+import handleDeleteAlbum from '../../services/events/handle-delete-album';
+import handleUpdateAlbumTitle from '../../services/events/handle-update-album-title';
 import loadAlbums from '../../services/loaders/load-albums';
-
-const baseURL = import.meta.env.VITE_DATA_API_URL;
+import AddAlbum from './add-album';
 
 const Album = () => {
   const COUNT = useRouteLoaderData('albums-count') as number;
@@ -175,40 +174,3 @@ const Album = () => {
 
 export default Album;
 
-const handleDeleteAlbum = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { album_id } = values;
-
-    const resp = await axios.delete(`${baseURL}/albums/${album_id}`, {
-      headers: { 'Content-Type': 'text/plain' },
-    });
-
-    console.log(resp.data);
-    if (resp.data.deletedAlbum) {
-      const { album_id } = resp.data.deletedAlbum;
-      apiRef.current.updateRows([{ album_id: album_id, _action: 'delete' }]);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const handleUpdateAlbumTitle = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { album_id, title } = values;
-    const resp = await axios.patch(
-      `${baseURL}/albums`,
-      { albumID: album_id, title: title },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
-    );
-
-    if (resp.data.updatedAlbum) {
-      const { album_id, title } = resp.data.updatedAlbum;
-      apiRef.current.updateRows([{ album_id: album_id, title: title }]);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};

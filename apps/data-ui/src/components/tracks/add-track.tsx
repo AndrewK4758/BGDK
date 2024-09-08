@@ -52,30 +52,27 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
     <Container>
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <>
-            <FormLabel htmlFor="name" hidden>
-              Enter Album Name
-            </FormLabel>
-            <TextField
-              autoComplete="off"
-              name="name"
-              id="name"
-              variant="outlined"
-              color="primary"
-              placeholder="Enter Track Name"
-              sx={{ flex: '1 0 50%' }}
-              onChange={e => formik.handleChange(e)}
-              onBlur={e => formik.handleBlur(e)}
-            />
-            <>
-              {typeof formik.touched.name === 'string' && formik.values.name ? (
-                <Text titleVariant="body1" titleText={formik.touched.name} />
-              ) : null}
-              {formik.errors.name && formik.touched.name === true ? (
-                <Text titleVariant="body1" titleText={formik.errors.name} />
-              ) : null}
-            </>
-          </>
+          <FormLabel htmlFor="track-name" hidden>
+            Enter Track Name
+          </FormLabel>
+          <TextField
+            autoComplete="off"
+            name="track-name"
+            id="track-name"
+            variant="outlined"
+            color="primary"
+            placeholder="Enter Track Name"
+            sx={{ flex: '1 0 50%' }}
+            onChange={e => formik.handleChange(e)}
+            onBlur={e => formik.handleBlur(e)}
+          />
+
+          {typeof formik.touched.name === 'string' && formik.values.name ? (
+            <Text titleVariant="body1" titleText={formik.touched.name} />
+          ) : null}
+          {formik.errors.name && formik.touched.name === true ? (
+            <Text titleVariant="body1" titleText={formik.errors.name} />
+          ) : null}
         </Box>
 
         <Box sx={{ display: 'flex', justifyItems: 'center' }}>

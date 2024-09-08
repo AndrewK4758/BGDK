@@ -32,39 +32,37 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
   };
 
   return (
-    <Container>
+    <Container component={'div'} id="add-artist-container" key={'add-artist-container'}>
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <>
-            <FormLabel htmlFor="name" hidden>
-              Enter Artist Name
-            </FormLabel>
-            <TextField
-              autoComplete="off"
-              name="name"
-              id="name"
-              variant="outlined"
-              color="primary"
-              value={formik.values.name}
-              placeholder="Enter Artist Name"
-              sx={{ flex: '1 0 50%' }}
-              onChange={formik.handleChange}
-              onBlur={e => formik.handleBlur(e)}
-            />
-            {formik.touched.name && formik.errors.name ? (
-              <Text titleVariant="body1" titleText={formik.errors.name} />
-            ) : null}
-          </>
+          <FormLabel htmlFor="name" hidden>
+            Enter Artist Name
+          </FormLabel>
+          <TextField
+            autoComplete="off"
+            name="name"
+            id="name"
+            variant="outlined"
+            color="primary"
+            value={formik.values.name}
+            placeholder="Enter Artist Name"
+            sx={{ flex: '1 0 50%' }}
+            onChange={formik.handleChange}
+            onBlur={e => formik.handleBlur(e)}
+          />
+          {formik.touched.name && formik.errors.name ? (
+            <Text titleVariant="body1" titleText={formik.errors.name} />
+          ) : null}
         </Box>
 
-        <Box sx={{ display: 'flex', justifyItems: 'center' }}>
+        <Container sx={{ display: 'flex', justifyItems: 'center' }}>
           <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%' }}>
             {formik.isSubmitting ? 'Submitting' : 'Submit'}
           </Button>
           <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%' }}>
             Clear
           </Button>
-        </Box>
+        </Container>
       </Form>
     </Container>
   );

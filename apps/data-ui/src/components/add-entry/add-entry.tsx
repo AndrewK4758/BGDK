@@ -13,13 +13,12 @@ import StepButton from '@mui/material/StepButton';
 import Stepper from '@mui/material/Stepper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Prisma } from '@prisma/client';
-import { Decimal } from '@prisma/client/runtime/library';
+import { album, artist, track, Prisma } from '@prisma/client';
 import { useFormik } from 'formik';
-import { Dispatch, FocusEvent, Fragment, SetStateAction, useState } from 'react';
-import { Form } from 'react-router-dom';
+import { FocusEvent, Fragment, useState } from 'react';
+import { Form, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import handleSubmitNewEntry from '../../services/actions/submit.new-entry-action';
+import handleSubmitNewEntry, { NewEntryReturn } from '../../services/actions/submit.new-entry-action';
 import handleNewArtistBlur from '../../services/events/handle-validate-artist-on-blur';
 
 const AddEntryStyle: SxProps = {
@@ -43,7 +42,9 @@ const initialValues: NewEntry = {
   artist: {
     name: '',
   },
-  album: { title: '' },
+  album: {
+    title: '',
+  },
   track: {
     name: '',
     composer: '',
@@ -55,65 +56,76 @@ const initialValues: NewEntry = {
   },
 };
 
-const validationSchema = Yup.object().shape({
-  artist: Yup.object({
-    name: Yup.string().max(200, 'Must be less than 200 characters').required('Required'),
-  }),
-  album: Yup.object({
-    title: Yup.string().max(160, 'Must be less than 160 characters').required('Required'),
-  }),
-  track: Yup.object({
-    name: Yup.string().max(160, 'Must be less than 160 characters').required('Required'),
-    composer: Yup.string().max(220, 'Must be less than 160 characters').required('Required'),
-    bytes: Yup.number()
-      .positive()
-      .lessThan(2147483647, 'must be less than 32bit signed integer 2147483647')
-      .required('Enter size of file in bytes'),
-    milliseconds: Yup.number()
-      .positive()
-      .lessThan(2147483647, 'must be less than 32bit signed integer 2147483647')
-      .required('Enter length of track in milliseconds'),
-    media_type_id: Yup.number().positive().required('Enter media type number'),
-    genre_id: Yup.number().required('Enter genre ID number').positive(),
-    unit_price: Yup.number().positive().required('Enter unit price in form 0.00'),
-  }),
+const artistVal = Yup.object({
+  name: Yup.string().max(200, 'Must be less than 200 characters').required('Required'),
 });
 
-interface AddEntryProps {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}
+const albumVal = Yup.object({
+  title: Yup.string().max(160, 'Must be less than 160 characters').required('Required'),
+});
+
+const trackVal = Yup.object({
+  name: Yup.string().max(160, 'Must be less than 160 characters').required('Required'),
+  composer: Yup.string().max(220, 'Must be less than 160 characters').required('Required'),
+  bytes: Yup.number()
+    .required('Enter size of file in bytes')
+    .positive('Enter size of file in bytes')
+    .lessThan(2147483647, 'must be less than 32bit signed integer 2147483647'),
+  milliseconds: Yup.number()
+    .required('Enter length of track in milliseconds')
+    .positive('Enter length of track in milliseconds')
+    .lessThan(2147483647, 'must be less than 32bit signed integer 2147483647')
+    .required('Enter length of track in milliseconds'),
+  media_type_id: Yup.number().required('Enter media type number').positive('Enter media type number'),
+  genre_id: Yup.number().required('Enter genre ID number').positive('Enter genre ID number'),
+  unit_price: Yup.number().required('Enter unit price in form 0.00').positive('Enter unit price in form 0.00'),
+});
+
+const validationSchema = Yup.object({
+  artist: artistVal,
+  album: albumVal,
+  track: trackVal,
+});
 
 export type NewEntry = {
-  artist: {
-    name: string;
-  };
-  album: { title: string };
-  track: {
-    name: string;
-    composer: string;
-    bytes: number;
-    milliseconds: number;
-    media_type_id: number;
-    genre_id: number;
-    unit_price: Decimal;
-  };
+  artist: Partial<artist>;
+  album: Partial<album>;
+  track: Partial<track>;
 };
 
-const AddEntry = ({ open, setOpen }: AddEntryProps) => {
+export type NewEntryIDs = {
+  artistID: number;
+  albumID: number;
+};
+
+const AddEntry = () => {
+  const [open, setOpen] = useState<boolean>(true);
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState<{
     [k: number]: boolean;
   }>({});
 
+  const nav = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: (values, { setSubmitting }) => handleSubmitNewEntry(values, setSubmitting, setOpen, open),
+    onSubmit: async (values, { setSubmitting }) => {
+      const newEntry = (await handleSubmitNewEntry(values, setSubmitting)) as NewEntryReturn;
+      console.log(newEntry);
+      const ids: NewEntryIDs = {
+        artistID: newEntry.artist_id,
+        albumID: newEntry.album[0].album_id,
+      };
+
+      setOpen(!open);
+      nav(`/home`, { state: { ids }, replace: true });
+    },
   });
 
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
     const field = e.currentTarget.name;
+
     switch (field) {
       case 'artist.name':
         handleNewArtistBlur<NewEntry>(e, formik);
@@ -199,7 +211,7 @@ const AddEntry = ({ open, setOpen }: AddEntryProps) => {
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
-                {formik.touched.artist?.name && formik.errors.artist?.name && formik.values.artist.name.length > 0 ? (
+                {formik.touched.artist?.name && formik.errors.artist?.name ? (
                   <Text titleVariant="body1" titleText={formik.errors.artist.name} />
                 ) : null}
               </>
@@ -354,7 +366,7 @@ const AddEntry = ({ open, setOpen }: AddEntryProps) => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price as number} />
+                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price} />
                   ) : null}
                 </>
               </>
@@ -413,7 +425,13 @@ const AddEntry = ({ open, setOpen }: AddEntryProps) => {
               <Button type="reset" onClick={() => formik.resetForm()}>
                 Reset
               </Button>
-              <Button type="button" onClick={() => setOpen(!open)}>
+              <Button
+                type="button"
+                onClick={() => {
+                  setOpen(!open);
+                  nav(-1);
+                }}
+              >
                 Close
               </Button>
             </ButtonGroup>

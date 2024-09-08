@@ -9,55 +9,59 @@ import loadArtistAlbums from '../services/loaders/load-artist-albums';
 import loadArtistsCount from '../services/loaders/load-artists-count';
 import Album from '../components/albums/album-base';
 import loadAlbumsCount from '../services/loaders/load-albums-count';
-import HomePage from '../pages/home-page';
+import AddEntry from '../components/add-entry/add-entry';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    Component: Layout,
-    children: [
-      {
-        index: true,
-        // path: 'home',
-        Component: HomePage,
-      },
-      {
-        path: 'artists',
-        id: 'artist-count',
-        Component: Artist,
-        loader: loadArtistsCount,
-        children: [
-          {
-            path: ':artistID/album',
-            id: 'artist-albums',
-            Component: AlbumsOnArtist,
-            loader: loadArtistAlbums,
-            children: [
-              {
-                path: ':albumID/tracks',
-                loader: loadAlbumTracks,
-                Component: Tracks,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        path: 'albums',
-        id: 'albums-count',
-        Component: Album,
-        loader: loadAlbumsCount,
-        children: [
-          {
-            path: ':albumID/tracks',
-            Component: Tracks,
-            loader: loadAlbumTracks,
-          },
-        ],
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      Component: Layout,
+      children: [
+        {
+          path: 'artists',
+          id: 'artist-count',
+          Component: Artist,
+          loader: loadArtistsCount,
+          children: [
+            {
+              path: ':artistID/album',
+              id: 'artist-albums',
+              Component: AlbumsOnArtist,
+              loader: loadArtistAlbums,
+              children: [
+                {
+                  path: ':albumID/tracks',
+                  loader: loadAlbumTracks,
+                  Component: Tracks,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'albums',
+          id: 'albums-count',
+          Component: Album,
+          loader: loadAlbumsCount,
+          children: [
+            {
+              path: ':albumID/tracks',
+              Component: Tracks,
+              loader: loadAlbumTracks,
+            },
+          ],
+        },
+      ],
+    },
+
+    {
+      index: true,
+      path: 'add-entry',
+      Component: AddEntry,
+    },
+  ],
+  { basename: '/' },
+);
 
 export function App() {
   return <RouterProvider router={router} fallbackElement={<Waiting />} />;

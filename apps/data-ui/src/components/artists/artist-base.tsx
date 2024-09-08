@@ -18,6 +18,7 @@ import { MutableRefObject, useCallback, useLayoutEffect, useMemo, useState } fro
 import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import loadArtists from '../../services/loaders/load-artists';
 import AddArtist from './add-artist';
+import { Container, Paper } from '@mui/material';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -69,7 +70,7 @@ const Artist = () => {
     {
       field: 'name',
       headerName: 'Name',
-      width: 620,
+      width: 369,
       type: 'string',
       editable: true,
       filterable: true,
@@ -79,7 +80,7 @@ const Artist = () => {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Update / Delete',
-      width: 120,
+      width: 100,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
@@ -120,39 +121,38 @@ const Artist = () => {
   const getID = (row: artist) => row.artist_id;
 
   return (
-    <Box
-      component={'div'}
-      key="artists"
-      sx={{
-        display: 'flex',
-        width: '100%',
-        border: '10px solid purple',
-      }}
-    >
-      <Box sx={{ flex: '1 0 100%' }}>
-        <Box key={'artist-list-box'}>
-          <Typography
-            aria-label="artists"
-            component={'h1'}
-            id="artistsLabel"
-            sx={{
-              textAlign: 'center',
-              fontSize: '22px',
-              fontWeight: 'bold',
-              borderBottom: '3px solid purple',
-            }}
-          >
-            {'Artist List'}
-          </Typography>
-        </Box>
-        <Box component={'div'} key={'artist-datagrid-box'}>
-          <Box
-            component={'div'}
-            key={'add-artist-box'}
-            sx={{ display: 'flex', paddingY: 1, borderBottom: '2px solid purple' }}
-          >
+    <Box component={'div'} key={'artist-album-wrapper'} id="artist-album-wrapper" sx={{ display: 'flex' }}>
+      <Box
+        component={'div'}
+        key="artists"
+        id="artists"
+        sx={{
+          flex: '1 0 50%',
+          borderTop: '3px solid purple',
+          borderRight: '3px solid purple',
+        }}
+      >
+        <Container component={'div'} id="artists-title-box" sx={{}}>
+          <Paper key={'artist-list-box'} sx={{ height: '2rem' }}>
+            <Typography
+              aria-label="artists"
+              component={'h1'}
+              id="artistsLabel"
+              sx={{
+                textAlign: 'center',
+                fontSize: '22px',
+                fontWeight: 'bold',
+              }}
+            >
+              {'Artist List'}
+            </Typography>
+          </Paper>
+        </Container>
+        <Box component={'div'} key={'artist-datagrid-box'} id="artist-datagrid-box">
+          <Box component={'div'} key={'add-artist-box'} sx={{ borderBottom: '2px solid purple', paddingTop: 1 }}>
             <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
           </Box>
+
           <Box component={'div'} key={'artist-data-grid-wrapper'}>
             <DataGrid
               autoHeight
@@ -168,13 +168,12 @@ const Artist = () => {
               onRowCountChange={newRowCount => setRowCountState(newRowCount)}
               onPaginationModelChange={handlePaginationModelChange}
               paginationModel={paginationModel}
-              sx={{ height: '500px' }}
             />
           </Box>
-          <Box key={'albums-for-artist-box'} component={'div'}>
-            <Outlet />
-          </Box>
         </Box>
+      </Box>
+      <Box key={'albums-for-artist-box'} component={'div'} id="albums-for-artist-box" sx={{ flex: '0 1 50%' }}>
+        <Outlet />
       </Box>
     </Box>
   );

@@ -33,44 +33,51 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
   };
 
   return (
-    <Container>
+    <Container component={'div'} id="add-album-on-artist-container" key={'add-album-on-artist-container'}>
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <>
-            <FormLabel htmlFor="name" hidden>
-              Enter Album Name
-            </FormLabel>
-            <TextField
-              autoComplete="off"
-              name="title"
-              id="title"
-              variant="outlined"
-              color="primary"
-              value={formik.values.title}
-              placeholder="Enter Album Title"
-              sx={{ flex: '1 0 50%' }}
-              onChange={formik.handleChange}
-              onBlur={e => formik.handleBlur(e)}
-            />
-            <>
-              {typeof formik.touched.title === 'string' && formik.values.title ? (
-                <Text titleVariant="body1" titleText={formik.touched.title} />
-              ) : null}
-              {formik.errors.title && formik.touched.title === true ? (
-                <Text titleVariant="body1" titleText={formik.errors.title} />
-              ) : null}
-            </>
-          </>
+          <FormLabel htmlFor="name" hidden>
+            Enter Album Name
+          </FormLabel>
+          <TextField
+            autoComplete="off"
+            name="title"
+            id="title"
+            variant="outlined"
+            color="primary"
+            value={formik.values.title}
+            placeholder="Enter Album Title"
+            sx={{ flex: '1 0 50%' }}
+            onChange={formik.handleChange}
+            onBlur={e => formik.handleBlur(e)}
+          />
+
+          {typeof formik.touched.title === 'string' && formik.values.title ? (
+            <Text titleVariant="body1" titleText={formik.touched.title} />
+          ) : null}
+          {formik.errors.title && formik.touched.title === true ? (
+            <Text titleVariant="body1" titleText={formik.errors.title} />
+          ) : null}
         </Box>
 
-        <Box sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%' }}>
+        <Container sx={{ display: 'flex', justifyItems: 'center' }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ marginTop: 1, marginRight: 1, flex: '1 0 30%' }}
+          >
             Submit
           </Button>
-          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%' }}>
+          <Button
+            type="reset"
+            variant="contained"
+            color="secondary"
+            sx={{ marginTop: 1, marginLeft: 1, flex: '1 0 30%' }}
+          >
             Clear
           </Button>
-        </Box>
+        </Container>
       </Form>
     </Container>
   );

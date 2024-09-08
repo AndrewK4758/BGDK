@@ -1,19 +1,17 @@
-import { Text } from '@bgdk/react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
+import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
-import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
-import axios from 'axios';
-import { MutableRefObject, useState } from 'react';
+import { useState } from 'react';
 import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
-import AddAlbumOnArtist from './add-album-on-artist';
+import handleDeleteAlbum from '../../services/events/handle-delete-album';
+import handleUpdateAlbumTitle from '../../services/events/handle-update-album-title';
 import { ArtistAlbums } from '../../services/loaders/load-artist-albums';
-
-const baseURL = import.meta.env.VITE_DATA_API_URL;
+import AddAlbumOnArtist from './add-album-on-artist';
 
 export interface AlbumState {
   albumTitle: string;
@@ -38,14 +36,20 @@ const AlbumsOnArtist = () => {
       field: 'title',
       headerName: 'Title',
       type: 'string',
-      width: 620,
+      width: 369,
       editable: true,
+    },
+    {
+      field: 'artist_id',
+      headerName: 'Artist ID',
+      type: 'number',
+      width: 80,
     },
     {
       field: 'update-delete',
       type: 'actions',
-      headerName: 'Actions',
-      width: 120,
+      headerName: 'Update / Delete',
+      width: 100,
       getActions: (params: GridRowParams<album>) => {
         return [
           <GridActionsCellItem
@@ -94,41 +98,39 @@ const AlbumsOnArtist = () => {
     <Box
       component={'div'}
       key={'album-with-tracks-box'}
-      sx={{ display: 'flex', flexDirection: 'column', borderTop: '5px solid purple' }}
+      sx={{ borderTop: '3px solid purple', borderRight: '3px solid purple' }}
     >
-      <Box component={'div'} key={'album-box'} sx={{ width: '100%' }}>
-        <Box key={'artist-title'} component={'header'}>
-          <Paper
-            key={'title-bar'}
-            component={'div'}
-            sx={{ height: 'fit-content', display: 'flex', borderBottom: '3px solid purple' }}
+      <Container component={'div'} id="album-title" sx={{ width: '100%' }}>
+        <Paper key={'title-bar'} sx={{ height: '2rem' }}>
+          <Typography
+            aria-label="albums"
+            component={'h2'}
+            variant="h2"
+            sx={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
           >
-            <Text
-              titleVariant="h2"
-              titleText="Artist Albums"
-              sx={{ flex: '1 0 100%', textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
-            />
-          </Paper>
-        </Box>
-        <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1 }}>
+            {'Artist Albums'}
+          </Typography>
+        </Paper>
+      </Container>
+      <Box component={'div'} key={'album-data-grid'} id="album-data-grid">
+        <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, flex: '0 1 100%' }}>
           <AddAlbumOnArtist apiRef={apiRef} />
         </Box>
         <Box>
-          <Box sx={{ borderBottom: '5px solid purple' }}>
-            {albums && (
-              <DataGrid
-                autoHeight
-                apiRef={apiRef}
-                columns={columns}
-                rows={albums}
-                getRowId={getID}
-                getRowHeight={() => 'auto'}
-                pageSizeOptions={[1, 5, 10, 20]}
-                paginationModel={paginationModel}
-                onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
-              />
-            )}
-          </Box>
+          <DataGrid
+            autoHeight
+            apiRef={apiRef}
+            columns={columns}
+            rows={albums}
+            getRowId={getID}
+            getRowHeight={() => 'auto'}
+            pageSizeOptions={[1, 5, 10, 20]}
+            paginationModel={paginationModel}
+            onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
+          />
+        </Box>
+
+        <Box>
           <Outlet />
         </Box>
       </Box>
@@ -137,41 +139,3 @@ const AlbumsOnArtist = () => {
 };
 
 export default AlbumsOnArtist;
-
-const handleDeleteAlbum = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { album_id } = values;
-
-    const resp = await axios.delete(`${baseURL}/albums/${album_id}`, {
-      headers: { 'Content-Type': 'text/plain' },
-    });
-
-    console.log(resp.data);
-    if (resp.data.deletedAlbum) {
-      const { album_id } = resp.data.deletedAlbum;
-      apiRef.current.updateRows([{ album_id: album_id, _action: 'delete' }]);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const handleUpdateAlbumTitle = async (values: album, apiRef: MutableRefObject<GridApiCommunity>) => {
-  try {
-    const { album_id, title } = values;
-    const resp = await axios.patch(
-      `${baseURL}/albums`,
-      { albumID: album_id, title: title },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
-    );
-
-    if (resp.data.updatedAlbum) {
-      const { album_id, title } = resp.data.updatedAlbum;
-      apiRef.current.updateRows([{ album_id: album_id, title: title }]);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};

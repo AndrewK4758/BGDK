@@ -1,15 +1,16 @@
-import TextField from '@mui/material/TextField';
+import { Text } from '@bgdk/react-components';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import FormLabel from '@mui/material/FormLabel';
+import TextField from '@mui/material/TextField';
+import { GridApiCommunity } from '@mui/x-data-grid/internals';
+import { album } from '@prisma/client';
+import axios from 'axios';
 import { FormikProps, useFormik } from 'formik';
 import { ChangeEvent, MutableRefObject } from 'react';
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
 import { Form } from 'react-router-dom';
-import { Text } from '@bgdk/react-components';
-import Button from '@mui/material/Button';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { album } from '@prisma/client';
-import { GridApiCommunity } from '@mui/x-data-grid/internals';
+import handleSubmitNewAlbum from '../../services/actions/submit-album-to-artist-id-action';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -94,36 +95,6 @@ const AddAlbum = ({ apiRef }: AddAlbumProps) => {
       </Form>
     </Container>
   );
-};
-
-const handleSubmitNewAlbum = async (
-  values: album,
-  formik: FormikProps<album>,
-  apiRef: MutableRefObject<GridApiCommunity>,
-) => {
-  try {
-    const albumTitle = values.title;
-    const artistID = values.artist_id;
-
-    const resp = await axios.post(
-      `${baseURL}/albums`,
-      { title: albumTitle, artistID: artistID },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
-    );
-    console.log(resp.data);
-
-    if (resp.data.newAlbum) {
-      const { title, album_id, artist_id } = resp.data.newAlbum;
-      apiRef.current.updateRows([{ album_id: album_id, title: title, artist_id: artist_id }]);
-    }
-  } catch (error) {
-    console.error(error);
-    const errorMessage = await((error as AxiosError).response as AxiosResponse).data.errorMessage;
-    console.log(errorMessage);
-    formik.setErrors({ title: errorMessage });
-  }
 };
 
 const handleNewAlbumBlur = async (formik: FormikProps<album>) => {

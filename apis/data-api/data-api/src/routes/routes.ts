@@ -18,6 +18,7 @@ import deleteTracks from '../controllers/delete-tracks';
 import getAlbumsCount from '../controllers/get-albums-count';
 import getAlbums from '../controllers/get-all-albums';
 import createNewEntrys from '../controllers/post-create-new-entry';
+import searchArtistsAndAlbums from '../controllers/search-artist-or-album';
 
 export const router: Router = Router();
 
@@ -41,6 +42,8 @@ export default class Routes {
     router.delete('/tracks/:id', deleteTracks);
 
     router.post('/new-entry', createNewEntrys);
+
+    router.get('/search', searchArtistsAndAlbums);
   }
 }
 

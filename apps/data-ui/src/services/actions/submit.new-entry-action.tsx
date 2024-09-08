@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { NewEntry } from '../../components/add-entry/add-entry';
+import { track } from '@prisma/client';
+
+export type NewEntryReturn = {
+  artist_id: number;
+  name: string;
+  album: { album_id: number; artist_id: number; title: string; track: track[] }[];
+};
+
+interface INewEntryReturn {
+  newEntry: NewEntryReturn;
+}
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-const handleSubmitNewEntry = async (
-  values: NewEntry,
-  setSubmitting: (isSubmitting: boolean) => void,
-  setOpen: (open: boolean) => void,
-  open: boolean,
-) => {
+const handleSubmitNewEntry = async (values: NewEntry, setSubmitting: (isSubmitting: boolean) => void) => {
   try {
     setSubmitting(true);
     const { artist, album, track } = values;
@@ -17,10 +23,11 @@ const handleSubmitNewEntry = async (
       { artist: artist, album: album, track: track },
       { headers: { 'Content-Type': 'application/json' } },
     );
-    setOpen(open);
-    console.log(resp.data);
 
-    return resp.data.newEntry;
+    const { newEntry } = resp.data as INewEntryReturn;
+    console.log(newEntry);
+
+    return newEntry;
   } catch (error) {
     console.error(error);
   } finally {

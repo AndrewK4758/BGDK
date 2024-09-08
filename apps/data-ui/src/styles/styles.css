@@ -6,6 +6,10 @@
   font-size: inherit;
   word-spacing: inherit;
   letter-spacing: inherit;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
+#root {
+  position: relative;
+  min-height: '100vh';
+}
