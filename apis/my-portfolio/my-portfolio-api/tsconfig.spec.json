@@ -2,19 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "types": ["jest", "node"],
     "esModuleInterop": true,
     "composite": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
-    "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts",
     "../../../__mocks__/**/*.ts"
   ],

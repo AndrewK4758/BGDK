@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+grey friends
+#FFD300 yellow - #4d4637 dark - #b3aa99 light
+
+Classy Palette
+#ffd300 - yellow
+#4d4637 - dark
+#b3aa99 - grey
+#00dfb9 - teal
+#00a584 - green
+
+*/
+
+.box {
+  color: 'red' !important;
+}

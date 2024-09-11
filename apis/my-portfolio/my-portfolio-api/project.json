@@ -1,0 +1,26 @@
+{
+  "name": "my-portfolio-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/my-portfolio/my-portfolio-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "my-portfolio-api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "my-portfolio-api:build:development"
+        },
+        "production": {
+          "buildTarget": "my-portfolio-api:build:production"
+        }
+      }
+    }
+  }
+}

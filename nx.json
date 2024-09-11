@@ -38,7 +38,8 @@
       "exclude": [
         "apis/games-api/games-api-e2e/**/*",
         "apis/data-api/data-api-e2e/**/*",
-        "apis/vertex-api/vertex-api-e2e/**/*"
+        "apis/vertex-api/vertex-api-e2e/**/*",
+        "apis/my-portfolio/my-portfolio-api-e2e/**/*"
       ]
     },
     {
