@@ -15,6 +15,7 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "../../../libs/react-components/**/*",
+    "../../../libs/shared-react-components/**/*",
     "../../../libs/**/*/src/tests/**/*.ts"
   ]
 }

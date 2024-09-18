@@ -75,6 +75,12 @@
         "linter": "eslint",
         "unitTestRunner": "jest"
       }
+    },
+    "@nx/web:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "playwright"
     }
   },
   "targetDefaults": {
@@ -89,7 +95,10 @@
       "inputs": ["production", "^production"]
     },
     "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "^build "]
+    },
+    "server": {
+      "cache": true
     }
   }
 }

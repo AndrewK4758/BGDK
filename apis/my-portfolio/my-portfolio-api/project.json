@@ -15,7 +15,8 @@
       },
       "configurations": {
         "development": {
-          "buildTarget": "my-portfolio-api:build:development"
+          "buildTarget": "my-portfolio-api:build:development",
+          "watch": true
         },
         "production": {
           "buildTarget": "my-portfolio-api:build:production"

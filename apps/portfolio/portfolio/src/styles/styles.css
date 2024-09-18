@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'Arkhip';
+  src: url("fonts/Arkhip-Regular.ttf"), format('truetype');
+}
+
+@font-face {
+  font-family: 'nidus_sans';
+  src: url('fonts/nidus_sans/nidsans-webfont.eot');
+  src: url('fonts/nidus_sans/nidsans-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/nidus_sans/nidsans-webfont.woff2') format('woff2'),
+       url('fonts/nidus_sans/nidsans-webfont.woff') format('woff'),
+       url('fonts/nidus_sans/nidsans-webfont.ttf') format('truetype'),
+       url('fonts/nidus_sans/nidsans-webfont.svg#nidus_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'League Gothic';
+  src: url('fonts/LeagueGothic-Regular-VariableFont_wdth.ttf'), format('truetype');
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 99vh;
+  /* overflow: hidden; */
+}
+
+.main-wrapper-background {
+  background-image: url('../assets/background2.webp');
+  background-size: contain;
+  opacity: 0.03;
+  /* font-size: 128px; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* height: 100vh; */
+  z-index: 30;
+
+}
+
