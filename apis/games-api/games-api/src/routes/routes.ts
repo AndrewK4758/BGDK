@@ -11,16 +11,6 @@ import multer from 'multer';
 
 const router: Router = Router();
 
-// const uploadStorage = multer.diskStorage({
-//   destination(req, file, callback) {
-//
-//     callback(null, `./apis/games-api/games-api/src/data/thumbnails`);
-//   },
-//   filename(req, file, callback) {
-//     callback(null, `${file.originalname}`);
-//   },
-// });
-
 const uploadStorage = multer.memoryStorage();
 const upload = multer({ storage: uploadStorage });
 

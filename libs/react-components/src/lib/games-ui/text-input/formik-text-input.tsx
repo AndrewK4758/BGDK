@@ -46,8 +46,8 @@ export function FormikTextInput({
         variant="filled"
         {...props}
         {...field}
-        InputProps={{
-          sx: textSx,
+        slotProps={{
+          inputLabel: { sx: textSx },
         }}
         sx={textSx}
         onBlur={field.onBlur}

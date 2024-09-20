@@ -6,7 +6,7 @@ import router, { PortfolioRoutes } from './routes/routes';
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: ['http://localhost:4200', 'http://localhost:3000', 'https://andrew-k.us'],
+  origin: ['http://localhost:4700', 'https://andrew-k.us'],
   methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
   exposedHeaders: ['*'],
   optionsSuccessStatus: 204,

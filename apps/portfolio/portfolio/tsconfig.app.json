@@ -6,7 +6,8 @@
     "target": "ESNext",
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "composite": true
+    "composite": true,
+    "esModuleInterop": true
   },
   "exclude": [
     "src/**/*.spec.ts",

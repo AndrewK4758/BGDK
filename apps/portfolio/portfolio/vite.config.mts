@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -31,6 +32,7 @@ export default defineConfig({
   build: {
     outDir: '../../../dist/apps/portfolio',
     emptyOutDir: true,
+    sourcemap: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -43,12 +45,12 @@ export default defineConfig({
         format: 'esm',
       },
     },
+    target: 'esnext',
   },
   esbuild: {
     format: 'esm',
     color: true,
     platform: 'browser',
-    target: 'esnext',
   },
   appType: 'spa',
   publicDir: 'public',

@@ -2,6 +2,7 @@ import createTheme, { type Theme } from '@mui/material/styles/createTheme';
 import './styles.css';
 
 const Theme: Theme = createTheme({
+  defaultColorScheme: 'dark',
   palette: {
     common: {
       black: '#363027',
