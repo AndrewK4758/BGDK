@@ -7,14 +7,8 @@ const emailFormAction: ActionFunction = async ({ request }: ActionFunctionArgs) 
   try {
     const formData = await request.formData();
 
-    formData.forEach(e => console.log(e.valueOf()));
-
     const file = formData.get('attachment');
 
-    if (file instanceof File) {
-      console.log(file);
-    }
-    console.log(formData.get('attachment'));
     const formDataToSend = {
       name: formData.get('name'),
       email: formData.get('email'),

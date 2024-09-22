@@ -1,3 +1,10 @@
+:root {
+  --defaultBack: #4d4637;
+  --secondaryMain: #cb91ff;
+  --textPrimary: #f3ead9;
+  --defaultPaper: #1d1607;
+}
+
 @font-face {
   font-family: 'League Gothic';
   src: url('fonts/LeagueGothic-Regular-VariableFont_wdth.ttf'), format('truetype');
@@ -13,39 +20,76 @@
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  min-height: 99vh;
-}
-
-.main-wrapper-background {
-  background-image: url('../assets/background2.webp');
-  background-size: contain;
-  opacity: 0.03;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-wrapper-background {
+  background-image: url('../assets/background2.webp');
+  background-size: contain;
+  opacity: 0.02;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
-  -webkit-box-shadow: 0 0 0 100px #4d4637 inset !important;
-  -webkit-text-fill-color: #1d1607 !important;
+  -webkit-box-shadow: 0 0 0 100px var(--defaultBack) inset !important;
+  -webkit-text-fill-color: var(--textPrimary) !important;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: #1d1607;
+  -webkit-text-fill-color: var(--textPrimary);
 }
 
 input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-/*
-'& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
-  '-webkit-appearance': 'none',
-  margin: 0,
-},
-*/
+
+.css-de3exi-MuiClock-squareMask {
+  background-color: var(--defaultBack);
+
+}
+.css-joes92-MuiDivider-root {
+  background-color: var(--defaultBack);
+}
+
+.css-12k63tt-MuiDivider-root {
+  background-color: var(--defaultBack);
+}
+
+.css-1ctvbgh-MuiTypography-root-MuiClock-meridiemText{
+  color: var(--defaultBack);
+}
+
+.css-1ys9rbi-MuiClock-wrapper{
+  font-size: 1.5rem;
+}
+
+.css-1u3qy1m-MuiButtonBase-root-MuiIconButton-root-MuiClock-amButton, .css-1uwzskq-MuiButtonBase-root-MuiIconButton-root-MuiClock-pmButton {
+  background-color: var(--defaultBack) !important;
+}
+
+.css-1ctvbgh-MuiTypography-root-MuiClock-meridiemText {
+  font-size: 1rem !important;
+  color: var(--defaultPaper);
+}
+
+.css-14klqex-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  scale: 1.75;
+}
+
+.css-pfx7z5-MuiButtonBase-root-MuiButton-root {
+  scale: 1.75 !important;
+}

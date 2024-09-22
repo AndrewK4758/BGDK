@@ -9,6 +9,7 @@ interface InitialValues {
   phone: string;
   subject: string;
   body: string;
+  date: string;
   attachment: null;
 }
 

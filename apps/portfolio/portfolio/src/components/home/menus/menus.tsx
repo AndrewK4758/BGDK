@@ -1,14 +1,14 @@
 import DataObjectTwoToneIcon from '@mui/icons-material/DataObjectTwoTone';
 import MenuOpenSharpIcon from '@mui/icons-material/MenuOpenSharp';
 import { type SxProps } from '@mui/material';
-import Fab from '@mui/material/Fab';
-import Theme from '../../styles/theme';
-import AiIcon from '../icons/ai-icon';
-import GamesIcon from '../icons/games-icon';
-import { Fragment, useState } from 'react';
 import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
-import HomeIcon from '../icons/home-icon';
+import { Fragment, useState } from 'react';
+import Theme from '../../../styles/theme';
+import AiIcon from '../../icons/ai-icon';
+import GamesIcon from '../../icons/games-icon';
+import HomeIcon from '../../icons/home-icon';
 
 const cubeSxProps: SxProps = {
   position: 'fixed',
@@ -96,7 +96,7 @@ const Menus = () => {
             className={`menuBoxBottomLeft ${open ? 'animate' : ''}`}
             key={'bottom-left-header'}
             id="bottom-left-header"
-            bottom={'2%'}
+            bottom={0}
             left={'2%'}
             sx={cubeSxProps}
           >
@@ -115,7 +115,7 @@ const Menus = () => {
             className={`menuBoxBottomRight ${open ? 'animate' : ''}`}
             key={'bottom-right-header'}
             id="bottom-right-header"
-            bottom={'2%'}
+            bottom={0}
             right={'2%'}
             sx={cubeSxProps}
           >

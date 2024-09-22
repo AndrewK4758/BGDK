@@ -19,7 +19,9 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
     "../../../libs/shared-react-components/src/tests/**/*.tsx",
-    "../../../libs/shared-react-components/src/tests/**/*.ts"
+    "../../../libs/shared-react-components/src/tests/**/*.ts",
+    "../../../libs/react-components/src/tests/**/*.tsx",
+    "../../../libs/react-components/src/tests/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
@@ -27,6 +29,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "../../../libs/shared-react-components/src/**/*.tsx",
-    "../../../libs/shared-react-components/src/**/*.ts"
+    "../../../libs/shared-react-components/src/**/*.ts",
+    "../../../libs/react-components/src/**/*.tsx",
+    "../../../libs/react-components/src/**/*.ts"
   ]
 }

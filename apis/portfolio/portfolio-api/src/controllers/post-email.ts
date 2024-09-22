@@ -1,19 +1,13 @@
 import { Request, Response } from 'express';
-import { upload, uploadStorage } from '../routes/routes';
 
 const postEmail = async (req: Request, resp: Response) => {
-  console.log(upload);
-  console.log(uploadStorage);
-
-  console.log(req);
   try {
-    const { name, email, phone, subject, body } = req.body;
+    const { name, email, phone, subject, body, date } = req.body;
     const attachment = req.file;
 
-    console.log(name, email, phone, subject, body);
+    console.log(name, email, phone, subject, body, date);
     console.log(req.files);
     console.log(attachment);
-    console.log(typeof attachment);
 
     setTimeout(
       () =>

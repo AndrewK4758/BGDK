@@ -8,9 +8,6 @@ const router: Router = Router();
 export const uploadStorage = multer.memoryStorage();
 export const upload = multer({ storage: uploadStorage });
 
-console.log(upload);
-console.log(uploadStorage);
-
 export class PortfolioRoutes {
   constructor() {
     router.use(express.json());
