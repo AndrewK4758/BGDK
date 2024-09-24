@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 const EmailIcon = () => (
-  <SvgIcon sx={{ width: '48px', height: 'auto' }}>
+  <SvgIcon sx={{ scale: 1.25 }}>
     <svg
       version="1.1"
       id="svg1108"

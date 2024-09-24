@@ -1,4 +1,4 @@
-import { Waiting } from '@bgdk/react-components';
+import { Waiting } from '@bgdk/shared-react-components';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AlbumsOnArtist from '../components/albums/artist-albums';
 import Artist from '../components/artists/artist-base';

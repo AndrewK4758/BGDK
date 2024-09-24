@@ -8,6 +8,7 @@
 @font-face {
   font-family: 'League Gothic';
   src: url('fonts/LeagueGothic-Regular-VariableFont_wdth.ttf'), format('truetype');
+
 }
 
 * {
@@ -20,26 +21,11 @@
 }
 
 #root {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
+  width: 100%;
 
-.main-wrapper-background {
-  background-image: url('../assets/background2.webp');
-  background-size: contain;
-  opacity: 0.02;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 0;
 }
 
 input:-webkit-autofill,

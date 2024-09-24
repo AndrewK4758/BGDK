@@ -70,7 +70,7 @@ const Artist = () => {
     {
       field: 'name',
       headerName: 'Name',
-      width: 369,
+      width: 300,
       type: 'string',
       editable: true,
       filterable: true,
@@ -80,7 +80,7 @@ const Artist = () => {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Update / Delete',
-      width: 100,
+      width: 120,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
@@ -133,7 +133,7 @@ const Artist = () => {
         }}
       >
         <Container component={'div'} id="artists-title-box" sx={{}}>
-          <Paper key={'artist-list-box'} sx={{ height: '2rem' }}>
+          <Paper elevation={6} key={'artist-list-box'} sx={{ height: '2rem' }}>
             <Typography
               aria-label="artists"
               component={'h1'}

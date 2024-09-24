@@ -44,12 +44,15 @@ const HomePage = () => {
           wrap="nowrap"
         >
           <Grid2 component={'div'} id="title-grid" size={2}>
-            <Container component={'div'}>
-              <Text titleVariant="h1" titleText={'Media Data Manager'} sx={{ textAlign: 'center' }} />
+            <Container component={'div'} sx={{ paddingY: 1 }}>
+              <Text titleVariant="h2" titleText={'Media Data Manager'} sx={{ textAlign: 'center' }} />
+              <Text titleVariant="h5" titleText="Example of MUI-X DataGrid" sx={{ textAlign: 'center' }} />
               <Text
-                titleVariant="subtitle1"
-                titleText={'You can browse or search artists and albums'}
-                sx={{ textAlign: 'center' }}
+                titleVariant="body1"
+                titleText={
+                  'Columns have sorting & filtering, cells can be updated and changes can be sent to the back end, rows can be deleted, each catagory has the ability to create an entry, ADD ENTRY provides the opportunity to add all fields at once'
+                }
+                sx={{}}
               />
             </Container>
           </Grid2>
@@ -83,7 +86,7 @@ const HomePage = () => {
                 label="Artist"
                 control={<Radio value={'artist'} onChange={e => setSearchParam(e.target.value)} />}
                 slotProps={{ typography: { sx: { fontSize: '1rem' } } }}
-                sx={{ width: '100%' }}
+                sx={{ width: '100%', paddingLeft: 1 }}
               />
               <FormControlLabel
                 value={'album'}
@@ -96,7 +99,7 @@ const HomePage = () => {
                   />
                 }
                 slotProps={{ typography: { sx: { fontSize: '1 rem' } } }}
-                sx={{ width: '100%' }}
+                sx={{ width: '100%', paddingLeft: 1 }}
               />
             </RadioGroup>
           </Box>

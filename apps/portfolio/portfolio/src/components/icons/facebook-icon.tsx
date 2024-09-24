@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 const FacebookIcon = () => (
-  <SvgIcon sx={{ fontSize: 52 }}>
+  <SvgIcon sx={{ scale: 1.25 }}>
     <svg
       version="1.1"
       id="svg562"

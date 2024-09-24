@@ -1,6 +1,6 @@
 import { darkScrollbar } from '@mui/material';
 import createTheme, { type Theme } from '@mui/material/styles/createTheme';
-import { deDE } from '@mui/x-date-pickers/locales';
+import { enUS } from '@mui/x-date-pickers/locales';
 import './styles.css';
 
 const Theme: Theme = createTheme(
@@ -51,7 +51,7 @@ const Theme: Theme = createTheme(
       },
     },
   },
-  deDE,
+  enUS,
 );
 
 export default Theme;

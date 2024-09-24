@@ -49,7 +49,7 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
   };
 
   return (
-    <Container>
+    <Container sx={{ borderBottom: '3px solid purple' }}>
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <FormLabel htmlFor="track-name" hidden>

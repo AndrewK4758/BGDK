@@ -65,7 +65,8 @@ const breakpointsMain: SxProps = {
   backgroundColor: Theme.palette.background.default,
   zIndex: 9,
   paddingY: '35px',
-  overflowY: 'scroll',
+  overflowY: 'auto',
+  minHeight: 'fit-content',
   [Theme.breakpoints.down('laptop')]: {
     top: 0,
     bottom: 100,

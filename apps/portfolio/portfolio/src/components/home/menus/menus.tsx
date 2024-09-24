@@ -9,6 +9,7 @@ import Theme from '../../../styles/theme';
 import AiIcon from '../../icons/ai-icon';
 import GamesIcon from '../../icons/games-icon';
 import HomeIcon from '../../icons/home-icon';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 const cubeSxProps: SxProps = {
   position: 'fixed',
@@ -27,6 +28,8 @@ const buttonSXProps: SxProps = {
 
 const Menus = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const nav: NavigateFunction = useNavigate();
+
   return (
     <Fragment key={'menu-wrapper'}>
       <Box
@@ -45,7 +48,7 @@ const Menus = () => {
           sx={{ display: 'flex', flexDirection: 'column' }}
         >
           {!open && (
-            <Fab sx={buttonSXProps} variant="extended" color="primary" onClick={() => setOpen(!open)}>
+            <Fab sx={buttonSXProps} variant="extended" color="primary" onClick={() => setOpen(true)}>
               Explore
               <MenuOpenSharpIcon sx={{ fontSize: '3rem' }} />
             </Fab>
@@ -53,14 +56,19 @@ const Menus = () => {
 
           {open && (
             <Box component={'div'} key={'games-menu-with-close'} id="games-menu-with-close">
-              <Fab sx={{ ...buttonSXProps, flex: '0 1 80%' }} color="primary" variant="extended">
+              <Fab
+                sx={{ ...buttonSXProps, flex: '0 1 80%' }}
+                color="primary"
+                variant="extended"
+                onClick={() => nav('/')}
+              >
                 Home
                 <HomeIcon />
               </Fab>
 
               <Typography
                 variant="subtitle1"
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen(false)}
                 color={Theme.palette.secondary.light}
                 sx={{ cursor: 'pointer', fontSize: '1.2rem', textAlign: 'right', flex: '0 1 20%' }}
               >
@@ -85,6 +93,9 @@ const Menus = () => {
               className={`menuButton ${open ? 'animate' : ''}`}
               color="primary"
               variant="extended"
+              onClick={() => {
+                nav('games');
+              }}
               sx={buttonSXProps}
             >
               Games
@@ -105,6 +116,7 @@ const Menus = () => {
               sx={buttonSXProps}
               color="primary"
               variant="extended"
+              onClick={() => nav('crud')}
             >
               Crud
               <DataObjectTwoToneIcon sx={{ fontSize: '3rem' }} />
@@ -124,6 +136,7 @@ const Menus = () => {
               sx={buttonSXProps}
               color="primary"
               variant="extended"
+              onClick={() => nav('gen-ai')}
             >
               Generative
               <AiIcon />

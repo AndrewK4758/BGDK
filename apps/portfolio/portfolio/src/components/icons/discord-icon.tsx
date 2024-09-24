@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 const DiscordIcon = () => (
-  <SvgIcon sx={{ fontSize: '58px' }}>
+  <SvgIcon sx={{ scale: 1.25 }}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
       <path
         fill="#5865F2"

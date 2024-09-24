@@ -1,7 +1,7 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import {
@@ -68,7 +68,7 @@ const Album = () => {
       field: 'title',
       headerName: 'Title',
       type: 'string',
-      width: 620,
+      width: 300,
       editable: true,
     },
     {
@@ -127,10 +127,14 @@ const Album = () => {
   };
 
   return (
-    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Box component={'div'} key={'album-box'} sx={{ width: '100%', border: '10px solid purple' }}>
-        <Box key={'albums-title'} component={'header'}>
-          <Paper key={'title-bar'} component={'div'} sx={{ height: 'fit-content', display: 'flex' }}>
+    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', gap: 2 }}>
+      <Box
+        component={'div'}
+        key={'album-box'}
+        sx={{ flex: '1 0 50%', border: '3px solid purple', display: 'flex', flexDirection: 'column' }}
+      >
+        <Container key={'albums-title'} component={'header'}>
+          <Paper elevation={6} key={'title-bar'} component={'div'} sx={{ height: '2rem', display: 'flex' }}>
             <Typography
               variant="h1"
               sx={{
@@ -138,13 +142,12 @@ const Album = () => {
                 textAlign: 'center',
                 fontSize: '22px',
                 fontWeight: 'bold',
-                borderBottom: '3px solid purple',
               }}
             >
               {'All Albums'}
             </Typography>
           </Paper>
-        </Box>
+        </Container>
         <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, borderBottom: '3px solid purple' }}>
           <AddAlbum apiRef={apiRef} />
         </Box>
@@ -165,9 +168,9 @@ const Album = () => {
               paginationModel={paginationModel}
             />
           </Box>
-          <Outlet />
         </Box>
       </Box>
+      <Outlet />
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 const GitHibIcon = () => (
-  <SvgIcon sx={{ fontSize: 48 }}>
+  <SvgIcon sx={{ scale: 1.25 }}>
     <svg
       version="1.1"
       id="svg46"

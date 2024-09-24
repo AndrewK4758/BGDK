@@ -116,7 +116,11 @@ const Tracks = () => {
   };
 
   return (
-    <Box component={'div'} key={'track-box'} sx={{ borderTop: '3px solid purple' }}>
+    <Box
+      component={'div'}
+      key={'track-box'}
+      sx={{ borderTop: '3px solid purple', flex: '1 0 50%', maxWidth: 'fit-content' }}
+    >
       <Container key={'artist-title'} component={'div'}>
         <Paper key={'title-bar'} component={'div'} elevation={6} sx={{ height: '2rem', display: 'flex' }}>
           <Text

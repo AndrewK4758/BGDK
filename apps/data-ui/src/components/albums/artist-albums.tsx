@@ -101,7 +101,7 @@ const AlbumsOnArtist = () => {
       sx={{ borderTop: '3px solid purple', borderRight: '3px solid purple' }}
     >
       <Container component={'div'} id="album-title" sx={{ width: '100%' }}>
-        <Paper key={'title-bar'} sx={{ height: '2rem' }}>
+        <Paper elevation={6} key={'title-bar'} sx={{ height: '2rem' }}>
           <Typography
             aria-label="albums"
             component={'h2'}

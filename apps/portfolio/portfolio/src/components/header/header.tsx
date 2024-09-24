@@ -6,10 +6,11 @@ import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
 import Box from '@mui/material/Box';
-import { type SxProps } from '@mui/material';
+import { type SxProps } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 const iconSxProps: SxProps = {
-  flex: '1 0 16%',
+  flex: '0 1 10%',
 };
 
 const socialMediaLinksWrapper: SxProps = {
@@ -18,40 +19,53 @@ const socialMediaLinksWrapper: SxProps = {
   justifyItems: 'center',
   textAlign: 'center',
   flex: '0 1 70%',
+  zIndex: 1,
 };
 
 const Header = () => {
   return (
     <Box component={'div'} key={'social-media-icons'} id="social-media-icons" sx={socialMediaLinksWrapper}>
-      <Box component={'span'} key={'github-icon-span'} id="github-icon-span" sx={iconSxProps}>
-        <IconButton href="https://github.com/AndrewK4758">
-          <GitHibIcon />
-        </IconButton>
+      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" sx={{ flex: '1 0 50%' }}>
+        <Typography variant="h4" color="secondary" key={'social-media-text'} id="social-media-text" textAlign={'right'}>
+          {'Connect & Colab   \u27F6'}
+        </Typography>
       </Box>
-      <Box component={'span'} key={'facebook-icon-span'} id="facebook-icon-span" sx={iconSxProps}>
-        <IconButton href="https://www.facebook.com/AKlapper47">
-          <FacebookIcon />
-        </IconButton>
-      </Box>
-      <Box component={'span'} key={'linkedin-icon-span'} id="likedin-icon-span" sx={iconSxProps}>
-        <IconButton href="https://www.linkedin.com/in/andrew-klapper-a9204b23b/">
-          <LinkedinIcon />
-        </IconButton>
-      </Box>
-      <Box component={'span'} key={'huggingface-icon-span'} id="huggingface-icon-span" sx={iconSxProps}>
-        <IconButton href="https://huggingface.co/ak475826">
-          <HuggingFaceIcon />
-        </IconButton>
-      </Box>
-      <Box component={'span'} key={'x-icon-span'} id="x-icon-span" sx={iconSxProps}>
-        <IconButton href="https://x.com/ak475826">
-          <XIcon />
-        </IconButton>
-      </Box>
-      <Box component={'span'} key={'discord-icon-span'} id="discord-icon-span" sx={iconSxProps}>
-        <IconButton href="https://discord.com/users/989564035542446190">
-          <DiscordIcon />
-        </IconButton>
+      <Box
+        component={'div'}
+        key={'social-media-icon-wrapper'}
+        id="social-media-icon-wrapper"
+        sx={{ flex: '0 1 50%', display: 'flex' }}
+      >
+        <Box component={'span'} key={'github-icon-span'} id="github-icon-span" sx={iconSxProps}>
+          <IconButton href="https://github.com/AndrewK4758">
+            <GitHibIcon />
+          </IconButton>
+        </Box>
+        <Box component={'span'} key={'facebook-icon-span'} id="facebook-icon-span" sx={iconSxProps}>
+          <IconButton href="https://www.facebook.com/AKlapper47">
+            <FacebookIcon />
+          </IconButton>
+        </Box>
+        <Box component={'span'} key={'linkedin-icon-span'} id="likedin-icon-span" sx={iconSxProps}>
+          <IconButton href="https://www.linkedin.com/in/andrew-klapper-a9204b23b/">
+            <LinkedinIcon />
+          </IconButton>
+        </Box>
+        <Box component={'span'} key={'huggingface-icon-span'} id="huggingface-icon-span" sx={iconSxProps}>
+          <IconButton href="https://huggingface.co/ak475826">
+            <HuggingFaceIcon />
+          </IconButton>
+        </Box>
+        <Box component={'span'} key={'x-icon-span'} id="x-icon-span" sx={iconSxProps}>
+          <IconButton href="https://x.com/ak475826">
+            <XIcon />
+          </IconButton>
+        </Box>
+        <Box component={'span'} key={'discord-icon-span'} id="discord-icon-span" sx={iconSxProps}>
+          <IconButton href="https://discord.com/users/989564035542446190">
+            <DiscordIcon />
+          </IconButton>
+        </Box>
       </Box>
     </Box>
   );

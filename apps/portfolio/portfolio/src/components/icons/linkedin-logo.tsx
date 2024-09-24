@@ -1,7 +1,7 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 const LinkedinIcon = () => (
-  <SvgIcon sx={{ fontSize: 58 }}>
+  <SvgIcon sx={{ scale: 1.25 }}>
     <svg
       version="1.1"
       id="svg450"

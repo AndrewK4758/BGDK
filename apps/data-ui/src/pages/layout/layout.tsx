@@ -50,9 +50,9 @@ const Layout = () => {
         sx={{
           position: 'relative',
           zIndex: 2,
-          height: '100%',
+          height: '100vh',
           display: 'flex',
-          minHeight: '100vh',
+          minHeight: 'fit-content',
         }}
       >
         <HomePage />
