@@ -8,6 +8,7 @@ import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import './styles/styles.css';
 import Theme from './styles/theme';
+// import Background from './components/background/background';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -18,6 +19,7 @@ root.render(
         dateAdapter={AdapterDayjs}
         localeText={enUS.components.MuiLocalizationProvider.defaultProps.localeText}
       >
+        {/* <Background /> */}
         <App />
       </LocalizationProvider>
     </ThemeProvider>

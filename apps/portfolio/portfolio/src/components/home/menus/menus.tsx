@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
 import { Fragment, useState } from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import Theme from '../../../styles/theme';
 import AiIcon from '../../icons/ai-icon';
 import GamesIcon from '../../icons/games-icon';
 import HomeIcon from '../../icons/home-icon';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 const cubeSxProps: SxProps = {
   position: 'fixed',

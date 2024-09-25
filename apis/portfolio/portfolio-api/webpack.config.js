@@ -4,7 +4,8 @@ const { join } = require('path');
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   output: {
-    path: join(__dirname, '../../../dist/apis/my-portfolio/my-portfolio-api'),
+    path: join(__dirname, '../../../dist/apis/portfolio-api'),
+    filename: 'main.js',
   },
   watch: process.env.NODE_ENV === 'development' ? true : false,
   node: {
@@ -24,6 +25,7 @@ module.exports = {
       optimization: false,
       outputHashing: 'none',
       generatePackageJson: true,
+      progress: true,
       watch: true,
       verbose: true,
     }),

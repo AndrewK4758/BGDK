@@ -5,13 +5,39 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apis/portfolio-api",
+        "main": "apis/portfolio/portfolio-api/src/main.ts",
+        "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
+        "assets": ["apis/portfolio/portfolio-api/src/assets"],
+        "webpackConfig": "apis/portfolio/portfolio-api/webpack.config.js",
+        "deleteOutputPath": true,
+        "progress": true,
+        "verbose": true
+      },
+      "configurations": {
+        "development": {
+          "watch": true,
+          "verbose": true
+        },
+        "production": {
+          "watch": false,
+          "verbose": true
+        }
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "options": {
-        "buildTarget": "portfolio-api:build",
-        "runBuildTargetDependencies": false
+        "buildTarget": "portfolio-api:build"
       },
       "configurations": {
         "development": {
@@ -19,9 +45,29 @@
           "watch": true
         },
         "production": {
-          "buildTarget": "portfolio-api:build:production"
+          "buildTarget": "portfolio-api:build:production",
+          "watch": false
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apis/portfolio/portfolio-api/jest.config.ts",
+        "reportsDirectory": "../../coverage/libs/portfolio-api",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apis/portfolio/portfolio-api/Dockerfile . -t portfolio-api"
     }
   }
 }

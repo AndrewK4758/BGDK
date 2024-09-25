@@ -1,5 +1,5 @@
-import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
 import Theme from '../../styles/theme';

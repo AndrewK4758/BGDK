@@ -1,17 +1,19 @@
 import Box from '@mui/material/Box';
-import { Fragment } from 'react';
-import Header from '../header/header';
-import Home from '../../pages/home/home-page';
-import Menus from '../home/menus/menus';
-import Footer from '../footer/footer';
 import type { SxProps } from '@mui/material/styles';
 import { Outlet } from 'react-router-dom';
 import '../../styles/layout.css';
+import AboutMe from '../about-me/about-me';
+import Header from '../header/header';
+import Menus from '../home/menus/menus';
+import TechStackList from '../home/tech-list/tech-list';
+import Intro from '../intro/intro';
+import PicutreAndResume from '../intro/picture-resume';
 
 const headerWrapperSxProps: SxProps = {
   flex: '0 1 8%',
-  maxHeight: '60px',
   display: 'flex',
+  minHeight: 'fit-content',
+  maxHeight: '80px',
   justifyContent: 'center',
   alignContent: 'center',
 };
@@ -24,20 +26,21 @@ const mainWrapperSxProps: SxProps = {
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  border: '5px solid blue',
-};
-
-const footerWrapperSxProps: SxProps = {
-  flex: '0 1 8%',
-  maxHeight: '60px',
-  display: 'flex',
-  alignContent: 'center',
-  justifyContent: 'center',
 };
 
 const Layout = () => (
-  <Fragment>
-    <Box component={'header'} key={'header'} id="header" position={'static'} sx={headerWrapperSxProps}>
+  <Box
+    component={'div'}
+    key={'app-wrapper'}
+    id="app-wrapper"
+    className="app-wrapper"
+    sx={{
+      position: 'relative',
+      height: '100vh',
+      width: '100%',
+    }}
+  >
+    <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
       <Header />
     </Box>
     <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
@@ -46,25 +49,56 @@ const Layout = () => (
         key={'home-wrapper'}
         id="home-wrapper"
         sx={{
-          flex: '1 0 auto',
+          flex: '1 0 100%',
           minHeight: 'fit-content',
-          height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          border: '5px solid red',
+          width: '100%',
+          alignItems: 'center',
         }}
       >
-        <Home />
-      </Box>
-      <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={{ height: 'fit-content' }}>
-        <Outlet />
+        <Box
+          component={'div'}
+          key={'intro-wrapper'}
+          id="intro-wrapper"
+          sx={{
+            position: 'relative',
+            flex: '0 1 80%',
+            width: '80%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: '2rem',
+            top: '12%',
+            border: '5px solid red',
+          }}
+        >
+          <Intro />
+          <PicutreAndResume />
+        </Box>
+        <Box
+          component={'div'}
+          key={'about-wrapper'}
+          id="about-wrapper"
+          sx={{
+            position: 'relative',
+            flex: '0 1 80%',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            // top: '12%',
+            border: '5px solid blue',
+          }}
+        >
+          <TechStackList />
+          <AboutMe />
+        </Box>
       </Box>
     </Box>
-    <Box component={'footer'} key={'footer'} id="footer-wrapper" sx={footerWrapperSxProps}>
-      <Footer />
+    <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={{ height: 'fit-content' }}>
+      <Outlet />
     </Box>
     <Menus />
-  </Fragment>
+  </Box>
 );
 
 export default Layout;

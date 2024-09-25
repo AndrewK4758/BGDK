@@ -1,7 +1,9 @@
+/// <reference types="vite/client" />
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 
 export default defineConfig({
   root: __dirname,
@@ -17,7 +19,7 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -31,7 +33,20 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: false,
     },
-    target: 'modules',
+    assetsDir: './assets',
+    rollupOptions: {
+      perf: true,
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
+    },
+    target: 'esnext',
+  },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'browser',
   },
   logLevel: 'info',
   appType: 'spa',

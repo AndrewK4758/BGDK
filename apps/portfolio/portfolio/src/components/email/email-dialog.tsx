@@ -13,8 +13,8 @@ import { Form, type SubmitFunction, useActionData, useSubmit } from 'react-route
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../styles/theme';
-import FormikValidationError from './formik-validation-error';
 import AppointmentMaker from '../date-picker/date-picker';
+import FormikValidationError from './formik-validation-error';
 
 export type MessageMeFormValues = {
   name: string;

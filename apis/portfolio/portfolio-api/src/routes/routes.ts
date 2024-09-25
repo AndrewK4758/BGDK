@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
+import multer from 'multer';
 import getReq from '../controllers/home-page';
 import postEmail from '../controllers/post-email';
-import multer from 'multer';
 
 const router: Router = Router();
 
