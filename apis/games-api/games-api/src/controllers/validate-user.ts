@@ -7,12 +7,12 @@ const validateUser = async (req: IReqObjMaps, resp: Response) => {
 
   try {
     const currentUser = await findUser(email as EmailAddress);
-    return currentUser
+    currentUser
       ? resp.status(200).json({ message: 'Email already registered - Please login to continue' })
       : resp.sendStatus(200);
   } catch (err) {
     console.error(err);
-    return resp.status(500).json({ message: 'Error on email lookup. Please enter email again' });
+    resp.status(500).json({ message: 'Error on email lookup. Please enter email again' });
   }
 };
 

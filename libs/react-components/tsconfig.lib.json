@@ -20,7 +20,11 @@
     "**/*.test.jsx",
     "**/*.spec.ts",
     "../games-components-logic/src/test/**/*.ts",
-    "../types/**/*/src/test/**/*.ts"
+    "../types/**/*/src/test/**/*.ts",
+    "../models/**/*/src/tests**/*.ts",
+    "../chain/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts",
+    "../games/**/*/src/tests/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
@@ -29,6 +33,10 @@
     "src/**/*.tsx",
     "src/**/*.css",
     "../games-components-logic/src/**/*.ts",
-    "../types/**/*/src/**/*.ts"
+    "../types/**/*/src/**/*.ts",
+    "../models/**/*/src/**/*.ts",
+    "../chain/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../games/**/*/src/**/*.ts"
   ]
 }

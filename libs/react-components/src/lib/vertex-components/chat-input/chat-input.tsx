@@ -1,5 +1,5 @@
 // import styles from './chat-input.module.css';
-import { SxProps } from '@mui/material';
+import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { useSubmit } from 'react-router-dom';
@@ -37,36 +37,38 @@ export function ChatInput({
 }: ChatInputProps) {
   const submit = useSubmit();
   return (
-    <Formik
-      initialValues={chatInitialValues}
-      validationSchema={validationSchema}
-      onSubmit={values => {
-        submit(values, {
-          encType: 'application/json',
-          method: `${method}`,
-          action: `${action}`,
-          replace: true,
-        });
-      }}
-    >
-      <Form method={method} action={action}>
-        <TextInput
-          autoComplete="off"
-          label="Prompt Input"
-          labelComponent={'h2'}
-          placeholder="Enter prompt here"
-          type={type}
-          name={name}
-          id="promptInput"
-          textSx={breakpointsChatInputText}
-          labelSx={breakpointsChatInputLabel}
-        />
-        <br />
-        <Button variant={variant} type={buttonType} sx={breakpointsChatInputButton} title="Ask Astro">
-          {buttonText}
-        </Button>
-      </Form>
-    </Formik>
+    <Box>
+      <Formik
+        initialValues={chatInitialValues}
+        validationSchema={validationSchema}
+        onSubmit={values => {
+          submit(values, {
+            encType: 'application/json',
+            method: `${method}`,
+            action: `${action}`,
+            replace: true,
+          });
+        }}
+      >
+        <Form method={method} action={action}>
+          <TextInput
+            autoComplete="off"
+            label="Prompt Input"
+            labelComponent={'h2'}
+            placeholder="Enter prompt here"
+            type={type}
+            name={name}
+            id="promptInput"
+            textSx={breakpointsChatInputText}
+            labelSx={breakpointsChatInputLabel}
+          />
+          <br />
+          <Button variant={variant} type={buttonType} sx={breakpointsChatInputButton} title="Ask Astro">
+            {buttonText}
+          </Button>
+        </Form>
+      </Formik>
+    </Box>
   );
 }
 

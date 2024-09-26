@@ -10,14 +10,15 @@ const PicutreAndResume = () => (
   <Paper
     elevation={24}
     sx={{
-      flex: '0 1 30%',
+      paddingTop: 3,
+      flex: '0 1 35%',
       position: 'relative',
-      alignSelf: 'end',
-      paddingY: '1rem',
+      alignSelf: 'center',
+      height: 'fit-content',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyItems: 'space-around',
+      justifyItems: 'space-evenly',
       borderRadius: 5,
     }}
   >
@@ -27,11 +28,10 @@ const PicutreAndResume = () => (
       loading="lazy"
       alt="andrew"
       sx={{
-        flex: '1 0 100%',
+        flex: '0 1 80%',
         width: '80%',
         borderRadius: 5,
         border: `5px solid ${Theme.palette.primary.dark}`,
-        zIndex: 1,
       }}
     />
     <CardActions
@@ -45,7 +45,6 @@ const PicutreAndResume = () => (
         download={`andrew-klapper-resume-${new Date().toLocaleDateString()}`}
         sx={{
           fontSize: '1.5rem',
-          zIndex: 1,
           height: 'fit-content',
           borderRadius: 5,
         }}

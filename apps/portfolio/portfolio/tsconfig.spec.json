@@ -4,8 +4,8 @@
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts"],
     "target": "ESNext",
-    "moduleResolution": "Bundler",
-    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "composite": true
   },
   "include": [

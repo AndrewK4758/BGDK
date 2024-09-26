@@ -1,6 +1,7 @@
 import { Theme, JoinGame, Text, ChatInput } from '@bgdk/react-components';
 import { useActionData } from 'react-router-dom';
-import { SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material/styles';
+
 
 const breakpointsHomeTextTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {

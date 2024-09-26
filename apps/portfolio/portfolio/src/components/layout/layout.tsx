@@ -2,100 +2,80 @@ import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { Outlet } from 'react-router-dom';
 import '../../styles/layout.css';
-import AboutMe from '../about-me/about-me';
 import Header from '../header/header';
-import Menus from '../home/menus/menus';
-import TechStackList from '../home/tech-list/tech-list';
+import Menus from '../menus/menus';
+import TechStackList from '../tech-list/tech-list';
 import Intro from '../intro/intro';
 import PicutreAndResume from '../intro/picture-resume';
 
 const headerWrapperSxProps: SxProps = {
-  flex: '0 1 8%',
+  position: 'fixed',
+  top: '1vh',
+  width: '70%',
   display: 'flex',
-  minHeight: 'fit-content',
-  maxHeight: '80px',
+  height: '8vh',
+  maxHeight: '120px',
   justifyContent: 'center',
   alignContent: 'center',
+  zIndex: 5,
 };
 
 const mainWrapperSxProps: SxProps = {
-  position: 'relative',
-  flex: '1 0 84%',
+  flex: '1 0 100%',
   width: '100%',
-  minHeight: 'fit-content',
-  height: '100%',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  marginTop: '30vh',
+  gap: '35vh',
 };
 
 const Layout = () => (
-  <Box
-    component={'div'}
-    key={'app-wrapper'}
-    id="app-wrapper"
-    className="app-wrapper"
-    sx={{
-      position: 'relative',
-      height: '100vh',
-      width: '100%',
-    }}
-  >
+  <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
+    <Box component={'div'} className="background" />
     <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
       <Header />
     </Box>
     <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
       <Box
         component={'div'}
-        key={'home-wrapper'}
-        id="home-wrapper"
+        key={'intro-wrapper'}
+        id="intro-wrapper"
         sx={{
-          flex: '1 0 100%',
-          minHeight: 'fit-content',
+          flex: '0 1 auto',
+          width: '90%',
           display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        <Box
-          component={'div'}
-          key={'intro-wrapper'}
-          id="intro-wrapper"
-          sx={{
-            position: 'relative',
-            flex: '0 1 80%',
-            width: '80%',
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '2rem',
-            top: '12%',
-            border: '5px solid red',
-          }}
-        >
-          <Intro />
-          <PicutreAndResume />
-        </Box>
-        <Box
-          component={'div'}
-          key={'about-wrapper'}
-          id="about-wrapper"
-          sx={{
-            position: 'relative',
-            flex: '0 1 80%',
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between',
-            // top: '12%',
-            border: '5px solid blue',
-          }}
-        >
-          <TechStackList />
-          <AboutMe />
-        </Box>
+        <Intro />
+
+        <PicutreAndResume />
       </Box>
-    </Box>
-    <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={{ height: 'fit-content' }}>
-      <Outlet />
+      <Box
+        component={'div'}
+        key={'tech-stack-wrapper'}
+        id="tech-stack-wrapper"
+        sx={{
+          width: '90%',
+          display: 'flex',
+
+          justifyContent: 'center',
+        }}
+      >
+        <TechStackList />
+      </Box>
+      <Box
+        component={'div'}
+        key={'outlet-ref-wrapper'}
+        id="outlet-ref-wrapper"
+        sx={{
+          width: '90%',
+          display: 'flex',
+        }}
+      >
+        <Outlet />
+      </Box>
     </Box>
     <Menus />
   </Box>

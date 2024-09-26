@@ -8,7 +8,7 @@ const Theme: Theme = createTheme(
     defaultColorScheme: 'dark',
     palette: {
       common: {
-        black: '#363027',
+        black: '#ffffff',
         white: '#fffdf6',
       },
       primary: {
@@ -24,11 +24,11 @@ const Theme: Theme = createTheme(
         contrastText: '#f9f871',
       },
       background: {
-        paper: '#1d1607',
-        // default: '#4d4637',
+        paper: '#1f1f1f',
+        default: '#3a3c41',
       },
       text: {
-        primary: '#f3ead9',
+        primary: '#cbcbcb', //'#f3ead9',
         secondary: '#b3aa99',
       },
     },

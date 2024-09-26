@@ -50,5 +50,6 @@ export default defineConfig({
   },
   logLevel: 'info',
   appType: 'spa',
+  publicDir: 'public',
   envDir: './env',
 });

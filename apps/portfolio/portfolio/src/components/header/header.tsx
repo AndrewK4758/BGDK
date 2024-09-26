@@ -13,18 +13,17 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import EmailIcon from '../../components/icons/email-icon';
 import EmailDialog from '../email/email-dialog';
+import Paper from '@mui/material/Paper';
 
 const iconSxProps: SxProps = {
   flex: '0 1 10%',
 };
 
 const socialMediaLinksWrapper: SxProps = {
-  position: 'fixed',
-  width: '70%',
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyItems: 'center',
-  zIndex: 1,
   backgroundColor: Theme.palette.background.paper,
   borderRadius: 5,
   paddingX: 1,
@@ -33,7 +32,13 @@ const socialMediaLinksWrapper: SxProps = {
 const Header = () => {
   const [openEmail, setOpenEmail] = useState<boolean>(false);
   return (
-    <Box component={'div'} key={'social-media-icons'} id="social-media-icons" sx={socialMediaLinksWrapper}>
+    <Paper
+      elevation={24}
+      component={'div'}
+      key={'social-media-icons'}
+      id="social-media-icons"
+      sx={socialMediaLinksWrapper}
+    >
       <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" sx={{ flex: '0 1 30%' }}>
         <Typography
           variant="h4"
@@ -115,7 +120,7 @@ const Header = () => {
           <EmailDialog open={openEmail} setOpen={setOpenEmail} />
         </Box>
       </Box>
-    </Box>
+    </Paper>
   );
 };
 

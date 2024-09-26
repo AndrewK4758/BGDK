@@ -4,13 +4,13 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { useMemo } from 'react';
-import Theme from '../../../styles/theme';
-import Paper from '@mui/material/Paper';
+import Theme from '../../styles/theme';
 
 const languages = ['Typescript', 'NodeJs', 'Python'];
-const libraries = ['React', 'React Router', 'Express', 'Prisma', 'Flask', 'Django', 'PyTorch'];
+const libraries = ['React', 'React Router', 'Express', 'Prisma', 'PyTorch'];
 const styles = ['Mui Material', 'Mui X', 'Tailwind CSS'];
 const data = ['PostgreSQL', 'MongoDB', 'ChromaDB'];
 const cloud = ['GCP', 'AWS'];
@@ -18,15 +18,15 @@ const build = ['Nx', 'Vite', 'Webpack', 'Docker'];
 const analytics = ['Swagger'];
 const testing = ['Jest', 'Playwright'];
 
-const renderTechLists = (lang: string, _i: number, _arr: string[]) => (
-  <ListItem key={`${lang}-wrapper`} id={`${lang}-wrapper`} sx={{ justifyContent: 'space-between' }}>
-    <ListItemText key={`${lang}`} id={`${lang}`}>
-      {lang}
+const renderTechLists = (e: string, _i: number, _arr: string[]) => (
+  <ListItem key={`${e}-wrapper`} id={`${e}-wrapper`} sx={{ justifyContent: 'space-between' }}>
+    <ListItemText key={`${e}`} id={`${e}`}>
+      {e}
     </ListItemText>
     <ListItemIcon>
       <img
-        src={`icons/${lang.toLowerCase()}-icon.svg`}
-        alt={`${lang}-icon`}
+        src={`src/assets/icons/${e.toLowerCase()}-icon.svg`}
+        alt={`${e}-icon`}
         style={{ width: '32px', height: 'auto' }}
       />
     </ListItemIcon>
@@ -36,8 +36,8 @@ const renderTechLists = (lang: string, _i: number, _arr: string[]) => (
 const TechStackList = () =>
   useMemo(() => {
     return (
-      <Paper elevation={24} sx={{ borderRadius: 5 }}>
-        <Container component={'div'} id="tech-list-text-container">
+      <Paper elevation={24} sx={{ borderRadius: 5, height: 'fit-content', p: 2 }}>
+        <Container component={'div'} id="tech-list-text-container" sx={{ width: 'fit-content' }}>
           <Typography variant="h3">My Core Tech Stack</Typography>
         </Container>
 
@@ -152,6 +152,5 @@ const TechStackList = () =>
       </Paper>
     );
   }, []);
-
 
 export default TechStackList;

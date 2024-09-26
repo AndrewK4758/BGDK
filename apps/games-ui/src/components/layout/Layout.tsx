@@ -1,5 +1,5 @@
 import { Footer, Header, Main, Theme } from '@bgdk/react-components';
-import { SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material/styles';
 import { Fragment } from 'react';
 
 const breakpointsAppBar: SxProps = {
@@ -37,7 +37,6 @@ const breakpointsText: SxProps = {
 
 const breakpointsFooter: SxProps = {
   position: 'fixed',
-  top: 'calc(100vh - 65px)',
   bottom: 0,
   right: 0,
   left: 0,
@@ -57,16 +56,13 @@ const breakpointsFooterText: SxProps = {
 
 const breakpointsMain: SxProps = {
   textAlign: 'center',
-  position: 'fixed',
-  top: 65,
-  bottom: 65,
-  left: 0,
-  right: 0,
+  position: 'relative',
   backgroundColor: Theme.palette.background.default,
   zIndex: 9,
-  paddingY: '35px',
-  overflowY: 'auto',
-  minHeight: 'fit-content',
+  paddingY: '10vh',
+  height: 'fit-content',
+  minHeight: '100vh',
+  overflowY: 'hidden',
   [Theme.breakpoints.down('laptop')]: {
     top: 0,
     bottom: 100,

@@ -10,11 +10,11 @@ const loginUser = async (req: IReqObjMaps, resp: Response) => {
     const user = await findUser(email);
     if (!user) {
       console.log('no user');
-      return resp.status(401).json(notRegisteredUserError());
+      resp.status(401).json(notRegisteredUserError());
     }
     const verifiedUser = await verifyUser(password, user.password);
     if (!verifiedUser) {
-      return resp.status(401).json({ errorMessage: 'Incorrect password. Please try again' });
+      resp.status(401).json({ errorMessage: 'Incorrect password. Please try again' });
     }
     const activeUser = {
       id: user.id,
@@ -24,7 +24,7 @@ const loginUser = async (req: IReqObjMaps, resp: Response) => {
       thumbnail: user.thumbnail,
     };
 
-    return resp.status(200).json(activeUser);
+    resp.status(200).json(activeUser);
   } catch (err) {
     console.error(err);
     resp.status(500).json({ errorMessage: 'Login failed' });

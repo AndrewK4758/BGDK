@@ -6,8 +6,7 @@
     "target": "ESNext",
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "composite": true,
-    "esModuleInterop": true
+    "composite": true
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -21,7 +20,13 @@
     "../../../libs/shared-react-components/src/tests/**/*.tsx",
     "../../../libs/shared-react-components/src/tests/**/*.ts",
     "../../../libs/react-components/src/tests/**/*.tsx",
-    "../../../libs/react-components/src/tests/**/*.ts"
+    "../../../libs/react-components/src/tests/**/*.ts",
+    "../../../libs/types/**/*/src/tests/**/*.ts",
+    "../../../libs/models/**/*/src/tests/**/*.ts",
+    "../../../libs/chain/src/tests/**/*.ts",
+    "../../../libs/game/src/tests/**/*.ts",
+    "../../../libs/games/**/*/src/tests/**/*.ts",
+    "../../../libs/games-components-logic/src/tests/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
@@ -31,6 +36,12 @@
     "../../../libs/shared-react-components/src/**/*.tsx",
     "../../../libs/shared-react-components/src/**/*.ts",
     "../../../libs/react-components/src/**/*.tsx",
-    "../../../libs/react-components/src/**/*.ts"
+    "../../../libs/react-components/src/**/*.ts",
+    "../../../libs/types/**/*/src/**/*.ts",
+    "../../../libs/models/**/*/src/**/*.ts",
+    "../../../libs/chain/src/**/*.ts",
+    "../../../libs/game/src/**/*.ts",
+    "../../../libs/games/**/*/src/**/*.ts",
+    "../../../libs/games-components-logic/src/**/*.ts"
   ]
 }

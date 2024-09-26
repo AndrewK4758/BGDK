@@ -6,10 +6,10 @@ import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
 import { Fragment, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import Theme from '../../../styles/theme';
-import AiIcon from '../../icons/ai-icon';
-import GamesIcon from '../../icons/games-icon';
-import HomeIcon from '../../icons/home-icon';
+import Theme from '../../styles/theme';
+import AiIcon from '../icons/ai-icon';
+import GamesIcon from '../icons/games-icon';
+import HomeIcon from '../icons/home-icon';
 
 const cubeSxProps: SxProps = {
   position: 'fixed',
@@ -24,6 +24,7 @@ const cubeSxProps: SxProps = {
 const buttonSXProps: SxProps = {
   fontSize: '3rem',
   width: '100%',
+  color: Theme.palette.background.default,
 };
 
 const Menus = () => {
@@ -35,8 +36,8 @@ const Menus = () => {
       <Box
         component={'div'}
         className={`menuBox`}
-        key={'top-left-header'}
-        id="top-left-header"
+        key={'top-left-menu'}
+        id="top-left-menu"
         top={'2%'}
         left={'2%'}
         sx={cubeSxProps}
@@ -60,7 +61,10 @@ const Menus = () => {
                 sx={{ ...buttonSXProps, flex: '0 1 80%' }}
                 color="primary"
                 variant="extended"
-                onClick={() => nav('/')}
+                onClick={() => {
+                  nav('/');
+                  window.scrollTo({ behavior: 'smooth', top: 0 });
+                }}
               >
                 Home
                 <HomeIcon />
@@ -83,8 +87,8 @@ const Menus = () => {
           <Box
             component={'div'}
             className={`menuBoxTopRight ${open ? 'animate' : ''}`}
-            key={'top-right-header'}
-            id="top-right-header"
+            key={'top-right-menu'}
+            id="top-right-menu"
             top={'2%'}
             right={'2%'}
             sx={cubeSxProps}
@@ -105,8 +109,8 @@ const Menus = () => {
           <Box
             component={'div'}
             className={`menuBoxBottomLeft ${open ? 'animate' : ''}`}
-            key={'bottom-left-header'}
-            id="bottom-left-header"
+            key={'bottom-left-menu'}
+            id="bottom-left-menu"
             bottom={0}
             left={'2%'}
             sx={cubeSxProps}
@@ -125,8 +129,8 @@ const Menus = () => {
           <Box
             component={'div'}
             className={`menuBoxBottomRight ${open ? 'animate' : ''}`}
-            key={'bottom-right-header'}
-            id="bottom-right-header"
+            key={'bottom-right-menu'}
+            id="bottom-right-menu"
             bottom={0}
             right={'2%'}
             sx={cubeSxProps}
