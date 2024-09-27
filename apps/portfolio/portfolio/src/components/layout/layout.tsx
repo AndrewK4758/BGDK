@@ -33,6 +33,7 @@ const mainWrapperSxProps: SxProps = {
 const Layout = () => (
   <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
     <Box component={'div'} className="background" />
+    <Box component={'div'} className="background-overlay" />
     <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
       <Header />
     </Box>

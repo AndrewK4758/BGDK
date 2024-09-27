@@ -45,14 +45,25 @@
     radial-gradient(circle at 6.7% 75%, #505050, transparent),
     radial-gradient(circle at 93.3% 75%, #7b7b7b, transparent),
     linear-gradient(#cb91ff,#33e5c7)
-    #aca9bb
-    ;
-
+    #aca9bb;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: repeat;
+  z-index: -2;
+}
+
+.background-overlay {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('../assets/overlay.svg');
+  background-size: cover;
   z-index: -1;
-  opacity: 0.8
 }
 
 .app-wrapper {
