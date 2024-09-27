@@ -39,7 +39,15 @@
   height: fit-content;
   min-height: 100vh;
   width: 100%;
-  background-image: url('../assets/background3.svg');
+  /* background-image: ; #aca9bb, #33e5c7*/
+  background:
+    radial-gradient(circle at 50% 0, #e9e9e9 10%, transparent ),
+    radial-gradient(circle at 6.7% 75%, #505050, transparent),
+    radial-gradient(circle at 93.3% 75%, #7b7b7b, transparent),
+    linear-gradient(#cb91ff,#33e5c7)
+    #aca9bb
+    ;
+
   background-size: cover;
   background-attachment: fixed;
   background-repeat: repeat;

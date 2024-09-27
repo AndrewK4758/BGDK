@@ -58,6 +58,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
+      "dependsOn": ["^docker-start-db"],
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apis/games-api/games-api/jest.config.ts",
@@ -68,6 +69,20 @@
     "docker-build": {
       "dependsOn": ["build"],
       "command": "docker build -f apis/games-api/games-api/Dockerfile . -t games-api"
+    },
+    "docker-build-db-test": {
+      "command": "docker build -f apis/games-api/games-api/Dockerfile.db.testing . -t games-api-db-testing"
+    },
+    "docker-start-db": {
+      "dependsOn": ["^docker-build-db-test"],
+      "command": "docker compose -f ./docker-compose.yaml up -d"
+    },
+    "jest": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run games-api:docker-start-db", "nx test games-api"],
+        "parallel": false
+      }
     }
   }
 }

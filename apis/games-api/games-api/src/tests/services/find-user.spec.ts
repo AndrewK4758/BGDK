@@ -6,7 +6,7 @@ let email: EmailAddress;
 
 describe('Test findUser service', () => {
   it('should pass and return one user according to the email address passed in', async () => {
-    email = 'EMAIL@DO-NOT.ERASE';
+    email = 'DONT@DELETE.COM';
 
     const user: users = await findUser(email);
 

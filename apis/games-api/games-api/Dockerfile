@@ -6,6 +6,13 @@
 # Run the container with `docker run -p 3000:3000 -t games-api`.
 FROM docker.io/node:22.6.0-bookworm
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+# Enable Corepack and install pnpm
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
+
 ENV HOST=localhost
 ENV PORT=3000
 ENV NODE_ENV=production
@@ -14,13 +21,13 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN pnpm install
 
 COPY libs/prisma prisma/
 
 WORKDIR /app/prisma/
 
-RUN npx prisma generate
+RUN pnpx prisma generate
 
 WORKDIR /app
 

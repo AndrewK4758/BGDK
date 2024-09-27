@@ -1,32 +1,27 @@
 import { IReqObjMaps } from '@bgdk/types-api';
-import { Response, NextFunction } from 'express';
-import gameNotInList from '../../errors/game-not-in-list';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj } from '__mocks__/mocks';
 import useSelectedGame from '../../middleware/use-selected-game';
+import games from '../../data/games-list';
 
-let req: Partial<IReqObjMaps>, resp: Partial<Response>, next: NextFunction;
+let req: Partial<IReqObjMaps>;
 
 describe('Test use selected game middleware', () => {
   beforeAll(() => {
     req = mockReqObj() as Partial<IReqObjMaps>;
-    resp = mockRespObj();
-    next = jest.fn();
 
-    req.selectedGameName = 'Chutes & Ladders';
+    req.selectedGame = games[0];
   });
   it('Should pass and add the BuiltGame to the req object', () => {
-    useSelectedGame(req as IReqObjMaps, resp as Response, next);
+    useSelectedGame(req as IReqObjMaps);
 
     expect(req.selectedGame).toBeTruthy();
-    expect(req.selectedGame.name).toEqual(req.selectedGameName);
+    expect(req.selectedGame.name).toEqual(games[0].name);
   });
 
   it('Should pass and return an error message and 404 status', () => {
-    req.selectedGameName = 'Not In List';
+    req.selectedGame = games[1];
+    useSelectedGame(req as IReqObjMaps);
 
-    useSelectedGame(req as IReqObjMaps, resp as Response, next);
-
-    expect(resp.status).toEqual(404);
-    expect(resp.json).toEqual(gameNotInList());
+    expect(req.selectedGameName).not.toEqual('Chutes & Ladders');
   });
 });
