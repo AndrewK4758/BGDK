@@ -9,7 +9,6 @@ const Intro = () => (
     elevation={24}
     sx={{
       position: 'relative',
-      borderRadius: 5,
       zIndex: 1,
       flex: '0 1 50%',
       height: 'fit-content',
@@ -25,11 +24,15 @@ const Intro = () => (
         variant="h2"
         key={'about-me-text'}
         id="about-me-text"
-        sx={{ borderBottom: `3px solid ${Theme.palette.primary.dark}`, width: 'fit-content', alignSelf: 'center' }}
+        sx={{
+          borderBottom: `3px solid ${Theme.palette.primary.dark}`,
+          width: 'fit-content',
+          alignSelf: 'center',
+        }}
       >
         Hi, I'm Andrew Klapper
       </Typography>
-      <Typography id="home-text-title" variant="body1" sx={{ textAlign: 'left', paddingY: 2 }}>
+      <Typography id="home-text-title" variant="body1" sx={{ textAlign: 'start', paddingY: 2 }}>
         A Full-Stack web developer looking to turn your ideas and inspirations into a digital reality by translating
         your business needs or personal passions into a web based experience you and your clients will enjoy. When I am
         not working on projects, I enjoy, tutoring members of a group I belong to,{' '}

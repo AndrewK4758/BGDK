@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import { Fragment } from 'react/jsx-runtime';
 import Text from '../text/text';
 import { Theme } from '../../theme/theme';
@@ -53,11 +53,11 @@ export function GameBoardMapTicTacToe({
   setStateAction,
 }: GameBoardPropsTicTacToe) {
   return (
-    <Grid columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
+    <Grid2 columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
       {row.map((e, _i, _arr) => {
         return (
-          <Fragment key={Math.random().toFixed(4)}>
-            <Grid
+          <Fragment key={Math.random().toFixed(6)}>
+            <Grid2
               component={'div'}
               sx={breakpointsRowSx}
               onClick={e => setStateAction(e.currentTarget)}
@@ -68,11 +68,11 @@ export function GameBoardMapTicTacToe({
               ) : (
                 <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
               )}
-            </Grid>
+            </Grid2>
           </Fragment>
         );
       })}
-    </Grid>
+    </Grid2>
   );
 }
 

@@ -22,9 +22,10 @@ app.use('/api/v1', router);
 
 new PortfolioRoutes();
 
-const port = process.env.PORT || 4758;
+const port = parseInt(process.env.PORT) || 4758;
+const host = process.env.HOST || 'localhost';
 const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api/v1`);
+  console.log(`Listening at http://${host}:${port}/api/v1`);
 });
 server.on('error', console.error);
 

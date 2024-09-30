@@ -36,7 +36,7 @@ const renderTechLists = (e: string, _i: number, _arr: string[]) => (
 const TechStackList = () =>
   useMemo(() => {
     return (
-      <Paper elevation={24} sx={{ borderRadius: 5, height: 'fit-content', p: 2 }}>
+      <Paper elevation={24} sx={{ height: 'fit-content', p: 2 }}>
         <Container component={'div'} id="tech-list-text-container" sx={{ width: 'fit-content' }}>
           <Typography variant="h3">My Core Tech Stack</Typography>
         </Container>

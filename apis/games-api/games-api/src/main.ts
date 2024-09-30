@@ -18,7 +18,7 @@ import specs from './services/swagger/swagger-setup';
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: ['http://localhost:4200', 'http://localhost:3000', 'https://andrew-k.us'],
+  origin: ['http://localhost:4700', 'http://localhost:4200', 'http://localhost:3000', 'https://andrew-k.us'],
   methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
   exposedHeaders: ['*'],
   optionsSuccessStatus: 204,
@@ -50,9 +50,9 @@ export const socketServer = new SocketServer(
 new GameRoutes();
 
 const port = parseInt(process.env.PORT) || 3000;
-
+const host = process.env.HOST || 'localhost';
 const server = httpServer.listen(port, () => {
-  console.log(`Listening on ${port}/api/v1`);
+  console.log(`Listening on http://${host}:${port}/api/v1`);
 });
 
 server.on('error', console.error);

@@ -19,7 +19,6 @@ const PicutreAndResume = () => (
       flexDirection: 'column',
       alignItems: 'center',
       justifyItems: 'space-evenly',
-      borderRadius: 5,
     }}
   >
     <CardMedia
@@ -30,7 +29,7 @@ const PicutreAndResume = () => (
       sx={{
         flex: '0 1 80%',
         width: '80%',
-        borderRadius: 5,
+        borderRadius: 1,
         border: `5px solid ${Theme.palette.primary.dark}`,
       }}
     />
@@ -46,7 +45,6 @@ const PicutreAndResume = () => (
         sx={{
           fontSize: '1.5rem',
           height: 'fit-content',
-          borderRadius: 5,
         }}
         endIcon={<ResumeIcon />}
       >

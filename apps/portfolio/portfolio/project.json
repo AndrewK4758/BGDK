@@ -60,7 +60,7 @@
       "options": {
         "jestConfig": "apps/portfolio/portfolio/jest.config.ts",
         "reportsDirectory": "../../coverage/apps/portfolio",
-        "testFiles": ["./src/tests/*"]
+        "args": ["--experimental-vm-modules"]
       }
     },
     "lint": {

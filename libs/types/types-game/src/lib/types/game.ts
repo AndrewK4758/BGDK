@@ -55,7 +55,7 @@ export type GameNameString = string;
 
 export type GamePlayerValidation = {
   gameInstanceID?: GameInstanceID;
-  playerID?: string;
+  playerID?: string | string[];
 };
 
 export type PlayerInTurn = {

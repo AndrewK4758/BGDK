@@ -2,7 +2,7 @@
   "jest.enable": true,
   "jest.rootPath": "./",
   "jestrunner.jestPath": "./node_modules/jest/bin/jest",
-  "jest.jestCommandLine": "pnpm",
+  // "jest.jestCommandLine": "pnpm",
   "jest.runMode": {
     "type": "on-demand",
     "showInlineError": true,

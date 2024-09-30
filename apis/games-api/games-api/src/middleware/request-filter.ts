@@ -15,7 +15,7 @@ const reqFilter = (req: IReqObjMaps, _resp: Response, next: NextFunction): void 
   req.allGamesMap = useAllGamesMap();
   req.instanceMap = useInstanceTimeMap();
   req.activeGameInstance = useActiveGameInstance(req);
-  req.gameSpecificChain = req.selectedGame.chain;
+  req.gameSpecificChain = req.selectedGame.chain ?? null;
   next();
 };
 

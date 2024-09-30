@@ -1,9 +1,8 @@
 import Box from '@mui/material/Box';
 
-export const Waiting = () => {
-  return (
-    <Box component={'div'} sx={{ display: 'flex', justifyContent: 'center' }}>
-      <img alt="waiting" src="swirly-dots-to-chrome.webp" width={'128'} />
-    </Box>
-  );
-};
+export const Waiting = () => (
+  <Box component={'div'} sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '100%' }}>
+    <img alt="waiting" src="swirly-dots-to-chrome.webp" width={'128'} />
+  </Box>
+);
+

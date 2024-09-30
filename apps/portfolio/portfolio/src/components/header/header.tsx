@@ -8,7 +8,6 @@ import GitHibIcon from '../icons/github-icon';
 import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
-import Theme from '../../styles/theme';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import EmailIcon from '../../components/icons/email-icon';
@@ -24,8 +23,6 @@ const socialMediaLinksWrapper: SxProps = {
   display: 'flex',
   alignItems: 'center',
   justifyItems: 'center',
-  backgroundColor: Theme.palette.background.paper,
-  borderRadius: 5,
   paddingX: 1,
 };
 

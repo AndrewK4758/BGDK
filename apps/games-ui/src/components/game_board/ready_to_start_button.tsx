@@ -38,7 +38,6 @@ export default function ReadyToStart({ dispatch, socket }: ReadyToStartProps) {
   const reqHeaders = {
     headers: {
       'current-game': JSON.stringify(getGameInstanceInfo()),
-      Authorization: sessionStorage.getItem('token'),
     },
   };
 

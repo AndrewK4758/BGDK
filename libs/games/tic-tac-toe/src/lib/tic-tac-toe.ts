@@ -39,13 +39,14 @@ export class TicTacToe {
     indexOfSpace === 1 ? this.startSpace : new Space(SpaceType.NORMAL, indexOfSpace);
 
   addAvatarSvgToDisplay = (name: string) => {
+
     switch (name) {
       case AvatarTotems.totemsList[0].name:
         return AvatarTotems.totemsList[0].image;
       case AvatarTotems.totemsList[1].name:
         return AvatarTotems.totemsList[1].image;
       default:
-        throw Error('Avatar not in list');
+        throw Error('Avatar not in list svg list');
     }
   };
 

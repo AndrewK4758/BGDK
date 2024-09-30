@@ -29,11 +29,11 @@ const Theme: Theme = createTheme(
       },
       text: {
         primary: '#cbcbcb', //'#f3ead9',
-        secondary: '#b3aa99',
+        secondary: '#3a3c41',
       },
     },
     shape: {
-      borderRadius: 5,
+      borderRadius: 20,
     },
     typography: {
       fontFamily: 'League Gothic',

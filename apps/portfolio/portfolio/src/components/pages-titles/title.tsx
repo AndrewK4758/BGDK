@@ -14,13 +14,14 @@ const Title = ({ name, title, body, titleSx, bodySx }: TitleProps) => (
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'space-evenly',
-      borderRadius: 5,
       width: '80%',
     }}
   >
-    <Typography variant="h3" sx={titleSx} borderBottom={`3px solid ${Theme.palette.primary.dark}`}>
-      {title}
-    </Typography>
+    {title && (
+      <Typography variant="h3" sx={titleSx} borderBottom={`3px solid ${Theme.palette.primary.dark}`}>
+        {title}
+      </Typography>
+    )}
     <Typography variant="body1" sx={bodySx}>
       {body}
     </Typography>
