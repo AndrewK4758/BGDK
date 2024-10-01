@@ -49,7 +49,6 @@ const textFieldSlotProps = {
   inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
   htmlInput: {
     sx: {
-      borderRadius: 2,
       fontSize: '1.5rem',
       paddingTop: 2,
       backgroundColor: Theme.palette.background.default,
@@ -58,7 +57,8 @@ const textFieldSlotProps = {
   },
   input: {
     inputProps: {
-      style: {
+      sx: {
+        borderRadius: 1,
         color: Theme.palette.text.primary,
         backgroundColor: Theme.palette.background.default,
       },
@@ -111,13 +111,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   /*TRIAL COMMPONENT*/
 
   return (
-    <Dialog
-      open={open}
-      id="email-dialog"
-      fullWidth
-      scroll="body"
-      PaperProps={{ sx: { borderRadius: 5, maxWidth: '40%' } }}
-    >
+    <Dialog open={open} id="email-dialog" fullWidth scroll="body" PaperProps={{ sx: { maxWidth: '40%' } }}>
       {/*TRIAL COMMPONENT*/}
       {action && (
         <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} alignContent={'center'}>
@@ -215,10 +209,10 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
                     input: { sx: { p: 0 } },
                     htmlInput: {
                       sx: {
+                        borderRadius: 1,
                         padding: 2,
                         paddingTop: 3,
                         fontSize: '1.5rem',
-                        borderRadius: 2,
                         backgroundColor: Theme.palette.background.default,
                         color: Theme.palette.background.paper,
                       },

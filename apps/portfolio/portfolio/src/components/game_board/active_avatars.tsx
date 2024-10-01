@@ -51,7 +51,7 @@ const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
       component={'span'}
       id={e.playerName}
       boxSx={breakpointsPlayersBox}
-      textSx={{ color: e.avatarColor, ...breakpointsPlayersInGameText }}
+      textSx={{ color: '#cb91ff', ...breakpointsPlayersInGameText }}
       playerVariant="body1"
       playerName={`${e.playerName}: `}
       avatarName={e.avatarName}

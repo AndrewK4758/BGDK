@@ -1,25 +1,26 @@
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import EmailIcon from '../../components/icons/email-icon';
+import EmailDialog from '../email/email-dialog';
 import DiscordIcon from '../icons/discord-icon';
 import FacebookIcon from '../icons/facebook-icon';
 import GitHibIcon from '../icons/github-icon';
 import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
-import Button from '@mui/material/Button';
-import { useState } from 'react';
-import EmailIcon from '../../components/icons/email-icon';
-import EmailDialog from '../email/email-dialog';
-import Paper from '@mui/material/Paper';
 
 const iconSxProps: SxProps = {
-  flex: '0 1 10%',
+  flex: '1 0 10%',
+  justifyItems: 'center',
+  alignContent: 'center',
 };
 
 const socialMediaLinksWrapper: SxProps = {
-  width: '100%',
+  width: '80%',
   display: 'flex',
   alignItems: 'center',
   justifyItems: 'center',
@@ -36,7 +37,7 @@ const Header = () => {
       id="social-media-icons"
       sx={socialMediaLinksWrapper}
     >
-      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" sx={{ flex: '0 1 30%' }}>
+      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" sx={{ flex: '1 0 25%' }}>
         <Typography
           variant="h4"
           color="secondary"
@@ -51,7 +52,7 @@ const Header = () => {
         component={'div'}
         key={'social-media-icon-wrapper'}
         id="social-media-icon-wrapper"
-        sx={{ flex: '0 1 40%', display: 'flex', justifyContent: 'space-evenly' }}
+        sx={{ flex: '1 0 75%', display: 'flex', justifyContent: 'space-evenly' }}
       >
         <Box component={'span'} key={'github-icon-span'} id="github-icon-span" sx={iconSxProps}>
           <IconButton href="https://github.com/AndrewK4758">
@@ -83,39 +84,14 @@ const Header = () => {
             <DiscordIcon />
           </IconButton>
         </Box>
+        <Box component={'span'} key={'email-icon-span'} id="email-icon-span" sx={iconSxProps}>
+          <IconButton color="secondary" onClick={() => setOpenEmail(true)} sx={iconSxProps}>
+            <EmailIcon />
+          </IconButton>
+        </Box>
       </Box>
-      <Box
-        component={'div'}
-        key={'footer-email-dialog-wrapper'}
-        id="footer-email-dialog-wrapper"
-        sx={{ flex: '0 1 30%' }}
-      >
-        <Box
-          component={'div'}
-          key={'footer-text-box'}
-          id="footer-text-box"
-          sx={{
-            flex: '0 1 70%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
-            height: 'fit-content',
-          }}
-        >
-          <Button
-            color="secondary"
-            onClick={() => setOpenEmail(true)}
-            variant="text"
-            sx={{ fontSize: '2rem' }}
-            endIcon={<EmailIcon />}
-            style={{ zIndex: 1, maxHeight: '60px' }}
-          >
-            Feel Free to Reach Out
-          </Button>
-        </Box>
-        <Box component={'div'} key={'email-form-wrapper'} id="email-form-wrapper" width={'100%'}>
-          <EmailDialog open={openEmail} setOpen={setOpenEmail} />
-        </Box>
+      <Box component={'div'} key={'email-form-wrapper'} id="email-form-wrapper" width={'100%'}>
+        <EmailDialog open={openEmail} setOpen={setOpenEmail} />
       </Box>
     </Paper>
   );

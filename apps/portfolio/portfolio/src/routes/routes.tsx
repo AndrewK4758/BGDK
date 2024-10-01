@@ -4,6 +4,9 @@ import emailFormAction from '../services/actions/email-form-action';
 import registerPlayersAndStartGame from '../services/loaders/register-players-and-start-game';
 import ActiveGameSession from '../pages/games/active_game_session';
 import App from '../app/app';
+import { lazy } from 'react';
+
+const Games = lazy(() => import('../pages/games/games'));
 
 const routes: RouteObject[] = [
   {
@@ -14,10 +17,7 @@ const routes: RouteObject[] = [
       {
         path: 'games',
         action: registerPlayersAndStartGame,
-        lazy: async () => {
-          const { Games } = await import('../pages/games/games');
-          return { Component: Games };
-        },
+        Component: Games,
         children: [
           {
             index: true,

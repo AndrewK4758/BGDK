@@ -1,16 +1,16 @@
-import { Theme } from '@bgdk/react-components';
+import Theme from '../../styles/theme';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import { Action, ActionType } from './socket-reducer';
 import getGameInstanceInfo from '../../utils/utils';
 import type { GamePlayerValidation } from '@bgdk/types-game';
 
 const breakpointsTakeTurnButton: SxProps = {
-  backgroundColor: Theme.palette.info.main,
+  backgroundColor: Theme.palette.primary.main,
+  fontSize: '1.25rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
@@ -22,24 +22,19 @@ interface TakeTurnProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
   position: (EventTarget & HTMLDivElement) | undefined;
+  avatarInTurn: string;
 }
 
-export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTurnProps) {
-  const loc = useLocation();
-
-  const url = loc.pathname.split('/');
-
-  const id = url[url.length - 1];
-
-  const playerIds = JSON.parse(sessionStorage.getItem('playersIds') as string);
-
-  const player1 = playerIds[0];
-  const player2 = playerIds[1];
-
+export default function TakeTurnTicTacToe({ dispatch, socket, position, avatarInTurn }: TakeTurnProps) {
   const gameInfo = getGameInstanceInfo() as GamePlayerValidation;
-  gameInfo.playerID = player1;
-
-  const __current_game__ = JSON.stringify(gameInfo);
+  const playersIds = JSON.parse(sessionStorage.getItem('playersIds') as string);
+  const playerId = playersIds[avatarInTurn];
+  gameInfo.playerID = playerId;
+  const reqHeaders = {
+    headers: {
+      'current-game': JSON.stringify(gameInfo),
+    },
+  };
 
   console.log(position?.textContent, 'out of button');
   const handleTakeTurn = async () => {
@@ -47,14 +42,12 @@ export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTu
     console.log(position, 'in button');
     try {
       const resp = await axios.patch(
-        `${baseURL}/games/${id}/take-turn`,
+        `${baseURL}/games/Tic-Tac-Toe/take-turn`,
         { position: position?.textContent },
-        { headers: { 'current-game': __current_game__ } },
+        reqHeaders,
       );
       console.log(resp.data.turnStatus);
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });
-
-      sessionStorage.setItem('playersIds', JSON.stringify([player2, player1]));
     } catch (err) {
       console.log(err);
       return null;
@@ -62,7 +55,7 @@ export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTu
   };
 
   return (
-    <Button variant="outlined" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
+    <Button variant="contained" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
       Take Turn
     </Button>
   );

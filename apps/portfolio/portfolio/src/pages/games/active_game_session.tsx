@@ -2,22 +2,22 @@ import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { GameBoard, ILiteSpace, rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
 import { IActivePlayersInGame, type GamePlayerValidation } from '@bgdk/types-game';
-import { SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import { Fragment, useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ManagerOptions, Socket } from 'socket.io-client';
 import ActiveAvatars from '../../components/game_board/active_avatars';
-import ReadyToStart from '../../components/game_board/ready_to_start_button';
 import ResetGame from '../../components/game_board/reset_game';
-import ShowGameBoard from '../../components/game_board/show_game_board';
 import ShowGameBoardTicTacToe from '../../components/game_board/show-game-board-tic-tac-toe';
+import ShowGameBoard from '../../components/game_board/show_game_board';
 import socketReducer, { ActionType } from '../../components/game_board/socket-reducer';
+import TakeTurnTicTacToe from '../../components/game_board/take-turn-tic-tac-toe';
 import TakeTurn from '../../components/game_board/take_turn';
 import getGameInstanceInfo from '../../utils/utils';
 import ClientSocket from '../../utils/web-socket/socket-instance';
-import TakeTurnTicTacToe from '../../components/game_board/take-turn-tic-tac-toe';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   marginTop: '2rem',
@@ -36,6 +36,7 @@ const breakpointsPlayerInTurnText: SxProps = {
 const breakpointsBottomMenuButtonsBox: SxProps = {
   flex: '1 0 50%',
   flexDirection: 'row',
+  paddingY: 2,
   [Theme.breakpoints.down('tablet')]: {
     flexDirection: 'column',
   },
@@ -106,18 +107,15 @@ const ActiveGameSession = () => {
 
     return () => {
       if (socket) socket.disconnect();
-
-      console.log('unmounted');
     };
   }, [socket, id]);
 
   return (
-    <>
+    <Paper key={'active-game'} id="active-game">
       <Container component={'section'} sx={{ marginBottom: '2rem' }}>
         <ActiveAvatars avatarsInGame={state.activePlayersInGame} winner={state.winner} />
-        <ReadyToStart dispatch={dispatch} socket={socket} />
       </Container>
-      <Box component={'section'} sx={{ height: '55vh' }}>
+      <Box component={'section'} sx={{ height: 'fit-content', textAlign: 'center', paddingX: 4 }}>
         {id === 'Chutes-&-Ladders' && <ShowGameBoard key={id} board={state.gameBoard} />}
         {id === 'Tic-Tac-Toe' && (
           <ShowGameBoardTicTacToe key={id} board={state.gameBoard} setStateAction={setSpace} state={space} />
@@ -128,14 +126,23 @@ const ActiveGameSession = () => {
           <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         </Box>
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          <Fragment key={Math.random().toFixed(4)}>
-            {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}
-            {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={space} />}
+          <Fragment key={'game'}>
+            {id === 'Chutes-&-Ladders' && (
+              <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
+            )}
+            {id === 'Tic-Tac-Toe' && (
+              <TakeTurnTicTacToe
+                avatarInTurn={state.avatarInTurn as string}
+                dispatch={dispatch}
+                socket={socket}
+                position={space}
+              />
+            )}
             <ResetGame dispatch={dispatch} socket={socket} />
           </Fragment>
         </Container>
       </Container>
-    </>
+    </Paper>
   );
 };
 

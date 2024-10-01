@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import Theme from '../../styles/theme';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -10,7 +10,8 @@ import getGameInstanceInfo from '../../utils/utils';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
-  backgroundColor: Theme.palette.info.main,
+  backgroundColor: Theme.palette.primary.main,
+  fontSize: '1.25rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
@@ -47,7 +48,7 @@ export default function ResetGame({ dispatch, socket }: ResetGameProps) {
   };
 
   return (
-    <Button onClick={handleResetGame} variant="outlined" type="button" sx={breakpointsResetGameButton}>
+    <Button onClick={handleResetGame} variant="contained" type="button" sx={breakpointsResetGameButton}>
       Reset
     </Button>
   );

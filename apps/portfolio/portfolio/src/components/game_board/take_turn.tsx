@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import Theme from '../../styles/theme';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -9,7 +9,8 @@ import getGameInstanceInfo from '../../utils/utils';
 import type { GamePlayerValidation } from '@bgdk/types-game';
 
 const breakpointsTakeTurnButton: SxProps = {
-  backgroundColor: Theme.palette.info.main,
+  backgroundColor: Theme.palette.primary.main,
+  fontSize: '1.25rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
@@ -17,21 +18,19 @@ const breakpointsTakeTurnButton: SxProps = {
   },
 };
 
+const baseURL = import.meta.env.VITE_GAMES_API_URL;
+
 interface TakeTurnProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
+  avatarInTurn: string;
 }
 
-export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
-  const playerIds = JSON.parse(sessionStorage.getItem('playersIds') as string) as string[];
-
+export default function TakeTurn({ dispatch, socket, avatarInTurn }: TakeTurnProps) {
   const handleTakeTurn = async () => {
-    const player1 = playerIds[0];
-    const player2 = playerIds[1];
-
-    const baseURL = import.meta.env.VITE_GAMES_API_URL;
     const gameInfo = getGameInstanceInfo() as GamePlayerValidation;
-    const playerId = player1;
+    const playersIds = JSON.parse(sessionStorage.getItem('playersIds') as string);
+    const playerId = playersIds[avatarInTurn];
     gameInfo.playerID = playerId;
     const reqHeaders = {
       headers: {
@@ -42,7 +41,6 @@ export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
     try {
       const resp = await axios.patch(`${baseURL}/games/Chutes-&-Ladders/take-turn`, {}, reqHeaders);
       console.log(resp.data.turnStatus);
-      sessionStorage.setItem('playersIds', JSON.stringify([player2, player1]));
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });
       return null;
     } catch (err) {
@@ -52,7 +50,7 @@ export default function TakeTurn({ dispatch, socket }: TakeTurnProps) {
   };
 
   return (
-    <Button variant="outlined" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
+    <Button variant="contained" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
       Take Turn
     </Button>
   );

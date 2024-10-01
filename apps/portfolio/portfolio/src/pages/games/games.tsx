@@ -7,24 +7,29 @@ import Toolbar from '@mui/material/Toolbar';
 import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
-
 import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
-
-import { Waiting } from '@bgdk/shared-react-components';
+import Theme from '../../styles/theme';
+import GameLoading from '../../components/loading/loading';
+import { useEffect, useState } from 'react';
 
 const body = `Yes, these are simple board games. When you take the concept of a board game, break it down into its individual parts, find the similarities and generalizations between board games generally, and isolate what makes each game unique, you can take this simple concept and generate a group of objects that you can easily build any board style game upon.`;
 
-export const Games = () => {
-  const navigation = useNavigation();
+const Games = () => {
+  const { state } = useNavigation();
+  const [loading, setLoading] = useState<boolean>(false);
   const submit = useSubmit();
 
-  console.log('before click', navigation.state);
+  useEffect(() => {
+    const renderTimer = setTimeout(() => setLoading(false), 3000);
+
+    return () => clearTimeout(renderTimer);
+  }, [state]);
 
   const handleClick = (gameName: string) => {
-    submit(gameName, { method: 'post', replace: true, encType: 'text/plain' });
+    setLoading(true);
+    submit(gameName, { method: 'post', relative: 'path', replace: true, encType: 'text/plain' });
   };
 
-  console.log('after click', navigation);
   return (
     <Box
       component={'div'}
@@ -32,47 +37,48 @@ export const Games = () => {
       id="games-wrapper"
       sx={{
         flex: '1 0 100%',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         gap: '10vh',
+        alignItems: 'center',
       }}
       onLoad={e => handleScrollIntoView(e)}
     >
-      <Paper elevation={0} component={'div'} key={'games-header-wrapper'} id="games-header-wrapper">
+      <Paper
+        elevation={0}
+        component={'div'}
+        key={'games-header-wrapper'}
+        id="games-header-wrapper"
+        sx={{ width: '55%' }}
+      >
         <AppBar elevation={24} position="static" sx={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
           <Toolbar component={'nav'} sx={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}>
-            {/* <Form
-              // action={gameName}
-              method="post"
-              encType="text/plain"
-              style={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}
-            > */}
             <Button
               type="submit"
-              color="inherit"
               title="Chutes & Ladders"
               name="game-name"
               id="Chutes-&-Ladders"
+              disabled={state === 'submitting'}
               endIcon={<ChutesAndLaddersIcon />}
               onClick={e => handleClick(e.currentTarget.id)}
-              sx={{ fontSize: '2rem' }}
+              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
             >
               Chutes & Ladders
             </Button>
 
             <Button
               type="submit"
-              color="inherit"
               title="Tic Tac Toe"
               name="game-name"
               id="Tic-Tac-Toe"
+              disabled={state === 'submitting'}
               endIcon={<TicTacToeIcon />}
               onClick={e => handleClick(e.currentTarget.id)}
-              sx={{ fontSize: '2rem' }}
+              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
             >
               Tic Tac Toe
             </Button>
-            {/* </Form> */}
           </Toolbar>
         </AppBar>
         <Box component={'div'} key={'games-header-text-wrapper'} id="games-header-text-wrapper" sx={{ p: 2 }}>
@@ -81,9 +87,17 @@ export const Games = () => {
           </Typography>
         </Box>
       </Paper>
-      <Box component={'div'} key={`games-app-wrapper`} id={`games-app-wrapper`}>
-        {navigation.state === 'submitting' ? <Waiting /> : <Outlet />}
+
+      <Box
+        component={'div'}
+        key={`games-app-wrapper`}
+        id={`games-app-wrapper`}
+        sx={{ width: '80%', minHeight: '100%', height: 'fit-content' }}
+      >
+        {loading ? <GameLoading /> : <Outlet />}
       </Box>
     </Box>
   );
 };
+
+export default Games;
