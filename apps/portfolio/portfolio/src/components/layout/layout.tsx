@@ -77,7 +77,7 @@ const Layout = () => (
           width: '100%',
           display: 'flex',
           height: 'fit-content',
-          minHeight: '85vh',
+          minHeight: '50vh',
         }}
       >
         <GameContextProvider>

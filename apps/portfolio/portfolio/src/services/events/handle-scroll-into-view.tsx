@@ -1,9 +1,10 @@
-import type { SyntheticEvent } from 'react';
+const handleScrollIntoView = (ref: HTMLElement) => {
+  const element = ref.getBoundingClientRect();
+  const offset = element.top + window.scrollY;
 
-const handleScrollIntoView = (e: SyntheticEvent<HTMLDivElement, Event>) => {
-  e.currentTarget.scrollIntoView({
+  window.scrollTo({
+    top: offset - 100,
     behavior: 'smooth',
-    block: 'nearest',
   });
 };
 

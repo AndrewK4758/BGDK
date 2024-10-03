@@ -9,12 +9,13 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import { type Dispatch, type SetStateAction, useEffect, useRef } from 'react';
-import { Form, type SubmitFunction, useActionData, useSubmit } from 'react-router-dom';
+import { Form, SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../styles/theme';
-import AppointmentMaker from '../date-picker/date-picker';
+import AppointmentMaker from './appointment-maker/appointment-maker';
 import FormikValidationError from './formik-validation-error';
+import dayjs from 'dayjs';
 
 export type MessageMeFormValues = {
   name: string;
@@ -32,7 +33,7 @@ const initialValues = {
   phone: '',
   subject: 'I saw your website and wanted to reach out...',
   body: '',
-  date: '',
+  date: dayjs().add(1, 'day').format('MM-DD-YYYY/HH:mm'),
   attachment: null,
 };
 
@@ -72,9 +73,9 @@ interface EmailDialogProps {
 }
 
 const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFunction) => {
-  console.log(values);
   const { name, email, phone, subject, body, date, attachment } = values;
 
+  console.log(date);
   const form = new FormData();
 
   form.append('name', name);
@@ -85,13 +86,16 @@ const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFuncti
   form.append('date', date);
   if (attachment) form.append('attachment', attachment);
 
+  console.log(form.get('date'));
   submit(form, { action: '/', method: 'post', encType: 'multipart/form-data' });
 };
 
 const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const action = useActionData() as { message: string };
+  const { state } = useNavigation();
   const submit = useSubmit();
+
+
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -104,24 +108,23 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   const handleFileSubmit = () => {
     fileInputRef.current?.click();
   };
-  /*TRIAL COMMPONENT*/
+
   useEffect(() => {
-    if (action) setTimeout(() => setOpen(false), 2500);
-  }, [action, setOpen]);
-  /*TRIAL COMMPONENT*/
+
+    if (state !== 'submitting') setOpen(false);
+  }, [state, setOpen]);
 
   return (
     <Dialog open={open} id="email-dialog" fullWidth scroll="body" PaperProps={{ sx: { maxWidth: '40%' } }}>
-      {/*TRIAL COMMPONENT*/}
-      {action && (
+      {state === 'submitting' && (
         <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} alignContent={'center'}>
           <Box sx={{ fontSize: '5rem', textAlign: 'center' }}>{`\u{1F44D}`}</Box>
           <Box sx={{ fontSize: '3rem', textAlign: 'center' }}>{` Got it, Thanks!! `}</Box>
           <Box sx={{ fontSize: '5rem', textAlign: 'center' }}>{`\u{1F44D}`}</Box>
         </Box>
       )}
-      {/*TRIAL COMMPONENT*/}
-      <Box component={'section'} id="email-me-title-box" sx={{ filter: action ? 'blur(10px)' : null }}>
+
+      <Box component={'section'} id="email-me-title-box" sx={{ filter: state === 'submitting' ? 'blur(10px)' : null }}>
         <DialogTitle id="email-me-title" gutterBottom={false} variant="h1" sx={{ paddingY: '0' }}>
           Reach Out
         </DialogTitle>

@@ -56,9 +56,14 @@ const Menus = () => {
           )}
 
           {open && (
-            <Box component={'div'} key={'games-menu-with-close'} id="games-menu-with-close">
+            <Box
+              component={'div'}
+              key={'games-menu-with-close'}
+              id="games-menu-with-close"
+              sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+            >
               <Fab
-                sx={{ ...buttonSXProps, flex: '0 1 80%' }}
+                sx={{ ...buttonSXProps, flex: '0 1 auto' }}
                 color="primary"
                 variant="extended"
                 onClick={() => {
@@ -71,10 +76,20 @@ const Menus = () => {
               </Fab>
 
               <Typography
-                variant="subtitle1"
+                variant="caption"
                 onClick={() => setOpen(false)}
-                color={Theme.palette.secondary.light}
-                sx={{ cursor: 'pointer', fontSize: '1.2rem', textAlign: 'right', flex: '0 1 20%' }}
+                color={Theme.palette.secondary.contrastText}
+                sx={{
+                  justifySelf: 'center',
+                  cursor: 'pointer',
+                  fontSize: '.8rem',
+                  textAlign: 'center',
+                  maxHeight: '1.5rem',
+                  backgroundColor: Theme.palette.background.default,
+                  width: '75px',
+                  borderRadius: 0.4,
+                  alignSelf: 'flex-end',
+                }}
               >
                 Close Menu
               </Typography>

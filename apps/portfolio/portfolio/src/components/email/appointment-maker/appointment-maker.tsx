@@ -2,9 +2,9 @@ import Typography from '@mui/material/Typography';
 import { DateTimePicker, renderTimeViewClock } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import type { FormikProps } from 'formik';
-import '../../styles/styles.css';
-import Theme from '../../styles/theme';
-import { MessageMeFormValues } from '../email/email-dialog';
+import '../../../styles/styles.css';
+import Theme from '../../../styles/theme';
+import { MessageMeFormValues } from '../email-dialog';
 
 const tomorrow = dayjs().add(1, 'day');
 const nextYear = dayjs().year(new Date().getFullYear() + 1);
@@ -33,7 +33,11 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
     minDate={tomorrow}
     maxDate={nextYear}
     disablePast={true}
-    onChange={data => formik.setFieldValue('date', data?.format('MM-DD-YYYY/HH:mm'))}
+    onChange={data => {
+      console.log(data);
+      formik.setFieldValue('date', data?.format('MM-DD-YYYY/HH:mm'));
+      console.log(formik.values.date);
+    }}
     slotProps={{
       textField: {
         color: 'secondary',

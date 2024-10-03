@@ -10,14 +10,19 @@ import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
 import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
 import Theme from '../../styles/theme';
 import GameLoading from '../../components/loading/loading';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const body = `Yes, these are simple board games. When you take the concept of a board game, break it down into its individual parts, find the similarities and generalizations between board games generally, and isolate what makes each game unique, you can take this simple concept and generate a group of objects that you can easily build any board style game upon.`;
 
 const Games = () => {
   const { state } = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
+  const divRef = useRef<HTMLDivElement>(null);
   const submit = useSubmit();
+
+  useEffect(() => {
+    if (divRef.current) handleScrollIntoView(divRef.current);
+  }, []);
 
   useEffect(() => {
     const renderTimer = setTimeout(() => setLoading(false), 3000);
@@ -32,6 +37,7 @@ const Games = () => {
 
   return (
     <Box
+      ref={divRef}
       component={'div'}
       key={'games-wrapper'}
       id="games-wrapper"
@@ -43,10 +49,9 @@ const Games = () => {
         gap: '10vh',
         alignItems: 'center',
       }}
-      onLoad={e => handleScrollIntoView(e)}
     >
       <Paper
-        elevation={0}
+        elevation={24}
         component={'div'}
         key={'games-header-wrapper'}
         id="games-header-wrapper"
@@ -55,6 +60,7 @@ const Games = () => {
         <AppBar elevation={24} position="static" sx={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
           <Toolbar component={'nav'} sx={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}>
             <Button
+              variant="text"
               type="submit"
               title="Chutes & Ladders"
               name="game-name"

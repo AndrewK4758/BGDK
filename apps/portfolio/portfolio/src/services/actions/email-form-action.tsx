@@ -14,16 +14,16 @@ const emailFormAction: ActionFunction = async ({ request }: ActionFunctionArgs) 
       email: formData.get('email'),
       phone: formData.get('phone'),
       subject: formData.get('subject'),
+      date: formData.get('date'),
       body: formData.get('body'),
       attachment: file instanceof File ? file : null,
     };
 
-    const resp = await axios.postForm(`${baseUrl}/email`, formDataToSend, {
+    await axios.postForm(`${baseUrl}/email`, formDataToSend, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
-    console.log(resp);
-    return resp.data;
+    return null;
   } catch (error) {
     console.error(error);
     return null;
