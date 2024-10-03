@@ -10,16 +10,18 @@ import { lazy, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CrudTheme from '../../styles/crud-theme';
 import Theme from '../../styles/theme';
-import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
+import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 
-const title = 'Crud App for Data Management';
+const title = 'C.R.U.D. Media Data Manager';
 
 const body = (
   <span>
-    Example of crud app with MUI X- DataGrid, debounced search bar for automatic search without requesting data while
-    typing, uses public{' '}
+    Example of crud app with MUI X- DataGrid, debounced search bar, columns have sorting & filtering, cells can be
+    updated and changes are represented on the client and back end in real time, full cell values can be seen by
+    hovering, rows can be deleted, each catagory has the ability to create an entry, ADD ENTRY provides the opportunity
+    to add all fields at once, uses public{' '}
     <Link
       target="_blank"
       rel="noopener"

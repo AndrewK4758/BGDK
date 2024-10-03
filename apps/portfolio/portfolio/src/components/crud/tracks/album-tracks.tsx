@@ -128,7 +128,12 @@ const Tracks = () => {
     <Box
       component={'div'}
       key={'track-box'}
-      sx={{ borderTop: '3px solid purple', flex: '1 0 50%',  }}
+      sx={{
+        borderTop: '3px solid purple',
+        borderRight: '3px solid purple',
+        borderBottom: '3px solid purple',
+        width: '100%',
+      }}
     >
       <Container key={'artist-title'} component={'div'}>
         <Paper key={'title-bar'} component={'div'} elevation={6} sx={{ height: '2rem', display: 'flex' }}>
@@ -142,8 +147,7 @@ const Tracks = () => {
       <Box component={'div'} key={'add-track-box'} sx={{ marginTop: 1 }}>
         <AddTrack albumID={albumID} apiRef={apiRef} />
       </Box>
-
-      <Box>
+      <Box component={'div'} key={'tracks-data-grid-wrapper'} id="tracks-data-grid-wrapper">
         <DataGrid
           autoHeight
           apiRef={apiRef}

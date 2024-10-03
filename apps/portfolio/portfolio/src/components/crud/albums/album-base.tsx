@@ -62,26 +62,30 @@ const Album = () => {
       field: 'album_id',
       headerName: 'Album ID',
       type: 'number',
-      width: 80,
+      // width: 80,
+      flex: 1,
     },
     {
       field: 'title',
       headerName: 'Title',
       type: 'string',
-      width: 300,
+      // width: 300,
+      flex: 3,
       editable: true,
     },
     {
       field: 'artist_id',
       headerName: 'Artist ID',
       type: 'number',
-      width: 80,
+      // width: 80,
+      flex: 1,
     },
     {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Actions',
-      width: 180,
+      // width: 180,
+      flex: 2,
       getActions: (params: GridRowParams<album>) => {
         return [
           <GridActionsCellItem
@@ -108,7 +112,8 @@ const Album = () => {
       field: 'details',
       type: 'actions',
       headerName: 'Show Details',
-      width: 120,
+      // width: 120,
+      flex: 1,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
@@ -127,18 +132,19 @@ const Album = () => {
   };
 
   return (
-    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', gap: 2 }}>
+    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', minWidth: 0, width: '100%' }}>
       <Box
         component={'div'}
         key={'album-box'}
-        sx={{ flex: '1 0 50%', border: '3px solid purple', display: 'flex', flexDirection: 'column' }}
+        sx={{ flex: 1, border: '3px solid purple', display: 'flex', flexDirection: 'column' }}
       >
-        <Container key={'albums-title'} component={'header'}>
-          <Paper elevation={6} key={'title-bar'} component={'div'} sx={{ height: '2rem', display: 'flex' }}>
+        <Container key={'albums-title-wrapper'} component={'section'}>
+          <Paper elevation={6} key={'title-bar'} component={'div'} sx={{ height: '2rem' }}>
             <Typography
+              component={'h1'}
+              aria-label="albums-title"
               variant="h1"
               sx={{
-                flex: '1 0 100%',
                 textAlign: 'center',
                 fontSize: '22px',
                 fontWeight: 'bold',
@@ -155,6 +161,8 @@ const Album = () => {
           <Box key={'all-albums-datagrid'}>
             <DataGrid
               autoHeight
+              autosizeOnMount={true}
+              aria-label="album-data-grid"
               apiRef={apiRef}
               columns={columns}
               rows={albums}
@@ -170,7 +178,9 @@ const Album = () => {
           </Box>
         </Box>
       </Box>
-      <Outlet />
+      <Box key={'tracks-on-album-box'} component={'div'} id="tracks-on-album-box" sx={{ flex: 1 }}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };

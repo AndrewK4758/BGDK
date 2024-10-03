@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
-import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
+import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 import Theme from '../../styles/theme';
 
 const loadingValues = [

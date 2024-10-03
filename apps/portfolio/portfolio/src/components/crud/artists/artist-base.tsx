@@ -137,11 +137,10 @@ const Artist = () => {
         id="artists"
         sx={{
           flex: 1,
-          borderTop: '3px solid purple',
-          borderRight: '3px solid purple',
+          border: '3px solid purple',
         }}
       >
-        <Container component={'div'} id="artists-title-box" sx={{}}>
+        <Container component={'div'} id="artists-title-box">
           <Paper elevation={6} key={'artist-list-box'} sx={{ height: '2rem' }}>
             <Typography
               aria-label="artists"
@@ -162,7 +161,7 @@ const Artist = () => {
             <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
           </Box>
 
-          <Box component={'div'} key={'artist-data-grid-wrapper'}>
+          <Box component={'div'} key={'artist-data-grid-wrapper'} id="artist-data-grid-wrapper">
             <DataGrid
               autoHeight
               autosizeOnMount={true}

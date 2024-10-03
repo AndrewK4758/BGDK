@@ -1,18 +1,29 @@
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Text } from '@bgdk/react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import type { SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { useEffect, useRef, useState } from 'react';
 import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
-import handleScrollIntoView from '../../services/events/handle-scroll-into-view';
-import Theme from '../../styles/theme';
 import GameLoading from '../../components/loading/loading';
-import { useEffect, useRef, useState } from 'react';
+import handleScrollIntoView from '../../utils/handle-scroll-into-view';
+import Theme from '../../styles/theme';
+
+const title = 'Games';
 
 const body = `Yes, these are simple board games. When you take the concept of a board game, break it down into its individual parts, find the similarities and generalizations between board games generally, and isolate what makes each game unique, you can take this simple concept and generate a group of objects that you can easily build any board style game upon.`;
+
+const titleSx: SxProps = {
+  width: 'fit-content',
+  maxWidth: '80%',
+  textAlign: 'center',
+  flex: '1 0 100%',
+};
 
 const Games = () => {
   const { state } = useNavigation();
@@ -57,7 +68,15 @@ const Games = () => {
         id="games-header-wrapper"
         sx={{ width: '55%' }}
       >
-        <AppBar elevation={24} position="static" sx={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
+        <Box
+          component={'section'}
+          key={'crud-title-wrapper'}
+          id="crud-title-wrapper"
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Text titleVariant="h3" titleText={title} sx={titleSx} />
+        </Box>
+        <AppBar elevation={24} position="static">
           <Toolbar component={'nav'} sx={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}>
             <Button
               variant="text"

@@ -102,7 +102,7 @@ const AlbumsOnArtist = () => {
     <Box
       component={'div'}
       key={'album-with-tracks-box'}
-      sx={{ borderTop: '3px solid purple', borderRight: '3px solid purple' }}
+      sx={{ borderTop: '3px solid purple', borderRight: '3px solid purple', borderBottom: '3px solid purple' }}
     >
       <Container component={'div'} id="album-title" sx={{ width: '100%' }}>
         <Paper elevation={6} key={'title-bar'} sx={{ height: '2rem' }}>

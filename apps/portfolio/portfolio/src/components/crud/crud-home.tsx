@@ -1,20 +1,18 @@
 import { Text } from '@bgdk/react-components';
-import {
-  Card,
-  Container,
-  debounce,
-  FormControlLabel,
-  List,
-  ListItem,
-  Radio,
-  RadioGroup,
-  TextField,
-} from '@mui/material';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import TextField from '@mui/material/TextField';
+import { debounce } from '@mui/material/utils';
 import { album, artist } from '@prisma/client';
 import axios from 'axios';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 type InitVals = {
   artist: Partial<artist>[];
@@ -28,6 +26,7 @@ const initVals: InitVals = {
 const CrudHome = () => {
   const [artAlbVals, setArtVals] = useState(initVals);
   const [searchParam, setSearchParam] = useState<string>('artist');
+  const { pathname } = useLocation();
 
   return (
     <Box
@@ -36,44 +35,39 @@ const CrudHome = () => {
       flex={'1 0 100%'}
       bgcolor={'#ffffff'}
       borderRadius={5}
-      onLoad={e => console.log(e)}
       sx={{ display: 'flex', flexDirection: 'column' }}
     >
-      <Box component={'div'} id="title-crud-home" onLoad={e => console.log(e)}>
-        <Container component={'div'} sx={{ paddingY: 1 }}>
-          <Text titleVariant="h2" titleText={'Media Data Manager'} sx={{ textAlign: 'center', color: '#1f1f1f' }} />
-          <Text
-            titleVariant="h5"
-            titleText="Example of MUI-X DataGrid"
-            sx={{ textAlign: 'center', color: '#1f1f1f' }}
-          />
-          <Text
-            titleVariant="body1"
-            titleText={
-              'Columns have sorting & filtering, cells can be updated and changes can be sent to the back end, rows can be deleted, each catagory has the ability to create an entry, ADD ENTRY provides the opportunity to add all fields at once'
-            }
-            sx={{ color: '#1f1f1f' }}
-          />
-        </Container>
-      </Box>
-
-      <Box sx={{ height: 'fit-content', display: 'flex' }}>
+      <Box sx={{ height: 'fit-content', display: 'flex', padding: 2, flex: 2 }}>
         <Box component={'div'} id="data-grid-grids" flex={3}>
+          {pathname === '/crud' && (
+            <Text
+              titleText={'Make A Selection'}
+              titleVariant="h2"
+              sx={{
+                alignContent: 'center',
+                justifySelf: 'center',
+                color: '#1f1f1f',
+                textAlign: 'center',
+                height: '100%',
+              }}
+            />
+          )}
           <Outlet />
         </Box>
         <Box flex={1}>
           <Card
-            elevation={6}
             square
             component={'section'}
             key={'search-box-container'}
             sx={{
+              height: '15%',
               padding: 2,
               display: 'flex',
               justifyContent: 'center',
               width: '100%',
               borderTop: '3px solid purple',
               borderBottom: '3px solid purple',
+              borderRight: '3px solid purple',
             }}
           >
             <Box component={'div'} key={'search-radio-group-box'}>
