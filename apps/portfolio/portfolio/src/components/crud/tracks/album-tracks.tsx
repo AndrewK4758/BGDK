@@ -130,8 +130,8 @@ const Tracks = () => {
       key={'track-box'}
       sx={{
         borderTop: '3px solid purple',
-        borderRight: '3px solid purple',
-        borderBottom: '3px solid purple',
+        // borderRight: '3px solid purple',
+        // borderBottom: '3px solid purple',
         width: '100%',
       }}
     >

@@ -36,5 +36,6 @@
       "@bgdk/types-game": ["libs/types/types-game/src/index.ts"]
     }
   },
+
   "exclude": ["node_modules", "tmp"]
 }

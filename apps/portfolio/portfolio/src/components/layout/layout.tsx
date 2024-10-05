@@ -3,13 +3,14 @@ import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import GameContextProvider from '../../contexts/contexts';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Intro from '../intro/intro';
 import PicutreAndResume from '../intro/picture-resume';
 import Menus from '../menus/menus';
 import TechStackList from '../tech-list/tech-list';
-import GameContextProvider from '../../contexts/contexts';
+
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
@@ -32,6 +33,11 @@ const mainWrapperSxProps: SxProps = {
   marginTop: '30vh',
   gap: '25vh',
 };
+
+/**
+ *
+ * @returns Layout for portfolio app
+ */
 
 const Layout = () => (
   <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">

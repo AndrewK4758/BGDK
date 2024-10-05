@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { album } from '@prisma/client';
 import { useState } from 'react';
-import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { Outlet, useNavigate, useLoaderData } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
@@ -19,7 +19,7 @@ export interface AlbumState {
 }
 
 const AlbumsOnArtist = () => {
-  const { albums } = useRouteLoaderData('artist-albums') as ArtistAlbums;
+  const { albums } = useLoaderData() as ArtistAlbums;
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5 });
   const nav = useNavigate();
 
@@ -30,14 +30,12 @@ const AlbumsOnArtist = () => {
       field: 'album_id',
       headerName: 'Album ID',
       type: 'number',
-      // width: 80,
-      flex: 1,
+      flex: 0.75,
     },
     {
       field: 'title',
       headerName: 'Title',
       type: 'string',
-      // width: 369,
       flex: 4,
       editable: true,
     },
@@ -45,23 +43,22 @@ const AlbumsOnArtist = () => {
       field: 'artist_id',
       headerName: 'Artist ID',
       type: 'number',
-      // width: 80,
       flex: 1,
     },
     {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Update / Delete',
-      // width: 100,
-      flex: 2,
+      flex: 1.5,
       getActions: (params: GridRowParams<album>) => {
         return [
           <GridActionsCellItem
             label="Update"
             icon={<UploadIcon />}
             title="Update"
-            onClick={() => {
-              handleUpdateAlbumTitle(params.row, apiRef);
+            onClick={async x => {
+              console.log(x);
+              await handleUpdateAlbumTitle(params.row, apiRef);
             }}
           />,
 
@@ -69,8 +66,8 @@ const AlbumsOnArtist = () => {
             label="Delete"
             title="Delete"
             icon={<DeleteForeverIcon />}
-            onClick={() => {
-              handleDeleteAlbum(params.row, apiRef);
+            onClick={async () => {
+              await handleDeleteAlbum(params.row, apiRef);
             }}
           />,
         ];
@@ -80,7 +77,7 @@ const AlbumsOnArtist = () => {
       field: 'details',
       type: 'actions',
       headerName: 'Show Tracks',
-      width: 120,
+      flex: 1,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
@@ -99,12 +96,14 @@ const AlbumsOnArtist = () => {
   };
 
   return (
-    <Box
-      component={'div'}
-      key={'album-with-tracks-box'}
-      sx={{ borderTop: '3px solid purple', borderRight: '3px solid purple', borderBottom: '3px solid purple' }}
-    >
-      <Container component={'div'} id="album-title" sx={{ width: '100%' }}>
+    <Box component={'div'} key={'album-with-tracks-box'} sx={{ border: '3px solid purple' }}>
+      <Container
+        component={'div'}
+        id="album-title"
+        sx={{
+          width: '100%',
+        }}
+      >
         <Paper elevation={6} key={'title-bar'} sx={{ height: '2rem' }}>
           <Typography
             aria-label="albums"
@@ -117,11 +116,17 @@ const AlbumsOnArtist = () => {
         </Paper>
       </Container>
       <Box component={'div'} key={'album-data-grid'} id="album-data-grid">
-        <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, flex: '0 1 100%' }}>
+        <Box
+          component={'div'}
+          key={'add-album-box'}
+          sx={{ paddingY: 1, flex: '0 1 100%', borderBottom: '3px solid purple' }}
+        >
           <AddAlbumOnArtist apiRef={apiRef} />
         </Box>
-        <Box>
+        <Box component={'div'} key={'artist-album-datagrid-wrapper'} id="artist-album-datagrid-wrapper">
           <DataGrid
+            key={'artist-albums-data-grid'}
+            aria-label="artist-albums-data-grid"
             autoHeight
             apiRef={apiRef}
             columns={columns}
@@ -133,7 +138,6 @@ const AlbumsOnArtist = () => {
             onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
           />
         </Box>
-
         <Box>
           <Outlet />
         </Box>

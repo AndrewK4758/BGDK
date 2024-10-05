@@ -3,18 +3,17 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import { ThemeProvider, type SxProps } from '@mui/material/styles';
+import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { lazy, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import CrudTheme from '../../styles/crud-theme';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 
-const title = 'C.R.U.D. Media Data Manager';
+const title = 'C.R.U.D. Data Manager';
 
 const body = (
   <span>
@@ -139,9 +138,7 @@ const Crud = () => {
         id={`crud-app-wrapper`}
         sx={{ width: '90%', minHeight: '100%', height: 'fit-content' }}
       >
-        <ThemeProvider theme={CrudTheme}>
-          <CrudHome />
-        </ThemeProvider>
+        <CrudHome />
       </Box>
     </Box>
   );

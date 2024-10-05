@@ -70,19 +70,31 @@ const Games = () => {
       >
         <Box
           component={'section'}
-          key={'crud-title-wrapper'}
-          id="crud-title-wrapper"
+          key={'games-title-wrapper'}
+          id="games-title-wrapper"
           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
           <Text titleVariant="h3" titleText={title} sx={titleSx} />
         </Box>
-        <AppBar elevation={24} position="static">
-          <Toolbar component={'nav'} sx={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}>
+        <AppBar
+          component={'div'}
+          id="games-navbar-wrapper"
+          key={'games-navbar-wrapper'}
+          elevation={24}
+          position="static"
+        >
+          <Toolbar
+            component={'nav'}
+            id="games-navbar"
+            key={'games-navbar'}
+            sx={{ display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' }}
+          >
             <Button
+              LinkComponent={'button'}
+              key={'chutes-and-ladders-button'}
               variant="text"
               type="submit"
               title="Chutes & Ladders"
-              name="game-name"
               id="Chutes-&-Ladders"
               disabled={state === 'submitting'}
               endIcon={<ChutesAndLaddersIcon />}
@@ -93,9 +105,10 @@ const Games = () => {
             </Button>
 
             <Button
+              LinkComponent={'button'}
+              key={'tic-tac-toe-button'}
               type="submit"
               title="Tic Tac Toe"
-              name="game-name"
               id="Tic-Tac-Toe"
               disabled={state === 'submitting'}
               endIcon={<TicTacToeIcon />}
@@ -107,12 +120,17 @@ const Games = () => {
           </Toolbar>
         </AppBar>
         <Box component={'div'} key={'games-header-text-wrapper'} id="games-header-text-wrapper" sx={{ p: 2 }}>
-          <Typography component={'p'} variant="body1" sx={{ paddingLeft: 1 }}>
+          <Typography
+            component={'p'}
+            key={'game-header-text'}
+            id="game-header-text"
+            variant="body1"
+            sx={{ paddingLeft: 1 }}
+          >
             {body}
           </Typography>
         </Box>
       </Paper>
-
       <Box
         component={'div'}
         key={`games-app-wrapper`}

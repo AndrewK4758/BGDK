@@ -4,32 +4,27 @@ import UploadIcon from '@mui/icons-material/Upload';
 import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import {
-  DataGrid,
-  GridActionsCellItem,
-  GridColDef,
-  GridPaginationModel,
-  GridRowParams,
-  useGridApiRef,
-} from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { Outlet, useNavigate, useLoaderData } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import loadAlbums from '../../../services/loaders/crud-loaders/load-albums';
 import AddAlbum from './add-album';
 
+const paginationModelInit = {
+  pageSize: 25,
+  page: 0,
+};
+
 const Album = () => {
-  const COUNT = useRouteLoaderData('albums-count') as number;
-  const nav = useNavigate();
+  const COUNT = useLoaderData() as number;
   const [albums, setAlbums] = useState<album[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
-  const [paginationModel, setPaginationModel] = useState({
-    pageSize: 25,
-    page: 0,
-  });
+  const [paginationModel, setPaginationModel] = useState(paginationModelInit);
+  const nav = useNavigate();
 
   const apiRef = useGridApiRef<GridApiCommunity>();
 
@@ -41,10 +36,6 @@ const Album = () => {
     }),
     [paginationModel],
   );
-
-  const handlePaginationModelChange = (newPaginationModel: GridPaginationModel) => {
-    setPaginationModel(newPaginationModel);
-  };
 
   const fetchAlbums = useCallback(
     async (pageSize: number, skip: number, cursor: number) => await loadAlbums(pageSize, skip, cursor),
@@ -62,14 +53,12 @@ const Album = () => {
       field: 'album_id',
       headerName: 'Album ID',
       type: 'number',
-      // width: 80,
       flex: 1,
     },
     {
       field: 'title',
       headerName: 'Title',
       type: 'string',
-      // width: 300,
       flex: 3,
       editable: true,
     },
@@ -77,14 +66,12 @@ const Album = () => {
       field: 'artist_id',
       headerName: 'Artist ID',
       type: 'number',
-      // width: 80,
       flex: 1,
     },
     {
       field: 'update-delete',
       type: 'actions',
-      headerName: 'Actions',
-      // width: 180,
+      headerName: 'Update / Delete',
       flex: 2,
       getActions: (params: GridRowParams<album>) => {
         return [
@@ -111,14 +98,13 @@ const Album = () => {
     {
       field: 'details',
       type: 'actions',
-      headerName: 'Show Details',
-      // width: 120,
+      headerName: 'Show Tracks',
       flex: 1,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
-            label="Details"
-            title="Details"
+            label="Tracks"
+            title="Tracks"
             icon={<DetailsIcon />}
             onClick={() => nav(`${params.row.album_id}/tracks`)}
           />,
@@ -127,19 +113,18 @@ const Album = () => {
     },
   ];
 
-  const getID = (row: album) => {
-    return row.album_id;
-  };
+  const getID = (row: album) => row.album_id;
 
   return (
-    <Box component={'div'} key={'all-albums-box'} sx={{ display: 'flex', minWidth: 0, width: '100%' }}>
-      <Box
-        component={'div'}
-        key={'album-box'}
-        sx={{ flex: 1, border: '3px solid purple', display: 'flex', flexDirection: 'column' }}
-      >
-        <Container key={'albums-title-wrapper'} component={'section'}>
-          <Paper elevation={6} key={'title-bar'} component={'div'} sx={{ height: '2rem' }}>
+    <Box
+      component={'div'}
+      key={'all-albums-box'}
+      id="all-albums-box"
+      sx={{ display: 'flex', minWidth: 0, width: '100%' }}
+    >
+      <Box component={'div'} key={'album-box'} id="album-box" sx={{ flex: 1, border: '3px solid purple' }}>
+        <Container key={'albums-title-wrapper'} component={'section'} id="album-title-wrapper">
+          <Paper elevation={6} key={'album-title-bar'} id="album-title-bar" component={'div'} sx={{ height: '2rem' }}>
             <Typography
               component={'h1'}
               aria-label="albums-title"
@@ -150,32 +135,32 @@ const Album = () => {
                 fontWeight: 'bold',
               }}
             >
-              {'All Albums'}
+              {'Album List'}
             </Typography>
           </Paper>
         </Container>
         <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, borderBottom: '3px solid purple' }}>
           <AddAlbum apiRef={apiRef} />
         </Box>
-        <Box>
-          <Box key={'all-albums-datagrid'}>
-            <DataGrid
-              autoHeight
-              autosizeOnMount={true}
-              aria-label="album-data-grid"
-              apiRef={apiRef}
-              columns={columns}
-              rows={albums}
-              getRowId={getID}
-              rowCount={rowCountState}
-              getRowHeight={() => 'auto'}
-              pageSizeOptions={[10, 25, 50, 100]}
-              paginationMode="server"
-              onRowCountChange={newRowCount => setRowCountState(newRowCount)}
-              onPaginationModelChange={handlePaginationModelChange}
-              paginationModel={paginationModel}
-            />
-          </Box>
+        <Box component={'div'} key={'all-albums-datagrid'} id="all-albums-datagrid">
+          <DataGrid
+            logLevel="info"
+            key={'album-data-grid'}
+            aria-label="album-data-grid"
+            autoHeight
+            autosizeOnMount={true}
+            apiRef={apiRef}
+            columns={columns}
+            rows={albums}
+            getRowId={getID}
+            rowCount={rowCountState}
+            getRowHeight={() => 'auto'}
+            pageSizeOptions={[10, 25, 50, 100]}
+            paginationMode="server"
+            onRowCountChange={newRowCount => setRowCountState(newRowCount)}
+            onPaginationModelChange={setPaginationModel}
+            paginationModel={paginationModel}
+          />
         </Box>
       </Box>
       <Box key={'tracks-on-album-box'} component={'div'} id="tracks-on-album-box" sx={{ flex: 1 }}>

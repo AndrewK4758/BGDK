@@ -10,7 +10,7 @@ import type { GamePlayerValidation } from '@bgdk/types-game';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.primary.main,
-  fontSize: '1.25rem',
+  fontSize: '1.75rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,

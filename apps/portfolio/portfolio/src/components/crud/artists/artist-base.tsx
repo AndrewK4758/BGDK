@@ -2,23 +2,17 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import {
-  DataGrid,
-  GridActionsCellItem,
-  GridColDef,
-  GridPaginationModel,
-  GridRowParams,
-  useGridApiRef,
-} from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { artist } from '@prisma/client';
 import axios from 'axios';
-import { MutableRefObject, useCallback, useLayoutEffect, useMemo, useState } from 'react';
-import { Outlet, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
-import { Container, Paper } from '@mui/material';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -28,13 +22,13 @@ const paginationModelInit = {
 };
 
 const Artist = () => {
-  const COUNT = useRouteLoaderData('artist-count') as number;
+  const COUNT = useLoaderData() as number;
   const [artists, setArtists] = useState<artist[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
   const nav = useNavigate();
 
-  const apiRef = useGridApiRef();
+  const apiRef = useGridApiRef<GridApiCommunity>();
 
   const queryOptions = useMemo(
     () => ({
@@ -45,16 +39,12 @@ const Artist = () => {
     [paginationModel],
   );
 
-  const handlePaginationModelChange = (newPaginationModel: GridPaginationModel) => {
-    setPaginationModel(newPaginationModel);
-  };
-
   const fetchArtists = useCallback(
-    (pageSize: number, skip: number, cursor: number) => loadArtists(pageSize, skip, cursor),
+    async (pageSize: number, skip: number, cursor: number) => await loadArtists(pageSize, skip, cursor),
     [],
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchArtists(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
       .then(({ allArtists }) => setArtists(allArtists))
       .catch(err => console.error(err));
@@ -65,25 +55,22 @@ const Artist = () => {
       field: 'artist_id',
       headerName: 'Artist ID',
       type: 'number',
-      // width: 80,
-      flex: 1,
+      flex: 0.75,
     },
     {
       field: 'name',
       headerName: 'Name',
-      // width: 300,
       type: 'string',
       editable: true,
       filterable: true,
       headerClassName: 'artist-name',
-      flex: 4,
+      flex: 3,
     },
     {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Update / Delete',
-      // width: 120,
-      flex: 2,
+      flex: 1.5,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
@@ -106,16 +93,15 @@ const Artist = () => {
     {
       field: 'details',
       type: 'actions',
-      headerName: 'Show Albums',
-      // width: 120,
-      flex: 1,
+      headerName: 'Albums',
+      flex: 0.75,
       getActions: (params: GridRowParams) => {
         return [
           <GridActionsCellItem
-            label="Details"
-            title="Details"
+            label="Albums"
+            title="Albums"
             icon={<DetailsIcon />}
-            onClick={() => nav(`${params.row.artist_id}/album`)}
+            onClick={() => nav(`${params.row.artist_id}/albums`)}
           />,
         ];
       },
@@ -127,8 +113,8 @@ const Artist = () => {
   return (
     <Box
       component={'div'}
-      key={'artist-album-wrapper'}
-      id="artist-album-wrapper"
+      key={'all-data-grids-wrapper'}
+      id="all-data-grids-wrapper"
       sx={{ width: '100%', minWidth: 0, display: 'flex' }}
     >
       <Box
@@ -136,16 +122,20 @@ const Artist = () => {
         key="artists"
         id="artists"
         sx={{
-          flex: 1,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignContent: 'center',
+          justifyItems: 'center',
+          flex: '1 0 50%',
           border: '3px solid purple',
         }}
       >
-        <Container component={'div'} id="artists-title-box">
-          <Paper elevation={6} key={'artist-list-box'} sx={{ height: '2rem' }}>
+        <Container component={'div'} key={'artists-title-box'} id="artists-title-box" sx={{ flex: '1 0 100%' }}>
+          <Paper elevation={6} key={'artist-list-box'} id="artist-list-box" component={'div'} sx={{ height: '2rem' }}>
             <Typography
-              aria-label="artists"
+              aria-label="artists-title"
               component={'h1'}
-              id="artistsLabel"
+              id="artists-title"
               sx={{
                 textAlign: 'center',
                 fontSize: '22px',
@@ -156,32 +146,35 @@ const Artist = () => {
             </Typography>
           </Paper>
         </Container>
-        <Box component={'div'} key={'artist-datagrid-box'} id="artist-datagrid-box">
-          <Box component={'div'} key={'add-artist-box'} sx={{ borderBottom: '2px solid purple', paddingTop: 1 }}>
-            <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
-          </Box>
-
-          <Box component={'div'} key={'artist-data-grid-wrapper'} id="artist-data-grid-wrapper">
-            <DataGrid
-              autoHeight
-              autosizeOnMount={true}
-              aria-label="artist-data-grid"
-              apiRef={apiRef}
-              columns={columns}
-              rows={artists}
-              getRowId={getID}
-              rowCount={rowCountState}
-              getRowHeight={() => 'auto'}
-              pageSizeOptions={[10, 25, 50, 100]}
-              paginationMode="server"
-              onRowCountChange={newRowCount => setRowCountState(newRowCount)}
-              onPaginationModelChange={handlePaginationModelChange}
-              paginationModel={paginationModel}
-            />
-          </Box>
+        <Box
+          component={'div'}
+          key={'add-artist-box'}
+          sx={{ borderBottom: '3px solid purple', paddingTop: 1, flex: '1 0 100%' }}
+        >
+          <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
+        </Box>
+        <Box component={'div'} key={'artist-data-grid-wrapper'} id="artist-data-grid-wrapper" flex={'1 0 100%'}>
+          <DataGrid
+            logLevel="debug"
+            key={'artist-data-grid'}
+            aria-label="artist-data-grid"
+            autoHeight
+            autosizeOnMount={true}
+            apiRef={apiRef}
+            columns={columns}
+            rows={artists}
+            getRowId={getID}
+            rowCount={rowCountState}
+            getRowHeight={() => 'auto'}
+            pageSizeOptions={[10, 25, 50, 100]}
+            paginationMode="server"
+            onRowCountChange={newRowCount => setRowCountState(newRowCount)}
+            onPaginationModelChange={setPaginationModel}
+            paginationModel={paginationModel}
+          />
         </Box>
       </Box>
-      <Box key={'albums-for-artist-box'} component={'div'} id="albums-for-artist-box" sx={{ flex: 1 }}>
+      <Box key={'albums-for-artist-box'} component={'div'} id="albums-for-artist-box" sx={{ flex: '1 0 50%' }}>
         <Outlet />
       </Box>
     </Box>
@@ -189,6 +182,8 @@ const Artist = () => {
 };
 
 export default Artist;
+
+
 const handleUpdateArtistName = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
   try {
     const { artist_id, name } = values;

@@ -1,4 +1,4 @@
-import { IActiveGameInfo } from '../games/chutes-and-ladders';
+import { IActiveGameInfo } from '../games/active_game_session';
 import { Socket } from 'socket.io-client';
 
 export enum ActionType {
@@ -13,6 +13,13 @@ export interface Action {
   payload?: IActiveGameInfo;
   socket?: Socket;
 }
+
+/**
+ *
+ * @param state current state of ActiveGameSession component
+ * @param action Action to be executed and websocket to handle execution
+ * @returns updated state to ui
+ */
 
 const socketReducer = (state: IActiveGameInfo, action: Action) => {
   const { type, socket } = action;

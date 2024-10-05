@@ -6,6 +6,7 @@ const getArtistCount = async (req: Request, resp: Response, next: NextFunction) 
   else {
     try {
       const count = await prisma.artist.count();
+      console.log(count);
       resp.status(200).json({ count: count });
     } catch (err) {
       console.error(err);

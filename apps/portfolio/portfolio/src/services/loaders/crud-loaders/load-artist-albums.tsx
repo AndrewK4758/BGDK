@@ -17,6 +17,7 @@ const loadArtistAlbums: LoaderFunction = async ({ params }: LoaderFunctionArgs) 
     });
 
     const { albums } = resp.data as ArtistAlbums;
+
     return { albums };
   } catch (error) {
     console.error(error);

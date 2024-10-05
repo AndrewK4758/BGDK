@@ -10,7 +10,7 @@ import type { GamePlayerValidation } from '@bgdk/types-game';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.primary.main,
-  fontSize: '1.25rem',
+  fontSize: '1.75rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
     width: 130,
@@ -25,6 +25,12 @@ interface TakeTurnProps {
   socket: Socket;
   avatarInTurn: string;
 }
+
+/**
+ *
+ * @param param0 props for taking a turn
+ * @returns null
+ */
 
 export default function TakeTurn({ dispatch, socket, avatarInTurn }: TakeTurnProps) {
   const handleTakeTurn = async () => {

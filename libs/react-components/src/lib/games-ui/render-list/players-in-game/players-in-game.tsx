@@ -5,8 +5,8 @@ import { CSSProperties, ElementType } from 'react';
 import Text from '../../text/text';
 
 const avatarSvgStyle: CSSProperties = {
-  height: '100px',
-  width: '100px',
+  height: 'auto',
+  width: '30%',
 };
 
 /* eslint-disable-next-line */
@@ -19,6 +19,12 @@ export interface PlayersInGameProps {
   playerName: string;
   avatarName: string;
 }
+
+/**
+ *
+ * @param param0 Params needed to populate the list of players in game with avatars
+ * @returns list of players in game with avatars
+ */
 
 export function PlayersInGame({ component, id, boxSx, textSx, playerVariant, playerName, avatarName }: PlayersInGameProps) {
   const avatarSVG = `./game-avatars/${avatarName.toLowerCase()}.svg`;

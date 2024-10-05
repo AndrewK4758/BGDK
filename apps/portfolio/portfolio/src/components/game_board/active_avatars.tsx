@@ -2,19 +2,21 @@ import { Player } from '@bgdk/games-components-logic';
 import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
 import { IRegisterFormValues } from '@bgdk/types-game';
 import { Box, SxProps } from '@mui/material';
-import Container from '@mui/material/Container';
 import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsActiveGameTitleContainer: SxProps = {
-  flex: '0 1 80%',
+  display: 'flex',
+  flex: '0 1 90%',
+  alignItems: 'center',
+  paddingBottom: 4,
   [Theme.breakpoints.down('laptop')]: {
     flex: '1 0 60%',
   },
 };
 
 const breakpointsActiveGameTitleText: SxProps = {
-  textAlign: 'start',
-  flex: '1 0 45%',
+  textAlign: 'center',
+  flex: '0 1 50%',
   [Theme.breakpoints.down('laptop')]: {
     flex: '1 0 100%',
     fontSize: '1.5rem',
@@ -23,7 +25,7 @@ const breakpointsActiveGameTitleText: SxProps = {
 };
 
 const breakpointsPlayersInGameBox: SxProps = {
-  flex: '1 0 55%',
+  flex: '1 0 70%',
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
@@ -45,14 +47,22 @@ const breakpointsPlayersInGameText: SxProps = {
   },
 };
 
-const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
+/**
+ *
+ * @param e Player
+ * @param _i index of player array
+ * @param _arr Player array
+ * @returns an active player/avatar in in the active avatar list
+ */
+
+const playersInGameMap = (e: IRegisterFormValues, _i: number, _arr: Player[]) => (
   <Fragment key={e.avatarName}>
     <PlayersInGame
       component={'span'}
       id={e.playerName}
       boxSx={breakpointsPlayersBox}
       textSx={{ color: '#cb91ff', ...breakpointsPlayersInGameText }}
-      playerVariant="body1"
+      playerVariant="h4"
       playerName={`${e.playerName}: `}
       avatarName={e.avatarName}
     />
@@ -64,17 +74,26 @@ interface ActiveAvatarsProps {
   winner: string | undefined;
 }
 
+/**
+ *
+ * @param avatarsInGame: Array of avatars in active game
+ * @param winner: string showing winning player
+ * @returns List of active avatars in game
+ */
+
 export default function ActiveAvatars({ avatarsInGame, winner }: ActiveAvatarsProps) {
   return (
-    <Container component={'section'} sx={breakpointsActiveGameTitleContainer}>
+    <Box component={'section'} sx={breakpointsActiveGameTitleContainer}>
       <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
       {!winner ? (
-        <Box sx={breakpointsPlayersInGameBox}>
+        <Box component={'section'} sx={breakpointsPlayersInGameBox}>
           <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
         </Box>
       ) : (
-        <Text titleVariant="h2" titleText={winner} sx={breakpointsActiveGameTitleText} />
+        <Box component={'section'} sx={{ flex: '1 0 70%' }}>
+          <Text titleVariant="h2" titleText={winner} sx={breakpointsActiveGameTitleText} />
+        </Box>
       )}
-    </Container>
+    </Box>
   );
 }

@@ -47,15 +47,13 @@ const routes: RouteObject[] = [
           },
           {
             path: 'artists',
-            id: 'artist-count',
             Component: Artist,
             loader: loadArtistsCount,
             children: [
               {
-                path: ':artistID/album',
-                id: 'artist-albums',
-                Component: AlbumsOnArtist,
+                path: ':artistID/albums',
                 loader: loadArtistAlbums,
+                Component: AlbumsOnArtist,
                 children: [
                   {
                     path: ':albumID/tracks',
@@ -68,7 +66,6 @@ const routes: RouteObject[] = [
           },
           {
             path: 'albums',
-            id: 'albums-count',
             Component: Album,
             loader: loadAlbumsCount,
             children: [
@@ -84,5 +81,6 @@ const routes: RouteObject[] = [
     ],
   },
 ];
+
 
 export default routes;

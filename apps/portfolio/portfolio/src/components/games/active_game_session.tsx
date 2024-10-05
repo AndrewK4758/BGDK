@@ -6,9 +6,11 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
-import { Fragment, useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ManagerOptions, Socket } from 'socket.io-client';
+import getGameInstanceInfo from '../../utils/utils';
+import ClientSocket from '../../utils/web-socket/socket-instance';
 import ActiveAvatars from '../game_board/active_avatars';
 import ResetGame from '../game_board/reset_game';
 import ShowGameBoardTicTacToe from '../game_board/show-game-board-tic-tac-toe';
@@ -16,12 +18,13 @@ import ShowGameBoard from '../game_board/show_game_board';
 import socketReducer, { ActionType } from '../game_board/socket-reducer';
 import TakeTurnTicTacToe from '../game_board/take-turn-tic-tac-toe';
 import TakeTurn from '../game_board/take_turn';
-import getGameInstanceInfo from '../../utils/utils';
-import ClientSocket from '../../utils/web-socket/socket-instance';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
+  display: 'flex',
   marginTop: '2rem',
   flexDirection: 'row',
+  alignItems: 'center',
+  gap: 4,
   [Theme.breakpoints.down('laptop')]: {
     marginTop: '1rem',
   },
@@ -34,9 +37,9 @@ const breakpointsPlayerInTurnText: SxProps = {
 };
 
 const breakpointsBottomMenuButtonsBox: SxProps = {
-  flex: '1 0 50%',
-  flexDirection: 'row',
-  paddingY: 2,
+  flex: '0 1 25%',
+  display: 'flex',
+  justifyContent: 'space-evenly',
   [Theme.breakpoints.down('tablet')]: {
     flexDirection: 'column',
   },
@@ -51,6 +54,11 @@ export interface IActiveGameInfo extends IActivePlayersInGame {
 const socketInit = () => {
   return { gameBoard: [[]], activePlayersInGame: [], avatarInTurn: '', winner: '' } as IActiveGameInfo;
 };
+
+/**
+ *
+ * @returns Active Game Component
+ */
 
 const ActiveGameSession = () => {
   const managerOptions: Partial<ManagerOptions> = {
@@ -112,35 +120,46 @@ const ActiveGameSession = () => {
 
   return (
     <Paper key={'active-game'} id="active-game">
-      <Container component={'section'} sx={{ marginBottom: '2rem' }}>
-        <ActiveAvatars avatarsInGame={state.activePlayersInGame} winner={state.winner} />
-      </Container>
-      <Box component={'section'} sx={{ height: 'fit-content', textAlign: 'center', paddingX: 4 }}>
+      <Box
+        component={'section'}
+        key={'active-avatar-wrapper'}
+        id="active-avatar-wrapper"
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <ActiveAvatars key={'active-avatars'} avatarsInGame={state.activePlayersInGame} winner={state.winner} />
+      </Box>
+      <Box
+        component={'section'}
+        key={'game-board-wrapper'}
+        id="game-board-wrapper"
+        sx={{ height: 'fit-content', textAlign: 'center', paddingX: 4 }}
+      >
         {id === 'Chutes-&-Ladders' && <ShowGameBoard key={id} board={state.gameBoard} />}
         {id === 'Tic-Tac-Toe' && (
           <ShowGameBoardTicTacToe key={id} board={state.gameBoard} setStateAction={setSpace} state={space} />
         )}
       </Box>
-      <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
-        <Box component={'div'} sx={{ flex: '1 0 50%' }}>
-          <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
+      <Container
+        component={'section'}
+        key={'active-game-buttons-wrapper'}
+        id="active-game-buttons-wrapper"
+        sx={breakpointsBottomMenuGameBoard}
+      >
+        <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
+        <Box component={'section'} sx={breakpointsBottomMenuButtonsBox}>
+          {id === 'Chutes-&-Ladders' && (
+            <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
+          )}
+          {id === 'Tic-Tac-Toe' && (
+            <TakeTurnTicTacToe
+              avatarInTurn={state.avatarInTurn as string}
+              dispatch={dispatch}
+              socket={socket}
+              position={space}
+            />
+          )}
+          <ResetGame dispatch={dispatch} socket={socket} />
         </Box>
-        <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          <Fragment key={'game'}>
-            {id === 'Chutes-&-Ladders' && (
-              <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
-            )}
-            {id === 'Tic-Tac-Toe' && (
-              <TakeTurnTicTacToe
-                avatarInTurn={state.avatarInTurn as string}
-                dispatch={dispatch}
-                socket={socket}
-                position={space}
-              />
-            )}
-            <ResetGame dispatch={dispatch} socket={socket} />
-          </Fragment>
-        </Container>
       </Container>
     </Paper>
   );
