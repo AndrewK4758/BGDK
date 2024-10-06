@@ -6,17 +6,20 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/L
 import Layout from '../components/layout/layout';
 import '../styles/styles.css';
 import Theme from '../styles/theme';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => (
-  <ThemeProvider theme={Theme}>
-    <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      localeText={enUS.components.MuiLocalizationProvider.defaultProps.localeText}
-    >
-      <CssBaseline enableColorScheme />
-      <Layout />
-    </LocalizationProvider>
-  </ThemeProvider>
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+    <ThemeProvider theme={Theme}>
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}
+        localeText={enUS.components.MuiLocalizationProvider.defaultProps.localeText}
+      >
+        <CssBaseline enableColorScheme />
+        <Layout />
+      </LocalizationProvider>
+    </ThemeProvider>
+  </GoogleOAuthProvider>
 );
 
 export default App;

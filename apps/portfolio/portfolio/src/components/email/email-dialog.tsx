@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
-import { type Dispatch, type SetStateAction, useEffect, useRef } from 'react';
+import { type Dispatch, type SetStateAction, useRef, useState } from 'react';
 import { Form, SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
@@ -16,6 +16,8 @@ import Theme from '../../styles/theme';
 import AppointmentMaker from './appointment-maker/appointment-maker';
 import FormikValidationError from './formik-validation-error';
 import dayjs from 'dayjs';
+import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
+import axios from 'axios';
 
 export type MessageMeFormValues = {
   name: string;
@@ -92,10 +94,17 @@ const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFuncti
 
 const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [tokens, setTokens] = useState<unknown | null>(null);
+  const [user, setUser] = useState<CodeResponse | null>(null);
   const { state } = useNavigation();
   const submit = useSubmit();
 
-
+  const login = useGoogleLogin({
+    onSuccess: code => onGoogleSuccess(code, setTokens),
+    onError: err => console.error(err),
+    flow: 'auth-code',
+    scope: 'https://www.googleapis.com/auth/calendar.events',
+  });
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -109,10 +118,10 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
     fileInputRef.current?.click();
   };
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (state !== 'submitting') setOpen(false);
-  }, [state, setOpen]);
+  //   if (state !== 'submitting') setOpen(false);
+  // }, [state, setOpen]);
 
   return (
     <Dialog open={open} id="email-dialog" fullWidth scroll="body" PaperProps={{ sx: { maxWidth: '40%' } }}>
@@ -228,6 +237,17 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
               <Box component={'span'} key={'appointment-maker-wrapper'} id="appointment-maker-wrapper">
                 <AppointmentMaker formik={formik} />
                 <FormikValidationError formik={formik} elementName="date" />
+                <br />
+                <Button
+                  LinkComponent={'button'}
+                  key={'google-auth-button'}
+                  id="google-auth-button"
+                  type="button"
+                  onClick={() => login()}
+                  sx={{ fontSize: '1.5rem' }}
+                >
+                  Google Login
+                </Button>
               </Box>
               <Box component={'span'} key={'attachment-wrapper'} id="attachment-wrapper">
                 <Button
@@ -275,3 +295,20 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
 };
 
 export default EmailDialog;
+
+const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
+
+const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<unknown>>) => {
+  try {
+    const tokenResponse = await axios.post(
+      `${baseURL}/create-tokens`,
+      { code },
+      { headers: { 'Content-Type': 'application/json' } },
+    );
+
+    console.log(tokenResponse.data);
+    setTokens(tokenResponse.data);
+  } catch (error) {
+    console.error(error);
+  }
+};

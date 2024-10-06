@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import multer from 'multer';
 import getReq from '../controllers/home-page';
 import postEmail from '../controllers/post-email';
+import createTokens from '../controllers/create-tokens';
 
 const router: Router = Router();
 
@@ -15,6 +16,7 @@ export class PortfolioRoutes {
     //-------------------------------------------------//
     router.get('/', getReq);
     router.post('/email', upload.single('attachment'), postEmail);
+    router.post('/create-tokens', createTokens);
   }
 }
 
