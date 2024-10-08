@@ -12,6 +12,17 @@
         "passWithNoTests": true
       },
       "dependsOn": ["my-portfolio-api:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apis/portfolio/portfolio-api-e2e/**/*.{ts,tsx,js,jsx}",
+          "apis/portfolio/portfolio-api-e2e/package.json"
+        ]
+      }
     }
   }
 }

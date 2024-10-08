@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
-import { type Dispatch, type SetStateAction, useRef, useState } from 'react';
+import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react';
 import { Form, SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
@@ -16,7 +16,7 @@ import Theme from '../../styles/theme';
 import AppointmentMaker from './appointment-maker/appointment-maker';
 import FormikValidationError from './formik-validation-error';
 import dayjs from 'dayjs';
-import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
+import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
 import axios from 'axios';
 
 export type MessageMeFormValues = {
@@ -94,7 +94,7 @@ const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFuncti
 
 const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [tokens, setTokens] = useState<unknown | null>(null);
+  const [tokens, setTokens] = useState<TokenResponse | null>(null);
   const [user, setUser] = useState<CodeResponse | null>(null);
   const { state } = useNavigation();
   const submit = useSubmit();
@@ -118,10 +118,11 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
     fileInputRef.current?.click();
   };
 
-  // useEffect(() => {
-
-  //   if (state !== 'submitting') setOpen(false);
-  // }, [state, setOpen]);
+  useEffect(() => {
+    console.log(user, tokens);
+    setUser(null);
+    //   if (state !== 'submitting') setOpen(false);
+  }, [user, tokens, setUser]); // [state, setOpen]);
 
   return (
     <Dialog open={open} id="email-dialog" fullWidth scroll="body" PaperProps={{ sx: { maxWidth: '40%' } }}>
@@ -298,7 +299,7 @@ export default EmailDialog;
 
 const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
 
-const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<unknown>>) => {
+const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<TokenResponse | null>>) => {
   try {
     const tokenResponse = await axios.post(
       `${baseURL}/create-tokens`,

@@ -15,6 +15,23 @@
         "assets": ["libs/prisma/*.md"]
       }
     },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/prisma/jest.config.ts",
+        "reportsDirectory": "../../coverage/libs/prisma",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/prisma/**/*.{ts,tsx,js,jsx}", "libs/prisma/package.json"]
+      }
+    },
     "generate": {
       "command": "npx prisma generate",
       "options": {

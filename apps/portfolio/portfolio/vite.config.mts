@@ -35,20 +35,9 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: false,
     },
+
     assetsDir: './assets',
-    rollupOptions: {
-      perf: true,
-      output: {
-        esModule: true,
-        format: 'es',
-      },
-    },
     target: 'esnext',
-  },
-  esbuild: {
-    format: 'esm',
-    color: true,
-    platform: 'browser',
   },
   logLevel: 'info',
   appType: 'spa',

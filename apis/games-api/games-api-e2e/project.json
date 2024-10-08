@@ -12,6 +12,17 @@
         "passWithNoTests": true
       },
       "dependsOn": ["games-api:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apis/games-api/games-api-e2e/**/*.{ts,tsx,js,jsx}",
+          "apis/games-api/games-api-e2e/package.json"
+        ]
+      }
     }
   }
 }

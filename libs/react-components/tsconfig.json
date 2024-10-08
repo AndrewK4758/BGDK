@@ -17,6 +17,12 @@
     },
     {
       "path": "../../apps/games-ui/tsconfig.app.json"
+    },
+    {
+      "path": "../../apps/portfolio/portfolio/tsconfig.app.json"
+    },
+    {
+      "path": "../../apps/games-ui/tsconfig.app.json"
     }
   ],
   "extends": "../../tsconfig.base.json"

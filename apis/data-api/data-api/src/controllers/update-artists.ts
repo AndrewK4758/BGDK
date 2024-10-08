@@ -12,7 +12,9 @@ const updateArtists = async (req: Request, resp: Response): Promise<void> => {
       updatedArtist: updatedArtist,
     };
 
-    updatedArtist ? resp.status(202).json(output) : resp.status(400).json(updateArtistError());
+    if (updatedArtist) resp.status(202).json(output);
+    else resp.status(400).json(updateArtistError());
+
   } catch (err) {
     console.error(err);
   }

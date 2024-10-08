@@ -5,5 +5,34 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project data-ui --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/data-ui",
+        "tsConfig": "apps/data-ui/tsconfig.lib.json",
+        "packageJson": "apps/data-ui/package.json",
+        "main": "apps/data-ui/src/index.ts",
+        "assets": ["apps/data-ui/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/data-ui/jest.config.ts",
+        "reportsDirectory": "../../coverage/apps/data-ui",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["apps/data-ui/**/*.{ts,tsx,js,jsx}", "apps/data-ui/package.json"]
+      }
+    }
+  }
 }

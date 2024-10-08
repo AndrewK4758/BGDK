@@ -23,6 +23,14 @@
         "reportsDirectory": "../../coverage/libs/game",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/game/**/*.{ts,tsx,js,jsx}", "libs/game/package.json"]
+      }
     }
   }
 }

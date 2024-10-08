@@ -1,7 +1,7 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { IBuiltGame } from '@bgdk/game-builder';
 import { EmailAddress, IRegisterUserClient } from '@bgdk/types-api';
-import { AvatarTotem, Color, GameInstanceID, GamePlayerValidation, PlayerID, TurnStatus } from '@bgdk/types-game';
+import { Color, GameInstanceID, GamePlayerValidation, PlayerID, TurnStatus } from '@bgdk/types-game';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation,
@@ -93,8 +93,6 @@ describe('Games api test wrapper', () => {
         );
 
         expect(resp.data.avatarList.length).toEqual(4);
-        expect(resp.data.avatarList).toContainEqual<AvatarTotem>;
-        expect(resp.data.avatarColorList).toContainEqual<Color>;
       });
     });
     describe('PATCH Formik form submission to register player/avatar', () => {

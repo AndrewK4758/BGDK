@@ -5,5 +5,17 @@
   "sourceRoot": "apps/portfolio/portfolio-e2e/src",
   "implicitDependencies": ["portfolio"],
   "// targets": "to see all targets run: nx show project portfolio-e2e --web",
-  "targets": {}
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apps/portfolio/portfolio-e2e/**/*.{ts,tsx,js,jsx}",
+          "apps/portfolio/portfolio-e2e/package.json"
+        ]
+      }
+    }
+  }
 }

@@ -1,10 +1,10 @@
 import { prisma } from '@bgdk/prisma';
-import { EmailAddress } from '@bgdk/types-api';
-import { users } from '@prisma/client';
+import { users, type Prisma } from '@prisma/client';
+import type { DefaultArgs } from '@prisma/client/runtime/library';
 
-const findUser = async (email: EmailAddress): Promise<users> => {
+const findUser = async (query: Prisma.usersFindUniqueArgs<DefaultArgs>): Promise<users> => {
   try {
-    return await prisma.users.findUnique({ where: { email: email } });
+    return await prisma.users.findUnique(query);
   } catch (err) {
     console.error(err);
     throw new Error(err.message);

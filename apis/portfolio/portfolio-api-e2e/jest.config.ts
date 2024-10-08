@@ -15,5 +15,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/my-portfolio-api-e2e',
+  coverageDirectory: '../../../coverage/portfolio-api-e2e',
 };

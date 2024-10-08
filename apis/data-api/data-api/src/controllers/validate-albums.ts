@@ -17,9 +17,9 @@ const validateAlbums = async (req: Request, resp: Response, next: NextFunction) 
 
       const album = await validateAlbum(query);
 
-      album
-        ? resp.status(200).json({ message: 'Album Already Exists' })
-        : resp.status(200).json({ message: 'Album Not in List. Please Submit to Continue' });
+      if (album) resp.status(200).json({ message: 'Album Already Exists' });
+      else resp.status(200).json({ message: 'Album Not in List. Please Submit to Continue' });
+
     } catch (error) {
       console.error(error);
     }

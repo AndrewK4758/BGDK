@@ -12,6 +12,17 @@
         "passWithNoTests": true
       },
       "dependsOn": ["vertex-api:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apis/vertex-api/vertex-api-e2e/**/*.{ts,tsx,js,jsx}",
+          "apis/vertex-api/vertex-api-e2e/package.json"
+        ]
+      }
     }
   }
 }

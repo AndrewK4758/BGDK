@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@mui/material": "6.1.2",
-    "@nx/vite": "19.8.3",
+    "@nx/vite": "20.0.0",
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "5.4.8",
     "vite-plugin-dts": "4.2.3"

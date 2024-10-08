@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
-import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 import Theme from '../../styles/theme';
 
 const loadingValues = [
@@ -19,7 +18,6 @@ const GameLoading = () => {
   const [loadingValueIdx, setLoadingValueIdx] = useState<number>(0);
 
   const loadingValue = loadingValues[loadingValueIdx];
-  console.log(loadingValue);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,7 +32,6 @@ const GameLoading = () => {
       component={'div'}
       key={'game-loading-wrapper'}
       id="game-loading"
-      onLoad={e => handleScrollIntoView(e)}
       sx={{
         width: '100%',
         height: '20vh',

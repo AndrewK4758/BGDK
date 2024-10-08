@@ -11,9 +11,9 @@ const validateArtists = async (req: Request, resp: Response) => {
 
     const artist = await validateArtist(query);
 
-    artist
-      ? resp.status(200).json({ message: 'Artist Already Exists' })
-      : resp.status(200).json({ message: 'Artist Not in List' });
+   if (artist) resp.status(200).json({ message: 'Artist Already Exists' });
+   else resp.status(200).json({ message: 'Artist Not in List' });
+
   } catch (error) {
     console.error(error);
   }

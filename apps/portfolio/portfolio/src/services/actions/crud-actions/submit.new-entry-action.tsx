@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NewEntry } from '../../components/add-entry/add-entry';
+import { NewEntry } from '../../../components/crud/add-entry/add-entry';
 import { track } from '@prisma/client';
 
 export type NewEntryReturn = {

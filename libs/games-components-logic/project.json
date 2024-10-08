@@ -23,6 +23,17 @@
         "reportsDirectory": "../../coverage/libs/games-components-logic",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "libs/games-components-logic/**/*.{ts,tsx,js,jsx}",
+          "libs/games-components-logic/package.json"
+        ]
+      }
     }
   }
 }

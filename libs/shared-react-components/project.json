@@ -1,9 +1,37 @@
 {
-  "name": "shared-react-components",
+  "name": "shared-shared-react-components",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared-react-components/src",
+  "sourceRoot": "libs/shared-shared-react-components/src",
   "projectType": "library",
   "tags": [],
-  "// targets": "to see all targets run: nx show project shared-react-components --web",
-  "targets": {}
+  "// targets": "to see all targets run: nx show project shared-shared-react-components --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/libs/shared-react-components"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "libs/shared-react-components/**/*.{ts,tsx,js,jsx}",
+          "libs/shared-react-components/package.json"
+        ]
+      }
+    }
+  }
 }

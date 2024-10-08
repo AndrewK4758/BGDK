@@ -11,9 +11,9 @@ const validateTracks = async (req: Request, resp: Response) => {
 
     const validatedTrack = await validateTrack(query);
 
-    validatedTrack
-      ? resp.status(200).json({ message: 'Track Already Exists' })
-      : resp.status(200).json({ message: 'Track Not in Album. Please Submit to Continue' });
+    if (validatedTrack) resp.status(200).json({ message: 'Track Already Exists' });
+    else resp.status(200).json({ message: 'Track Not in Album. Please Submit to Continue' });
+
   } catch (error) {
     console.error(error);
   }

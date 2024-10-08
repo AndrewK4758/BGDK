@@ -18,5 +18,5 @@
     "../../../libs/**/*/src/**/*.ts",
     "../../../__mocks__/**/*.ts"
   ],
-  "exclude": ["../../../libs/react-components/**/*"]
+  "exclude": ["../../../libs/react-components/**/*", "../../../libs/shared-react-components/**/*"]
 }

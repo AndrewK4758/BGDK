@@ -8,7 +8,9 @@ const getArtist = async (req: Request, resp: Response) => {
 
     const artist = await findArtist(parseInt(artistID, 10));
 
-    artist ? resp.status(200).json(artist) : resp.status(404).json(findArtistError());
+    if (artist) resp.status(200).json(artist);
+    else resp.status(404).json(findArtistError());
+
   } catch (error) {
     console.error(error);
   }

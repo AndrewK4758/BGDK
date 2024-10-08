@@ -12,6 +12,17 @@
         "passWithNoTests": true
       },
       "dependsOn": ["data-api:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apis/data-api/data-api-e2e/**/*.{ts,tsx,js,jsx}",
+          "apis/data-api/data-api-e2e/package.json"
+        ]
+      }
     }
   }
 }

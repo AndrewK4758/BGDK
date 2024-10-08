@@ -23,6 +23,14 @@
         "reportsDirectory": "../../../coverage/libs/games/tic-tac-toe",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/games/tic-tac-toe/**/*.{ts,tsx,js,jsx}", "libs/games/tic-tac-toe/package.json"]
+      }
     }
   }
 }

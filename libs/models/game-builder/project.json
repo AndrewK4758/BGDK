@@ -23,6 +23,14 @@
         "reportsDirectory": "../../coverage/libs/models/game-builder",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/models/game-builder/**/*.{ts,tsx,js,jsx}", "libs/models/game-builder/package.json"]
+      }
     }
   }
 }

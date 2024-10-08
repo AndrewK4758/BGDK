@@ -23,6 +23,17 @@
         "reportsDirectory": "../../../coverage/libs/models/de-referencing-utilities",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "libs/models/de-referencing-utilities/**/*.{ts,tsx,js,jsx}",
+          "libs/models/de-referencing-utilities/package.json"
+        ]
+      }
     }
   }
 }
