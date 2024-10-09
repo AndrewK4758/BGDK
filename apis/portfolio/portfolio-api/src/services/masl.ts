@@ -1,4 +1,8 @@
 import { Configuration, CryptoProvider, LogLevel, ConfidentialClientApplication } from '@azure/msal-node';
+import { configDotenv } from 'dotenv';
+import { cwd } from 'process';
+
+configDotenv({ path: `${cwd()}/apis/portfolio/portfolio-api/env/.env` });
 
 const config: Configuration = {
   auth: {
@@ -18,6 +22,7 @@ const config: Configuration = {
 };
 
 const cca = new ConfidentialClientApplication(config);
+
 
 export const genPKceCodes = async () => {
   const crypto = new CryptoProvider();

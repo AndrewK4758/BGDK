@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import { type Variant } from '@mui/material/styles/createTypography';
 import { useFormik } from 'formik';
-import { type Dispatch, type SetStateAction, useState } from 'react';
+import { type Dispatch, lazy, type SetStateAction, Suspense, useState } from 'react';
 import { SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
@@ -14,7 +14,9 @@ import dayjs from 'dayjs';
 // import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
 // import axios from 'axios';
 import { Text } from '@bgdk/react-components';
-import EmaiForm from './email-form/email-form';
+import { Waiting } from '@bgdk/shared-react-components';
+
+const EmailForm = lazy(() => import('./email-form/email-form'));
 
 export type MessageMeFormValues = {
   name: string;
@@ -167,8 +169,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             }
           />
         </Tabs>
-
-        {tab === 1 && <EmaiForm formik={formik} />}
+        <Suspense fallback={<Waiting />}>{tab === 1 && <EmailForm formik={formik} />}</Suspense>
 
         <DialogActions key={'email-me-button-box'} id="email-me-button-box" sx={{ paddingX: 4 }}>
           <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '1.5rem' }}>

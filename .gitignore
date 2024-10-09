@@ -47,6 +47,18 @@ vite.config.mts.timestamp-*
 .env/*
 env/
 
+/secrets/
+secrets/
+/secrets
+secrets
+
+tokens
+/tokens
+tokens/
+/tokens/
+./tokens/*
+
+
 .nx/workspace-data/d/daemon.log
 .nx/workspace-data/file-map.json
 
