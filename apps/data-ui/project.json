@@ -7,14 +7,51 @@
   "// targets": "to see all targets run: nx show project data-ui --web",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
       "options": {
-        "outputPath": "dist/apps/data-ui",
-        "tsConfig": "apps/data-ui/tsconfig.lib.json",
-        "packageJson": "apps/data-ui/package.json",
-        "main": "apps/data-ui/src/index.ts",
-        "assets": ["apps/data-ui/*.md"]
+        "outputPath": "dist/apps/data-ui"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "data-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "data-ui:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "data-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "data-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "data-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "data-ui:build:production"
+        }
       }
     },
     "test": {

@@ -2,11 +2,12 @@ const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   output: {
     path: join(__dirname, '../../../dist/apis/portfolio-api'),
     filename: 'main.js',
   },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+
   watch: process.env.NODE_ENV === 'development' ? true : false,
   node: {
     __dirname: true,
@@ -15,6 +16,11 @@ module.exports = {
   experiments: {
     topLevelAwait: true,
   },
+  resolve: {
+    conditionNames: ['import', 'require', 'node', 'default'],
+    extensions: ['.ts', '.js'],
+  },
+
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
@@ -28,6 +34,7 @@ module.exports = {
       progress: true,
       watch: true,
       verbose: true,
+      commonChunk: true,
     }),
   ],
 };

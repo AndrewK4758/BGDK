@@ -18,6 +18,8 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
     "../../libs/**/*/src/tests/**/*.ts",
+    "../../libs/socket-io/src/**/*.ts",
+    "../../libs/password/src/**/*.ts",
     "../../libs/**/*/src/tests/**/*.tsx"
   ],
   "include": [

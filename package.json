@@ -2,6 +2,7 @@
   "name": "@bgdk/source",
   "version": "1.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start games-api": "node ./dist/apis/games-api/main.js",
     "start vertex-api": "node ./dist/apis/vertex-api/main.js",
@@ -27,6 +28,8 @@
   },
   "private": true,
   "dependencies": {
+    "@azure/msal-node": "^2.15.0",
+    "@azure/msal-node-extensions": "^1.3.0",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@google-cloud/storage": "^7.13.0",

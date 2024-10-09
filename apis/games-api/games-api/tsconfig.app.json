@@ -3,10 +3,10 @@
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "express"],
-    "esModuleInterop": true,
+    "sourceMap": true,
     "composite": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "target": "ESNext"
   },
   "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],

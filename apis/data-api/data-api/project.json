@@ -16,7 +16,7 @@
         "main": "apis/data-api/data-api/src/main.ts",
         "tsConfig": "apis/data-api/data-api/tsconfig.app.json",
         "assets": ["apis/data-api/data-api/src/assets"],
-        "webpackConfig": "apis/data-api/data-api/webpack.config.js",
+        "webpackConfig": "apis/data-api/data-api/webpack.config.cjs",
         "deleteOutputPath": true,
         "progress": true,
         "verbose": true,

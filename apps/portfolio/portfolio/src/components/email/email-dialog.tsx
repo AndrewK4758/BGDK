@@ -1,23 +1,20 @@
-import { type SxProps } from '@mui/material';
+import { Tab, Tabs, type SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { type Variant } from '@mui/material/styles/createTypography';
 import { useFormik } from 'formik';
-import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react';
-import { Form, SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
+import { type Dispatch, type SetStateAction, useState } from 'react';
+import { SubmitFunction, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../styles/theme';
-import AppointmentMaker from './appointment-maker/appointment-maker';
-import FormikValidationError from './formik-validation-error';
 import dayjs from 'dayjs';
-import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
-import axios from 'axios';
+// import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
+// import axios from 'axios';
+import { Text } from '@bgdk/react-components';
+import EmaiForm from './email-form/email-form';
 
 export type MessageMeFormValues = {
   name: string;
@@ -48,27 +45,6 @@ const validationSchema = Yup.object({
   attachment: Yup.mixed().notRequired(),
 });
 
-const textFieldSlotProps = {
-  inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
-  htmlInput: {
-    sx: {
-      fontSize: '1.5rem',
-      paddingTop: 2,
-      backgroundColor: Theme.palette.background.default,
-      color: Theme.palette.background.paper,
-    } as SxProps,
-  },
-  input: {
-    inputProps: {
-      sx: {
-        borderRadius: 1,
-        color: Theme.palette.text.primary,
-        backgroundColor: Theme.palette.background.default,
-      },
-    },
-  },
-};
-
 interface EmailDialogProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -93,39 +69,45 @@ const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFuncti
 };
 
 const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [tokens, setTokens] = useState<TokenResponse | null>(null);
-  const [user, setUser] = useState<CodeResponse | null>(null);
+  const [tab, setTab] = useState<number>(0);
+  // const [tokens, setTokens] = useState<TokenResponse | null>(null);
+  // const [user, setUser] = useState<CodeResponse | null>(null);
   const { state } = useNavigation();
   const submit = useSubmit();
 
-  const login = useGoogleLogin({
-    onSuccess: code => onGoogleSuccess(code, setTokens),
-    onError: err => console.error(err),
-    flow: 'auth-code',
-    scope: 'https://www.googleapis.com/auth/calendar.events',
-  });
+  // const login = useGoogleLogin({
+  //   onSuccess: code => onGoogleSuccess(code, setTokens),
+  //   onError: err => console.error(err),
+  //   flow: 'auth-code',
+  //   scope: 'https://www.googleapis.com/auth/calendar.events',
+  // });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: values => {
+      console.log(values);
       handleSubmitMessageMe(values, submit);
     },
   });
 
-  const handleFileSubmit = () => {
-    fileInputRef.current?.click();
-  };
-
-  useEffect(() => {
-    console.log(user, tokens);
-    setUser(null);
-    //   if (state !== 'submitting') setOpen(false);
-  }, [user, tokens, setUser]); // [state, setOpen]);
-
   return (
-    <Dialog open={open} id="email-dialog" fullWidth scroll="body" PaperProps={{ sx: { maxWidth: '40%' } }}>
+    <Dialog
+      open={open}
+      id="email-dialog"
+      fullWidth
+      scroll="body"
+      PaperProps={{
+        elevation: 24,
+        component: 'div',
+        sx: {
+          m: 0,
+          minWidth: '40vw',
+          height: '75%',
+        },
+      }}
+      sx={{ width: '100%', height: '100%' }}
+    >
       {state === 'submitting' && (
         <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} alignContent={'center'}>
           <Box sx={{ fontSize: '5rem', textAlign: 'center' }}>{`\u{1F44D}`}</Box>
@@ -134,162 +116,68 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
         </Box>
       )}
 
-      <Box component={'section'} id="email-me-title-box" sx={{ filter: state === 'submitting' ? 'blur(10px)' : null }}>
-        <DialogTitle id="email-me-title" gutterBottom={false} variant="h1" sx={{ paddingY: '0' }}>
-          Reach Out
-        </DialogTitle>
-        <DialogTitle id="email-me-subtitle" variant="h4" align="right" sx={{ paddingY: '0' }}>
-          I look forward to hearing from you
-        </DialogTitle>
+      <Box
+        component={'section'}
+        id="email-me-title-box"
+        sx={{
+          filter: state === 'submitting' ? 'blur(10px)' : null,
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <Tabs
+          variant="fullWidth"
+          aria-label="contact-tabs"
+          component={'nav'}
+          key={'contact-tabs'}
+          value={tab}
+          onChange={(_e, tab) => setTab(tab)}
+          TabIndicatorProps={{
+            sx: {
+              borderBottom: `4px solid ${Theme.palette.secondary.dark}`,
+            },
+          }}
+        >
+          <Tab
+            key={'google-calendar-appointment'}
+            id="google-calendar-appointment"
+            label={
+              <TabLabel
+                mainVariant="h3"
+                mainText="Google Calendar Appointment"
+                mainSx={{ fontSize: '2.2rem', color: Theme.palette.primary.dark }}
+                subVariant="caption"
+                subText="Set time to meet through Google Meet"
+                subSx={{ fontSize: '1.25rem', color: Theme.palette.text.primary }}
+              />
+            }
+          />
+          <Tab
+            key={'send-direct-message'}
+            id="send-direct-message"
+            label={
+              <TabLabel
+                mainVariant="h3"
+                mainText="Send Direct Message"
+                mainSx={{ fontSize: '2.2rem', color: Theme.palette.primary.dark }}
+                subVariant="caption"
+                subText="Send Email / Context for Google Meet"
+                subSx={{ fontSize: '1.25rem', color: Theme.palette.text.primary }}
+              />
+            }
+          />
+        </Tabs>
 
-        <Form action="/" method="post" encType="multipart/form-data" onSubmit={formik.handleSubmit}>
-          <Container component={'section'} key={'inputs-container'} id="inputs-container">
-            <Stack component={'section'} id="email-me-inputs-stack" gap={1.5}>
-              <Box component={'span'} key={'name-wrapper'} id="name-wrapper">
-                <TextField
-                  fullWidth
-                  autoComplete="on"
-                  focused
-                  type="text"
-                  id="name"
-                  name="name"
-                  label="Name"
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  slotProps={textFieldSlotProps}
-                />
+        {tab === 1 && <EmaiForm formik={formik} />}
 
-                <FormikValidationError formik={formik} elementName="name" />
-              </Box>
-              <Box component={'span'} key={'email-wrapper'} id="email-wrapper">
-                <TextField
-                  fullWidth
-                  autoComplete="on"
-                  type="text"
-                  id="email"
-                  name="email"
-                  label="Email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  slotProps={textFieldSlotProps}
-                />
-
-                <FormikValidationError formik={formik} elementName="email" />
-              </Box>
-              <Box component={'span'} key={'phone-wrapper'} id="phone-wrapper">
-                <TextField
-                  fullWidth
-                  autoComplete="on"
-                  type="number"
-                  id="phone"
-                  name="phone"
-                  label="Phone"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  slotProps={textFieldSlotProps}
-                />
-                <FormikValidationError formik={formik} elementName="phone" />
-              </Box>
-              <Box component={'span'} key={'subject-wrapper'} id="subject-wrapper">
-                <TextField
-                  fullWidth
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  label="Subject"
-                  defaultValue={'I saw your website and wanted to reach out...'}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  slotProps={textFieldSlotProps}
-                />
-
-                <FormikValidationError formik={formik} elementName="subject" />
-              </Box>
-              <Box component={'span'} key={'body-wrapper'} id="body-wrapper" p={0}>
-                <TextField
-                  fullWidth
-                  multiline
-                  type="text"
-                  id="body"
-                  name="body"
-                  maxRows={4}
-                  minRows={4}
-                  label="Body"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  slotProps={{
-                    inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } },
-                    input: { sx: { p: 0 } },
-                    htmlInput: {
-                      sx: {
-                        borderRadius: 1,
-                        padding: 2,
-                        paddingTop: 3,
-                        fontSize: '1.5rem',
-                        backgroundColor: Theme.palette.background.default,
-                        color: Theme.palette.background.paper,
-                      },
-                    },
-                  }}
-                />
-
-                <FormikValidationError formik={formik} elementName="body" />
-              </Box>
-              <Box component={'span'} key={'appointment-maker-wrapper'} id="appointment-maker-wrapper">
-                <AppointmentMaker formik={formik} />
-                <FormikValidationError formik={formik} elementName="date" />
-                <br />
-                <Button
-                  LinkComponent={'button'}
-                  key={'google-auth-button'}
-                  id="google-auth-button"
-                  type="button"
-                  onClick={() => login()}
-                  sx={{ fontSize: '1.5rem' }}
-                >
-                  Google Login
-                </Button>
-              </Box>
-              <Box component={'span'} key={'attachment-wrapper'} id="attachment-wrapper">
-                <Button
-                  id="upload-file-button"
-                  sx={{ fontSize: '1.5rem', width: '35%', alignSelf: 'left' }}
-                  onClick={handleFileSubmit}
-                >
-                  Upload File
-                </Button>
-                <input
-                  ref={fileInputRef}
-                  accept="*/*"
-                  id="attchment"
-                  name="attchment"
-                  type="file"
-                  style={{ display: 'none' }}
-                  onBlur={formik.handleBlur}
-                  onChange={async e => {
-                    if (e.target.files) await formik.setFieldValue('attachment', e.target.files[0], false);
-                  }}
-                />
-                {formik.values.attachment ? (
-                  <Box component={'span'} sx={{ fontSize: '1.5rem' }}>
-                    {(formik.values.attachment as File).name}
-                  </Box>
-                ) : null}
-              </Box>
-            </Stack>
-          </Container>
-          <DialogActions key={'email-me-button-box'} id="email-me-button-box">
-            <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '1.5rem' }}>
-              Submit
-            </Button>
-            <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '1.5rem' }}>
-              Reset
-            </Button>
-            <Button type="button" id="close-email-me-button" onClick={() => setOpen(false)} sx={{ fontSize: '1.5rem' }}>
-              Close
-            </Button>
-          </DialogActions>
-        </Form>
+        <DialogActions key={'email-me-button-box'} id="email-me-button-box" sx={{ paddingX: 4 }}>
+          <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '1.5rem' }}>
+            Reset
+          </Button>
+          <Button type="button" id="close-email-me-button" onClick={() => setOpen(false)} sx={{ fontSize: '1.5rem' }}>
+            Close
+          </Button>
+        </DialogActions>
       </Box>
     </Dialog>
   );
@@ -297,8 +185,11 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
 
 export default EmailDialog;
 
-const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
-
+/**
+ const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
+ *
+ * @param code
+ * @param setTokens
 const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<TokenResponse | null>>) => {
   try {
     const tokenResponse = await axios.post(
@@ -313,3 +204,36 @@ const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateA
     console.error(error);
   }
 };
+
+*/
+interface TabLabelProps {
+  mainVariant: Variant;
+  subVariant: Variant;
+  mainText: string;
+  subText: string;
+  mainSx?: SxProps;
+  subSx?: SxProps;
+}
+
+const TabLabel = ({ mainVariant, mainText, mainSx, subVariant, subText, subSx }: TabLabelProps) => (
+  <Box>
+    <Text titleVariant={mainVariant} titleText={mainText} sx={mainSx} />
+    <Text titleVariant={subVariant} titleText={subText} sx={subSx} />
+  </Box>
+);
+
+/**
+ *
+ * Google Login button
+                <br />
+                <Button
+                  LinkComponent={'button'}
+                  key={'google-auth-button'}
+                  id="google-auth-button"
+                  type="button"
+                  onClick={() => login()}
+                  sx={{ fontSize: '1.5rem' }}
+                >
+                  Google Login
+                </Button>
+ */

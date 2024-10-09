@@ -33,7 +33,7 @@ const Theme: Theme = createTheme(
       },
     },
     shape: {
-      borderRadius: 20,
+      borderRadius: 10,
     },
     typography: {
       fontFamily: 'League Gothic',

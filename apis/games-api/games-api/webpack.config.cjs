@@ -15,6 +15,10 @@ module.exports = {
   experiments: {
     topLevelAwait: true,
   },
+  resolve: {
+    conditionNames: ['import', 'require', 'node', 'default'],
+    extensions: ['.ts', '.js'],
+  },
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',
@@ -24,9 +28,11 @@ module.exports = {
       assets: ['./src/assets'],
       optimization: false,
       outputHashing: 'none',
+      generatePackageJson: true,
       progress: true,
       watch: true,
       verbose: true,
+      commonChunk: true,
     }),
   ],
 };

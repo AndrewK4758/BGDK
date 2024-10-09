@@ -16,7 +16,7 @@
         "main": "apis/games-api/games-api/src/main.ts",
         "tsConfig": "apis/games-api/games-api/tsconfig.app.json",
         "assets": ["apis/games-api/games-api/src/assets"],
-        "webpackConfig": "apis/games-api/games-api/webpack.config.js",
+        "webpackConfig": "apis/games-api/games-api/webpack.config.cjs",
         "deleteOutputPath": true,
         "progress": true,
         "verbose": true

@@ -1,8 +1,8 @@
 {
   "jest.enable": true,
   "jest.rootPath": "./",
-  "jestrunner.jestPath": "./node_modules/jest/bin/jest",
-  // "jest.jestCommandLine": "pnpm",
+  "jestrunner.jestPath": "/usr/local/lib/node_modules/jest/bin/jest.js",
+  "jest.jestCommandLine": "/usr/local/lib/node_modules/corepack/dist/pnpm.js",
   "jest.runMode": {
     "type": "on-demand",
     "showInlineError": true,

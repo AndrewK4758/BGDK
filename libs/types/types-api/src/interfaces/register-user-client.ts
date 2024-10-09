@@ -1,5 +1,5 @@
 import { EmailAddress } from '../types/register-user';
-import type Express from 'multer';
+import type { Multer } from 'multer';
 
 export interface IRegisterUserClient {
   firstName: string;
@@ -7,5 +7,5 @@ export interface IRegisterUserClient {
   email: EmailAddress;
   playerName: string;
   password: string;
-  thumbnail?: File | string | Express.Multer;
+  thumbnail?: File | string | Multer;
 }

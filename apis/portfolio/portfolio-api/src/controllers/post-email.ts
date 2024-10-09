@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import type { SendMailOptions } from 'nodemailer';
-import transporter from '../services/nodemailer';
+import transporter from '../services/nodemailer.ts';
 
 type ContactMessage = {
   name: string;
@@ -21,7 +21,7 @@ const postEmail = async (req: Request, resp: Response) => {
     console.log(req.body);
 
     const mailOptions: SendMailOptions = {
-      from: 'ak475826@gmail.com',
+      from: 'andrew@andrew-k.us',
       to: email,
       subject: `${subject} - ${date}`,
       text: `${name}, ${phone}, ${body}`,
@@ -34,9 +34,7 @@ const postEmail = async (req: Request, resp: Response) => {
 
     console.log(sentMail);
 
-    setTimeout(() => {
-      resp.status(201).json({ message: 'Message Sent. Responses are given within 1 day ending in the letter "y"' });
-    }, 5000);
+    resp.status(201).json({ message: 'Message Sent. Responses are given within 1 day ending in the letter "y"' });
   } catch (error) {
     console.error(error);
     setTimeout(() => {

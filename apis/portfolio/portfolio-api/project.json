@@ -16,7 +16,7 @@
         "main": "apis/portfolio/portfolio-api/src/main.ts",
         "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
         "assets": ["apis/portfolio/portfolio-api/src/assets"],
-        "webpackConfig": "apis/portfolio/portfolio-api/webpack.config.js",
+        "webpackConfig": "apis/portfolio/portfolio-api/webpack.config.cjs",
         "deleteOutputPath": true,
         "progress": true,
         "verbose": true

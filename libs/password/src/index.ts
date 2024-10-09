@@ -1,2 +1,2 @@
-export * from './lib/make-password';
-export * from './lib/check-password';
+export * from './lib/make-password.ts';
+export * from './lib/check-password.ts';

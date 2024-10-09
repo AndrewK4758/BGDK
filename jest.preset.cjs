@@ -8,4 +8,9 @@ module.exports = {
   collectCoverage: true,
   passWithNoTests: true,
   maxWorkers: 2,
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
 };

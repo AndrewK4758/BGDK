@@ -25,7 +25,7 @@
         "main": "apis/vertex-api/vertex-api/src/main.ts",
         "tsConfig": "apis/vertex-api/vertex-api/tsconfig.app.json",
         "assets": ["apis/vertex-api/vertex-api/src/assets"],
-        "webpackConfig": "apis/vertex-api/vertex-api/webpack.config.js",
+        "webpackConfig": "apis/vertex-api/vertex-api/webpack.config.cjs",
         "deleteOutputPath": true,
         "progress": true,
         "verbose": true

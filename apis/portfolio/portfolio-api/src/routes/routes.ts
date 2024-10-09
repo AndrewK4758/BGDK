@@ -1,8 +1,9 @@
 import express, { Router } from 'express';
 import multer from 'multer';
-import getReq from '../controllers/home-page';
-import postEmail from '../controllers/post-email';
-import createTokens from '../controllers/create-tokens';
+import getReq from '../controllers/home-page.ts';
+import postEmail from '../controllers/post-email.ts';
+import createTokens from '../controllers/create-tokens.ts';
+import authRouter from './nodemailer-auth/nodemailer-auth.ts';
 
 const router: Router = Router();
 
@@ -14,6 +15,7 @@ export class PortfolioRoutes {
     router.use(express.json());
     router.use(express.urlencoded({ extended: true }));
     //-------------------------------------------------//
+    router.use('/', authRouter);
     router.get('/', getReq);
     router.post('/email', upload.single('attachment'), postEmail);
     router.post('/create-tokens', createTokens);
