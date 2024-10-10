@@ -1,8 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import { calendar } from 'googleapis/build/src/apis/calendar';
 import oauth2Client from '../../services/google-oauth';
-const REFRESH_TOKEN =
-  '1//01XwZo06V4XTaCgYIARAAGAESNwF-L9IrurqdVVt89nHiYfBLa3GD4pxrLkf6bZtncuwPIPPMPPJQjMe8Plek51WryY0ZjxthH3o';
 
 const createEvents = async (req: Request, resp: Response, next: NextFunction) => {
   try {
