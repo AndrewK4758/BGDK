@@ -1,8 +1,8 @@
 :root {
-  --defaultBack: #4d4637;
+  --defaultBack: #3a3c41;
   --secondaryMain: #cb91ff;
-  --textPrimary: #f3ead9;
-  --defaultPaper: #1d1607;
+  --textPrimary: #cbcbcb;
+  --backgroundPaper: #1f1f1f;
   --background: #f9f871  ;
 }
 
@@ -39,7 +39,6 @@
   height: fit-content;
   min-height: 100vh;
   width: 100%;
-  /* background-image: ; #aca9bb, #33e5c7*/
   background:
     radial-gradient(circle at 50% 0, #e9e9e9 10%, transparent ),
     radial-gradient(circle at 6.7% 75%, #505050, transparent),
@@ -114,7 +113,7 @@ input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button {
 
 .css-1ctvbgh-MuiTypography-root-MuiClock-meridiemText {
   font-size: 1rem !important;
-  color: var(--defaultPaper);
+  color: var(--backgroundPaper);
 }
 
 .css-14klqex-MuiTypography-root-MuiDayCalendar-weekDayLabel {
@@ -124,3 +123,5 @@ input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button {
 .css-pfx7z5-MuiButtonBase-root-MuiButton-root {
   scale: 1.75 !important;
 }
+
+

@@ -11,7 +11,7 @@ import type { MessageMeFormValues } from '../email-dialog';
 import type { SxProps } from '@mui/material/styles';
 import Theme from '../../../styles/theme';
 import { useRef } from 'react';
-import axios from 'axios';
+import { DialogActions } from '@mui/material';
 
 const textFieldSlotProps = {
   inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
@@ -132,7 +132,6 @@ const EmaiForm = ({ formik }: EmaiFormProps) => {
                       paddingTop: 3,
                       fontSize: '1.5rem',
                       backgroundColor: Theme.palette.background.default,
-                      color: Theme.palette.background.paper,
                     },
                   },
                 }}
@@ -144,14 +143,12 @@ const EmaiForm = ({ formik }: EmaiFormProps) => {
               <AppointmentMaker formik={formik} />
               <FormikValidationError formik={formik} elementName="date" />
             </Box>
-            <Box component={'span'} key={'attachment-wrapper'} id="attachment-wrapper">
-              <Button
-                id="upload-file-button"
-                sx={{ fontSize: '1.5rem', width: '35%', alignSelf: 'left' }}
-                onClick={handleFileSubmit}
-              >
-                Upload File
-              </Button>
+            <Box
+              component={'span'}
+              key={'attachment-wrapper'}
+              id="attachment-wrapper"
+              sx={{ display: 'flex', flexDirection: 'column' }}
+            >
               <input
                 ref={fileInputRef}
                 accept="*/*"
@@ -165,33 +162,33 @@ const EmaiForm = ({ formik }: EmaiFormProps) => {
                 }}
               />
               {formik.values.attachment ? (
-                <Box component={'span'} sx={{ fontSize: '1.5rem' }}>
+                <Box component={'span'} sx={{ fontSize: '1rem', alignSelf: 'center', textAlign: 'center' }}>
                   {(formik.values.attachment as File).name}
                 </Box>
               ) : null}
+
+              <DialogActions
+                sx={{
+                  flex: '0 1 45%',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                }}
+              >
+                <Button id="upload-file-button" sx={{ fontSize: '2rem' }} onClick={handleFileSubmit}>
+                  Upload File
+                </Button>
+                <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '2rem' }}>
+                  Submit
+                </Button>
+              </DialogActions>
             </Box>
           </Stack>
         </Container>
-        <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '1.5rem' }}>
-          Submit
-        </Button>
-        <Button
-          type="button"
-          onClick={async () => {
-            try {
-              const resp = await axios.get(`${baseURL}/auth`);
-              console.log(resp);
-              window.open(resp.data);
-            } catch (error) {
-              console.error(error);
-            }
-          }}
-        >
-          AUTH
-        </Button>
       </Form>
     </Box>
   );
 };
-const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
+
 export default EmaiForm;
+
+

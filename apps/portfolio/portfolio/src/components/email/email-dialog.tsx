@@ -11,12 +11,13 @@ import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../styles/theme';
 import dayjs from 'dayjs';
-// import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
-// import axios from 'axios';
+
 import { Text } from '@bgdk/react-components';
 import { Waiting } from '@bgdk/shared-react-components';
 
 const EmailForm = lazy(() => import('./email-form/email-form'));
+const GoogleCalendar = lazy(() => import('./google-calendar/google-calendar'));
+// const AppointmentMaker = lazy(() => import('./appointment-maker/appointment-maker'));
 
 export type MessageMeFormValues = {
   name: string;
@@ -52,7 +53,7 @@ interface EmailDialogProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFunction) => {
+const handleSubmitMessage = (values: MessageMeFormValues, submit: SubmitFunction) => {
   const { name, email, phone, subject, body, date, attachment } = values;
 
   console.log(date);
@@ -66,30 +67,20 @@ const handleSubmitMessageMe = (values: MessageMeFormValues, submit: SubmitFuncti
   form.append('date', date);
   if (attachment) form.append('attachment', attachment);
 
-  console.log(form.get('date'));
   submit(form, { action: '/', method: 'post', encType: 'multipart/form-data' });
 };
 
 const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
   const [tab, setTab] = useState<number>(0);
-  // const [tokens, setTokens] = useState<TokenResponse | null>(null);
-  // const [user, setUser] = useState<CodeResponse | null>(null);
   const { state } = useNavigation();
   const submit = useSubmit();
-
-  // const login = useGoogleLogin({
-  //   onSuccess: code => onGoogleSuccess(code, setTokens),
-  //   onError: err => console.error(err),
-  //   flow: 'auth-code',
-  //   scope: 'https://www.googleapis.com/auth/calendar.events',
-  // });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: values => {
       console.log(values);
-      handleSubmitMessageMe(values, submit);
+      handleSubmitMessage(values, submit);
     },
   });
 
@@ -169,13 +160,16 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             }
           />
         </Tabs>
-        <Suspense fallback={<Waiting />}>{tab === 1 && <EmailForm formik={formik} />}</Suspense>
+        <Suspense fallback={<Waiting />}>
+          {tab === 0 && <GoogleCalendar />}
+          {tab === 1 && <EmailForm formik={formik} />}
+        </Suspense>
 
         <DialogActions key={'email-me-button-box'} id="email-me-button-box" sx={{ paddingX: 4 }}>
-          <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '1.5rem' }}>
+          <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '2rem' }}>
             Reset
           </Button>
-          <Button type="button" id="close-email-me-button" onClick={() => setOpen(false)} sx={{ fontSize: '1.5rem' }}>
+          <Button type="button" id="close-email-me-button" onClick={() => setOpen(false)} sx={{ fontSize: '2rem' }}>
             Close
           </Button>
         </DialogActions>
@@ -187,24 +181,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
 export default EmailDialog;
 
 /**
- const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
- *
- * @param code
- * @param setTokens
-const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<TokenResponse | null>>) => {
-  try {
-    const tokenResponse = await axios.post(
-      `${baseURL}/create-tokens`,
-      { code },
-      { headers: { 'Content-Type': 'application/json' } },
-    );
 
-    console.log(tokenResponse.data);
-    setTokens(tokenResponse.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 */
 interface TabLabelProps {

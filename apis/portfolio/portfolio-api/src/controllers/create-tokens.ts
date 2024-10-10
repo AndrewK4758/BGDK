@@ -6,6 +6,8 @@ import oauth2Client from '../services/google-oauth.ts';
 
 const PATH_FOR_TOKENS = join(cwd(), 'apis/portfolio/portfolio-api/tokens/');
 
+
+
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
     const { code } = req.body;
@@ -16,7 +18,7 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
 
     await fs.writeFile(`${PATH_FOR_TOKENS}trial.json`, JSON.stringify(tokens));
 
-    resp.status(201).json({ tokens });
+    resp.sendStatus(201);
   } catch (error) {
     console.error(error);
     next(error);

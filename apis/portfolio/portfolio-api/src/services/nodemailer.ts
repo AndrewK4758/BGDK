@@ -11,13 +11,13 @@ configDotenv({
 
 const getToken = async () => {
   const { accessToken } = await cca.acquireTokenByClientCredential({
-    scopes: ['https://graph.microsoft.com/SMTP.Send/.default'],
+    scopes: ['api://portfolio/.default'],
   });
   return accessToken;
 };
 
 const nodemailerConfigOptions: SMTPTransport.Options = {
-  // service: process.env.MAIL_SERVICE,
+  service: process.env.MAIL_SERVICE,
   host: process.env.MAIL_HOST,
   port: parseInt(process.env.MAIL_PORT, 10),
   secure: false,
@@ -36,12 +36,3 @@ const transporter = createTransport(nodemailerConfigOptions);
 
 export default transporter;
 
-// console.log(
-//   process.env.MAIL_USERNAME,
-//   process.env.MAIL_PASSWORD,
-//   process.env.MAIL_SERVICE,
-//   process.env.MAIL_HOST,
-//   parseInt(process.env.MAIL_PORT, 10),
-// );
-
-// transporter.verify();

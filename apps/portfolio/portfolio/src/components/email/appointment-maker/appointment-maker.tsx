@@ -12,7 +12,7 @@ const nextYear = dayjs().year(new Date().getFullYear() + 1);
 
 const Label = () => (
   <Typography variant="body1" sx={{ fontSize: '1.25rem' }}>
-    Set Preferred Appointment Date & Time
+    Preferred Appointment Date & Time
   </Typography>
 );
 
@@ -21,7 +21,7 @@ interface AppointmentMakerProps {
 }
 
 const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
-  <Box>
+  <Box component={'div'} key={'google-calendar-wrapper'} id="google-calendar-wrapper">
     <DateTimePicker
       key={'appointment-maker'}
       name="appointmaker"
@@ -39,7 +39,7 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
       orientation="landscape"
       onAccept={data => {
         console.log(data);
-        formik.setFieldValue('date', data?.format('MM-DD-YYYY/HH:mm'));
+        formik.setFieldValue('date', data?.toISOString());
         console.log(formik.values.date);
       }}
       slotProps={{
@@ -102,3 +102,4 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
 );
 
 export default AppointmentMaker;
+
