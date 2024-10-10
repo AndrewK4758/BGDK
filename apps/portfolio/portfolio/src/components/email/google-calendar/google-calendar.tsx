@@ -61,12 +61,17 @@ const GoogleCalendar = () => {
   });
 
   return (
-    <Box component={'div'} key={'google-calendar-wrapper'} id="google-calendar-wrapper">
+    <Box
+      component={'div'}
+      key={'google-calendar-wrapper'}
+      id="google-calendar-wrapper"
+      sx={{ display: 'flex', flexDirection: 'column', border: '5px solid blue', height: '100%' }}
+    >
       <Box
         component={'section'}
         key={'google-calendar-auth-box'}
         id="google-calendar-auth-box"
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        sx={{ display: 'flex', justifyContent: 'center', border: '5px solid yellow' }}
       >
         <Button
           LinkComponent={'button'}
@@ -78,18 +83,33 @@ const GoogleCalendar = () => {
           Connect Google Calendar
         </Button>
       </Box>
-      <Form onSubmit={() => handleSubmitEvent(values)}>
-        <Box
-          component={'section'}
-          key={'google-calendar-components-box'}
-          id="google-calendar-components-box"
-          sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      <Box
+        component={'section'}
+        key={'google-calendar-components-box'}
+        id="google-calendar-components-box"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          border: '5px solid orange',
+          flex: '0 1 100%',
+        }}
+      >
+        <Form
+          onSubmit={() => handleSubmitEvent(values)}
+          style={{
+            border: '5px solid red',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
         >
           <Box
             component={'section'}
             key={'date-picker-wrapper'}
             id="date-picker-wrapper"
-            sx={{ border: 5, width: '90%' }}
+            sx={{ border: 5, width: '100%', flex: '1 0 60%' }}
           >
             <DateCalendar
               key={'appointment-maker'}
@@ -132,14 +152,20 @@ const GoogleCalendar = () => {
                   },
                 },
               }}
-              sx={{ scale: 1.2 }}
+              sx={{ scale: 1.15 }}
             />
           </Box>
           <Box
             component={'section'}
             key={'time-pickers-wrapper'}
             id="time-pickers-wrapper"
-            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              border: '5px solid purple',
+            }}
           >
             <TimePicker
               disablePast={true}
@@ -186,7 +212,7 @@ const GoogleCalendar = () => {
                 },
               }}
             />
-            <br />
+
             <br />
             <TimePicker
               disablePast={true}
@@ -234,24 +260,24 @@ const GoogleCalendar = () => {
               }}
             />
           </Box>
-        </Box>
-        <Box
-          component={'section'}
-          key={'google-calendar-submit-box'}
-          id="google-calendar-submit-box"
-          sx={{ display: 'flex', justifyContent: 'flex-end', paddingRight: 4 }}
-        >
-          <Button
-            type="submit"
-            LinkComponent={'button'}
-            key={'calendar-submit-button'}
-            id="calendar-submit-buttom"
-            sx={{ fontSize: '2rem' }}
+          <Box
+            component={'section'}
+            key={'google-calendar-submit-box'}
+            id="google-calendar-submit-box"
+            sx={{ display: 'flex', justifyContent: 'flex-end', paddingX: 4, border: '5px solid greene    ' }}
           >
-            Submit Event
-          </Button>
-        </Box>
-      </Form>
+            <Button
+              type="submit"
+              LinkComponent={'button'}
+              key={'calendar-submit-button'}
+              id="calendar-submit-buttom"
+              sx={{ fontSize: '2rem' }}
+            >
+              Submit Event
+            </Button>
+          </Box>
+        </Form>
+      </Box>
     </Box>
   );
 };

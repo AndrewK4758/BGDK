@@ -114,6 +114,9 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
         id="email-me-title-box"
         sx={{
           filter: state === 'submitting' ? 'blur(10px)' : null,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-evenly',
           width: '100%',
           height: '100%',
         }}
@@ -160,12 +163,18 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             }
           />
         </Tabs>
-        <Suspense fallback={<Waiting />}>
-          {tab === 0 && <GoogleCalendar />}
-          {tab === 1 && <EmailForm formik={formik} />}
-        </Suspense>
-
-        <DialogActions key={'email-me-button-box'} id="email-me-button-box" sx={{ paddingX: 4 }}>
+        <Box
+          component={'section'}
+          key={'calendar-and-email-section'}
+          id="calendar-and-email-section"
+          sx={{ border: 5, flex: '1 0 70%' }}
+        >
+          <Suspense fallback={<Waiting />}>
+            {tab === 0 && <GoogleCalendar />}
+            {tab === 1 && <EmailForm formik={formik} />}
+          </Suspense>
+        </Box>
+        <DialogActions key={'email-me-button-box'} id="email-me-button-box" sx={{ paddingX: 4, border: 5 }}>
           <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '2rem' }}>
             Reset
           </Button>
