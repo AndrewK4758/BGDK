@@ -1,0 +1,45 @@
+@import './styles.css';
+
+
+:root {
+  --defaultBack: #3a3c41;
+  --secondaryMain: #cb91ff;
+  --textPrimary: #cbcbcb;
+  --backgroundPaper: #1f1f1f;
+  --background: #f9f871;
+  --primary: #00dfb9;
+  --secondaryDark: #58278b;
+}
+
+.css-1chuxo2-MuiPickersCalendarHeader-label{
+  font-size: 1.1rem;
+}
+.css-1rl1vrc-MuiDayCalendar-header{
+  font-size: 1rem;
+}
+
+.css-1b0507o-MuiDivider-root {
+  background-color: var(--textPrimary);
+}
+
+.css-1yz9m1p-MuiDivider-root {
+  background-color: var(--textPrimary);
+}
+
+.css-1ny9jkv-MuiClockNumber-root {
+  font-size: 1.25rem !important;
+  color: var(--textPrimary);
+}
+
+.css-1f4jwp7-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  scale: 1.75;
+}
+
+.css-1ecnh9w-MuiButtonBase-root-MuiButton-root {
+  scale: 1.5 !important;
+}
+
+.css-kgflii-MuiTypography-root-MuiClock-meridiemText{
+  font-size: 1rem;
+  color: var(--secondaryDark);
+}

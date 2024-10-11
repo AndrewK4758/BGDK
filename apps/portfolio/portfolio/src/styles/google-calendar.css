@@ -1,0 +1,32 @@
+:root {
+  --defaultBack: #3a3c41;
+  --secondaryMain: #cb91ff;
+  --textPrimary: #cbcbcb;
+  --backgroundPaper: #1f1f1f;
+  --background: #f9f871;
+  --primary: #00dfb9;
+  --secondaryDark: #58278b;
+}
+
+.css-1rl1vrc-MuiDayCalendar-header .css-1f4jwp7-MuiTypography-root-MuiDayCalendar-weekDayLabel{
+  color: var(--secondaryDark);
+}
+
+.css-1chuxo2-MuiPickersCalendarHeader-label{
+  color: var(--textPrimary);
+}
+
+.css-1uvk46a-MuiFormControl-root-MuiTextField-root {
+  color: var(--secondaryDark);
+
+}
+
+.css-1wdmanm-MuiInputBase-input-MuiFilledInput-input {
+  color: var(--textPrimary);
+  font-size: 1.25rem;
+  /* background-color: var(--secondaryDark); */
+}
+
+.css-1cy7o49-MuiTypography-root{
+  color: var(--textPrimary);
+}

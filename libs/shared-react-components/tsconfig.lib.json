@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
-    "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
     "composite": true
@@ -16,7 +15,16 @@
     "**/*.spec.js",
     "**/*.test.js",
     "**/*.spec.jsx",
-    "**/*.test.jsx"
+    "**/*.test.jsx",
+    "../libs/react-components/src/tests/**/*.ts",
+    "../libs/react-components/src/tests/**/*.tsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../react-components/src/**/*.ts",
+    "../react-components/src/**/*.tsx"
+  ]
 }

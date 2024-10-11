@@ -1,20 +1,14 @@
-import Typography from '@mui/material/Typography';
+import { Label } from '@bgdk/shared-react-components';
 import { DateTimePicker, renderTimeViewClock } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import type { FormikProps } from 'formik';
-import '../../../styles/styles.css';
+import '../../../styles/email-form.css';
 import Theme from '../../../styles/theme';
-import { MessageMeFormValues } from '../email-dialog';
+import { MessageMeFormValues } from '../email-form/email-form';
 import Box from '@mui/material/Box';
 
 const tomorrow = dayjs().add(1, 'day');
 const nextYear = dayjs().year(new Date().getFullYear() + 1);
-
-const Label = () => (
-  <Typography variant="body1" sx={{ fontSize: '1.25rem' }}>
-    Preferred Appointment Date & Time
-  </Typography>
-);
 
 interface AppointmentMakerProps {
   formik: FormikProps<MessageMeFormValues>;
@@ -31,7 +25,7 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
         minutes: renderTimeViewClock,
       }}
       defaultValue={tomorrow}
-      label={<Label />}
+      label={<Label labelVariant="body1" labelText="Set Appointment Date Time" sx={{ fontSize: '1.25rem' }} />}
       minDate={tomorrow}
       maxDate={nextYear}
       disablePast={true}
@@ -77,7 +71,7 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
         desktopPaper: {
           elevation: 12,
           sx: {
-            border: `7px solid ${Theme.palette.secondary.dark}`,
+            border: `7px solid ${Theme.palette.primary.dark}`,
           },
         },
         day: {
@@ -102,4 +96,3 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
 );
 
 export default AppointmentMaker;
-

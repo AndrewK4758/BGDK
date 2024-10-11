@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import type { SxProps } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import { Label } from '@bgdk/shared-react-components';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
@@ -9,49 +8,31 @@ import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 import { Form } from 'react-router-dom';
+import '../../../styles/google-calendar.css';
 import Theme from '../../../styles/theme';
-import '../../../styles/styles.css';
+
+const tomorrow = dayjs().add(1, 'day');
+const nextYear = dayjs().add(1, 'year');
+const minTime = dayjs().add(3, 'hours');
 
 type TimesAndDates = {
-  startTime: string;
-  endTime: string;
+  startTime: Dayjs;
+  endTime: Dayjs;
   date: Dayjs;
 };
 
 const initState: TimesAndDates = {
-  startTime: '',
-  endTime: '',
+  startTime: minTime,
+  endTime: minTime.add(1, 'hour'),
   date: dayjs(),
 };
-
-const tomorrow = dayjs().add(1, 'day');
-const nextYear = dayjs().add(1, 'year');
-const minTime = dayjs().set('hour', 8).set('minutes', 30);
-const maxTime = dayjs().set('hour', 20).set('minutes', 30);
-const tomorrowTimeStart = tomorrow.set('hour', 9).set('minutes', 30);
-const tomorrowTimeEnd = tomorrow.set('hour', 10).set('minutes', 30);
-
-console.log(minTime, maxTime);
-
-interface LabelProps {
-  labelText: string;
-  sx: SxProps;
-}
-
-const Label = ({ labelText, sx }: LabelProps) => (
-  <Typography variant="body1" sx={sx}>
-    {labelText}
-  </Typography>
-);
 
 const GoogleCalendar = () => {
   const [tokens, setTokens] = useState<TokenResponse | null>(null);
   // const [user, setUser] = useState<CodeResponse | null>(null);
   const [values, setValues] = useState<TimesAndDates>(initState);
 
-  useEffect(() => {
-    console.log(values);
-  }, [tokens, values]);
+  useEffect(() => {}, [tokens, values]);
 
   const login = useGoogleLogin({
     onSuccess: code => onGoogleSuccess(code, setTokens),
@@ -65,13 +46,13 @@ const GoogleCalendar = () => {
       component={'div'}
       key={'google-calendar-wrapper'}
       id="google-calendar-wrapper"
-      sx={{ display: 'flex', flexDirection: 'column', border: '5px solid blue', height: '100%' }}
+      sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}
     >
       <Box
         component={'section'}
         key={'google-calendar-auth-box'}
         id="google-calendar-auth-box"
-        sx={{ display: 'flex', justifyContent: 'center', border: '5px solid yellow' }}
+        sx={{ display: 'flex', justifyContent: 'center' }}
       >
         <Button
           LinkComponent={'button'}
@@ -80,7 +61,7 @@ const GoogleCalendar = () => {
           onClick={() => login()}
           sx={{ fontSize: '2.5rem' }}
         >
-          Connect Google Calendar
+          Connect Your Google Calendar
         </Button>
       </Box>
       <Box
@@ -91,16 +72,14 @@ const GoogleCalendar = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          border: '5px solid orange',
-          flex: '0 1 100%',
+          flex: 1,
         }}
       >
         <Form
           onSubmit={() => handleSubmitEvent(values)}
           style={{
-            border: '5px solid red',
             width: '100%',
-            height: '100%',
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -109,7 +88,14 @@ const GoogleCalendar = () => {
             component={'section'}
             key={'date-picker-wrapper'}
             id="date-picker-wrapper"
-            sx={{ border: 5, width: '100%', flex: '1 0 60%' }}
+            sx={{
+              width: '100%',
+              flex: '3 1 auto',
+              display: 'flex',
+              flexDirection: 'column',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}
           >
             <DateCalendar
               key={'appointment-maker'}
@@ -152,7 +138,7 @@ const GoogleCalendar = () => {
                   },
                 },
               }}
-              sx={{ scale: 1.15 }}
+              sx={{ scale: 1.4 }}
             />
           </Box>
           <Box
@@ -160,22 +146,28 @@ const GoogleCalendar = () => {
             key={'time-pickers-wrapper'}
             id="time-pickers-wrapper"
             sx={{
+              flex: '1 0 auto',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'space-evenly',
               alignItems: 'center',
-              border: '5px solid purple',
             }}
           >
             <TimePicker
               disablePast={true}
-              label={<Label labelText="Start Time" sx={{ fontSize: '1.25rem' }} />}
-              minTime={minTime}
-              maxTime={maxTime}
-              defaultValue={tomorrowTimeStart}
+              label={<Label labelVariant="body1" labelText="Start Time" sx={{ fontSize: '1.25rem' }} />}
+              minTime={values.date.set('hours', 8).set('minutes', 30)}
+              maxTime={values.date.set('hours', 20).set('minutes', 30)}
+              disableIgnoringDatePartForTimeValidation={true}
               closeOnSelect={false}
-              onAccept={data => setValues({ ...values, startTime: (data as Dayjs).format('HH:mm') })}
+              onAccept={data => setValues({ ...values, startTime: data as Dayjs })}
               slotProps={{
+                digitalClockItem: {
+                  sx: {
+                    backgroundColor: 'red',
+                    color: 'red',
+                  },
+                },
                 textField: {
                   color: 'secondary',
                   variant: 'filled',
@@ -212,16 +204,13 @@ const GoogleCalendar = () => {
                 },
               }}
             />
-
-            <br />
             <TimePicker
               disablePast={true}
-              label={<Label labelText="End Time" sx={{ fontSize: '1.25rem' }} />}
-              minTime={minTime}
-              maxTime={maxTime}
-              defaultValue={tomorrowTimeEnd}
+              label={<Label labelVariant="body1" labelText="End Time" sx={{ fontSize: '1.25rem' }} />}
+              minTime={values.startTime.add(1, 'hour')}
+              maxTime={values.startTime.add(3, 'hours')}
               closeOnSelect={false}
-              onAccept={data => setValues({ ...values, endTime: (data as Dayjs).format('HH:mm') })}
+              onAccept={data => setValues({ ...values, endTime: data as Dayjs })}
               slotProps={{
                 textField: {
                   color: 'secondary',
@@ -264,7 +253,12 @@ const GoogleCalendar = () => {
             component={'section'}
             key={'google-calendar-submit-box'}
             id="google-calendar-submit-box"
-            sx={{ display: 'flex', justifyContent: 'flex-end', paddingX: 4, border: '5px solid greene    ' }}
+            sx={{
+              height: 'fit-content',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              paddingX: 4,
+            }}
           >
             <Button
               type="submit"
@@ -306,14 +300,17 @@ const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) =>
     const tempStartDateTime = date.toDate();
     const tempEndDateTime = date.toDate();
 
-    const splitStart = startTime.split(':');
-    const splitEnd = endTime.split(':');
+    const startHours = startTime.get('hours');
+    const startMinutes = startTime.get('minutes');
 
-    tempStartDateTime.setHours(parseInt(splitStart[0], 10));
-    tempStartDateTime.setMinutes(parseInt(splitStart[1], 10));
+    const endHours = endTime.get('hours');
+    const endMinutes = endTime.get('minutes');
 
-    tempEndDateTime.setHours(parseInt(splitEnd[0], 10));
-    tempEndDateTime.setMinutes(parseInt(splitEnd[1], 10));
+    tempStartDateTime.setHours(startHours);
+    tempStartDateTime.setMinutes(startMinutes);
+
+    tempEndDateTime.setHours(endHours);
+    tempEndDateTime.setMinutes(endMinutes);
 
     const startDateTime = tempStartDateTime.toISOString();
     const endDateTime = tempEndDateTime.toISOString();
