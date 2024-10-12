@@ -7,10 +7,16 @@ import { TimePicker, type TimePickerSlotProps } from '@mui/x-date-pickers/TimePi
 import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
 import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
-import { useState } from 'react';
+import { useContext, useState, type Dispatch, type SetStateAction } from 'react';
 import { Form } from 'react-router-dom';
 import '../../../styles/google-calendar.css';
 import Theme from '../../../styles/theme';
+import {
+  GoogleUserContext,
+  type GoogleUserContextInfo,
+  type GoogleUserContextProps,
+} from '../../../contexts/contact-context';
+import { jwtDecode } from 'jwt-decode';
 
 const tomorrow = dayjs().add(1, 'day').set('hour', 8).set('minutes', 30);
 const nextYear = dayjs().add(1, 'year').set('hour', 8).set('minutes', 30);
@@ -110,9 +116,10 @@ const initState: TimesAndDates = {
 
 const GoogleCalendar = () => {
   const [values, setValues] = useState<TimesAndDates>(initState);
+  const { setUser } = useContext<GoogleUserContextProps>(GoogleUserContext);
 
   const login = useGoogleLogin({
-    onSuccess: code => onGoogleSuccess(code),
+    onSuccess: code => onGoogleSuccess(code, setUser),
     onError: err => console.error(err),
     flow: 'auth-code',
     scope: 'https://www.googleapis.com/auth/calendar.events',
@@ -249,13 +256,23 @@ export default GoogleCalendar;
 
 const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
 
-const onGoogleSuccess = async (code: CodeResponse) => {
+const onGoogleSuccess = async (code: CodeResponse, setUser: Dispatch<SetStateAction<GoogleUserContextInfo>>) => {
   try {
-    await axios.post(
+    const resp = await axios.post(
       `${baseURL}/create-tokens`,
       { code },
       { withCredentials: true, headers: { 'Content-Type': 'application/json' } },
     );
+
+    let { idToken } = resp.data;
+
+    let { email, name }: GoogleUserContextInfo = jwtDecode(idToken);
+
+    setUser({ email: email, name: name });
+
+    idToken = null;
+    email = '';
+    name = '';
 
     return null;
   } catch (error) {

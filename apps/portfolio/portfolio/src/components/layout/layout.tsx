@@ -3,14 +3,12 @@ import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import GameContextProvider from '../../contexts/contexts';
+import GameContextProvider from '../../contexts/game-context';
 import '../../styles/layout.css';
 import Header from '../header/header';
-import Intro from '../intro/intro';
-import PicutreAndResume from '../intro/picture-resume';
-import Menus from '../menus/menus';
-import TechStackList from '../tech-list/tech-list';
 
+import Menus from '../menus/menus';
+import Home from '../../pages/home/home';
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
@@ -30,7 +28,7 @@ const mainWrapperSxProps: SxProps = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginTop: '30vh',
+  marginTop: '25vh',
   gap: '25vh',
 };
 
@@ -49,31 +47,19 @@ const Layout = () => (
     <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
       <Box
         component={'div'}
-        key={'intro-wrapper'}
-        id="intro-wrapper"
+        key={'home-wrapper'}
+        id="home-wrapper"
         sx={{
           flex: '0 1 auto',
           width: '90%',
           display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           justifyContent: 'space-between',
+          gap: '25vh',
         }}
       >
-        <Intro />
-
-        <PicutreAndResume />
-      </Box>
-      <Box
-        component={'div'}
-        key={'tech-stack-wrapper'}
-        id="tech-stack-wrapper"
-        sx={{
-          width: '90%',
-          display: 'flex',
-
-          justifyContent: 'center',
-        }}
-      >
-        <TechStackList />
+        <Home />
       </Box>
       <Box
         component={'div'}

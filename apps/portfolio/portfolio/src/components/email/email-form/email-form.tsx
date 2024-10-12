@@ -7,13 +7,14 @@ import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { Form, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../../styles/theme';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
 import FormikValidationError from '../formik-validation-error';
+import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 
 const textFieldSlotProps = {
   inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
@@ -68,7 +69,9 @@ const validationSchema = Yup.object({
 const EmaiForm = () => {
   const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { GoogleUserContextValues } = useContext<GoogleUserContextProps>(GoogleUserContext);
 
+  console.log(GoogleUserContextValues);
   const handleFileSubmit = () => {
     fileInputRef.current?.click();
   };
@@ -94,6 +97,7 @@ const EmaiForm = () => {
               fullWidth
               autoComplete="on"
               focused
+              defaultValue={GoogleUserContextValues ? GoogleUserContextValues.name : ''}
               type="text"
               id="name"
               name="name"
@@ -113,6 +117,7 @@ const EmaiForm = () => {
               id="email"
               name="email"
               label="Email"
+              defaultValue={GoogleUserContextValues ? GoogleUserContextValues.email : ''}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               slotProps={textFieldSlotProps}

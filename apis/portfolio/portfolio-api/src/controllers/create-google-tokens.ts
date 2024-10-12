@@ -18,7 +18,7 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
       httpOnly: true,
     });
 
-    resp.sendStatus(201);
+    resp.status(201).json({ idToken: tokens.id_token });
   } catch (error) {
     console.error(error);
     next(error);
