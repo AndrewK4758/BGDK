@@ -20,8 +20,14 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/models/de-referencing-utilities/jest.config.ts",
+        "tsConfig": "libs/models/de-referencing-utilities/tsconfig.spec.json",
         "reportsDirectory": "../../../coverage/libs/models/de-referencing-utilities",
-        "testFiles": ["./src/tests/*"]
+        "testFiles": ["./src/tests/*"],
+        "clearCache": true,
+        "showConfig": true,
+        "onlyChanged": true,
+        "ci": true,
+        "json": true
       }
     },
     "lint": {

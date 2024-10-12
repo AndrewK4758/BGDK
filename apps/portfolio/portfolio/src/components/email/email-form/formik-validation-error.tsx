@@ -1,6 +1,6 @@
 import FormHelperText from '@mui/material/FormHelperText';
 import type { FormikProps } from 'formik';
-import Theme from '../../styles/theme';
+import Theme from '../../../styles/theme';
 import Box from '@mui/material/Box';
 
 interface InitialValues {

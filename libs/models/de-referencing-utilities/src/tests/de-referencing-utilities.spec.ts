@@ -2,10 +2,10 @@ import { Context, ContextBuilder } from '@bgdk/chain';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Server } from 'socket.io';
-import { deRefContextObject } from '../lib/de-ref-context-object';
+import { deRefContextObject } from '../lib/de-ref-context-object.ts';
 import { Game } from '@bgdk/game';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mjs';
 import { Request, Response } from 'express';
 
 let context: Context, req: Partial<Request>, resp: Partial<Response>;

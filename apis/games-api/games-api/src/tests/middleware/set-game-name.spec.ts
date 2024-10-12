@@ -1,6 +1,6 @@
 import { IReqObjMaps } from '@bgdk/types-api';
 import useSetSelectedGameName from '../../middleware/set-selected-game-name';
-import { mockReqObj } from '__mocks__/mocks';
+import { mockReqObj } from '__mocks__/mocks.mts';
 
 let req: Partial<IReqObjMaps>;
 

@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../../styles/theme';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
-import FormikValidationError from '../formik-validation-error';
+import FormikValidationError from './formik-validation-error';
 import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 
 const textFieldSlotProps = {
@@ -71,7 +71,6 @@ const EmaiForm = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { GoogleUserContextValues } = useContext<GoogleUserContextProps>(GoogleUserContext);
 
-  console.log(GoogleUserContextValues);
   const handleFileSubmit = () => {
     fileInputRef.current?.click();
   };

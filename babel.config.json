@@ -1,0 +1,33 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current" // or specify a Node.js version
+        },
+        "modules": false, // Important: Do NOT transpile modules
+        "bugfixes": true // Use only the necessary transform for the target environment
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react" // If using React
+  ],
+  "plugins": [
+    // ... any other necessary plugins
+  ],
+  "env": {
+    // Specific configuration for testing with Jest
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "node": "current", "esmodules": true },
+            "modules": "auto" // Transform ESM to CommonJS for Jest compatibility
+          }
+        ]
+      ]
+    }
+  }
+}

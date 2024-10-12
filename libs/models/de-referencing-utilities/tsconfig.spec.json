@@ -11,6 +11,7 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.ts",
+    "src/**/*.mts",
     "../instance-of-game/src/**/*.ts",
     "../all-games-map/src/**/*.ts",
     "../../game/src/**/*.ts",
@@ -20,7 +21,8 @@
     "../../chutes-and-ladders/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.ts"
+    "../../../__mocks__/**/*.ts",
+    "../../../__mocks__/mocks.mts"
   ],
   "exclude": [
     "../instance-of-game/src/tests/**/*.ts",

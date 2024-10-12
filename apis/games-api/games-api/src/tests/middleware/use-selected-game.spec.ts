@@ -1,5 +1,5 @@
 import { IReqObjMaps } from '@bgdk/types-api';
-import { mockReqObj } from '__mocks__/mocks';
+import { mockReqObj } from '__mocks__/mocks.mts';
 import useSelectedGame from '../../middleware/use-selected-game';
 import games from '../../data/games-list';
 

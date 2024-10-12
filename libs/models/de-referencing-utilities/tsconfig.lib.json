@@ -17,7 +17,8 @@
     "../../games-components-logic/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
     "../../models/game-builder/src/**/*.ts",
-    "../../models/rule/src/**/*.ts"
+    "../../models/rule/src/**/*.ts",
+    "src/tests/de-referencing-utilities.spec.mts"
   ],
   "exclude": [
     "jest.config.ts",

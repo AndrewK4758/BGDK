@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/de-referencing-utilities",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/chain": "0.0.1",
     "@bgdk/instance-of-game": "0.0.1",

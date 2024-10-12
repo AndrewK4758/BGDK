@@ -1,9 +1,9 @@
-import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
 import { GameBoard, ILiteSpace } from '@bgdk/games-components-logic';
-import { Built_GameBoard } from '../games/active_game_session';
+import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fragment } from 'react';
+import { Built_GameBoard } from '../../games/active_game_session';
 
 const breakpointsGameBoardBox: SxProps = {
   border: `5px solid ${Theme.palette.success.main}`,

@@ -1,4 +1,4 @@
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
 import { Request, Response } from 'express';
 import sendGameList from '../../controllers/send_game_list';
 

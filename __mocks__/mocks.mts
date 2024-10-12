@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { Color, GamePlayerValidation, IRegisterFormValues } from '../libs/types/types-game/src';
+import { Color, GamePlayerValidation, IRegisterFormValues } from '../libs/types/types-game/src/index.ts';
 import type { IReqObjMaps } from '@bgdk/types-api';
 
 export const mockReqObj = (): Partial<IReqObjMaps> => {

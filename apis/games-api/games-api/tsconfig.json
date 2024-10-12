@@ -11,6 +11,6 @@
     }
   ],
   "compilerOptions": {
-    "module": "NodeNext"
+    "module": "ESNext"
   }
 }

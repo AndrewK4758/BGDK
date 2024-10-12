@@ -5,8 +5,8 @@
     "types": ["jest", "node"],
     "esModuleInterop": true,
     "composite": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "target": "ESNext"
   },
   "include": [
@@ -16,7 +16,9 @@
     "src/**/*.d.ts",
     "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.ts"
+    "../../../__mocks__/**/*.mts",
+    "../../../__mocks__/mocks.mts",
+    "../../../libs/models/de-referencing-utilities/src/tests/de-referencing-utilities.spec.mts"
   ],
   "exclude": ["../../../libs/react-components/**/*", "../../../libs/**/*/src/tests/**/*.ts"]
 }

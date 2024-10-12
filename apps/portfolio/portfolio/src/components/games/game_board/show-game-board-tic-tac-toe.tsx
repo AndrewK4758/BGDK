@@ -1,7 +1,7 @@
 import { GameBoardMapTicTacToe, Theme } from '@bgdk/react-components';
-import { Built_GameBoard } from '../games/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
+import { Built_GameBoard } from '../../games/active_game_session';
 
 const breakpointsGameBoardBox: SxProps = {
   display: 'flex',

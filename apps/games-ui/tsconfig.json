@@ -2,11 +2,11 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": false,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "module": "NodeNext"
+    "module": "ESNext"
   },
   "files": [],
   "include": [],

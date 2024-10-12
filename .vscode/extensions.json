@@ -5,6 +5,7 @@
     "firsttris.vscode-jest-runner",
     "EditorConfig.EditorConfig",
     "dbaeumer.vscode-eslint",
-    "ms-playwright.playwright"
+    "ms-playwright.playwright",
+    "denoland.vscode-deno"
   ]
 }

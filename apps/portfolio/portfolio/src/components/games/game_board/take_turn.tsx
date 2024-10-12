@@ -1,12 +1,12 @@
-import Theme from '../../styles/theme';
+import type { GamePlayerValidation } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
+import Theme from '../../../styles/theme';
+import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
-import getGameInstanceInfo from '../../utils/utils';
-import type { GamePlayerValidation } from '@bgdk/types-game';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.primary.main,

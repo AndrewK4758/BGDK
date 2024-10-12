@@ -11,13 +11,13 @@ import { useParams } from 'react-router-dom';
 import { ManagerOptions, Socket } from 'socket.io-client';
 import getGameInstanceInfo from '../../utils/utils';
 import ClientSocket from '../../utils/web-socket/socket-instance';
-import ActiveAvatars from '../game_board/active_avatars';
-import ResetGame from '../game_board/reset_game';
-import ShowGameBoardTicTacToe from '../game_board/show-game-board-tic-tac-toe';
-import ShowGameBoard from '../game_board/show_game_board';
-import socketReducer, { ActionType } from '../game_board/socket-reducer';
-import TakeTurnTicTacToe from '../game_board/take-turn-tic-tac-toe';
-import TakeTurn from '../game_board/take_turn';
+import ActiveAvatars from './game_board/active_avatars';
+import ResetGame from './game_board/reset_game';
+import ShowGameBoardTicTacToe from './game_board/show-game-board-tic-tac-toe';
+import ShowGameBoard from './game_board/show_game_board';
+import socketReducer, { ActionType } from './game_board/socket-reducer';
+import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
+import TakeTurn from './game_board/take_turn';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   display: 'flex',

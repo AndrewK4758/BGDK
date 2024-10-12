@@ -1,12 +1,12 @@
-import Theme from '../../styles/theme';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
+import Theme from '../../../styles/theme';
+import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
-import getGameInstanceInfo from '../../utils/utils';
 
 const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
