@@ -12,7 +12,6 @@ import { Form, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import Theme from '../../../styles/theme';
-import '../../../styles/email-form.css';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
 import FormikValidationError from '../formik-validation-error';
 
@@ -77,10 +76,7 @@ const EmaiForm = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => {
-      console.log(values);
-      handleSubmitMessage(values, submit);
-    },
+    onSubmit: values => handleSubmitMessage(values, submit),
   });
 
   return (
@@ -239,7 +235,6 @@ export default EmaiForm;
 const handleSubmitMessage = (values: MessageMeFormValues, submit: SubmitFunction) => {
   const { name, email, phone, subject, body, date, attachment } = values;
 
-  console.log(date);
   const form = new FormData();
 
   form.append('name', name);

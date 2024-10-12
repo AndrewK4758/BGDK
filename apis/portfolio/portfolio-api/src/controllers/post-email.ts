@@ -23,7 +23,7 @@ const postEmail = async (req: Request, resp: Response) => {
     const mailOptionsToMe: SendMailOptions = {
       from: 'andrew@andrew-k.us',
       date: date,
-      to: 'ak475826@gmail.com',
+      to: 'andrew@andrew-k.us',
       subject: `${subject} - ${date}`,
       text: `${name}\n\r${email}\n\r${phone}\n\r${body}`,
       attachments: attachment

@@ -1,19 +1,100 @@
+import { Label } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Label } from '@bgdk/shared-react-components';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { useGoogleLogin, type CodeResponse, type TokenResponse } from '@react-oauth/google';
+import Container from '@mui/material/Container';
+import { DateCalendar, type DateCalendarSlotProps } from '@mui/x-date-pickers/DateCalendar';
+import { TimePicker, type TimePickerSlotProps } from '@mui/x-date-pickers/TimePicker';
+import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
 import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
-import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
+import { useState } from 'react';
 import { Form } from 'react-router-dom';
 import '../../../styles/google-calendar.css';
 import Theme from '../../../styles/theme';
 
-const tomorrow = dayjs().add(1, 'day');
-const nextYear = dayjs().add(1, 'year');
-const minTime = dayjs().add(3, 'hours');
+const tomorrow = dayjs().add(1, 'day').set('hour', 8).set('minutes', 30);
+const nextYear = dayjs().add(1, 'year').set('hour', 8).set('minutes', 30);
+const minTime = dayjs().set('hour', 8).set('minutes', 30);
+const maxTime = dayjs().set('hour', 20).set('minutes', 30);
+
+const dateCalendarSlotProps: DateCalendarSlotProps<Dayjs> = {
+  switchViewIcon: {
+    sx: {
+      scale: 1.5,
+      color: Theme.palette.primary.dark,
+    },
+  },
+  rightArrowIcon: {
+    sx: {
+      scale: 1.5,
+      color: Theme.palette.primary.dark,
+    },
+  },
+  leftArrowIcon: {
+    sx: {
+      scale: 1.5,
+      color: Theme.palette.primary.dark,
+    },
+  },
+  day: {
+    sx: {
+      fontSize: '1.5rem',
+      backgroundColor: Theme.palette.background.default,
+      color: Theme.palette.primary.dark,
+      borderRadius: 1,
+    },
+  },
+  calendarHeader: {
+    sx: {
+      scale: 1.1,
+    },
+  },
+};
+
+const timePickerSlotProps: TimePickerSlotProps<Dayjs, false> = {
+  digitalClockSectionItem: {
+    sx: {
+      border: `2px solid ${Theme.palette.primary.dark}`,
+      borderRadius: 1,
+      backgroundColor: Theme.palette.background.default,
+    },
+  },
+  actionBar: {
+    sx: {
+      borderTop: `2px solid ${Theme.palette.primary.dark}`,
+    },
+  },
+  textField: {
+    variant: 'filled',
+    sx: {
+      p: 1,
+      width: '80%',
+      backgroundColor: Theme.palette.background.default,
+      borderRadius: 1,
+    },
+  },
+  rightArrowIcon: {
+    sx: {
+      scale: 1.5,
+      color: Theme.palette.primary.dark,
+    },
+  },
+  leftArrowIcon: {
+    sx: {
+      scale: 1.5,
+      color: Theme.palette.primary.dark,
+    },
+  },
+  openPickerIcon: {
+    sx: { scale: 1.5, color: Theme.palette.primary.dark },
+  },
+  desktopPaper: {
+    elevation: 12,
+    sx: {
+      border: `3px solid ${Theme.palette.primary.dark}`,
+    },
+  },
+};
 
 type TimesAndDates = {
   startTime: Dayjs;
@@ -22,27 +103,23 @@ type TimesAndDates = {
 };
 
 const initState: TimesAndDates = {
-  startTime: minTime,
-  endTime: minTime.add(1, 'hour'),
-  date: dayjs(),
+  startTime: tomorrow,
+  endTime: tomorrow.add(1, 'hour'),
+  date: tomorrow,
 };
 
 const GoogleCalendar = () => {
-  const [tokens, setTokens] = useState<TokenResponse | null>(null);
-  // const [user, setUser] = useState<CodeResponse | null>(null);
   const [values, setValues] = useState<TimesAndDates>(initState);
 
-  useEffect(() => {}, [tokens, values]);
-
   const login = useGoogleLogin({
-    onSuccess: code => onGoogleSuccess(code, setTokens),
+    onSuccess: code => onGoogleSuccess(code),
     onError: err => console.error(err),
     flow: 'auth-code',
     scope: 'https://www.googleapis.com/auth/calendar.events',
   });
 
   return (
-    <Box
+    <Container
       component={'div'}
       key={'google-calendar-wrapper'}
       id="google-calendar-wrapper"
@@ -105,39 +182,7 @@ const GoogleCalendar = () => {
               defaultValue={tomorrow}
               value={values.date}
               onChange={data => setValues({ ...values, date: data })}
-              slotProps={{
-                switchViewIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                rightArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                leftArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                day: {
-                  sx: {
-                    fontSize: '1.5rem',
-                    backgroundColor: Theme.palette.background.default,
-                    color: Theme.palette.primary.dark,
-                    borderRadius: 1,
-                  },
-                },
-                calendarHeader: {
-                  sx: {
-                    scale: 1.1,
-                  },
-                },
-              }}
+              slotProps={dateCalendarSlotProps}
               sx={{ scale: 1.4 }}
             />
           </Box>
@@ -154,99 +199,23 @@ const GoogleCalendar = () => {
             }}
           >
             <TimePicker
-              disablePast={true}
               label={<Label labelVariant="body1" labelText="Start Time" sx={{ fontSize: '1.25rem' }} />}
-              minTime={values.date.set('hours', 8).set('minutes', 30)}
-              maxTime={values.date.set('hours', 20).set('minutes', 30)}
-              disableIgnoringDatePartForTimeValidation={true}
+              minTime={minTime}
+              maxTime={maxTime}
+              defaultValue={tomorrow}
               closeOnSelect={false}
+              value={values.startTime}
               onAccept={data => setValues({ ...values, startTime: data as Dayjs })}
-              slotProps={{
-                digitalClockItem: {
-                  sx: {
-                    backgroundColor: 'red',
-                    color: 'red',
-                  },
-                },
-                textField: {
-                  color: 'secondary',
-                  variant: 'filled',
-                  sx: {
-                    p: 1,
-                    width: '75%',
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  },
-                },
-                rightArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                leftArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                openPickerIcon: {
-                  sx: { scale: 1.5, color: Theme.palette.secondary.dark },
-                },
-                desktopPaper: {
-                  elevation: 12,
-                  sx: {
-                    border: `7px solid ${Theme.palette.secondary.dark}`,
-                  },
-                },
-                actionBar: {
-                  actions: ['accept', 'clear'],
-                },
-              }}
+              slotProps={timePickerSlotProps}
             />
             <TimePicker
-              disablePast={true}
               label={<Label labelVariant="body1" labelText="End Time" sx={{ fontSize: '1.25rem' }} />}
               minTime={values.startTime.add(1, 'hour')}
               maxTime={values.startTime.add(3, 'hours')}
               closeOnSelect={false}
+              value={values.endTime}
               onAccept={data => setValues({ ...values, endTime: data as Dayjs })}
-              slotProps={{
-                textField: {
-                  color: 'secondary',
-                  variant: 'filled',
-                  sx: {
-                    p: 1,
-                    width: '75%',
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  },
-                },
-                rightArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                leftArrowIcon: {
-                  sx: {
-                    scale: 1.5,
-                    color: Theme.palette.primary.dark,
-                  },
-                },
-                openPickerIcon: {
-                  sx: { scale: 1.5, color: Theme.palette.secondary.dark },
-                },
-                desktopPaper: {
-                  elevation: 12,
-                  sx: {
-                    border: `7px solid ${Theme.palette.secondary.dark}`,
-                  },
-                },
-                actionBar: {
-                  actions: ['accept', 'clear'],
-                },
-              }}
+              slotProps={timePickerSlotProps}
             />
           </Box>
           <Box
@@ -272,7 +241,7 @@ const GoogleCalendar = () => {
           </Box>
         </Form>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
@@ -280,16 +249,15 @@ export default GoogleCalendar;
 
 const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
 
-const onGoogleSuccess = async (code: CodeResponse, setTokens: Dispatch<SetStateAction<TokenResponse | null>>) => {
+const onGoogleSuccess = async (code: CodeResponse) => {
   try {
-    const tokenResponse = await axios.post(
+    await axios.post(
       `${baseURL}/create-tokens`,
       { code },
-      { headers: { 'Content-Type': 'application/json' } },
+      { withCredentials: true, headers: { 'Content-Type': 'application/json' } },
     );
 
-    console.log(tokenResponse.data);
-    setTokens(tokenResponse.data);
+    return null;
   } catch (error) {
     console.error(error);
   }
@@ -315,13 +283,14 @@ const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) =>
     const startDateTime = tempStartDateTime.toISOString();
     const endDateTime = tempEndDateTime.toISOString();
 
-    const resp = await axios.post(
+    await axios.post(
       `${baseURL}/create-events`,
       { start: startDateTime, end: endDateTime },
       {
+        withCredentials: true,
         headers: { 'Content-Type': 'application/json' },
       },
     );
-    console.log(resp.data);
+    return null;
   } catch (error) {}
 };

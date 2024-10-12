@@ -1,12 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
-import * as fs from 'fs/promises';
-import { join } from 'path';
-import { cwd } from 'process';
 import oauth2Client from '../services/google-oauth.ts';
-
-const PATH_FOR_TOKENS = join(cwd(), 'apis/portfolio/portfolio-api/tokens/');
-
-
+import userTokensMap from '../models/users-tokens-map.ts';
+import ShortUniqueId from 'short-unique-id';
 
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
@@ -14,9 +9,14 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
 
     const { tokens } = await oauth2Client.getToken(code);
 
-    console.log(tokens);
+    const userID = new ShortUniqueId().rnd();
 
-    await fs.writeFile(`${PATH_FOR_TOKENS}trial.json`, JSON.stringify(tokens));
+    userTokensMap.set(userID, tokens);
+
+    resp.cookie('OAUID', userID, {
+      maxAge: 1000 * 60 * 5,
+      httpOnly: true,
+    });
 
     resp.sendStatus(201);
   } catch (error) {

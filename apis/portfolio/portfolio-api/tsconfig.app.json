@@ -2,28 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "sourceMap": true,
     "composite": true,
-    "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
     "types": ["node", "express"]
   },
-  "include": [
-    "src/**/*.ts",
-    "../../../libs/**/*/src/**/*.ts",
-    "src/services/nodemailer.ts",
-    "src/controllers/post-email.ts",
-    "src/routes/routes.ts",
-    "src/routes/nodemailer-auth/nodemailer-auth.ts",
-    "src/main.ts"
-  ],
+  "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../../libs/react-components/**/*",
+    "../../../libs/**/*/src/tests/**/*.ts",
     "../../../libs/shared-react-components/**/*",
-    "../../../libs/**/*/src/tests/**/*.ts"
+    "../../../libs/react-components/**/*"
   ]
 }

@@ -1,19 +1,24 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { Auth } from 'googleapis';
 import { calendar } from 'googleapis/build/src/apis/calendar';
+import userTokensMap from '../../models/users-tokens-map';
 import oauth2Client from '../../services/google-oauth';
-import { readFile } from 'fs/promises';
-import { cwd } from 'process';
 
 const createEvents = async (req: Request, resp: Response, next: NextFunction) => {
   try {
+    const userID = req.cookies['oauid'];
 
-    const creds = await readFile(`${cwd()}/apis/portfolio/portfolio-api/tokens/trial.json`, { encoding: 'utf8' });
-    const REFRESH_TOKEN = JSON.parse(creds).refresh_token;
-    console.log(REFRESH_TOKEN);
+    if (!userID) {
+      resp.status(404).json({ message: 'Please connect Google Calendar to continue.' });
+    }
+    const tokens = userTokensMap.get(userID as string) as Auth.Credentials;
+
+    const REFRESH_TOKEN = tokens.refresh_token;
 
     const { start, end } = req.body;
 
     oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
     const calendarClient = calendar('v3');
 
     const result = await calendarClient.events.insert({
@@ -28,7 +33,18 @@ const createEvents = async (req: Request, resp: Response, next: NextFunction) =>
           dateTime: end,
         },
         eventType: 'default',
+        attendees: [
+          {
+            displayName: 'Andrew Klapper',
+            email: 'andrew@andrew-k.us',
+            comment:
+              'Thanks for setting a time to get together. Please feel free to schedule a Google Meet video conference if that is your preference. If you need to reschedule, please update the event and I will respond with a confirmation.',
+          },
+        ],
+        colorId: '2',
       },
+
+      sendNotifications: true,
     });
 
     console.log(result);
