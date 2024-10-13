@@ -5,6 +5,7 @@ const deleteArtistAlbums = async (albumID: number) => {
     return await prisma.album.delete({ where: { album_id: albumID } });
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

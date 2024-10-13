@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { Auth } from 'googleapis';
 import { calendar } from 'googleapis/build/src/apis/calendar';
-import userTokensMap from '../../models/users-tokens-map';
-import oauth2Client from '../../services/google-oauth';
+import userTokensMap from '../../models/users-tokens-map.ts';
+import oauth2Client from '../../services/google-oauth.ts';
 
 const createEvents = async (req: Request, resp: Response, next: NextFunction) => {
   try {

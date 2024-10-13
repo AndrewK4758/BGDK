@@ -1,26 +1,27 @@
-import { IReqObjMaps } from '@bgdk/types-api';
+import { Request } from 'express';
 import { mockReqObj } from '__mocks__/mocks.mts';
-import useSelectedGame from '../../middleware/use-selected-game';
-import games from '../../data/games-list';
+import useSelectedGame from '../../middleware/use-selected-game.ts';
+import games from '../../data/games-list.ts';
+import type { IBuiltGame } from '@bgdk/game-builder';
 
-let req: Partial<IReqObjMaps>;
+let req: Partial<Request>;
 
 describe('Test use selected game middleware', () => {
   beforeAll(() => {
-    req = mockReqObj() as Partial<IReqObjMaps>;
+    req = mockReqObj();
 
     req.selectedGame = games[0];
   });
   it('Should pass and add the BuiltGame to the req object', () => {
-    useSelectedGame(req as IReqObjMaps);
+    useSelectedGame(req as Request);
 
     expect(req.selectedGame).toBeTruthy();
-    expect(req.selectedGame.name).toEqual(games[0].name);
+    expect((req.selectedGame as IBuiltGame).name).toEqual(games[0].name);
   });
 
   it('Should pass and return an error message and 404 status', () => {
     req.selectedGame = games[1];
-    useSelectedGame(req as IReqObjMaps);
+    useSelectedGame(req as Request);
 
     expect(req.selectedGameName).not.toEqual('Chutes & Ladders');
   });

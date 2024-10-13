@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import deleteTrack from '../services/prisma/tracks/delete-track';
+import deleteTrack from '../services/prisma/tracks/delete-track.ts';
 import { Request, Response } from 'express';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 

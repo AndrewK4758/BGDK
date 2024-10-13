@@ -46,4 +46,3 @@ export default class Routes {
     router.get('/search', searchArtistsAndAlbums);
   }
 }
-

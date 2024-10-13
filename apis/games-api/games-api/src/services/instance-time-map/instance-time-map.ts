@@ -1,8 +1,8 @@
 import { getCurrentMinute } from '@bgdk/instance-of-game';
 import { IInstanceTimeMap } from '@bgdk/types-api';
 import { GameInstanceID, GamesInMinute, Minute } from '@bgdk/types-game';
-import updateInstanceTimeMap from '../prisma/instance-time-map/update-instance-time-map';
-import getInstanceTimeMapValue from '../prisma/instance-time-map/get-one-value-instance-time-map';
+import updateInstanceTimeMap from '../prisma/instance-time-map/update-instance-time-map.ts';
+import getInstanceTimeMapValue from '../prisma/instance-time-map/get-one-value-instance-time-map.ts';
 
 export class InstanceTimeMap implements IInstanceTimeMap {
   Map: Map<Minute, GamesInMinute>;

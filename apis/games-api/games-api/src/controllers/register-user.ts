@@ -1,11 +1,9 @@
 import { IRegisterUser, USER_ROLE } from '@bgdk/types-api';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import registerUserError from '../errors/register-user-error';
-import addUser from '../services/prisma/users/add-user';
-import bucket from '../services/gcloud-storage/gcloud-storage-client';
-// import { createReadStream } from 'fs';
-// import { unlink } from 'fs/promises';
+import registerUserError from '../errors/register-user-error.ts';
+import addUser from '../services/prisma/users/add-user.ts';
+import bucket from '../services/gcloud-storage/gcloud-storage-client.ts';
 
 const registerUser = async (req: Request, resp: Response) => {
   try {
@@ -17,9 +15,9 @@ const registerUser = async (req: Request, resp: Response) => {
 
     const buffer = bucket.file(gcsFilename);
 
-    await buffer.save(thumbnail.buffer, {
+    await buffer.save((thumbnail as Express.Multer.File).buffer, {
       resumable: false,
-      contentType: thumbnail.mimetype,
+      contentType: (thumbnail as Express.Multer.File).mimetype,
     });
 
     const registerUser: IRegisterUser = {
@@ -38,10 +36,10 @@ const registerUser = async (req: Request, resp: Response) => {
     resp.status(201).json({ message: 'Register User succesful' });
   } catch (err) {
     console.error(err);
-    const { errorMessage } = registerUserError(err.message);
+    const { errorMessage } = registerUserError((err as Error).message);
     const error = {
       errorMessage: errorMessage,
-      err: err.message,
+      err: (err as Error).message,
     };
     resp.status(422).json(error);
   }

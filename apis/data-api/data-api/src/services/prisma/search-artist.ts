@@ -7,6 +7,7 @@ const searchArtist = async (query: Prisma.artistFindManyArgs<DefaultArgs>) => {
     return await prisma.artist.findMany(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

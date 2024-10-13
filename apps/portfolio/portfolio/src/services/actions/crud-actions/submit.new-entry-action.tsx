@@ -30,6 +30,7 @@ const handleSubmitNewEntry = async (values: NewEntry, setSubmitting: (isSubmitti
     return newEntry;
   } catch (error) {
     console.error(error);
+    return null;
   } finally {
     setSubmitting(false);
   }

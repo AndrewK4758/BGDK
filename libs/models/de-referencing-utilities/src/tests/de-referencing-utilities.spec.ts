@@ -5,7 +5,7 @@ import { Server } from 'socket.io';
 import { deRefContextObject } from '../lib/de-ref-context-object.ts';
 import { Game } from '@bgdk/game';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mjs';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
 import { Request, Response } from 'express';
 
 let context: Context, req: Partial<Request>, resp: Partial<Response>;

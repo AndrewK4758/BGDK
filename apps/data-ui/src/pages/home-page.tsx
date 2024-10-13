@@ -168,5 +168,6 @@ const searchArtistsAndAlbums = async (search: string, type: string) => {
     return resp;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };

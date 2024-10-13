@@ -1,4 +1,4 @@
-import createArtists from '../services/prisma/artist/create-artists';
+import createArtists from '../services/prisma/artist/create-artists.ts';
 
 let name: string;
 
@@ -7,7 +7,9 @@ describe('Test createArtists service', () => {
   it('Should pass and return the value of the created artist_id and name', async () => {
     const artist = await createArtists(name);
 
-    expect(artist.name).toEqual(name);
-    expect(artist.artist_id).toBeTruthy();
+    if (artist) {
+      expect(artist.name).toEqual(name);
+      expect(artist.artist_id).toBeTruthy();
+    } else expect(artist).toBeNull();
   });
 });

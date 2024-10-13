@@ -6,6 +6,7 @@ const deleteUser = async (email: EmailAddress) => {
     return await prisma.users.delete({ where: { email: email } });
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

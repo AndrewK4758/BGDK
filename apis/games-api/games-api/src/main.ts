@@ -4,11 +4,9 @@ import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
-import swaggerUi from 'swagger-ui-express';
-import router, { GameRoutes } from './routes/routes';
-import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware';
-import socketBoardAction from './services/socket-io/socket-board-action';
-import specs from './services/swagger/swagger-setup';
+import router, { GameRoutes } from './routes/routes.ts';
+import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware.ts';
+import socketBoardAction from './services/socket-io/socket-board-action.ts';
 
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if
@@ -36,7 +34,6 @@ const httpServer = http.createServer(app);
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
@@ -44,12 +41,12 @@ export const socketServer = new SocketServer(
   httpServer,
   serverOptions,
   [addGameToSocketInstance],
-  [['connection', socketBoardAction]],
+  [['connection', () => socketBoardAction]],
 );
 
 new GameRoutes();
 
-const port = parseInt(process.env.PORT) || 3000;
+const port = parseInt(process.env.PORT as string) || 3000;
 const host = process.env.HOST || 'localhost';
 const server = httpServer.listen(port, () => {
   console.log(`Listening on http://${host}:${port}/api/v1`);

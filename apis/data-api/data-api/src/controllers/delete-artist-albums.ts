@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import deleteArtistAlbums from '../services/prisma/album/delete-albums';
+import deleteArtistAlbums from '../services/prisma/album/delete-albums.ts';
 
 const deleteArtistsAlbums = async (req: Request, resp: Response) => {
   try {

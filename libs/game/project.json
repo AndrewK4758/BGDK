@@ -21,7 +21,8 @@
       "options": {
         "jestConfig": "libs/game/jest.config.ts",
         "reportsDirectory": "../../coverage/libs/game",
-        "testFiles": ["./src/tests/*"]
+        "testFiles": ["./src/tests/*"],
+        "tsconfig": "libs/game/tsconfig.spec.json"
       }
     },
     "lint": {

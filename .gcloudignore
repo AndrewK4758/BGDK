@@ -24,3 +24,5 @@ coverage/**
 */env/**
 
 .vscode/**
+*/tokens/**
+*/secrets/**

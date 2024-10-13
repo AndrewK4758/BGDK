@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import TabLabel from '../lib/tab-label/tab-label';
+import TabLabel from '../lib/tab-label/tab-label.tsx';
 
 describe('TabLabel', () => {
   it('should render successfully', () => {

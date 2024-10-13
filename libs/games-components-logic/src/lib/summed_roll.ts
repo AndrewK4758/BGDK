@@ -1,4 +1,4 @@
-import { ISummedRoll } from '../interfaces/summed-roll';
+import { ISummedRoll } from '../interfaces/summed-roll.ts';
 
 export class SummedRoll implements ISummedRoll {
   RollValues: number[];

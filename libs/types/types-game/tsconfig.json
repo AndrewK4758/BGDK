@@ -7,7 +7,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "ESNext"
+    "module": "NodeNext"
   },
   "files": [],
   "references": [

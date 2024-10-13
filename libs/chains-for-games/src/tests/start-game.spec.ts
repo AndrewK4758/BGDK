@@ -3,12 +3,12 @@ import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys, Color, TurnStatus } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
-import { sendStartGameStatus } from '../lib/commands/action-start-game/send-start-game-status';
-import { setAvatarOnStartChutesAndLadders } from '../lib/commands/action-start-game/set-on-start-chutes-and-ladders';
-import { setPlayerInTurn } from '../lib/commands/action-start-game/set-player-in-turn';
-import { startGame } from '../lib/commands/action-start-game/start-game-start';
-import { verifyReadyToPlay } from '../lib/commands/action-start-game/verify-ready-to-play';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
+import { sendStartGameStatus } from '../lib/commands/action-start-game/send-start-game-status.ts';
+import { setAvatarOnStartChutesAndLadders } from '../lib/commands/action-start-game/set-on-start-chutes-and-ladders.ts';
+import { setPlayerInTurn } from '../lib/commands/action-start-game/set-player-in-turn.ts';
+import { startGame } from '../lib/commands/action-start-game/start-game-start.ts';
+import { verifyReadyToPlay } from '../lib/commands/action-start-game/verify-ready-to-play.ts';
 import { Request, Response } from 'express';
 
 let ctx: Context,

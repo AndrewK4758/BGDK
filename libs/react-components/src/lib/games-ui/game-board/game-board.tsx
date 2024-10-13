@@ -1,9 +1,9 @@
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
 import { Fragment } from 'react/jsx-runtime';
-import { RenderList } from '../render-list/render-list';
-import Text from '../text/text';
-import { Theme } from '../../theme/theme';
+import { RenderList } from '../render-list/render-list.tsx';
+import Text from '../text/text.tsx';
+import { Theme } from '../../theme/theme.tsx';
 import { ILiteSpace } from '@bgdk/games-components-logic';
 import { CSSProperties } from 'react';
 

@@ -1,5 +1,5 @@
-import { GenerateContentRequest, GenerateContentResponse } from '@google-cloud/vertexai';
-import generativeTextModel from '../models/text-model';
+import { GenerateContentRequest, GenerateContentResponse, type GenerateContentCandidate } from '@google-cloud/vertexai';
+import generativeTextModel from '../models/text-model.ts';
 
 const generateContentServiceCall = async (input: string): Promise<GenerateContentResponse> => {
   const request: GenerateContentRequest = {
@@ -12,7 +12,7 @@ const generateContentServiceCall = async (input: string): Promise<GenerateConten
   };
 
   const { response } = await generativeTextModel.generateContent(request);
-  console.log(response.candidates[0].content.parts[0].text);
+  console.log((response.candidates as GenerateContentCandidate[])[0].content.parts[0].text);
 
   return response;
 };

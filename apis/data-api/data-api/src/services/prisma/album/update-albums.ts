@@ -10,6 +10,7 @@ const updateAlbum = async (albumID: number, title: string) => {
     });
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

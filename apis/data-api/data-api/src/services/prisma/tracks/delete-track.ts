@@ -7,6 +7,7 @@ const deleteTrack = async (query: Prisma.trackDeleteArgs<DefaultArgs>) => {
     return await prisma.track.delete(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

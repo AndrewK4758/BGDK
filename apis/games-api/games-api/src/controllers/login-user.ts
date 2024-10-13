@@ -1,10 +1,9 @@
-import { Response } from 'express';
-import verifyUser from '../services/prisma/users/verify-user';
-import notRegisteredUserError from '../errors/not-registered-user-error';
-import findUser from '../services/prisma/users/find-user';
-import { IReqObjMaps } from '@bgdk/types-api';
+import { Request, Response } from 'express';
+import verifyUser from '../services/prisma/users/verify-user.ts';
+import notRegisteredUserError from '../errors/not-registered-user-error.ts';
+import findUser from '../services/prisma/users/find-user.ts';
 
-const loginUser = async (req: IReqObjMaps, resp: Response) => {
+const loginUser = async (req: Request, resp: Response) => {
   try {
     const { email, password } = req.body;
     const user = await findUser(email);

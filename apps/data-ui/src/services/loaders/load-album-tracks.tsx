@@ -21,6 +21,7 @@ const loadAlbumTracks: LoaderFunction = async ({ params }: LoaderFunctionArgs) =
     return { tracks };
   } catch (error) {
     console.error(error);
+    return null;
   }
   // } else return null;
 };

@@ -37,4 +37,3 @@ const handleSubmitNewAlbum = async (
 };
 
 export default handleSubmitNewAlbum;
-

@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import Text from '../../text/text';
+import Text from '../../text/text.tsx';
 import { useNavigate } from 'react-router-dom';
 
 export interface HeaderMenuProps {

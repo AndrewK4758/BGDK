@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import Text from '../text/text';
+import Text from '../text/text.tsx';
 import { ElementType } from 'react';
 
 export interface FooterProps {
@@ -9,18 +9,10 @@ export interface FooterProps {
   breakpointsFooterText?: SxProps;
 }
 
-export function Footer({
-  component,
-  breakpointsFooter,
-  breakpointsFooterText,
-}: FooterProps) {
+export function Footer({ component, breakpointsFooter, breakpointsFooterText }: FooterProps) {
   return (
     <Paper component={component} sx={breakpointsFooter}>
-      <Text
-        titleVariant={'h3'}
-        titleText={`\u00A9 A.Klapper ${new Date().getFullYear()}`}
-        sx={breakpointsFooterText}
-      />
+      <Text titleVariant={'h3'} titleText={`\u00A9 A.Klapper ${new Date().getFullYear()}`} sx={breakpointsFooterText} />
     </Paper>
   );
 }

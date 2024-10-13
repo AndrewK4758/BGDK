@@ -9,8 +9,8 @@ const getInstanceTimeMapValue = async (minute: Minute): Promise<instance_time_ma
     });
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 
 export default getInstanceTimeMapValue;
-

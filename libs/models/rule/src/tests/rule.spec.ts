@@ -1,4 +1,4 @@
-import { Rule } from '../lib/rule';
+import { Rule } from '../lib/rule.ts';
 
 let rb: Rule;
 
@@ -8,11 +8,7 @@ describe('Test rule builder', () => {
   });
 
   test('RuleBuilder', () => {
-    const r1 = rb
-      .setOrder(1)
-      .setTitle('Rule 1')
-      .setValue('Rule 1 explains rule 1')
-      .build();
+    const r1 = rb.setOrder(1).setTitle('Rule 1').setValue('Rule 1 explains rule 1').build();
     expect(r1.order).toEqual(1);
     expect(r1.title).toEqual('Rule 1');
     expect(r1.value).toEqual('Rule 1 explains rule 1');

@@ -48,6 +48,7 @@ export default function TakeTurnTicTacToe({ dispatch, socket, position, avatarIn
       );
       console.log(resp.data.turnStatus);
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });
+      return null;
     } catch (err) {
       console.log(err);
       return null;

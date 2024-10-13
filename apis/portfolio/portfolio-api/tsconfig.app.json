@@ -3,9 +3,11 @@
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "composite": true,
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
-    "types": ["node", "express"]
+    "types": ["node", "express"],
+    "strict": false
   },
   "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],
   "exclude": [

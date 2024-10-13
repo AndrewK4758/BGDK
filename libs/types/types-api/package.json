@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/types-api",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/types-game": "0.0.1",
     "@bgdk/all-games-map": "0.0.1",

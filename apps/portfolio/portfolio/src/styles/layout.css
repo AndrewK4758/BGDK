@@ -1,9 +1,6 @@
-
-
 @keyframes openTopRight {
   from {
-
-    translate: -100vw ;
+    translate: -100vw;
     z-index: 2;
   }
 
@@ -13,12 +10,11 @@
 }
 
 .menuBoxTopRight.animate {
-  animation: openTopRight ease-in-out 0.3s  ;
+  animation: openTopRight ease-in-out 0.3s;
 }
 
 @keyframes openBottomLeft {
   from {
-
     translate: 0vw -100vh;
   }
 
@@ -28,12 +24,11 @@
 }
 
 .menuBoxBottomLeft.animate {
-  animation: openBottomLeft ease-in-out 0.3s  ;
+  animation: openBottomLeft ease-in-out 0.3s;
 }
 
 @keyframes openBottomRight {
   from {
-
     translate: -100vw -100vh;
   }
 
@@ -43,15 +38,18 @@
 }
 
 .menuBoxBottomRight.animate {
-  animation: openBottomRight ease-in-out 0.3s  ;
+  animation: openBottomRight ease-in-out 0.3s;
 }
 
 @keyframes buttonSpin {
-  0% {transform: rotate(180deg);}
-  100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .menuButton.animate {
-  animation: buttonSpin 0.3s linear ;
+  animation: buttonSpin 0.3s linear;
 }
-

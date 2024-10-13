@@ -2,13 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "sourceMap": true,
     "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "target": "ESNext",
     "types": ["node", "express"]
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "../../../libs/prisma/tests/**/*.ts"],
-  "include": ["src/**/*.ts", "../../../libs/prisma/**/*.ts"]
+  "include": ["src/**/*.ts", "../../../libs/prisma/**/*.ts"],
+  "references": [{ "path": "../../../libs/prisma/tsconfig.lib.json" }]
 }

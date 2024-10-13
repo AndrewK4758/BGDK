@@ -3,10 +3,10 @@ import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, ILoadRegisterData } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
 import { Request, Response } from 'express';
-import { loadRegister } from '../lib/commands/action-load-register/load-register-start';
-import { sendLoadRegister } from '../lib/commands/action-load-register/send-load-register-data';
+import { loadRegister } from '../lib/commands/action-load-register/load-register-start.ts';
+import { sendLoadRegister } from '../lib/commands/action-load-register/send-load-register-data.ts';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 describe('test load register chain', () => {

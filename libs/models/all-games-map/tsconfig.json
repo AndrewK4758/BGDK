@@ -15,11 +15,13 @@
   "include": ["../../libs/**/*.ts"],
   "exclude": ["../../libs/**/*.spec.ts", "../../libs/**/*.test.ts"],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../games/tic-tac-toe" },
+    { "path": "../../games-components-logic" },
+    { "path": "../../types/types-game" },
+    { "path": "../../games/chutes-and-ladders" },
+    { "path": "../../game" },
+    { "path": "../instance-of-game" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

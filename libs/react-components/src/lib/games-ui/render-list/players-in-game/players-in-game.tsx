@@ -2,7 +2,7 @@
 import { Box, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { CSSProperties, ElementType } from 'react';
-import Text from '../../text/text';
+import Text from '../../text/text.tsx';
 
 const avatarSvgStyle: CSSProperties = {
   height: 'auto',
@@ -26,7 +26,15 @@ export interface PlayersInGameProps {
  * @returns list of players in game with avatars
  */
 
-export function PlayersInGame({ component, id, boxSx, textSx, playerVariant, playerName, avatarName }: PlayersInGameProps) {
+export function PlayersInGame({
+  component,
+  id,
+  boxSx,
+  textSx,
+  playerVariant,
+  playerName,
+  avatarName,
+}: PlayersInGameProps) {
   const avatarSVG = `./game-avatars/${avatarName.toLowerCase()}.svg`;
   return (
     <Box component={component} key={id} width={'fit-content'} whiteSpace={'preserve'} sx={boxSx}>

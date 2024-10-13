@@ -1,5 +1,5 @@
 import { Space } from '@bgdk/games-components-logic';
-import { TicTacToe } from '../lib/tic-tac-toe';
+import { TicTacToe } from '../lib/tic-tac-toe.ts';
 
 let game: TicTacToe;
 

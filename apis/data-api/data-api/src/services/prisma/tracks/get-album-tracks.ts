@@ -7,6 +7,7 @@ const getAlbumTracks = async (query: Prisma.trackFindManyArgs<DefaultArgs>) => {
     return await prisma.track.findMany(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

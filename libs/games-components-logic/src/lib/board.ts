@@ -1,5 +1,5 @@
-import { IBoard } from '../interfaces/board';
-import { Space } from './space';
+import { IBoard } from '../interfaces/board.ts';
+import { Space } from './space.ts';
 
 export class Board implements IBoard {
   TotalSpaces: number;

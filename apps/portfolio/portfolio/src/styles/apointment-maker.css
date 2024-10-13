@@ -1,6 +1,6 @@
 @import './styles.css';
 
-.css-1chuxo2-MuiPickersCalendarHeader-label{
+.css-1chuxo2-MuiPickersCalendarHeader-label {
   font-size: 1.1rem;
 }
 
@@ -26,12 +26,12 @@
   scale: 1.25 !important;
 }
 
-.css-kgflii-MuiTypography-root-MuiClock-meridiemText{
+.css-kgflii-MuiTypography-root-MuiClock-meridiemText {
   font-size: 1rem;
   color: var(--secondaryDark);
 }
 
-.css-179dbev-MuiButtonBase-root-MuiIconButton-root .css-cowzbw-MuiSvgIcon-root{
+.css-179dbev-MuiButtonBase-root-MuiIconButton-root .css-cowzbw-MuiSvgIcon-root {
   color: var(--primary);
 }
 

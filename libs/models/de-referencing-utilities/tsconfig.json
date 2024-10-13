@@ -15,11 +15,18 @@
   "include": [],
   "exclude": [],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../rule" },
+    { "path": "../game-builder" },
+    { "path": "../all-games-map" },
+    { "path": "../../types/types-api" },
+    { "path": "../../games/tic-tac-toe" },
+    { "path": "../../games-components-logic" },
+    { "path": "../../types/types-game" },
+    { "path": "../../games/chutes-and-ladders" },
+    { "path": "../../game" },
+    { "path": "../instance-of-game" },
+    { "path": "../../chain" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

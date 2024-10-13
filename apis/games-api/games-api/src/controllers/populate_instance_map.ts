@@ -4,8 +4,8 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
 import { Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map';
-import updateUserActiveGames from '../services/prisma/users/update-user-active-games';
+import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map.ts';
+import updateUserActiveGames from '../services/prisma/users/update-user-active-games.ts';
 
 //Make a filter to parse the current game header and add to the request object
 
@@ -27,7 +27,7 @@ const populateInstanceMaps = async (req: IReqObjMaps, resp: Response): Promise<v
   }
 
   const __current_game__: GamePlayerValidation = req.header('current-game')
-    ? JSON.parse(req.header('current-game'))
+    ? JSON.parse(req.header('current-game') as string)
     : ({ gameInstanceID: gameID, playerID: '' } as GamePlayerValidation);
 
   __current_game__.gameInstanceID = gameID;

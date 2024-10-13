@@ -2,8 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "target": "ESNext",
     "composite": true,
     "types": ["jest", "node"]
@@ -19,6 +20,26 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "../react-components/src/**/*.ts",
+    "../react-components/src/**/*.tsx",
+    "../react-components/src/**/*.ts",
+    "../react-components/src/**/*.tsx",
+    "../chain/src/**/*.ts",
+    "../games/**/*/src/**/*.ts",
+    "../models/**/*/src/**/*.ts",
+    "../types/**/*/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../game/src/**/*.ts"
+  ],
+  "exclude": [
+    "../libs/react-components/src/tests/**/*.ts",
+    "../libs/react-components/src/tests/**/*.tsx",
+    "../chain/src/tests/**/*.ts",
+    "../games/**/*/src/tests/**/*.ts",
+    "../models/**/*/src/tests/**/*.ts",
+    "../types/**/*/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts"
   ]
 }

@@ -1,20 +1,20 @@
 /**
  * INTERFACES
  */
-export * from './interfaces/avatar';
-export * from './interfaces/space';
-export * from './interfaces/player';
-export * from './interfaces/board';
-export * from './interfaces/die';
-export * from './interfaces/lite-space';
+export * from './interfaces/avatar.ts';
+export * from './interfaces/space.ts';
+export * from './interfaces/player.ts';
+export * from './interfaces/board.ts';
+export * from './interfaces/die.ts';
+export * from './interfaces/lite-space.ts';
 /**
  * LIBRARIES
  */
-export * from './lib/avatar';
-export * from './lib/space';
-export * from './lib/player';
-export * from './lib/board';
-export * from './lib/die';
-export * from './lib/summed_roll';
-export * from './lib/utils';
-export * from './lib/lite-space';
+export * from './lib/avatar.ts';
+export * from './lib/space.ts';
+export * from './lib/player.ts';
+export * from './lib/board.ts';
+export * from './lib/die.ts';
+export * from './lib/summed_roll.ts';
+export * from './lib/utils.ts';
+export * from './lib/lite-space.ts';

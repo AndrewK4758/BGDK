@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
     "composite": true
@@ -17,7 +18,13 @@
     "**/*.spec.jsx",
     "**/*.test.jsx",
     "../libs/react-components/src/tests/**/*.ts",
-    "../libs/react-components/src/tests/**/*.tsx"
+    "../libs/react-components/src/tests/**/*.tsx",
+    "../chain/src/tests/**/*.ts",
+    "../games/**/*/src/tests/**/*.ts",
+    "../models/**/*/src/tests/**/*.ts",
+    "../types/**/*/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts"
   ],
   "include": [
     "src/**/*.js",
@@ -25,6 +32,26 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "../react-components/src/**/*.ts",
-    "../react-components/src/**/*.tsx"
+    "../react-components/src/**/*.tsx",
+    "../chain/src/**/*.ts",
+    "../games/**/*/src/**/*.ts",
+    "../models/**/*/src/**/*.ts",
+    "../types/**/*/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../game/src/**/*.ts"
+  ],
+  "references": [
+    { "path": "../models/rule/tsconfig.lib.json" },
+    { "path": "../models/game-builder/tsconfig.lib.json" },
+    { "path": "../chain/tsconfig.lib.json" },
+    { "path": "../games/tic-tac-toe/tsconfig.lib.json" },
+    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../game/tsconfig.lib.json" },
+    { "path": "../models/instance-of-game/tsconfig.lib.json" },
+    { "path": "../models/all-games-map/tsconfig.lib.json" },
+    { "path": "../types/types-api/tsconfig.lib.json" },
+    { "path": "../games-components-logic/tsconfig.lib.json" },
+    { "path": "../types/types-game/tsconfig.lib.json" },
+    { "path": "../react-components/tsconfig.lib.json" }
   ]
 }

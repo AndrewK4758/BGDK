@@ -1,8 +1,9 @@
-import findUser from '../../services/prisma/users/find-user';
+import findUser from '../../services/prisma/users/find-user.ts';
 import { EmailAddress, USER_ROLE, type IRegisterUser } from '@bgdk/types-api';
-import { users } from '@prisma/client';
-import addUser from '../../services/prisma/users/add-user';
-import deleteUser from '../../services/prisma/users/delete-user';
+import { users, type Prisma } from '@prisma/client';
+import addUser from '../../services/prisma/users/add-user.ts';
+import deleteUser from '../../services/prisma/users/delete-user.ts';
+import type { DefaultArgs } from '@prisma/client/runtime/library';
 
 let email: EmailAddress, user: IRegisterUser;
 
@@ -27,7 +28,12 @@ describe('Test findUser service', () => {
   it('should pass and return one user according to the email address passed in', async () => {
     email = 'DONT@DELETE.COM';
 
-    const user: users = await findUser(email);
+    const query: Prisma.usersFindUniqueArgs<DefaultArgs> = {
+      where: {
+        email: email,
+      },
+    };
+    const user: users = await findUser(query);
 
     expect(user).toBeTruthy();
     expect(user.email).toEqual(email);
@@ -36,7 +42,12 @@ describe('Test findUser service', () => {
   it('Should fail and throw error with the message stating email is not unique', async () => {
     email = 'NOT@IN.DATABASE';
 
-    const user: users = await findUser(email);
+    const query: Prisma.usersFindUniqueArgs<DefaultArgs> = {
+      where: {
+        email: email,
+      },
+    };
+    const user: users = await findUser(query);
 
     expect(user).toBeNull();
   });

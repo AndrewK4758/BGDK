@@ -1,6 +1,6 @@
 import { Board, Space, LiteSpace } from '@bgdk/games-components-logic';
 import { SpaceType, Color, AvatarTotem } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems';
+import AvatarTotems from './avatar-totems.ts';
 
 export const WINNING_POSITIONS: string[][] = [
   ['1', '2', '3'],
@@ -39,7 +39,6 @@ export class TicTacToe {
     indexOfSpace === 1 ? this.startSpace : new Space(SpaceType.NORMAL, indexOfSpace);
 
   addAvatarSvgToDisplay = (name: string) => {
-
     switch (name) {
       case AvatarTotems.totemsList[0].name:
         return AvatarTotems.totemsList[0].image;

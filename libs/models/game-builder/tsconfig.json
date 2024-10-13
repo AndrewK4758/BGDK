@@ -15,11 +15,12 @@
   "include": [],
   "exclude": [],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../games-components-logic" },
+    { "path": "../../types/types-game" },
+    { "path": "../../games/chutes-and-ladders" },
+    { "path": "../rule" },
+    { "path": "../../chain" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

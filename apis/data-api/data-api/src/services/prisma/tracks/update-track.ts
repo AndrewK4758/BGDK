@@ -22,6 +22,7 @@ const updateTrack = async (trackData: track) => {
     return await prisma.track.update(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

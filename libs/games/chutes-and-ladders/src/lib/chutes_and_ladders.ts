@@ -1,6 +1,6 @@
 import { Board, Die, GameBoard, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
 import { AvatarTotem, Color, SpaceType } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems';
+import AvatarTotems from './avatar-totems.ts';
 
 export const TOTAL_SPACES = 100;
 export const START = 1;
@@ -14,16 +14,16 @@ let chuteSpecialCount = 5;
 let ladderSpecialCount = 5;
 
 /**
- * 
+ *
  * @param indexOfSpace is the location in the game board array for start of chute or ladder
  * @returns boolean if the index of space is already taken by another chute or ladder space
-*/
+ */
 const checkIfSpecialSpace = (indexOfSpace: number) => {
   return uniqueSpecialValues.has(indexOfSpace);
 };
 
 /**
- * 
+ *
  * @param indexOfSpace is the location in the game board array for end of chute or ladder
  * @returns boolean if the index of space is already taken by another chute or ladder dump space
  */
@@ -32,7 +32,7 @@ const checkIfSpecialDumpSpace = (indexOfSpace: number) => {
 };
 
 /**
- * 
+ *
  * @param indexOfSpace index of space to be made into a chute or ladders Space instance
  * @returns an instance of chute or ladder Space
  */
@@ -48,7 +48,7 @@ const specialSpaceSelector = (indexOfSpace: number) => {
 };
 
 /**
- * 
+ *
  * @returns the initial minimum number for a perfect square for random special space selection
  */
 const minSpecialRangeValue = () => {
@@ -56,7 +56,7 @@ const minSpecialRangeValue = () => {
 };
 
 /**
- * 
+ *
  * @param indexOfSpace index of space in the game board array
  * @returns the max distance a chute can traverse according to the index of space in the game board array
  */
@@ -64,7 +64,7 @@ const findMaxValForRandChute = (indexOfSpace: number): number =>
   indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : indexOfSpace;
 
 /**
- * 
+ *
  * @param indexOfSpace index of space in the game board array
  * @returns the max distance a ladder can traverse according to the index of space in the game board array
  */
@@ -72,7 +72,7 @@ const findMaxValForRandLadder = (indexOfSpace: number): number =>
   TOTAL_SPACES - indexOfSpace > MAX_SPECIAL_DISTANCE ? MAX_SPECIAL_DISTANCE : TOTAL_SPACES - indexOfSpace - 1;
 
 /**
- * 
+ *
  * @param indexOfSpace index of space in the game board array
  * @returns the minimum distance needed to traverse for specific Chute or Ladder
  */
@@ -80,7 +80,7 @@ const findMaxValForRandLadder = (indexOfSpace: number): number =>
 const findMinDist = (indexOfSpace: number): number => ROWS - (indexOfSpace % ROWS);
 
 /**
- * 
+ *
  * @param indexOfSpace index of space in the game board array
  * @returns a Normal space for special property of a Chute space
  */
@@ -101,7 +101,7 @@ const createDumpValueChute = (indexOfSpace: number): Space => {
 };
 
 /**
- * 
+ *
  * @param indexOfSpace index of space in the game board array
  * @returns a Normal space for special property of a Ladder space
  */
@@ -261,4 +261,3 @@ export class ChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
-

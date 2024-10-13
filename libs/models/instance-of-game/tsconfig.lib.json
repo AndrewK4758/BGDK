@@ -20,5 +20,12 @@
     "../../types/types-game/src/tests/**/*.ts",
     "../../games/**/*/src/tests/**/*.ts",
     "../../games-components-logic/src/tests/**/*.ts"
+  ],
+  "references": [
+    { "path": "../../games/tic-tac-toe/tsconfig.lib.json" },
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" },
+    { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../game/tsconfig.lib.json" }
   ]
 }

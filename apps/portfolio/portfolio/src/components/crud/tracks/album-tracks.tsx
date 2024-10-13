@@ -31,7 +31,7 @@ const Tracks = () => {
       headerName: 'Track ID',
       type: 'number',
       // width: 40,
-      flex: 1
+      flex: 1,
     },
     {
       field: 'name',
@@ -39,7 +39,7 @@ const Tracks = () => {
       type: 'string',
       // width: 200,
       editable: true,
-      flex: 3
+      flex: 3,
     },
     {
       field: 'unit_price',
@@ -47,7 +47,7 @@ const Tracks = () => {
       // width: 40,
       headerName: 'Unit Price',
       editable: true,
-      flex: 1
+      flex: 1,
     },
     {
       field: 'genre_id',
@@ -55,7 +55,7 @@ const Tracks = () => {
       // width: 40,
       headerName: 'Genre ID',
       editable: true,
-      flex: 1
+      flex: 1,
     },
     {
       field: 'media_type_id',
@@ -63,7 +63,7 @@ const Tracks = () => {
       // width: 40,
       headerName: 'Media Type ID',
       editable: true,
-      flex: 1
+      flex: 1,
     },
     {
       field: 'composer',
@@ -71,7 +71,7 @@ const Tracks = () => {
       // width: 140,
       headerName: 'Composer',
       editable: true,
-      flex: 2
+      flex: 2,
     },
     {
       field: 'milliseconds',
@@ -79,7 +79,7 @@ const Tracks = () => {
       // width: 40,
       headerName: 'Milliseconds',
       editable: true,
-      flex: 1
+      flex: 1,
     },
     {
       field: 'bytes',
@@ -87,7 +87,7 @@ const Tracks = () => {
       // width: 40,
       headerName: 'Bytes',
       editable: true,
-      flex: 1
+      flex: 1,
     },
 
     {

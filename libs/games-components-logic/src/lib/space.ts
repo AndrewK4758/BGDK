@@ -1,6 +1,6 @@
 import { SpaceType } from '@bgdk/types-game';
-import { ISpace } from '../interfaces/space';
-import { Avatar } from '../lib/avatar';
+import { ISpace } from '../interfaces/space.ts';
+import { Avatar } from '../lib/avatar.ts';
 
 export class Space implements ISpace {
   Value: string;
@@ -87,5 +87,4 @@ export class Space implements ISpace {
       this.avatarsInSpace[0].move(1);
     }
   }
-
 }

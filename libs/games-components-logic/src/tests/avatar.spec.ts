@@ -1,6 +1,6 @@
-import { Avatar } from '../lib/avatar';
 import { Color, SpaceType } from '@bgdk/types-game';
-import { Space } from '../lib/space';
+import { Avatar } from '../lib/avatar.ts';
+import { Space } from '../lib/space.ts';
 
 let avatar: Avatar, space: Space, nextSpace: Space;
 

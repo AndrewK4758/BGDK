@@ -1,2 +1,2 @@
-export * from './lib/chutes_and_ladders';
-export * from './lib/avatar-totems';
+export * from './lib/chutes_and_ladders.ts';
+export * from './lib/avatar-totems.ts';

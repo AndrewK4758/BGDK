@@ -277,6 +277,7 @@ const onGoogleSuccess = async (code: CodeResponse, setUser: Dispatch<SetStateAct
     return null;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 
@@ -309,5 +310,8 @@ const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) =>
       },
     );
     return null;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };

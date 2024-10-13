@@ -33,5 +33,17 @@
     "../types-game/src/tests/**/*.ts",
     "../../games-components-logic/src/tests/**/*.ts",
     "../../chain/src/tests/**/*.ts"
+  ],
+  "references": [
+    { "path": "../../models/rule/tsconfig.lib.json" },
+    { "path": "../../models/game-builder/tsconfig.lib.json" },
+    { "path": "../../chain/tsconfig.lib.json" },
+    { "path": "../../games/tic-tac-toe/tsconfig.lib.json" },
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
+    { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../game/tsconfig.lib.json" },
+    { "path": "../../models/instance-of-game/tsconfig.lib.json" },
+    { "path": "../../models/all-games-map/tsconfig.lib.json" },
+    { "path": "../types-game/tsconfig.lib.json" }
   ]
 }

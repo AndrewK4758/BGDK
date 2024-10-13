@@ -1,10 +1,10 @@
 import cors, { CorsOptions } from 'cors';
-import express from 'express';
+import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import VertexApiRoutes from './routes/routes';
+import VertexApiRoutes from './routes/routes.ts';
 
-const app = express();
+const app: Express = express();
 const router = express.Router();
 
 export const corsOptions: CorsOptions = {

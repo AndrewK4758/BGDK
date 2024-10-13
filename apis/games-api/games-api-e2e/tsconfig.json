@@ -3,9 +3,24 @@
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../../libs/password" },
+    { "path": "../../../libs/prisma" },
+    { "path": "../../../libs/socket-io" },
+    { "path": "../../../libs/models/de-referencing-utilities" },
+    { "path": "../../../libs/chains-for-games" },
+    { "path": "../../../libs/models/rule" },
+    { "path": "../../../libs/models/game-builder" },
+    { "path": "../../../libs/chain" },
+    { "path": "../../../libs/games/tic-tac-toe" },
+    { "path": "../../../libs/games-components-logic" },
+    { "path": "../../../libs/games/chutes-and-ladders" },
+    { "path": "../../../libs/game" },
+    { "path": "../../../libs/models/instance-of-game" },
+    { "path": "../../../libs/models/all-games-map" },
+    { "path": "../../../libs/types/types-game" },
+    { "path": "../../../libs/types/types-api" },
+    { "path": "../games-api" },
+    { "path": "./tsconfig.spec.json" }
   ],
   "compilerOptions": {
     "module": "NodeNext"

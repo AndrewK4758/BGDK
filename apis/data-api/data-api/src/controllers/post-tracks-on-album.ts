@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import createTracks from '../services/prisma/tracks/create-tracks';
+import createTracks from '../services/prisma/tracks/create-tracks.ts';
 import { Prisma, track } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 

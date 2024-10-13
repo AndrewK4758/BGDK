@@ -7,6 +7,7 @@ const searchAlbum = async (query: Prisma.albumFindManyArgs<DefaultArgs>) => {
     return await prisma.album.findMany(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

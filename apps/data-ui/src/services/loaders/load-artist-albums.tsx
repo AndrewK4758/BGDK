@@ -20,6 +20,7 @@ const loadArtistAlbums: LoaderFunction = async ({ params }: LoaderFunctionArgs) 
     return { albums };
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 export default loadArtistAlbums;

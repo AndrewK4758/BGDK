@@ -1,4 +1,4 @@
- @font-face {
+@font-face {
   font-family: 'Jersey25';
   src: url('../fonts/Jersey25-Regular.ttf') format('truetype');
 }
@@ -21,7 +21,7 @@ html {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active{
+input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 100px #404040 inset !important;
   -webkit-text-fill-color: #ffd300 !important;
   -webkit-background-clip: text;

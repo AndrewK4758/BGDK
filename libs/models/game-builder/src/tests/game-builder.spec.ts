@@ -1,5 +1,5 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { GameBuilder } from '../lib/game-builder';
+import { GameBuilder } from '../lib/game-builder.ts';
 
 let gb: GameBuilder;
 

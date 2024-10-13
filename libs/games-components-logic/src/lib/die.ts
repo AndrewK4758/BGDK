@@ -1,5 +1,5 @@
-import { IDie } from '../interfaces/die';
-import { generateRandomNumber } from './utils';
+import { IDie } from '../interfaces/die.ts';
+import { generateRandomNumber } from './utils.ts';
 
 export class Die implements IDie {
   Sides: number;

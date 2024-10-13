@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import validateArtist from '../services/prisma/artist/validate-artist-in-db';
+import validateArtist from '../services/prisma/artist/validate-artist-in-db.ts';
+import type { Prisma } from '@prisma/client';
 
 const validateArtists = async (req: Request, resp: Response) => {
   try {
@@ -7,13 +8,12 @@ const validateArtists = async (req: Request, resp: Response) => {
 
     const query = {
       where: { name: { equals: name as string, mode: 'insensitive' } },
-    };
+    } as Prisma.artistWhereInput;
 
     const artist = await validateArtist(query);
 
-   if (artist) resp.status(200).json({ message: 'Artist Already Exists' });
-   else resp.status(200).json({ message: 'Artist Not in List' });
-
+    if (artist) resp.status(200).json({ message: 'Artist Already Exists' });
+    else resp.status(200).json({ message: 'Artist Not in List' });
   } catch (error) {
     console.error(error);
   }

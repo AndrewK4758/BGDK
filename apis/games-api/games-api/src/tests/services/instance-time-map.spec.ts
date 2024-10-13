@@ -1,6 +1,6 @@
 import { getCurrentMinute } from '@bgdk/instance-of-game';
 import { GameInstanceID, Minute } from '@bgdk/types-game';
-import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map';
+import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map.ts';
 
 let instanceMap: InstanceTimeMap, minute: Minute, gameInstanceID: GameInstanceID;
 

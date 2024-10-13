@@ -5,20 +5,20 @@ import Button from '@mui/material/Button';
 import InputLabel from '@mui/material/InputLabel';
 import { Form, Formik, FormikProps } from 'formik';
 import { ChangeEvent, Fragment, MouseEvent, useState } from 'react';
-import { IActionError } from '../../../interfaces/action-error';
-import ActionError from '../errors/action-error';
-import FormikTextInput from '../text-input/formik-text-input';
-import Text from '../text/text';
-import registerUserAction from './actions/register-user-action';
-import updateFormOnChange from './events/add-file-to-form-on-change';
-import verifyEmailObBlur from './events/verify-email-on-blur';
+import { IActionError } from '../../../interfaces/action-error.tsx';
+import ActionError from '../errors/action-error.tsx';
+import FormikTextInput from '../text-input/formik-text-input.tsx';
+import Text from '../text/text.tsx';
+import registerUserAction from './actions/register-user-action.tsx';
+import updateFormOnChange from './events/add-file-to-form-on-change.tsx';
+import verifyEmailObBlur from './events/verify-email-on-blur.tsx';
 import {
   breakpointsButtonSx,
   breakpointsLabelSx,
   breakpointsTextBoxSx,
   inputStyle,
-} from './styles/register-user-css-sx-props';
-import { initialValues, supportedFormat, validationSchema } from './validations/validation-schema';
+} from './styles/register-user-css-sx-props.tsx';
+import { initialValues, supportedFormat, validationSchema } from './validations/validation-schema.tsx';
 
 type Anchor = 'right';
 

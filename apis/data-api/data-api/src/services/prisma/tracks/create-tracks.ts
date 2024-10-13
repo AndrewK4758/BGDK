@@ -7,6 +7,7 @@ const createTracks = async (query: Prisma.trackCreateArgs<DefaultArgs>) => {
     return await prisma.track.create(query);
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

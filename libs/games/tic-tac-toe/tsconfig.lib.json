@@ -15,5 +15,9 @@
     "src/**/*.test.ts",
     "../../types/types-game/src/tests/**/*.ts",
     "../../games-components-logic/src/tests/**/*.ts"
+  ],
+  "references": [
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" }
   ]
 }

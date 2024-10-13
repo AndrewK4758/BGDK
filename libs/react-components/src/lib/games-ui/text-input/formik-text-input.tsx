@@ -2,8 +2,8 @@ import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
-import { Theme } from '../../theme/theme';
-import Text from '../text/text';
+import { Theme } from '../../theme/theme.tsx';
+import Text from '../text/text.tsx';
 import { ElementType, FocusEvent, Fragment } from 'react';
 
 export interface FormikTextInputProps {

@@ -1,5 +1,5 @@
-import { IPlayer } from '../interfaces/player';
-import { Avatar } from './avatar';
+import { IPlayer } from '../interfaces/player.ts';
+import { Avatar } from './avatar.ts';
 
 export class Player implements IPlayer {
   Id: string;

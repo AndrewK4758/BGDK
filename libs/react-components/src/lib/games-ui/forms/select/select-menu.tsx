@@ -3,8 +3,8 @@ import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useField } from 'formik';
-import Text from '../../text/text';
-import { Theme } from '../../../theme/theme';
+import Text from '../../text/text.tsx';
+import { Theme } from '../../../theme/theme.tsx';
 
 interface IAvatarColorSelectValues {
   name: string;

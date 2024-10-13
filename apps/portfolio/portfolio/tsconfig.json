@@ -6,17 +6,28 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "module": "ESNext"
+    "module": "NodeNext"
   },
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../../libs/models/de-referencing-utilities" },
+    { "path": "../../../libs/chains-for-games" },
+    { "path": "../../../libs/shared-react-components" },
+    { "path": "../../../libs/models/rule" },
+    { "path": "../../../libs/models/game-builder" },
+    { "path": "../../../libs/chain" },
+    { "path": "../../../libs/games/tic-tac-toe" },
+    { "path": "../../../libs/games/chutes-and-ladders" },
+    { "path": "../../../libs/game" },
+    { "path": "../../../libs/models/instance-of-game" },
+    { "path": "../../../libs/models/all-games-map" },
+    { "path": "../../../libs/types/types-api" },
+    { "path": "../../../libs/games-components-logic" },
+    { "path": "../../../libs/types/types-game" },
+    { "path": "../../../libs/react-components" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
   ],
   "extends": "../../../tsconfig.base.json"
 }

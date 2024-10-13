@@ -1,5 +1,5 @@
-import { IDie } from '../interfaces/die';
-import { ISummedRoll } from '../interfaces/summed-roll';
+import { IDie } from '../interfaces/die.ts';
+import { ISummedRoll } from '../interfaces/summed-roll.ts';
 
 export const generateRandomNumber = (upperBound: number): number => {
   return Math.floor(Math.random() * upperBound) + 1;
@@ -48,6 +48,5 @@ export const rangeSelector = (min: number, max: number): number => Math.floor(Ma
 
 export const rowFinder = (indexOfSpace: number, totalSpaces: number): number =>
   Math.floor(indexOfSpace / Math.ceil(rowMaker(totalSpaces)));
-
 
 export const rowMaker = (totalSpaces: number): number => Math.ceil(Math.sqrt(totalSpaces));

@@ -7,6 +7,7 @@ const getArtistAlbums = (query: Prisma.albumFindManyArgs<DefaultArgs>) => {
     return prisma.album.findMany(query);
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 

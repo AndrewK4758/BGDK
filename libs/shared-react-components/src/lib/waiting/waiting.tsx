@@ -5,4 +5,3 @@ export const Waiting = () => (
     <img alt="waiting" src="swirly-dots-to-chrome.webp" width={'50%'} height={'auto'} />
   </Box>
 );
-

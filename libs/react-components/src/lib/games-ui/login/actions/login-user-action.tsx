@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { Dispatch, SetStateAction } from 'react';
-import { ActiveUserData } from '../../header/header';
-import { IActionError } from '../../../../interfaces/action-error';
+import { ActiveUserData } from '../../header/header.tsx';
+import { IActionError } from '../../../../interfaces/action-error.tsx';
 import { GamePlayerValidation } from '@bgdk/types-game';
-import { LoginDataProps } from '../validations/login-validation-schema';
+import { LoginDataProps } from '../validations/login-validation-schema.tsx';
 
 const loginUserAction = async (
   values: LoginDataProps,

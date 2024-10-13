@@ -24,7 +24,7 @@
           "@babel/preset-env",
           {
             "targets": { "node": "current", "esmodules": true },
-            "modules": "auto" // Transform ESM to CommonJS for Jest compatibility
+            "modules": false // Transform ESM to CommonJS for Jest compatibility
           }
         ]
       ]

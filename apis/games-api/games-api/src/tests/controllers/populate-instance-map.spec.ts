@@ -1,16 +1,15 @@
 import { AllGamesMap } from '@bgdk/all-games-map';
-import { IReqObjMaps } from '@bgdk/types-api';
 import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
-import { Response } from 'express';
-import populateInstanceMaps from '../../controllers/populate_instance_map';
-import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map';
-import games from '../../data/games-list';
+import { Request, Response } from 'express';
+import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map.ts';
+import games from '../../data/games-list.ts';
+import populateInstanceMaps from '../../controllers/populate_instance_map.ts';
 
-let req: Partial<IReqObjMaps>, resp: Partial<Response>;
+let req: Partial<Request>, resp: Partial<Response>;
 
 describe('Test populating game instance map with correct game instance', () => {
-  beforeEach(() => {
-    req = mockReqObj() as Partial<IReqObjMaps>;
+  beforeEach(async () => {
+    req = mockReqObj();
     resp = mockRespObj();
 
     req.selectedGameName = 'Chutes & Ladders';
@@ -20,9 +19,9 @@ describe('Test populating game instance map with correct game instance', () => {
   });
 
   it('should pass and return status of 201', async () => {
-    await populateInstanceMaps(req as IReqObjMaps, resp as Response);
+    await populateInstanceMaps(req as Request, resp as Response);
 
     expect(resp.status).toEqual(201);
-    expect(resp.header('current-game')).toBeTruthy();
+    expect((resp as Response).header('current-game')).toBeTruthy();
   });
 });

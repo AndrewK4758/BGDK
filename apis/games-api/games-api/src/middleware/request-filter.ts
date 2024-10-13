@@ -1,14 +1,15 @@
-import { Router, Response, NextFunction } from 'express';
-import { IReqObjMaps } from '@bgdk/types-api';
+import { Request, Router, Response, NextFunction } from 'express';
+// import { IReqObjMaps } from '@bgdk/types-api';
+// import { IReqObjMaps } from '../types/types.js';
 import { GameNameString, PlayerID } from '@bgdk/types-game';
-import useSetSelectedGameName from './set-selected-game-name';
-import usePlayerID from './use-player-id';
-import useSelectedGame from './use-selected-game';
-import useAllGamesMap from './all-games-map';
-import useInstanceTimeMap from './instance-map';
-import useActiveGameInstance from './use-active-game-instancce';
+import useSetSelectedGameName from './set-selected-game-name.ts';
+import usePlayerID from './use-player-id.ts';
+import useSelectedGame from './use-selected-game.ts';
+import useAllGamesMap from './all-games-map.ts';
+import useInstanceTimeMap from './instance-map.ts';
+import useActiveGameInstance from './use-active-game-instancce.ts';
 
-const reqFilter = (req: IReqObjMaps, _resp: Response, next: NextFunction): void => {
+const reqFilter = (req: Request, _resp: Response, next: NextFunction): void => {
   req.playerID = usePlayerID(req) as PlayerID;
   req.selectedGameName = useSetSelectedGameName(req) as GameNameString;
   req.selectedGame = useSelectedGame(req);

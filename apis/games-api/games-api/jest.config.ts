@@ -4,7 +4,7 @@ export default {
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json', configFile: './babel.config.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html', 'mts'],
   coverageDirectory: '../../../coverage/apis/games-api/games-api',

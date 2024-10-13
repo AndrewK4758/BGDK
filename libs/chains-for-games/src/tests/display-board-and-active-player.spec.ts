@@ -3,13 +3,13 @@ import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
 import { Request, Response } from 'express';
-import { IPlayersAndBoard } from '../index';
-import { activeDataToSend } from '../lib/commands/action-board/active-game-data-to-send';
-import { boardStart } from '../lib/commands/action-board/board-start';
-import { checkIfWinner } from '../lib/commands/action-board/check-if-winner';
-import { readyToPlayCheck } from '../lib/commands/action-board/ready-to-play';
+import { IPlayersAndBoard } from '../index.ts';
+import { activeDataToSend } from '../lib/commands/action-board/active-game-data-to-send.ts';
+import { boardStart } from '../lib/commands/action-board/board-start.ts';
+import { checkIfWinner } from '../lib/commands/action-board/check-if-winner.ts';
+import { readyToPlayCheck } from '../lib/commands/action-board/ready-to-play.ts';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 

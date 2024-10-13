@@ -13,11 +13,7 @@
     "revealWithFocus": "test-results",
     "clearOnRun": "none"
   },
-  "jestrunner.codeLens": [
-    "run",
-    "debug",
-    "coverage"
-  ],
+  "jestrunner.codeLens": ["run", "debug", "coverage"],
   "testing.openTesting": "neverOpen",
   "typescript.tsdk": "node_modules/typescript/lib",
   "deno.enablePaths": [],

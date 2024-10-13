@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import getArtistAlbums from '../services/prisma/album/get-artist-albums';
+import getArtistAlbums from '../services/prisma/album/get-artist-albums.ts';
 import { NextFunction, Request, Response } from 'express';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 

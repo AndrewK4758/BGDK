@@ -1,9 +1,10 @@
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import Text from '../text/text';
-import { Theme } from '../../theme/theme';
+import Text from '../text/text.tsx';
+import { Theme } from '../../theme/theme.tsx';
 import { ILiteSpace } from '@bgdk/games-components-logic';
 import { CSSProperties } from 'react';
+
 
 const breakpointsRowSx: SxProps = {
   display: 'flex',
@@ -42,8 +43,8 @@ export interface GameBoardPropsTicTacToe {
   id: string | number;
   gridSx?: SxProps;
   rowSx?: SxProps;
-  state: (EventTarget & HTMLDivElement) | undefined;
-  setStateAction: (e: EventTarget & HTMLDivElement) => void;
+  state: HTMLDivElement | undefined;
+  setStateAction: (e: HTMLDivElement) => void;
 }
 
 /**

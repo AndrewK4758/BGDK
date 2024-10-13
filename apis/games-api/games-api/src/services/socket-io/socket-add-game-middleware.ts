@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
 import { NextFunction } from 'express';
-import { allGamesMap } from '../../middleware/all-games-map';
+import { allGamesMap } from '../../middleware/all-games-map.ts';
 
 const addGameToSocketInstance = (socket: Socket, next: NextFunction) => {
   if (socket.handshake.headers['current-game']) {
@@ -12,7 +12,7 @@ const addGameToSocketInstance = (socket: Socket, next: NextFunction) => {
     socket.data = game;
     socket.join(gameID);
     next();
-  } else return socket.emit('no-game-error', { errorMessage: 'No Game Found. Please Register a New Game To Play' });
+  } else socket.emit('no-game-error', { errorMessage: 'No Game Found. Please Register a New Game To Play' });
 };
 
 export default addGameToSocketInstance;

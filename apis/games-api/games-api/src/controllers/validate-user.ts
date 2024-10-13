@@ -1,6 +1,6 @@
 import { IReqObjMaps } from '@bgdk/types-api';
 import { Response } from 'express';
-import findUser from '../services/prisma/users/find-user';
+import findUser from '../services/prisma/users/find-user.ts';
 import type { Prisma } from '@prisma/client';
 import type { DefaultArgs } from '@prisma/client/runtime/library';
 

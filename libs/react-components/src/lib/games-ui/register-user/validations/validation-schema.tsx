@@ -34,6 +34,6 @@ export const validationSchema = Yup.object({
     if (value) {
       const splitValue = (value as File).name.split('.');
       return supportedFormat.includes(splitValue[splitValue.length - 1]);
-    }
+    } else return false;
   }),
 });

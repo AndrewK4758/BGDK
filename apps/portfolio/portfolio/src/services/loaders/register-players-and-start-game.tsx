@@ -18,11 +18,18 @@ const registerPlayersAndStartGame: ActionFunction = async ({ request }: ActionFu
         if (resp.message === 'Game Started') {
           sessionStorage.setItem('playersIds', JSON.stringify(resp.playersInOrder));
           return redirect(gameName);
+        } else {
+          return null;
         }
+      } else {
+        return null
       }
+    }else {
+      return null
     }
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

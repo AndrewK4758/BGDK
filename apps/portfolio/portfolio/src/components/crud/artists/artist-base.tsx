@@ -183,7 +183,6 @@ const Artist = () => {
 
 export default Artist;
 
-
 const handleUpdateArtistName = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
   try {
     const { artist_id, name } = values;

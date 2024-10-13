@@ -5,6 +5,7 @@ const createAlbum = async (artistID: number, title: string) => {
     return await prisma.album.create({ data: { artist_id: artistID, title: title } });
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

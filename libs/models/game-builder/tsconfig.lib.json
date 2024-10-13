@@ -12,5 +12,12 @@
     "src/**/*.test.ts",
     "../rule/src/tests/**/*.ts",
     "../../chain/src/tests/**/*.ts"
+  ],
+  "references": [
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" },
+    { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../rule/tsconfig.lib.json" },
+    { "path": "../../chain/tsconfig.lib.json" }
   ]
 }

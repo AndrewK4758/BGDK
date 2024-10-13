@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/instance-of-game",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/game": "0.0.1",
     "@bgdk/types-game": "0.0.1"

@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/chains-for-games",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/chain": "0.0.1",
     "@bgdk/de-referencing-utilities": "0.0.1",

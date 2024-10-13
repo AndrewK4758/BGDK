@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/games-components-logic",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/types-game": "0.0.1"
   },

@@ -1,5 +1,5 @@
 import { Player } from '@bgdk/games-components-logic';
-import { AllGameTypes } from '../types/all-games-types';
+import { AllGameTypes } from '../types/all-games-types.ts';
 
 export interface IGame {
   instance: AllGameTypes;

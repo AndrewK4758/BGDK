@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import deleteArtists from '../services/prisma/artist/delete-artist';
-import deleteArtistError from '../errors/delete-artist-error';
+import deleteArtists from '../services/prisma/artist/delete-artist.ts';
+import deleteArtistError from '../errors/delete-artist-error.ts';
 
 const deleteArtist = async (req: Request, resp: Response): Promise<void> => {
   const { id } = req.params;
@@ -17,7 +17,6 @@ const deleteArtist = async (req: Request, resp: Response): Promise<void> => {
     console.error(error);
     resp.status(400).json(deleteArtistError());
   }
-
 };
 
 export default deleteArtist;

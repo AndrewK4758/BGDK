@@ -1,4 +1,3 @@
-export * from './lib/game';
-export * from './interfaces/interfaces';
-export * from './types/all-games-types';
-
+export * from './lib/game.ts';
+export * from './interfaces/interfaces.ts';
+export * from './types/all-games-types.ts';

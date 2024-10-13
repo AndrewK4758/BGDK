@@ -1,2 +1,2 @@
-export * from './lib/base';
-export * from './lib/chain';
+export * from './lib/base.ts';
+export * from './lib/chain.ts';

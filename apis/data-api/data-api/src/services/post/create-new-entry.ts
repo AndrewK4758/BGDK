@@ -7,6 +7,7 @@ const createNewEntry = async (query: Prisma.artistCreateArgs<DefaultArgs>) => {
     return prisma.artist.create(query);
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 

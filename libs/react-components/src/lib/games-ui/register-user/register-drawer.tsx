@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import RegisterUser from './register-user';
+import RegisterUser from './register-user.tsx';
 
 type Anchor = 'right';
 

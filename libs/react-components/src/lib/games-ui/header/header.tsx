@@ -2,12 +2,12 @@ import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { ElementType, useContext, useEffect } from 'react';
-import { Theme } from '../../theme/theme';
-import Text from '../text/text';
-import HeaderMenu from './header-menu/header-menu';
-import LoginDrawer from '../login/login-drawer';
-import RegisterDrawer from '../register-user/register-drawer';
-import { ActiveUserContext } from '../context/active-user-context';
+import { Theme } from '../../theme/theme.tsx';
+import Text from '../text/text.tsx';
+import HeaderMenu from './header-menu/header-menu.tsx';
+import LoginDrawer from '../login/login-drawer.tsx';
+import RegisterDrawer from '../register-user/register-drawer.tsx';
+import { ActiveUserContext } from '../context/active-user-context.tsx';
 
 const breakpointsMenuItem: SxProps = {
   color: Theme.palette.primary.main,

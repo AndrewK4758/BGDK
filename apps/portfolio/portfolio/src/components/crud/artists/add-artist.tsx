@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import { Dispatch, FocusEvent, SetStateAction } from 'react';
 import { Form } from 'react-router-dom';
 import handleSubmitNewArtist from '../../../services/actions/crud-actions/submit-artist-action';
-import handleNewArtistBlur from   '../../../services/events/crud-events/handle-validate-artist-on-blur';
+import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
 
 interface AddArtistProps {
   rowCountState: number;

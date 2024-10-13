@@ -18,8 +18,8 @@ import { useFormik } from 'formik';
 import { FocusEvent, Fragment, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import handleSubmitNewEntry, { NewEntryReturn } from '../../services/actions/submit.new-entry-action';
-import handleNewArtistBlur from '../../services/events/handle-validate-artist-on-blur';
+import handleSubmitNewEntry, { NewEntryReturn } from '../../services/actions/submit.new-entry-action.tsx';
+import handleNewArtistBlur from '../../services/events/handle-validate-artist-on-blur.tsx';
 
 const AddEntryStyle: SxProps = {
   position: 'absolute',
@@ -124,7 +124,7 @@ const AddEntry = () => {
   });
 
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
-    const field = e.currentTarget.name;
+    const field = (e.currentTarget as HTMLInputElement).name;
 
     switch (field) {
       case 'artist.name':

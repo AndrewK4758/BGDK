@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/types-game",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {},
   "main": "./index.js",
   "module": "./index.mjs",

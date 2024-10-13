@@ -5,8 +5,7 @@
     "types": ["jest", "node"],
     "esModuleInterop": true,
     "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "NodeNext",
     "target": "ESNext"
   },
   "include": [
@@ -15,10 +14,14 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.mts",
+    "../../../libs/**/*/src/index.ts",
     "../../../__mocks__/mocks.mts",
-    "../../../libs/models/de-referencing-utilities/src/tests/de-referencing-utilities.spec.mts"
+    "../../../libs/models/de-referencing-utilities/src/tests/de-referencing-utilities.spec.mts",
+    "src/tests/controllers/populate-instance-map.spec.ts"
   ],
-  "exclude": ["../../../libs/react-components/**/*", "../../../libs/**/*/src/tests/**/*.ts"]
+  "exclude": [
+    "../../../libs/react-components/**/*",
+    "../../../libs/shared-react-components/**/*",
+    "../../../libs/**/*/src/tests/**/*.ts"
+  ]
 }

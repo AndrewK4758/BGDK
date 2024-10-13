@@ -36,11 +36,7 @@ export function ImageLink({
       <Link type={type} to={to}>
         <img srcSet={srcSet} loading={loading} alt={alt} style={style} />
 
-        <ImageListItemBar
-          title={title}
-          position={position}
-          sx={breakpointsImageListText}
-        />
+        <ImageListItemBar title={title} position={position} sx={breakpointsImageListText} />
       </Link>
     </ImageListItem>
   );

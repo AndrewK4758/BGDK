@@ -13,7 +13,6 @@ import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
 
-
 const iconSxProps: SxProps = {
   flex: '1 0 10%',
   justifyItems: 'center',

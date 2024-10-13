@@ -13,7 +13,7 @@ export const makeNewGameBoard = CommandBuilder.build((context: Context) => {
       if (space.occupied) space.leave();
       space = space.next;
     }
-    
+
     game.instance.instance.makeGameBoard();
     context.put(GameContextKeys.ACTION, 'start');
 

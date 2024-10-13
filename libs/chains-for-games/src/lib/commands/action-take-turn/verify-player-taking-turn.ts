@@ -2,7 +2,7 @@ import { CommandBuilder, Context } from '@bgdk/chain';
 import { deRefContextObject, getPlayerID } from '@bgdk/de-referencing-utilities';
 import { Player } from '@bgdk/games-components-logic';
 import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
-import { nextCommandMap } from '../../utils/context-next-map';
+import { nextCommandMap } from '../../utils/context-next-map.ts';
 
 export const verifyPlayerTakingTurn = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'verify-player') {

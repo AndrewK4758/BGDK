@@ -6,24 +6,25 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client"],
-    "module": "ESNext"
+    "lib": ["DOM"],
+    "module": "NodeNext"
   },
   "files": [],
   "include": [],
   "exclude": [],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "../../apps/games-ui/tsconfig.app.json"
-    },
-    {
-      "path": "../../apps/portfolio/portfolio/tsconfig.app.json"
-    },
-    {
-      "path": "../../apps/games-ui/tsconfig.app.json"
-    }
+    { "path": "../models/rule" },
+    { "path": "../models/game-builder" },
+    { "path": "../chain" },
+    { "path": "../games/tic-tac-toe" },
+    { "path": "../games/chutes-and-ladders" },
+    { "path": "../game" },
+    { "path": "../models/instance-of-game" },
+    { "path": "../models/all-games-map" },
+    { "path": "../types/types-api" },
+    { "path": "../games-components-logic" },
+    { "path": "../types/types-game" },
+    { "path": "./tsconfig.lib.json" }
   ],
   "extends": "../../tsconfig.base.json"
 }

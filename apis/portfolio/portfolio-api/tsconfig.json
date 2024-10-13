@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"
@@ -12,6 +12,6 @@
   ],
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "ESNext"
+    "module": "NodeNext"
   }
 }

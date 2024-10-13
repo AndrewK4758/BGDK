@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import { Theme } from '../../../theme/theme';
+import { Theme } from '../../../theme/theme.tsx';
 
 export const breakpointsTextBoxSx: SxProps = {
   backgroundColor: Theme.palette.info.main,

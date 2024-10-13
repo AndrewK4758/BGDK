@@ -6,9 +6,9 @@ configDotenv({ path: `${cwd()}/apis/portfolio/portfolio-api/env/.env` });
 
 const config: Configuration = {
   auth: {
-    clientId: process.env.MAIL_SECRET_ID,
+    clientId: process.env.MAIL_SECRET_ID as string,
     clientSecret: process.env.MAIL_SECRET_VALUE,
-    authority: process.env.MAIL_CLOUD_INSTANCE + process.env.MAIL_TENANT_ID,
+    authority: (process.env.MAIL_CLOUD_INSTANCE as string) + process.env.MAIL_TENANT_ID,
   },
   system: {
     loggerOptions: {

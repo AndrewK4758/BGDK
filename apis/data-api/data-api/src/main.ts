@@ -2,7 +2,7 @@ import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import Routes, { router } from './routes/routes';
+import Routes, { router } from './routes/routes.ts';
 
 const app = express();
 
@@ -26,9 +26,7 @@ new Routes();
 
 const port = process.env.PORT || 4000;
 
-
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api/v1`);
 });
 server.on('error', console.error);
-

@@ -1,7 +1,8 @@
 import * as http from 'http';
 import { Server, ServerOptions } from 'socket.io';
-import { socketEvent, socketMiddleware } from '../types/socket-server';
-import { ISocketServer } from '../interfaces/socket-server';
+import { socketEvent, socketMiddleware } from '../types/socket-server.ts';
+import { ISocketServer } from '../interfaces/socket-server.ts';
+
 
 export class SocketServer implements ISocketServer {
   events: socketEvent[];
@@ -16,9 +17,7 @@ export class SocketServer implements ISocketServer {
     this.io = new Server(httpServer, serverOptions);
     this.middleware = [];
     this.events = [];
-    middleware.forEach(cb => {
-      this.io.use(cb);
-    });
+    middleware.forEach(cb => this.io.use(cb));
     listeners.forEach(tuple => {
       const [event, handler] = tuple;
       this.io.on(event, handler);

@@ -6,20 +6,47 @@ module.exports = {
   output: {
     path: join(__dirname, '../../../dist/apis/data-api'),
     filename: 'main.js',
+    module: true,
+    chunkFormat: 'module',
+    environment: {
+      // The environment supports arrow functions ('() => { ... }').
+      arrowFunction: true,
+      // The environment supports async function and await ('async function () { await ... }').
+      asyncFunction: true,
+      // The environment supports BigInt as literal (123n).
+      // bigIntLiteral: true,
+      // The environment supports const and let for variable declarations.
+      const: true,
+      // The environment supports destructuring ('{ a, b } = obj').
+      destructuring: true,
+      // The environment supports 'document' variable.
+      // document: true,
+      // The environment supports an async import() function to import EcmaScript modules.
+      dynamicImport: true,
+      // The environment supports an async import() when creating a worker, only for web targets at the moment.
+      dynamicImportInWorker: true,
+      // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+      forOf: true,
+      // The environment supports 'globalThis'.
+      globalThis: true,
+      // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+      module: true,
+      // Determines if the node: prefix is generated for core module imports in environments that support it.
+      // This is only applicable to Webpack runtime code.
+      nodePrefixForCoreModules: true,
+      // The environment supports optional chaining ('obj?.a' or 'obj?.()').
+      optionalChaining: true,
+      // The environment supports template literals.
+      templateLiteral: true,
+    },
   },
-  target: 'async-node',
   watch: process.env.NODE_ENV === 'development' ? true : false,
-  node: {
-    __dirname: true,
-    __filename: true,
-  },
+
   experiments: {
     topLevelAwait: true,
+    outputModule: true,
   },
-  resolve: {
-    conditionNames: ['import', 'require', 'node', 'default'],
-    extensions: ['.ts', '.js'],
-  },
+
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',

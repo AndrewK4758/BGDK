@@ -2,11 +2,7 @@
   "extends": "../../../tsconfig.base.json",
   "files": [],
   "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ],
+  "references": [{ "path": "../../../libs/prisma" }, { "path": "../data-api" }, { "path": "./tsconfig.spec.json" }],
   "compilerOptions": {
     "esModuleInterop": true,
     "module": "NodeNext"
