@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
-    "types": ["jest", "node"],
-    "esModuleInterop": true,
-    "composite": true
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",

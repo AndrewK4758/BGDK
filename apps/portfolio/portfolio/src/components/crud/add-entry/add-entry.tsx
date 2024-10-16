@@ -367,7 +367,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price} />
+                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price as string} />
                   ) : null}
                 </>
               </>

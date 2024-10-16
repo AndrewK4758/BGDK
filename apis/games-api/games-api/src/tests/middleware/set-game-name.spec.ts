@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import useSetSelectedGameName from '../../middleware/set-selected-game-name.ts';
-import { mockReqObj } from '__mocks__/mocks.mts';
+import useSetSelectedGameName from '../../middleware/set-selected-game-name.js';
+import { mockReqObj } from '__mocks__/mocks.js';
 
 let req: Partial<Request>;
 

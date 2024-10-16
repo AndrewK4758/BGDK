@@ -1,16 +1,6 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "target": "ESNext"
-  },
+  "compilerOptions": {},
   "files": [],
   "include": [],
   "exclude": [],
@@ -19,8 +9,6 @@
     { "path": "../../types/types-game" },
     { "path": "../../games/chutes-and-ladders" },
     { "path": "../rule" },
-    { "path": "../../chain" },
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
+    { "path": "../../chain" }
   ]
 }

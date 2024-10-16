@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
-    "esModuleInterop": true,
-    "types": ["jest", "node"],
-    "composite": true
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
@@ -12,7 +13,9 @@
     "src/**/*.spec.ts",
     "src/**/*.ts",
     "src/**/*.mts",
+    "../rule/src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
+    "../game-builder/src/**/*.ts",
     "../all-games-map/src/**/*.ts",
     "../../game/src/**/*.ts",
     "../../chain/src/**/*.ts",
@@ -21,10 +24,11 @@
     "../../chutes-and-ladders/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.ts",
-    "../../../__mocks__/mocks.mts"
+    "../../../__mocks__/mocks.ts"
   ],
   "exclude": [
+    "../rule/src/tests/**/*.ts",
+    "../game-builder/src/tests/**/*.ts",
     "../instance-of-game/src/tests/**/*.ts",
     "../all-games-map/src/tests/**/*.ts",
     "../../game/src/tests/**/*.ts",

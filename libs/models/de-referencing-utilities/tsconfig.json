@@ -1,16 +1,6 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "target": "ESNext"
-  },
+  "compilerOptions": {},
   "files": [],
   "include": [],
   "exclude": [],
@@ -19,14 +9,12 @@
     { "path": "../game-builder" },
     { "path": "../all-games-map" },
     { "path": "../../types/types-api" },
+    { "path": "../../games/chutes-and-ladders" },
     { "path": "../../games/tic-tac-toe" },
     { "path": "../../games-components-logic" },
     { "path": "../../types/types-game" },
-    { "path": "../../games/chutes-and-ladders" },
     { "path": "../../game" },
     { "path": "../instance-of-game" },
-    { "path": "../../chain" },
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
+    { "path": "../../chain" }
   ]
 }

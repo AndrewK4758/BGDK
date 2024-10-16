@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import validateTrack from '../services/prisma/tracks/validate-track.ts';
+import validateTrack from '../services/prisma/tracks/validate-track.js';
 import type { Prisma } from '@prisma/client';
 
 const validateTracks = async (req: Request, resp: Response) => {

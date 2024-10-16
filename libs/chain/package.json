@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {},
-  "main": "./index.js",
-  "module": "./index.mjs",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "typings": "./index.d.ts",
-  "private": true
+  "private": true,
+  "nx": {
+    "name": "chain"
+  }
 }

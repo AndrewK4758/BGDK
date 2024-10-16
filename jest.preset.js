@@ -1,13 +1,10 @@
-import nxPreset from '@nx/jest/preset.js';
+const nxPreset = require('@nx/jest/preset').nxPreset;
 
-export default {
+module.exports = {
   ...nxPreset,
-  modulePaths: ['<rootDir>/__mocks__/*', '<rootDir>/node_modules/*'],
+  modulePaths: ['<rootDir>/__mocks__/mocks.ts', '<rootDir>/node_modules/*'],
   verbose: true,
   collectCoverage: true,
   passWithNoTests: true,
   maxWorkers: 2,
-  modulelNameMapper: {
-    '@bgdk/all-games-map': '<rootDir>/libs/models/all-games-map',
-  },
 };

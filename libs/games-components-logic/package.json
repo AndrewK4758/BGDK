@@ -5,8 +5,8 @@
   "dependencies": {
     "@bgdk/types-game": "0.0.1"
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "typings": "./index.d.ts",
   "private": true
 }

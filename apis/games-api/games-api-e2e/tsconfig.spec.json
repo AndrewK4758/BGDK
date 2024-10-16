@@ -2,12 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "esModuleInterop": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext",
-    "types": ["jest", "node"],
-    "composite": true
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
@@ -16,7 +11,11 @@
     "src/**/*.d.ts",
     "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts",
-    "../../../__mocks__/**/*.ts"
+    "./__mocks__/**/*.ts"
   ],
-  "exclude": ["../../../libs/react-components/**/*"]
+  "exclude": [
+    "../../../libs/react-components/**/*",
+    "../../../libs/shared-react-components/**/*",
+    "../../../libs/**/*/src/tests/**/*.ts"
+  ]
 }

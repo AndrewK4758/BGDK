@@ -6,29 +6,23 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apis/portfolio-api",
+        "esbuildConfig": "apis/portfolio/portfolio-api/esbuild.config.js",
         "main": "apis/portfolio/portfolio-api/src/main.ts",
+        "outputPath": "dist/apis/portfolio-api",
+        "outputFileName": "main.js",
         "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
-        "assets": ["apis/portfolio/portfolio-api/src/assets"],
-        "webpackConfig": "apis/portfolio/portfolio-api/webpack.config.cjs",
-        "deleteOutputPath": true,
-        "progress": true,
-        "verbose": true
+        "assets": []
       },
       "configurations": {
         "development": {
-          "watch": true,
-          "verbose": true
+          "minify": false
         },
         "production": {
-          "watch": false,
-          "verbose": true
+          "minify": true
         }
       }
     },

@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["DOM"],
-    "allowJs": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "types": ["vite/client"],
-    "module": "NodeNext"
+    "types": ["vite/client"]
   },
   "files": [],
   "include": [],
@@ -24,8 +18,7 @@
     { "path": "../games-components-logic" },
     { "path": "../types/types-game" },
     { "path": "../react-components" },
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
+    { "path": "./tsconfig.lib.json" }
   ],
   "extends": "../../tsconfig.base.json"
 }

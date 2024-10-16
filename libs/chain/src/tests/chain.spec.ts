@@ -1,4 +1,4 @@
-import { Context } from '../lib/chain';
+import type { Context } from '../lib/chain';
 import { CommandBuilder, ChainBuilder, ContextBuilder } from '../lib/base';
 
 describe('Test simple command & simple chain', () => {

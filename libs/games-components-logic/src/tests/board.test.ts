@@ -1,6 +1,6 @@
 import { SpaceType } from '@bgdk/types-game';
-import { Board } from '../lib/board.ts';
-import { Space } from '../lib/space.ts';
+import { Board } from '../lib/board';
+import { Space } from '../lib/space';
 
 let space: Space;
 

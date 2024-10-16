@@ -1,14 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
     "outDir": "../../dist/out-tsc",
-    "lib": ["DOM"],
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client", "jest"],
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
-    "composite": true,
-    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client", "jest"]
+    "moduleResolution": "Bundler"
   },
   "exclude": [
     "**/*.spec.ts",
@@ -32,6 +28,7 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/**/*.d.ts",
     "src/**/*.css",
     "../games-components-logic/src/**/*.ts",
     "../types/**/*/src/**/*.ts",

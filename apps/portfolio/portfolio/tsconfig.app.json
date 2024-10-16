@@ -34,6 +34,7 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "vite-env.d.ts",
     "../../../libs/shared-react-components/src/**/*.tsx",
     "../../../libs/shared-react-components/src/**/*.ts",
     "../../../libs/react-components/src/**/*.tsx",

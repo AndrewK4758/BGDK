@@ -1,12 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
     "outDir": "../../../dist/out-tsc",
-    "composite": true,
+    "types": ["node", "express"],
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext",
-    "types": ["node", "express"]
+    "moduleResolution": "NodeNext"
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "../../../libs/prisma/tests/**/*.ts"],
   "include": ["src/**/*.ts", "../../../libs/prisma/**/*.ts"],

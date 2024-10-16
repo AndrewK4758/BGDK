@@ -36,7 +36,7 @@ const postEmail = async (req: Request, resp: Response) => {
       date: date,
       to: email,
       subject: 'Thank You for Reaching Out',
-      text: `${name},\n\r\n\rI usually am able to review messages and respond within 1 day. If it will take longer to respond to this request, I will advise before the day is over.\n\r\n\Thank You,\n\r\n\rAndrew Klapper\n\rhttps://andrew-k.us`,
+      text: `${name},\n\r\n\rI usually am able to review messages and respond within 1 day. If it will take longer to respond to this request, I will advise before the day is over.\n\r\nThank You,\n\r\n\rAndrew Klapper\n\rhttps://andrew-k.us`,
     };
 
     await transporter.sendMail(mailOptionsToMe);

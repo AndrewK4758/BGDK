@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/chain",
-        "main": "libs/chain/src/index.mts",
+        "main": "libs/chain/src/index.ts",
         "tsConfig": "libs/chain/tsconfig.lib.json",
         "assets": ["libs/chain/*.md"]
       }
@@ -20,16 +20,14 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/chain/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/chain",
-        "testFiles": ["./src/tests/*"]
+        "reportsDirectory": "../../coverage/libs/chain"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "fix": true,
-        "lintFilePatterns": ["libs/chain/**/*.{ts,tsx,js,jsx}", "libs/chain/package.json"]
+        "fix": true
       }
     }
   }

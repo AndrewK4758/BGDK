@@ -1,14 +1,6 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "module": "NodeNext",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  },
+  "compilerOptions": {},
   "files": [],
   "include": [],
   "exclude": [],
@@ -23,7 +15,6 @@
     { "path": "../../models/instance-of-game" },
     { "path": "../../models/all-games-map" },
     { "path": "../types-game" },
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
+    { "path": "./tsconfig.lib.json" }
   ]
 }

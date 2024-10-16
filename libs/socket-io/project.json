@@ -5,32 +5,39 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/socket-io",
-        "tsConfig": "libs/socket-io/tsconfig.lib.json",
-        "packageJson": "libs/socket-io/package.json",
-        "main": "libs/socket-io/src/index.ts",
-        "assets": ["libs/socket-io/*.md"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/socket-io/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/socket-io",
-        "testFiles": ["./src/tests/*"]
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "fix": true,
         "lintFilePatterns": ["libs/socket-io/**/*.{ts,tsx,js,jsx}", "libs/socket-io/package.json"]
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "libs/socket-io/src/index.ts",
+        "outputPath": "dist/libs/socket-io",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/socket-io/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "libs/socket-io/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
       }
     }
   }

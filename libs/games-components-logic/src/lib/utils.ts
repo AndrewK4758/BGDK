@@ -1,5 +1,5 @@
-import { IDie } from '../interfaces/die.ts';
-import { ISummedRoll } from '../interfaces/summed-roll.ts';
+import { IDie } from '../interfaces/die.js';
+import { ISummedRoll } from '../interfaces/summed-roll.js';
 
 export const generateRandomNumber = (upperBound: number): number => {
   return Math.floor(Math.random() * upperBound) + 1;

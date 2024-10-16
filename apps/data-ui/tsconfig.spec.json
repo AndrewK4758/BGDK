@@ -2,10 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "esModuleInterop": true,
-    "composite": true,
-    "target": "ESNext",
-    "moduleResolution": "NodeNext",
     "types": ["jest", "node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts"]
   },
   "include": [
@@ -19,5 +15,15 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts"
+    // "../../libs/**/*/src/**/*.ts",
+    // "../../libs/**/*/src/**/*.tsx"
+  ],
+  "exclude": [
+    "../../libs/**/*/src/tests/**/*.ts",
+    "../../libs/socket-io/src/**/*.ts",
+    "../../libs/password/src/**/*.ts",
+    "../../libs/**/*/src/tests/**/*.tsx",
+    "../../libs/**/*/src/tests/**/*.ts",
+    "../../libs/**/*.tsx"
   ]
 }

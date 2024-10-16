@@ -1,13 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
     "outDir": "../../../dist/out-tsc",
-    "declaration": true,
     "types": ["node", "vite/client"],
-    "composite": true,
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "src/**/*.ts",

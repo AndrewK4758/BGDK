@@ -1,7 +1,7 @@
 import { Avatar, generateRandomNumber, Player } from '@bgdk/games-components-logic';
 import { Color, SpaceType } from '@bgdk/types-game';
-import { IGame } from '../interfaces/interfaces.ts';
-import { AllGameTypes } from '../types/all-games-types.ts';
+import { IGame } from '../interfaces/interfaces.js';
+import { AllGameTypes } from '../types/all-games-types.js';
 
 export class Game implements IGame {
   game: AllGameTypes;

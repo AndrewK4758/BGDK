@@ -1,39 +1,29 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../dist/out-tsc",
-    "esModuleInterop": true,
-    "types": ["jest", "node"],
-    "composite": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "types": ["jest", "node"]
   },
   "include": [
-    "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "jest.config.js",
     "src/**/*.ts",
-    "../../__mocks__/**/*.mts",
-    "../models/de-referencing-utilities/src/**/*.ts",
-    "../chain/src/**/*.ts",
-    "../types/types-api/src/**/*.ts",
-    "../types/types-game/src/**/*.ts",
-    "../models/all-games-map/src/**/*.ts",
-    "../models/instance-of-game/src/**/*.ts",
-    "../game/src/**/*.ts",
-    "../games/**/*/src/**/*.ts",
-    "../games-components-logic/src/**/*.ts"
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../../libs/**/*/src/**/*.ts",
+    "../../__mocks__/mocks.ts"
   ],
+
   "exclude": [
-    "../models/de-referencing-utilities/src/tests/**/*.ts",
-    "../chain/src/tests/**/*.ts",
-    "../types/types-api/src/tests/**/*.ts",
-    "../types/types-game/src/tests/**/*.ts",
-    "../models/all-games-map/src/tests/**/*.ts",
-    "../models/instance-of-game/src/tests/**/*.ts",
-    "../game/src/tests/**/*.ts",
-    "../games/**/*/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts"
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/react-components/**/*.tsx",
+    "../../../libs/shared-react-components/**/*.ts",
+    "../../../libs/shared-react-components/**/*.tsx",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*/.spec.tsx",
+    "../../../libs/**/*.test.ts",
+    "../../../libs/**/*/.test.tsx"
   ]
 }

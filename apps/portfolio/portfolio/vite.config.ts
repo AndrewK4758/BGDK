@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -20,7 +21,13 @@ export default defineConfig({
     open: true,
   },
 
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+  plugins: [
+    react({ babel: { targets: { esmodules: true } } }),
+    nxViteTsPaths({
+      debug: true,
+    }),
+    nxCopyAssetsPlugin(['*.md']),
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -37,7 +44,25 @@ export default defineConfig({
     },
 
     assetsDir: './assets',
+    rollupOptions: {
+      perf: true,
+      output: {
+        esModule: true,
+        format: 'esm',
+        generatedCode: {
+          arrowFunctions: true,
+          constBindings: true,
+          symbols: true,
+        },
+      },
+    },
     target: 'esnext',
+  },
+  esbuild: {
+    jsx: 'automatic',
+    format: 'esm',
+    color: true,
+    platform: 'browser',
   },
   logLevel: 'info',
   appType: 'spa',

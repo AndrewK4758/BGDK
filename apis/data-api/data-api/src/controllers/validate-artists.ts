@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import validateArtist from '../services/prisma/artist/validate-artist-in-db.ts';
+import validateArtist from '../services/prisma/artist/validate-artist-in-db.js';
 import type { Prisma } from '@prisma/client';
 
 const validateArtists = async (req: Request, resp: Response) => {

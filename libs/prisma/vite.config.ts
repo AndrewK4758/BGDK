@@ -8,7 +8,13 @@ export default defineConfig({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/prisma',
 
-  plugins: [nxViteTsPaths(), dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') })],
+  plugins: [
+    nxViteTsPaths(),
+    dts({
+      entryRoot: 'src',
+      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+    }),
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -24,6 +30,13 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      perf: true,
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
+    },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
@@ -33,10 +46,12 @@ export default defineConfig({
       // Don't forget to update your package.json as well.
       formats: ['es', 'cjs'],
     },
-    target: 'modules',
-    rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: [],
-    },
+    target: 'esnext',
   },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'node',
+  },
+  logLevel: 'info',
 });

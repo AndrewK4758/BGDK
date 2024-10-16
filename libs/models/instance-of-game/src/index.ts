@@ -1,1 +1,1 @@
-export * from './lib/instance-of-game.ts';
+export * from './lib/instance-of-game.js';

@@ -1,7 +1,7 @@
 import type { Variant } from '@mui/material/styles/createTypography';
 import type { SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { Text } from '@bgdk/react-components';
+import Typography from '@mui/material/Typography';
 
 export interface TabLabelProps {
   mainVariant: Variant;
@@ -14,8 +14,12 @@ export interface TabLabelProps {
 
 export const TabLabel = ({ mainVariant, mainText, mainSx, subVariant, subText, subSx }: TabLabelProps) => (
   <Box>
-    <Text titleVariant={mainVariant} titleText={mainText} sx={mainSx} />
-    <Text titleVariant={subVariant} titleText={subText} sx={subSx} />
+    <Typography variant={mainVariant} sx={mainSx}>
+      {mainText}
+    </Typography>
+    <Typography variant={subVariant} sx={subSx}>
+      {subText}
+    </Typography>
   </Box>
 );
 

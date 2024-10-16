@@ -1,6 +1,6 @@
 import { Board, Die, GameBoard, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
 import { AvatarTotem, Color, SpaceType } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems.ts';
+import AvatarTotems from './avatar-totems.js';
 
 export const TOTAL_SPACES = 100;
 export const START = 1;

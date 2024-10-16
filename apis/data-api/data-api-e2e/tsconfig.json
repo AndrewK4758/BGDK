@@ -5,6 +5,7 @@
   "references": [{ "path": "../../../libs/prisma" }, { "path": "../data-api" }, { "path": "./tsconfig.spec.json" }],
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "NodeNext"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   }
 }

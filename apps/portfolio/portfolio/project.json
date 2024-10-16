@@ -10,7 +10,10 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "dist/apps/portfolio"
+        "outputPath": "dist/apps/portfolio",
+        "main": "apps/portfolio/portfolio/src/main.tsx",
+        "tsConfig": "apps/portfolio/portfolio/tsconfig.app.json",
+        "assets": ["apps/portfolio/portfolio/*.md"]
       },
       "configurations": {
         "development": {
@@ -60,7 +63,7 @@
       "options": {
         "jestConfig": "apps/portfolio/portfolio/jest.config.ts",
         "reportsDirectory": "../../coverage/apps/portfolio",
-        "args": ["--experimental-vm-modules"]
+        "color": true
       }
     },
     "lint": {

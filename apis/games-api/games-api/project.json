@@ -6,29 +6,29 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apis/games-api",
+        "esbuildConfig": "apis/games-api/games-api/esbuild.config.js",
         "main": "apis/games-api/games-api/src/main.ts",
+        "outputPath": "dist/apis/games-api",
+        "outputFileName": "main.js",
         "tsConfig": "apis/games-api/games-api/tsconfig.app.json",
-        "assets": ["apis/games-api/games-api/src/assets"],
-        "webpackConfig": "apis/games-api/games-api/webpack.config.cjs",
-        "deleteOutputPath": true,
-        "progress": true,
-        "verbose": true
+        "assets": [
+          {
+            "glob": "apis/games-api/games-api/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
       },
       "configurations": {
         "development": {
-          "watch": true,
-          "verbose": true
+          "minify": false
         },
         "production": {
-          "watch": false,
-          "verbose": true
+          "minify": true
         }
       }
     },

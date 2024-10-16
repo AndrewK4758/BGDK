@@ -1,6 +1,6 @@
 import { GameInstanceID } from '@bgdk/types-game';
-import { USER_ROLE } from '../types/register-user.ts';
-import { IRegisterUserClient } from './register-user-client.ts';
+import { USER_ROLE } from '../types/register-user.js';
+import { IRegisterUserClient } from './register-user-client.js';
 
 export interface IRegisterUser extends IRegisterUserClient {
   id: string;

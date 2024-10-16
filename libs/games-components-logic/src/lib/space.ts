@@ -1,6 +1,6 @@
 import { SpaceType } from '@bgdk/types-game';
-import { ISpace } from '../interfaces/space.ts';
-import { Avatar } from '../lib/avatar.ts';
+import { ISpace } from '../interfaces/space.js';
+import { Avatar } from '../lib/avatar.js';
 
 export class Space implements ISpace {
   Value: string;

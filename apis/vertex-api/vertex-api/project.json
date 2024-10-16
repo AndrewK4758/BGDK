@@ -15,27 +15,23 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apis/vertex-api",
+        "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.js",
         "main": "apis/vertex-api/vertex-api/src/main.ts",
+        "outputPath": "dist/apis/vertex-api",
+        "outputFileName": "main.js",
         "tsConfig": "apis/vertex-api/vertex-api/tsconfig.app.json",
-        "assets": ["apis/vertex-api/vertex-api/src/assets"],
-        "webpackConfig": "apis/vertex-api/vertex-api/webpack.config.cjs",
-        "deleteOutputPath": true,
-        "progress": true,
-        "verbose": true
+        "assets": []
       },
       "configurations": {
         "development": {
-          "watch": true
+          "minify": false
         },
         "production": {
-          "watch": false
+          "minify": true
         }
       }
     },

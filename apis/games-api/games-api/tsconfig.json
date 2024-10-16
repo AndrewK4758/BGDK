@@ -23,6 +23,6 @@
     { "path": "./tsconfig.spec.json" }
   ],
   "compilerOptions": {
-    "module": "NodeNext"
+
   }
 }

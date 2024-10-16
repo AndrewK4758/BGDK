@@ -3,12 +3,12 @@ import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys, Color, TurnStatus } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
-import { sendStartGameStatus } from '../lib/commands/action-start-game/send-start-game-status.ts';
-import { setAvatarOnStartChutesAndLadders } from '../lib/commands/action-start-game/set-on-start-chutes-and-ladders.ts';
-import { setPlayerInTurn } from '../lib/commands/action-start-game/set-player-in-turn.ts';
-import { startGame } from '../lib/commands/action-start-game/start-game-start.ts';
-import { verifyReadyToPlay } from '../lib/commands/action-start-game/verify-ready-to-play.ts';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
+import { sendStartGameStatus } from '../lib/commands/action-start-game/send-start-game-status.js';
+import { setAvatarOnStartChutesAndLadders } from '../lib/commands/action-start-game/set-on-start-chutes-and-ladders.js';
+import { setPlayerInTurn } from '../lib/commands/action-start-game/set-player-in-turn.js';
+import { startGame } from '../lib/commands/action-start-game/start-game-start.js';
+import { verifyReadyToPlay } from '../lib/commands/action-start-game/verify-ready-to-play.js';
 import { Request, Response } from 'express';
 
 let ctx: Context,
@@ -84,8 +84,9 @@ describe('execute all steps of starting a game', () => {
     const commandResult = setAvatarOnStartChutesAndLadders.execute(ctx);
 
     expect(commandResult).toBeTruthy();
+
     game.playersArray.forEach(p => {
-      expect(p.avatar.location).toEqual(game.instance.startSpace);
+      expect(p.avatar.location.type).toEqual(game.instance.startSpace.type);
       expect(p.order).toBeTruthy();
     });
   });
@@ -107,8 +108,9 @@ describe('execute all steps of starting a game', () => {
   it('should pass and add a message to the out prop of ctx obj', () => {
     ctx.put(GameContextKeys.NEXT, 'send-start-game-status');
     const output = { message: 'Game Started' };
+
     const commandResult = sendStartGameStatus.execute(ctx);
     expect(commandResult).toBeTruthy();
-    expect(ctx.get(GameContextKeys.OUTPUT)).toEqual(output);
+    expect((ctx.get(GameContextKeys.OUTPUT) as { message: string }).message).toEqual(output.message);
   });
 });

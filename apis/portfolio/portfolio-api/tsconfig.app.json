@@ -9,13 +9,18 @@
     "types": ["node", "express"],
     "strict": false
   },
-  "include": ["src/**/*.ts", "../../../libs/**/*/src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../../libs/**/*.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../../libs/**/*/src/tests/**/*.ts",
-    "../../../libs/shared-react-components/**/*",
-    "../../../libs/react-components/**/*"
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/react-components/**/*.tsx",
+    "../../../libs/shared-react-components/**/*.ts",
+    "../../../libs/shared-react-components/**/*.tsx",
+    "../../../libs/**/*.spec.ts",
+    "../../../libs/**/*/.spec.tsx",
+    "../../../libs/**/*.test.ts",
+    "../../../libs/**/*/.test.tsx"
   ]
 }

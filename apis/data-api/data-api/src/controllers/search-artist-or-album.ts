@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
-import searchArtist from '../services/prisma/search-artist.ts';
-import searchAlbum from '../services/prisma/search-album.ts';
+import searchArtist from '../services/prisma/search-artist.js';
+import searchAlbum from '../services/prisma/search-album.js';
 import { Request, Response } from 'express';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 

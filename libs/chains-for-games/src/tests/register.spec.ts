@@ -3,14 +3,13 @@ import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
 import { Request, Response } from 'express';
-import { createPlayerID } from '../lib/commands/action-register-player/create-player-id.ts';
-import { filterSelectedAvatar } from '../lib/commands/action-register-player/filter-selected-avatar.ts';
-import { playerCreated } from '../lib/commands/action-register-player/player-created.ts';
-import { registerOnGameInstance } from '../lib/commands/action-register-player/register-on-game-instance.ts';
-import { registerAction } from '../lib/commands/action-register-player/register-player-start.ts';
-import type { Avatar } from '@bgdk/games-components-logic';
+import { createPlayerID } from '../lib/commands/action-register-player/create-player-id.js';
+import { filterSelectedAvatar } from '../lib/commands/action-register-player/filter-selected-avatar.js';
+import { playerCreated } from '../lib/commands/action-register-player/player-created.js';
+import { registerOnGameInstance } from '../lib/commands/action-register-player/register-on-game-instance.js';
+import { registerAction } from '../lib/commands/action-register-player/register-player-start.js';
 
 let ctx: Context, game: InstanceOfGame, req: Partial<Request>, resp: Partial<Response>;
 
@@ -60,9 +59,7 @@ describe('test register chain', () => {
 
     const commandResult = filterSelectedAvatar.execute(ctx);
     expect(commandResult).toBeTruthy();
-    expect(
-      game.instance.instance.avatarList.find((a: Avatar) => a.name === game.instance.playersArray[0].name),
-    ).toBeFalsy();
+    expect(game.instance.instance.avatarList.find(a => a.name === game.instance.playersArray[0].name)).toBeFalsy();
     expect(ctx.get(GameContextKeys.NEXT)).toEqual('player-created');
   });
 

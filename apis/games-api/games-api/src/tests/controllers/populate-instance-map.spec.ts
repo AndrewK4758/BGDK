@@ -1,9 +1,9 @@
 import { AllGamesMap } from '@bgdk/all-games-map';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
 import { Request, Response } from 'express';
-import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map.ts';
-import games from '../../data/games-list.ts';
-import populateInstanceMaps from '../../controllers/populate_instance_map.ts';
+import { InstanceTimeMap } from '../../services/instance-time-map/instance-time-map.js';
+import games from '../../data/games-list.js';
+import populateInstanceMaps from '../../controllers/populate_instance_map.js';
 
 let req: Partial<Request>, resp: Partial<Response>;
 

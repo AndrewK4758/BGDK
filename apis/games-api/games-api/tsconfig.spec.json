@@ -1,12 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
-    "types": ["jest", "node"],
-    "esModuleInterop": true,
-    "composite": true,
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
@@ -14,10 +13,8 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/**/*/src/index.ts",
-    "../../../__mocks__/mocks.mts",
-    "../../../libs/models/de-referencing-utilities/src/tests/de-referencing-utilities.spec.mts",
-    "src/tests/controllers/populate-instance-map.spec.ts"
+    "../../../__mocks__/mocks.ts",
+    "../../../libs/**/*/src/**/*.ts"
   ],
   "exclude": [
     "../../../libs/react-components/**/*",

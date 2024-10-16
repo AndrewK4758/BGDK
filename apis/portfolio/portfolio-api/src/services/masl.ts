@@ -12,7 +12,7 @@ const config: Configuration = {
   },
   system: {
     loggerOptions: {
-      loggerCallback(_loglevel, message, _containsPii) {
+      loggerCallback(_loglevel, message) {
         console.log(message);
       },
       piiLoggingEnabled: true,

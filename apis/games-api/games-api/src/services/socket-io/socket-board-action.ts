@@ -1,6 +1,6 @@
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { Socket } from 'socket.io';
-import performAction from '../../controllers/perform_action_context_object.ts';
+import performAction from '../../controllers/perform_action_context_object.js';
 
 interface SocketAction {
   action: string;

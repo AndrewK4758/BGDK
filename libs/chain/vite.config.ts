@@ -24,7 +24,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../dist/libs/chain',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -50,6 +50,9 @@ export default defineConfig({
     },
   },
   esbuild: {
-    format: 'iife',
+    format: 'esm',
+    color: true,
+    platform: 'node',
   },
+  logLevel: 'info',
 });

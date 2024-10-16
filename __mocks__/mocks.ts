@@ -1,6 +1,6 @@
-import { Response } from 'express';
-import { Color, GamePlayerValidation, IRegisterFormValues } from '../libs/types/types-game/src/index.ts';
-import type { IReqObjMaps } from '@bgdk/types-api';
+import type { Response } from 'express';
+import { Color, type GamePlayerValidation, type IRegisterFormValues } from '../libs/types/types-game/src/index';
+import type { IReqObjMaps } from '../libs/types/types-api/src/index';
 
 export const mockReqObj = (): Partial<IReqObjMaps> => {
   const req: Partial<IReqObjMaps> = {

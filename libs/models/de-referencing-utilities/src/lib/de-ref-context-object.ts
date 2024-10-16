@@ -1,4 +1,4 @@
-import { Context } from '@bgdk/chain';
+import type { Context } from '@bgdk/chain';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { IReqObjMaps } from '@bgdk/types-api';
 import { GameContextKeys } from '@bgdk/types-game';

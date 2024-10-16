@@ -1,7 +1,7 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
 import { GameInstanceID, Minute } from '@bgdk/types-game';
-import { InstanceOfGame, getCurrentMinute } from '../lib/instance-of-game.ts';
+import { InstanceOfGame, getCurrentMinute } from '../lib/instance-of-game.js';
 
 let activeGame: InstanceOfGame, minute: Minute, gameInstanceID: GameInstanceID;
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import findArtistError from '../errors/find-artist-error.ts';
-import findArtists from '../services/prisma/artist/find-artists.ts';
+import findArtistError from '../errors/find-artist-error.js';
+import findArtists from '../services/prisma/artist/find-artists.js';
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 

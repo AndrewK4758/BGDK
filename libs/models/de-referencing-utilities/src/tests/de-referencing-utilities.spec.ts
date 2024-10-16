@@ -2,13 +2,14 @@ import { Context, ContextBuilder } from '@bgdk/chain';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameContextKeys } from '@bgdk/types-game';
 import { Server } from 'socket.io';
-import { deRefContextObject } from '../lib/de-ref-context-object.ts';
+import { deRefContextObject } from '../lib/de-ref-context-object';
 import { Game } from '@bgdk/game';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
-import { Request, Response } from 'express';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
+import type { IReqObjMaps } from '@bgdk/types-api';
+import type { Response } from 'express';
 
-let context: Context, req: Partial<Request>, resp: Partial<Response>;
+let context: Context, req: Partial<IReqObjMaps>, resp: Partial<Response>;
 describe('Test de referencing context object', () => {
   beforeAll(() => {
     req = mockReqObj();

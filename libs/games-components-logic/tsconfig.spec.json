@@ -1,11 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../dist/out-tsc",
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "target": "ESNext",
-    "composite": true,
     "types": ["jest", "node"]
   },
   "include": [

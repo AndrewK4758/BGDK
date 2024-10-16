@@ -3,20 +3,21 @@
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "express"],
-    "composite": true,
+    "strict": false,
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext",
-    "strict": false
+    "moduleResolution": "NodeNext"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "../../../libs/**/*/src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "../../../libs/**/*/src/**/*.ts", "src/main.ts"],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../../libs/react-components/**/*",
-    "../../../libs/shared-react-components/**/*",
-    "../../../libs/**/*/src/tests/**/*.ts"
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/shared-react-components/**/*.ts",
+    "../../../libs/react-components/**/*.tsx",
+    "../../../libs/shared-react-components/**/*.tsx",
+    "../../../libs/**/*/src/tests/**/*.ts",
+    "../../../libs/**/*/src/tests/**/*.tsx"
   ],
   "references": [
     { "path": "../../../libs/password/tsconfig.lib.json" },

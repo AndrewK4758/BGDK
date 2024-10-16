@@ -20,8 +20,7 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/models/rule/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/models/rule",
-        "testFiles": ["./src/tests/*"]
+        "reportsDirectory": "../../coverage/libs/models/rule"
       }
     },
     "lint": {

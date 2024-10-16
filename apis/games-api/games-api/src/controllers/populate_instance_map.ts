@@ -4,8 +4,8 @@ import { IReqObjMaps } from '@bgdk/types-api';
 import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
 import { Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map.ts';
-import updateUserActiveGames from '../services/prisma/users/update-user-active-games.ts';
+import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map.js';
+import updateUserActiveGames from '../services/prisma/users/update-user-active-games.js';
 
 //Make a filter to parse the current game header and add to the request object
 

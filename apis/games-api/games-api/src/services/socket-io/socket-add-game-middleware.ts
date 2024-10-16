@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
 import { NextFunction } from 'express';
-import { allGamesMap } from '../../middleware/all-games-map.ts';
+import { allGamesMap } from '../../middleware/all-games-map.js';
 
 const addGameToSocketInstance = (socket: Socket, next: NextFunction) => {
   if (socket.handshake.headers['current-game']) {

@@ -1,6 +1,6 @@
 import { Board, Space, LiteSpace } from '@bgdk/games-components-logic';
 import { SpaceType, Color, AvatarTotem } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems.ts';
+import AvatarTotems from './avatar-totems.js';
 
 export const WINNING_POSITIONS: string[][] = [
   ['1', '2', '3'],

@@ -19,7 +19,11 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+  plugins: [
+    react({ babel: { targets: { esmodules: true } } }),
+    nxViteTsPaths({ debug: true }),
+    nxCopyAssetsPlugin(['*.md']),
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -39,6 +43,9 @@ export default defineConfig({
       output: {
         esModule: true,
         format: 'esm',
+        generatedCode: {
+          arrowFunctions: true,
+        },
       },
     },
     target: 'esnext',
@@ -48,6 +55,7 @@ export default defineConfig({
     color: true,
     platform: 'browser',
   },
+
   logLevel: 'info',
   appType: 'spa',
   publicDir: 'public',

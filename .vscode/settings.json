@@ -15,8 +15,5 @@
   },
   "jestrunner.codeLens": ["run", "debug", "coverage"],
   "testing.openTesting": "neverOpen",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "deno.enablePaths": [],
-  "deno.unstable": true,
-  "deno.importMap": "./import_map.json"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

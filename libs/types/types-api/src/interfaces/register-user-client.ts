@@ -1,4 +1,4 @@
-import { EmailAddress } from '../types/register-user.ts';
+import { EmailAddress } from '../types/register-user.js';
 import type { Multer } from 'multer';
 
 export interface IRegisterUserClient {

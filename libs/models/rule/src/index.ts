@@ -1,1 +1,1 @@
-export * from './lib/rule.ts';
+export * from './lib/rule.js';

@@ -6,23 +6,23 @@
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   },
   "dependencies": {
     "@bgdk/types-game": "0.0.1",
-    "@mui/icons-material": "6.1.2",
-    "@mui/material": "6.1.2",
+    "@mui/icons-material": "6.1.4",
+    "@mui/material": "6.1.4",
     "@vitejs/plugin-react": "^4.2.0",
     "formik": "^2.4.6",
     "react": "^18.3.1",
-    "react-router-dom": "6.26.2",
-    "vite": "5.4.8",
-    "vite-plugin-dts": "4.2.3",
+    "react-router-dom": "6.27.0",
+    "vite": "5.4.9",
+    "vite-plugin-dts": "4.2.4",
     "yup": "^1.4.0",
     "@bgdk/games-components-logic": "0.0.1",
-    "@nx/vite": "20.0.0",
+    "@nx/vite": "20.0.1",
     "axios": "1.7.7",
     "yup-password": "^0.4.0",
     "@bgdk/types-api": "0.0.1"

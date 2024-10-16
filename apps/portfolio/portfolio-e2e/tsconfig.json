@@ -4,19 +4,19 @@
     "allowJs": true,
     "outDir": "../../../dist/out-tsc",
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "moduleResolution": "NodeNext"
   },
   "include": [
-    "**/*.ts",
-    "**/*.js",
-    "playwright.config.mts",
+    // "**/*.ts",
+    // "**/*.js",
+    "playwright.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.spec.js",
     "src/**/*.test.ts",
     "src/**/*.test.js",
     "src/**/*.d.ts"
   ],
+  "exclude": ["../../../libs/**/*.tsconfig.json", "../../../libs/**/*.tsconfig.spec.json"],
   "references": [
     { "path": "../../../libs/models/de-referencing-utilities" },
     { "path": "../../../libs/chains-for-games" },

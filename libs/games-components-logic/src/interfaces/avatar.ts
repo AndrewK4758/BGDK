@@ -1,5 +1,5 @@
 import { Color } from '@bgdk/types-game';
-import { Space } from '../lib/space.ts';
+import { Space } from '../lib/space.js';
 
 export interface IAvatar {
   Name: string;

@@ -1,6 +1,6 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Color, SpaceType } from '@bgdk/types-game';
-import { Game } from '../lib/game.ts';
+import { Game } from '../lib/game';
 import { Player, Space } from '@bgdk/games-components-logic';
 
 let game: Game, instance: ChutesAndLadders, playerInTurn: Player;

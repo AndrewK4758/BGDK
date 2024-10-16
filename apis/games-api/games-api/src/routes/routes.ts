@@ -1,11 +1,11 @@
 import express, { Request, Response, Router } from 'express';
-import loginUser from '../controllers/login-user.ts';
-import performAction from '../controllers/perform_action_context_object.ts';
-import populateInstanceMaps from '../controllers/populate_instance_map.ts';
-import registerUser from '../controllers/register-user.ts';
-import sendGameList from '../controllers/send_game_list.ts';
-import validateUser from '../controllers/validate-user.ts';
-import middlewareRouter from '../middleware/request-filter.ts';
+import loginUser from '../controllers/login-user.js';
+import performAction from '../controllers/perform_action_context_object.js';
+import populateInstanceMaps from '../controllers/populate_instance_map.js';
+import registerUser from '../controllers/register-user.js';
+import sendGameList from '../controllers/send_game_list.js';
+import validateUser from '../controllers/validate-user.js';
+import middlewareRouter from '../middleware/request-filter.js';
 import multer from 'multer';
 
 const router: Router = Router();

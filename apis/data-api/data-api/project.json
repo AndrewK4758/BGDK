@@ -6,26 +6,23 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apis/data-api",
+        "esbuildConfig": "apis/data-api/data-api/esbuild.config.js",
         "main": "apis/data-api/data-api/src/main.ts",
+        "outputPath": "dist/apis/data-api",
+        "outputFileName": "main.js",
         "tsConfig": "apis/data-api/data-api/tsconfig.app.json",
-        "assets": ["apis/data-api/data-api/src/assets"],
-        "webpackConfig": "apis/data-api/data-api/webpack.config.cjs",
-        "deleteOutputPath": true,
-        "progress": true,
-        "verbose": true,
-        "watch": true
+        "assets": []
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "minify": false
+        },
         "production": {
-          "watch": false
+          "minify": true
         }
       }
     },

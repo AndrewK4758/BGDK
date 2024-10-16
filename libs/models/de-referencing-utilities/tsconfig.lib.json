@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "vite/client"],
-    "composite": true
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "src/**/*.ts",
@@ -17,24 +18,24 @@
     "../../games-components-logic/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
     "../../models/game-builder/src/**/*.ts",
-    "../../models/rule/src/**/*.ts",
-    "src/tests/de-referencing-utilities.spec.ts"
+    "../../models/rule/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../models/game-builder/src/tests/**/*.ts",
-    "../../models/rule/src/tests/**/*.ts",
-    "../instance-of-game/src/tests/**/*.ts",
-    "../all-games-map/src/tests/**/*.ts",
-    "../../game/src/tests/**/*.ts",
-    "../../chain/src/tests/**/*.ts",
-    "../../types/types-game/src/tests/**/*.ts",
-    "../../types/types-api/src/tests/**/*.ts",
-    "../../chutes-and-ladders/src/tests/**/*.ts",
-    "../../games-components-logic/src/tests/**/*.ts",
-    "../../games/**/*/src/tests/**/*.ts"
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "../../react-components/**/*.ts",
+    "../../react-components/**/*.tsx",
+    "../../shared-react-components/**/*.ts",
+    "../../shared-react-components/**/*.tsx",
+    "../../**/*.spec.ts",
+    "../../**/*/.spec.tsx",
+    "../../**/*.test.ts",
+    "../../**/*/.test.tsx"
   ],
   "references": [
     { "path": "../rule/tsconfig.lib.json" },

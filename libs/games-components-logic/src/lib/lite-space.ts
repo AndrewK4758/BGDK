@@ -1,4 +1,4 @@
-import { ILiteSpace } from '../interfaces/lite-space.ts';
+import { ILiteSpace } from '../interfaces/lite-space.js';
 
 export class LiteSpace implements ILiteSpace {
   display: string;

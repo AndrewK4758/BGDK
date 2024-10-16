@@ -4,14 +4,14 @@ import { Game } from '@bgdk/game';
 import { Avatar, Player } from '@bgdk/games-components-logic';
 import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
 import { Color, GameContextKeys, SpaceType, TurnStatus } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.mts';
+import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
 import { Request, Response } from 'express';
-import { moveAvatar } from '../lib/commands/action-take-turn/move-avatar.ts';
-import { rollDice } from '../lib/commands/action-take-turn/roll-dice.ts';
-import { rotatePlayer } from '../lib/commands/action-take-turn/rotate-player.ts';
-import { takeTurnStart } from '../lib/commands/action-take-turn/take-turn-start.ts';
-import { verifyPlayerTakingTurn } from '../lib/commands/action-take-turn/verify-player-taking-turn.ts';
-import { wonGameCheckChutesAndLadders } from '../lib/commands/action-take-turn/won-game-chutes-and-ladders.ts';
+import { moveAvatar } from '../lib/commands/action-take-turn/move-avatar.js';
+import { rollDice } from '../lib/commands/action-take-turn/roll-dice.js';
+import { rotatePlayer } from '../lib/commands/action-take-turn/rotate-player.js';
+import { takeTurnStart } from '../lib/commands/action-take-turn/take-turn-start.js';
+import { verifyPlayerTakingTurn } from '../lib/commands/action-take-turn/verify-player-taking-turn.js';
+import { wonGameCheckChutesAndLadders } from '../lib/commands/action-take-turn/won-game-chutes-and-ladders.js';
 
 interface ICtxOutput {
   turnStatus: TurnStatus;

@@ -7,7 +7,7 @@ import {
   TOTAL_SPACES,
   uniqueSpecialValues,
   specialsDumps,
-} from '../lib/chutes_and_ladders.ts';
+} from '../lib/chutes_and_ladders';
 import { Space } from '@bgdk/games-components-logic';
 
 let game: ChutesAndLadders, gameBoard: GameBoard;

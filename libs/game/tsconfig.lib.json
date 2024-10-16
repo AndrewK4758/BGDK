@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "vite/client"],
-    "composite": true
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
 
   "include": [

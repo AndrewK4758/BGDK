@@ -18,10 +18,10 @@
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
-    "../../libs/**/*/src/tests/**/*.ts",
     "../../libs/socket-io/src/**/*.ts",
     "../../libs/password/src/**/*.ts",
-    "../../libs/**/*/src/tests/**/*.tsx"
+    "../../libs/**/*/src/tests/**/*.tsx",
+    "../../libs/**/*/src/tests/**/*.ts"
   ],
   "include": [
     "src/**/*.js",

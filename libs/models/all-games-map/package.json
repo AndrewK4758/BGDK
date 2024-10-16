@@ -4,10 +4,12 @@
   "type": "module",
   "dependencies": {
     "@bgdk/instance-of-game": "0.0.1",
-    "@bgdk/types-game": "0.0.1"
+    "@bgdk/types-game": "0.0.1",
+    "@bgdk/game": "0.0.1",
+    "@bgdk/chutes-and-ladders": "0.0.1"
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "typings": "./index.d.ts",
   "private": true
 }

@@ -11,7 +11,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/shared-react-components',
 
   plugins: [
-    react(),
+    react({ babel: { targets: { esmodules: true } } }),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') }),
@@ -43,6 +43,18 @@ export default defineConfig({
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      perf: true,
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
     },
+    target: 'esnext',
   },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'browser',
+  },
+  logLevel: 'info',
 });
