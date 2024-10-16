@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "express"],
-    "strict": false,
+    "strict": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },

@@ -10,6 +10,7 @@ import { Action, ActionType } from './socket-reducer';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.primary.main,
+
   fontSize: '1.75rem',
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '17px',
@@ -25,39 +26,46 @@ interface TakeTurnProps {
   avatarInTurn: string;
 }
 
-export default function TakeTurnTicTacToe({ dispatch, socket, position, avatarInTurn }: TakeTurnProps) {
+const TakeTurnTicTacToe = ({ dispatch, socket, position, avatarInTurn }: TakeTurnProps) => (
+  <Button
+    variant="contained"
+    type="button"
+    onClick={() => handleTakeTurn({ dispatch, socket, position, avatarInTurn })}
+    sx={breakpointsTakeTurnButton}
+  >
+    Take Turn
+  </Button>
+);
+
+export default TakeTurnTicTacToe;
+
+const baseURL = import.meta.env.VITE_GAMES_API_URL;
+
+const handleTakeTurn = async ({ dispatch, socket, position, avatarInTurn }: TakeTurnProps) => {
   const gameInfo = getGameInstanceInfo() as GamePlayerValidation;
   const playersIds = JSON.parse(sessionStorage.getItem('playersIds') as string);
   const playerId = playersIds[avatarInTurn];
   gameInfo.playerID = playerId;
+
   const reqHeaders = {
     headers: {
       'current-game': JSON.stringify(gameInfo),
     },
   };
 
-  console.log(position?.textContent, 'out of button');
-  const handleTakeTurn = async () => {
-    const baseURL = import.meta.env.VITE_GAMES_API_URL;
-    console.log(position, 'in button');
-    try {
-      const resp = await axios.patch(
-        `${baseURL}/games/Tic-Tac-Toe/take-turn`,
-        { position: position?.textContent },
-        reqHeaders,
-      );
-      console.log(resp.data.turnStatus);
-      dispatch({ type: ActionType.TAKE_TURN, socket: socket });
-      return null;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
+  try {
+    const resp = await axios.patch(
+      `${baseURL}/games/Tic-Tac-Toe/take-turn`,
+      { position: position?.textContent },
+      reqHeaders,
+    );
 
-  return (
-    <Button variant="contained" type="button" onClick={handleTakeTurn} sx={breakpointsTakeTurnButton}>
-      Take Turn
-    </Button>
-  );
-}
+    console.log(resp.data.turnStatus);
+    dispatch({ type: ActionType.TAKE_TURN, socket: socket });
+
+    return null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};

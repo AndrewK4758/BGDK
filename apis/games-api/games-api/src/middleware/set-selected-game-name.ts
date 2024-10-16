@@ -1,7 +1,6 @@
-// import type { Request } from 'express';
+import type { Request } from 'express';
 import type { GameNameString } from '@bgdk/types-game';
-import type { IReqObjMaps } from '@bgdk/types-api';
 
-const useSetSelectedGameName = (req: IReqObjMaps): GameNameString => req.params['id'].replace(/-/g, ' ');
+const useSetSelectedGameName = (req: Request): GameNameString => req.params['id'].replace(/-/g, ' ');
 
 export default useSetSelectedGameName;

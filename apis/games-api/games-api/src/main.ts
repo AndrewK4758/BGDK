@@ -7,7 +7,7 @@ import { ServerOptions } from 'socket.io';
 import router, { GameRoutes } from './routes/routes.js';
 import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware.js';
 import socketBoardAction from './services/socket-io/socket-board-action.js';
-import {fileURLToPath} from 'url'
+import { fileURLToPath } from 'url';
 
 // FOR ESM MODULE BUILD
 const __filename = fileURLToPath(import.meta.url);
@@ -47,7 +47,7 @@ export const socketServer = new SocketServer(
   httpServer,
   serverOptions,
   [addGameToSocketInstance],
-  [['connection', () => socketBoardAction]],
+  [['connection', socketBoardAction]],
 );
 
 new GameRoutes();

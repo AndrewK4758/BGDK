@@ -7,7 +7,7 @@ export interface IBuiltGame {
   description?: string;
   imageURL?: string;
   rules: IRule[];
-  chain: Chain;
+  chain: Chain | null;
   instance(): unknown;
 }
 

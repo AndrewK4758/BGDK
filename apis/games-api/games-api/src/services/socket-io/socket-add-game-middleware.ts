@@ -1,9 +1,9 @@
 import { Socket } from 'socket.io';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
-import { NextFunction } from 'express';
 import { allGamesMap } from '../../middleware/all-games-map.js';
+import type { SocketMiddleware, SocketMiddlewareNext } from '@bgdk/socket-io';
 
-const addGameToSocketInstance = (socket: Socket, next: NextFunction) => {
+const addGameToSocketInstance: SocketMiddleware = (socket: Socket, next: SocketMiddlewareNext) => {
   if (socket.handshake.headers['current-game']) {
     const gameID = (JSON.parse(socket.handshake.headers['current-game'] as string) as GamePlayerValidation)
       .gameInstanceID as GameInstanceID;

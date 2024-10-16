@@ -14,9 +14,9 @@ declare global {
       instanceMap: IInstanceTimeMap;
       gameSpecificChain: Chain | null;
       selectedGameName: GameNameString;
-      selectedGame: IBuiltGame;
+      selectedGame: IBuiltGame | undefined;
       loginData: LoginData;
-      activeGameInstance: IInstanceOfGame;
+      activeGameInstance: IInstanceOfGame | null;
       playerID: PlayerID;
     }
   }

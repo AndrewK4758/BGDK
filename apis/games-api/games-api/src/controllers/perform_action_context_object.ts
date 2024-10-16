@@ -14,6 +14,7 @@ const performAction = async (
   console.log('Perform Action Called');
   //check for no rest-api objects
   if (!req && !resp) {
+
     const ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, actionWS);
     ctx.put(GameContextKeys.IO, socketServer.io);

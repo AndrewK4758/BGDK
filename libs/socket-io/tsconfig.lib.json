@@ -4,7 +4,8 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node"],
     "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "strict": true
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "include": ["src/**/*.ts"]

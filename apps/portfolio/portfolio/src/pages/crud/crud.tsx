@@ -136,7 +136,11 @@ const Crud = () => {
         component={'div'}
         key={`crud-app-wrapper`}
         id={`crud-app-wrapper`}
-        sx={{ width: '90%', minHeight: '100%', height: 'fit-content' }}
+        sx={{
+          width: '90%',
+          minHeight: '100%',
+          height: 'fit-content',
+        }}
       >
         <CrudHome />
       </Box>

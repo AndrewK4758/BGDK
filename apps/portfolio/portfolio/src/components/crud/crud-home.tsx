@@ -15,6 +15,7 @@ import axios from 'axios';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import CrudTheme from '../../styles/crud-theme';
+import Theme from '../../styles/theme';
 
 type InitVals = {
   artist: Partial<artist>[];
@@ -38,12 +39,11 @@ const CrudHome = () => {
         component={'div'}
         id="crud-home-container"
         flex={'1 0 100%'}
-        bgcolor={'#FFFFFF'}
         borderRadius={1}
-        sx={{ display: 'flex', flexDirection: 'column' }}
+        sx={{ display: 'flex', flexDirection: 'column', backgroundColor: Theme.palette.background.default }}
       >
         <Box sx={{ height: 'fit-content', display: 'flex', padding: 2, flex: 2 }}>
-          <Box component={'div'} id="data-grid-grids" flex={3}>
+          <Box component={'div'} id="data-grid-grids" flex={3} sx={{ backgroundColor: 'white' }}>
             {pathname === '/crud' && (
               <Text
                 titleText={'Make A Selection Above'}

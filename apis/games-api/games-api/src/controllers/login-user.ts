@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import verifyUser from '../services/prisma/users/verify-user.js';
 import notRegisteredUserError from '../errors/not-registered-user-error.js';
 import findUser from '../services/prisma/users/find-user.js';
+import type { users } from '@prisma/client';
 
 const loginUser = async (req: Request, resp: Response) => {
   try {
@@ -11,19 +12,20 @@ const loginUser = async (req: Request, resp: Response) => {
       console.log('no user');
       resp.status(401).json(notRegisteredUserError());
     }
-    const verifiedUser = await verifyUser(password, user.password);
+    const verifiedUser = await verifyUser(password, (user as users).password);
     if (!verifiedUser) {
       resp.status(401).json({ errorMessage: 'Incorrect password. Please try again' });
-    }
-    const activeUser = {
-      id: user.id,
-      playerName: user.player_name,
-      friends: user.friends,
-      activeGames: user.active_games,
-      thumbnail: user.thumbnail,
-    };
+    } else {
+      const activeUser = {
+        id: (user as users).id,
+        playerName: (user as users).player_name,
+        friends: (user as users).friends,
+        activeGames: (user as users).active_games,
+        thumbnail: (user as users).thumbnail,
+      };
 
-    resp.status(200).json(activeUser);
+      resp.status(200).json(activeUser);
+    }
   } catch (err) {
     console.error(err);
     resp.status(500).json({ errorMessage: 'Login failed' });

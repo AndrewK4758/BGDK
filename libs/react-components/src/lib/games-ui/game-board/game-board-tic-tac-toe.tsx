@@ -3,8 +3,7 @@ import Grid2 from '@mui/material/Grid2';
 import Text from '../text/text.tsx';
 import { Theme } from '../../theme/theme.tsx';
 import { ILiteSpace } from '@bgdk/games-components-logic';
-import { CSSProperties } from 'react';
-
+import type { CSSProperties } from 'react';
 
 const breakpointsRowSx: SxProps = {
   display: 'flex',
@@ -40,7 +39,6 @@ export interface GameBoardPropsTicTacToe {
   container: boolean | undefined;
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse' | undefined;
   wrap: 'wrap' | 'nowrap' | undefined;
-  id: string | number;
   gridSx?: SxProps;
   rowSx?: SxProps;
   state: HTMLDivElement | undefined;
@@ -53,43 +51,54 @@ export interface GameBoardPropsTicTacToe {
  * @returns list of spaces for tic tac toe board
  */
 
-export function GameBoardMapTicTacToe({
+export const GameBoardMapTicTacToe = ({
   row,
   columns,
   container,
   direction,
   wrap,
-  id,
   state,
   setStateAction,
-}: GameBoardPropsTicTacToe) {
-  return (
-    <Grid2
-      columns={columns}
-      container={container}
-      direction={direction}
-      wrap={wrap}
-      key={id}
-      sx={{ height: '33.3%', flex: '1 0 100%' }}
-    >
-      {row.map((e, _i, _arr) => {
-        return (
-          <Grid2
-            component={'div'}
-            sx={breakpointsRowSx}
-            onClick={e => setStateAction(e.currentTarget)}
-            style={state?.textContent === e.display ? { backgroundColor: '#FFD300', color: '#58278b' } : {}}
-          >
-            {e.display.indexOf('g') === e.display.length - 1 ? (
-              <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />
-            ) : (
-              <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
-            )}
-          </Grid2>
-        );
-      })}
-    </Grid2>
-  );
-}
+}: GameBoardPropsTicTacToe) => (
+  <Grid2
+    columns={columns}
+    container={container}
+    direction={direction}
+    wrap={wrap}
+    sx={{ height: '33.3%', flex: '1 0 100%' }}
+  >
+    {row.map((e, _i, _arr) => {
+      return (
+        <Grid2
+          component={'div'}
+          sx={breakpointsRowSx}
+          onClick={e => setStateAction(e.currentTarget)}
+          style={
+            state?.textContent === e.display
+              ? { backgroundColor: '#FFD300', color: '#58278b' }
+              : { backgroundColor: Theme.palette.background.default }
+          }
+        >
+          {e.display.indexOf('g') === e.display.length - 1 ? (
+            <img
+              key={`tic-tac-toe-space-${e.display}`}
+              src={`./game-avatars/${e.display}`}
+              alt={`${e.display} game piece`}
+              style={avatarSize}
+            />
+          ) : (
+            <Text
+              key={`tic-tac-toe-space-${e.display}`}
+              titleVariant="body2"
+              titleText={e.display}
+              sx={breakpointsSpaceSx}
+            />
+          )}
+        </Grid2>
+      );
+    })}
+  </Grid2>
+);
+
 
 export default GameBoardMapTicTacToe;

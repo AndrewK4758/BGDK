@@ -17,7 +17,7 @@ const getArtists = async (req: Request, resp: Response, next: NextFunction): Pro
       } as Prisma.artistFindManyArgs<DefaultArgs>;
 
       const allArtists = await findArtists(query);
-      console.log(allArtists);
+
       resp.status(200).json({ allArtists: allArtists });
     } catch (err) {
       console.error(err);

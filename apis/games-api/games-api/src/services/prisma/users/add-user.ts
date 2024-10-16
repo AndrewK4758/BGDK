@@ -2,6 +2,7 @@ import { generatePassword } from '@bgdk/password';
 import { prisma } from '@bgdk/prisma';
 import type { IRegisterUser } from '@bgdk/types-api';
 import { users } from '@prisma/client';
+import { type PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const addUser = async ({
   id,
@@ -29,12 +30,13 @@ const addUser = async ({
         role: role,
       },
     });
-  } catch (err) {
-    if (err.meta.target[0] === 'email') {
-      console.error(err);
+  } catch (error) {
+    const err = error as PrismaClientKnownRequestError;
+    if (err) {
+      console.error((err.meta as Record<string, string>).target[0] === 'email');
       throw new Error('Email is already registered');
     } else {
-      throw new Error(err.message);
+      throw new Error((error as Error).message);
     }
   }
 };

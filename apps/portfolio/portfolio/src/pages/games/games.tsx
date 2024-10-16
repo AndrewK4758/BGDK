@@ -43,7 +43,7 @@ const Games = () => {
 
   const handleClick = (gameName: string) => {
     setLoading(true);
-    submit(gameName, { method: 'post', relative: 'path', replace: true, encType: 'text/plain' });
+    submit(gameName, { method: 'post', relative: 'path', encType: 'text/plain' });
   };
 
   return (

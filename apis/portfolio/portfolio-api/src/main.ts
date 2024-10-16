@@ -1,7 +1,7 @@
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import * as path from 'path';
-import router, { PortfolioRoutes } from './routes/routes.ts';
+import router, { PortfolioRoutes } from './routes/routes.js';
 import { fileURLToPath } from 'url';
 
 // FOR ESM MODULE BUILD

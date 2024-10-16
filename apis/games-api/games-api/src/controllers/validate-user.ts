@@ -1,10 +1,9 @@
-import { IReqObjMaps } from '@bgdk/types-api';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import findUser from '../services/prisma/users/find-user.js';
 import type { Prisma } from '@prisma/client';
 import type { DefaultArgs } from '@prisma/client/runtime/library';
 
-const validateUser = async (req: IReqObjMaps, resp: Response) => {
+const validateUser = async (req: Request, resp: Response) => {
   const { email } = req.query;
   try {
     const query: Prisma.usersFindUniqueArgs<DefaultArgs> = {

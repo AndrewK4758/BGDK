@@ -3,6 +3,7 @@ import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Built_GameBoard } from '../../games/active_game_session';
 
+
 const breakpointsGameBoardBox: SxProps = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -24,25 +25,24 @@ interface ShowGameBoardProps {
  * @returns a rendered tic tac toe game board
  */
 
-const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps) => {
-  return (
-    <Box component={'section'} sx={breakpointsGameBoardBox}>
-      {board.map((e, i, _arr): JSX.Element => {
-        return (
-          <GameBoardMapTicTacToe
-            row={e}
-            columns={3}
-            container={true}
-            direction="row"
-            wrap="wrap"
-            id={`Row ${i}`}
-            state={state}
-            setStateAction={setStateAction}
-          />
-        );
-      })}
-    </Box>
-  );
-};
+const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps) => (
+  <Box component={'section'} sx={breakpointsGameBoardBox}>
+    {board.map((e, i, _arr): JSX.Element => {
+      return (
+        <GameBoardMapTicTacToe
+          row={e}
+          columns={3}
+          key={`tic-tac-toe-row-${i}`}
+          container={true}
+          direction="row"
+          wrap="wrap"
+          state={state}
+          setStateAction={setStateAction}
+        />
+      );
+    })}
+  </Box>
+);
+
 
 export default ShowGameBoardTicTacToe;

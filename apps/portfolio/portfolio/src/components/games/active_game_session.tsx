@@ -37,7 +37,7 @@ const breakpointsPlayerInTurnText: SxProps = {
 };
 
 const breakpointsBottomMenuButtonsBox: SxProps = {
-  flex: '0 1 25%',
+  flex: '0 1 30%',
   display: 'flex',
   justifyContent: 'space-evenly',
   [Theme.breakpoints.down('tablet')]: {
@@ -85,6 +85,7 @@ const ActiveGameSession = () => {
     }
 
     socket.emit('action', { action: ActionType.BOARD });
+
     socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
       const gameBoardClient: Built_GameBoard = [];
       const maxRowLength = Math.sqrt(gameBoard.length);
@@ -158,7 +159,7 @@ const ActiveGameSession = () => {
               position={space}
             />
           )}
-          <ResetGame dispatch={dispatch} socket={socket} />
+          <ResetGame dispatch={dispatch} socket={socket} setSpace={setSpace} />
         </Box>
       </Container>
     </Paper>

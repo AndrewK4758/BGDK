@@ -1,8 +1,8 @@
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { Dispatch } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Dispatch, type SetStateAction } from 'react';
+import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import Theme from '../../../styles/theme';
 import getGameInstanceInfo from '../../../utils/utils';
@@ -19,37 +19,42 @@ const breakpointsResetGameButton: SxProps = {
   },
 };
 
+const baseURL = import.meta.env.VITE_GAMES_API_URL;
+
 interface ResetGameProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
+  setSpace: Dispatch<SetStateAction<HTMLDivElement | undefined>>;
 }
 
-export default function ResetGame({ dispatch, socket }: ResetGameProps) {
-  const { pathname } = useLocation();
-  const temp = pathname.split('/');
-  const id = temp[temp.length - 1];
-
-  const handleResetGame = async () => {
-    const __baseURL__ = import.meta.env.VITE_GAMES_API_URL;
-    const reqHeaders = {
-      headers: {
-        'current-game': JSON.stringify(getGameInstanceInfo()),
-        Authorization: sessionStorage.getItem('token'),
-      },
-    };
-    try {
-      await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, reqHeaders);
-      dispatch({ type: ActionType.RESET, socket: socket });
-      return null;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  };
+export default function ResetGame({ dispatch, socket, setSpace }: ResetGameProps) {
+  const { id } = useParams();
 
   return (
-    <Button onClick={handleResetGame} variant="contained" type="button" sx={breakpointsResetGameButton}>
+    <Button
+      onClick={() => handleResetGame({ dispatch, socket, setSpace, id })}
+      variant="contained"
+      type="button"
+      sx={breakpointsResetGameButton}
+    >
       Reset
     </Button>
   );
 }
+
+const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProps & { id: string }) => {
+  const reqHeaders = {
+    headers: {
+      'current-game': JSON.stringify(getGameInstanceInfo()),
+    },
+  };
+  try {
+    await axios.patch(`${baseURL}/games/${id}/reset`, {}, reqHeaders);
+    dispatch({ type: ActionType.RESET, socket: socket });
+    setSpace(undefined);
+    return null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

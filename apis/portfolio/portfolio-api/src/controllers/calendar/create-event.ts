@@ -1,8 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
-import type { Auth } from 'googleapis';
-import { calendar } from 'googleapis/build/src/apis/calendar';
-import userTokensMap from '../../models/users-tokens-map.ts';
-import oauth2Client from '../../services/google-oauth.ts';
+import { google, type Auth } from 'googleapis';
+import userTokensMap from '../../models/users-tokens-map.js';
+import oauth2Client from '../../services/google-oauth.js';
 
 const createEvents = async (req: Request, resp: Response, next: NextFunction) => {
   try {
@@ -19,7 +18,7 @@ const createEvents = async (req: Request, resp: Response, next: NextFunction) =>
 
     oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-    const calendarClient = calendar('v3');
+    const calendarClient = google.calendar('v3');
 
     const result = await calendarClient.events.insert({
       auth: oauth2Client,
