@@ -6,7 +6,21 @@
     "moduleResolution": "NodeNext",
     "module": "NodeNext"
   },
-  "include": ["src/**/*.ts", "../../libs/**/*/src/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../models/rule/src/**/*.ts",
+    "../models/game-builder/src/**/*.ts",
+    "../models/all-games-map/src/**/*.ts",
+    "../types/types-api/src/**/*.ts",
+    "../games/tic-tac-toe/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../models/de-referencing-utilities/src/**/*.ts",
+    "../chain/src/**/*.ts"
+  ],
 
   "exclude": [
     "jest.config.ts",
@@ -15,12 +29,18 @@
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../libs/react-components/**/*.ts",
-    "../../libs/shared-react-components/**/*.ts",
-    "../../libs/react-components/**/*.tsx",
-    "../../libs/shared-react-components/**/*.tsx",
-    "../../libs/**/*/src/tests/**/*.ts",
-    "../../libs/**/*/src/tests/**/*.tsx"
+    "../models/rule/src/tests/**/*.ts",
+    "../models/game-builder/src/tests/**/*.ts",
+    "../models/all-games-map/src/tests/**/*.ts",
+    "../types/types-api/src/tests/**/*.ts",
+    "../games/tic-tac-toe/src/tests/**/*.ts",
+    "../games-components-logic/src/tests/**/*.ts",
+    "../types/types-game/src/tests/**/*.ts",
+    "../games/chutes-and-ladders/src/tests/**/*.ts",
+    "../game/src/tests/**/*.ts",
+    "../models/instance-of-game/src/tests/**/*.ts",
+    "../models/de-referencing-utilities/src/tests/**/*.ts",
+    "../chain/src/tests/**/*.ts"
   ],
 
   "references": [

@@ -1,4 +1,4 @@
-import type { Context, Command, Chain } from './chain.ts';
+import type { Context, Command, Chain } from './chain.js';
 
 class BaseContext implements Context {
   state: Map<string, unknown>;

@@ -2,6 +2,12 @@ import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import * as path from 'path';
 import router, { PortfolioRoutes } from './routes/routes.ts';
+import { fileURLToPath } from 'url';
+
+// FOR ESM MODULE BUILD
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// FOR ESM MODULE BUILD
 
 const app: Express = express();
 

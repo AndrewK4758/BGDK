@@ -1,6 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
@@ -11,11 +14,14 @@
     "src/**/*.d.ts",
     "src/**/*.ts",
     "../../../libs/**/*/src/**/*.ts",
-    "./__mocks__/**/*.ts"
+    "../../../__mocks__/**/*.ts",
+    "src/games-api/games-api.spec.mts"
   ],
   "exclude": [
-    "../../../libs/react-components/**/*",
-    "../../../libs/shared-react-components/**/*",
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/shared-react-components/**/*.ts",
+    "../../../libs/react-components/**/*.tsx",
+    "../../../libs/shared-react-components/**/*.tsx",
     "../../../libs/**/*/src/tests/**/*.ts"
   ]
 }

@@ -33,12 +33,5 @@
     "../../game/src/tests/**/*.ts",
     "../instance-of-game/src/tests/**/*.ts"
   ],
-  "references": [
-    { "path": "../../games-components-logic" },
-    { "path": "../../types/types-game" },
-    { "path": "../../games/chutes-and-ladders" },
-    { "path": "../rule" },
-    { "path": "../../chain" },
-    { "path": "./tsconfig.lib.json" }
-  ]
+
 }

@@ -1,5 +1,5 @@
-import type { Context } from '../lib/chain';
-import { CommandBuilder, ChainBuilder, ContextBuilder } from '../lib/base';
+import type { Context } from '../lib/chain.js';
+import { CommandBuilder, ChainBuilder, ContextBuilder } from '../lib/base.js';
 
 describe('Test simple command & simple chain', () => {
   describe('Simple Command', () => {

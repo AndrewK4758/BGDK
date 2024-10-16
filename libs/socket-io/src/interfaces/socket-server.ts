@@ -1,5 +1,5 @@
 import { Server } from 'socket.io';
-import { socketEvent, socketMiddleware } from '../types/socket-server.ts';
+import { socketEvent, socketMiddleware } from '../types/socket-server.js';
 
 export interface ISocketServer {
   io: Server;

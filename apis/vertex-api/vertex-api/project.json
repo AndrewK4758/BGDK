@@ -17,9 +17,9 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
-        "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.js",
+        "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.cjs",
         "main": "apis/vertex-api/vertex-api/src/main.ts",
         "outputPath": "dist/apis/vertex-api",
         "outputFileName": "main.js",

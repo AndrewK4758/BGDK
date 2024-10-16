@@ -12,7 +12,6 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.ts",
-    "src/**/*.mts",
     "../rule/src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
     "../game-builder/src/**/*.ts",

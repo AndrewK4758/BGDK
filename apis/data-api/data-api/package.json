@@ -2,6 +2,7 @@
   "name": "@bgdk/data-api",
   "version": "0.0.1",
   "type": "module",
+  "private": true,
   "dependencies": {
     "@bgdk/prisma": "0.0.1",
     "@prisma/client": "5.21.0",

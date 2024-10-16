@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "esbuildConfig": "apis/data-api/data-api/esbuild.config.js",
+        "esbuildConfig": "apis/data-api/data-api/esbuild.config.cjs",
         "main": "apis/data-api/data-api/src/main.ts",
         "outputPath": "dist/apis/data-api",
         "outputFileName": "main.js",

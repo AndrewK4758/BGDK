@@ -17,8 +17,10 @@
     "../../../libs/**/*/src/**/*.ts"
   ],
   "exclude": [
-    "../../../libs/react-components/**/*",
-    "../../../libs/shared-react-components/**/*",
+    "../../../libs/react-components/**/*.ts",
+    "../../../libs/shared-react-components/**/*.ts",
+    "../../../libs/react-components/**/*.tsx",
+    "../../../libs/shared-react-components/**/*.tsx",
     "../../../libs/**/*/src/tests/**/*.ts"
   ]
 }
