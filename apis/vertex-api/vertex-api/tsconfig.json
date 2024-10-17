@@ -3,14 +3,10 @@
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../../libs/gen-ai/vertex-ai" },
+    { "path": "../../../libs/socket-io" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
   ],
-  "compilerOptions": {
-
-  }
+  "compilerOptions": {}
 }

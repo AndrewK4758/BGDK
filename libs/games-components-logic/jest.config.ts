@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'games-components-logic',
   preset: '../../jest.preset.js',

@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'game-builder',
   preset: '../../../jest.preset.js',

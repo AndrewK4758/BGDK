@@ -32,6 +32,7 @@
     { "path": "./apps/data-ui" },
     { "path": "./libs/prisma" },
     { "path": "./libs/chain" },
-    { "path": "./libs/game" }
+    { "path": "./libs/game" },
+    { "path": "./libs/gen-ai/vertex-ai" }
   ]
 }

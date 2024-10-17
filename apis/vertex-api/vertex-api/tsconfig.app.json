@@ -6,6 +6,15 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "include": ["src/**/*.ts", "../../../libs/socket-io/src/**/*.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": ["src/**/*.ts", "../../../libs/socket-io/src/**/*.ts", "../../../libs/gen-ai/vertex-ai/src/**/*.ts"],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../../libs/gen-ai/vertex-ai/src/tests/**/*.ts"
+  ],
+  "references": [
+    { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
+    { "path": "../../../libs/socket-io/tsconfig.lib.json" }
+  ]
 }

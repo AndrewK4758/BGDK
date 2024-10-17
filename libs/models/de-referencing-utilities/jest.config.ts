@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'de-referencing-utilities',
   preset: '../../../jest.preset.js',

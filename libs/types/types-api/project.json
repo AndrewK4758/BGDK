@@ -15,7 +15,6 @@
         "assets": ["libs/types/types-api/*.md"]
       }
     },
-
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],

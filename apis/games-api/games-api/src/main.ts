@@ -5,8 +5,8 @@ import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
 import router, { GameRoutes } from './routes/routes.js';
-import addGameToSocketInstance from './services/socket-io/socket-add-game-middleware.js';
-import socketBoardAction from './services/socket-io/socket-board-action.js';
+import addGameToSocketInstance from './middleware/socket-add-game-middleware.ts';
+import socketBoardAction from './events/socket-board-action.ts';
 import { fileURLToPath } from 'url';
 
 // FOR ESM MODULE BUILD

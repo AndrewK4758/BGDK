@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'instance-of-game',
   preset: '../../../jest.preset.js',

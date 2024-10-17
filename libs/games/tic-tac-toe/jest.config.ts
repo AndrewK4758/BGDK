@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'tic-tac-toe',
   preset: '../../../jest.preset.js',

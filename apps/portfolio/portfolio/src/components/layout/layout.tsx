@@ -3,12 +3,10 @@ import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import GameContextProvider from '../../contexts/game-context';
+import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
-
 import Menus from '../menus/menus';
-import Home from '../../pages/home/home';
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
@@ -72,11 +70,9 @@ const Layout = () => (
           minHeight: '50vh',
         }}
       >
-        <GameContextProvider>
-          <Suspense fallback={<Waiting />}>
-            <Outlet />
-          </Suspense>
-        </GameContextProvider>
+        <Suspense fallback={<Waiting />}>
+          <Outlet />
+        </Suspense>
       </Box>
     </Box>
     <Menus />

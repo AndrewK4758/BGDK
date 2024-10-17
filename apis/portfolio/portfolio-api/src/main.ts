@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 
+
 export const corsOptions: CorsOptions = {
   origin: ['http://localhost:4700', 'https://andrew-k.us', 'http://localhost:4758', '*'],
   methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],

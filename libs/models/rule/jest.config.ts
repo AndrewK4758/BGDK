@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'rule',
   preset: '../../../jest.preset.js',

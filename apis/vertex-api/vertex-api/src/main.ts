@@ -2,11 +2,10 @@ import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import VertexApiRoutes from './routes/routes.ts';
 import { fileURLToPath } from 'url';
 import { SocketServer } from '@bgdk/socket-io';
 import type { ServerOptions } from 'socket.io';
-import handleTextDataChunks from './services/socket-io/listeners.ts';
+import handleTextDataChunks from './controllers/gen-ai-text-handler.ts';
 
 // FOR ESM MODULE BUILD
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +13,6 @@ const __dirname = path.dirname(__filename);
 // FOR ESM MODULE BUILD
 
 const app: Express = express();
-const router = express.Router();
 
 export const corsOptions: CorsOptions = {
   origin: '*',
@@ -30,7 +28,6 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/api/v1', router);
 
 const serverOptions: Partial<ServerOptions> = {
   cleanupEmptyChildNamespaces: true,
@@ -38,8 +35,6 @@ const serverOptions: Partial<ServerOptions> = {
 };
 
 new SocketServer(httpServer, serverOptions, [], [['connection', handleTextDataChunks]]);
-
-new VertexApiRoutes(router);
 
 const port = process.env.PORT || 5000;
 

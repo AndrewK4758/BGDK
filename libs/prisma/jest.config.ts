@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'prisma',
   preset: '../../jest.preset.js',

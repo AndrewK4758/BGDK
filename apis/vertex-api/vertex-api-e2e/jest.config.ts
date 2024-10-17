@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'vertex-api-e2e',
   preset: '../../../jest.preset.js',

@@ -2,7 +2,12 @@
   "extends": "../../../tsconfig.base.json",
   "files": [],
   "include": [],
-  "references": [{ "path": "../vertex-api" }, { "path": "./tsconfig.spec.json" }],
+  "references": [
+    { "path": "../../../libs/gen-ai/vertex-ai" },
+    { "path": "../../../libs/socket-io" },
+    { "path": "../vertex-api" },
+    { "path": "./tsconfig.spec.json" }
+  ],
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext"

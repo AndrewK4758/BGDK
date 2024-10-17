@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'chain',
   preset: '../../jest.preset.js',

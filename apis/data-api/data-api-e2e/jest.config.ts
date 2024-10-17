@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'data-api-e2e',
   preset: '../../../jest.preset.js',

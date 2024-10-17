@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ManagerOptions, Socket } from 'socket.io-client';
+import type { ManagerOptions, Socket } from 'socket.io-client';
 import getGameInstanceInfo from '../../utils/utils';
 import ClientSocket from '../../utils/web-socket/socket-instance';
 import ActiveAvatars from './game_board/active_avatars';
@@ -61,15 +61,15 @@ const socketInit = () => {
  */
 
 const ActiveGameSession = () => {
-  const managerOptions: Partial<ManagerOptions> = {
+  const socketManagerOptions: Partial<ManagerOptions> = {
     autoConnect: false,
     extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) },
   };
 
-  const clientSocket = new ClientSocket(managerOptions);
+  const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_GAMES, socketManagerOptions);
+  const socketRef = useRef<Socket>(clientSocket.Socket);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
   const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
-  const socketRef = useRef<Socket>(clientSocket.Socket);
   const params = useParams();
   const id = params.id;
 

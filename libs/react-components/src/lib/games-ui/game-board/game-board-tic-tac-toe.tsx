@@ -32,7 +32,7 @@ const avatarSize: CSSProperties = {
   border: 5,
 };
 
-/* eslint-disable-next-line */
+
 export interface GameBoardPropsTicTacToe {
   row: ILiteSpace[];
   columns: number;
@@ -81,7 +81,7 @@ export const GameBoardMapTicTacToe = ({
         >
           {e.display.indexOf('g') === e.display.length - 1 ? (
             <img
-              key={`tic-tac-toe-space-${e.display}`}
+              key={`tic-tac-toe-space-${e.display}-svg`}
               src={`./game-avatars/${e.display}`}
               alt={`${e.display} game piece`}
               style={avatarSize}

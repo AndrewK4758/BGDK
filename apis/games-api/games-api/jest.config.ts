@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'games-api',
   preset: '../../../jest.preset.js',

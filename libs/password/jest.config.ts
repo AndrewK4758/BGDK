@@ -1,4 +1,4 @@
-/* eslint-disable */
+ 
 export default {
   displayName: 'password',
   preset: '../../jest.preset.js',
