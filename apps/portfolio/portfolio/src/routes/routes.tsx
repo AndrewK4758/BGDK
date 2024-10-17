@@ -17,6 +17,7 @@ const Album = lazy(() => import('../components/crud/albums/album-base'));
 const Artist = lazy(() => import('../components/crud/artists/artist-base'));
 const AlbumsOnArtist = lazy(() => import('../components/crud/albums/artist-albums'));
 const Tracks = lazy(() => import('../components/crud/tracks/album-tracks'));
+const GenAI = lazy(() => import('../pages/ai/gen-ai'));
 
 const routes: RouteObject[] = [
   {
@@ -77,6 +78,10 @@ const routes: RouteObject[] = [
             ],
           },
         ],
+      },
+      {
+        path: 'gen-ai',
+        Component: GenAI,
       },
     ],
   },

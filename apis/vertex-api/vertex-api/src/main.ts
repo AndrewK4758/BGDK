@@ -4,6 +4,9 @@ import * as http from 'http';
 import * as path from 'path';
 import VertexApiRoutes from './routes/routes.ts';
 import { fileURLToPath } from 'url';
+import { SocketServer } from '@bgdk/socket-io';
+import type { ServerOptions } from 'socket.io';
+import handleTextDataChunks from './services/socket-io/listeners.ts';
 
 // FOR ESM MODULE BUILD
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +31,13 @@ app.options('*', cors(corsOptions));
 app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
+
+const serverOptions: Partial<ServerOptions> = {
+  cleanupEmptyChildNamespaces: true,
+  cors: corsOptions,
+};
+
+new SocketServer(httpServer, serverOptions, [], [['connection', handleTextDataChunks]]);
 
 new VertexApiRoutes(router);
 

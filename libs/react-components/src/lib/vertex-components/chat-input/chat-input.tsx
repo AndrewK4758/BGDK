@@ -7,6 +7,7 @@ import { FormActionProps } from '../../../interfaces/form-action-props.tsx';
 import TextInput from '../../games-ui/text-input/formik-text-input.tsx';
 import * as Yup from 'yup';
 
+
 interface ChatInputProps extends FormActionProps {
   breakpointsChatInputButton?: SxProps;
   breakpointsChatInputText?: SxProps;
@@ -41,16 +42,16 @@ export function ChatInput({
       <Formik
         initialValues={chatInitialValues}
         validationSchema={validationSchema}
-        onSubmit={values => {
+        onSubmit={values =>
           submit(values, {
             encType: 'application/json',
             method: `${method}`,
             action: `${action}`,
             replace: true,
-          });
-        }}
+          })
+        }
       >
-        <Form method={method} action={action}>
+        <Form method={method}>
           <TextInput
             autoComplete="off"
             label="Prompt Input"

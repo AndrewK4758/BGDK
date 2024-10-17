@@ -13,5 +13,6 @@ root.render(
       <CssBaseline enableColorScheme />
       <App />
     </ThemeProvider>
+    ,
   </StrictMode>,
 );
