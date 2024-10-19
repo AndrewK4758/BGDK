@@ -31,7 +31,7 @@ export type InputDataTone = {
   tone: string | string[];
 };
 
-//TEXT ONLY
+// TEXT ONLY
 export type InputDataResponseType = {
   responseFormat: ResponseType;
   responseInstructions?: string | string[];
