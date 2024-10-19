@@ -29,7 +29,7 @@ const GenAiHome = () => {
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
   const [textResponse, setTextResponse] = useState<string>('');
   const socketRef = useRef<Socket>(clientSocket.Socket);
-  const divRef = useRef<HTMLDivElement>();
+  const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
   const socket = socketRef.current;
 
@@ -154,7 +154,12 @@ const GenAiHome = () => {
           </Typography>
         </Box>
       </Paper>
-      <Box component={'section'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper">
+      <Box
+        component={'section'}
+        key={'prompt-builder-wrapper'}
+        id="prompt-builder-wrapper"
+        sx={{ width: '80%', height: 'fit-content', minHeight: '30vh' }}
+      >
         <PromptBuilder />
       </Box>
       <Box

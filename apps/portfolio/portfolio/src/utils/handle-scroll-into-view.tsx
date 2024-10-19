@@ -3,7 +3,7 @@ const handleScrollIntoView = (ref: HTMLElement) => {
   const offset = element.top + window.scrollY;
 
   window.scrollTo({
-    top: offset - 100,
+    top: offset - 150,
     behavior: 'smooth',
   });
 };

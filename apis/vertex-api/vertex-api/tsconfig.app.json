@@ -6,7 +6,12 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "include": ["src/**/*.ts", "../../../libs/socket-io/src/**/*.ts", "../../../libs/gen-ai/vertex-ai/src/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../../../libs/socket-io/src/**/*.ts",
+    "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
+    "../../../libs/gen-ai/prompt-builder/src/lib/parser/parser.ts"
+  ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",

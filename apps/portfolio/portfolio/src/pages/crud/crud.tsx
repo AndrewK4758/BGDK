@@ -47,7 +47,7 @@ const titleSx: SxProps = {
 };
 
 const Crud = () => {
-  const divRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
 
   useEffect(() => {

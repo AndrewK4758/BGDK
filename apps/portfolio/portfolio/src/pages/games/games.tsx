@@ -28,7 +28,7 @@ const titleSx: SxProps = {
 const Games = () => {
   const { state } = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
-  const divRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLElement>(null);
   const submit = useSubmit();
 
   useEffect(() => {

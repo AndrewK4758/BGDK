@@ -5,8 +5,10 @@
     "moduleResolution": "NodeNext",
     "outDir": "../../../dist/out-tsc",
     "types": ["node"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false
   },
-  "include": ["src/**/*.ts"],
+
+  "include": ["src/**/*.ts", "data/**/*.json"],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

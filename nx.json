@@ -26,7 +26,8 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      }
+      },
+      "exclude": ["libs/gen-ai/prompt-builder/*"]
     },
     {
       "plugin": "@nx/eslint/plugin",
