@@ -106,7 +106,7 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError formik={formik} elementName="name" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="name" />
           </Box>
           <Box component={'span'} key={'email-wrapper'} id="email-wrapper">
             <TextField
@@ -122,7 +122,7 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError formik={formik} elementName="email" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="email" />
           </Box>
           <Box component={'span'} key={'phone-wrapper'} id="phone-wrapper">
             <TextField
@@ -136,7 +136,7 @@ const EmaiForm = () => {
               onBlur={formik.handleBlur}
               slotProps={textFieldSlotProps}
             />
-            <FormikValidationError formik={formik} elementName="phone" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="phone" />
           </Box>
           <Box component={'span'} key={'subject-wrapper'} id="subject-wrapper">
             <TextField
@@ -151,7 +151,7 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError formik={formik} elementName="subject" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="subject" />
           </Box>
           <Box component={'span'} key={'body-wrapper'} id="body-wrapper" p={0}>
             <TextField
@@ -180,11 +180,11 @@ const EmaiForm = () => {
               }}
             />
 
-            <FormikValidationError formik={formik} elementName="body" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="body" />
           </Box>
           <Box component={'span'} key={'appointment-maker-wrapper'} id="appointment-maker-wrapper">
             <AppointmentMaker formik={formik} />
-            <FormikValidationError formik={formik} elementName="date" />
+            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="date" />
           </Box>
           <Box
             component={'span'}
@@ -209,25 +209,25 @@ const EmaiForm = () => {
                 {(formik.values.attachment as File).name}
               </Box>
             ) : null}
-
-            <DialogActions
-              sx={{
-                flex: '0 1 45%',
-                display: 'flex',
-                alignItems: 'flex-end',
-              }}
-            >
-              <Button id="upload-file-button" sx={{ fontSize: '2rem' }} onClick={handleFileSubmit}>
-                Upload File
-              </Button>
-              <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '2rem' }}>
-                Submit
-              </Button>
-              <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '2rem' }}>
-                Reset
-              </Button>
-            </DialogActions>
           </Box>
+
+          <DialogActions
+            sx={{
+              flex: '0 1 45%',
+              display: 'flex',
+              alignItems: 'flex-end',
+            }}
+          >
+            <Button id="upload-file-button" sx={{ fontSize: '2rem' }} onClick={handleFileSubmit}>
+              Upload File
+            </Button>
+            <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '2rem' }}>
+              Submit
+            </Button>
+            <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '2rem' }}>
+              Reset
+            </Button>
+          </DialogActions>
         </Stack>
       </Container>
     </Form>

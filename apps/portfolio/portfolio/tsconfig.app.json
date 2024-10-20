@@ -24,7 +24,8 @@
     "../../../libs/chains-for-games/src/**/*.ts",
     "../../../libs/game/src/**/*.ts",
     "../../../libs/games/**/*/src/**/*.ts",
-    "../../../libs/games-components-logic/src/**/*.ts"
+    "../../../libs/games-components-logic/src/**/*.ts",
+    "../../../libs/gen-ai/prompt-builder/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
@@ -35,6 +36,7 @@
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
+    "../../../libs/gen-ai/prompt-builder/src/tests/**/*.ts",
     "../../../libs/shared-react-components/src/tests/**/*.tsx",
     "../../../libs/shared-react-components/src/tests/**/*.ts",
     "../../../libs/react-components/src/tests/**/*.tsx",

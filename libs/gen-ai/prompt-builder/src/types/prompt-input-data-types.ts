@@ -9,30 +9,3 @@ export enum ResponseType {
   JSON = 'json',
 }
 
-export type InputDataTask = {
-  objective: string;
-  instructions?: string | string[];
-};
-
-export type InputDataContext = {
-  document?: Express.Multer.File;
-  textData?: string | string[];
-};
-
-export type InputDataExamples = {
-  examples: string | string[] | Express.Multer.File;
-};
-
-export type InputDataConstraints = {
-  constraints: string | string[];
-};
-
-export type InputDataTone = {
-  tone: string | string[];
-};
-
-// TEXT ONLY
-export type InputDataResponseType = {
-  responseFormat: ResponseType;
-  responseInstructions?: string | string[];
-};

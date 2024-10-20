@@ -10,13 +10,14 @@
     "src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
-    "../../../libs/gen-ai/prompt-builder/src/lib/parser/parser.ts"
+    "../../../libs/gen-ai/prompt-builder/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "../../../libs/gen-ai/vertex-ai/src/tests/**/*.ts"
+    "../../../libs/gen-ai/vertex-ai/src/tests/**/*.ts",
+    "../../../libs/gen-ai/prompt-builder/src/tests/**/*.ts"
   ],
   "references": [
     { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },

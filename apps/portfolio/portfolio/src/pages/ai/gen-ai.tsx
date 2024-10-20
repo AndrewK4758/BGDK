@@ -6,13 +6,13 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Outlet, useNavigate, type NavigateFunction } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 import ClientSocket from '../../utils/web-socket/socket-instance';
-import PromptBuilder from '../../components/gen-ai/prompt-builder';
+// import PromptBuilder from '../../components/gen-ai/prompt-builder';
 
 const title = 'Generative AI';
 
@@ -27,7 +27,7 @@ const titleSx: SxProps = {
 
 const GenAiHome = () => {
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
-  const [textResponse, setTextResponse] = useState<string>('');
+  // const [textResponse, setTextResponse] = useState<string>('');
   const socketRef = useRef<Socket>(clientSocket.Socket);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
@@ -44,7 +44,7 @@ const GenAiHome = () => {
     socket.on('chunk', chunk => {
       const { response } = chunk;
       console.log(response);
-      setTextResponse(prev => (prev += response));
+      // setTextResponse(prev => (prev += response));
     });
 
     return () => {
@@ -154,33 +154,43 @@ const GenAiHome = () => {
           </Typography>
         </Box>
       </Paper>
-      <Box
+      {/* <Box
         component={'section'}
         key={'prompt-builder-wrapper'}
         id="prompt-builder-wrapper"
         sx={{ width: '80%', height: 'fit-content', minHeight: '30vh' }}
       >
         <PromptBuilder />
-      </Box>
+      </Box> */}
       <Box
         component={'div'}
         key={`gen-ai-app-wrapper`}
         id={`gen-ai-app-wrapper`}
         sx={{ width: '80%', minHeight: '100%', height: 'fit-content' }}
       >
-        <Outlet context={{ socket: socket }} />
-        <Button
-          onClick={() => {
-            setTextResponse('');
-            socket.emit('text', 'tell me a 500 word story');
-          }}
-          sx={{ fontSize: '10rem', width: '100%' }}
+        <Box
+          component={'div'}
+          key={'gen-ai-outlet-wrapper'}
+          id="gen-ai-outlet-wrapper"
+          sx={{ height: 'fit-content', minHeight: '30vh', width: '100%' }}
         >
-          CLICK
-        </Button>
-        <Typography color="textPrimary" fontSize={'2rem'} width={'80%'} bgcolor={Theme.palette.background.paper}>
-          {textResponse}
-        </Typography>
+          <Outlet context={{ socket: socket }} />
+        </Box>
+        {/* <Box>
+          <Button
+            onClick={() => {
+              setTextResponse('');
+              socket.emit('text', 'tell me a 500 word story');
+            }}
+            sx={{ fontSize: '1rem', width: '100%' }}
+          >
+            CLICK
+          </Button>
+          <Typography color="textPrimary" fontSize={'2rem'} width={'80%'} bgcolor={Theme.palette.background.paper}>
+            {textResponse}
+          </Typography>
+        </Box>
+          */}
       </Box>
     </Box>
   );

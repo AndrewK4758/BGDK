@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { SocketServer } from '@bgdk/socket-io';
 import type { ServerOptions } from 'socket.io';
 import handleTextDataChunks from './controllers/gen-ai-text-handler.ts';
+import router, { Routes } from './routes/routes.ts';
 
 // FOR ESM MODULE BUILD
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,7 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/api/v1', router);
 
 const serverOptions: Partial<ServerOptions> = {
   cleanupEmptyChildNamespaces: true,
@@ -35,6 +37,8 @@ const serverOptions: Partial<ServerOptions> = {
 };
 
 new SocketServer(httpServer, serverOptions, [], [['connection', handleTextDataChunks]]);
+
+new Routes();
 
 const port = process.env.PORT || 5000;
 

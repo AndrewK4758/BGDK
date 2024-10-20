@@ -7,6 +7,7 @@ import loadArtistsCount from '../services/loaders/crud-loaders/load-artists-coun
 import registerPlayersAndStartGame from '../services/loaders/register-players-and-start-game';
 import loadAlbumTracks from '../services/loaders/crud-loaders/load-album-tracks';
 import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count';
+import handlePromptBuilder from '../services/actions/prompt-builder-action';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -18,7 +19,9 @@ const Artist = lazy(() => import('../components/crud/artists/artist-base'));
 const AlbumsOnArtist = lazy(() => import('../components/crud/albums/artist-albums'));
 const Tracks = lazy(() => import('../components/crud/tracks/album-tracks'));
 const GenAI = lazy(() => import('../pages/ai/gen-ai'));
+
 const TextGenerator = lazy(() => import('../components/gen-ai/text/text'));
+const PromptBuilder = lazy(() => import('../components/gen-ai/prompt-builder'));
 
 const routes: RouteObject[] = [
   {
@@ -84,6 +87,11 @@ const routes: RouteObject[] = [
         path: 'gen-ai',
         Component: GenAI,
         children: [
+          {
+            index: true,
+            Component: PromptBuilder,
+            action: handlePromptBuilder,
+          },
           {
             path: 'text',
             Component: TextGenerator,
