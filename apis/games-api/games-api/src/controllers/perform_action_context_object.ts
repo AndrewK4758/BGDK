@@ -1,9 +1,9 @@
-import { ContextBuilder, type Chain } from '@bgdk/chain';
+import { ContextBuilder } from '@bgdk/chain';
 import { activeGameDisplayChain } from '@bgdk/chains-for-games';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
-import { GameContextKeys } from '@bgdk/types-game';
+import { Chain, GameContextKeys } from '@bgdk/types-game';
 import { Request, Response } from 'express';
-import { socketServer } from '../main.js';
+import { socketServer } from '../main.ts';
 
 const performAction = async (
   req: Request | null,
@@ -14,7 +14,6 @@ const performAction = async (
   console.log('Perform Action Called');
   //check for no rest-api objects
   if (!req && !resp) {
-
     const ctx = ContextBuilder.build();
     ctx.put(GameContextKeys.ACTION, actionWS);
     ctx.put(GameContextKeys.IO, socketServer.io);

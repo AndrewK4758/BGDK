@@ -8,27 +8,7 @@
     "moduleResolution": "NodeNext"
   },
   "include": [
-    "src/**/*.ts",
-    "../../models/all-games-map/src/**/*.ts",
-    "../../models/instance-of-game/src/**/*.ts",
-    "../../game/src/**/*.ts",
-    "../../games/**/*/src/**/*.ts",
-    "../types-game/src/**/*.ts",
-    "../../games-components-logic/src/**/*.ts",
-    "../../chain/src/**/*.ts"
+    "src/**/*.ts"
   ],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../../models/all-games-map/src/tests/**/*.ts",
-    "../../models/instance-of-game/src/tests/**/*.ts",
-    "../../game/src/tests/**/*.ts",
-    "../../games/**/*/src/tests/**/*.ts",
-    "../types-game/src/tests/**/*.ts",
-    "../../games-components-logic/src/tests/**/*.ts",
-    "../../chain/src/tests/**/*.ts"
-  ]
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

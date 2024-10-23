@@ -15,15 +15,6 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts"
-    // "../../libs/**/*/src/**/*.ts",
-    // "../../libs/**/*/src/**/*.tsx"
   ],
-  "exclude": [
-    "../../libs/**/*/src/tests/**/*.ts",
-    "../../libs/socket-io/src/**/*.ts",
-    "../../libs/password/src/**/*.ts",
-    "../../libs/**/*/src/tests/**/*.tsx",
-    "../../libs/**/*/src/tests/**/*.ts",
-    "../../libs/**/*.tsx"
-  ]
+  "exclude": []
 }

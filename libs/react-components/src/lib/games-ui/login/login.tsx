@@ -2,14 +2,14 @@
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { MouseEvent, useContext, useState } from 'react';
-import { IActionError } from '../../../interfaces/action-error.tsx';
-import { ActiveUserContext } from '../context/active-user-context.tsx';
-import ActionError from '../errors/action-error.tsx';
-import FormikTextInput from '../text-input/formik-text-input.tsx';
-import loginUserAction from './actions/login-user-action.tsx';
-import verifyEmailOnBlur from './events/verify-login-email-on-blur.tsx';
-import { breakpointsButtonSx, breakpointsLabelSx, breakpointsTextBoxSx } from './styles/login-sx-props.tsx';
-import { initialValues, LoginDataProps, validationSchema } from './validations/login-validation-schema.tsx';
+import { IActionError } from '../../../interfaces/action-error';
+import { ActiveUserContext } from '../context/active-user-context';
+import ActionError from '../errors/action-error';
+import FormikTextInput from '../text-input/formik-text-input';
+import loginUserAction from './actions/login-user-action';
+import verifyEmailOnBlur from './events/verify-login-email-on-blur';
+import { breakpointsButtonSx, breakpointsLabelSx, breakpointsTextBoxSx } from './styles/login-sx-props';
+import { initialValues, LoginDataProps, validationSchema } from './validations/login-validation-schema';
 
 type Anchor = 'right';
 

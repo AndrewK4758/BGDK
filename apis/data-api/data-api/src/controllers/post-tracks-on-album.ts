@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import createTracks from '../services/prisma/tracks/create-tracks.js';
 import { Prisma, track } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
+import { Request, Response } from 'express';
+import createTracks from '../services/prisma/tracks/create-tracks.ts';
 
 const createTracksOnAlbum = async (req: Request, resp: Response) => {
   try {

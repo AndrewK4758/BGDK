@@ -1,7 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { Player } from '@bgdk/games-components-logic';
-import { GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
+import { Context, GameContextKeys, IPlayer, IRegisterFormValues } from '@bgdk/types-game';
 
 export const boardStart = CommandBuilder.build((context: Context) => {
   if (
@@ -11,7 +10,7 @@ export const boardStart = CommandBuilder.build((context: Context) => {
   ) {
     const { game } = deRefContextObject(context);
 
-    const activePlayersArray: IRegisterFormValues[] = game.instance.playersArray.map((p: Player) => {
+    const activePlayersArray: IRegisterFormValues[] = game.instance.playersArray.map((p: IPlayer) => {
       return {
         playerName: p.name,
         avatarName: p.avatar.name,
@@ -23,3 +22,5 @@ export const boardStart = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+
+export default boardStart;

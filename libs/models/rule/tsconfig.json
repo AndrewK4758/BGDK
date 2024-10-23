@@ -1,17 +1,12 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-
-  },
+  "compilerOptions": {},
   "files": [],
   "include": [],
   "exclude": [],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../types/types-game" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

@@ -2,18 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../__mocks__/**/*.mts",
-    "../../../libs/prisma/**/*.ts"
+    "../../../__mocks__/**/*.ts",
+    "../../../libs/prisma/src/**/*.ts"
   ]
 }

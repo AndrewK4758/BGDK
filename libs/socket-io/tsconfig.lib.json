@@ -7,6 +7,6 @@
     "moduleResolution": "NodeNext",
     "strict": true
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "../gen-ai/vertex-ai/src/tests/**/*.ts"],
-  "include": ["src/**/*.ts", "../gen-ai/vertex-ai/src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

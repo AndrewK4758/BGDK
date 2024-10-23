@@ -1,9 +1,9 @@
 import { IRegisterUser, USER_ROLE } from '@bgdk/types-api';
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import registerUserError from '../errors/register-user-error.js';
-import addUser from '../services/prisma/users/add-user.js';
-import bucket from '../services/gcloud-storage/gcloud-storage-client.js';
+import registerUserError from '../errors/register-user-error.ts';
+import bucket from '../services/gcloud-storage/gcloud-storage-client.ts';
+import addUser from '../services/prisma/users/add-user.ts';
 
 const registerUser = async (req: Request, resp: Response) => {
   try {

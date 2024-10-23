@@ -1,4 +1,4 @@
-import type { Context, Command, Chain } from './chain.js';
+import type { Context, Command, Chain } from '@bgdk/types-game';
 
 class BaseContext implements Context {
   state: Map<string, unknown>;

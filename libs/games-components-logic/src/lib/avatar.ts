@@ -1,6 +1,5 @@
-import { Color } from '@bgdk/types-game';
-import { IAvatar } from '../interfaces/avatar.js';
-import { Space } from './space.js';
+import { Color, IAvatar } from '@bgdk/types-game';
+import { Space } from './space';
 
 export class Avatar implements IAvatar {
   Name: string;

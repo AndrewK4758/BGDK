@@ -7,16 +7,14 @@
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"]
   },
+
   "include": [
     "jest.config.js",
     "src/**/*.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
+    "tests/**/*.ts",
     "../../__mocks__/mocks.ts",
-    "../models/rule/src/**/*.ts",
-    "../models/game-builder/src/**/*.ts",
-    "../models/all-games-map/src/**/*.ts",
-    "../types/types-api/src/**/*.ts",
     "../games/tic-tac-toe/src/**/*.ts",
     "../games-components-logic/src/**/*.ts",
     "../types/types-game/src/**/*.ts",
@@ -27,24 +25,5 @@
     "../chain/src/**/*.ts"
   ],
 
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../models/rule/src/tests/**/*.ts",
-    "../models/game-builder/src/tests/**/*.ts",
-    "../models/all-games-map/src/tests/**/*.ts",
-    "../types/types-api/src/tests/**/*.ts",
-    "../games/tic-tac-toe/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts",
-    "../types/types-game/src/tests/**/*.ts",
-    "../games/chutes-and-ladders/src/tests/**/*.ts",
-    "../game/src/tests/**/*.ts",
-    "../models/instance-of-game/src/tests/**/*.ts",
-    "../models/de-referencing-utilities/src/tests/**/*.ts",
-    "../chain/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }

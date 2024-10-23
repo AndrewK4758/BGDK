@@ -4,9 +4,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "../../../dist/out-tsc",
-    "types": ["node"],
-    "resolveJsonModule": true
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"]
 }

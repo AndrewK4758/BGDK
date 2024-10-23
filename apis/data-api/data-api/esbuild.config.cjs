@@ -4,6 +4,6 @@ module.exports = {
   target: 'esnext',
   platform: 'node',
   format: ['esm'],
-  bundle: true,
+  bundle: false,
 };
 //

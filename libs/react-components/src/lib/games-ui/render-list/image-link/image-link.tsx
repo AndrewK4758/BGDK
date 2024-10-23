@@ -5,7 +5,6 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { CSSProperties, ReactNode } from 'react';
 import { Link, To } from 'react-router-dom';
 
-/* eslint-disable-next-line */
 export interface ImageLinkProps {
   type: string;
   to: To;

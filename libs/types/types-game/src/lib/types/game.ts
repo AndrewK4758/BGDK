@@ -81,7 +81,7 @@ export interface IRegisterFormValues {
 
 export interface IActivePlayersInGame {
   activePlayersInGame: IRegisterFormValues[];
-  avatarInTurn?: string;
+  avatarInTurn: string;
   winner?: string;
 }
 

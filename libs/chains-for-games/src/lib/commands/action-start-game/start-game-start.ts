@@ -1,5 +1,5 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
-import { GameContextKeys } from '@bgdk/types-game';
+import { CommandBuilder } from '@bgdk/chain';
+import { Context, GameContextKeys } from '@bgdk/types-game';
 
 export const startGame = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'start') {
@@ -7,3 +7,5 @@ export const startGame = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+
+export default startGame;

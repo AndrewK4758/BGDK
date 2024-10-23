@@ -1,4 +1,4 @@
-import { GameBoard, ILiteSpace } from '@bgdk/games-components-logic';
+import { GameBoard, ILiteSpace } from '@bgdk/types-game';
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';

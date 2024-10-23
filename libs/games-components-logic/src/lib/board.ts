@@ -1,4 +1,4 @@
-import { IBoard } from '../interfaces/board.js';
+import { IBoard } from '@bgdk/types-game';
 import { Space } from './space.js';
 
 export class Board implements IBoard {

@@ -1,26 +1,6 @@
-import { Chain, ChainBuilder, Command } from '@bgdk/chain';
-import { Rule, IRule } from '@bgdk/rule';
-
-export interface IBuiltGame {
-  id: string;
-  name: string;
-  description?: string;
-  imageURL?: string;
-  rules: IRule[];
-  chain: Chain | null;
-  instance(): unknown;
-}
-
-export interface IGameBuilder {
-  setId(id: string): IGameBuilder;
-  setName(name: string): IGameBuilder;
-  setDescription(description: string): IGameBuilder;
-  setImageURL(imageURL: string): IGameBuilder;
-  setRule(order: number, value: string, title: string): IGameBuilder;
-  setGameFunctionality(commands: Command[], continueOnError: boolean): IGameBuilder;
-  setInstance<T>(instance: () => T): IGameBuilder;
-  build(): IBuiltGame;
-}
+import { IGameBuilder, IBuiltGame, Command } from '@bgdk/types-game';
+import { Rule } from '@bgdk/rule';
+import { ChainBuilder } from '@bgdk/chain';
 
 export class GameBuilder implements IGameBuilder {
   #Game: IBuiltGame;

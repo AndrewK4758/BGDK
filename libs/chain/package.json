@@ -1,17 +1,14 @@
 {
   "name": "@bgdk/chain",
   "version": "0.0.1",
-  "type": "module",
   "dependencies": {
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.12.0",
-    "jsonc-eslint-parser": "2.4.0"
+    "@eslint/js": "9.13.0",
+    "jsonc-eslint-parser": "2.4.0",
+    "@bgdk/types-game": "0.0.1"
   },
-  "main": "./index.cjs",
+  "main": "./index.js",
   "module": "./index.js",
   "typings": "./index.d.ts",
-  "private": true,
-  "nx": {
-    "name": "chain"
-  }
+  "private": true
 }

@@ -1,13 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "allowImportingTsExtensions": false,
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "express"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts", "../../../libs/prisma/tests/**/*.ts"],
-  "include": ["src/**/*.ts", "../../../libs/prisma/**/*.ts"],
+  "include": ["src/**/*.ts", "../../../libs/prisma/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [{ "path": "../../../libs/prisma/tsconfig.lib.json" }]
 }

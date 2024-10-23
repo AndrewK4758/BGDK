@@ -1,6 +1,6 @@
 import { Board, Space, LiteSpace } from '@bgdk/games-components-logic';
-import { SpaceType, Color, AvatarTotem } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems.js';
+import { SpaceType, Color, AvatarTotem, type ITicTacToe } from '@bgdk/types-game';
+import AvatarTotems from './avatar-totems';
 
 export const WINNING_POSITIONS: string[][] = [
   ['1', '2', '3'],
@@ -15,7 +15,7 @@ export const WINNING_POSITIONS: string[][] = [
 export const TOTAL_SPACES = 9;
 export const ROWS = Math.sqrt(TOTAL_SPACES);
 
-export class TicTacToe {
+export class TicTacToe implements ITicTacToe {
   MIN_PLAYERS: number;
   MAX_PLAYERS: number;
   startSpace: Space;

@@ -80,8 +80,7 @@
     "jest": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx run games-api:docker-start-db", "nx test games-api"],
-        "parallel": false
+        "commands": ["nx run games-api:docker-start-db", "nx test games-api"]
       }
     }
   }

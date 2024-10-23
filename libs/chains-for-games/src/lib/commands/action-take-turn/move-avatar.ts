@@ -1,6 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { Player } from '@bgdk/games-components-logic';
-import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
+import { Context, GameContextKeys, TurnStatus } from '@bgdk/types-game';
 
 export const moveAvatar = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'move-avatar') {
@@ -15,3 +15,5 @@ export const moveAvatar = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+
+export default moveAvatar;

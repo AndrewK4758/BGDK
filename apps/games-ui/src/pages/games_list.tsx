@@ -1,4 +1,4 @@
-import { IBuiltGame } from '@bgdk/game-builder';
+import { IBuiltGame } from '@bgdk/types-game';
 import { ImageLink, RenderList, Text, Theme } from '@bgdk/react-components';
 import { SxProps, useMediaQuery } from '@mui/material';
 import Container from '@mui/material/Container';

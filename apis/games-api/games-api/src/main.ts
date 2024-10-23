@@ -4,7 +4,7 @@ import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
-import router, { GameRoutes } from './routes/routes.js';
+import router, { GameRoutes } from './routes/routes.ts';
 import addGameToSocketInstance from './middleware/socket-add-game-middleware.ts';
 import socketBoardAction from './events/socket-board-action.ts';
 import { fileURLToPath } from 'url';

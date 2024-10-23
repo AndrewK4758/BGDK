@@ -1,9 +1,8 @@
-import type { Response } from 'express';
+import { Request, Response } from 'express';
 import { Color, type GamePlayerValidation, type IRegisterFormValues } from '../libs/types/types-game/src/index';
-import type { IReqObjMaps } from '../libs/types/types-api/src/index';
 
-export const mockReqObj = (): Partial<IReqObjMaps> => {
-  const req: Partial<IReqObjMaps> = {
+export const mockReqObj = (): Partial<Request> => {
+  const req: Partial<Request> = {
     params: {},
     body: {
       playerName: 'Player Name',

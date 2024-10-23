@@ -5,16 +5,11 @@
   "include": [],
   "exclude": [],
   "references": [
-    { "path": "../rule" },
-    { "path": "../game-builder" },
-    { "path": "../all-games-map" },
-    { "path": "../../types/types-api" },
     { "path": "../../games/chutes-and-ladders" },
-    { "path": "../../games/tic-tac-toe" },
     { "path": "../../games-components-logic" },
-    { "path": "../../types/types-game" },
     { "path": "../../game" },
     { "path": "../instance-of-game" },
+    { "path": "../../types/types-game" },
     { "path": "../../chain" }
   ]
 }

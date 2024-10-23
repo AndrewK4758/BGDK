@@ -1,6 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, GameInstanceID } from '@bgdk/types-game';
+import { Context, GameContextKeys, GameInstanceID } from '@bgdk/types-game';
 
 export const sendLoadRegister = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'send-load-register-data') {
@@ -9,3 +9,4 @@ export const sendLoadRegister = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+export default sendLoadRegister;

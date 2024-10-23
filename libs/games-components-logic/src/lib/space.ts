@@ -1,5 +1,4 @@
-import { SpaceType } from '@bgdk/types-game';
-import { ISpace } from '../interfaces/space.js';
+import { SpaceType, ISpace } from '@bgdk/types-game';
 import { Avatar } from '../lib/avatar.js';
 
 export class Space implements ISpace {

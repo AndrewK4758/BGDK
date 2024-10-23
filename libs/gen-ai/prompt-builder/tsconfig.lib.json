@@ -5,7 +5,6 @@
     "moduleResolution": "NodeNext",
     "outDir": "../../../dist/out-tsc",
     "types": ["node"],
-    "resolveJsonModule": true,
     "allowImportingTsExtensions": false
   },
 

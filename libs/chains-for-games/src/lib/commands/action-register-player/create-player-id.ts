@@ -1,6 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys } from '@bgdk/types-game';
+import { Context, GameContextKeys } from '@bgdk/types-game';
 import ShortUniqueId from 'short-unique-id';
 
 export const createPlayerID = CommandBuilder.build((context: Context) => {
@@ -17,3 +17,5 @@ export const createPlayerID = CommandBuilder.build((context: Context) => {
     }
   } else return false;
 });
+
+export default createPlayerID;

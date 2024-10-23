@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
-import deleteTrack from '../services/prisma/tracks/delete-track.js';
-import { Request, Response } from 'express';
 import { DefaultArgs } from '@prisma/client/runtime/library';
+import { Request, Response } from 'express';
+import deleteTrack from '../services/prisma/tracks/delete-track.ts';
 
 const deleteTracks = async (req: Request, resp: Response) => {
   try {

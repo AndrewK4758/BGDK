@@ -1,7 +1,6 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
-import { IBuiltGame } from '@bgdk/game-builder';
 import { EmailAddress, IRegisterUserClient } from '@bgdk/types-api';
-import { Color, GameInstanceID, GamePlayerValidation, PlayerID, TurnStatus } from '@bgdk/types-game';
+import { Color, GameInstanceID, GamePlayerValidation, IBuiltGame, PlayerID, TurnStatus } from '@bgdk/types-game';
 import axios from 'axios';
 
 let __current_game__: GamePlayerValidation,

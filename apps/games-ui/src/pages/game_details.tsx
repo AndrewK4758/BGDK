@@ -1,6 +1,5 @@
-import { IBuiltGame } from '@bgdk/game-builder';
 import { HeadingWithDetails, RenderList, Text, Theme } from '@bgdk/react-components';
-import { IRule } from '@bgdk/rule';
+import { IBuiltGame, IRule } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';

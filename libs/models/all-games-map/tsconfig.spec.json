@@ -9,8 +9,8 @@
   },
   "include": [
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
     "src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
     "../../game/src/**/*.ts",
@@ -18,11 +18,5 @@
     "../../types/types-game/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts"
   ],
-  "exclude": [
-    "../instance-of-game/src/tests/**/*.ts",
-    "../../game/src/tests/**/*.ts",
-    "../../games/**/*/src/tests/**/*.ts",
-    "../../types/types-game/src/tests/**/*.ts",
-    "../../games-components-logic/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }

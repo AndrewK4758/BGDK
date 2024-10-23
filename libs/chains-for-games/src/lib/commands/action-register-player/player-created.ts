@@ -1,7 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { getCurrentMinute } from '@bgdk/instance-of-game';
-import { GameContextKeys, GamePlayerValidation, PlayerID } from '@bgdk/types-game';
+import { Context, GameContextKeys, GamePlayerValidation, getCurrentMinute, PlayerID } from '@bgdk/types-game';
 
 export const playerCreated = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'player-created') {
@@ -21,3 +20,5 @@ export const playerCreated = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+
+export default playerCreated;

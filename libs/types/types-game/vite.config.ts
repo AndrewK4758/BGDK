@@ -40,8 +40,18 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
       // External packages that should not be bundled into your library.
       external: [],
     },
   },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'node',
+  },
+  logLevel: 'info',
 });

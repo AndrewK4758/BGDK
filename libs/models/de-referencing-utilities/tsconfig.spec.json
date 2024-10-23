@@ -9,33 +9,15 @@
   },
   "include": [
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
     "src/**/*.ts",
-    "../rule/src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
-    "../game-builder/src/**/*.ts",
-    "../all-games-map/src/**/*.ts",
     "../../game/src/**/*.ts",
     "../../chain/src/**/*.ts",
     "../../types/types-game/src/**/*.ts",
-    "../../types/types-api/src/**/*.ts",
     "../../chutes-and-ladders/src/**/*.ts",
-    "../../games-components-logic/src/**/*.ts",
-    "../../games/**/*/src/**/*.ts",
     "../../../__mocks__/mocks.ts"
   ],
-  "exclude": [
-    "../rule/src/tests/**/*.ts",
-    "../game-builder/src/tests/**/*.ts",
-    "../instance-of-game/src/tests/**/*.ts",
-    "../all-games-map/src/tests/**/*.ts",
-    "../../game/src/tests/**/*.ts",
-    "../../chain/src/tests/**/*.ts",
-    "../../types/types-game/src/tests/**/*.ts",
-    "../../types/types-api/src/tests/**/*.ts",
-    "../../chutes-and-ladders/src/tests/**/*.ts",
-    "../../games-components-logic/src/tests/**/*.ts",
-    "../../games/**/*/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }

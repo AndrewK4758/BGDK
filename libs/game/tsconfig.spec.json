@@ -9,18 +9,12 @@
   },
   "include": [
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
     "src/**/*.ts",
-    "../games/tic-tac-toe/src/**/*.ts",
-    "../games/chutes-and-ladders/src/**/*.ts",
     "../games-components-logic/src/**/*.ts",
-    "../types/types-game/src/**/*.ts"
+    "../types/types-game/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts"
   ],
-  "exclude": [
-    "../games/tic-tac-toe/src/tests/**/*.ts",
-    "../games/chutes-and-ladders/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts",
-    "../types/types-game/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }

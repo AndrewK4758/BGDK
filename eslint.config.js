@@ -9,6 +9,7 @@ const compat = new FlatCompat({
 
 module.exports = [
   { plugins: { '@nx': nxEslintPlugin } },
+
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.json'],
     rules: {
@@ -25,7 +26,7 @@ module.exports = [
           ],
         },
       ],
-      '@nx/dependency-checks': ['error', { checkObsoleteDependencies: false }],
+      '@nx/dependency-checks': ['error', { checkObsoleteDependencies: true }],
     },
     languageOptions: { parser: require('jsonc-eslint-parser') },
   },
@@ -50,5 +51,5 @@ module.exports = [
       ...config.rules,
     },
   })),
-  { ignores: ['.gcloudignore'] },
+  { ignores: ['.gcloudignore', 'dist/**'] },
 ];

@@ -1,7 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { getCurrentMinute } from '@bgdk/instance-of-game';
-import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
+import { Context, GameContextKeys, getCurrentMinute, TurnStatus } from '@bgdk/types-game';
 
 export const takeTurnStart = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'take-turn') {
@@ -22,3 +21,5 @@ export const takeTurnStart = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+
+export default takeTurnStart;

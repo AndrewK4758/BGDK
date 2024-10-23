@@ -2,14 +2,13 @@
 import { Box, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { CSSProperties, ElementType } from 'react';
-import Text from '../../text/text.tsx';
+import Text from '../../text/text';
 
 const avatarSvgStyle: CSSProperties = {
   height: 'auto',
   width: '30%',
 };
 
-/* eslint-disable-next-line */
 export interface PlayersInGameProps {
   component: ElementType;
   id: string | number;

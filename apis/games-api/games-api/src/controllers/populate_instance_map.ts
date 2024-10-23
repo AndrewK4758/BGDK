@@ -1,11 +1,17 @@
-import { AllGameTypes, Game } from '@bgdk/game';
-import { getCurrentMinute, InstanceOfGame } from '@bgdk/instance-of-game';
-import { GameInstanceID, GamePlayerValidation, Minute } from '@bgdk/types-game';
+import { Game } from '@bgdk/game';
+import { InstanceOfGame } from '@bgdk/instance-of-game';
+import {
+  AllGameTypes,
+  GameInstanceID,
+  GamePlayerValidation,
+  getCurrentMinute,
+  IBuiltGame,
+  Minute,
+} from '@bgdk/types-game';
 import { Response, type Request } from 'express';
 import ShortUniqueId from 'short-unique-id';
-import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map.js';
-import updateUserActiveGames from '../services/prisma/users/update-user-active-games.js';
-import type { IBuiltGame } from '@bgdk/game-builder';
+import updateInstanceTimeMap from '../services/prisma/instance-time-map/update-instance-time-map.ts';
+import updateUserActiveGames from '../services/prisma/users/update-user-active-games.ts';
 
 //Make a filter to parse the current game header and add to the request object
 

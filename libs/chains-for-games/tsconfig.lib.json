@@ -6,12 +6,9 @@
     "moduleResolution": "NodeNext",
     "module": "NodeNext"
   },
+
   "include": [
     "src/**/*.ts",
-    "../models/rule/src/**/*.ts",
-    "../models/game-builder/src/**/*.ts",
-    "../models/all-games-map/src/**/*.ts",
-    "../types/types-api/src/**/*.ts",
     "../games/tic-tac-toe/src/**/*.ts",
     "../games-components-logic/src/**/*.ts",
     "../types/types-game/src/**/*.ts",
@@ -24,34 +21,18 @@
 
   "exclude": [
     "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
     "jest.config.ts",
     "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../models/rule/src/tests/**/*.ts",
-    "../models/game-builder/src/tests/**/*.ts",
-    "../models/all-games-map/src/tests/**/*.ts",
-    "../types/types-api/src/tests/**/*.ts",
-    "../games/tic-tac-toe/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts",
-    "../types/types-game/src/tests/**/*.ts",
-    "../games/chutes-and-ladders/src/tests/**/*.ts",
-    "../game/src/tests/**/*.ts",
-    "../models/instance-of-game/src/tests/**/*.ts",
-    "../models/de-referencing-utilities/src/tests/**/*.ts",
-    "../chain/src/tests/**/*.ts"
+    "src/**/*.test.ts"
   ],
 
   "references": [
-    { "path": "../models/rule/tsconfig.lib.json" },
-    { "path": "../models/game-builder/tsconfig.lib.json" },
-    { "path": "../models/all-games-map/tsconfig.lib.json" },
-    { "path": "../types/types-api/tsconfig.lib.json" },
+    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../games/tic-tac-toe/tsconfig.lib.json" },
     { "path": "../games-components-logic/tsconfig.lib.json" },
     { "path": "../types/types-game/tsconfig.lib.json" },
-    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../game/tsconfig.lib.json" },
     { "path": "../models/instance-of-game/tsconfig.lib.json" },
     { "path": "../models/de-referencing-utilities/tsconfig.lib.json" },

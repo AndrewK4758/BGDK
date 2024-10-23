@@ -1,8 +1,8 @@
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import Text from '../text/text.tsx';
-import { Theme } from '../../theme/theme.tsx';
-import { ILiteSpace } from '@bgdk/games-components-logic';
+import Text from '../text/text';
+import { Theme } from '../../theme/theme';
+import { ILiteSpace } from '@bgdk/types-game';
 import type { CSSProperties } from 'react';
 
 const breakpointsRowSx: SxProps = {
@@ -32,7 +32,6 @@ const avatarSize: CSSProperties = {
   border: 5,
 };
 
-
 export interface GameBoardPropsTicTacToe {
   row: ILiteSpace[];
   columns: number;
@@ -41,6 +40,7 @@ export interface GameBoardPropsTicTacToe {
   wrap: 'wrap' | 'nowrap' | undefined;
   gridSx?: SxProps;
   rowSx?: SxProps;
+  id?: string;
   state: HTMLDivElement | undefined;
   setStateAction: (e: HTMLDivElement) => void;
 }
@@ -56,15 +56,18 @@ export const GameBoardMapTicTacToe = ({
   columns,
   container,
   direction,
+  id,
   wrap,
   state,
   setStateAction,
 }: GameBoardPropsTicTacToe) => (
   <Grid2
+    component={'section'}
     columns={columns}
     container={container}
     direction={direction}
     wrap={wrap}
+    id={id}
     sx={{ height: '33.3%', flex: '1 0 100%' }}
   >
     {row.map((e, _i, _arr) => {

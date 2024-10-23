@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "allowImportingTsExtensions": false,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
@@ -9,18 +8,12 @@
   },
   "include": [
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../__mocks__/mocks.ts",
-    "../../../libs/**/*/src/**/*.ts"
+    "../../../libs/types/types-game/**/*.ts",
+    "../../../__mocks__/mocks.ts"
   ],
-  "exclude": [
-    "../../../libs/react-components/**/*.ts",
-    "../../../libs/shared-react-components/**/*.ts",
-    "../../../libs/react-components/**/*.tsx",
-    "../../../libs/shared-react-components/**/*.tsx",
-    "../../../libs/**/*/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }

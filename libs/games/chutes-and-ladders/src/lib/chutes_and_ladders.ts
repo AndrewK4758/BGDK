@@ -1,6 +1,6 @@
-import { Board, Die, GameBoard, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
-import { AvatarTotem, Color, SpaceType } from '@bgdk/types-game';
-import AvatarTotems from './avatar-totems.js';
+import { Board, Die, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
+import { AvatarTotem, Color, GameBoard, SpaceType, type IChutesAndLadders } from '@bgdk/types-game';
+import AvatarTotems from './avatar-totems';
 
 export const TOTAL_SPACES = 100;
 export const START = 1;
@@ -120,7 +120,7 @@ const createDumpValueLadder = (indexOfSpace: number): Space => {
   }
 };
 
-export class ChutesAndLadders {
+export class ChutesAndLadders implements IChutesAndLadders {
   MAX_PLAYERS: number;
   MIN_PLAYERS: number;
   CHUTES: number;

@@ -13,10 +13,6 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      rollupOptions: {
-        showDiagnostics: true,
-        showVerboseMessages: true,
-      },
     }),
   ],
 
@@ -45,11 +41,10 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
       perf: true,
       output: {
         esModule: true,
-        format: 'esm',
+        format: 'module',
       },
     },
     target: 'esnext',

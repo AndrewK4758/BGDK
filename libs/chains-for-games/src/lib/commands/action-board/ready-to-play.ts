@@ -1,6 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys } from '@bgdk/types-game';
+import { Context, GameContextKeys } from '@bgdk/types-game';
 
 export const readyToPlayCheck = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'ready-to-play-check') {
@@ -12,3 +12,4 @@ export const readyToPlayCheck = CommandBuilder.build((context: Context) => {
     return true;
   } else return false;
 });
+export default readyToPlayCheck;

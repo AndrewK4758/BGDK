@@ -1,7 +1,7 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
-import { GameBoard, ILiteSpace, rowFinder } from '@bgdk/games-components-logic';
+import { rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
-import { IActivePlayersInGame, type GamePlayerValidation } from '@bgdk/types-game';
+import { IActivePlayersInGame, GameBoard, type GamePlayerValidation, ILiteSpace } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';

@@ -1,16 +1,15 @@
 {
   "name": "@bgdk/types-api",
   "version": "0.0.1",
-  "type": "module",
   "dependencies": {
     "@bgdk/types-game": "0.0.1",
     "multer": "1.4.5-lts.1",
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.12.0",
+    "@eslint/js": "9.13.0",
     "jsonc-eslint-parser": "2.4.0"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
+  "main": "./index.js",
+  "module": "./index.mjs",
   "typings": "./index.d.ts",
   "private": true
 }

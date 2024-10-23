@@ -1,6 +1,4 @@
-import { IInstanceOfGame } from '@bgdk/instance-of-game';
-import { GameInstanceID } from '@bgdk/types-game';
-import { IAllGamesMap } from '../interfaces/all-games-map.js';
+import { GameInstanceID, IInstanceOfGame, IAllGamesMap } from '@bgdk/types-game';
 
 export class AllGamesMap implements IAllGamesMap {
   AllGames: Map<GameInstanceID, IInstanceOfGame>;

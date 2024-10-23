@@ -7,18 +7,27 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "../../../libs/**/*/src/**/*.ts", "src/main.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../../../libs/react-components/**/*.ts",
-    "../../../libs/shared-react-components/**/*.ts",
-    "../../../libs/react-components/**/*.tsx",
-    "../../../libs/shared-react-components/**/*.tsx",
-    "../../../libs/**/*/src/tests/**/*.ts",
-    "../../../libs/**/*/src/tests/**/*.tsx"
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "../../../libs/password/src/**/*.ts",
+    "../../../libs/prisma/src/**/*.ts",
+    "../../../libs/socket-io/src/**/*.ts",
+    "../../../libs/models/de-referencing-utilities/src/**/*.ts",
+    "../../../libs/chains-for-games/src/**/*.ts",
+    "../../../libs/models/rule/src/**/*.ts",
+    "../../../libs/models/game-builder/src/**/*.ts",
+    "../../../libs/chain/src/**/*.ts",
+    "../../../libs/games/tic-tac-toe/src/**/*.ts",
+    "../../../libs/games-components-logic/src/**/*.ts",
+    "../../../libs/games/chutes-and-ladders/src/**/*.ts",
+    "../../../libs/game/src/**/*.ts",
+    "../../../libs/models/instance-of-game/src/**/*.ts",
+    "../../../libs/models/all-games-map/src/**/*.ts",
+    "../../../libs/types/types-game/src/**/*.ts",
+    "../../../libs/types/types-api/src/**/*.ts"
   ],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     { "path": "../../../libs/password/tsconfig.lib.json" },
     { "path": "../../../libs/prisma/tsconfig.lib.json" },

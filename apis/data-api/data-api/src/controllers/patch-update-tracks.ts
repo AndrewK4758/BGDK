@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import updateTrack from '../services/prisma/tracks/update-track.js';
+import updateTrack from '../services/prisma/tracks/update-track.ts';
 
 const updateTracks = async (req: Request, resp: Response) => {
   try {

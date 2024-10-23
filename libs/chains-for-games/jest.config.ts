@@ -1,4 +1,3 @@
- 
 export default {
   displayName: 'chains-for-games',
   preset: '../../jest.preset.js',

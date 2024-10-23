@@ -26,4 +26,3 @@ module.exports = [
     rules: {},
   },
 ];
-console.log(compat);

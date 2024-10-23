@@ -1,5 +1,5 @@
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
-import { GameBoard, ILiteSpace } from '@bgdk/games-components-logic';
+import { GameBoard, ILiteSpace } from '@bgdk/types-game';
 import { Built_GameBoard } from '../../pages/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';

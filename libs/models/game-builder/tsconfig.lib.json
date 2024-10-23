@@ -11,24 +11,14 @@
     "src/**/*.d.ts",
     "../rule/src/**/*.ts",
     "../../chain/src/**/*.ts",
-    "../../games/chutes-and-ladders/src/**/*.ts",
-    "../../games-components-logic/src/**/*.ts",
     "../../types/types-game/src/**/*.ts"
   ],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../rule/src/tests/**/*.ts",
-    "../../chain/src/tests/**/*.ts",
-    "../../games/chutes-and-ladders/src/tests/**/*.ts",
-    "../../games-components-logic/src/tests/**/*.ts"
-  ],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
     { "path": "../../games-components-logic/tsconfig.lib.json" },
-    { "path": "../../types/types-game/tsconfig.lib.json" },
     { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../rule/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" },
     { "path": "../../chain/tsconfig.lib.json" }
   ]
 }

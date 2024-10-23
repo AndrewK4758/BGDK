@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import findAllAlbums from '../services/prisma/album/find-albums.js';
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
+import { Request, Response } from 'express';
+import findAllAlbums from '../services/prisma/album/find-albums.ts';
 
 const getAlbums = async (req: Request, resp: Response) => {
   if (req.query.take) {

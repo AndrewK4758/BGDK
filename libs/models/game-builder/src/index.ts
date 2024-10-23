@@ -1,1 +1,1 @@
-export * from './lib/game-builder.js';
+export * from './lib/game-builder';

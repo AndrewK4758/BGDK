@@ -7,26 +7,11 @@
     "module": "NodeNext"
   },
 
-  "include": [
-    "src/**/*.ts",
-    "../games/chutes-and-ladders/src/**/*.ts",
-    "../games/tic-tac-toe/src/**/*.ts",
-    "../types/types-game/src/**/*.ts",
-    "../games-components-logic/src/**/*.ts"
-  ],
-  "exclude": [
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "../games/chutes-and-ladders/src/tests/**/*.ts",
-    "../games/tic-tac-toe/src/tests/**/*.ts",
-    "../types/types-game/src/tests/**/*.ts",
-    "../games-components-logic/src/tests/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts", "../games-components-logic/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
-    { "path": "../games/tic-tac-toe/tsconfig.lib.json" },
+    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../games-components-logic/tsconfig.lib.json" },
-    { "path": "../types/types-game/tsconfig.lib.json" },
-    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" }
+    { "path": "../types/types-game/tsconfig.lib.json" }
   ]
 }

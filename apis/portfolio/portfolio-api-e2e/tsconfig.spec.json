@@ -10,17 +10,7 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/**/*/src/**/*.ts",
     "../../../__mocks__/**/*.mts"
   ],
-  "exclude": [
-    "../../../libs/react-components/**/*.ts",
-    "../../../libs/react-components/**/*.tsx",
-    "../../../libs/shared-react-components/**/*.ts",
-    "../../../libs/shared-react-components/**/*.tsx",
-    "../../../libs/**/*.spec.ts",
-    "../../../libs/**/*/.spec.tsx",
-    "../../../libs/**/*.test.ts",
-    "../../../libs/**/*/.test.tsx"
-  ]
+  "exclude": []
 }

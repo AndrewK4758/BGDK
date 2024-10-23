@@ -1,1 +1,1 @@
-export * from './lib/tic-tac-toe.js';
+export * from './lib/tic-tac-toe';

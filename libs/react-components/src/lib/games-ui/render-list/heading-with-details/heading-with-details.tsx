@@ -1,9 +1,8 @@
 import { Box, ListItem, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { ElementType } from 'react';
-import Text from '../../text/text.tsx';
+import Text from '../../text/text';
 
-/* eslint-disable-next-line */
 export interface HeadingWithDetailsProps {
   component: ElementType;
   id: string | number;

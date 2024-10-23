@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import findArtist from '../services/prisma/artist/find-artist.js';
-import findArtistError from '../errors/find-artist-error.js';
+import findArtistError from '../errors/find-artist-error.ts';
+import findArtist from '../services/prisma/artist/find-artist.ts';
 
 const getArtist = async (req: Request, resp: Response) => {
   try {

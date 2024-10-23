@@ -1,7 +1,7 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys, TurnStatus } from '@bgdk/types-game';
-import { nextCommandMap } from '../../utils/context-next-map.js';
+import { Context, GameContextKeys, TurnStatus } from '@bgdk/types-game';
+import { nextCommandMap } from '../../utils/context-next-map';
 
 export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'verify-ready-to-play') {
@@ -26,3 +26,5 @@ export const verifyReadyToPlay = CommandBuilder.build((context: Context) => {
     }
   } else return false;
 });
+
+export default verifyReadyToPlay;

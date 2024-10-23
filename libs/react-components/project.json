@@ -25,8 +25,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "fix": true,
-        "lintFilePatterns": ["libs/react-components/**/*.{ts,tsx,js,jsx}", "libs/react-components/package.json"]
+        "fix": true
       }
     }
   }

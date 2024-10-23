@@ -13,7 +13,7 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/__mocks__/mocks.mts", "{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": ["{workspaceRoot}/__mocks__/mocks.ts", "{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
     {
@@ -26,8 +26,7 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      },
-      "exclude": ["libs/gen-ai/prompt-builder/*"]
+      }
     },
     {
       "plugin": "@nx/eslint/plugin",

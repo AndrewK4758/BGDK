@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import { FormEventHandler } from 'react';
 import { Form } from 'react-router-dom';
 
-/* eslint-disable-next-line */
 export interface ButtonFormActionProps {
   method: 'get' | 'post' | 'put' | 'delete' | 'patch' | undefined;
   action: string | undefined;

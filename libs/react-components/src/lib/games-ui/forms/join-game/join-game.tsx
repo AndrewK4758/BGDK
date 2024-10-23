@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { FormActionProps } from '../../../../interfaces/form-action-props.tsx';
-import FormikTextInput from '../../text-input/formik-text-input.tsx';
+import { FormActionProps } from '../../../../interfaces/form-action-props';
+import FormikTextInput from '../../text-input/formik-text-input';
 import { GamePlayerValidation } from '@bgdk/types-game';
 
 /* eslint-disable-next-line */

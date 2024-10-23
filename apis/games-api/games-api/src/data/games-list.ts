@@ -10,7 +10,8 @@ import {
   turnChainTicTacToe,
 } from '@bgdk/chains-for-games';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
-import { GameBuilder, IBuiltGame } from '@bgdk/game-builder';
+import { GameBuilder } from '@bgdk/game-builder';
+import { IBuiltGame } from '@bgdk/types-game';
 import { TicTacToe } from '@bgdk/tic-tac-toe';
 
 const gb = new GameBuilder();

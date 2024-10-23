@@ -1,15 +1,14 @@
 {
   "name": "@bgdk/prisma",
   "version": "0.0.1",
-  "type": "module",
   "dependencies": {
-    "@nx/vite": "20.0.1",
+    "@nx/vite": "20.0.3",
     "@prisma/client": "5.21.1",
     "vite": "5.4.9",
     "vite-plugin-dts": "4.2.4"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
+  "main": "./index.js",
+  "module": "./index.mjs",
   "typings": "./index.d.ts",
   "private": true
 }

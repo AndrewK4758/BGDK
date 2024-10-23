@@ -1,1 +1,1 @@
-export * from './lib/rule.js';
+export * from './lib/rule';

@@ -1,6 +1,6 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameContextKeys } from '@bgdk/types-game';
+import { Context, GameContextKeys } from '@bgdk/types-game';
 
 export const outputContextResponse = CommandBuilder.build((context: Context) => {
   const { resp } = deRefContextObject(context);
@@ -15,3 +15,5 @@ export const outputContextResponse = CommandBuilder.build((context: Context) => 
   }
   return false;
 });
+
+export default outputContextResponse;

@@ -6,48 +6,22 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "include": [
-    "src/**/*.ts",
-    "../instance-of-game/src/**/*.ts",
-    "../all-games-map/src/**/*.ts",
-    "../../game/src/**/*.ts",
-    "../../chain/src/**/*.ts",
-    "../../types/types-game/src/**/*.ts",
-    "../../types/types-api/src/**/*.ts",
-    "../../chutes-and-ladders/src/**/*.ts",
-    "../../games-components-logic/src/**/*.ts",
-    "../../games/**/*/src/**/*.ts",
-    "../../models/game-builder/src/**/*.ts",
-    "../../models/rule/src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "../instance-of-game/src/**/*.ts", "../../types/types-game/src/**/*.ts"],
   "exclude": [
     "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.test.ts",
-    "**/*.test.tsx",
-    "../../react-components/**/*.ts",
-    "../../react-components/**/*.tsx",
-    "../../shared-react-components/**/*.ts",
-    "../../shared-react-components/**/*.tsx",
-    "../../**/*.spec.ts",
-    "../../**/*/.spec.tsx",
-    "../../**/*.test.ts",
-    "../../**/*/.test.tsx"
+    "**/*.test.tsx"
   ],
   "references": [
-    { "path": "../rule/tsconfig.lib.json" },
-    { "path": "../game-builder/tsconfig.lib.json" },
-    { "path": "../all-games-map/tsconfig.lib.json" },
-    { "path": "../../types/types-api/tsconfig.lib.json" },
-    { "path": "../../games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../../games-components-logic/tsconfig.lib.json" },
-    { "path": "../../types/types-game/tsconfig.lib.json" },
     { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
     { "path": "../../game/tsconfig.lib.json" },
     { "path": "../instance-of-game/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" },
     { "path": "../../chain/tsconfig.lib.json" }
   ]
 }

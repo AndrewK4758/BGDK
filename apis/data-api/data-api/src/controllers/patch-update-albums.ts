@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import updateAlbum from '../services/prisma/album/update-albums.js';
+import updateAlbum from '../services/prisma/album/update-albums.ts';
 
 const updateAlbums = async (req: Request, resp: Response) => {
   try {

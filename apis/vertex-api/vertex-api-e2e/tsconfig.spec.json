@@ -4,5 +4,11 @@
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
-  "include": ["jest.config.ts", "src/**/*.ts"]
+  "include": [
+    "jest.config.ts",
+    "src/**/*.ts",
+    "  ../../../libs/gen-ai/prompt-builder/src/**/*.ts",
+    "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
+    "../../../libs/socket-io/src/**/*.ts"
+  ]
 }

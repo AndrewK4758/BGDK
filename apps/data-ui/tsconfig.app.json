@@ -9,6 +9,18 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
   },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/types/**/*/src/**/*.ts",
+    "../../libs/games-components-logic/src/**/*.ts",
+    "../../libs/react-components/src/**/*.ts",
+    "../../libs/shared-react-components/src/**/*.ts",
+    "../../libs/react-components/src/**/*.tsx",
+    "../../libs/shared-react-components/src/**/*.tsx"
+  ],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
@@ -17,29 +29,10 @@
     "src/**/*.spec.js",
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
-    "src/**/*.test.jsx",
-    "../../libs/socket-io/src/**/*.ts",
-    "../../libs/password/src/**/*.ts",
-    "../../libs/**/*/src/tests/**/*.tsx",
-    "../../libs/**/*/src/tests/**/*.ts"
+    "src/**/*.test.jsx"
   ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "../../libs/**/*/src/**/*.ts",
-    "../../libs/**/*/src/**/*.tsx"
-  ],
+
   "references": [
-    { "path": "../../libs/models/rule/tsconfig.lib.json" },
-    { "path": "../../libs/models/game-builder/tsconfig.lib.json" },
-    { "path": "../../libs/chain/tsconfig.lib.json" },
-    { "path": "../../libs/games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
-    { "path": "../../libs/game/tsconfig.lib.json" },
-    { "path": "../../libs/models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../../libs/models/all-games-map/tsconfig.lib.json" },
     { "path": "../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
     { "path": "../../libs/types/types-game/tsconfig.lib.json" },

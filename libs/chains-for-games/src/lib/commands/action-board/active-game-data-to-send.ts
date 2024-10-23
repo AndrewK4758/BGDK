@@ -1,8 +1,7 @@
-import { CommandBuilder, Context } from '@bgdk/chain';
+import { CommandBuilder } from '@bgdk/chain';
 import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { GameBoard } from '@bgdk/games-components-logic';
-import { GameContextKeys, GameInstanceID, IRegisterFormValues } from '@bgdk/types-game';
-import { IPlayersAndBoard } from '../../completed-chains/active-game-display-chain.js';
+import { Context, GameContextKeys, GameBoard, GameInstanceID, IRegisterFormValues } from '@bgdk/types-game';
+import { IPlayersAndBoard } from '../../completed-chains/active-game-display-chain';
 
 export const activeDataToSend = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.NEXT) && context.getString(GameContextKeys.NEXT) === 'active-data-to-send') {
@@ -26,3 +25,5 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
     }
   } else return false;
 });
+
+export default activeDataToSend;

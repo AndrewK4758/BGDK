@@ -33,6 +33,7 @@
     { "path": "./libs/prisma" },
     { "path": "./libs/chain" },
     { "path": "./libs/game" },
-    { "path": "./libs/gen-ai/vertex-ai" }
+    { "path": "./libs/gen-ai/vertex-ai" },
+    { "path": "./libs/gen-ai/prompt-builder" }
   ]
 }

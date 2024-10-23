@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import verifyUser from '../services/prisma/users/verify-user.js';
-import notRegisteredUserError from '../errors/not-registered-user-error.js';
-import findUser from '../services/prisma/users/find-user.js';
 import type { users } from '@prisma/client';
+import { Request, Response } from 'express';
+import notRegisteredUserError from '../errors/not-registered-user-error.ts';
+import findUser from '../services/prisma/users/find-user.ts';
+import verifyUser from '../services/prisma/users/verify-user.ts';
 
 const loginUser = async (req: Request, resp: Response) => {
   try {

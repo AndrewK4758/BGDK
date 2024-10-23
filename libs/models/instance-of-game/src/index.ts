@@ -1,1 +1,1 @@
-export * from './lib/instance-of-game.js';
+export * from './lib/instance-of-game';

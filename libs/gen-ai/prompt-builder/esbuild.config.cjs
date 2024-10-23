@@ -1,9 +1,8 @@
 module.exports = {
   sourcemap: true,
-  target: 'node22',
+  target: 'node23',
   platform: 'node',
   format: ['esm'],
-  bundle: true,
-  loader: { '.json': 'text' },
+  bundle: false,
 };
 //

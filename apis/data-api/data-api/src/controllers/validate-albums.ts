@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import validateAlbum from '../services/prisma/album/validate-album.js';
 import { Prisma } from '@prisma/client';
+import { NextFunction, Request, Response } from 'express';
+import validateAlbum from '../services/prisma/album/validate-album.ts';
 
 const validateAlbums = async (req: Request, resp: Response, next: NextFunction) => {
   if (req.query.title) {

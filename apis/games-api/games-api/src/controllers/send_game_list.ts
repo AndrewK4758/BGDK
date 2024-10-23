@@ -1,4 +1,4 @@
-import type { IBuiltGame } from '@bgdk/game-builder';
+import type { IBuiltGame } from '@bgdk/types-game';
 import { Request, Response } from 'express';
 import games from '../data/games-list.js';
 

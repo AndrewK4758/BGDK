@@ -1,4 +1,4 @@
-import { IPlayer } from '../interfaces/player.js';
+import { IPlayer } from '@bgdk/types-game';
 import { Avatar } from './avatar.js';
 
 export class Player implements IPlayer {

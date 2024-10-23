@@ -1,15 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-
-  },
+  "compilerOptions": {},
   "files": [],
 
   "references": [
-    { "path": "../games/tic-tac-toe" },
+    { "path": "../games/chutes-and-ladders" },
     { "path": "../games-components-logic" },
     { "path": "../types/types-game" },
-    { "path": "../games/chutes-and-ladders" },
     { "path": "./tsconfig.lib.json" },
     { "path": "./tsconfig.spec.json" }
   ]

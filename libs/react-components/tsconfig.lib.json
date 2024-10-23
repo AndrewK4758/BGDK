@@ -6,6 +6,18 @@
     "module": "ESNext",
     "moduleResolution": "Bundler"
   },
+
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "src/**/*.css",
+    "**/*.d.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../types/**/*/src/**/*.ts"
+  ],
   "exclude": [
     "**/*.spec.ts",
     "**/*.test.ts",
@@ -15,37 +27,9 @@
     "**/*.test.js",
     "**/*.spec.jsx",
     "**/*.test.jsx",
-    "**/*.spec.ts",
-    "../games-components-logic/src/test/**/*.ts",
-    "../types/**/*/src/test/**/*.ts",
-    "../models/**/*/src/tests**/*.ts",
-    "../chain/src/tests/**/*.ts",
-    "../game/src/tests/**/*.ts",
-    "../games/**/*/src/tests/**/*.ts"
-  ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.d.ts",
-    "src/**/*.css",
-    "../games-components-logic/src/**/*.ts",
-    "../types/**/*/src/**/*.ts",
-    "../models/**/*/src/**/*.ts",
-    "../chain/src/**/*.ts",
-    "../game/src/**/*.ts",
-    "../games/**/*/src/**/*.ts"
+    "**/*.spec.ts"
   ],
   "references": [
-    { "path": "../models/rule/tsconfig.lib.json" },
-    { "path": "../models/game-builder/tsconfig.lib.json" },
-    { "path": "../chain/tsconfig.lib.json" },
-    { "path": "../games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
-    { "path": "../game/tsconfig.lib.json" },
-    { "path": "../models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../models/all-games-map/tsconfig.lib.json" },
     { "path": "../types/types-api/tsconfig.lib.json" },
     { "path": "../games-components-logic/tsconfig.lib.json" },
     { "path": "../types/types-game/tsconfig.lib.json" }

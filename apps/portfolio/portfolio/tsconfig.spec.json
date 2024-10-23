@@ -18,29 +18,7 @@
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.ts",
-    "../../../libs/chain/src/**/*.ts",
-    "../../../libs/models/**/*/src/**/*.ts",
-    "../../../libs/games/**/*/src/**/*.ts",
-    "../../../libs/games-components-logic/src/**/*.ts",
-    "../../../libs/game/src/**/*.ts",
-    "../../../libs/types/**/*/src/**/*.ts",
-    "../../../libs/chains-for-games/src/**/*.ts",
-    "../../../libs/shared-react-components/src/**/*.tsx",
-    "../../../libs/shared-react-components/src/**/*.ts",
-    "../../../libs/react-components/src/**/*.tsx",
-    "../../../libs/react-components/src/**/*.ts"
+    "src/**/*.ts"
   ],
-  "exclude": [
-    "../../../libs/chain/src/tests/**/*.ts",
-    "../../../libs/models/**/*/src/tests/**/*.ts",
-    "../../../libs/games/**/*/src/tests/**/*.ts",
-    "../../../libs/game/src/tests/**/*.ts",
-    "../../../libs/games-components-logic/src/tests/**/*.ts",
-    "../../../libs/chains-for-games/src/tests/**/*.ts",
-    "../../../libs/shared-react-components/src/tests/**/*.tsx",
-    "../../../libs/shared-react-components/src/tests/**/*.ts",
-    "../../../libs/react-components/src/tests/**/*.tsx",
-    "../../../libs/react-components/src/tests/**/*.ts"
-  ]
+  "exclude": []
 }
