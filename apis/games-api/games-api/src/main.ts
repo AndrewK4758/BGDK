@@ -4,15 +4,9 @@ import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
-import router, { GameRoutes } from './routes/routes.ts';
-import addGameToSocketInstance from './middleware/socket-add-game-middleware.ts';
 import socketBoardAction from './events/socket-board-action.ts';
-import { fileURLToPath } from 'url';
-
-// FOR ESM MODULE BUILD
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// FOR ESM MODULE BUILD
+import addGameToSocketInstance from './middleware/socket-add-game-middleware.ts';
+import router, { GameRoutes } from './routes/routes.ts';
 
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if
