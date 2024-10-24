@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client';
 import type { DefaultArgs } from '@prisma/client/runtime/library';
 import { Request, Response } from 'express';
-import findUser from '../services/prisma/users/find-user.ts';
+import findUser from '../services/prisma/users/find-user';
 
 const validateUser = async (req: Request, resp: Response) => {
   const { email } = req.query;

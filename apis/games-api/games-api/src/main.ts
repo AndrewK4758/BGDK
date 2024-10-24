@@ -4,9 +4,9 @@ import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import { ServerOptions } from 'socket.io';
-import socketBoardAction from './events/socket-board-action.ts';
-import addGameToSocketInstance from './middleware/socket-add-game-middleware.ts';
-import router, { GameRoutes } from './routes/routes.ts';
+import socketBoardAction from './events/socket-board-action';
+import addGameToSocketInstance from './middleware/socket-add-game-middleware';
+import router, { GameRoutes } from './routes/routes';
 
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if

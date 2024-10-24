@@ -1,8 +1,8 @@
 import { Request } from 'express';
-import { mockReqObj } from '__mocks__/mocks.js';
-import useSelectedGame from '../../src/middleware/use-selected-game.js';
-import games from '../../src/data/games-list.js';
-import type { IBuiltGame } from '@bgdk/game-builder';
+import { mockReqObj } from '@bgdk/mocks';
+import useSelectedGame from '../../src/middleware/use-selected-game';
+import games from '../../src/data/games-list';
+import type { IBuiltGame } from '@bgdk/types-game';
 
 let req: Partial<Request>;
 

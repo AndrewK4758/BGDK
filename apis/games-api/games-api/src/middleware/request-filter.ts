@@ -1,11 +1,11 @@
 import { GameNameString, IBuiltGame, PlayerID } from '@bgdk/types-game';
 import { NextFunction, Request, Response, Router } from 'express';
-import useAllGamesMap from './all-games-map.ts';
-import useInstanceTimeMap from './instance-map.ts';
-import useSetSelectedGameName from './set-selected-game-name.ts';
-import useActiveGameInstance from './use-active-game-instancce.ts';
-import usePlayerID from './use-player-id.ts';
-import useSelectedGame from './use-selected-game.ts';
+import useAllGamesMap from './all-games-map';
+import useInstanceTimeMap from './instance-map';
+import useSetSelectedGameName from './set-selected-game-name';
+import useActiveGameInstance from './use-active-game-instancce';
+import usePlayerID from './use-player-id';
+import useSelectedGame from './use-selected-game';
 
 const reqFilter = (req: Request, _resp: Response, next: NextFunction): void => {
   req.playerID = usePlayerID(req) as PlayerID;

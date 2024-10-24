@@ -1,8 +1,6 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-
-  },
+  "compilerOptions": {},
   "files": [],
   "references": [
     { "path": "../../games-components-logic" },

@@ -4,8 +4,11 @@ import * as http from 'http';
 import * as path from 'path';
 import { SocketServer } from '@bgdk/socket-io';
 import type { ServerOptions } from 'socket.io';
-import handleTextDataChunks from './controllers/gen-ai-text-handler.ts';
-import router, { Routes } from './routes/routes.ts';
+import handleTextDataChunks from './controllers/gen-ai-text-handler';
+import router, { Routes } from './routes/routes';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Express = express();
 

@@ -1,0 +1,37 @@
+{
+  "name": "utils",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/utils/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "libs/utils/src/index.ts",
+        "outputPath": "dist/libs/utils",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/utils/tsconfig.lib.json",
+        "esbuildConfig": "libs/utils/esbuild.config.cjs",
+        "assets": [
+          {
+            "glob": "libs/utils/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    }
+  }
+}

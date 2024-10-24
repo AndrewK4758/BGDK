@@ -2,8 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"]
   },

@@ -5,24 +5,23 @@
   "references": [
     { "path": "../../../libs/password" },
     { "path": "../../../libs/prisma" },
+    { "path": "../../../libs/models/all-games-map" },
     { "path": "../../../libs/socket-io" },
-    { "path": "../../../libs/models/de-referencing-utilities" },
-    { "path": "../../../libs/chains-for-games" },
     { "path": "../../../libs/models/rule" },
     { "path": "../../../libs/models/game-builder" },
-    { "path": "../../../libs/chain" },
+    { "path": "../../../libs/types/types-api" },
+    { "path": "../../../libs/utils" },
+    { "path": "../../../libs/__mocks__/mocks" },
     { "path": "../../../libs/games/tic-tac-toe" },
-    { "path": "../../../libs/games-components-logic" },
     { "path": "../../../libs/games/chutes-and-ladders" },
+    { "path": "../../../libs/games-components-logic" },
     { "path": "../../../libs/game" },
     { "path": "../../../libs/models/instance-of-game" },
-    { "path": "../../../libs/models/all-games-map" },
+    { "path": "../../../libs/chains-for-games" },
     { "path": "../../../libs/types/types-game" },
-    { "path": "../../../libs/types/types-api" },
+    { "path": "../../../libs/chain" },
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.spec.json" }
   ],
-  "compilerOptions": {
-
-  }
+  "compilerOptions": {}
 }

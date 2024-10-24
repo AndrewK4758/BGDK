@@ -1,5 +1,5 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { deRefContextObject } from '@bgdk/utils';
 import { Context, GameContextKeys, GameBoard, GameInstanceID, IRegisterFormValues } from '@bgdk/types-game';
 import { IPlayersAndBoard } from '../../completed-chains/active-game-display-chain';
 

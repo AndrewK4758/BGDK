@@ -1,5 +1,5 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject, getPlayerID } from '@bgdk/de-referencing-utilities';
+import { deRefContextObject, getPlayerID } from '@bgdk/utils';
 import { Player } from '@bgdk/games-components-logic';
 import { Context, GameContextKeys, TurnStatus } from '@bgdk/types-game';
 import { nextCommandMap } from '../../utils/context-next-map';

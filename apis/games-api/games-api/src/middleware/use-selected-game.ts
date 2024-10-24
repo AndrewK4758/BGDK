@@ -1,5 +1,5 @@
 import { IBuiltGame } from '@bgdk/types-game';
-import games from '../data/games-list.js';
+import games from '../data/games-list';
 import type { Request } from 'express';
 
 const useSelectedGame = (req: Request): IBuiltGame | undefined =>

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
-import oauth2Client from '../services/google-oauth.ts';
-import userTokensMap from '../models/users-tokens-map.ts';
+import oauth2Client from '../services/google-oauth';
+import userTokensMap from '../models/users-tokens-map';
 import ShortUniqueId from 'short-unique-id';
 
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {

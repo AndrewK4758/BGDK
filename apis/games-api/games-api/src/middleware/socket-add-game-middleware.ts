@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io';
 import { GameInstanceID, GamePlayerValidation } from '@bgdk/types-game';
-import { allGamesMap } from './all-games-map.ts';
+import { allGamesMap } from './all-games-map';
 import type { SocketMiddleware, SocketMiddlewareNext } from '@bgdk/socket-io';
 
 const addGameToSocketInstance: SocketMiddleware = (socket: Socket, next: SocketMiddlewareNext) => {

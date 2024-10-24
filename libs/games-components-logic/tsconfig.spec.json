@@ -13,7 +13,7 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "tests/**/*.ts",
+    "tests/**/*.spec.ts",
     "../types/types-game/src/**/*.ts"
   ]
 }

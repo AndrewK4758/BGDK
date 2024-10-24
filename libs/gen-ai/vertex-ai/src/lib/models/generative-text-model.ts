@@ -1,14 +1,12 @@
 import { HarmBlockThreshold, HarmCategory } from '@google-cloud/vertexai';
-import vertexAI from '../auth/connection.js';
-
-const textModel = 'gemini-1.5-pro-001';
+import vertexAI, { MODEL } from '../auth/connection';
 
 const generativeTextModel = vertexAI.getGenerativeModel({
-  model: textModel,
+  model: MODEL,
   safetySettings: [
     {
       category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.HARM_BLOCK_THRESHOLD_UNSPECIFIED,
+      threshold: HarmBlockThreshold.BLOCK_NONE,
     },
   ],
   generationConfig: { responseMimeType: 'text/plain' },

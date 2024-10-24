@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import { NextFunction, Request, Response } from 'express';
-import findArtistError from '../errors/find-artist-error.ts';
-import findArtists from '../services/prisma/artist/find-artists.ts';
+import findArtistError from '../errors/find-artist-error';
+import findArtists from '../services/prisma/artist/find-artists';
 
 const getArtists = async (req: Request, resp: Response, next: NextFunction): Promise<void> => {
   if (!req.query.take) next();

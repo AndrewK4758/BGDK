@@ -1,6 +1,6 @@
 import { ContextBuilder } from '@bgdk/chain';
 import { Context, GameContextKeys, ITestCtxOutput } from '@bgdk/types-game';
-import { mockRespObj } from '__mocks__/mocks.js';
+import { mockRespObj } from '@bgdk/mocks';
 import { Response } from 'express';
 import { outputContextResponse } from '../src/lib/commands/action-output/output-context-response';
 

@@ -4,8 +4,8 @@
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "express"],
     "strict": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   },
   "include": [
     "src/**/*.ts",
@@ -13,7 +13,7 @@
     "../../../libs/password/src/**/*.ts",
     "../../../libs/prisma/src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",
-    "../../../libs/models/de-referencing-utilities/src/**/*.ts",
+    "../../../libs/utils/src/**/*.ts",
     "../../../libs/chains-for-games/src/**/*.ts",
     "../../../libs/models/rule/src/**/*.ts",
     "../../../libs/models/game-builder/src/**/*.ts",
@@ -25,25 +25,27 @@
     "../../../libs/models/instance-of-game/src/**/*.ts",
     "../../../libs/models/all-games-map/src/**/*.ts",
     "../../../libs/types/types-game/src/**/*.ts",
-    "../../../libs/types/types-api/src/**/*.ts"
+    "../../../libs/types/types-api/src/**/*.ts",
+    "../../../libs/utils/src/lib/get-current-minute.ts"
   ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     { "path": "../../../libs/password/tsconfig.lib.json" },
     { "path": "../../../libs/prisma/tsconfig.lib.json" },
+    { "path": "../../../libs/models/all-games-map/tsconfig.lib.json" },
     { "path": "../../../libs/socket-io/tsconfig.lib.json" },
-    { "path": "../../../libs/models/de-referencing-utilities/tsconfig.lib.json" },
-    { "path": "../../../libs/chains-for-games/tsconfig.lib.json" },
     { "path": "../../../libs/models/rule/tsconfig.lib.json" },
     { "path": "../../../libs/models/game-builder/tsconfig.lib.json" },
-    { "path": "../../../libs/chain/tsconfig.lib.json" },
+    { "path": "../../../libs/types/types-api/tsconfig.lib.json" },
+    { "path": "../../../libs/utils/tsconfig.lib.json" },
+    { "path": "../../../libs/__mocks__/mocks/tsconfig.lib.json" },
     { "path": "../../../libs/games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../../../libs/games-components-logic/tsconfig.lib.json" },
     { "path": "../../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../../libs/games-components-logic/tsconfig.lib.json" },
     { "path": "../../../libs/game/tsconfig.lib.json" },
     { "path": "../../../libs/models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../../../libs/models/all-games-map/tsconfig.lib.json" },
+    { "path": "../../../libs/chains-for-games/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../../libs/types/types-api/tsconfig.lib.json" }
+    { "path": "../../../libs/chain/tsconfig.lib.json" }
   ]
 }

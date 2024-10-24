@@ -1,5 +1,5 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { deRefContextObject } from '@bgdk/utils';
 import { Context, GameContextKeys, ILoadRegisterData } from '@bgdk/types-game';
 
 export const loadRegister = CommandBuilder.build((context: Context) => {

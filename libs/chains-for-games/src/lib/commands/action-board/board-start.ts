@@ -1,5 +1,5 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { deRefContextObject } from '@bgdk/utils';
 import { Context, GameContextKeys, IPlayer, IRegisterFormValues } from '@bgdk/types-game';
 
 export const boardStart = CommandBuilder.build((context: Context) => {

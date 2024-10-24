@@ -2,8 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
@@ -14,6 +12,7 @@
     "src/**/*.ts",
     "../instance-of-game/src/**/*.ts",
     "../../game/src/**/*.ts",
+    "../../utils/src/**/*.ts",
     "../../games/**/*/src/**/*.ts",
     "../../types/types-game/src/**/*.ts",
     "../../games-components-logic/src/**/*.ts"

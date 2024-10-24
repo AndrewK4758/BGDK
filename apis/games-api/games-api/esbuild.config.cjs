@@ -1,8 +1,8 @@
 module.exports = {
-  sourcemap: true,
+  sourcemap: 'linked',
   target: 'node22',
   platform: 'node',
   format: ['esm'],
-  bundle: false,
+  bundle: true,
 };
 //

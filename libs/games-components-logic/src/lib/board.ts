@@ -1,5 +1,5 @@
 import { IBoard } from '@bgdk/types-game';
-import { Space } from './space.js';
+import { Space } from './space';
 
 export class Board implements IBoard {
   TotalSpaces: number;

@@ -1,5 +1,5 @@
 import { IPlayer } from '@bgdk/types-game';
-import { Avatar } from './avatar.js';
+import { Avatar } from './avatar';
 
 export class Player implements IPlayer {
   Id: string;

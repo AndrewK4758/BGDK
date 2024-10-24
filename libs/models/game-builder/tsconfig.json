@@ -6,9 +6,9 @@
   "exclude": [],
   "references": [
     { "path": "../../games-components-logic" },
-    { "path": "../../types/types-game" },
     { "path": "../../games/chutes-and-ladders" },
     { "path": "../rule" },
+    { "path": "../../types/types-game" },
     { "path": "../../chain" }
   ]
 }

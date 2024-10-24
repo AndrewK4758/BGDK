@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import { Request, Response } from 'express';
-import searchAlbum from '../services/prisma/search-album.ts';
-import searchArtist from '../services/prisma/search-artist.ts';
+import searchAlbum from '../services/prisma/search-album';
+import searchArtist from '../services/prisma/search-artist';
 
 const searchArtistsAndAlbums = async (req: Request, resp: Response) => {
   try {

@@ -1,4 +1,4 @@
-import { Rule } from '../lib/rule';
+import { Rule } from '../src/lib/rule';
 
 let rb: Rule;
 

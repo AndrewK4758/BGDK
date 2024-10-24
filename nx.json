@@ -26,7 +26,8 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      }
+      },
+      "exclude": ["libs/__mocks__/mocks/*", "libs/utils/*"]
     },
     {
       "plugin": "@nx/eslint/plugin",

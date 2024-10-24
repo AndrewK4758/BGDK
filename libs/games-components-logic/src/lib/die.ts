@@ -1,5 +1,5 @@
 import { IDie } from '@bgdk/types-game';
-import { generateRandomNumber } from './utils.js';
+import { generateRandomNumber } from './utils';
 
 export class Die implements IDie {
   Sides: number;

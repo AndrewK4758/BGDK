@@ -10,7 +10,8 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../__mocks__/**/*.mts"
+    "../../../libs/__mocks__/mocks/src/**/*.ts"
   ],
   "exclude": []
 }
+

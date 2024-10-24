@@ -3,8 +3,8 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "vite/client"],
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext"
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
   },
 
   "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts", "../games-components-logic/src/**/*.ts"],

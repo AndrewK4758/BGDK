@@ -19,4 +19,4 @@ export * from './lib/interfaces/instance-of-game';
 export * from './lib/interfaces/chutes-and-ladders';
 export * from './lib/interfaces/tic-tac-toe';
 
-export * from './lib/utils/get-current-minute';
+

@@ -1,7 +1,7 @@
 import * as http from 'http';
 import { Server, ServerOptions } from 'socket.io';
-import { SocketEventTuple, SocketMiddleware } from '../types/socket-server.js';
-import { ISocketServer } from '../interfaces/socket-server.js';
+import { SocketEventTuple, SocketMiddleware } from '../types/socket-server';
+import { ISocketServer } from '../interfaces/socket-server';
 
 export class SocketServer implements ISocketServer {
   io: Server;

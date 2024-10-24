@@ -3,16 +3,16 @@
   "compilerOptions": {},
   "files": [],
   "include": [],
-
   "exclude": [],
   "references": [
-    { "path": "../games/chutes-and-ladders" },
+    { "path": "../utils" },
+    { "path": "../__mocks__/mocks" },
     { "path": "../games/tic-tac-toe" },
+    { "path": "../games/chutes-and-ladders" },
     { "path": "../games-components-logic" },
-    { "path": "../types/types-game" },
     { "path": "../game" },
     { "path": "../models/instance-of-game" },
-    { "path": "../models/de-referencing-utilities" },
+    { "path": "../types/types-game" },
     { "path": "../chain" },
     { "path": "./tsconfig.lib.json" },
     { "path": "./tsconfig.spec.json" }

@@ -1,13 +1,13 @@
-import { SpaceType, ISpace } from '@bgdk/types-game';
-import { Avatar } from '../lib/avatar.js';
+import { SpaceType, ISpace, IAvatar } from '@bgdk/types-game';
+import { Avatar } from '../lib/avatar';
 
 export class Space implements ISpace {
   Value: string;
   Type: SpaceType;
-  Previous!: Space;
-  Next!: Space;
-  Special: Space | null;
-  AvatarsInSpace: Avatar[];
+  Previous!: ISpace;
+  Next!: ISpace;
+  Special: ISpace | null;
+  AvatarsInSpace: IAvatar[];
   Display: string;
 
   constructor(spaceType: SpaceType, spaceValue: string | number) {
@@ -26,27 +26,27 @@ export class Space implements ISpace {
     return this.Type;
   }
 
-  get previous(): Space {
+  get previous(): ISpace {
     return this.Previous;
   }
 
-  set previous(previous: Space) {
+  set previous(previous: ISpace) {
     this.Previous = previous;
   }
 
-  get next(): Space {
+  get next(): ISpace {
     return this.Next;
   }
 
-  set next(next: Space) {
+  set next(next: ISpace) {
     this.Next = next;
   }
 
-  get special(): Space | null {
+  get special(): ISpace | null {
     return this.Special;
   }
 
-  set special(special: Space) {
+  set special(special: ISpace) {
     this.Special = special;
   }
 

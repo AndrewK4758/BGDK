@@ -1,7 +1,8 @@
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
-import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { GameInstanceID, Minute } from '@bgdk/types-game';
+import { getCurrentMinute } from '@bgdk/utils';
 import { AllGamesMap } from '../src/lib/all-games-map';
 
 let activeGame: InstanceOfGame, minute: Minute, gameInstanceID: GameInstanceID, allGamesMap: AllGamesMap;

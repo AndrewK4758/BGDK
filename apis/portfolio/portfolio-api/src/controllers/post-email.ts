@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import type { SendMailOptions } from 'nodemailer';
-import transporter from '../services/nodemailer.ts';
+import transporter from '../services/nodemailer';
 
 type ContactMessage = {
   name: string;

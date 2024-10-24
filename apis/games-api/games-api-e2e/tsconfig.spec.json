@@ -2,8 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
@@ -13,6 +11,7 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
+    "../../../libs/__mocks__/mocks/src/**/*.ts",
     "../../../libs/password/src/**/*.ts",
     "../../../libs/prisma/src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",
@@ -29,7 +28,7 @@
     "../../../libs/models/all-games-map/src/**/*.ts",
     "../../../libs/types/types-game/src/**/*.ts",
     "../../../libs/types/types-api/src/**/*.ts",
-    "../../../__mocks__/**/*.ts"
+    "../../../libs/__mocks__/mocks/tests/mocks.spec.ts"
   ],
   "exclude": []
 }

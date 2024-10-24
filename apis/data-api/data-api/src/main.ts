@@ -2,7 +2,7 @@ import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import Routes, { router } from './routes/routes.ts';
+import Routes, { router } from './routes/routes';
 
 const app: Express = express();
 

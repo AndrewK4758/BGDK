@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "types": ["vite/client"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "types": ["vite/client"]
   },
   "files": [],
   "include": [],
@@ -11,8 +9,7 @@
   "references": [
     { "path": "../types/types-api" },
     { "path": "../games-components-logic" },
-    { "path": "../types/types-game" },
-    { "path": "./tsconfig.lib.json" }
+    { "path": "../types/types-game" }
   ],
   "extends": "../../tsconfig.base.json"
 }

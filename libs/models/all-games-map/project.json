@@ -20,8 +20,7 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/models/all-games-map/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/models/all-games-map",
-        "testFiles": ["./src/tests/*"]
+        "reportsDirectory": "../../../coverage/libs/models/all-games-map"
       }
     },
     "lint": {

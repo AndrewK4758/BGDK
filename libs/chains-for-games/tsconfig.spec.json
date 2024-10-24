@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowImportingTsExtensions": false,
     "module": "CommonJS",
-    "moduleResolution": "Node",
+    "moduleResolution": "Node10",
     "outDir": "../../dist/out-tsc",
     "types": ["jest", "node"]
   },
@@ -14,14 +14,14 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "tests/**/*.ts",
-    "../../__mocks__/mocks.ts",
+    "../__mocks__/mocks/src/**/*.ts",
     "../games/tic-tac-toe/src/**/*.ts",
     "../games-components-logic/src/**/*.ts",
     "../types/types-game/src/**/*.ts",
     "../games/chutes-and-ladders/src/**/*.ts",
     "../game/src/**/*.ts",
     "../models/instance-of-game/src/**/*.ts",
-    "../models/de-referencing-utilities/src/**/*.ts",
+    "../utils/src/**/*.ts",
     "../chain/src/**/*.ts"
   ],
 

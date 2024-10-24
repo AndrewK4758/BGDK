@@ -1,7 +1,7 @@
 import type { artist } from '@prisma/client';
-import createArtists from '../src/services/prisma/artist/create-artists.ts';
-import updateArtist from '../src/services/prisma/artist/update-artists.ts';
-import deleteArtists from '../src/services/prisma/artist/delete-artist.ts';
+import createArtists from '../src/services/prisma/artist/create-artists';
+import updateArtist from '../src/services/prisma/artist/update-artists';
+import deleteArtists from '../src/services/prisma/artist/delete-artist';
 
 let id: number, name: string, newName: string;
 describe('Test updateArtist service', () => {

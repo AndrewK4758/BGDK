@@ -1,6 +1,6 @@
-import createArtists from '../src/services/prisma/artist/create-artists.ts';
-import deleteArtists from '../src/services/prisma/artist/delete-artist.ts';
-import findArtists from '../src/services/prisma/artist/find-artists.ts';
+import createArtists from '../src/services/prisma/artist/create-artists';
+import deleteArtists from '../src/services/prisma/artist/delete-artist';
+import findArtists from '../src/services/prisma/artist/find-artists';
 
 let name: string;
 

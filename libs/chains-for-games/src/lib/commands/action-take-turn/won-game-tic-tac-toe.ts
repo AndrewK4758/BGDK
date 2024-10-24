@@ -1,5 +1,5 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
+import { deRefContextObject } from '@bgdk/utils';
 import { Player } from '@bgdk/games-components-logic';
 import { WINNING_POSITIONS } from '@bgdk/tic-tac-toe';
 import { Context, GameContextKeys } from '@bgdk/types-game';

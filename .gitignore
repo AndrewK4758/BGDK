@@ -63,3 +63,5 @@ tokens/
 .nx/workspace-data/file-map.json
 
 
+
+**/vite.config.{js,ts,mjs,mts,cjs,cts}.timestamp*

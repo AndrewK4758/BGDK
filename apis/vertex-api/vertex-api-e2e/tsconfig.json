@@ -9,8 +9,5 @@
     { "path": "../vertex-api" },
     { "path": "./tsconfig.spec.json" }
   ],
-  "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
-  }
+  "compilerOptions": {}
 }

@@ -1,4 +1,4 @@
-import { ResponseType } from '../types/prompt-input-data-types.js';
+import { ResponseType } from '../types/prompt-input-data-types';
 
 export interface IPromptInputData {
   [key: string]: string | undefined | ResponseType;

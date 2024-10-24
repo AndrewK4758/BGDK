@@ -8,11 +8,12 @@
   "files": [],
   "include": [],
   "references": [
+    { "path": "../../libs/utils" },
+    { "path": "../../libs/__mocks__/mocks" },
     { "path": "../../libs/games/tic-tac-toe" },
     { "path": "../../libs/games/chutes-and-ladders" },
     { "path": "../../libs/game" },
     { "path": "../../libs/models/instance-of-game" },
-    { "path": "../../libs/models/de-referencing-utilities" },
     { "path": "../../libs/chain" },
     { "path": "../../libs/chains-for-games" },
     { "path": "../../libs/types/types-api" },

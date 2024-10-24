@@ -1,7 +1,7 @@
 import type { SocketCallback } from '@bgdk/socket-io';
 import { IInstanceOfGame } from '@bgdk/types-game';
 import { Socket } from 'socket.io';
-import performAction from '../controllers/perform_action_context_object.ts';
+import performAction from '../controllers/perform_action_context_object';
 
 interface SocketAction {
   action: string;

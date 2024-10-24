@@ -1,3 +1,7 @@
+import { IInstanceOfGame } from '../interfaces/instance-of-game';
+import { Request, Response } from 'express';
+import type { Server } from 'socket.io';
+
 export enum Color {
   RED = 'Red',
   WHITE = 'White',
@@ -18,6 +22,16 @@ export enum SpaceType {
   LADDER = 3,
   FINISH = 4,
 }
+
+export type ContextData = {
+  action: string;
+  game: IInstanceOfGame;
+  req: Request;
+  resp: Response;
+  next: string;
+  output: object;
+  io: Server;
+};
 
 export const enum GameContextKeys {
   GAME = 'GAME',

@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "../../../dist/out-tsc",
@@ -12,8 +13,9 @@
     "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/types/types-game/**/*.ts",
-    "../../../__mocks__/mocks.ts"
+    "../../../libs/models/all-games-map/src/**/*.ts",
+    "../../../libs/types/**/*.ts",
+    "../../../libs/__mocks__/mocks/src/**/*.ts"
   ],
   "exclude": []
 }

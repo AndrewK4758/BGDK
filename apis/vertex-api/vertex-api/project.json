@@ -41,7 +41,8 @@
       "dependsOn": ["^build"],
       "options": {
         "buildTarget": "vertex-api:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": false,
+        "args": ["FORCE_CJS", "true"]
       },
       "configurations": {
         "development": {

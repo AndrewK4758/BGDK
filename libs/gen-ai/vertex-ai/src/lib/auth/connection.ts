@@ -1,12 +1,14 @@
 import { VertexAI } from '@google-cloud/vertexai';
 
 // MY STUFF
-const project = 'games-424800';
-const location = 'us-central1';
+export const PROJECT = 'games-424800';
+export const LOCATION = 'us-central1';
+
+export const MODEL = 'gemini-1.5-pro-001';
 
 const vertexAI = new VertexAI({
-  project: project,
-  location: location,
+  project: PROJECT,
+  location: LOCATION,
 });
 
 export default vertexAI;

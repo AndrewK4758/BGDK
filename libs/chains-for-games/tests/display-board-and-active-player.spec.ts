@@ -1,9 +1,10 @@
 import { ContextBuilder } from '@bgdk/chain';
 import { ChutesAndLadders, TOTAL_SPACES } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
-import { InstanceOfGame, getCurrentMinute } from '@bgdk/instance-of-game';
+import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { Context, Color, GameContextKeys, IRegisterFormValues } from '@bgdk/types-game';
-import { mockReqObj, mockRespObj } from '__mocks__/mocks.js';
+import { getCurrentMinute } from '@bgdk/utils';
+import { mockReqObj, mockRespObj } from '@bgdk/mocks';
 import { Request, Response } from 'express';
 import { IPlayersAndBoard } from '../src/lib/completed-chains/active-game-display-chain';
 import { activeDataToSend } from '../src/lib/commands/action-board/active-game-data-to-send';

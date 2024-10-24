@@ -156,7 +156,7 @@ const handleSearchParams = async (
   }
 };
 
-const baseURL = import.meta.env.VITE_DATA_API_URL;
+const baseURL = '' //import.meta.env.VITE_DATA_API_URL;
 
 const searchArtistsAndAlbums = async (search: string, type: string) => {
   try {

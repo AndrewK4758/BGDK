@@ -8,7 +8,7 @@ export interface ISpace {
   Next: ISpace;
   Special: ISpace | null;
   AvatarsInSpace: IAvatar[];
-  Display: string | number;
+  Display: string;
 
   value: string;
   type: SpaceType;
@@ -16,7 +16,7 @@ export interface ISpace {
   next: ISpace;
   special: ISpace | null;
   avatarsInSpace: IAvatar[];
-  display: string | number;
+  display: string;
   occupied: boolean;
 
   land(avatar: IAvatar): void;

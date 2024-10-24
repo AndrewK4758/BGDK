@@ -1,4 +1,4 @@
-import addUser from '../../services/prisma/users/add-user.js';
+import addUser from '../../src/services/prisma/users/add-user';
 import { USER_ROLE, type IRegisterUser } from '@bgdk/types-api';
 import ShortUniqueId from 'short-unique-id';
 

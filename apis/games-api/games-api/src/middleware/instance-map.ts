@@ -1,4 +1,4 @@
-import { InstanceTimeMap, reaper } from '../services/instance-time-map/instance-time-map.js';
+import { InstanceTimeMap, reaper } from '../services/instance-time-map/instance-time-map';
 
 export const instanceMap = new InstanceTimeMap();
 

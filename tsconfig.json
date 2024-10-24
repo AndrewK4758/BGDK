@@ -3,7 +3,6 @@
   "compileOnSave": false,
   "files": [],
   "references": [
-    { "path": "./libs/models/de-referencing-utilities" },
     { "path": "./apis/portfolio/portfolio-api-e2e" },
     { "path": "./apis/vertex-api/vertex-api-e2e" },
     { "path": "./libs/games/chutes-and-ladders" },
@@ -34,6 +33,8 @@
     { "path": "./libs/chain" },
     { "path": "./libs/game" },
     { "path": "./libs/gen-ai/vertex-ai" },
-    { "path": "./libs/gen-ai/prompt-builder" }
+    { "path": "./libs/gen-ai/prompt-builder" },
+    { "path": "./libs/__mocks__/mocks" },
+    { "path": "./libs/utils" }
   ]
 }

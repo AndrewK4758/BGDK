@@ -1,13 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
-    "composite": true,
     "lib": ["DOM"],
     "outDir": "../../dist/out-tsc",
-    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   },
   "include": [
     "src/**/*.js",
@@ -19,7 +17,8 @@
     "../../libs/react-components/src/**/*.ts",
     "../../libs/shared-react-components/src/**/*.ts",
     "../../libs/react-components/src/**/*.tsx",
-    "../../libs/shared-react-components/src/**/*.tsx"
+    "../../libs/shared-react-components/src/**/*.tsx",
+    "../../libs/utils/src/lib/get-current-minute.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",

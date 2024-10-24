@@ -4,8 +4,8 @@
     "allowImportingTsExtensions": false,
     "outDir": "../../../dist/out-tsc",
     "types": ["node", "vite/client"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "../types-game/src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],

@@ -3,7 +3,7 @@ import { activeGameDisplayChain } from '@bgdk/chains-for-games';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { Chain, GameContextKeys } from '@bgdk/types-game';
 import { Request, Response } from 'express';
-import { socketServer } from '../main.ts';
+import { socketServer } from '../main';
 
 const performAction = async (
   req: Request | null,

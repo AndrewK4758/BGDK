@@ -1,0 +1,26 @@
+{
+  "name": "@bgdk/games-api",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "5.21.1",
+    "express": "4.21.1",
+    "@bgdk/chain": "0.0.1",
+    "@bgdk/chains-for-games": "0.0.1",
+    "@bgdk/instance-of-game": "0.0.1",
+    "@bgdk/types-game": "0.0.1",
+    "@bgdk/game": "0.0.1",
+    "short-unique-id": "^5.2.0",
+    "@bgdk/types-api": "0.0.1",
+    "@bgdk/chutes-and-ladders": "0.0.1",
+    "@bgdk/game-builder": "0.0.1",
+    "@bgdk/tic-tac-toe": "0.0.1",
+    "@bgdk/socket-io": "0.0.1",
+    "socket.io": "4.8.0",
+    "cors": "^2.8.5",
+    "@bgdk/all-games-map": "0.0.1",
+    "multer": "1.4.5-lts.1",
+    "@google-cloud/storage": "^7.13.0",
+    "@bgdk/prisma": "0.0.1"
+  }
+}

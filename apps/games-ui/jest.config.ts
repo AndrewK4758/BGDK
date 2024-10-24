@@ -1,11 +1,26 @@
-/* eslint-disable */
+import { DefaultEsmTransformOptions } from 'ts-jest';
+
+const opts: DefaultEsmTransformOptions = {
+  tsconfig: '<rootDir>/tsconfig.spec.json',
+  babelConfig: {
+    targets: { esmodules: true, node: 'current' },
+  },
+  diagnostics: {
+    warnOnly: true,
+  },
+};
+
 export default {
   displayName: 'games-ui',
   preset: '../../jest.preset.js',
+  testEnvironment: 'node',
   transform: {
-    '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
-    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
+    '^.+\\.[tj]s$': ['ts-jest', opts],
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mts'],
+  extensionsToTreatAsEsm: ['.jsx', '.ts', '.tsx', '.mts'],
+  moduleFileExtensions: ['ts', 'js', 'html', 'mts'],
   coverageDirectory: '../../coverage/apps/games-ui',
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };

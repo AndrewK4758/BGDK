@@ -1,5 +1,5 @@
 import { GenerateContentRequest } from '@google-cloud/vertexai';
-import generativeTextModel from '../models/generative-text-model.js';
+import generativeTextModel from '../models/generative-text-model.ts';
 
 export const generateTextContent = async (input: string) => {
   const request: GenerateContentRequest = {

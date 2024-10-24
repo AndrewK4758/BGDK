@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import useSetSelectedGameName from '../../middleware/set-selected-game-name.js';
-import { mockReqObj } from '__mocks__/mocks.js';
+import useSetSelectedGameName from '../../src/middleware/set-selected-game-name';
+import { mockReqObj } from '@bgdk/mocks';
 
 let req: Partial<Request>;
 

@@ -1,6 +1,6 @@
-import { mockReqObj, mockRespObj } from '__mocks__/mocks';
+import { mockReqObj, mockRespObj } from '@bgdk/mocks';
 import { Request, Response } from 'express';
-import sendGameList from '../../src/controllers/send_game_list.ts';
+import sendGameList from '../../src/controllers/send_game_list';
 
 let req: Partial<Request>, resp: Partial<Response>;
 describe('Test send game list controller', () => {

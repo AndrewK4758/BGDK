@@ -1,6 +1,6 @@
 import { CommandBuilder } from '@bgdk/chain';
-import { deRefContextObject } from '@bgdk/de-referencing-utilities';
-import { Context, GameContextKeys, getCurrentMinute } from '@bgdk/types-game';
+import { deRefContextObject, getCurrentMinute } from '@bgdk/utils';
+import { Context, GameContextKeys } from '@bgdk/types-game';
 
 export const resetGame = CommandBuilder.build((context: Context) => {
   if (context.get(GameContextKeys.ACTION) && context.getString(GameContextKeys.ACTION) === 'reset') {

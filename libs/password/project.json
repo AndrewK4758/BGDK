@@ -21,6 +21,34 @@
         "fix": true,
         "lintFilePatterns": ["libs/password/**/*.{ts,tsx,js,jsx}", "libs/password/package.json"]
       }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "libs/password/src/index.ts",
+        "outputPath": "dist/libs/password",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/password/tsconfig.lib.json",
+        "esbuildConfig": "libs/password/esbuild.config.cjs",
+        "assets": [
+          {
+            "glob": "libs/password/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
     }
   }
 }

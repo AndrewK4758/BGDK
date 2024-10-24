@@ -1,8 +1,8 @@
-import findUser from '../../services/prisma/users/find-user.js';
+import findUser from '../../src/services/prisma/users/find-user';
 import { EmailAddress, USER_ROLE, type IRegisterUser } from '@bgdk/types-api';
 import { users, type Prisma } from '@prisma/client';
-import addUser from '../../services/prisma/users/add-user.js';
-import deleteUser from '../../services/prisma/users/delete-user.js';
+import addUser from '../../src/services/prisma/users/add-user';
+import deleteUser from '../../src/services/prisma/users/delete-user';
 import type { DefaultArgs } from '@prisma/client/runtime/library';
 
 let email: EmailAddress, user: IRegisterUser;

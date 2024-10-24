@@ -3,11 +3,12 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { Dispatch, SetStateAction } from 'react';
 import { IActionError } from '../../../../interfaces/action-error';
 
+const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
+
 const registerUserAction = async (
   values: IRegisterUserClient,
   setRegisterError: Dispatch<SetStateAction<IActionError | null>>,
 ) => {
-  const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   const { firstName, lastName, email, playerName, password, thumbnail }: IRegisterUserClient = values;
 
   const reqHeaders: Partial<AxiosRequestConfig> = {

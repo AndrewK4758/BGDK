@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import { NextFunction, Request, Response } from 'express';
-import albumTracksCount from '../services/prisma/tracks/album-tracks-count.ts';
-import getAlbumTracks from '../services/prisma/tracks/get-album-tracks.ts';
+import albumTracksCount from '../services/prisma/tracks/album-tracks-count';
+import getAlbumTracks from '../services/prisma/tracks/get-album-tracks';
 
 const getAlbumsTracks = async (req: Request, resp: Response, next: NextFunction) => {
   if (req.query.name) next();

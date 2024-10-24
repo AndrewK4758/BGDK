@@ -1,7 +1,7 @@
 import { album, artist, Prisma, track } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import { Request, Response } from 'express';
-import createNewEntry from '../services/post/create-new-entry.ts';
+import createNewEntry from '../services/post/create-new-entry';
 
 interface NewEntryData {
   artist: artist;

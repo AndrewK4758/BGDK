@@ -1,3 +1,3 @@
-export * from './lib/parser/parser.js';
-export * from './interfaces/prompt-input-data.js';
-export * from './types/prompt-input-data-types.js';
+export * from './lib/parser/parser';
+export * from './interfaces/prompt-input-data';
+export * from './types/prompt-input-data-types';

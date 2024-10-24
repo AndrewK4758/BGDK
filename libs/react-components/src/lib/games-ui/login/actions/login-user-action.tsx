@@ -5,12 +5,13 @@ import { IActionError } from '../../../../interfaces/action-error';
 import { GamePlayerValidation } from '@bgdk/types-game';
 import { LoginDataProps } from '../validations/login-validation-schema';
 
+const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
+
 const loginUserAction = async (
   values: LoginDataProps,
   setActiveUser: Dispatch<SetStateAction<ActiveUserData>>,
   setLoginError: Dispatch<SetStateAction<IActionError>>,
 ) => {
-  const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
   try {
     const resp = await axios.patch(`${baseURL}/login`, { email: values.email, password: values.password });
 

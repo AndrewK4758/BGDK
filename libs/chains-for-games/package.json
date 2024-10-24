@@ -1,9 +1,9 @@
 {
   "name": "@bgdk/chains-for-games",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@bgdk/chain": "0.0.1",
-    "@bgdk/de-referencing-utilities": "0.0.1",
     "@bgdk/types-game": "0.0.1",
     "@bgdk/instance-of-game": "0.0.1",
     "short-unique-id": "^5.2.0",
@@ -14,7 +14,10 @@
     "@bgdk/chutes-and-ladders": "0.0.1",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.13.0",
-    "jsonc-eslint-parser": "2.4.0"
+    "jsonc-eslint-parser": "2.4.0",
+    "ts-jest": "29.2.5",
+    "@bgdk/mocks": "0.0.1",
+    "@bgdk/utils": "0.0.1"
   },
   "main": "./index.js",
   "module": "./index.mjs",

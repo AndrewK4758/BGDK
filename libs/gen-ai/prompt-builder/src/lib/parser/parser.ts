@@ -1,18 +1,14 @@
-import type { IPromptInputData } from '../../interfaces/prompt-input-data.js';
-
-// const delimeter = '|';
+import type { IPromptInputData } from '../../interfaces/prompt-input-data';
 
 export const parseInput = (promptInput: IPromptInputData) => {
   let output = '';
   for (const key in promptInput) {
-    console.log(key);
     if (key in promptInput) {
-      console.log(promptInput[key]);
       const open = openXML(key);
       const close = closeXML(key);
       const val = promptInput[key];
       const section = `${open}\r\n${val}\r\n${close}\r\n`;
-      console.log(section);
+
       output += section;
     }
   }
