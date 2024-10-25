@@ -8,7 +8,6 @@ tmp
 # dependencies
 node_modules
 */.venv
-poetry.lock
 */__pycache__/*
 	__pycache__
 	build
