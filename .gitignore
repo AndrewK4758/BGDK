@@ -68,7 +68,10 @@ tokens/
 /tokens/
 ./tokens/*
 
-rag
+rag-data/*
+/rag-data/*
+rag-data/
+/rag-data/
 
 .nx/workspace-data/d/daemon.log
 .nx/workspace-data/file-map.json
