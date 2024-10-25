@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "types": ["vite/client"]
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../../libs/utils"
+    },
+    {
+      "path": "../../libs/__mocks__/mocks"
+    },
+    {
+      "path": "../../libs/games/tic-tac-toe"
+    },
+    {
+      "path": "../../libs/games/chutes-and-ladders"
+    },
+    {
+      "path": "../../libs/game"
+    },
+    {
+      "path": "../../libs/models/instance-of-game"
+    },
+    {
+      "path": "../../libs/chain"
+    },
+    {
+      "path": "../../libs/chains-for-games"
+    },
+    {
+      "path": "../../libs/types/types-api"
+    },
+    {
+      "path": "../../libs/games-components-logic"
+    },
+    {
+      "path": "../../libs/types/types-game"
+    },
+    {
+      "path": "../../libs/react-components"
+    },
+    {
+      "path": "../../libs/shared-react-components"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../tsconfig.base.json"
+}

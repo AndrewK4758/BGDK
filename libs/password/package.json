@@ -1,0 +1,7 @@
+{
+  "name": "@bgdk/password",
+  "version": "0.0.1",
+  "dependencies": {
+    "bcrypt": "^5.1.1"
+  }
+}

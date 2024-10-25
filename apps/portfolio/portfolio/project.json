@@ -1,0 +1,79 @@
+{
+  "name": "portfolio",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/portfolio/portfolio/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "outputPath": "dist/apps/portfolio",
+        "main": "apps/portfolio/portfolio/src/main.tsx",
+        "tsConfig": "apps/portfolio/portfolio/tsconfig.app.json",
+        "assets": ["apps/portfolio/portfolio/*.md"]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development",
+          "color": true
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "portfolio:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "portfolio:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "portfolio:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "portfolio:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "portfolio:build:development"
+        },
+        "production": {
+          "buildTarget": "portfolio:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "apps/portfolio/portfolio/vite.config.ts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true,
+        "color": true
+      }
+    }
+  }
+}

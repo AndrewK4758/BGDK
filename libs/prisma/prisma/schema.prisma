@@ -1,0 +1,239 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL_DEV")
+  schemas  = ["chinook", "games"]
+}
+
+model album {
+  title     String  @unique(map: "title") @db.VarChar(160)
+  artist_id Int
+  album_id  Int     @id @default(autoincrement())
+  artist    artist  @relation(fields: [artist_id], references: [artist_id], onDelete: Cascade, map: "album_artist_fkey")
+  track     track[]
+
+  @@index([artist_id])
+  @@index([artist_id], map: "fki_album_artist_fkey")
+  @@index([artist_id], map: "fki_artist_album_fkey")
+  @@index([artist_id], map: "fki_album_artist_id_fkey")
+  @@schema("chinook")
+}
+
+model artist {
+  name      String  @unique(map: "name") @db.VarChar(120)
+  artist_id Int     @id @default(autoincrement())
+  album     album[]
+
+  @@schema("chinook")
+}
+
+model customer {
+  customer_id     Int               @id
+  first_name      String            @db.VarChar(40)
+  last_name       String            @db.VarChar(20)
+  company         String?           @db.VarChar(80)
+  address         String?           @db.VarChar(70)
+  city            String?           @db.VarChar(40)
+  state           String?           @db.VarChar(40)
+  country         String?           @db.VarChar(40)
+  postal_code     String?           @db.VarChar(10)
+  phone           String?           @db.VarChar(24)
+  fax             String?           @db.VarChar(24)
+  email           String            @unique(map: "uq_customer_email") @db.VarChar(60)
+  support_rep_id  Int?
+  employee        employee?         @relation(fields: [support_rep_id], references: [employee_id], onDelete: NoAction, onUpdate: NoAction)
+  customer_review customer_review[]
+  invoice         invoice[]
+
+  @@unique([first_name, last_name, email], map: "uq_customer_id")
+  @@index([support_rep_id])
+  @@schema("chinook")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model customer_review {
+  review_id      Int      @id @default(autoincrement())
+  customer_id    Int
+  invoice_id     Int
+  track_id       Int
+  rating         Int?
+  review_comment String?  @db.VarChar(140)
+  customer       customer @relation(fields: [customer_id], references: [customer_id], onDelete: NoAction, onUpdate: NoAction, map: "customer_id_invoice_id_fkey")
+  invoice        invoice  @relation(fields: [invoice_id], references: [invoice_id], onDelete: NoAction, onUpdate: NoAction, map: "invoice_id_track_id_fkey")
+
+  @@schema("chinook")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model employee {
+  employee_id      Int              @id
+  last_name        String           @db.VarChar(20)
+  first_name       String           @db.VarChar(20)
+  title            String?          @db.VarChar(30)
+  reports_to       Int?
+  birth_date       DateTime?        @db.Timestamp(6)
+  hire_date        DateTime         @db.Timestamp(6)
+  address          String?          @db.VarChar(70)
+  city             String?          @db.VarChar(40)
+  state            String?          @db.VarChar(40)
+  country          String?          @db.VarChar(40)
+  postal_code      String?          @db.VarChar(10)
+  phone            String?          @db.VarChar(24)
+  fax              String?          @db.VarChar(24)
+  email            String?          @db.VarChar(60)
+  termination_date DateTime?        @db.Timestamp(6)
+  customer         customer[]
+  employee         employee?        @relation("employeeToemployee", fields: [reports_to], references: [employee_id], onDelete: NoAction, onUpdate: NoAction)
+  other_employee   employee[]       @relation("employeeToemployee")
+  track_discount   track_discount[]
+
+  @@index([reports_to])
+  @@schema("chinook")
+}
+
+model genre {
+  genre_id Int     @id
+  name     String? @db.VarChar(120)
+
+  @@schema("chinook")
+}
+
+model invoice {
+  invoice_id          Int               @id
+  customer_id         Int
+  invoice_date        DateTime          @db.Timestamp(6)
+  billing_address     String?           @db.VarChar(70)
+  billing_city        String?           @db.VarChar(40)
+  billing_state       String?           @db.VarChar(40)
+  billing_country     String?           @db.VarChar(40)
+  billing_postal_code String?           @db.VarChar(10)
+  total               Decimal           @db.Decimal(10, 2)
+  customer_review     customer_review[]
+  customer            customer          @relation(fields: [customer_id], references: [customer_id], onDelete: NoAction, onUpdate: NoAction)
+  invoice_line        invoice_line[]
+
+  @@unique([customer_id, invoice_date], map: "uq_invoice_submit")
+  @@index([customer_id])
+  @@schema("chinook")
+}
+
+model invoice_line {
+  invoice_line_id Int     @id
+  invoice_id      Int
+  track_id        Int
+  unit_price      Decimal @db.Decimal(10, 2)
+  quantity        Int
+  invoice         invoice @relation(fields: [invoice_id], references: [invoice_id], onDelete: NoAction, onUpdate: NoAction)
+  track           track   @relation(fields: [track_id], references: [track_id], onDelete: NoAction, onUpdate: NoAction, map: "invoice_line_track_fkey")
+
+  @@index([invoice_id])
+  @@index([track_id])
+  @@index([track_id], map: "fki_invoice_line_track_fkey")
+  @@schema("chinook")
+}
+
+model media_type {
+  media_type_id Int     @id
+  name          String? @db.VarChar(120)
+
+  @@schema("chinook")
+}
+
+model playlist {
+  playlist_id    Int              @id
+  name           String?          @db.VarChar(120)
+  playlist_track playlist_track[]
+
+  @@schema("chinook")
+}
+
+model playlist_track {
+  playlist_id Int
+  track_id    Int
+  playlist    playlist @relation(fields: [playlist_id], references: [playlist_id], onDelete: Cascade)
+  track       track    @relation(fields: [track_id], references: [track_id], onDelete: Cascade, map: "playlist_track_id_fkey")
+
+  @@id([playlist_id, track_id])
+  @@index([playlist_id])
+  @@index([track_id])
+  @@index([track_id], map: "fki_playlist_track_id_fkey")
+  @@index([playlist_id], map: "fki_playlist_track_playlist_id_fkey")
+  @@index([track_id], map: "fki_playlist_track_track_id_fkey")
+  @@schema("chinook")
+}
+
+model track {
+  name           String           @db.VarChar(200)
+  album_id       Int
+  media_type_id  Int              @default(0)
+  genre_id       Int?             @default(0)
+  composer       String?          @db.VarChar(220)
+  milliseconds   Int              @default(0)
+  bytes          Int?             @default(0)
+  unit_price     Decimal          @default(0.00) @db.Decimal(10, 2)
+  track_id       Int              @id @default(autoincrement())
+  invoice_line   invoice_line[]
+  playlist_track playlist_track[]
+  album          album            @relation(fields: [album_id], references: [album_id], onDelete: Cascade, map: "album_id_album_fkey")
+  track_discount track_discount[]
+
+  @@index([album_id])
+  @@index([genre_id])
+  @@index([media_type_id])
+  @@index([album_id], map: "fki_album_id_album_fkey")
+  @@index([media_type_id], map: "fki_track_media_type_fkey")
+  @@index([album_id], map: "fki_album_album_id_fkey")
+  @@schema("chinook")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model track_discount {
+  track_discount_id Int      @id @default(autoincrement())
+  track_id          Int
+  discount          Decimal  @db.Decimal(10, 2)
+  offer_date        DateTime @db.Timestamp(6)
+  close_date        DateTime @db.Timestamp(6)
+  employee_id       Int
+  employee          employee @relation(fields: [employee_id], references: [employee_id], onDelete: NoAction, onUpdate: NoAction, map: "track_discound_employee_fk")
+  track             track    @relation(fields: [track_id], references: [track_id], onDelete: NoAction, onUpdate: NoAction, map: "track_discount_track_fkey")
+
+  @@index([track_id], map: "fki_track_discount_track_fkey")
+  @@schema("chinook")
+}
+
+model active_game_state {
+  game_id                   String @id
+  players_array             Json[] @db.Json
+  player_in_turn            Int    @db.SmallInt
+  special_space_values      Int[]  @db.SmallInt
+  special_space_dump_values Int[]  @db.SmallInt
+
+  @@schema("games")
+}
+
+model instance_time_map {
+  minute_of_day   Int      @id @db.SmallInt
+  games_in_minute String[]
+
+  @@schema("games")
+}
+
+model users {
+  id           String   @id(map: "games_pkey") @db.VarChar(6)
+  first_name   String   @db.VarChar(255)
+  last_name    String   @db.VarChar(255)
+  email        String   @unique(map: "email") @db.VarChar(255)
+  created_on   DateTime @db.Date
+  password     String   @db.VarChar(255)
+  player_name  String   @db.VarChar(255)
+  active_games String[] @db.VarChar(255)
+  friends      String[] @db.VarChar(255)
+  role         String   @db.VarChar(8)
+  thumbnail    String?  @unique(map: "thumbnail") @db.VarChar(255)
+
+  @@schema("games")
+}

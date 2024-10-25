@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-api-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["portfolio-api"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apis/portfolio/portfolio-api-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["my-portfolio-api:build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apis/portfolio/portfolio-api-e2e/**/*.{ts,tsx,js,jsx}",
+          "apis/portfolio/portfolio-api-e2e/package.json"
+        ]
+      }
+    }
+  }
+}

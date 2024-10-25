@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts"
+  ],
+  "exclude": []
+}

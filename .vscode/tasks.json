@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:prompt-builder",
+      "type": "shell",
+      "command": "nx build prompt-builder",
+      "problemMatcher": []
+    }
+  ]
+}

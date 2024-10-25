@@ -1,0 +1,27 @@
+{
+  "name": "types-game",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/types/types-game/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/types-game",
+        "main": "libs/types/types-game/src/index.ts",
+        "tsConfig": "libs/types/types-game/tsconfig.lib.json",
+        "assets": ["libs/types/types-game/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/types/types-game/**/*.{ts,tsx,js,jsx}", "libs/types/types-game/package.json"]
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "socket-io",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/socket-io/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/socket-io/**/*.{ts,tsx,js,jsx}", "libs/socket-io/package.json"]
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "libs/socket-io/src/index.ts",
+        "outputPath": "dist/libs/socket-io",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/socket-io/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "libs/socket-io/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    }
+  }
+}

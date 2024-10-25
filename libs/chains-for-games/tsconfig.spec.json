@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node10",
+    "outDir": "../../dist/out-tsc",
+    "types": ["jest", "node"]
+  },
+
+  "include": [
+    "jest.config.js",
+    "src/**/*.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "tests/**/*.ts",
+    "../__mocks__/mocks/src/**/*.ts",
+    "../games/tic-tac-toe/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../utils/src/**/*.ts",
+    "../chain/src/**/*.ts"
+  ],
+
+  "exclude": []
+}

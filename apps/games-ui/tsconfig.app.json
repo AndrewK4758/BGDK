@@ -1,0 +1,83 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": [
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/models/rule/src/**/*.ts",
+    "../../libs/models/game-builder/src/**/*.ts",
+    "../../libs/games/chutes-and-ladders/src/**/*.ts",
+    "../../libs/games/tic-tac-toe/src/**/*.ts",
+    "../../libs/game/src/**/*.ts",
+    "../../libs/models/instance-of-game/src/**/*.ts",
+    "../../libs/utils/src/**/*.ts",
+    "../../libs/chain/src/**/*.ts",
+    "../../libs/chains-for-games/src/**/*.ts",
+    "../../libs/types/types-api/src/**/*.ts",
+    "../../libs/games-components-logic/src/**/*.ts",
+    "../../libs/types/types-game/src/**/*.ts",
+    "../../libs/react-components/src/**/*.ts",
+    "../../libs/shared-react-components/src/**/*.ts",
+    "../../libs/react-components/src/**/*.tsx",
+    "../../libs/shared-react-components/src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.js",
+    "src/**/*.test.js",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.jsx",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "references": [
+    {
+      "path": "../../libs/utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/__mocks__/mocks/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/games/tic-tac-toe/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/models/instance-of-game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/chain/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/chains-for-games/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/types/types-api/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/games-components-logic/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/types/types-game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/react-components/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/shared-react-components/tsconfig.lib.json"
+    }
+  ]
+}

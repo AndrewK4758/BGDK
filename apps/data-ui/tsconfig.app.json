@@ -1,0 +1,52 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["DOM"],
+    "outDir": "../../dist/out-tsc",
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/types/**/*/src/**/*.ts",
+    "../../libs/games-components-logic/src/**/*.ts",
+    "../../libs/react-components/src/**/*.ts",
+    "../../libs/shared-react-components/src/**/*.ts",
+    "../../libs/react-components/src/**/*.tsx",
+    "../../libs/shared-react-components/src/**/*.tsx",
+    "../../libs/utils/src/lib/get-current-minute.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.js",
+    "src/**/*.test.js",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.jsx",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "references": [
+    {
+      "path": "../../libs/types/types-api/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/games-components-logic/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/types/types-game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/react-components/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/shared-react-components/tsconfig.lib.json"
+    }
+  ]
+}

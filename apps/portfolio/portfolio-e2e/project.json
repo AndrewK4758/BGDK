@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/portfolio/portfolio-e2e/src",
+  "implicitDependencies": ["portfolio"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "apps/portfolio/portfolio-e2e/**/*.{ts,tsx,js,jsx}",
+          "apps/portfolio/portfolio-e2e/package.json"
+        ]
+      }
+    }
+  }
+}

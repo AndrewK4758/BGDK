@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.jsx",
+    "tests/**/*.spec.jsx",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.ts"
+  ]
+}

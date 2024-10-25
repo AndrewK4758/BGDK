@@ -1,0 +1,11 @@
+{
+  "name": "@bgdk/socket-io",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "socket.io": "^4.7.5",
+    "@eslint/eslintrc": "3.1.0",
+    "@eslint/js": "9.13.0",
+    "jsonc-eslint-parser": "2.4.0"
+  }
+}

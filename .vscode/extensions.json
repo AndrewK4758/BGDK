@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "Orta.vscode-jest",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "ms-playwright.playwright",
+    "denoland.vscode-deno"
+  ]
+}

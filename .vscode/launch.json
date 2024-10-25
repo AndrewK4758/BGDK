@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug Data-UI",
+      "url": "http://localhost:5200",
+      "webRoot": "${workspaceFolder}/apps/data-ui",
+      "sourceMaps": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "debug stale state",
+      "url": "http://localhost:4700",
+      "webRoot": "${workspaceFolder}/apps/portfolio/portfolio",
+      "sourceMaps": true
+    },
+
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "Debug Prompt Builder",
+    //   "cwd": "${workspaceFolder}/libs/gen-ai/prompt-builder",
+    //   "program": "${workspaceFolder}/node_modules/.bin/nx",
+    //   "args": ["build", "prompt-builder", "--inspect"]
+    // }
+
+    {
+      "type": "node",
+      "name": "Debug Prompt Builder",
+      "request": "launch",
+
+      "cwd": "${workspaceFolder}/libs/gen-ai/prompt-builder",
+
+      "program": "${workspaceFolder}/dist/libs/gen-ai/prompt-builder/main.js",
+      "preLaunchTask": "build:prompt-builder",
+      "sourceMaps": true,
+      "smartStep": true // Helps step through transpiled code more efficiently
+    }
+  ]
+}

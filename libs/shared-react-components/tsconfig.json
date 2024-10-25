@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "allowImportingTsExtensions": false
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../types/types-api"
+    },
+    {
+      "path": "../games-components-logic"
+    },
+    {
+      "path": "../types/types-game"
+    },
+    {
+      "path": "../react-components"
+    },
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../tsconfig.base.json"
+}

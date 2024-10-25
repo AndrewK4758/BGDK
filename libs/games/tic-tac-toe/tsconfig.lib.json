@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "types": ["node", "vite/client"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
+  },
+  "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts", "../../games-components-logic/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": [
+    { "path": "../../games-components-logic/tsconfig.lib.json" },
+    { "path": "../../types/types-game/tsconfig.lib.json" }
+  ]
+}
