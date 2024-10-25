@@ -27,6 +27,8 @@ readme = 'README.md'
   pypdf = "^4.3.1"
   chromadb = "^0.5.5"
   langchain-ollama = "^0.2.0"
+  langchain-chroma = "^0.1.4"
+  sentence-transformers = "^3.2.1"
 
   [tool.poetry.group.dev.dependencies]
   autopep8 = "2.0.2"
