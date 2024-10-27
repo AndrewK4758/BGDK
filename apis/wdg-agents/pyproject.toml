@@ -43,4 +43,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-agent = 'wdg_agents.main:main'
+agent = 'wdg_agents.agent_1:main'
+
+example = 'wdg_agents.cli:main'

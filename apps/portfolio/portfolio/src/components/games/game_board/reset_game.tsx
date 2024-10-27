@@ -28,7 +28,7 @@ interface ResetGameProps {
 }
 
 export default function ResetGame({ dispatch, socket, setSpace }: ResetGameProps) {
-  const { id } = useParams();
+  const { id } = useParams() ;
 
   return (
     <Button
@@ -42,7 +42,7 @@ export default function ResetGame({ dispatch, socket, setSpace }: ResetGameProps
   );
 }
 
-const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProps & { id: string }) => {
+const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProps & { id: string | undefined }) => {
   const reqHeaders = {
     headers: {
       'current-game': JSON.stringify(getGameInstanceInfo()),

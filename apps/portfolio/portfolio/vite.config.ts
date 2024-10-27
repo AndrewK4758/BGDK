@@ -36,7 +36,6 @@ export default defineConfig({
       debug: true,
     }),
     nxCopyAssetsPlugin(['*.md']),
-    react(),
     nxViteTsPaths(),
   ],
 

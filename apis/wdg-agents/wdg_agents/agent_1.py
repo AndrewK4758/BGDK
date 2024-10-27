@@ -6,6 +6,7 @@ from langchain_core.messages import HumanMessage
 template = """Question: {question} Answer: Lets think step by step."""
 
 def main():
+  print('agent-main')
   prompt = ChatPromptTemplate.from_template(template)
   model = OllamaLLM(model="llama3.2:latest")
   # codellama

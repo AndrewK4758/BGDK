@@ -5,6 +5,7 @@ import getReq from '../controllers/home-page';
 import postEmail from '../controllers/post-email';
 import createTokens from '../controllers/create-google-tokens';
 import createEvents from '../controllers/calendar/create-event';
+import getCodeFromRepo from '../controllers/github/get-code-from-repo';
 
 const router: Router = Router();
 
@@ -18,6 +19,7 @@ export class PortfolioRoutes {
     router.use(CookieParser());
     //-------------------------------------------------//
     router.get('/', getReq);
+    router.get('/code', getCodeFromRepo)
     router.post('/email', upload.single('attachment'), postEmail);
     router.post('/create-tokens', createTokens);
     router.post('/create-events', createEvents);

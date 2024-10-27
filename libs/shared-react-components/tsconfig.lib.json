@@ -5,7 +5,6 @@
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "target": "ESNext"
   },
   "include": [
     "src/**/*.js",

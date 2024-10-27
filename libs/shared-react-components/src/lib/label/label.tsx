@@ -1,4 +1,4 @@
-import type { SxProps } from '@mui/material/styles';
+import type { SxProps } from '@mui/material';
 import type { Variant } from '@mui/material/styles/createTypography';
 import Typography from '@mui/material/Typography';
 

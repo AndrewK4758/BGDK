@@ -1,16 +1,16 @@
 import { ResponseType } from '../types/prompt-input-data-types';
 
 export interface IPromptInputData {
-  [key: string]: string | undefined | ResponseType;
+  [key: string]: string | undefined;
   objective: string;
-  instructions?: string;
-  document?: string;
-  textData?: string;
-  examples?: string;
-  constraints?: string;
-  tone?: string;
   responseFormat: ResponseType;
-  responseInstructions?: string;
+  instructions?: string | undefined;
+  document?: string | undefined;
+  textData?: string | undefined;
+  examples?: string | undefined;
+  constraints?: string | undefined;
+  tone?: string | undefined;
+  responseInstructions?: string | undefined;
 
   // [Symbol.iterator](): Iterator<string  | ResponseType>;
 }
@@ -34,7 +34,7 @@ export interface IPromptInputData {
 //       if (index < promptInputDataValues.length) {
 //         return { value: promptInputDataValues[index++], done: false };
 //       } else {
-//         return { value: null, done: true };
+//         return { value: undefined, done: true };
 //       }
 //     },
 //   };

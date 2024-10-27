@@ -100,7 +100,7 @@ const GenAiHome = () => {
               key={'gen-ai-text'}
               id="gen-ai-text"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent, nav)}
+              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
             >
               Text
             </Button>
@@ -109,7 +109,7 @@ const GenAiHome = () => {
               key={'gen-ai-image'}
               id="gen-ai-image"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent, nav)}
+              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
             >
               Image
             </Button>
@@ -118,7 +118,7 @@ const GenAiHome = () => {
               key={'gen-ai-audio'}
               id="gen-ai-audio"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent, nav)}
+              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
             >
               Audio
             </Button>
@@ -127,7 +127,7 @@ const GenAiHome = () => {
               key={'gen-ai-video'}
               id="gen-ai-video"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent, nav)}
+              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
             >
               Video
             </Button>
@@ -136,7 +136,7 @@ const GenAiHome = () => {
               key={'gen-ai-multimodal'}
               id="gen-ai-multimodal"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent, nav)}
+              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
             >
               Multi-Modal
             </Button>

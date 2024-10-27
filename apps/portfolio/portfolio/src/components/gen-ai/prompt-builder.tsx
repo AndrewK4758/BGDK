@@ -364,9 +364,12 @@ const PromptBuilder = () => {
                   style={{ display: 'none' }}
                   onBlur={formik.handleBlur}
                   onChange={async () => {
-                    const fileText = fileInputRef.current.files[0];
-                    if (fileText) {
-                      await formik.setFieldValue('document', await fileText.text(), false);
+                    if (fileInputRef.current?.files) {
+
+                      const fileText = fileInputRef.current.files[0];
+                      if (fileText) {
+                        await formik.setFieldValue('document', await fileText.text(), false);
+                      }
                     }
                   }}
                 />
@@ -433,6 +436,18 @@ const PromptBuilder = () => {
 
 export default PromptBuilder;
 
+type PromptDataToSend = {
+  objective: string,
+  responseFormat: string,
+  instructions: string | null,
+  document: string | null,
+  textData: string | null,
+  examples: string | null,
+  constraints: string | null,
+  tone: string | null,
+  responseInstructions: string | null,
+}
+
 const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) => {
   const {
     objective,
@@ -446,9 +461,16 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
     responseInstructions,
   } = values;
 
-  const valuesToSend = {
+  const valuesToSend: PromptDataToSend = {
     objective: objective,
     responseFormat: responseFormat,
+    instructions: null,
+    document: null,
+    textData: null,
+    examples: null,
+    constraints: null,
+    tone: null,
+    responseInstructions: null
   };
 
   if (instructions) valuesToSend['instructions'] = instructions;

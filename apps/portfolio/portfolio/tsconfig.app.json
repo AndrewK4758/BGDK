@@ -26,7 +26,8 @@
     "../../../libs/shared-react-components/src/**/*.ts",
     "../../../libs/react-components/src/**/*.ts",
     "../../../libs/shared-react-components/src/**/*.tsx",
-    "../../../libs/react-components/src/**/*.tsx"
+    "../../../libs/react-components/src/**/*.tsx",
+    "tests/chain.spec.tsx"
   ],
   "exclude": [
     "src/**/*.spec.ts",

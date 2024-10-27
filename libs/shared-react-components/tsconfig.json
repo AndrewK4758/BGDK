@@ -2,6 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "types": ["vite/client"],
+    "strict": true,
     "allowImportingTsExtensions": false
   },
   "files": [],
