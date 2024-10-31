@@ -38,14 +38,7 @@
     "src/**/*.spec.jsx"
   ],
   "references": [
-    {
-      "path": "../types/types-api/tsconfig.lib.json"
-    },
-    {
-      "path": "../games-components-logic/tsconfig.lib.json"
-    },
-    {
-      "path": "../types/types-game/tsconfig.lib.json"
-    }
+    { "path": "../types/types-api/tsconfig.lib.json" },
+    { "path": "../types/types-game/tsconfig.lib.json" }
   ]
 }

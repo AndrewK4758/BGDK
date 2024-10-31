@@ -12,20 +12,9 @@
   "include": [],
   "exclude": [],
   "references": [
-    {
-      "path": "../types/types-api"
-    },
-    {
-      "path": "../games-components-logic"
-    },
-    {
-      "path": "../types/types-game"
-    },
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../types/types-api" },
+    { "path": "../types/types-game" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

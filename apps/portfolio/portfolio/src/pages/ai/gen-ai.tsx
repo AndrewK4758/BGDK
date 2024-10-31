@@ -27,7 +27,6 @@ const titleSx: SxProps = {
 
 const GenAiHome = () => {
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
-  // const [textResponse, setTextResponse] = useState<string>('');
   const socketRef = useRef<Socket>(clientSocket.Socket);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
@@ -44,7 +43,6 @@ const GenAiHome = () => {
     socket.on('chunk', chunk => {
       const { response } = chunk;
       console.log(response);
-      // setTextResponse(prev => (prev += response));
     });
 
     return () => {
@@ -158,7 +156,7 @@ const GenAiHome = () => {
         component={'section'}
         key={'prompt-builder-wrapper'}
         id="prompt-builder-wrapper"
-        sx={{ width: '80%', height: 'fit-content', minHeight: '30vh' }}
+        sx={{ height: 'fit-content', minHeight: '30vh', width: '65%' }}
       >
         <PromptBuilder />
       </Box>
@@ -166,25 +164,10 @@ const GenAiHome = () => {
         component={'div'}
         key={'gen-ai-outlet-wrapper'}
         id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', minHeight: '30vh', width: '100%' }}
+        sx={{ height: 'fit-content', minHeight: '30vh' }}
       >
         <Outlet context={{ socket: socket }} />
       </Box>
-      {/* <Box>
-          <Button
-            onClick={() => {
-              setTextResponse('');
-              socket.emit('text', 'tell me a 500 word story');
-            }}
-            sx={{ fontSize: '1rem', width: '100%' }}
-          >
-            CLICK
-          </Button>
-          <Typography color="textPrimary" fontSize={'2rem'} width={'80%'} bgcolor={Theme.palette.background.paper}>
-            {textResponse}
-          </Typography>
-        </Box>
-          */}
     </Box>
   );
 };

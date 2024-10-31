@@ -7,6 +7,12 @@ import { ServerOptions } from 'socket.io';
 import socketBoardAction from './events/socket-board-action';
 import addGameToSocketInstance from './middleware/socket-add-game-middleware';
 import router, { GameRoutes } from './routes/routes';
+import { fileURLToPath } from 'url';
+
+// FOR ESM MODULE BUILD
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// FOR ESM MODULE BUILD
 
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if

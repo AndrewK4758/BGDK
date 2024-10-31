@@ -14,12 +14,12 @@ export const upload = multer({ storage: uploadStorage });
 
 export class PortfolioRoutes {
   constructor() {
-    router.use(express.json());
-    router.use(express.urlencoded({ extended: true }));
+    router.use(express.json({ limit: '50mb' }));
+    router.use(express.urlencoded({ extended: true, limit: '10mb' }));
     router.use(CookieParser());
     //-------------------------------------------------//
     router.get('/', getReq);
-    router.get('/code', getCodeFromRepo)
+    router.get('/code', getCodeFromRepo);
     router.post('/email', upload.single('attachment'), postEmail);
     router.post('/create-tokens', createTokens);
     router.post('/create-events', createEvents);

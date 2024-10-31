@@ -3,6 +3,12 @@ import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import Routes, { router } from './routes/routes';
+import { fileURLToPath } from 'url';
+
+// FOR ESM MODULE BUILD
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// FOR ESM MODULE BUILD
 
 const app: Express = express();
 

@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Bundler"
   },
   "include": [
     "src/**/*.js",
@@ -37,18 +37,5 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx"
   ],
-  "references": [
-    {
-      "path": "../types/types-api/tsconfig.lib.json"
-    },
-    {
-      "path": "../games-components-logic/tsconfig.lib.json"
-    },
-    {
-      "path": "../types/types-game/tsconfig.lib.json"
-    },
-    {
-      "path": "../react-components/tsconfig.lib.json"
-    }
-  ]
+  "references": []
 }

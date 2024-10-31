@@ -1,21 +1,75 @@
-import Box from '@mui/material/Box';
-import Theme from '../../styles/theme';
-import Paper from '@mui/material/Paper';
-import { Text } from '@bgdk/react-components';
-import { useFormik } from 'formik';
-import { Form, useSubmit, type SubmitFunction, useActionData } from 'react-router-dom';
-import FormikValidationError from '../email/email-form/formik-validation-error';
-import TextField from '@mui/material/TextField';
 import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
-import * as Yup from 'yup';
+import { Text } from '@bgdk/react-components';
 import { Label } from '@bgdk/shared-react-components';
-import { Button, Container, FormControlLabel, InputLabel, Radio, RadioGroup } from '@mui/material';
-import { useRef } from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import type { SxProps } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { useFormik, type FormikProps } from 'formik';
+import { useRef, type RefObject } from 'react';
+import { Form, useActionData, useSubmit, type SubmitFunction } from 'react-router-dom';
+import * as Yup from 'yup';
+import '../../styles/prompt-builder.css';
+import Theme from '../../styles/theme';
+import FormikValidationError from '../email/email-form/formik-validation-error';
 import JsonIcon from '../icons/json-icon';
 import TextIcon from '../icons/text-icon';
-import '../../styles/prompt-builder.css';
+import {
+  constraints,
+  examples,
+  instructions,
+  objective,
+  responseInstructions,
+  textData,
+  tone,
+} from './static/definitions';
 
-const promptBuilderHeaderText = `This is designed to help you format your idea so you receive the best possible response from your generative-ai query. Using all of the available fields will give you a more desireable response, but not all are required. `;
+const FILE_SIZE = 1024 * 1024 * 5;
+const SUPPORTED_FORMATS = [
+  'application/json',
+  'text/csv',
+  'text/plain',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/xml',
+  'text/javascript',
+  'application/pdf',
+  'application/python',
+  'application/typescript',
+  'application/javascript',
+  'text/vnd.trolltech.linguist',
+];
+
+const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Click on the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
+
+const labelSx: SxProps = {
+  fontSize: '2rem',
+  color: Theme.palette.primary.main,
+  width: 'fit-content',
+  '&:hover': { cursor: 'pointer' },
+};
+
+const tooltipSx: SxProps = {
+  maxWidth: '80vw',
+  fontSize: '1rem',
+  color: Theme.palette.text.primary,
+  backgroundColor: Theme.palette.background.default,
+  border: `2px solid ${Theme.palette.primary.main}`,
+};
+
+const textInputSx: SxProps = {
+  color: Theme.palette.primary.main,
+  backgroundColor: Theme.palette.background.default,
+  borderRadius: 1,
+};
+
+const isFile = (valueToTest: unknown) => valueToTest instanceof File;
 
 const initialValues: IPromptInputData = {
   objective: '',
@@ -26,7 +80,7 @@ const initialValues: IPromptInputData = {
   tone: '',
   responseFormat: ResponseType.TEXT,
   responseInstructions: '',
-  document: '',
+  document: null,
 };
 
 const validationSchema = Yup.object({
@@ -38,7 +92,23 @@ const validationSchema = Yup.object({
   tone: Yup.string(),
   resposeFormat: Yup.string().oneOf(Object.values(ResponseType)),
   responseInstructions: Yup.string(),
-  document: Yup.mixed().notRequired(),
+  document: Yup.mixed()
+    .notRequired()
+    .test('fileSize', 'File too large, must be less than 5MB', value => {
+      if (isFile(value)) return value.size < FILE_SIZE;
+      else return true;
+    })
+    .test(
+      'fileFormat',
+      'Unsupported File Format. Supported formats are: '.concat(
+        ...SUPPORTED_FORMATS.map(e => e.split('/')[1]).join(', .'),
+      ),
+      value => {
+        if (isFile(value)) return SUPPORTED_FORMATS.includes(value.type);
+        else if (value === null || value === undefined) return true;
+        else return false;
+      },
+    ),
 });
 
 const PromptBuilder = () => {
@@ -49,24 +119,23 @@ const PromptBuilder = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    validateOnMount: true,
     onSubmit: values => {
       console.log(values);
       handleSubmitMessage(values, submit);
     },
+    validateOnBlur: true,
+    validateOnChange: true,
   });
 
   const handleFileSubmit = () => {
-    fileInputRef.current?.click();
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   return (
-    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={{ width: '100%' }}>
-      <Paper
-        key={'prompt-builder-paper'}
-        id="prompt-builder-paper"
-        sx={{ width: '100%', height: 'fit-content', minHeight: '30vh' }}
-      >
+    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper">
+      <Paper key={'prompt-builder-paper'} id="prompt-builder-paper" sx={{ height: 'fit-content', minHeight: '30vh' }}>
         <Container
           component={'section'}
           key={'prompt-builder'}
@@ -74,10 +143,14 @@ const PromptBuilder = () => {
           sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
         >
           <Box component={'section'} key={'prompt-builder-header-box'} id="prompt-builder-header-box" sx={{ gap: 4 }}>
-            <Text titleVariant="h2" titleText={'Prompt Builder'} sx={{ width: '100%', textAlign: 'center' }} />
-            <Text titleVariant="body1" titleText={promptBuilderHeaderText} sx={{}} />
+            <Text
+              titleVariant="h2"
+              titleText={'Prompt Builder'}
+              sx={{ width: '100%', textAlign: 'center', color: Theme.palette.secondary.light }}
+            />
+            <Text titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
-          <Form key={'prompt-builder-form'} method="post" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+          <Form key={'prompt-builder-form'} method="post" onSubmit={formik.handleSubmit}>
             <Box
               component={'section'}
               key={'prompt-builder-input-elements-box'}
@@ -85,6 +158,14 @@ const PromptBuilder = () => {
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
               <Box component={'section'} key={'prompt-builder-objective-box'} id="prompt-builder-objective-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={objective}
+                  labelText="Objective"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-objective'}
@@ -98,23 +179,19 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'objective'}
-                  label={
-                    <Label
-                      labelText="Objective"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="objective" formik={formik} />
               </Box>
               <Box component={'section'} key={'prompt-builder-instructions-box'} id="prompt-builder-instructions-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={instructions}
+                  labelText="Instructions"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-instructions'}
@@ -127,22 +204,19 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'instructions'}
-                  label={
-                    <Label
-                      labelText="Instructions"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="instructions" formik={formik} />
               </Box>
               <Box component={'section'} key={'prompt-builder-text-data-box'} id="prompt-builder-text-data-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={textData}
+                  labelText="Text Data"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-text-data'}
@@ -155,22 +229,19 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'textData'}
-                  label={
-                    <Label
-                      labelText="Text Data"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="textData" formik={formik} />
               </Box>
               <Box component={'section'} key={'prompt-builder-examples-box'} id="prompt-builder-examples-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={examples}
+                  labelText="Examples"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-examples'}
@@ -183,22 +254,19 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'examples'}
-                  label={
-                    <Label
-                      labelText="Examples"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="examples" formik={formik} />
               </Box>
               <Box component={'section'} key={'prompt-builder-constraints-box'} id="prompt-builder-constraints-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={constraints}
+                  labelText="Constraints"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-constraints'}
@@ -211,22 +279,19 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'constraints'}
-                  label={
-                    <Label
-                      labelText="Constraints"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="constraints" formik={formik} />
               </Box>
               <Box component={'section'} key={'prompt-builder-tone-box'} id="prompt-builder-tone-box">
+                <Label
+                  placement="top"
+                  tooltipTitle={tone}
+                  labelText="Tone"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-tone'}
@@ -239,18 +304,7 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'tone'}
-                  label={
-                    <Label
-                      labelText="Tone"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="tone" formik={formik} />
               </Box>
@@ -259,6 +313,14 @@ const PromptBuilder = () => {
                 key={'prompt-builder-response-instructions-box'}
                 id="prompt-builder-response-instructions-box"
               >
+                <Label
+                  placement="top"
+                  tooltipTitle={responseInstructions}
+                  labelText="Response Instructions"
+                  labelVariant="h3"
+                  sx={labelSx}
+                  tooltipSx={tooltipSx}
+                />
                 <TextField
                   component={'span'}
                   key={'prompt-builder-response-instructions'}
@@ -271,18 +333,7 @@ const PromptBuilder = () => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   name={'responseInstructions'}
-                  label={
-                    <Label
-                      labelText="Response Instructions"
-                      labelVariant="h3"
-                      sx={{ fontSize: '2rem', color: Theme.palette.primary.main }}
-                    />
-                  }
-                  sx={{
-                    color: Theme.palette.primary.main,
-                    backgroundColor: Theme.palette.background.default,
-                    borderRadius: 1,
-                  }}
+                  sx={textInputSx}
                 />
                 <FormikValidationError<IPromptInputData> elementName="responseIsnstructions" formik={formik} />
               </Box>
@@ -290,64 +341,67 @@ const PromptBuilder = () => {
                 component={'section'}
                 key={'prompt-builder-response-format-box'}
                 id="prompt-builder-response-format-box"
-                sx={{
-                  backgroundColor: Theme.palette.background.default,
-                  borderRadius: 1.25,
-                }}
+                sx={{}}
               >
-                <InputLabel
-                  id="label"
-                  variant="standard"
+                <Label
+                  tooltipTitle=""
+                  tooltipSx={{}}
+                  labelVariant="h4"
+                  sx={{ color: Theme.palette.primary.main }}
+                  labelText="Response Format"
+                  placement="top"
+                />
+                <Box
+                  component={'section'}
+                  key={'prompt-builder-response-format-radio-box'}
+                  id="prompt-builder-response-format-radio-box"
                   sx={{
-                    fontSize: '2rem',
-                    color: Theme.palette.primary.main,
-                    fontFamily: 'League Gothic',
-                    paddingLeft: 2,
+                    backgroundColor: Theme.palette.background.default,
+                    borderRadius: 1,
                   }}
                 >
-                  Response Format
-                </InputLabel>
-                <RadioGroup
-                  key={'prompt-builder-response-format'}
-                  id="prompt-builder-response-format"
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  value={formik.values.responseFormat}
-                  name={'responseFormat'}
-                  color="primary"
-                  sx={{
-                    fontSize: '1.5rem',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    gap: 4,
-                    paddingLeft: 2,
-                  }}
-                >
-                  <FormControlLabel
-                    value={ResponseType.TEXT}
-                    control={<Radio />}
-                    label={
-                      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                        <Label labelText="Text" labelVariant="h4" sx={{}} />
-                        <TextIcon />
-                      </Box>
-                    }
-                    sx={{ alignContent: 'center', fontSize: '1.5rem' }}
-                  />
+                  <RadioGroup
+                    key={'prompt-builder-response-format'}
+                    id="prompt-builder-response-format"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.responseFormat}
+                    name={'responseFormat'}
+                    color="primary"
+                    sx={{
+                      fontSize: '1.5rem',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      gap: 4,
+                      paddingLeft: 2,
+                    }}
+                  >
+                    <FormControlLabel
+                      value={ResponseType.TEXT}
+                      control={<Radio />}
+                      label={
+                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                          <Typography variant="h4">Text</Typography>
+                          <TextIcon />
+                        </Box>
+                      }
+                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                    />
 
-                  <FormControlLabel
-                    value={ResponseType.JSON}
-                    control={<Radio />}
-                    label={
-                      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                        <Label labelText="JSON" labelVariant="h4" sx={{}} />
-                        <JsonIcon />
-                      </Box>
-                    }
-                    sx={{ alignContent: 'center', fontSize: '1.5rem' }}
-                  />
-                </RadioGroup>
-                <FormikValidationError<IPromptInputData> elementName="responseFormat" formik={formik} />
+                    <FormControlLabel
+                      value={ResponseType.JSON}
+                      control={<Radio />}
+                      label={
+                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                          <Typography variant="h4">JSON</Typography>
+                          <JsonIcon />
+                        </Box>
+                      }
+                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                    />
+                  </RadioGroup>
+                  <FormikValidationError<IPromptInputData> elementName="responseFormat" formik={formik} />
+                </Box>
               </Box>
               <Box
                 component={'span'}
@@ -357,27 +411,20 @@ const PromptBuilder = () => {
               >
                 <input
                   ref={fileInputRef}
-                  accept="application/json, text/plain"
+                  accept="application/*, text/*"
                   id="document"
                   name="document"
                   type="file"
                   style={{ display: 'none' }}
                   onBlur={formik.handleBlur}
-                  onChange={async () => {
-                    if (fileInputRef.current?.files) {
-
-                      const fileText = fileInputRef.current.files[0];
-                      if (fileText) {
-                        await formik.setFieldValue('document', await fileText.text(), false);
-                      }
-                    }
-                  }}
+                  onChange={() => handleAddToFormikValues(fileInputRef, formik)}
                 />
-                {formik.values.document ? (
-                  <Box component={'span'} sx={{ fontSize: '1rem', alignSelf: 'center', textAlign: 'center' }}>
-                    {(formik.values.document as unknown as File).name}
+                {formik.values.document && !formik.errors.document ? (
+                  <Box component={'span'} sx={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
+                    {`Uploaded File: ${(formik.values.document as File).name}`}
                   </Box>
                 ) : null}
+                <FormikValidationError<IPromptInputData> elementName="document" formik={formik} />
               </Box>
               <Box
                 component={'section'}
@@ -386,6 +433,7 @@ const PromptBuilder = () => {
                 sx={{ display: 'flex', justifyContent: 'space-evenly' }}
               >
                 <Button
+                  variant="text"
                   type="button"
                   key={'prompt-builder-upload-file-button'}
                   id="prompt-builder-upload-file-button"
@@ -395,6 +443,7 @@ const PromptBuilder = () => {
                   Upload File
                 </Button>
                 <Button
+                  variant="text"
                   type="submit"
                   key={'prompt-builder-submit-button'}
                   id="prompt-builder-submit-button"
@@ -403,6 +452,7 @@ const PromptBuilder = () => {
                   Build Prompt
                 </Button>
                 <Button
+                  variant="text"
                   type="reset"
                   key={'prompt-builder-reset-button'}
                   id="prompt-builder-reset-button"
@@ -412,6 +462,7 @@ const PromptBuilder = () => {
                   Clear Values
                 </Button>
                 <Button
+                  variant="text"
                   type="button"
                   key={'copy-prompt-to-clipboard'}
                   id="copy-prompt-to-clipboard"
@@ -436,18 +487,6 @@ const PromptBuilder = () => {
 
 export default PromptBuilder;
 
-type PromptDataToSend = {
-  objective: string,
-  responseFormat: string,
-  instructions: string | null,
-  document: string | null,
-  textData: string | null,
-  examples: string | null,
-  constraints: string | null,
-  tone: string | null,
-  responseInstructions: string | null,
-}
-
 const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) => {
   const {
     objective,
@@ -461,27 +500,33 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
     responseInstructions,
   } = values;
 
-  const valuesToSend: PromptDataToSend = {
-    objective: objective,
-    responseFormat: responseFormat,
-    instructions: null,
-    document: null,
-    textData: null,
-    examples: null,
-    constraints: null,
-    tone: null,
-    responseInstructions: null
-  };
+  const formDataToSend = new FormData();
 
-  if (instructions) valuesToSend['instructions'] = instructions;
-  if (document) valuesToSend['document'] = document;
-  if (textData) valuesToSend['textData'] = textData;
-  if (examples) valuesToSend['examples'] = examples;
-  if (constraints) valuesToSend['constraints'] = constraints;
-  if (tone) valuesToSend['tone'] = tone;
-  if (responseInstructions) valuesToSend['responseInstructions'] = responseInstructions;
+  formDataToSend.set('objective', objective);
+  formDataToSend.set('responseFormat', responseFormat);
 
-  submit(valuesToSend, { action: '/gen-ai?index', method: 'post', encType: 'application/json' });
+  if (instructions) formDataToSend.set('instructions', instructions);
+  if (document) formDataToSend.set('document', document);
+  if (textData) formDataToSend.set('textData', textData);
+  if (examples) formDataToSend.set('examples', examples);
+  if (constraints) formDataToSend.set('constraints', constraints);
+  if (tone) formDataToSend.set('tone', tone);
+  if (responseInstructions) formDataToSend.set('responseInstructions', responseInstructions);
+
+  submit(formDataToSend, { action: '/gen-ai?index', method: 'post', encType: 'multipart/form-data' });
 };
 
 const handleCopyGameLinkToClipboard = (prompt: string): Promise<void> => navigator.clipboard.writeText(prompt);
+
+const handleAddToFormikValues = async (
+  fileInputRef: RefObject<HTMLInputElement>,
+  formik: FormikProps<IPromptInputData>,
+) => {
+  await formik.setTouched({ document: true });
+
+  if (fileInputRef.current?.files) {
+    const file = fileInputRef.current.files[0];
+    console.log(file);
+    await formik.setFieldValue('document', file, true);
+  }
+};
