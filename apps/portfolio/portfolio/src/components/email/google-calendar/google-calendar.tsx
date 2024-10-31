@@ -206,7 +206,15 @@ const GoogleCalendar = () => {
             }}
           >
             <TimePicker
-              label={<Label labelVariant="body1" labelText="Start Time" sx={{ fontSize: '1.25rem' }} />}
+              label={
+                <Label
+                  placement="top"
+                  tooltipTitle=""
+                  labelVariant="body1"
+                  labelText="Start Time"
+                  sx={{ fontSize: '1.25rem' }}
+                />
+              }
               minTime={minTime}
               maxTime={maxTime}
               defaultValue={tomorrow}
@@ -216,7 +224,15 @@ const GoogleCalendar = () => {
               slotProps={timePickerSlotProps}
             />
             <TimePicker
-              label={<Label labelVariant="body1" labelText="End Time" sx={{ fontSize: '1.25rem' }} />}
+              label={
+                <Label
+                  placement="top"
+                  tooltipTitle=""
+                  labelVariant="body1"
+                  labelText="End Time"
+                  sx={{ fontSize: '1.25rem' }}
+                />
+              }
               minTime={values.startTime.add(1, 'hour')}
               maxTime={values.startTime.add(3, 'hours')}
               closeOnSelect={false}

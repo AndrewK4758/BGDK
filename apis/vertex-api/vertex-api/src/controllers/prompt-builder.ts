@@ -8,7 +8,11 @@ const promptBuilder = (req: Request, resp: Response) => {
 
   const document = req.file;
 
-  console.log(document);
+  console.log(document.mimetype);
+  const d = document.buffer.toString('utf-8');
+  console.log(d);
+  console.log(JSON.stringify(d));
+
   const promptData: IPromptInputData = {
     objective: objective,
     responseFormat: responseFormat,
@@ -20,7 +24,14 @@ const promptBuilder = (req: Request, resp: Response) => {
   if (constraints) promptData['constraints'] = constraints;
   if (tone) promptData['tone'] = tone;
   if (responseInstructions) promptData['responseInstructions'] = responseInstructions;
-  if (document) promptData['document'] = document.buffer.toString();
+  if (document) {
+    if (document.mimetype === 'application/json') {
+      const jsonString = document.buffer.toString('utf-8');
+      const xmlJsonTemplate = `<![CDATA[${jsonString}]]>`;
+      promptData['document'] = xmlJsonTemplate;
+    } else promptData['document'] = document.buffer.toString('utf-8');
+  }
+
   const finalPrompt = parseInput(promptData);
 
   console.log(finalPrompt, 'FINAL PROMPT');

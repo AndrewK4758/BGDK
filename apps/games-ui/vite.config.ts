@@ -32,8 +32,6 @@ export default defineConfig({
     react({ babel: { targets: { esmodules: true } } }),
     nxViteTsPaths({ debug: true }),
     nxCopyAssetsPlugin(['*.md']),
-    react(),
-    nxViteTsPaths(),
   ],
 
   // Uncomment this if you are using workers.

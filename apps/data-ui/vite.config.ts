@@ -28,7 +28,7 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [react({ babel: { targets: { esmodules: true } } }), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md']), react()],
+  plugins: [react({ babel: { targets: { esmodules: true } } }), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
 
   // Uncomment this if you are using workers.
   // worker: {

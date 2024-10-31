@@ -9,7 +9,7 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "main": "libs/gen-ai/prompt-builder/src/index.ts",
         "esbuildConfig": "libs/gen-ai/prompt-builder/esbuild.config.cjs",

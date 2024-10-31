@@ -36,7 +36,6 @@ export default defineConfig({
       debug: true,
     }),
     nxCopyAssetsPlugin(['*.md']),
-    nxViteTsPaths(),
   ],
 
   // Uncomment this if you are using workers.

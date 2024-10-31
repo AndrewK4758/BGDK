@@ -7,8 +7,6 @@ const handlePromptBuilder: ActionFunction = async ({ request }: ActionFunctionAr
   try {
     const formData = await request.formData();
 
-    console.log(formData, 'IN ACTION');
-
     const resp = await axios.post(`${baseURL}/build-prompt`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });

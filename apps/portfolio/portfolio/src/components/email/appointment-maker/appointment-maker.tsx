@@ -81,7 +81,15 @@ const AppointmentMaker = ({ formik }: AppointmentMakerProps) => (
         minutes: renderTimeViewClock,
       }}
       defaultValue={tomorrow}
-      label={<Label labelVariant="body1" labelText="Set Appointment Date Time" sx={{ fontSize: '1.25rem' }} />}
+      label={
+        <Label
+          placement="top"
+          tooltipTitle=""
+          labelVariant="body1"
+          labelText="Set Appointment Date Time"
+          sx={{ fontSize: '1.25rem' }}
+        />
+      }
       minDate={tomorrow}
       maxDate={nextYear}
       disablePast={true}

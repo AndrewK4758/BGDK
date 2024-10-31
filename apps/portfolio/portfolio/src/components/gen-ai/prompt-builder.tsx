@@ -31,6 +31,10 @@ import {
 } from './static/definitions';
 
 const FILE_SIZE = 1024 * 1024 * 5;
+/**
+ * THESE ARE VALUES THAT I FOUND FROM LOOKING AT THE TYPE PROPERTY AS I UPLOADED THEM TO MY LOCAL MACHINE.
+ * I AM NOT SURE THEY WILL WORK FOR TYPESCRIPT AND OTHER FILE TYPES OUTSIDE OF MY LOCAL DEV SETTING.
+ */
 const SUPPORTED_FORMATS = [
   'application/json',
   'text/csv',
@@ -41,12 +45,11 @@ const SUPPORTED_FORMATS = [
   'text/javascript',
   'application/pdf',
   'application/python',
-  'application/typescript',
   'application/javascript',
-  'text/vnd.trolltech.linguist',
+  'text/vnd.trolltech.linguist', //typescript
 ];
 
-const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Click on the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
+const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
 
 const labelSx: SxProps = {
   fontSize: '2rem',
@@ -150,7 +153,7 @@ const PromptBuilder = () => {
             />
             <Text titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
-          <Form key={'prompt-builder-form'} method="post" onSubmit={formik.handleSubmit}>
+          <Form key={'prompt-builder-form'} method="post" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
             <Box
               component={'section'}
               key={'prompt-builder-input-elements-box'}
@@ -178,8 +181,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'objective'}
                   sx={textInputSx}
+                  value={formik.values.objective}
                 />
                 <FormikValidationError<IPromptInputData> elementName="objective" formik={formik} />
               </Box>
@@ -203,8 +208,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'instructions'}
                   sx={textInputSx}
+                  value={formik.values.instructions}
                 />
                 <FormikValidationError<IPromptInputData> elementName="instructions" formik={formik} />
               </Box>
@@ -228,8 +235,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'textData'}
                   sx={textInputSx}
+                  value={formik.values.textData}
                 />
                 <FormikValidationError<IPromptInputData> elementName="textData" formik={formik} />
               </Box>
@@ -253,8 +262,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'examples'}
                   sx={textInputSx}
+                  value={formik.values.examples}
                 />
                 <FormikValidationError<IPromptInputData> elementName="examples" formik={formik} />
               </Box>
@@ -278,8 +289,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'constraints'}
                   sx={textInputSx}
+                  value={formik.values.constraints}
                 />
                 <FormikValidationError<IPromptInputData> elementName="constraints" formik={formik} />
               </Box>
@@ -303,8 +316,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'tone'}
                   sx={textInputSx}
+                  value={formik.values.tone}
                 />
                 <FormikValidationError<IPromptInputData> elementName="tone" formik={formik} />
               </Box>
@@ -332,8 +347,10 @@ const PromptBuilder = () => {
                   variant="outlined"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
+                  onReset={formik.handleReset}
                   name={'responseInstructions'}
                   sx={textInputSx}
+                  value={formik.values.responseInstructions}
                 />
                 <FormikValidationError<IPromptInputData> elementName="responseIsnstructions" formik={formik} />
               </Box>
@@ -365,6 +382,7 @@ const PromptBuilder = () => {
                     id="prompt-builder-response-format"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
+                    onReset={formik.handleReset}
                     value={formik.values.responseFormat}
                     name={'responseFormat'}
                     color="primary"
@@ -417,11 +435,16 @@ const PromptBuilder = () => {
                   type="file"
                   style={{ display: 'none' }}
                   onBlur={formik.handleBlur}
-                  onChange={() => handleAddToFormikValues(fileInputRef, formik)}
+                  onReset={formik.handleReset}
+                  onChange={() => handleAddFileToFormikValues(fileInputRef, formik)}
                 />
-                {formik.values.document && !formik.errors.document ? (
-                  <Box component={'span'} sx={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
-                    {`Uploaded File: ${(formik.values.document as File).name}`}
+                {formik.values.document ? (
+                  <Box component={'span'}>
+                    <Text
+                      titleVariant="body1"
+                      titleText={`Uploaded File: ${(formik.values.document as File).name}`}
+                      sx={{ fontSize: '1.1rem', fontWeight: 'bold' }}
+                    />
                   </Box>
                 ) : null}
                 <FormikValidationError<IPromptInputData> elementName="document" formik={formik} />
@@ -461,24 +484,26 @@ const PromptBuilder = () => {
                 >
                   Clear Values
                 </Button>
-                <Button
-                  variant="text"
-                  type="button"
-                  key={'copy-prompt-to-clipboard'}
-                  id="copy-prompt-to-clipboard"
-                  onClick={() => handleCopyGameLinkToClipboard(action)}
-                  sx={{ fontSize: '2rem' }}
-                >
-                  Copy Prompt
-                </Button>
+                {action && (
+                  <Button
+                    variant="text"
+                    type="button"
+                    key={'copy-prompt-to-clipboard'}
+                    id="copy-prompt-to-clipboard"
+                    onClick={() => handleCopyGameLinkToClipboard(action)}
+                    sx={{ fontSize: '2rem' }}
+                  >
+                    Copy Prompt
+                  </Button>
+                )}
               </Box>
             </Box>
           </Form>
         </Container>
         {action && (
-          <Box sx={{ width: '100%', height: '100%', fontSize: '.875rem' }}>
-            <pre style={{ overflow: 'auto' }}>{action}</pre>
-          </Box>
+          <Container sx={{ width: '100%', height: '100%', fontSize: '.875rem' }}>
+            <pre style={{ overflowX: 'auto', fontWeight: 'bolder' }}>{action}</pre>
+          </Container>
         )}
       </Paper>
     </Box>
@@ -505,6 +530,8 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
   formDataToSend.set('objective', objective);
   formDataToSend.set('responseFormat', responseFormat);
 
+  console.log(document);
+
   if (instructions) formDataToSend.set('instructions', instructions);
   if (document) formDataToSend.set('document', document);
   if (textData) formDataToSend.set('textData', textData);
@@ -518,15 +545,13 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
 
 const handleCopyGameLinkToClipboard = (prompt: string): Promise<void> => navigator.clipboard.writeText(prompt);
 
-const handleAddToFormikValues = async (
+const handleAddFileToFormikValues = async (
   fileInputRef: RefObject<HTMLInputElement>,
   formik: FormikProps<IPromptInputData>,
 ) => {
   await formik.setTouched({ document: true });
-
   if (fileInputRef.current?.files) {
     const file = fileInputRef.current.files[0];
-    console.log(file);
     await formik.setFieldValue('document', file, true);
   }
 };

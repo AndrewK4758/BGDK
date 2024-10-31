@@ -11,10 +11,10 @@ import { useContext, useRef } from 'react';
 import { Form, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
+import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 import Theme from '../../../styles/theme';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
 import FormikValidationError from './formik-validation-error';
-import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 
 const textFieldSlotProps = {
   inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
@@ -90,7 +90,11 @@ const EmaiForm = () => {
       style={{ height: '100%' }}
     >
       <Container component={'section'} key={'inputs-container'} id="inputs-container" sx={{ height: '100%' }}>
-        <Stack component={'section'} id="email-me-inputs-stack" sx={{ height: '100%', justifyContent: 'space-evenly' }}>
+        <Stack
+          component={'section'}
+          id="email-me-inputs-stack"
+          sx={{ height: '100%', justifyContent: 'space-evenly', gap: 4, paddingTop: 4 }}
+        >
           <Box component={'span'} key={'name-wrapper'} id="name-wrapper">
             <TextField
               fullWidth
