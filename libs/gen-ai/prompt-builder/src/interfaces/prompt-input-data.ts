@@ -1,7 +1,7 @@
 import { ResponseType } from '../types/prompt-input-data-types';
 
 export interface IPromptInputData {
-  [key: string]: string | File | undefined | null;
+  [key: string]: string | File | undefined | null | ResponseType;
   objective: string;
   responseFormat: ResponseType;
   instructions?: string | undefined;

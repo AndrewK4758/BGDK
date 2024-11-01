@@ -9,7 +9,6 @@ const compat = new FlatCompat({
 
 module.exports = [
   ...baseConfig,
-  ...compat.extends('plugin:playwright/recommended'),
 
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],

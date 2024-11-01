@@ -12,8 +12,8 @@
     "@bgdk/types-game": "0.0.1",
     "ts-jest": "29.2.5"
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "typings": "./index.d.ts",
   "private": true
 }

@@ -2,12 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest",],
+    "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
   },
   "include": [
-    "vite.config.ts",
+    "vite.config.mts",
     "vitest.config.ts",
     "tests/**/*.test.ts",
     "tests/**/*.spec.ts",

@@ -13,7 +13,7 @@
         "main": "libs/chains-for-games/src/index.ts",
         "tsConfig": "libs/chains-for-games/tsconfig.lib.json",
         "assets": ["libs/chains-for-games/*.md"],
-        "configFile": "libs/chains-for-games/vite.config.ts"
+        "configFile": "libs/chains-for-games/vite.config.mts"
       }
     },
     "test": {

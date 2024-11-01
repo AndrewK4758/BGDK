@@ -10,7 +10,8 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "../../../libs/__mocks__/mocks/src/**/*.ts",
-    "../../../libs/types/types-game/**/*.ts"
+    "../../../libs/types/types-game/**/*.ts",
+    "../../../libs/types/types-game/vite.config.mts"
   ],
   "exclude": []
 }

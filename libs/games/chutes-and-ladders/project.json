@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/games/chutes-and-ladders",
         "main": "libs/games/chutes-and-ladders/src/index.ts",
         "tsConfig": "libs/games/chutes-and-ladders/tsconfig.lib.json",
+        "configFile": "libs/games/chutes-and-ladders/vite.config.mts",
         "assets": ["libs/games/chutes-and-ladders/*.md"]
       }
     },

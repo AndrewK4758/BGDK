@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/game",
         "main": "libs/game/src/index.ts",
         "tsConfig": "libs/game/tsconfig.lib.json",
+        "configFile": "libs/game/vite.config.mts",
         "assets": ["libs/game/*.md"]
       }
     },

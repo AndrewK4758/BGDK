@@ -37,7 +37,9 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx",
     "vite.config.ts",
-    "vitest.config.ts"
+    "vitest.config.ts",
+    "vite.config.mts",
+    "vitest.config.mts"
   ],
   "references": [
     {

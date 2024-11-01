@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/chain",
         "main": "libs/chain/src/index.ts",
         "tsConfig": "libs/chain/tsconfig.lib.json",
+        "configFile": "libs/chain/vite.config.mts",
         "assets": ["libs/chain/*.md"]
       }
     },

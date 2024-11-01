@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/models/game-builder",
         "main": "libs/models/game-builder/src/index.ts",
         "tsConfig": "libs/models/game-builder/tsconfig.lib.json",
+        "configFile": "libs/models/game-builder/vite.config.mts",
         "assets": ["libs/models/game-builder/*.md"]
       }
     },

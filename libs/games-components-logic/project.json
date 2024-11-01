@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/games-components-logic",
         "main": "libs/games-components-logic/src/index.ts",
         "tsConfig": "libs/games-components-logic/tsconfig.lib.json",
+        "configFile": "libs/games-components-logic/vite.config.mts",
         "assets": ["libs/games-components-logic/*.md"]
       }
     },

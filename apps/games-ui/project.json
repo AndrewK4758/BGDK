@@ -60,12 +60,14 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nx/vite:test",
       "options": {
-        "jestConfig": "apps/games-ui/jest.config.ts",
-        "reportsDirectory": "../../coverage/apps/games-ui",
-        "testFiles": ["./src/tests/*"]
+        "config": "apps/games-ui/vite.config.mts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
       }
     },
     "lint": {

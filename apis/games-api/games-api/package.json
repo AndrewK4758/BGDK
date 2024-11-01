@@ -16,7 +16,7 @@
     "@bgdk/game-builder": "0.0.1",
     "@bgdk/tic-tac-toe": "0.0.1",
     "@bgdk/socket-io": "0.0.1",
-    "socket.io": "4.8.0",
+    "socket.io": "4.8.1",
     "cors": "^2.8.5",
     "@bgdk/all-games-map": "0.0.1",
     "multer": "1.4.5-lts.1",

@@ -32,7 +32,7 @@
     "strict": false,
     "target": "ESNext",
     "verbatimModuleSyntax": false,
-    "rootDir": "./",
+    "rootDir": ".",
     "baseUrl": ".",
     "paths": {
       "@bgdk/all-games-map": ["libs/models/all-games-map/src/index.ts"],

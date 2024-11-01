@@ -62,7 +62,7 @@
     "test": {
       "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/portfolio/portfolio/vite.config.ts"
+        "config": "apps/portfolio/portfolio/vite.config.mts"
       },
       "configurations": {
         "watch": {

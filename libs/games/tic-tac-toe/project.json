@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/games/tic-tac-toe",
         "main": "libs/games/tic-tac-toe/src/index.ts",
         "tsConfig": "libs/games/tic-tac-toe/tsconfig.lib.json",
+        "configFile": "libs/games/tic-tac-toe/vite.config.mts",
         "assets": ["libs/games/tic-tac-toe/*.md"]
       }
     },

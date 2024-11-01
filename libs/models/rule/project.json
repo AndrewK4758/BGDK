@@ -12,6 +12,7 @@
         "outputPath": "dist/libs/models/rule",
         "main": "libs/models/rule/src/index.ts",
         "tsConfig": "libs/models/rule/tsconfig.lib.json",
+        "configFile": "libs/models/rule/vite.config.mts",
         "assets": ["libs/models/rule/*.md"]
       }
     },

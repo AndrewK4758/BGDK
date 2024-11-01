@@ -9,13 +9,13 @@ tmp
 node_modules
 */.venv
 */__pycache__/*
-	__pycache__
-	build
-	dist
-	.tox
-	venv
-	.venv
-	.pytest_cache
+__pycache__
+build
+dist
+.tox
+venv
+.venv
+.pytest_cache
 
 # IDEs and editors
 /.idea
@@ -79,3 +79,5 @@ rag-data/
 
 
 **/vite.config.{js,ts,mjs,mts,cjs,cts}.timestamp*
+
+vite.config.*.timestamp*

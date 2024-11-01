@@ -56,7 +56,7 @@
     "test": {
       "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/data-ui/vite.config.ts"
+        "config": "apps/data-ui/vite.config.mts"
       },
       "configurations": {
         "watch": {

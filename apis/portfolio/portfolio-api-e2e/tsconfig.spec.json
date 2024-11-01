@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
     "outDir": "../../../dist/out-tsc",
     "types": ["jest", "node"]
   },
@@ -14,4 +15,3 @@
   ],
   "exclude": []
 }
-
