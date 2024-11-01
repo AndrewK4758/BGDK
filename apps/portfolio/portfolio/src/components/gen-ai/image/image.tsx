@@ -1,12 +1,13 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import axios from 'axios';
 import Theme from '../../../styles/theme';
 
 const Image = () => {
   const [prompt, setPrompt] = useState<string>('');
+  const [pic, setPic] = useState<string>('');
   return (
     <Box
       component={'div'}
@@ -45,7 +46,6 @@ const Image = () => {
           <Input
             key={'gen-image-prompt-input'}
             onChange={e => {
-              console.log(e.target.value);
               setPrompt(e.target.value);
             }}
             sx={{ width: '100%', color: Theme.palette.text.primary }}
@@ -55,13 +55,13 @@ const Image = () => {
           key={'gen-image-button'}
           id="gen-image-button"
           sx={{ fontSize: '3rem', textAlign: 'center', width: '100%' }}
-          onClick={() => handleGenImageClick(prompt)}
+          onClick={() => handleGenImageClick(prompt, setPic)}
         >
           Generate Image
         </Button>
       </Box>
       <Box component={'section'} key={'generated-image-wrapper'} sx={{ flex: '1 0 20%', border: 5 }}>
-        <img src="../../../../libs/gen-ai/vertex-ai/data" alt="generated from prompt entered" />
+        {pic && <img src={`data:image/png;base64, ${pic}`} alt="generated from prompt entered" />}
       </Box>
     </Box>
   );
@@ -71,7 +71,7 @@ export default Image;
 
 const baseURL = import.meta.env.VITE_SERVER_URL_VERTEX;
 
-const handleGenImageClick = async (prompt: string) => {
+const handleGenImageClick = async (prompt: string, setPic: Dispatch<SetStateAction<string>>) => {
   console.log(prompt);
   try {
     const resp = await axios.post(
@@ -81,6 +81,7 @@ const handleGenImageClick = async (prompt: string) => {
     );
 
     console.log(resp.data);
+    setPic(resp.data);
   } catch (error) {
     console.error(error);
   }
