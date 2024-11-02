@@ -52,6 +52,7 @@
       "@bgdk/shared-react-components": ["libs/shared-react-components/src/index.ts"],
       "@bgdk/socket-io": ["libs/socket-io/src/index.ts"],
       "@bgdk/tic-tac-toe": ["libs/games/tic-tac-toe/src/index.ts"],
+      "@bgdk/types-ai": ["libs/types/types-ai/src/index.ts"],
       "@bgdk/types-api": ["libs/types/types-api/src/index.ts"],
       "@bgdk/types-game": ["libs/types/types-game/src/index.ts"],
       "@bgdk/utils": ["libs/utils/src/index.ts"],

@@ -27,7 +27,6 @@ const mainWrapperSxProps: SxProps = {
   flexDirection: 'column',
   alignItems: 'center',
   marginTop: '25vh',
-  gap: '25vh',
 };
 
 /**

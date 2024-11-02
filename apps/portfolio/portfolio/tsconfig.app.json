@@ -23,11 +23,12 @@
     "../../../libs/types/types-api/src/**/*.ts",
     "../../../libs/games-components-logic/src/**/*.ts",
     "../../../libs/types/types-game/src/**/*.ts",
+    "../../../libs/types/types-ai/src/**/*.ts",
     "../../../libs/shared-react-components/src/**/*.ts",
     "../../../libs/react-components/src/**/*.ts",
     "../../../libs/shared-react-components/src/**/*.tsx",
     "../../../libs/react-components/src/**/*.tsx",
-    "tests/chain.spec.tsx"
+    "../../../libs/gen-ai/vertex-ai/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",

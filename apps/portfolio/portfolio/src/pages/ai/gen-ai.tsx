@@ -7,12 +7,11 @@ import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef } from 'react';
-import { Outlet, useNavigate, type NavigateFunction } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 import ClientSocket from '../../utils/web-socket/socket-instance';
-import PromptBuilder from '../../components/gen-ai/prompt-builder';
 
 const title = 'Generative AI';
 
@@ -61,7 +60,7 @@ const GenAiHome = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10vh',
+        gap: '25vh',
         alignItems: 'center',
       }}
     >
@@ -98,7 +97,7 @@ const GenAiHome = () => {
               key={'gen-ai-text'}
               id="gen-ai-text"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
+              onClick={() => nav('text', { replace: true })}
             >
               Text
             </Button>
@@ -107,7 +106,7 @@ const GenAiHome = () => {
               key={'gen-ai-image'}
               id="gen-ai-image"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
+              onClick={() => nav('image', { replace: true })}
             >
               Image
             </Button>
@@ -116,7 +115,7 @@ const GenAiHome = () => {
               key={'gen-ai-audio'}
               id="gen-ai-audio"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
+              onClick={() => nav('audio')}
             >
               Audio
             </Button>
@@ -125,18 +124,9 @@ const GenAiHome = () => {
               key={'gen-ai-video'}
               id="gen-ai-video"
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
+              onClick={() => nav('video')}
             >
               Video
-            </Button>
-            <Button
-              LinkComponent={'button'}
-              key={'gen-ai-multimodal'}
-              id="gen-ai-multimodal"
-              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={e => handleFormatSelect(e.currentTarget.textContent as string, nav)}
-            >
-              Multi-Modal
             </Button>
           </Toolbar>
         </AppBar>
@@ -153,18 +143,10 @@ const GenAiHome = () => {
         </Box>
       </Paper>
       <Box
-        component={'section'}
-        key={'prompt-builder-wrapper'}
-        id="prompt-builder-wrapper"
-        sx={{ height: 'fit-content', minHeight: '30vh', width: '65%' }}
-      >
-        <PromptBuilder />
-      </Box>
-      <Box
         component={'div'}
         key={'gen-ai-outlet-wrapper'}
         id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', minHeight: '30vh' }}
+        sx={{ height: 'fit-content', minHeight: '70vh' }}
       >
         <Outlet context={{ socket: socket }} />
       </Box>
@@ -173,7 +155,3 @@ const GenAiHome = () => {
 };
 
 export default GenAiHome;
-
-const handleFormatSelect = (mode: string, nav: NavigateFunction) => {
-  nav(mode);
-};

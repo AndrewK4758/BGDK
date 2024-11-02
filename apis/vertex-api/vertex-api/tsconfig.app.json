@@ -10,7 +10,8 @@
     "src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
-    "../../../libs/gen-ai/prompt-builder/src/**/*.ts"
+    "../../../libs/gen-ai/prompt-builder/src/**/*.ts",
+    "../../../libs/types/types-ai/src/**/*.ts"
   ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [

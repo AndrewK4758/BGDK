@@ -6,6 +6,6 @@ const clientOptions = {
   apiEndpoint: `${location}-aiplatform.googleapis.com`,
 };
 
-const predictionServiceClient = new PredictionServiceClient(clientOptions);
+export const predictionServiceClient = new PredictionServiceClient(clientOptions);
 
 export default predictionServiceClient;

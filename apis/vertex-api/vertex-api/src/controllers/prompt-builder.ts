@@ -8,11 +8,6 @@ const promptBuilder = (req: Request, resp: Response) => {
 
   const document = req.file;
 
-  console.log(document.mimetype);
-  const d = document.buffer.toString('utf-8');
-  console.log(d);
-  console.log(JSON.stringify(d));
-
   const promptData: IPromptInputData = {
     objective: objective,
     responseFormat: responseFormat,

@@ -26,7 +26,9 @@
     "../../../libs/models/all-games-map/src/**/*.ts",
     "../../../libs/types/types-game/src/**/*.ts",
     "../../../libs/types/types-api/src/**/*.ts",
-    "../../../libs/utils/src/lib/get-current-minute.ts"
+    "../../../libs/utils/src/lib/get-current-minute.ts",
+    "../../../libs/gen-ai/vertex-ai/src/lib/enums/enums-for-imagen-config.ts",
+    "../../../libs/types/types-ai/src/types/types-for-imagen-config.ts"
   ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [

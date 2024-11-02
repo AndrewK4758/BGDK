@@ -2,7 +2,6 @@ import Intro from '../../components/intro/intro';
 import PicutreAndResume from '../../components/intro/picture-resume';
 import TechStackList from '../../components/tech-list/tech-list';
 import Box from '@mui/material/Box';
-import Chain from '../../components/code/chain';
 
 const Home = () => (
   <>
@@ -41,9 +40,7 @@ const Home = () => (
         display: 'flex',
         justifyContent: 'center',
       }}
-    >
-      <Chain />
-    </Box>
+    ></Box>
   </>
 );
 

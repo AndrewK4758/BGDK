@@ -18,7 +18,9 @@
     "../../libs/shared-react-components/src/**/*.ts",
     "../../libs/react-components/src/**/*.tsx",
     "../../libs/shared-react-components/src/**/*.tsx",
-    "../../libs/utils/src/lib/get-current-minute.ts"
+    "../../libs/utils/src/lib/get-current-minute.ts",
+    "../../libs/gen-ai/vertex-ai/src/lib/enums/enums-for-imagen-config.ts",
+    "../../libs/types/types-ai/src/types/types-for-imagen-config.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",

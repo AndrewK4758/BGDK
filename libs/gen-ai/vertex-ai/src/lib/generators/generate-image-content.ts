@@ -1,41 +1,53 @@
 import { helpers } from '@google-cloud/aiplatform';
-import predictionServiceClient from '../models/generative-image-model';
+import {
+  type AspectRatios,
+  type PersonGenerations,
+  type SafetyFilterLevels,
+  AspectRatio,
+  SafetyFilterLevel,
+  PersonGeneration,
+} from '@bgdk/types-ai';
 
 const projectId = 'games-424800';
 const location = 'us-central1';
 
-interface ImagenConfig {
+export interface ImagenConfig {
   projectId: string;
   location: string;
   endpoint: string;
   prompt: string;
-  sampleCount?: number; // Optional: Number of images to generate
-  seed?: number; // Optional: Seed for random number generator
-  aspectRatio?: string; // Optional: Aspect ratio of the generated image (e.g., '1:1', '16:9')
-  safetyFilterLevel?: 'block_some' | 'block_all'; // Optional: Safety filter level
-  personGeneration?: 'allow_adult' | 'allow_all' | 'disallow'; // Optional: Person generation setting
+  sampleCount?: number;
+  seed?: number;
+  aspectRatio?: AspectRatios;
+  safetyFilterLevel?: SafetyFilterLevels;
+  personGeneration?: PersonGenerations;
 }
 
-const imagenConfig: ImagenConfig = {
+export const imagenConfig: ImagenConfig = {
   projectId: projectId,
   location: location,
   endpoint: `projects/${projectId}/locations/${location}/publishers/google/models/imagen-3.0-generate-001`,
   prompt: '',
-  sampleCount: 1,
-  aspectRatio: '4:3',
-  safetyFilterLevel: 'block_some',
-  personGeneration: 'allow_adult',
+  sampleCount: 0,
+  aspectRatio: AspectRatio['1:1'],
+  safetyFilterLevel: SafetyFilterLevel.block_some,
+  personGeneration: PersonGeneration.allow_adult,
 };
 
-const generateImageRequest = (config: ImagenConfig) => {
-  const { endpoint, prompt } = config;
+export const generateImageRequest = (config: ImagenConfig) => {
+  const { endpoint, prompt, aspectRatio, seed, sampleCount } = config;
   const promptText = { prompt };
 
   const instanceValue = helpers.toValue(promptText);
 
   const instances = [instanceValue];
 
-  const parameters = helpers.toValue({});
+  const parameters = helpers.toValue({
+    addWatermark: false,
+    aspectRatio: aspectRatio,
+    seed: seed,
+    sampleCount: sampleCount,
+  });
 
   const request = {
     endpoint,
@@ -45,5 +57,3 @@ const generateImageRequest = (config: ImagenConfig) => {
 
   return request;
 };
-
-export { imagenConfig, predictionServiceClient, generateImageRequest, type ImagenConfig };

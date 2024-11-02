@@ -530,8 +530,6 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
   formDataToSend.set('objective', objective);
   formDataToSend.set('responseFormat', responseFormat);
 
-  console.log(document);
-
   if (instructions) formDataToSend.set('instructions', instructions);
   if (document) formDataToSend.set('document', document);
   if (textData) formDataToSend.set('textData', textData);
@@ -540,7 +538,7 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
   if (tone) formDataToSend.set('tone', tone);
   if (responseInstructions) formDataToSend.set('responseInstructions', responseInstructions);
 
-  submit(formDataToSend, { action: '/gen-ai?index', method: 'post', encType: 'multipart/form-data' });
+  submit(formDataToSend, { method: 'post', encType: 'multipart/form-data' });
 };
 
 const handleCopyGameLinkToClipboard = (prompt: string): Promise<void> => navigator.clipboard.writeText(prompt);

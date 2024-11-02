@@ -15,7 +15,9 @@
     "src/**/*.css",
     "src/**/*.d.ts",
     "../games-components-logic/src/**/*.ts",
-    "../types/**/*/src/**/*.ts"
+    "../types/**/*/src/**/*.ts",
+    "../types/types-ai/src/enums/enums-for-imagen-config.ts",
+    "../types/types-ai/src/types/types-for-imagen-config.ts"
   ],
   "exclude": [
     "tests/**/*.spec.ts",

@@ -1,11 +1,17 @@
 import { Box } from '@mui/material';
-import { useOutletContext } from 'react-router-dom';
-import { Socket } from 'socket.io-client';
+import PromptBuilder from '../prompt-builder';
 
 const TextGenerator = () => {
-  const { socket } = useOutletContext() as { socket: Socket };
-  console.log(socket);
-  return <Box>{'TEXT'}</Box>;
+  return (
+    <Box
+      component={'section'}
+      key={'prompt-builder-wrapper'}
+      id="prompt-builder-wrapper"
+      sx={{ height: 'fit-content', minHeight: '30vh' }}
+    >
+      <PromptBuilder />
+    </Box>
+  );
 };
 
 export default TextGenerator;

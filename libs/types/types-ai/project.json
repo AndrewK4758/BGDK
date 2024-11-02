@@ -1,0 +1,37 @@
+{
+  "name": "types-ai",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/types/types-ai/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "libs/types/types-ai/src/index.ts",
+        "outputPath": "dist/libs/types/types-ai",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/types/types-ai/tsconfig.lib.json",
+        "esbuildConfig": "libs/types/types-ai/esbuild.config.cjs",
+        "assets": [
+          {
+            "glob": "libs/types/types-ai/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    }
+  }
+}
