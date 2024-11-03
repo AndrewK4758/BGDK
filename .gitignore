@@ -76,7 +76,7 @@ rag-data/
 .nx/workspace-data/d/daemon.log
 .nx/workspace-data/file-map.json
 
-
+.tool-versions
 
 **/vite.config.{js,ts,mjs,mts,cjs,cts}.timestamp*
 

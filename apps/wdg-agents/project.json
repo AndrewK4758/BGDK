@@ -45,7 +45,7 @@
         "silent": false,
         "args": "",
         "cacheDir": ".cache/pypoetry",
-        "verbose": false,
+        "verbose": true,
         "debug": false
       }
     },
