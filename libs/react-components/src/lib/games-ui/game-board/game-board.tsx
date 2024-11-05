@@ -7,7 +7,6 @@ import { Theme } from '../../theme/theme';
 import { ILiteSpace } from '@bgdk/types-game';
 import { CSSProperties } from 'react';
 
- 
 export interface GameBoardProps {
   row: ILiteSpace[];
   columns: number;
@@ -68,7 +67,7 @@ const gameBoardRowMap = (e: ILiteSpace, _i: number, _arr: string[]) => {
 
 export function GameBoardMap({ row, columns, container, direction, wrap, id, gridSx }: GameBoardProps) {
   return (
-    <Grid2 columns={columns} container={container} direction={direction} wrap={wrap} key={id}>
+    <Grid2 columns={columns} container={container} direction={direction} wrap={wrap} key={id} sx={gridSx}>
       <RenderList data={row} listMapCallback={gameBoardRowMap} />
     </Grid2>
   );

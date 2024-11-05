@@ -5,11 +5,11 @@ const nxEslintPlugin = require('@nx/eslint-plugin');
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
+
 });
 
 module.exports = [
   { plugins: { '@nx': nxEslintPlugin } },
-
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.json'],
     rules: {
@@ -27,6 +27,7 @@ module.exports = [
         },
       ],
       '@nx/dependency-checks': ['error', { checkObsoleteDependencies: true }],
+
     },
     languageOptions: { parser: require('jsonc-eslint-parser') },
   },
@@ -35,6 +36,16 @@ module.exports = [
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       ...config.rules,
+      '@typescript-eslint/no-unused-vars': ['error', {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ]
     },
   })),
   ...compat.config({ extends: ['plugin:@nx/javascript'] }).map(config => ({

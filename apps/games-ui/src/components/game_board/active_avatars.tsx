@@ -45,7 +45,7 @@ const breakpointsPlayersInGameText: SxProps = {
   },
 };
 
-const playersInGameMap = (e: IRegisterFormValues, i: number, arr: Player[]) => (
+const playersInGameMap = (e: IRegisterFormValues, _i: number, _arr: Player[]) => (
   <Fragment key={e.avatarName}>
     <PlayersInGame
       component={'span'}

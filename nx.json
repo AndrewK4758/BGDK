@@ -26,13 +26,13 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      },
-      "exclude": ["libs/__mocks__/mocks/*", "libs/utils/*", "libs/types/types-ai/*"]
+      }
     },
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
-        "targetName": "lint"
+        "targetName": "lint",
+        "verbose": true
       }
     },
     {

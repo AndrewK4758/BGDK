@@ -42,7 +42,7 @@ const breakpointsGameDetailsRegisterButton: SxProps = {
   },
 };
 
-const listRulesCallback = (e: IRule, i: number, arr: IRule[]) => (
+const listRulesCallback = (e: IRule, _i: number, _arr: IRule[]) => (
   <Fragment key={e.title}>
     <HeadingWithDetails
       component={'li'}

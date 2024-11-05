@@ -1,4 +1,0 @@
-[1m./tests/test_agent1.py[m[36m:[m4[36m:[m3[36m:[m [1m[31mE111[m indentation is not a multiple of 4
-[1m./wdg_agents/rag_chain.py[m[36m:[m12[36m:[m1[36m:[m [1m[31mF811[m redefinition of unused 'Collection' from line 6
-[1m./wdg_agents/rag_chain.py[m[36m:[m86[36m:[m9[36m:[m [1m[31mE722[m do not use bare 'except'
-[1m./wdg_agents/utils.py[m[36m:[m5[36m:[m1[36m:[m [1m[31mE302[m expected 2 blank lines, found 1

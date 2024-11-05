@@ -155,7 +155,7 @@ const AddEntry = () => {
 
   const handleNext = () => {
     const newActiveStep =
-      isLastStep() && !allStepsCompleted() ? steps.findIndex((step, i) => !(i in completed)) : activeStep + 1;
+      isLastStep() && !allStepsCompleted() ? steps.findIndex((_step, i) => !(i in completed)) : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 

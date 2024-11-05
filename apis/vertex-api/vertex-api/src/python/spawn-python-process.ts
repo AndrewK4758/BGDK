@@ -8,7 +8,7 @@ const activePtyProcesses = new Map<string, pty.IPty>();
 
 const pythonRouter: Router = Router();
 
-pythonRouter.get('/query/:id', (req: Request, resp: Response) => {
+pythonRouter.get('/query/:id', (req: Request, _resp: Response) => {
   const { id } = req.params;
 
   const shell = 'nx';
@@ -59,7 +59,7 @@ pythonRouter.get('/query/:id', (req: Request, resp: Response) => {
   console.log(pythonProcess);
 });
 
-pythonRouter.get('/write/:id/:command', (req: Request, resp: Response) => {
+pythonRouter.get('/write/:id/:command', (req: Request, _resp: Response) => {
   const { id, command } = req.params;
 
   const ptyProcess = activePtyProcesses.get(id);

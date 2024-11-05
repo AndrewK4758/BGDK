@@ -25,7 +25,7 @@
     "test": {
       "executor": "@nx/vite:test",
       "options": {
-        "config": "libs/shared-react-components/vite.config.ts"
+        "config": "libs/shared-react-components/vite.config.mts"
       },
       "configurations": {
         "watch": {

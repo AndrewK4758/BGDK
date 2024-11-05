@@ -1,16 +1,8 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const js = require('@eslint/js');
 const baseConfig = require('../../eslint.config.js');
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
 
 module.exports = [
   ...baseConfig,
-  ...compat.extends('plugin:@nx/react'),
-
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
@@ -25,10 +17,5 @@ module.exports = [
     files: ['**/*.js', '**/*.jsx'],
     // Override or add rules here
     rules: {},
-  },
-  {
-    files: ['**/*.json'],
-    rules: { '@nx/dependency-checks': ['error', { ignoredFiles: ['{projectRoot}/vite.config.{js,ts,mjs,mts}'] }] },
-    languageOptions: { parser: require('jsonc-eslint-parser') },
   },
 ];

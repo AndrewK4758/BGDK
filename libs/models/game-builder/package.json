@@ -7,7 +7,7 @@
     "@bgdk/rule": "0.0.1",
     "@bgdk/chutes-and-ladders": "0.0.1",
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.13.0",
+    "@eslint/js": "9.14.0",
     "jsonc-eslint-parser": "2.4.0",
     "@bgdk/types-game": "0.0.1",
     "ts-jest": "29.2.5"

@@ -15,6 +15,7 @@ const googleUserInit: GoogleUserContextInfo = {
   name: '',
 };
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const GoogleUserContext = createContext<GoogleUserContextProps>(null!);
 
 interface GoogleContextProviderProps {

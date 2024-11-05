@@ -3,7 +3,7 @@ import os
 import chromadb
 from chromadb import EmbeddingFunction, Documents
 
-from chromadb.api.models import Collection
+# from chromadb.api.models.Collection import Collection
 from langchain_chroma import Chroma
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
@@ -83,8 +83,6 @@ def get_collection(native_db) -> Collection:
         try:
             # Delete all documents
             native_db.delete_collection("PDFS")
-        except:
-            pass
         finally:
             collection: Collection = native_db.get_or_create_collection(
                 "PDFS", embedding_function=MyEmbeddingFunction()
