@@ -2040,3 +2040,4 @@
 [2024-11-03 01:22:40,144] (_client.py . _send_single_request :: 1038) -- HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
 [2024-11-03 01:23:50,287] (_client.py . _send_single_request :: 1038) -- HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
 [2024-11-03 01:23:51,111] (_client.py . _send_single_request :: 1038) -- HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+[2024-11-06 17:53:04,512] (posthog.py . __init__ :: 22) -- Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.

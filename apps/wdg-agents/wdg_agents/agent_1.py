@@ -5,8 +5,7 @@ from langchain_core.messages import HumanMessage
 
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You're an executive trainer looking to provide as factual information as possible"),
-        MessagesPlaceholder(variable_name="messages"),
+        MessagesPlaceholder(variable_name="prompt"),
     ]
 )
 
@@ -22,11 +21,15 @@ def main():
     while True:
         print("Query:", end=" ")
         try:
-            line = input()
+            inputText = input()
         except EOFError:
             break
-        if line == "exit" or line == "quit":
+        if inputText == "exit" or inputText == "quit":
             break
         chain = prompt | model
-        resp = chain.invoke({"question": [HumanMessage(content=line)]})
+        resp = chain.invoke({"prompt": [HumanMessage(content=inputText)]})
         print(resp)
+
+
+if __name__ == "__main__":
+    main()
