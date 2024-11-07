@@ -1,21 +1,33 @@
 import * as http from 'http';
 import { Server, ServerOptions } from 'socket.io';
-import { SocketEventTuple, SocketMiddleware } from '../types/socket-server';
 import { ISocketServer } from '../interfaces/socket-server';
+import { SocketMiddleware, type SocketCallback } from '../types/socket-server';
 
 export class SocketServer implements ISocketServer {
   io: Server;
   constructor(
     httpServer: http.Server,
     serverOptions: Partial<ServerOptions>,
-    middleware: SocketMiddleware[],
-    listeners: SocketEventTuple[],
+    listeners: SocketCallback[],
+    middleware?: SocketMiddleware[],
   ) {
     this.io = new Server(httpServer, serverOptions);
-    middleware.forEach(cb => this.io.use(cb));
-    listeners.forEach(tuple => {
-      const [event, handler] = tuple;
-      this.io.on(event, handler);
+    listeners.forEach(listener => {
+      this.io.on('connection', listener);
+    });
+
+    middleware?.forEach(listener => {
+      this.io.use(listener);
     });
   }
+
+  addServerListener = (listener: SocketCallback) => {
+    this.io.on('connection', socket => {
+      listener(socket);
+    });
+  };
+
+  addMiddleware = (middleware: SocketMiddleware) => {
+    this.io.use(middleware);
+  };
 }

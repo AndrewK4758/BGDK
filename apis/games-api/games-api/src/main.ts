@@ -43,12 +43,7 @@ app.enable('trust proxy');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
-export const socketServer = new SocketServer(
-  httpServer,
-  serverOptions,
-  [addGameToSocketInstance],
-  [['connection', socketBoardAction]],
-);
+export const socketServer = new SocketServer(httpServer, serverOptions, [socketBoardAction], [addGameToSocketInstance]);
 
 new GameRoutes();
 

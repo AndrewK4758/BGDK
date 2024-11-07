@@ -1,37 +1,14 @@
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { Container } from '@mui/material';
 import { lazy } from 'react';
+import { topLevelModeStyle } from '../gen-ai-modes-styles';
 
 const ImageForm = lazy(() => import('./image-form'));
 
 const Image = () => (
-  <Box
-    component={'div'}
-    key={'gen-image-wrapper'}
-    id="gen-image-wrapper"
-    sx={{
-      minHeight: '30vh',
-      height: 'fit-content',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderRadius: 5,
-      minWidth: '65vw',
-      width: 'fit-content',
-    }}
-  >
-    <Paper
-      component={'div'}
-      key={'gen-image-paper'}
-      id="gen-image-paper"
-      sx={{
-        width: '100%',
-        height: '100%',
-        gap: 4,
-      }}
-    >
+  <Box component={'div'} key={'gen-image-wrapper'} id="gen-image-wrapper" sx={topLevelModeStyle}>
+    <Paper component={'div'} key={'gen-image-paper'} id="gen-image-paper">
       <Container component={'section'} key={'gen-image-form-wrapper'} id="gen-image-form-wrapper">
         <ImageForm />
       </Container>

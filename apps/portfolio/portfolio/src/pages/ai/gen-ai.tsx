@@ -8,10 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Socket } from 'socket.io-client';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
-import ClientSocket from '../../utils/web-socket/socket-instance';
 
 const title = 'Generative AI';
 
@@ -25,29 +23,12 @@ const titleSx: SxProps = {
 };
 
 const GenAiHome = () => {
-  const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
-  const socketRef = useRef<Socket>(clientSocket.Socket);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
-  const socket = socketRef.current;
 
   useEffect(() => {
     if (divRef.current) handleScrollIntoView(divRef.current);
-    if (!socket.connected) {
-      socket.connect();
-      socket.on('connect', () => {
-        console.log(`Connected on id: ${socket.id}`);
-      });
-    }
-    socket.on('chunk', chunk => {
-      const { response } = chunk;
-      console.log(response);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
+  }, []);
 
   return (
     <Box
@@ -60,7 +41,7 @@ const GenAiHome = () => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '25vh',
+        gap: '15vh',
         alignItems: 'center',
       }}
     >
@@ -128,6 +109,15 @@ const GenAiHome = () => {
             >
               Video
             </Button>
+            <Button
+              LinkComponent={'button'}
+              key={'gen-ai-local'}
+              id="gen-ai-local"
+              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
+              onClick={() => nav('local')}
+            >
+              Local
+            </Button>
           </Toolbar>
         </AppBar>
         <Box component={'div'} key={'gen-ai-header-text-wrapper'} id="gen-ai-header-text-wrapper" sx={{ p: 2 }}>
@@ -146,9 +136,9 @@ const GenAiHome = () => {
         component={'div'}
         key={'gen-ai-outlet-wrapper'}
         id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', minHeight: '70vh' }}
+        sx={{ height: 'fit-content', minHeight: '70vh', maxWidth: '70vw' }}
       >
-        <Outlet context={{ socket: socket }} />
+        <Outlet />
       </Box>
     </Box>
   );

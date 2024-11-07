@@ -8,18 +8,18 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useFormik, type FormikProps } from 'formik';
 import { useRef, type RefObject } from 'react';
 import { Form, useActionData, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
-import '../../styles/prompt-builder.css';
-import Theme from '../../styles/theme';
-import FormikValidationError from '../email/email-form/formik-validation-error';
-import JsonIcon from '../icons/json-icon';
-import TextIcon from '../icons/text-icon';
+import '../../../styles/prompt-builder.css';
+import Theme from '../../../styles/theme';
+import FormikValidationError from '../../email/email-form/formik-validation-error';
+import JsonIcon from '../../icons/json-icon';
+import TextIcon from '../../icons/text-icon';
+import { labelSx, textInputSx, tooltipSx } from '../gen-ai-modes-styles';
 import {
   constraints,
   examples,
@@ -28,7 +28,7 @@ import {
   responseInstructions,
   textData,
   tone,
-} from './static/definitions';
+} from '../static/definitions';
 
 const FILE_SIZE = 1024 * 1024 * 5;
 /**
@@ -50,27 +50,6 @@ const SUPPORTED_FORMATS = [
 ];
 
 const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
-
-const labelSx: SxProps = {
-  fontSize: '2rem',
-  color: Theme.palette.primary.main,
-  width: 'fit-content',
-  '&:hover': { cursor: 'pointer' },
-};
-
-const tooltipSx: SxProps = {
-  maxWidth: '80vw',
-  fontSize: '1rem',
-  color: Theme.palette.text.primary,
-  backgroundColor: Theme.palette.background.default,
-  border: `2px solid ${Theme.palette.primary.main}`,
-};
-
-const textInputSx: SxProps = {
-  color: Theme.palette.primary.main,
-  backgroundColor: Theme.palette.background.default,
-  borderRadius: 1,
-};
 
 const isFile = (valueToTest: unknown) => valueToTest instanceof File;
 

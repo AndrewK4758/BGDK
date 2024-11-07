@@ -1,16 +1,27 @@
+import { SocketServer } from '@bgdk/socket-io';
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import * as http from 'http';
 import * as path from 'path';
-import { SocketServer } from '@bgdk/socket-io';
+import { cwd } from 'process';
 import type { ServerOptions } from 'socket.io';
-import handleTextDataChunks from './controllers/gen-ai-text-handler';
-import router, { Routes } from './routes/routes';
 import { fileURLToPath } from 'url';
+import handleTextDataChunks from './controllers/gen-ai-text-handler';
+import connectWsToLocalModel from './controllers/start-agent';
+import startPythonShell from './python/start-python-shell';
+import router, { Routes } from './routes/routes';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app: Express = express();
+
+export const pythonProcess = startPythonShell('poetry', ['run', 'python', 'agent_1.py'], {
+  cwd: `${cwd()}/apps/wdg-agents/wdg_agents`,
+  env: process.env,
+  shell: true,
+  stdio: 'pipe',
+  detached: true,
+});
 
 export const corsOptions: CorsOptions = {
   origin: '*',
@@ -33,7 +44,7 @@ const serverOptions: Partial<ServerOptions> = {
   cors: corsOptions,
 };
 
-new SocketServer(httpServer, serverOptions, [], [['connection', handleTextDataChunks]]);
+export const socketServer = new SocketServer(httpServer, serverOptions, [handleTextDataChunks, connectWsToLocalModel]);
 
 new Routes();
 

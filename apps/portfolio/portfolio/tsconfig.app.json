@@ -28,7 +28,8 @@
     "../../../libs/react-components/src/**/*.ts",
     "../../../libs/shared-react-components/src/**/*.tsx",
     "../../../libs/react-components/src/**/*.tsx",
-    "../../../libs/gen-ai/vertex-ai/src/**/*.ts"
+    "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
+    "../../../libs/socket-io/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
