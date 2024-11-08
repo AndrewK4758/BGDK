@@ -3,12 +3,16 @@ import { Form } from 'react-router-dom';
 import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
 import { Label } from '@bgdk/shared-react-components';
-import { labelSx, textInputSx, tooltipSx } from '../gen-ai-modes-styles';
+import {
+  labelSx,
+  textInputSx,
+  tooltipSx,
+} from '../../../../../../portfolio/portfolio/src/components/gen-ai/gen-ai-modes-styles';
 import * as Yup from 'yup';
 import Button from '@mui/material/Button';
-import FormikValidationError from '../../email/email-form/formik-validation-error';
+import FormikValidationError from '../../../../../../portfolio/portfolio/src/components/email/email-form/formik-validation-error';
 import { useContext } from 'react';
-import { WebsocketContext } from '../../../contexts/websocket-context';
+import { WebsocketContext } from '../../../../../../portfolio/portfolio/src/contexts/websocket-context';
 
 const initialValues = {
   modelTextQuery: '',

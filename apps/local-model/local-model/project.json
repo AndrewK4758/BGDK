@@ -1,0 +1,82 @@
+{
+  "name": "local-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/local-model/local-model/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project local-model --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "outputPath": "apps/local-model/local-model/dist",
+        "main": "apps/local-model/local-model/src/main.tsx",
+        "tsConfig": "apps/local-model/local-model/tsconfig.app.json",
+        "assets": ["apps/local-model/local-model/*.md"]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development",
+          "color": true
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "local-model:build",
+        "open": false,
+        "verbose": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "local-model:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "local-model:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "local-model:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "local-model:build:development"
+        },
+        "production": {
+          "buildTarget": "local-model:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "apps/local-model/local-model/vite.config.mts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true,
+        "color": true
+      }
+    }
+  }
+}

@@ -2,10 +2,14 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { lazy, useContext, useEffect, useState } from 'react';
-import setSocketListeners from '../../../utils/web-socket/set-socket-listeners';
-import { labelSx, tooltipSx, topLevelModeStyle } from '../gen-ai-modes-styles';
+import setSocketListeners from '../../../../../../portfolio/portfolio/src/utils/web-socket/set-socket-listeners';
+import {
+  labelSx,
+  tooltipSx,
+  topLevelModeStyle,
+} from '../../../../../../portfolio/portfolio/src/components/gen-ai/gen-ai-modes-styles';
 import ModelResponse from './local-model-response';
-import { WebsocketContext } from '../../../contexts/websocket-context';
+import { WebsocketContext } from '../../../../../../portfolio/portfolio/src/contexts/websocket-context';
 import { Label } from '@bgdk/shared-react-components';
 
 const ModelQuery = lazy(() => import('./local-model-query'));

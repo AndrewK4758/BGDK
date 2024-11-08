@@ -1,9 +1,7 @@
 import { Router, json, urlencoded } from 'express';
-// import spawnPythonShell from '../controllers/spawn-python-process';
-import promptBuilder from '../controllers/prompt-builder';
-import generateImages from '../controllers/gen-ai-image-gen';
 import multer from 'multer';
-// import { socketServer } from '../main';
+import generateImages from '../controllers/gen-ai-image-gen';
+import promptBuilder from '../controllers/prompt-builder';
 
 const router: Router = Router();
 
@@ -17,7 +15,6 @@ export class Routes {
 
     router.post('/build-prompt', upload.single('document'), promptBuilder);
     router.post('/images', generateImages);
-    // router.post('/start-pty-shell', spawnPythonShell);
   }
 }
 

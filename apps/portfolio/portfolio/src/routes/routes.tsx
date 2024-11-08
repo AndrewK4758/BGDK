@@ -9,7 +9,6 @@ import loadAlbumTracks from '../services/loaders/crud-loaders/load-album-tracks'
 import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count';
 import handlePromptBuilder from '../services/actions/prompt-builder-action';
 import generateImageAction from '../services/actions/generate-image-action';
-// import loadPtyShell from '../services/loaders/gen-ai/load-pty-shell';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -24,7 +23,6 @@ const GenAI = lazy(() => import('../pages/ai/gen-ai'));
 
 const TextGenerator = lazy(() => import('../components/gen-ai/text/text'));
 const Image = lazy(() => import('../components/gen-ai/image/image'));
-const LocalModel = lazy(() => import('../components/gen-ai/local/local-model'));
 
 const routes: RouteObject[] = [
   {
@@ -99,12 +97,6 @@ const routes: RouteObject[] = [
             path: 'image',
             Component: Image,
             action: generateImageAction,
-          },
-          {
-            path: 'local',
-            // id: 'localModel',
-            Component: LocalModel,
-            // loader: loadPtyShell,
           },
         ],
       },

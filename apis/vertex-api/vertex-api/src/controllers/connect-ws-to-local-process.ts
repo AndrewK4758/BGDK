@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 import { pythonProcess } from '../main';
 
-const connectWsToLocalModel = (socket: Socket) => {
+const connectWsToLocalProcess = (socket: Socket) => {
   console.log('sockets connected to local model');
 
   if (pythonProcess) {
@@ -23,4 +23,4 @@ const connectWsToLocalModel = (socket: Socket) => {
   }
 };
 
-export default connectWsToLocalModel;
+export default connectWsToLocalProcess;

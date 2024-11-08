@@ -8,11 +8,11 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "esbuildConfig": "apis/portfolio/portfolio-api/esbuild.config.cjs",
         "main": "apis/portfolio/portfolio-api/src/main.ts",
-        "outputPath": "apis/portfolio-api/portfolio-api/dist",
+        "outputPath": "apis/portfolio/portfolio-api/dist",
         "outputFileName": "main.js",
         "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
         "assets": [],

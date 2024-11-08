@@ -109,15 +109,6 @@ const GenAiHome = () => {
             >
               Video
             </Button>
-            <Button
-              LinkComponent={'button'}
-              key={'gen-ai-local'}
-              id="gen-ai-local"
-              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={() => nav('local')}
-            >
-              Local
-            </Button>
           </Toolbar>
         </AppBar>
         <Box component={'div'} key={'gen-ai-header-text-wrapper'} id="gen-ai-header-text-wrapper" sx={{ p: 2 }}>

@@ -6,7 +6,7 @@ import { join } from 'path';
 import { cwd } from 'process';
 import type { ServerOptions } from 'socket.io';
 import handleTextDataChunks from './controllers/gen-ai-text-handler';
-import connectWsToLocalModel from './controllers/start-agent';
+import connectWsToLocalProcess from './controllers/connect-ws-to-local-process';
 import startPythonShell from './python/start-python-shell';
 import router, { Routes } from './routes/routes';
 
@@ -46,7 +46,10 @@ const serverOptions: Partial<ServerOptions> = {
   cors: corsOptions,
 };
 
-export const socketServer = new SocketServer(httpServer, serverOptions, [handleTextDataChunks, connectWsToLocalModel]);
+export const socketServer = new SocketServer(httpServer, serverOptions, [
+  handleTextDataChunks,
+  connectWsToLocalProcess,
+]);
 
 new Routes();
 
