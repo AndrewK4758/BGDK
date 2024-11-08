@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "lib": ["DOM"],
-    "outDir": "../../dist/out-tsc",
+    "outDir": "dist",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
@@ -34,10 +34,5 @@
     "vite.config.ts",
     "vitest.config.ts"
   ],
-  "references": [
-    { "path": "../../libs/types/types-api/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../libs/react-components/tsconfig.lib.json" },
-    { "path": "../../libs/shared-react-components/tsconfig.lib.json" }
-  ]
+  "references": []
 }

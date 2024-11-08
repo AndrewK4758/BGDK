@@ -3,9 +3,10 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "dist",
     "types": ["node"]
   },
   "include": ["src/**/*.ts", "../../types/types-ai/src/**/*.ts"],
-  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"]
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": [{ "path": "../../types/types-ai/tsconfig.lib.json" }]
 }

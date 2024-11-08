@@ -11,7 +11,7 @@
       "defaultConfiguration": "production",
       "configFile": "libs/react-components/vite.config.mts",
       "options": {
-        "outputPath": "dist/libs/react-components"
+        "outputPath": "libs/react-components/dist"
       },
       "configurations": {
         "development": {

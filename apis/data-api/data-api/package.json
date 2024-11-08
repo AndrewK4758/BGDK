@@ -2,11 +2,21 @@
   "name": "@bgdk/data-api",
   "version": "0.0.1",
   "type": "module",
-  "private": true,
   "dependencies": {
     "@bgdk/prisma": "0.0.1",
-    "@prisma/client": "5.21.1",
+    "@prisma/client": "5.22.0",
     "cors": "^2.8.5",
     "express": "4.21.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Data API"
   }
 }

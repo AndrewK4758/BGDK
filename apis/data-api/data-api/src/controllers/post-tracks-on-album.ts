@@ -9,7 +9,7 @@ const createTracksOnAlbum = async (req: Request, resp: Response) => {
 
     const query = { data: { name: name, album_id: albumID } } as Prisma.trackCreateArgs<DefaultArgs>;
 
-    const newTrack: track = await createTracks(query);
+    const newTrack: track | null = await createTracks(query);
 
     resp.status(200).json({ newTrack: newTrack });
   } catch (error) {

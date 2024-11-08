@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "dist/apps/portfolio",
+        "outputPath": "apps/portfolio/portfolio/dist",
         "main": "apps/portfolio/portfolio/src/main.tsx",
         "tsConfig": "apps/portfolio/portfolio/tsconfig.app.json",
         "assets": ["apps/portfolio/portfolio/*.md"]

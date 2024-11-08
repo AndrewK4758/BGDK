@@ -36,7 +36,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/data-ui',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

@@ -9,8 +9,10 @@ const handleTextDataChunks: SocketCallback = (socket: Socket) => {
     const { stream } = await generateTextContent(prompt);
 
     for await (const chunk of stream) {
-      const textData = chunk.candidates[0].content.parts[0].text;
-      socket.emit('chunk', { response: textData });
+      if (chunk.candidates) {
+        const textData = chunk.candidates[0].content.parts[0].text;
+        socket.emit('chunk', { response: textData });
+      }
     }
   });
 };

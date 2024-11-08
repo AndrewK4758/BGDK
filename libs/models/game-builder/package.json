@@ -12,8 +12,15 @@
     "@bgdk/types-game": "0.0.1",
     "ts-jest": "29.2.5"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
-  "typings": "./index.d.ts",
-  "private": true
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Game Builder"
+  }
 }

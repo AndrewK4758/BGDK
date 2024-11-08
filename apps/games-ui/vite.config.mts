@@ -37,7 +37,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/games-ui',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

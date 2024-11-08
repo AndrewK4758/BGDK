@@ -12,10 +12,15 @@
       "options": {
         "esbuildConfig": "apis/data-api/data-api/esbuild.config.cjs",
         "main": "apis/data-api/data-api/src/main.ts",
-        "outputPath": "dist/apis/data-api",
+        "outputPath": "apis/data-api/data-api/dist",
         "outputFileName": "main.js",
         "tsConfig": "apis/data-api/data-api/tsconfig.app.json",
-        "assets": []
+        "assets": [],
+        "sourcemap": "linked",
+        "target": "node23",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true
       },
       "configurations": {
         "development": {

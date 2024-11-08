@@ -9,7 +9,10 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/chains-for-games',
 
   plugins: [
-    nxViteTsPaths(),
+    nxViteTsPaths({
+      debug: true,
+      mainFields: ['exports', '.', 'import', 'default'],
+    }),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),

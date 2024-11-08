@@ -9,8 +9,13 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/chain',
 
   plugins: [
-    nxViteTsPaths(),
+    nxViteTsPaths({
+      buildLibsFromSource: true,
+      debug: true,
+      mainFields: ['exports', '.', 'import', 'default'],
+    }),
     dts({
+      logLevel: 'info',
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
@@ -18,7 +23,7 @@ export default defineConfig({
 
   // Uncomment this if you are using workers.
   // worker: {
-  //  plugins: [ nxViteTsPaths() ],
+  //  plugins: [ nxViteTsPaths({}) ],
   // },
 
   // Configuration for building your library.

@@ -1,5 +1,4 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -29,11 +28,11 @@
     "skipDefaultLibCheck": false,
     "skipLibCheck": true,
     "sourceMap": false,
-    "strict": false,
+    "strict": true,
     "target": "ESNext",
     "verbatimModuleSyntax": false,
-    "rootDir": ".",
     "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "@bgdk/all-games-map": ["libs/models/all-games-map/src/index.ts"],
       "@bgdk/chain": ["libs/chain/src/index.ts"],
@@ -61,3 +60,7 @@
   },
   "exclude": ["node_modules", "tmp"]
 }
+
+/*
+
+*/

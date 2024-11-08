@@ -3,8 +3,19 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@bgdk/types-game": "0.0.1",
     "express": "4.21.1",
-    "socket.io": "4.8.1"
+    "socket.io": "4.8.1",
+    "@bgdk/types-game": "0.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Utils"
   }
 }

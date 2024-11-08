@@ -5,5 +5,16 @@
   "dependencies": {
     "@bgdk/types-game": "0.0.1",
     "express": "4.21.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Mocks"
   }
 }

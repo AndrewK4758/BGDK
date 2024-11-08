@@ -6,11 +6,12 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/types-game',
+  cacheDir: '../../../node_modules/.vite/libs/types-game',
 
   plugins: [
-    nxViteTsPaths(),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'import', 'default'] }),
     dts({
+      logLevel: 'info',
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
@@ -24,7 +25,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../dist/libs/types-game',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

@@ -1,6 +1,7 @@
 {
   "name": "@bgdk/types-game",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.14.0",
@@ -8,8 +9,15 @@
     "socket.io": "4.8.1",
     "express": "4.21.1"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
-  "typings": "./index.d.ts",
-  "private": true
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Types Game"
+  }
 }

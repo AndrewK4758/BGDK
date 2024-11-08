@@ -11,7 +11,7 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/utils/src/index.ts",
-        "outputPath": "dist/libs/utils",
+        "outputPath": "libs/utils/dist",
         "outputFileName": "main.js",
         "tsConfig": "libs/utils/tsconfig.lib.json",
         "esbuildConfig": "libs/utils/esbuild.config.cjs",
@@ -22,7 +22,12 @@
             "output": "."
           }
         ],
-        "platform": "node"
+        "sourcemap": "linked",
+        "target": "esnext",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
       },
       "configurations": {
         "development": {

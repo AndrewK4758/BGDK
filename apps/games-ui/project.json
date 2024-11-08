@@ -13,7 +13,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "dist/apps/games-ui",
+        "outputPath": "apps/games-ui/dist",
         "main": "apps/games-ui/src/main.tsx",
         "tsConfig": "apps/games-ui/tsconfig.app.json",
         "assets": ["apps/games-ui/*.md"]

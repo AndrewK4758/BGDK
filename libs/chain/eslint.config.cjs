@@ -26,7 +26,14 @@ module.exports = [
   },
   {
     files: ['**/*.json'],
-    rules: { '@nx/dependency-checks': ['error', { ignoredFiles: ['{projectRoot}/vite.config.{js,ts,mjs,mts}'] }] },
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: ['{projectRoot}/vite.config.{js,ts,mjs,mts}'],
+        },
+      ],
+    },
     languageOptions: { parser: require('jsonc-eslint-parser') },
   },
 ];

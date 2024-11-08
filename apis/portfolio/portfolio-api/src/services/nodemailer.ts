@@ -17,22 +17,25 @@ const getToken = async () => {
   return accessToken;
 };
 
-const nodemailerConfigOptions: SMTPTransport.Options = {
-  service: process.env.MAIL_SERVICE,
-  host: process.env.MAIL_HOST,
-  port: parseInt(process.env.MAIL_PORT as string, 10),
-  secure: false,
-  auth: {
-    accessToken: await getToken(),
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-  },
-  tls: {
-    ciphers: 'SSLv3',
-    rejectUnauthorized: false,
-  },
+const createTransporter = async () => {
+  const accessToken = await getToken();
+
+  const nodemailerConfigOptions: SMTPTransport.Options = {
+    service: process.env.MAIL_SERVICE,
+    host: process.env.MAIL_HOST,
+    port: parseInt(process.env.MAIL_PORT as string, 10),
+    secure: false,
+    auth: {
+      accessToken: accessToken,
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD,
+    },
+    tls: {
+      ciphers: 'SSLv3',
+      rejectUnauthorized: false,
+    },
+  };
+  return createTransport(nodemailerConfigOptions);
 };
 
-const transporter = createTransport(nodemailerConfigOptions);
-
-export default transporter;
+export default createTransporter;

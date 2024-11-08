@@ -15,9 +15,7 @@
     "src/**/*.ts",
     "../../../libs/models/all-games-map/src/**/*.ts",
     "../../../libs/types/**/*.ts",
-    "../../../libs/__mocks__/mocks/src/**/*.ts",
-    "../../../libs/types/types-game/vite.config.mts",
-    "../../../libs/types/types-api/vite.config.mts"
+    "../../../libs/__mocks__/mocks/src/**/*.ts"
   ],
   "exclude": []
 }

@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "allowImportingTsExtensions": false,
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "dist",
     "types": ["node", "vite/client"],
     "moduleResolution": "Bundler",
     "module": "ESNext"

@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "dist",
     "types": ["node", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
@@ -9,8 +9,6 @@
   "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts", "../../utils/src/**/*.ts"],
   "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
-    { "path": "../../__mocks__/mocks/tsconfig.lib.json" },
-    { "path": "../../chain/tsconfig.lib.json" },
     { "path": "../../utils/tsconfig.lib.json" },
     { "path": "../../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../../games-components-logic/tsconfig.lib.json" },

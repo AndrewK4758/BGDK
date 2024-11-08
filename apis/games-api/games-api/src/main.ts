@@ -1,18 +1,18 @@
 import { SocketServer } from '@bgdk/socket-io';
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
-import * as http from 'http';
-import * as path from 'path';
+import { createServer } from 'http';
+import { join } from 'path';
 import { ServerOptions } from 'socket.io';
 import socketBoardAction from './events/socket-board-action';
 import addGameToSocketInstance from './middleware/socket-add-game-middleware';
 import router, { GameRoutes } from './routes/routes';
-import { fileURLToPath } from 'url';
+import { cwd } from 'process';
 
-// FOR ESM MODULE BUILD
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// FOR ESM MODULE BUILD
+const __dirname =
+  process.env.NODE_ENV === 'production'
+    ? `${cwd()}/apis/games-api/games-api/dist`
+    : `${cwd()}/apis/games-api/games-api/src`;
 
 /**
  * Add cleanup service to take games in users active_game col and compare last active to current minute and if
@@ -35,12 +35,12 @@ const serverOptions: Partial<ServerOptions> = {
   cors: corsOptions,
 };
 
-const httpServer = http.createServer(app);
+const httpServer = createServer(app);
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
 export const socketServer = new SocketServer(httpServer, serverOptions, [socketBoardAction], [addGameToSocketInstance]);

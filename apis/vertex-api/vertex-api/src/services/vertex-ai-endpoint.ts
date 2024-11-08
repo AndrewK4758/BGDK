@@ -8,7 +8,7 @@ configDotenv({ path: resolve(cwd(), 'apis/vertex-api/vertex-api/env/.env') });
 
 const generateImage = async ({ prompt, aspectRatio, sampleCount, seed }: Partial<ImagenConfig>) => {
   try {
-    imagenConfig.prompt = prompt;
+    imagenConfig.prompt = prompt as string;
     imagenConfig.aspectRatio = aspectRatio;
     imagenConfig.sampleCount = sampleCount;
     imagenConfig.seed = seed;

@@ -12,7 +12,7 @@
       "options": {
         "esbuildConfig": "apis/games-api/games-api/esbuild.config.cjs",
         "main": "apis/games-api/games-api/src/main.ts",
-        "outputPath": "dist/apis/games-api",
+        "outputPath": "apis/games-api/games-api/dist",
         "outputFileName": "main.js",
         "tsConfig": "apis/games-api/games-api/tsconfig.app.json",
         "assets": [
@@ -21,7 +21,12 @@
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "sourcemap": "linked",
+        "target": "node23",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true
       },
       "configurations": {
         "development": {

@@ -1,16 +1,15 @@
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
-import * as path from 'path';
+import { join } from 'path';
 import router, { PortfolioRoutes } from './routes/routes';
-import { fileURLToPath } from 'url';
+import { cwd } from 'process';
 
-// FOR ESM MODULE BUILD
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// FOR ESM MODULE BUILD
+const __dirname =
+  process.env.NODE_ENV === 'production'
+    ? `${cwd()}/apis/portfolio-api/portfolio-api/dist`
+    : `${cwd()}/apis/portfolio-api/portfolio-api/src`;
 
 const app: Express = express();
-
 
 export const corsOptions: CorsOptions = {
   origin: ['http://localhost:4700', 'https://andrew-k.us', 'http://localhost:4758', '*'],
@@ -24,7 +23,7 @@ export const corsOptions: CorsOptions = {
 app.use('*', cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
 new PortfolioRoutes();

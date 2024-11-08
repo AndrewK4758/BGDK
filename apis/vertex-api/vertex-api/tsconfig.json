@@ -4,6 +4,7 @@
   "include": [],
   "references": [
     { "path": "../../../libs/gen-ai/prompt-builder" },
+    { "path": "../../../libs/types/types-ai" },
     { "path": "../../../libs/gen-ai/vertex-ai" },
     { "path": "../../../libs/socket-io" },
     { "path": "./tsconfig.app.json" },

@@ -2,17 +2,20 @@
   "name": "@bgdk/shared-react-components",
   "version": "0.0.1",
   "type": "module",
-  "main": "./index.mjs",
-  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
+  },
+  "private": true,
+  "nx": {
+    "name": "Shared React Components"
   },
   "dependencies": {
     "@mui/material": "6.1.6",
-    "@nx/vite": "20.0.8",
+    "@nx/vite": "20.0.11",
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "5.4.10",
     "vite-plugin-dts": "4.3.0",

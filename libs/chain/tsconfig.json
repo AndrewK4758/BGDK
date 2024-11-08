@@ -4,9 +4,6 @@
   "files": [],
   "include": [],
   "exclude": [],
-  "references": [
-    { "path": "../types/types-game" },
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
-  ]
+
+  "references": [{ "path": "./tsconfig.lib.json" }, { "path": "./tsconfig.spec.json" }]
 }

@@ -13,8 +13,8 @@
       "options": {
         "main": "libs/gen-ai/prompt-builder/src/index.ts",
         "esbuildConfig": "libs/gen-ai/prompt-builder/esbuild.config.cjs",
-        "outputPath": "dist/libs/gen-ai/prompt-builder",
-        "outputFileName": "main.js",
+        "outputPath": "libs/gen-ai/prompt-builder/dist",
+        "outputFileName": "index.js",
         "tsConfig": "libs/gen-ai/prompt-builder/tsconfig.lib.json",
         "assets": [
           {
@@ -22,7 +22,13 @@
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "sourcemap": true,
+        "target": "node23",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
       },
       "configurations": {
         "development": {

@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma, type album, type artist } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import { Request, Response } from 'express';
 import searchAlbum from '../services/prisma/search-album';
@@ -20,17 +20,22 @@ const searchArtistsAndAlbums = async (req: Request, resp: Response) => {
       },
     };
 
-    const responseData = {
+    type ResponseData = {
+      artist: artist[];
+      album: album[];
+    };
+
+    const responseData: ResponseData = {
       artist: [],
       album: [],
     };
 
-    switch (type) {
+    switch (type as string) {
       case 'artist':
-        responseData.artist = await searchArtist(queryArtist);
+        responseData.artist = (await searchArtist(queryArtist)) as artist[];
         break;
       case 'album':
-        responseData.album = await searchAlbum(queryAlbum);
+        responseData.album = (await searchAlbum(queryAlbum)) as album[];
         break;
     }
 

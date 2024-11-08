@@ -2,5 +2,16 @@
   "name": "@bgdk/prompt-builder",
   "version": "0.0.1",
   "type": "module",
-  "dependencies": {}
+  "dependencies": {},
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Prompt Builder"
+  }
 }

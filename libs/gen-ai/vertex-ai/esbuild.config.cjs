@@ -1,8 +1,9 @@
 module.exports = {
   sourcemap: true,
-  target: 'node22',
+  target: 'node23',
   platform: 'node',
-  format: ['esm'],
+  format: ['esm', 'cjs'],
   bundle: true,
+  write: true,
 };
 //

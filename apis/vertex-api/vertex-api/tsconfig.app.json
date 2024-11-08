@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "dist",
     "types": ["node", "express"],
     "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "strict": false
   },
   "include": [
     "src/**/*.ts",
@@ -16,6 +17,7 @@
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     { "path": "../../../libs/gen-ai/prompt-builder/tsconfig.lib.json" },
+    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
     { "path": "../../../libs/socket-io/tsconfig.lib.json" }
   ]

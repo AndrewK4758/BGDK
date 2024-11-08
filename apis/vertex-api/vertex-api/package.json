@@ -2,7 +2,6 @@
   "name": "@bgdk/vertex-api",
   "version": "0.0.1",
   "type": "module",
-  "private": true,
   "dependencies": {
     "cors": "^2.8.5",
     "express": "4.21.1",
@@ -11,7 +10,17 @@
     "@bgdk/vertex-ai": "0.0.1",
     "@bgdk/prompt-builder": "0.0.1",
     "multer": "1.4.5-lts.1",
-    "dotenv": "^16.4.5",
-    "node-pty": "^1.0.0"
+    "dotenv": "^16.4.5"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Vertex API"
   }
 }

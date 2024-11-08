@@ -24,7 +24,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../../dist/libs/all-games-map',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -40,8 +40,18 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
       // External packages that should not be bundled into your library.
       external: [],
     },
   },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'node',
+  },
+  logLevel: 'info',
 });

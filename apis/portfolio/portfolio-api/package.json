@@ -2,7 +2,6 @@
   "name": "@bgdk/portfolio-api",
   "version": "0.0.1",
   "type": "module",
-  "private": true,
   "dependencies": {
     "@azure/msal-node": "^2.15.0",
     "cookie-parser": "^1.4.7",
@@ -14,5 +13,16 @@
     "nodemailer": "6.9.16",
     "short-unique-id": "^5.2.0",
     "axios": "1.7.7"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Portfolio API"
   }
 }

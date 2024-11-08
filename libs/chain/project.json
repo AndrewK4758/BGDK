@@ -9,7 +9,8 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/chain",
+        "outputPath": "libs/chain/dist",
+        "buildLibsFromSource": true,
         "main": "libs/chain/src/index.ts",
         "tsConfig": "libs/chain/tsconfig.lib.json",
         "configFile": "libs/chain/vite.config.mts",

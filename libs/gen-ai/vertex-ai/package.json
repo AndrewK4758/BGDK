@@ -6,5 +6,16 @@
     "@google-cloud/vertexai": "1.9.0",
     "@google-cloud/aiplatform": "^3.31.0",
     "@bgdk/types-ai": "0.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Vertex AI"
   }
 }

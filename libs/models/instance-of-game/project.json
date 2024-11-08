@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/models/instance-of-game",
+        "outputPath": "libs/models/instance-of-game/dist",
         "main": "libs/models/instance-of-game/src/index.ts",
         "tsConfig": "libs/models/instance-of-game/tsconfig.lib.json",
         "configFile": "libs/models/instance-of-game/vite.config.mts",

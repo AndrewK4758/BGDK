@@ -8,8 +8,15 @@
     "@eslint/js": "9.14.0",
     "jsonc-eslint-parser": "2.4.0"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
-  "typings": "./index.d.ts",
-  "private": true
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Types API"
+  }
 }

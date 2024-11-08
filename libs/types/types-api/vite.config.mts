@@ -24,7 +24,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../../dist/libs/types-api',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -41,7 +41,18 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: [],
+      perf: true,
+      output: {
+        esModule: true,
+        format: 'esm',
+      },
     },
+    target: 'esnext',
   },
+  esbuild: {
+    format: 'esm',
+    color: true,
+    platform: 'browser',
+  },
+  logLevel: 'info',
 });

@@ -1,8 +1,9 @@
 module.exports = {
-  sourcemap: 'linked',
-  target: 'esnext',
+  sourcemap: true,
+  target: 'node23',
   platform: 'node',
-  format: ['esm'],
+  format: ['esm', 'cjs'],
   bundle: true,
+  write: true,
 };
 //

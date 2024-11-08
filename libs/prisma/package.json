@@ -2,14 +2,21 @@
   "name": "@bgdk/prisma",
   "version": "0.0.1",
   "dependencies": {
-    "@nx/vite": "20.0.8",
-    "@prisma/client": "5.21.1",
+    "@nx/vite": "20.0.11",
+    "@prisma/client": "5.22.0",
     "vite": "5.4.10",
     "vite-plugin-dts": "4.3.0",
     "ts-jest": "29.2.5"
   },
-  "main": "./index.cjs",
-  "module": "./index.js",
-  "typings": "./index.d.ts",
-  "private": true
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "Prisma"
+  }
 }

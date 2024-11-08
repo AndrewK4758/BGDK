@@ -19,7 +19,7 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/socket-io/src/index.ts",
-        "outputPath": "dist/libs/socket-io",
+        "outputPath": "libs/socket-io/dist",
         "outputFileName": "main.js",
         "tsConfig": "libs/socket-io/tsconfig.lib.json",
         "assets": [
@@ -29,7 +29,12 @@
             "output": "."
           }
         ],
-        "platform": "node"
+        "sourcemap": true,
+        "target": "node22",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
       },
       "configurations": {
         "development": {

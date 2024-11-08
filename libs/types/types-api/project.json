@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/types-api",
+        "outputPath": "libs/types/types-api/dist",
         "main": "libs/types/types-api/src/index.ts",
         "tsConfig": "libs/types/types-api/tsconfig.lib.json",
         "configFile": "libs/types/types-api/vite.config.mts",

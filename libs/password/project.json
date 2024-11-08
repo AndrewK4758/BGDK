@@ -28,7 +28,7 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/password/src/index.ts",
-        "outputPath": "dist/libs/password",
+        "outputPath": "libs/password/dist",
         "outputFileName": "main.js",
         "tsConfig": "libs/password/tsconfig.lib.json",
         "esbuildConfig": "libs/password/esbuild.config.cjs",
@@ -39,7 +39,12 @@
             "output": "."
           }
         ],
-        "platform": "node"
+        "sourcemap": true,
+        "target": "node23",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
       },
       "configurations": {
         "development": {

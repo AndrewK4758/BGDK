@@ -45,7 +45,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../../dist/apps/portfolio',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

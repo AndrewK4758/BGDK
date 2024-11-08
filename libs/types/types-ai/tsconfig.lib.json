@@ -1,8 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "../../../dist/out-tsc",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "dist",
     "declaration": true,
     "types": ["node"]
   },

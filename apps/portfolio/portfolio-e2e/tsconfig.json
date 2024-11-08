@@ -30,21 +30,5 @@
     "../../../libs/react-components/src/**/*.tsx "
   ],
   "exclude": [],
-  "references": [
-    { "path": "../../../libs/gen-ai/prompt-builder" },
-    { "path": "../../../libs/utils" },
-    { "path": "../../../libs/__mocks__/mocks" },
-    { "path": "../../../libs/games/tic-tac-toe" },
-    { "path": "../../../libs/games/chutes-and-ladders" },
-    { "path": "../../../libs/game" },
-    { "path": "../../../libs/models/instance-of-game" },
-    { "path": "../../../libs/chain" },
-    { "path": "../../../libs/chains-for-games" },
-    { "path": "../../../libs/shared-react-components" },
-    { "path": "../../../libs/types/types-api" },
-    { "path": "../../../libs/games-components-logic" },
-    { "path": "../../../libs/types/types-game" },
-    { "path": "../../../libs/react-components" },
-    { "path": "../portfolio" }
-  ]
+  "references": [{ "path": "../portfolio" }]
 }

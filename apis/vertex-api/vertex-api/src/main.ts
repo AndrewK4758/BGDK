@@ -1,17 +1,19 @@
 import { SocketServer } from '@bgdk/socket-io';
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
-import * as http from 'http';
-import * as path from 'path';
+import { createServer } from 'http';
+import { join } from 'path';
 import { cwd } from 'process';
 import type { ServerOptions } from 'socket.io';
-import { fileURLToPath } from 'url';
 import handleTextDataChunks from './controllers/gen-ai-text-handler';
 import connectWsToLocalModel from './controllers/start-agent';
 import startPythonShell from './python/start-python-shell';
 import router, { Routes } from './routes/routes';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname =
+  process.env.NODE_ENV === 'production'
+    ? `${cwd()}/apis/portfolio-api/portfolio-api/dist`
+    : `${cwd()}/apis/portfolio-api/portfolio-api/src`;
 
 const app: Express = express();
 
@@ -31,12 +33,12 @@ export const corsOptions: CorsOptions = {
   allowedHeaders: '*',
 };
 
-export const httpServer = http.createServer(app);
+export const httpServer = createServer(app);
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.enable('trust proxy');
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(join(__dirname, 'assets')));
 app.use('/api/v1', router);
 
 const serverOptions: Partial<ServerOptions> = {

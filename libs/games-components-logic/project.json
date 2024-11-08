@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/games-components-logic",
+        "outputPath": "libs/games-components-logic/dist",
         "main": "libs/games-components-logic/src/index.ts",
         "tsConfig": "libs/games-components-logic/tsconfig.lib.json",
         "configFile": "libs/games-components-logic/vite.config.mts",

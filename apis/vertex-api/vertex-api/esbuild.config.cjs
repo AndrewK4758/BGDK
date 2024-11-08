@@ -1,11 +1,11 @@
 module.exports = {
   sourcemap: 'linked',
   target: 'node23',
-  format: ['esm'],
+  format: ['esm', 'cjs'],
   platform: 'node',
   bundle: true,
   loader: {
-    '.node': 'empty'
+    '.node': 'empty',
   },
-  external: ['node-pty']
+  external: ['node-pty'],
 };

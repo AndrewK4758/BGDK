@@ -80,6 +80,6 @@ rag-data/
 
 .tool-versions
 
-**/vite.config.{js,ts,mjs,mts,cjs,cts}.timestamp*
+
 
 vite.config.*.timestamp*

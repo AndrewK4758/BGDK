@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/models/all-games-map",
+        "outputPath": "libs/models/all-games-map/dist",
         "main": "libs/models/all-games-map/src/index.ts",
         "configFile": "libs/models/all-games-map/vite.config.mts",
         "tsConfig": "libs/models/all-games-map/tsconfig.lib.json",

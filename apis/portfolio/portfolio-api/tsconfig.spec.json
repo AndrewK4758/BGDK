@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "module": "CommonJS",
+    "moduleResolution": "Node10"
   },
   "include": [
     "jest.config.ts",
@@ -10,8 +12,7 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "../../../libs/__mocks__/mocks/src/**/*.ts",
-    "../../../libs/types/types-game/**/*.ts",
-    "../../../libs/types/types-game/vite.config.mts"
+    "../../../libs/types/types-game/**/*.ts"
   ],
   "exclude": []
 }

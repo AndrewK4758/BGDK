@@ -4,13 +4,7 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../__mocks__/mocks" },
-    { "path": "../chain" },
-    { "path": "../games/chutes-and-ladders" },
-    { "path": "../games-components-logic" },
     { "path": "../types/types-game" },
-    { "path": "../game" },
-    { "path": "../models/instance-of-game" },
     { "path": "./tsconfig.lib.json" },
     { "path": "./tsconfig.spec.json" }
   ]
