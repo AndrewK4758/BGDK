@@ -2,7 +2,6 @@ import { Theme, JoinGame, Text, ChatInput } from '@bgdk/react-components';
 import { useActionData } from 'react-router-dom';
 import type { SxProps } from '@mui/material/styles';
 
-
 const breakpointsHomeTextTitle: SxProps = {
   [Theme.breakpoints.down('laptop')]: {
     fontSize: '4rem',
@@ -107,8 +106,9 @@ const Home = () => {
 
       <Text titleVariant="body1" titleText={response} sx={breakpointsChatResponse} />
       <ChatInput
+        labelText="Prompt Input"
         method="post"
-        action="/?index"
+        action="?index"
         type="text"
         buttonText="Ask Astro"
         buttonType="submit"

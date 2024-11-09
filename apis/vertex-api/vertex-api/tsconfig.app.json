@@ -9,7 +9,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "../../../libs/socket-io/src/**/*.ts",
+    "../../../libs/socket-io/server/src/**/*.ts",
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
     "../../../libs/gen-ai/prompt-builder/src/**/*.ts",
     "../../../libs/types/types-ai/src/**/*.ts"
@@ -19,6 +19,6 @@
     { "path": "../../../libs/gen-ai/prompt-builder/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
-    { "path": "../../../libs/socket-io/tsconfig.lib.json" }
+    { "path": "../../../libs/socket-io/server/tsconfig.lib.json" }
   ]
 }

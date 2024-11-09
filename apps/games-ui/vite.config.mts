@@ -41,7 +41,7 @@ export default defineConfig({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: false,
+      transformMixedEsModules: true,
     },
     assetsDir: './assets',
     rollupOptions: {
@@ -49,9 +49,6 @@ export default defineConfig({
       output: {
         esModule: true,
         format: 'esm',
-        generatedCode: {
-          arrowFunctions: true,
-        },
       },
     },
     target: 'esnext',

@@ -1,12 +1,12 @@
-import * as http from 'http';
+import type { Server as httpServer } from 'http';
 import { Server, ServerOptions } from 'socket.io';
-import { ISocketServer } from '../interfaces/socket-server';
-import { SocketMiddleware, type SocketCallback } from '../types/socket-server';
+import type { ISocketServer } from '../interfaces/socket-server';
+import { type SocketMiddleware, type SocketCallback } from '@bgdk/types-ai';
 
 export class SocketServer implements ISocketServer {
   io: Server;
   constructor(
-    httpServer: http.Server,
+    httpServer: httpServer,
     serverOptions: Partial<ServerOptions>,
     listeners: SocketCallback[],
     middleware?: SocketMiddleware[],

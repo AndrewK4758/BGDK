@@ -14,6 +14,15 @@
     "src/**/*.spec.js",
     "src/**/*.test.ts",
     "src/**/*.test.js",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "references": [
+    { "path": "../../../libs/socket-io/server" },
+    { "path": "../../../libs/types/types-ai" },
+    { "path": "../../../libs/socket-io/client" },
+    { "path": "../../../libs/shared-react-components" },
+    { "path": "../local-model" }
   ]
 }

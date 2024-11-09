@@ -1,6 +1,6 @@
 import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
 import { Text } from '@bgdk/react-components';
-import { Label } from '@bgdk/shared-react-components';
+import { Label, FormikValidationError } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,7 +16,6 @@ import { Form, useActionData, useSubmit, type SubmitFunction } from 'react-route
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
-import FormikValidationError from '../../email/email-form/formik-validation-error';
 import JsonIcon from '../../icons/json-icon';
 import TextIcon from '../../icons/text-icon';
 import { labelSx, textInputSx, tooltipSx } from '../gen-ai-modes-styles';
@@ -29,6 +28,12 @@ import {
   textData,
   tone,
 } from '../static/definitions';
+import type { SxProps } from '@mui/material/styles';
+
+const helperTextSx: SxProps = {
+  color: Theme.palette.error.main,
+  fontSize: '1.25rem',
+};
 
 const FILE_SIZE = 1024 * 1024 * 5;
 /**
@@ -49,7 +54,7 @@ const SUPPORTED_FORMATS = [
   'text/vnd.trolltech.linguist', //typescript
 ];
 
-const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
+const promptBuilderHeaderText = `This is designed to helperTextSxp you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
 
 const isFile = (valueToTest: unknown) => valueToTest instanceof File;
 
@@ -165,7 +170,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.objective}
                 />
-                <FormikValidationError<IPromptInputData> elementName="objective" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="objective"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box component={'section'} key={'prompt-builder-instructions-box'} id="prompt-builder-instructions-box">
                 <Label
@@ -192,7 +201,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.instructions}
                 />
-                <FormikValidationError<IPromptInputData> elementName="instructions" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="instructions"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box component={'section'} key={'prompt-builder-text-data-box'} id="prompt-builder-text-data-box">
                 <Label
@@ -219,7 +232,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.textData}
                 />
-                <FormikValidationError<IPromptInputData> elementName="textData" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="textData"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box component={'section'} key={'prompt-builder-examples-box'} id="prompt-builder-examples-box">
                 <Label
@@ -246,7 +263,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.examples}
                 />
-                <FormikValidationError<IPromptInputData> elementName="examples" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="examples"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box component={'section'} key={'prompt-builder-constraints-box'} id="prompt-builder-constraints-box">
                 <Label
@@ -273,7 +294,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.constraints}
                 />
-                <FormikValidationError<IPromptInputData> elementName="constraints" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="constraints"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box component={'section'} key={'prompt-builder-tone-box'} id="prompt-builder-tone-box">
                 <Label
@@ -300,7 +325,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.tone}
                 />
-                <FormikValidationError<IPromptInputData> elementName="tone" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="tone"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box
                 component={'section'}
@@ -331,7 +360,11 @@ const PromptBuilder = () => {
                   sx={textInputSx}
                   value={formik.values.responseInstructions}
                 />
-                <FormikValidationError<IPromptInputData> elementName="responseIsnstructions" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="responseIsnstructions"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box
                 component={'section'}
@@ -397,7 +430,11 @@ const PromptBuilder = () => {
                       sx={{ alignContent: 'center', fontSize: '1.5rem' }}
                     />
                   </RadioGroup>
-                  <FormikValidationError<IPromptInputData> elementName="responseFormat" formik={formik} />
+                  <FormikValidationError<IPromptInputData>
+                    elementName="responseFormat"
+                    formik={formik}
+                    helperTextSx={helperTextSx}
+                  />
                 </Box>
               </Box>
               <Box
@@ -426,7 +463,11 @@ const PromptBuilder = () => {
                     />
                   </Box>
                 ) : null}
-                <FormikValidationError<IPromptInputData> elementName="document" formik={formik} />
+                <FormikValidationError<IPromptInputData>
+                  elementName="document"
+                  formik={formik}
+                  helperTextSx={helperTextSx}
+                />
               </Box>
               <Box
                 component={'section'}

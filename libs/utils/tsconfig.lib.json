@@ -8,5 +8,13 @@
   },
   "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts"],
   "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
-  "references": [{ "path": "../types/types-game/tsconfig.lib.json" }]
+  "references": [
+    { "path": "../__mocks__/mocks/tsconfig.lib.json" },
+    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../games-components-logic/tsconfig.lib.json" },
+    { "path": "../game/tsconfig.lib.json" },
+    { "path": "../models/instance-of-game/tsconfig.lib.json" },
+    { "path": "../chain/tsconfig.lib.json" },
+    { "path": "../types/types-game/tsconfig.lib.json" }
+  ]
 }

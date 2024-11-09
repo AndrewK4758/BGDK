@@ -34,5 +34,10 @@
     "vite.config.ts",
     "vitest.config.ts"
   ],
-  "references": []
+  "references": [
+    { "path": "../../libs/types/types-api/tsconfig.lib.json" },
+    { "path": "../../libs/types/types-game/tsconfig.lib.json" },
+    { "path": "../../libs/react-components/tsconfig.lib.json" },
+    { "path": "../../libs/shared-react-components/tsconfig.lib.json" }
+  ]
 }

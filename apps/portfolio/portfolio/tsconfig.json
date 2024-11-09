@@ -9,6 +9,26 @@
   },
   "files": [],
   "include": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.spec.json" }],
+  "references": [
+    { "path": "../../../libs/gen-ai/prompt-builder" },
+    { "path": "../../../libs/gen-ai/vertex-ai" },
+    { "path": "../../../libs/types/types-ai" },
+    { "path": "../../../libs/socket-io/client" },
+    { "path": "../../../libs/utils" },
+    { "path": "../../../libs/__mocks__/mocks" },
+    { "path": "../../../libs/games/tic-tac-toe" },
+    { "path": "../../../libs/games/chutes-and-ladders" },
+    { "path": "../../../libs/games-components-logic" },
+    { "path": "../../../libs/game" },
+    { "path": "../../../libs/models/instance-of-game" },
+    { "path": "../../../libs/chain" },
+    { "path": "../../../libs/chains-for-games" },
+    { "path": "../../../libs/shared-react-components" },
+    { "path": "../../../libs/types/types-api" },
+    { "path": "../../../libs/types/types-game" },
+    { "path": "../../../libs/react-components" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
+  ],
   "extends": "../../../tsconfig.base.json"
 }

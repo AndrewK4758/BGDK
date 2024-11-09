@@ -1,16 +1,17 @@
 {
-  "name": "socket-io",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/socket-io/src",
+  "name": "socket-io-client",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/socket-io/client/src",
   "projectType": "library",
   "tags": [],
+  "// targets": "to see all targets run: nx show project client --web",
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "fix": true,
-        "lintFilePatterns": ["libs/socket-io/**/*.{ts,tsx,js,jsx}", "libs/socket-io/package.json"]
+        "lintFilePatterns": ["libs/socket-io/client/**/*.{ts,tsx,js,jsx}", "libs/socket-io/client/package.json"]
       }
     },
     "build": {
@@ -18,19 +19,19 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/socket-io/src/index.ts",
-        "outputPath": "libs/socket-io/dist",
+        "main": "libs/socket-io/client/src/index.ts",
+        "outputPath": "libs/socket-io/client/dist",
         "outputFileName": "main.js",
-        "tsConfig": "libs/socket-io/tsconfig.lib.json",
+        "tsConfig": "libs/socket-io/client/tsconfig.lib.json",
         "assets": [
           {
-            "glob": "libs/socket-io/README.md",
+            "glob": "libs/socket-io/client/README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": true,
-        "target": "node22",
+        "sourcemap": "linked",
+        "target": "node23",
         "platform": "node",
         "format": ["esm", "cjs"],
         "bundle": true,

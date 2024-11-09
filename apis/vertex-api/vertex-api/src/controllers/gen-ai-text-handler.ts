@@ -1,4 +1,4 @@
-import type { SocketCallback } from '@bgdk/socket-io';
+import type { SocketCallback } from '@bgdk/types-ai';
 import { type Socket } from 'socket.io';
 import { generateTextContent } from '@bgdk/vertex-ai';
 

@@ -1,7 +1,8 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
-import { IActivePlayersInGame, GameBoard, type GamePlayerValidation, ILiteSpace } from '@bgdk/types-game';
+import { ClientSocket } from '@bgdk/socket-io-client';
+import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -10,7 +11,6 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
 import getGameInstanceInfo from '../../utils/utils';
-import ClientSocket from '../../utils/web-socket/socket-instance';
 import ActiveAvatars from './game_board/active_avatars';
 import ResetGame from './game_board/reset_game';
 import ShowGameBoardTicTacToe from './game_board/show-game-board-tic-tac-toe';
@@ -67,7 +67,7 @@ const ActiveGameSession = () => {
   };
 
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_GAMES, socketManagerOptions);
-  const socketRef = useRef<Socket>(clientSocket.Socket);
+  const socketRef = useRef<Socket>(clientSocket.clientIo);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
   const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
   const params = useParams();
@@ -115,9 +115,9 @@ const ActiveGameSession = () => {
     });
 
     return () => {
-      if (socket) socket.disconnect();
+      socket.disconnect();
     };
-  }, [socket, id]);
+  }, []);
 
   return (
     <Paper key={'active-game'} id="active-game">

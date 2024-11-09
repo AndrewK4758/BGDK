@@ -1,22 +1,20 @@
 {
-  "name": "@bgdk/socket-io",
+  "name": "@bgdk/socket-io-client",
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "socket.io": "^4.7.5",
-    "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.14.0",
-    "jsonc-eslint-parser": "2.4.0"
+    "@bgdk/types-ai": "0.0.1",
+    "socket.io-client": "4.8.1"
   },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "node": "./dist/index.cjs"
     }
   },
   "private": true,
   "nx": {
-    "name": "Socket IO"
+    "name": "Socket IO Client"
   }
 }

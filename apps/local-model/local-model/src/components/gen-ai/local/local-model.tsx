@@ -1,21 +1,16 @@
+import { Label, labelSx, tooltipSx, topLevelModeStyle } from '@bgdk/shared-react-components';
+import { setSocketListeners } from '@bgdk/socket-io-client';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { lazy, useContext, useEffect, useState } from 'react';
-import setSocketListeners from '../../../../../../portfolio/portfolio/src/utils/web-socket/set-socket-listeners';
-import {
-  labelSx,
-  tooltipSx,
-  topLevelModeStyle,
-} from '../../../../../../portfolio/portfolio/src/components/gen-ai/gen-ai-modes-styles';
+import { WebSocketContext } from '../../../contexts/websocket-context';
 import ModelResponse from './local-model-response';
-import { WebsocketContext } from '../../../../../../portfolio/portfolio/src/contexts/websocket-context';
-import { Label } from '@bgdk/shared-react-components';
 
 const ModelQuery = lazy(() => import('./local-model-query'));
 
 export const LocalModel = () => {
-  const { socket } = useContext(WebsocketContext);
+  const { socket } = useContext(WebSocketContext);
   const [promptResponse, setPromptResponse] = useState<string>('');
 
   useEffect(() => {

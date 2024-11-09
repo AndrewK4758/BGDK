@@ -12,6 +12,7 @@
   "include": [],
   "exclude": [],
   "references": [
+    { "path": "../shared-react-components" },
     { "path": "../types/types-api" },
     { "path": "../types/types-game" },
     { "path": "./tsconfig.lib.json" },

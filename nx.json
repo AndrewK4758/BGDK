@@ -26,7 +26,8 @@
           "targetName": "build",
           "configName": "tsconfig.lib.json"
         }
-      }
+      },
+      "exclude": ["libs/socket-io/server/server/*", "libs/socket-io/server/*", "libs/socket-io/client/*"]
     },
     {
       "plugin": "@nx/eslint/plugin",

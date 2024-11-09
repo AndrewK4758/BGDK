@@ -1,3 +1,4 @@
+import { FormikValidationError } from '@bgdk/shared-react-components';
 import { DialogActions } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,8 +14,8 @@ import * as Yup from 'yup';
 import 'yup-phone-lite';
 import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 import Theme from '../../../styles/theme';
+import { helperTextSx } from '../../gen-ai/gen-ai-modes-styles';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
-import FormikValidationError from './formik-validation-error';
 
 const textFieldSlotProps = {
   inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
@@ -110,7 +111,11 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="name" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="name"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box component={'span'} key={'email-wrapper'} id="email-wrapper">
             <TextField
@@ -126,7 +131,11 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="email" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="email"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box component={'span'} key={'phone-wrapper'} id="phone-wrapper">
             <TextField
@@ -140,7 +149,11 @@ const EmaiForm = () => {
               onBlur={formik.handleBlur}
               slotProps={textFieldSlotProps}
             />
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="phone" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="phone"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box component={'span'} key={'subject-wrapper'} id="subject-wrapper">
             <TextField
@@ -155,7 +168,11 @@ const EmaiForm = () => {
               slotProps={textFieldSlotProps}
             />
 
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="subject" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="subject"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box component={'span'} key={'body-wrapper'} id="body-wrapper" p={0}>
             <TextField
@@ -184,11 +201,19 @@ const EmaiForm = () => {
               }}
             />
 
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="body" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="body"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box component={'span'} key={'appointment-maker-wrapper'} id="appointment-maker-wrapper">
             <AppointmentMaker formik={formik} />
-            <FormikValidationError<MessageMeFormValues> formik={formik} elementName="date" />
+            <FormikValidationError<MessageMeFormValues>
+              formik={formik}
+              elementName="date"
+              helperTextSx={helperTextSx}
+            />
           </Box>
           <Box
             component={'span'}

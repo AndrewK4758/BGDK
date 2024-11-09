@@ -1,6 +1,6 @@
 module.exports = {
-  sourcemap: true,
-  target: 'node22',
+  sourcemap: 'linked',
+  target: 'node23',
   platform: 'node',
   format: ['esm', 'cjs'],
   bundle: true,

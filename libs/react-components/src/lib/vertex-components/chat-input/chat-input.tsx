@@ -3,15 +3,15 @@ import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
 import { useSubmit } from 'react-router-dom';
-import { FormActionProps } from '../../../interfaces/form-action-props';
-import TextInput from '../../games-ui/text-input/formik-text-input';
 import * as Yup from 'yup';
-
+import { FormActionProps } from '../../../interfaces/form-action-props';
+import FormikTextInput from '../../games-ui/text-input/formik-text-input';
 
 interface ChatInputProps extends FormActionProps {
   breakpointsChatInputButton?: SxProps;
   breakpointsChatInputText?: SxProps;
   breakpointsChatInputLabel?: SxProps;
+  labelText: string;
 }
 
 const chatInitialValues = {
@@ -28,6 +28,7 @@ export function ChatInput({
   method,
   action,
   name,
+  labelText,
   type,
   variant,
   buttonText,
@@ -38,7 +39,7 @@ export function ChatInput({
 }: ChatInputProps) {
   const submit = useSubmit();
   return (
-    <Box>
+    <Box component={'div'} key={`${name}-gen-ai-text-input`} id={`${name}-gen-ai-text-input`} sx={{}}>
       <Formik
         initialValues={chatInitialValues}
         validationSchema={validationSchema}
@@ -51,16 +52,16 @@ export function ChatInput({
           })
         }
       >
-        <Form method={method}>
-          <TextInput
+        <Form method={method} action={`${action}`}>
+          <FormikTextInput
             autoComplete="off"
-            label="Prompt Input"
-            labelComponent={'h2'}
             placeholder="Enter prompt here"
             type={type}
             name={name}
             id="promptInput"
             textSx={breakpointsChatInputText}
+            label={labelText}
+            labelComponent={'h2'}
             labelSx={breakpointsChatInputLabel}
           />
           <br />

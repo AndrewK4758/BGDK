@@ -5,5 +5,9 @@
   "include": [],
   "exclude": [],
 
-  "references": [{ "path": "./tsconfig.lib.json" }, { "path": "./tsconfig.spec.json" }]
+  "references": [
+    { "path": "../types/types-game" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
+  ]
 }

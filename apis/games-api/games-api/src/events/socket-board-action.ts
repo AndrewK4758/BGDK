@@ -1,4 +1,4 @@
-import type { SocketCallback } from '@bgdk/socket-io';
+import type { SocketCallback } from '@bgdk/types-ai';
 import { IInstanceOfGame } from '@bgdk/types-game';
 import { Socket } from 'socket.io';
 import performAction from '../controllers/perform_action_context_object';

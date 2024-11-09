@@ -1,24 +1,24 @@
+import { ClientSocket } from '@bgdk/socket-io-client';
 import { createContext, ReactElement, useRef } from 'react';
-import ClientSocket from '../utils/web-socket/socket-instance';
-import { Socket } from 'socket.io-client';
+import type { Socket } from 'socket.io-client';
 
-export type WebsocketContext = {
+export type WebSocketContextType = {
   socket: Socket;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const WebsocketContext = createContext<WebsocketContext>(null!);
+export const WebSocketContext = createContext<WebSocketContextType>(null!);
 
-interface WebsocketContextProviderProps {
+interface WebSocketContextProviderProps {
   children: ReactElement | ReactElement[];
 }
 
-const WebsocketContextProvider = ({ children }: WebsocketContextProviderProps) => {
+export const WebSocketContextProvider = ({ children }: WebSocketContextProviderProps) => {
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
-  const socketRef = useRef<Socket>(clientSocket.Socket);
+  const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;
 
-  return <WebsocketContext.Provider value={{ socket: socket }}>{children}</WebsocketContext.Provider>;
+  return <WebSocketContext.Provider value={{ socket: socket }}>{children}</WebSocketContext.Provider>;
 };
 
-export default WebsocketContextProvider;
+export default WebSocketContextProvider;

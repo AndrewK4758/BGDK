@@ -1,18 +1,18 @@
 import FormHelperText from '@mui/material/FormHelperText';
 import type { FormikProps } from 'formik';
-import Theme from '../../../styles/theme';
 import Box from '@mui/material/Box';
-
+import type { SxProps } from '@mui/material/styles';
 
 interface FormikValidationErrorProps<T> {
   formik: FormikProps<T>;
   elementName: keyof T;
-};
+  helperTextSx: SxProps;
+}
 
-const FormikValidationError = <T,>({ formik, elementName }: FormikValidationErrorProps<T>) => (
+export const FormikValidationError = <T,>({ formik, elementName, helperTextSx }: FormikValidationErrorProps<T>) => (
   <Box component={'div'} key={`form-error-${elementName.toString()}`} id={`form-error-${elementName.toString()}`}>
     {formik.touched[elementName] && formik.errors[elementName] ? (
-      <FormHelperText variant="outlined" sx={{ color: Theme.palette.error.main, fontSize: '1.25rem' }}>
+      <FormHelperText variant="outlined" sx={helperTextSx}>
         {formik.errors[elementName] as string}
       </FormHelperText>
     ) : null}

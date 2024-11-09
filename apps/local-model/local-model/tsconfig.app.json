@@ -6,6 +6,15 @@
     "module": "ESNext",
     "moduleResolution": "Bundler"
   },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../../libs/shared-react-components/src/**/*.ts",
+    "../../../libs/shared-react-components/src/**/*.tsx",
+    "../../../libs/socket-io/client/src/**/*.ts"
+  ],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
@@ -20,5 +29,10 @@
     "vitest.config.ts",
     "vitest.config.mts"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "tests/app.spec.tsx"]
+  "references": [
+    { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
+    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
+    { "path": "../../../libs/socket-io/client/tsconfig.lib.json" },
+    { "path": "../../../libs/shared-react-components/tsconfig.lib.json" }
+  ]
 }

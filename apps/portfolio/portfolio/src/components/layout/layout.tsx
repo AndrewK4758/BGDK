@@ -7,7 +7,7 @@ import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
-import WebsocketContextProvider from '../../contexts/websocket-context';
+import WebSocketContextProvider from '../../contexts/websocket-context';
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
@@ -70,11 +70,11 @@ const Layout = () => (
           minHeight: '50vh',
         }}
       >
-        <WebsocketContextProvider>
+        <WebSocketContextProvider>
           <Suspense fallback={<Waiting />}>
             <Outlet />
           </Suspense>
-        </WebsocketContextProvider>
+        </WebSocketContextProvider>
       </Box>
     </Box>
     <Menus />

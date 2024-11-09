@@ -1,6 +1,11 @@
 import type { SxProps } from '@mui/material/styles';
 import Theme from '../../styles/theme';
 
+export const helperTextSx: SxProps = {
+  color: Theme.palette.error.main,
+  fontSize: '1.25rem',
+};
+
 export const topLevelModeStyle: SxProps = {
   minHeight: '30vh',
   height: 'fit-content',
@@ -13,7 +18,6 @@ export const topLevelModeStyle: SxProps = {
 };
 
 export const labelSx: SxProps = {
-  // fontSize: '2rem',
   color: Theme.palette.primary.main,
   width: 'fit-content',
   '&:hover': { cursor: 'pointer' },

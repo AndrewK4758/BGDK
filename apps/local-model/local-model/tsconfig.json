@@ -10,12 +10,12 @@
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../../libs/socket-io/server" },
+    { "path": "../../../libs/types/types-ai" },
+    { "path": "../../../libs/socket-io/client" },
+    { "path": "../../../libs/shared-react-components" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
   ],
   "extends": "../../../tsconfig.base.json"
 }

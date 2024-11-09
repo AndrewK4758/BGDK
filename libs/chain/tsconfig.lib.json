@@ -9,5 +9,5 @@
   },
   "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts"],
   "exclude": ["vite.config.ts", "jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "references": []
+  "references": [{ "path": "../types/types-game/tsconfig.lib.json" }]
 }

@@ -64,6 +64,7 @@ export default defineConfig({
           symbols: true,
         },
       },
+      external: ['node:path'],
     },
     target: 'esnext',
   },

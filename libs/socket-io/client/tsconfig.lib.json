@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts", "../../types/types-ai/src/**/*.ts"],
+  "references": [{ "path": "../../types/types-ai/tsconfig.lib.json" }]
+}

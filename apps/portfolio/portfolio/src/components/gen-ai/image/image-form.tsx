@@ -1,5 +1,5 @@
 import { Text } from '@bgdk/react-components';
-import { Label, Waiting } from '@bgdk/shared-react-components';
+import { Label, Waiting, FormikValidationError } from '@bgdk/shared-react-components';
 import { AspectRatio } from '@bgdk/types-ai';
 import { type ImagenConfig } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
@@ -20,10 +20,14 @@ import { type ChangeEvent } from 'react';
 import { Form, useActionData, useNavigation, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import Theme from '../../../styles/theme';
-import FormikValidationError from '../../email/email-form/formik-validation-error';
 
 const imageGenDescription =
   "Imagen 3 is Google's latest text-to-image AI model, generating high-quality images from detailed text descriptions. Trained on an extensive dataset of text-image pairs, Imagen 3 excels at creating photorealistic images with accurate details and composition. This model can be used for various applications, including creative visualization, design prototyping, and generating visual content for marketing and advertising. Access Imagen 3 through Google's Vertex AI platform or the Gemini API to explore its capabilities.";
+
+const helperTextSx: SxProps = {
+  color: Theme.palette.error.main,
+  fontSize: '1.25rem',
+};
 
 const labelSx: SxProps = {
   fontSize: '2rem',
@@ -130,7 +134,11 @@ const ImageForm = () => {
               sx={textInputSx}
               value={formik.values.prompt}
             />
-            <FormikValidationError<Partial<ImagenConfig>> formik={formik} elementName={'prompt'} />
+            <FormikValidationError<Partial<ImagenConfig>>
+              formik={formik}
+              elementName={'prompt'}
+              helperTextSx={helperTextSx}
+            />
           </Box>
 
           <Box

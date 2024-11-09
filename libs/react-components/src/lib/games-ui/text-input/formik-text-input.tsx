@@ -1,10 +1,11 @@
-import { SxProps } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
+import { Label } from '@bgdk/shared-react-components';
+import Box from '@mui/material/Box';
+import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
+import { ElementType, FocusEvent } from 'react';
 import { Theme } from '../../theme/theme';
 import Text from '../text/text';
-import { ElementType, FocusEvent, Fragment } from 'react';
 
 export interface FormikTextInputProps {
   name: string;
@@ -36,14 +37,12 @@ export function FormikTextInput({
   if (onBlurCB) field.onBlur = onBlurCB;
 
   return (
-    <Fragment key={label}>
-      <InputLabel component={labelComponent} variant="filled" sx={labelSx}>
-        {label}
-      </InputLabel>
+    <Box key={`${label}-wrapper`}>
+      <Label tooltipTitle={label} labelVariant={'h2'} labelText={label} sx={{ ...labelSx }} placement={'top'} />
       <TextField
         autoComplete={autoComplete}
-        multiline={false}
-        variant="filled"
+        multiline={true}
+        variant="outlined"
         {...props}
         {...field}
         slotProps={{
@@ -59,7 +58,7 @@ export function FormikTextInput({
           titleText={meta.error}
         />
       ) : null}
-    </Fragment>
+    </Box>
   );
 }
 

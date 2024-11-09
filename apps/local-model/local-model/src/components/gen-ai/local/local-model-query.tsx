@@ -1,18 +1,12 @@
+import { FormikValidationError, Label, labelSx, textInputSx, Theme, tooltipSx } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
-import { Form } from 'react-router-dom';
-import { useFormik } from 'formik';
-import TextField from '@mui/material/TextField';
-import { Label } from '@bgdk/shared-react-components';
-import {
-  labelSx,
-  textInputSx,
-  tooltipSx,
-} from '../../../../../../portfolio/portfolio/src/components/gen-ai/gen-ai-modes-styles';
-import * as Yup from 'yup';
 import Button from '@mui/material/Button';
-import FormikValidationError from '../../../../../../portfolio/portfolio/src/components/email/email-form/formik-validation-error';
+import TextField from '@mui/material/TextField';
+import { useFormik } from 'formik';
 import { useContext } from 'react';
-import { WebsocketContext } from '../../../../../../portfolio/portfolio/src/contexts/websocket-context';
+import { Form } from 'react-router-dom';
+import * as Yup from 'yup';
+import { WebSocketContext } from '../../../contexts/websocket-context';
 
 const initialValues = {
   modelTextQuery: '',
@@ -23,7 +17,7 @@ const validationSchema = Yup.object({
 });
 
 const ModelQuery = () => {
-  const { socket } = useContext(WebsocketContext);
+  const { socket } = useContext(WebSocketContext);
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -72,7 +66,11 @@ const ModelQuery = () => {
             sx={textInputSx}
             value={formik.values.modelTextQuery}
           />
-          <FormikValidationError elementName={'modelTextQuery'} formik={formik} />
+          <FormikValidationError
+            elementName={'modelTextQuery'}
+            formik={formik}
+            helperTextSx={{ color: Theme.palette.error.main, fontSize: '1.25rem' }}
+          />
         </Box>
         <Box key={'model-query-submit-box'} id="model-query-submit-box">
           <Button

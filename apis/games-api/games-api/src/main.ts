@@ -1,4 +1,4 @@
-import { SocketServer } from '@bgdk/socket-io';
+import { SocketServer } from '@bgdk/socket-io-server';
 import cors, { CorsOptions } from 'cors';
 import express, { Express } from 'express';
 import { createServer } from 'http';

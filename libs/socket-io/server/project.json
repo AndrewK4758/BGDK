@@ -1,0 +1,49 @@
+{
+  "name": "socket-io-server",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/socket-io/server/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["libs/socket-io/server/**/*.{ts,tsx,js,jsx}", "libs/socket-io/server/package.json"]
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "main": "libs/socket-io/server/src/index.ts",
+        "outputPath": "libs/socket-io/server/dist",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/socket-io/server/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "libs/socket-io/server/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "sourcemap": "linked",
+        "target": "node23",
+        "platform": "node",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    }
+  }
+}

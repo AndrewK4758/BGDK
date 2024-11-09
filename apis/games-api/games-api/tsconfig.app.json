@@ -12,7 +12,7 @@
     "src/**/*.d.ts",
     "../../../libs/password/src/**/*.ts",
     "../../../libs/prisma/src/**/*.ts",
-    "../../../libs/socket-io/src/**/*.ts",
+    "../../../libs/socket-io/server/src/**/*.ts",
     "../../../libs/utils/src/**/*.ts",
     "../../../libs/chains-for-games/src/**/*.ts",
     "../../../libs/models/rule/src/**/*.ts",
@@ -27,15 +27,16 @@
     "../../../libs/types/types-game/src/**/*.ts",
     "../../../libs/types/types-api/src/**/*.ts",
     "../../../libs/utils/src/lib/get-current-minute.ts",
-    "../../../libs/gen-ai/vertex-ai/src/lib/enums/enums-for-imagen-config.ts",
-    "../../../libs/types/types-ai/src/types/types-for-imagen-config.ts"
+    "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
+    "../../../libs/types/types-ai/src/**/*.ts"
   ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
+    { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
+    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../../libs/password/tsconfig.lib.json" },
     { "path": "../../../libs/prisma/tsconfig.lib.json" },
     { "path": "../../../libs/models/all-games-map/tsconfig.lib.json" },
-    { "path": "../../../libs/socket-io/tsconfig.lib.json" },
     { "path": "../../../libs/models/rule/tsconfig.lib.json" },
     { "path": "../../../libs/models/game-builder/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-api/tsconfig.lib.json" },
