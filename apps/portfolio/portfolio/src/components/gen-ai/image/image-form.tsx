@@ -17,7 +17,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useFormik, type FormikProps } from 'formik';
 import { type ChangeEvent } from 'react';
-import { Form, useActionData, useNavigation, useSubmit } from 'react-router-dom';
+import { Form, useActionData, useNavigation, useOutletContext, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import Theme from '../../../styles/theme';
 
@@ -50,13 +50,6 @@ const textInputSx: SxProps = {
   borderRadius: 1,
 };
 
-const initialValues: Partial<ImagenConfig> = {
-  prompt: '',
-  sampleCount: 1,
-  seed: 100,
-  aspectRatio: AspectRatio['1:1'],
-};
-
 const validationSchema = Yup.object({
   prompt: Yup.string().required('The prompt is required'),
   sampleCount: Yup.number().required('Sample Count is required'),
@@ -65,9 +58,17 @@ const validationSchema = Yup.object({
 });
 
 const ImageForm = () => {
+  const { prompt } = useOutletContext() as { prompt: string };
   const submit = useSubmit();
   const { state } = useNavigation();
   const pics = useActionData() as string[];
+
+  const initialValues: Partial<ImagenConfig> = {
+    prompt: prompt === null ? '' : prompt,
+    sampleCount: 1,
+    seed: 100,
+    aspectRatio: AspectRatio['1:1'],
+  };
 
   console.log(state);
 

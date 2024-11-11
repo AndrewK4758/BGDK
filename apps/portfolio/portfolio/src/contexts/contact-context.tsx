@@ -1,4 +1,12 @@
-import { createContext, type Dispatch, type ReactElement, type SetStateAction, useMemo, useState } from 'react';
+import {
+  createContext,
+  type Dispatch,
+  type ReactElement,
+  type ReactNode,
+  type SetStateAction,
+  useMemo,
+  useState,
+} from 'react';
 
 export type GoogleUserContextInfo = {
   email: string;
@@ -19,7 +27,7 @@ const googleUserInit: GoogleUserContextInfo = {
 export const GoogleUserContext = createContext<GoogleUserContextProps>(null!);
 
 interface GoogleContextProviderProps {
-  children: ReactElement | ReactElement[];
+  children: ReactElement | ReactElement[] | ReactNode | ReactNode[];
 }
 
 const GoogleUserContextProvider = ({ children }: GoogleContextProviderProps) => {

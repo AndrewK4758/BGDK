@@ -2,76 +2,97 @@
 import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
-import { useSubmit } from 'react-router-dom';
+import type { Socket } from 'socket.io-client';
 import * as Yup from 'yup';
 import { FormActionProps } from '../../../interfaces/form-action-props';
 import FormikTextInput from '../../games-ui/text-input/formik-text-input';
 
-interface ChatInputProps extends FormActionProps {
-  breakpointsChatInputButton?: SxProps;
-  breakpointsChatInputText?: SxProps;
-  breakpointsChatInputLabel?: SxProps;
+interface ChatInputProps<T extends Yup.AnyObject> extends FormActionProps {
+  breakpointsChatInputButton: SxProps;
+  breakpointsChatInputText: SxProps;
+  breakpointsChatInputLabel: SxProps;
   labelText: string;
+  breakpointsWrapperBoxSx: SxProps;
+  socket: Socket;
+  initialValues: T;
+  validationSchema: Yup.ObjectSchema<T>;
 }
 
-const chatInitialValues = {
-  promptInput: '',
-};
-
-const validationSchema = Yup.object({
-  promptInput: Yup.string()
-    .min(2, 'Must be a valid question or statement')
-    .max(255, 'Must be less than 255 characters'),
-});
-
-export function ChatInput({
+export const ChatInput = <T extends Yup.AnyObject>({
   method,
   action,
-  name,
+  names,
   labelText,
   type,
   variant,
   buttonText,
   buttonType,
+  socket,
+  initialValues,
+  validationSchema,
   breakpointsChatInputText,
   breakpointsChatInputLabel,
   breakpointsChatInputButton,
-}: ChatInputProps) {
-  const submit = useSubmit();
+  breakpointsWrapperBoxSx,
+}: ChatInputProps<T>) => {
   return (
-    <Box component={'div'} key={`${name}-gen-ai-text-input`} id={`${name}-gen-ai-text-input`} sx={{}}>
+    <Box
+      component={'div'}
+      key={`gen-ai-text-input-wrapper`}
+      id={`gen-ai-text-input-wrapper`}
+      sx={breakpointsWrapperBoxSx}
+    >
       <Formik
-        initialValues={chatInitialValues}
+        initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={values =>
-          submit(values, {
-            encType: 'application/json',
-            method: `${method}`,
-            action: `${action}`,
-            replace: true,
-          })
-        }
+        onSubmit={({ prompt }, { resetForm }) => {
+          console.log(prompt);
+          socket.emit('text', prompt);
+          resetForm();
+        }}
       >
-        <Form method={method} action={`${action}`}>
-          <FormikTextInput
-            autoComplete="off"
-            placeholder="Enter prompt here"
-            type={type}
-            name={name}
-            id="promptInput"
-            textSx={breakpointsChatInputText}
-            label={labelText}
-            labelComponent={'h2'}
-            labelSx={breakpointsChatInputLabel}
-          />
-          <br />
-          <Button variant={variant} type={buttonType} sx={breakpointsChatInputButton} title="Ask Astro">
-            {buttonText}
-          </Button>
+        <Form
+          key={'chat-input-form'}
+          id="chat-input-form"
+          method={method}
+          action={`${action}`}
+          style={{ display: 'flex', flexWrap: 'wrap' }}
+        >
+          <Box key={'chat-input-form-text-box'} id="chat-input-form-text-box" sx={{ flex: '0 1 100%' }}>
+            <FormikTextInput
+              autoComplete="off"
+              placeholder="Enter prompt here"
+              type={type}
+              name={names[0]}
+              key={'chat-input-form-text-input'}
+              id="chat-input-form-text-input"
+              textSx={breakpointsChatInputText}
+              label={labelText}
+              labelComponent={'h2'}
+              labelSx={breakpointsChatInputLabel}
+            />
+          </Box>
+          <Box
+            key={'chat-input-form-button-box'}
+            id={'chat-input-form-button-box'}
+            component={'section'}
+            sx={{ flex: '1 0 100%', display: 'flex', justifyContent: 'flex-end' }}
+          >
+            <Button
+              key={'chat-input-form-button'}
+              id="chat-input-form-button"
+              variant={variant}
+              type={buttonType}
+              sx={breakpointsChatInputButton}
+              title={buttonText}
+            >
+              {buttonText}
+            </Button>
+          </Box>
         </Form>
       </Formik>
     </Box>
   );
-}
+};
 
 export default ChatInput;

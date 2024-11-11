@@ -66,6 +66,7 @@ const Layout = () => (
         sx={{
           width: '100%',
           display: 'flex',
+          justifyContent: 'center',
           height: 'fit-content',
           minHeight: '50vh',
         }}

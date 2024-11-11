@@ -9,6 +9,7 @@ import loadAlbumTracks from '../services/loaders/crud-loaders/load-album-tracks'
 import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count';
 import handlePromptBuilder from '../services/actions/prompt-builder-action';
 import generateImageAction from '../services/actions/generate-image-action';
+import vertexSubmitAction from '../services/actions/vertex-submit-action';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -23,6 +24,7 @@ const GenAI = lazy(() => import('../pages/ai/gen-ai'));
 
 const TextGenerator = lazy(() => import('../components/gen-ai/text/text'));
 const Image = lazy(() => import('../components/gen-ai/image/image'));
+const Audio = lazy(() => import('../components/gen-ai/audio/audio'));
 
 const routes: RouteObject[] = [
   {
@@ -87,16 +89,21 @@ const routes: RouteObject[] = [
       {
         path: 'gen-ai',
         Component: GenAI,
+        action: handlePromptBuilder,
         children: [
           {
             path: 'text',
             Component: TextGenerator,
-            action: handlePromptBuilder,
+            action: vertexSubmitAction,
           },
           {
             path: 'image',
             Component: Image,
             action: generateImageAction,
+          },
+          {
+            path: 'audio',
+            Component: Audio,
           },
         ],
       },

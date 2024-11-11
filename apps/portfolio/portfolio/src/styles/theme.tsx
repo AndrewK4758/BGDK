@@ -38,11 +38,17 @@ const Theme: Theme = createTheme(
     typography: {
       fontFamily: 'League Gothic',
 
+      allVariants: {
+        fontWeight: 'bold',
+        letterSpacing: 3,
+        wordSpacing: 3.5,
+      },
+
       body1: {
         fontSize: '1rem',
         fontFamily: 'Roboto',
-        letterSpacing: 1.5,
-        wordSpacing: 1,
+        letterSpacing: 2.0,
+        wordSpacing: 1.5,
       },
     },
     components: {

@@ -21,8 +21,8 @@ export class SocketServer implements ISocketServer {
     });
   }
 
-  addServerListener = (listener: SocketCallback) => {
-    this.io.on('connection', socket => {
+  addServerListener = (event: string, listener: SocketCallback) => {
+    this.io.on(event, socket => {
       listener(socket);
     });
   };

@@ -1,5 +1,6 @@
 import type { SxProps } from '@mui/material/styles';
 import Theme from '../../styles/theme';
+import type { CSSProperties } from 'react';
 
 export const topLevelModeStyle: SxProps = {
   minHeight: '30vh',
@@ -7,15 +8,15 @@ export const topLevelModeStyle: SxProps = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  alignItems: 'center',
   borderRadius: 5,
-  width: '70vw',
+  width: '60vw',
 };
 
 export const labelSx: SxProps = {
   color: Theme.palette.primary.main,
-  width: 'fit-content',
-  '&:hover': { cursor: 'pointer' },
+  flex: '0 1 auto',
+  fontSize: '3rem',
+  fontFamily: 'League Gothic',
 };
 
 export const tooltipSx: SxProps = {
@@ -30,4 +31,13 @@ export const textInputSx: SxProps = {
   color: Theme.palette.primary.main,
   backgroundColor: Theme.palette.background.default,
   borderRadius: 1,
+  width: '100%',
+};
+
+export const renderPreTagInsideParentDiv: SxProps | CSSProperties = {
+  width: '100%',
+  height: 'fit-content',
+  minHeight: '10vh',
+  overflow: 'hidden',
+  whiteSpace: 'pre-wrap',
 };

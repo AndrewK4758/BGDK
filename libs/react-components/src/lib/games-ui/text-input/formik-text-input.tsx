@@ -17,9 +17,8 @@ export interface FormikTextInputProps {
   id?: string;
   placeholder?: string;
   textSx?: SxProps;
-  labelSx?: SxProps;
+  labelSx: SxProps;
   onBlurCB?: (event: FocusEvent<unknown>) => void;
-  value?: string;
 }
 
 export function FormikTextInput({
@@ -29,7 +28,6 @@ export function FormikTextInput({
   autoComplete,
   labelComponent,
   size,
-  value,
   onBlurCB,
   ...props
 }: FormikTextInputProps) {
@@ -38,13 +36,16 @@ export function FormikTextInput({
 
   return (
     <Box key={`${label}-wrapper`}>
-      <Label tooltipTitle={label} labelVariant={'h2'} labelText={label} sx={{ ...labelSx }} placement={'top'} />
+      <Label tooltipTitle={label} labelVariant={'h2'} labelText={label} sx={labelSx} placement={'top'} />
       <TextField
+        id="chat-text-input-id"
         autoComplete={autoComplete}
         multiline={true}
         variant="outlined"
         {...props}
         {...field}
+        name={field.name}
+        value={field.value}
         slotProps={{
           inputLabel: { sx: textSx },
         }}

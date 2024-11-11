@@ -1,8 +1,8 @@
+import { topLevelModeStyle } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { lazy } from 'react';
-import { topLevelModeStyle } from '../gen-ai-modes-styles';
 
 const ImageForm = lazy(() => import('./image-form'));
 

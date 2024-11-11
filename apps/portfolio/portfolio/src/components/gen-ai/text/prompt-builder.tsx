@@ -1,6 +1,6 @@
 import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
 import { Text } from '@bgdk/react-components';
-import { Label, FormikValidationError } from '@bgdk/shared-react-components';
+import { FormikValidationError, Label, labelSx, textInputSx, tooltipSx } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -8,17 +8,17 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useFormik, type FormikProps } from 'formik';
-import { useRef, type RefObject } from 'react';
+import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
 import { Form, useActionData, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
 import JsonIcon from '../../icons/json-icon';
 import TextIcon from '../../icons/text-icon';
-import { labelSx, textInputSx, tooltipSx } from '../gen-ai-modes-styles';
 import {
   constraints,
   examples,
@@ -28,7 +28,7 @@ import {
   textData,
   tone,
 } from '../static/definitions';
-import type { SxProps } from '@mui/material/styles';
+import PromptBuilderResponse from './prompt-builder-response';
 
 const helperTextSx: SxProps = {
   color: Theme.palette.error.main,
@@ -98,7 +98,12 @@ const validationSchema = Yup.object({
     ),
 });
 
-const PromptBuilder = () => {
+interface PromptBuilderProps {
+  setPrompt: Dispatch<SetStateAction<string>>;
+}
+
+const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
+  const [openPromptResponse, setOpenPromptResponse] = useState<boolean>(false);
   const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const action = useActionData() as string;
@@ -106,10 +111,7 @@ const PromptBuilder = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => {
-      console.log(values);
-      handleSubmitMessage(values, submit);
-    },
+    onSubmit: values => handleSubmitMessage(values, submit),
     validateOnBlur: true,
     validateOnChange: true,
   });
@@ -121,7 +123,7 @@ const PromptBuilder = () => {
   };
 
   return (
-    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper">
+    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={{ width: '100%', border: 5 }}>
       <Paper key={'prompt-builder-paper'} id="prompt-builder-paper" sx={{ height: 'fit-content', minHeight: '30vh' }}>
         <Container
           component={'section'}
@@ -475,16 +477,18 @@ const PromptBuilder = () => {
                 id="prompt-builder-submit-box"
                 sx={{ display: 'flex', justifyContent: 'space-evenly' }}
               >
-                <Button
-                  variant="text"
-                  type="button"
-                  key={'prompt-builder-upload-file-button'}
-                  id="prompt-builder-upload-file-button"
-                  sx={{ fontSize: '2rem' }}
-                  onClick={handleFileSubmit}
-                >
-                  Upload File
-                </Button>
+                {!action && (
+                  <Button
+                    variant="text"
+                    type="button"
+                    key={'prompt-builder-upload-file-button'}
+                    id="prompt-builder-upload-file-button"
+                    sx={{ fontSize: '2rem' }}
+                    onClick={handleFileSubmit}
+                  >
+                    Upload File
+                  </Button>
+                )}
                 <Button
                   variant="text"
                   type="submit"
@@ -508,21 +512,33 @@ const PromptBuilder = () => {
                   <Button
                     variant="text"
                     type="button"
-                    key={'copy-prompt-to-clipboard'}
-                    id="copy-prompt-to-clipboard"
-                    onClick={() => handleCopyGameLinkToClipboard(action)}
+                    key={'copy-and-add-to-input'}
+                    id="copy-and-add-to-input"
+                    onClick={() => handleCopyPromptToClipboardAndAddToInput(action, setPrompt, setOpenPromptResponse)}
                     sx={{ fontSize: '2rem' }}
                   >
-                    Copy Prompt
+                    Copy & Add to Input
+                  </Button>
+                )}
+                {action && (
+                  <Button
+                    variant="text"
+                    key={'open-prompt'}
+                    id="open-prompt"
+                    type="button"
+                    sx={{ fontSize: '2rem' }}
+                    onClick={() => setOpenPromptResponse(!openPromptResponse)}
+                  >
+                    {!openPromptResponse ? 'Open Prompt' : 'Close Prompt'}
                   </Button>
                 )}
               </Box>
             </Box>
           </Form>
         </Container>
-        {action && (
-          <Container sx={{ width: '100%', height: '100%', fontSize: '.875rem' }}>
-            <pre style={{ overflowX: 'auto', fontWeight: 'bolder' }}>{action}</pre>
+        {openPromptResponse && (
+          <Container sx={{ width: '100%', height: '100%' }}>
+            <PromptBuilderResponse prompt={action} />
           </Container>
         )}
       </Paper>
@@ -561,7 +577,15 @@ const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) =
   submit(formDataToSend, { method: 'post', encType: 'multipart/form-data' });
 };
 
-const handleCopyGameLinkToClipboard = (prompt: string): Promise<void> => navigator.clipboard.writeText(prompt);
+const handleCopyPromptToClipboardAndAddToInput = async (
+  prompt: string,
+  setPrompt: Dispatch<SetStateAction<string>>,
+  setOpenPromptResponse: Dispatch<SetStateAction<boolean>>,
+) => {
+  setPrompt(prompt);
+  await navigator.clipboard.writeText(prompt);
+  setOpenPromptResponse(false);
+};
 
 const handleAddFileToFormikValues = async (
   fileInputRef: RefObject<HTMLInputElement>,

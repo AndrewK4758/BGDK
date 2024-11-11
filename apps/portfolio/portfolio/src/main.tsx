@@ -16,6 +16,6 @@ const router = createBrowserRouter(routes, {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <RouterProvider router={router} fallbackElement={<Waiting />} />
+    <RouterProvider router={router} fallbackElement={<Waiting />} />,
   </StrictMode>,
 );

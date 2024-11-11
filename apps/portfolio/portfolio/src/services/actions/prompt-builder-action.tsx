@@ -11,7 +11,6 @@ const handlePromptBuilder: ActionFunction = async ({ request }: ActionFunctionAr
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
-    console.log(resp.data);
     return resp.data.finalPrompt;
   } catch (error) {
     console.log(error);

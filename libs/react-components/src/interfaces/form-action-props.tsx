@@ -7,7 +7,7 @@ export interface FormActionProps {
   method: FormMethod | httpMethod;
   action?: string;
   handleSubmit?: () => unknown;
-  name: string;
+  names: string[];
   value?: string | number | readonly string[] | undefined;
   type: 'text' | 'file';
   variant: 'outlined' | 'text' | 'contained';

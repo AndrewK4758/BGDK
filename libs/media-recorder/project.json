@@ -1,0 +1,26 @@
+{
+  "name": "media-recorder",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/media-recorder/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/media-recorder/dist",
+        "main": "libs/media-recorder/src/index.ts",
+        "tsConfig": "libs/media-recorder/tsconfig.lib.json",
+        "assets": ["libs/media-recorder/*.md"],
+        "generatePackageJson": true,
+        "sourcemap": true,
+        "target": "esnext",
+        "platform": "browser",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
+      }
+    }
+  }
+}

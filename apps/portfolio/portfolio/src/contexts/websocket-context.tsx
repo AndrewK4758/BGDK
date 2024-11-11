@@ -1,5 +1,5 @@
 import { ClientSocket } from '@bgdk/socket-io-client';
-import { createContext, ReactElement, useRef } from 'react';
+import { createContext, ReactElement, useRef, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
 
 export type WebSocketContextType = {
@@ -10,7 +10,7 @@ export type WebSocketContextType = {
 export const WebSocketContext = createContext<WebSocketContextType>(null!);
 
 interface WebSocketContextProviderProps {
-  children: ReactElement | ReactElement[];
+  children: ReactElement | ReactElement[] | ReactNode | ReactNode[];
 }
 
 export const WebSocketContextProvider = ({ children }: WebSocketContextProviderProps) => {

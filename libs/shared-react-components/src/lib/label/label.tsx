@@ -29,15 +29,17 @@ export interface LabelProps {
 
 export const Label = forwardRef<HTMLDivElement, LabelProps>(
   ({ labelText, labelVariant, placement, sx, tooltipSx, tooltipTitle }, ref) => (
-    <Box component={'span'} sx={{ display: 'flex' }}>
+    <Box component={'span'} key={`${labelText}-wrapper-box`} id={`${labelText}-wrapper-box`} sx={{ display: 'flex' }}>
       <Tooltip
+        id={`${labelText}-tooltip`}
+        key={`${labelText}-tooltip`}
         ref={ref}
         describeChild={true}
         placement={placement}
         title={tooltipTitle}
         slotProps={{ tooltip: { sx: tooltipSx } }}
       >
-        <Typography variant={labelVariant} sx={sx}>
+        <Typography variant={labelVariant} key={`${labelText}-label-text`} id={`${labelText}-label-text`} sx={sx}>
           {labelText}
         </Typography>
       </Tooltip>
