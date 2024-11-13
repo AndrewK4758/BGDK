@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import PromptBuilderResponse from '../src/components/gen-ai/text/prompt-builder-response';
+import PromptBuilderResponse from '../src/components/gen-ai/prompt-builder/prompt-builder-response';
 
 describe('PromptBuilderResponse', () => {
   it('should render successfully', () => {

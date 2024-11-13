@@ -29,6 +29,7 @@ import {
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
+import axios from 'axios';
 
 const helperTextSx: SxProps = {
   color: Theme.palette.error.main,
@@ -52,6 +53,15 @@ const SUPPORTED_FORMATS = [
   'application/python',
   'application/javascript',
   'text/vnd.trolltech.linguist', //typescript
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'audio/webm',
+  'audio/ogg',
+  'audio/mpeg',
+  'audio/wav',
+  'video/mp4',
+  'video/webm',
+  'video/ogg',
 ];
 
 const promptBuilderHeaderText = `This is designed to helperTextSxp you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
@@ -67,7 +77,7 @@ const initialValues: IPromptInputData = {
   tone: '',
   responseFormat: ResponseType.TEXT,
   responseInstructions: '',
-  document: null,
+  file: null,
 };
 
 const validationSchema = Yup.object({
@@ -79,7 +89,7 @@ const validationSchema = Yup.object({
   tone: Yup.string(),
   resposeFormat: Yup.string().oneOf(Object.values(ResponseType)),
   responseInstructions: Yup.string(),
-  document: Yup.mixed()
+  file: Yup.mixed()
     .notRequired()
     .test('fileSize', 'File too large, must be less than 5MB', value => {
       if (isFile(value)) return value.size < FILE_SIZE;
@@ -123,7 +133,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   };
 
   return (
-    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={{ width: '100%', border: 5 }}>
+    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={{ width: '100%' }}>
       <Paper key={'prompt-builder-paper'} id="prompt-builder-paper" sx={{ height: 'fit-content', minHeight: '30vh' }}>
         <Container
           component={'section'}
@@ -447,14 +457,14 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
               >
                 <input
                   ref={fileInputRef}
-                  accept="application/*, text/*"
-                  id="document"
-                  name="document"
+                  accept={`${SUPPORTED_FORMATS.toString()}`}
+                  id="file"
+                  name="file"
                   type="file"
                   style={{ display: 'none' }}
+                  onChange={() => handleUploadToGcsBucket(fileInputRef, formik)}
                   onBlur={formik.handleBlur}
                   onReset={formik.handleReset}
-                  onChange={() => handleAddFileToFormikValues(fileInputRef, formik)}
                 />
                 {formik.values.document ? (
                   <Box component={'span'}>
@@ -587,13 +597,36 @@ const handleCopyPromptToClipboardAndAddToInput = async (
   setOpenPromptResponse(false);
 };
 
-const handleAddFileToFormikValues = async (
+const handleAddFileToFormikValues = async (path: string, formik: FormikProps<IPromptInputData>) => {
+  await formik.setTouched({ document: true });
+
+  await formik.setFieldValue('file', path, true);
+};
+
+const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
+
+const handleUploadToGcsBucket = async (
   fileInputRef: RefObject<HTMLInputElement>,
   formik: FormikProps<IPromptInputData>,
 ) => {
-  await formik.setTouched({ document: true });
-  if (fileInputRef.current?.files) {
-    const file = fileInputRef.current.files[0];
-    await formik.setFieldValue('document', file, true);
+  try {
+    if (fileInputRef.current) {
+      if (fileInputRef.current.files) {
+        const file = fileInputRef.current.files[0];
+        const resp = await axios.post(
+          `${baseUrl}/upload`,
+          { file: file },
+          { headers: { 'Content-Type': 'multipart/form-data' } },
+        );
+
+        console.log(resp.data);
+
+        const { path } = resp.data;
+
+        await handleAddFileToFormikValues(path, formik);
+      }
+    }
+  } catch (error) {
+    console.error(error);
   }
 };

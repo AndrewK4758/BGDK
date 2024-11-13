@@ -14,7 +14,7 @@ import { MediaRecorderClientContextProvider } from '../../contexts/audio-context
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
-const PromptBuilder = lazy(() => import('../../components/gen-ai/text/prompt-builder'));
+const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
 
 const title = 'Generative AI';
 

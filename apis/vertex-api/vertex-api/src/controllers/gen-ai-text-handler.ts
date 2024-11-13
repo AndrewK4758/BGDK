@@ -3,7 +3,7 @@ import { type Socket } from 'socket.io';
 import { generateTextContent } from '@bgdk/vertex-ai';
 
 const handleTextDataChunks: SocketCallback = (socket: Socket) => {
-  socket.on('text', async prompt => {
+  socket.on('prompt', async prompt => {
     console.log(prompt);
 
     const { stream } = await generateTextContent(prompt);

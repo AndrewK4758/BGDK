@@ -8,7 +8,7 @@ export const topLevelModeStyle: SxProps = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  borderRadius: 5,
+  borderRadius: 1,
   width: '60vw',
 };
 

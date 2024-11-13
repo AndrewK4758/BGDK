@@ -21,25 +21,23 @@ export class MRC implements IMediaRecorderClient {
     return await navigator.mediaDevices.getUserMedia(constraints);
   };
 
-  private setOnDataAvailable() {
+  private _setOnDataAvailable() {
     this.mediaRecorder.ondataavailable = (event: BlobEvent): void => {
-      console.log(event, ' ondataavailable - EVENT');
-      console.log(event.data, ' ondataavailable - EVENT.DATA');
       this.recordedChunks.push(event.data);
-      console.log(this.recordedChunks, ' ondataavailable - RECORDED CHUNKS');
     };
   }
-  private setOnStop(setStateFunction: Dispatch<SetStateAction<Blob | null>>) {
+  private _setOnStop(setStateFunction: Dispatch<SetStateAction<Blob | null>>) {
     this.mediaRecorder.onstop = () => {
       const blobData = new Blob(this.recordedChunks, { type: this.options.mimeType });
       setStateFunction(blobData);
+      this.recordedChunks = [];
     };
   }
 
   startRecording(setStateFunction: Dispatch<SetStateAction<Blob | null>>) {
     console.log('RECORDING STARTED');
-    this.setOnDataAvailable();
-    this.setOnStop(setStateFunction);
+    this._setOnDataAvailable();
+    this._setOnStop(setStateFunction);
 
     this.mediaRecorder.start();
   }
