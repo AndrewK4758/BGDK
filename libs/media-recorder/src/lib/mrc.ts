@@ -18,7 +18,16 @@ export class MRC implements IMediaRecorderClient {
   }
 
   static createStream = async (constraints: MediaStreamConstraints) => {
-    return await navigator.mediaDevices.getUserMedia(constraints);
+    if (constraints.audio) {
+      return await navigator.mediaDevices.getUserMedia({
+        audio: {
+          channelCount: 2,
+          echoCancellation: true,
+          facingMode: { exact: 'front', ideal: 'front' },
+          noiseSuppression: true,
+        },
+      });
+    } else return await navigator.mediaDevices.getUserMedia(constraints);
   };
 
   private _setOnDataAvailable() {
@@ -35,7 +44,6 @@ export class MRC implements IMediaRecorderClient {
   }
 
   startRecording(setStateFunction: Dispatch<SetStateAction<Blob | null>>) {
-    console.log('RECORDING STARTED');
     this._setOnDataAvailable();
     this._setOnStop(setStateFunction);
 
@@ -43,7 +51,6 @@ export class MRC implements IMediaRecorderClient {
   }
 
   stopRecording() {
-    console.log('RECORDING STOPPED');
     this.mediaRecorder.stop();
   }
 }

@@ -6,6 +6,7 @@ import type { Socket } from 'socket.io-client';
 import * as Yup from 'yup';
 import { FormActionProps } from '../../../interfaces/form-action-props';
 import FormikTextInput from '../../games-ui/text-input/formik-text-input';
+import type { PromptRequest } from '@bgdk/vertex-ai';
 
 interface ChatInputProps<T extends Yup.AnyObject> extends FormActionProps {
   breakpointsChatInputButton: SxProps;
@@ -47,7 +48,11 @@ export const ChatInput = <T extends Yup.AnyObject>({
         validationSchema={validationSchema}
         onSubmit={({ prompt }, { resetForm }) => {
           console.log(prompt);
-          socket.emit('text', prompt);
+          const promptRequest: PromptRequest = {
+            text: prompt,
+            fileData: null,
+          };
+          socket.emit('prompt', promptRequest);
           resetForm();
         }}
       >

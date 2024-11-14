@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { ChatResponse, Text } from '@bgdk/react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,13 +8,22 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { lazy, useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useRef, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
+import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
+import { useContext } from 'react';
+import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
+
+export type OutletContextProps = {
+  prompt: string;
+  promptResponse: string[];
+  setPromptResponse: Dispatch<SetStateAction<string[]>>;
+};
 
 const title = 'Generative AI';
 
@@ -28,13 +37,29 @@ const titleSx: SxProps = {
 };
 
 const GenAiHome = () => {
+  const { socket } = useContext<WebSocketContextType>(WebSocketContext);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const [prompt, setPrompt] = useState<string>('');
+  const [promptResponse, setPromptResponse] = useState<string[]>([]);
 
   useEffect(() => {
     if (divRef.current) handleScrollIntoView(divRef.current);
+
+    if (!socket.connected) {
+      socket.connect();
+    }
+    socket.on('connect', () => {
+      console.log(`Connected as ${socket.id}`);
+    });
+    socket.on('chunk', ({ response }) => {
+      setPromptResponse(prev => [...prev, response]);
+    });
+    return () => {
+      socket.removeAllListeners();
+      socket.disconnect();
+    };
   }, []);
 
   return (
@@ -47,7 +72,7 @@ const GenAiHome = () => {
         flex: '0 1 100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '10vh',
+        gap: '15vh',
         alignItems: 'center',
       }}
     >
@@ -139,32 +164,60 @@ const GenAiHome = () => {
           </Box>
         </Container>
       </Paper>
-      <Box
-        component={'section'}
-        key={'prompt-builder-form-wrapper'}
-        id="prompt-builder-form-wrapper"
-        sx={{ width: '60vw' }}
-      >
-        <Container
-          component={'div'}
-          key={'prompt-builder-collapse-box'}
-          id="prompt-builder-collapse-box"
-          sx={{ width: '100%' }}
+      {open && (
+        <Box
+          component={'section'}
+          key={'prompt-builder-form-wrapper'}
+          id="prompt-builder-form-wrapper"
+          sx={{ width: '60vw' }}
         >
-          <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
-            <PromptBuilder setPrompt={setPrompt} />
-          </Collapse>
-        </Container>
-      </Box>
+          <Container
+            component={'div'}
+            key={'prompt-builder-collapse-box'}
+            id="prompt-builder-collapse-box"
+            sx={{ width: '100%' }}
+          >
+            <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
+              <PromptBuilder setPrompt={setPrompt} />
+            </Collapse>
+          </Container>
+        </Box>
+      )}
       <Box
         component={'div'}
         key={'gen-ai-outlet-wrapper'}
         id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', minHeight: '70vh', width: '60vw' }}
+        sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
       >
         <MediaRecorderClientContextProvider>
-          <Outlet context={{ prompt: prompt }} />
+          <Outlet context={{ prompt, promptResponse, setPromptResponse }} />
         </MediaRecorderClientContextProvider>
+      </Box>
+      <Box
+        component={'div'}
+        key={'gen-ai-response-wrapper'}
+        id="gen-ai-response-wrapper"
+        sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
+      >
+        <Paper
+          component={'div'}
+          key={'gen-ai-response-paper'}
+          id="gen-ai-response-paper"
+          sx={{ height: '100%', width: '100%' }}
+        >
+          <Container
+            component={'div'}
+            key={'gen-ai-response-container'}
+            id="gen-ai-response-container"
+            sx={{ height: '100%', width: '100%' }}
+          >
+            <ChatResponse
+              response={promptResponse}
+              chatResponseLabelProps={{ textAlign: 'center', color: Theme.palette.secondary.light }}
+              chatResponseTextProps={renderPreTagInsideParentDiv as CSSProperties}
+            />
+          </Container>
+        </Paper>
       </Box>
     </Box>
   );

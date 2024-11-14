@@ -4,32 +4,52 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState, type RefObject } from 'react';
 import { MediaRecorderClientContext } from '../../../contexts/audio-context';
 import MicNoneIcon from '@mui/icons-material/MicNone';
 import MicOffIcon from '@mui/icons-material/MicOff';
 import AudioVisualizer from './audio-visualizer';
 import HearingIcon from '@mui/icons-material/Hearing';
 import { Text } from '@bgdk/react-components';
+import { WebSocketContext } from '../../../contexts/websocket-context';
+import type { PromptRequest } from '@bgdk/vertex-ai';
+import axios from 'axios';
+import { useOutletContext } from 'react-router-dom';
+import type { OutletContextProps } from '../../../pages/ai/gen-ai';
 
 const audioText =
   'This audio recorder allows you to capture your voice and submit it directly to Gemini.  Use it to create recordings for analysis, transcription, or any other task that can benefit from Gemini\'s powerful AI capabilities. Simply click "Start" to begin.';
 
+const options: MediaRecorderOptions = {
+  mimeType: 'audio/webm',
+};
+
 const GenAiAudio = () => {
+  const { socket } = useContext(WebSocketContext);
   const { MRC, createStream, stream, setStream } = useContext(MediaRecorderClientContext);
+  const { setPromptResponse } = useOutletContext() as OutletContextProps;
   const [blob, setBlob] = useState<Blob | null>(null);
   const [recording, setRecording] = useState<boolean>(false);
   const audRef = useRef<HTMLAudioElement>(null);
   const mrcRef = useRef<MRC | null>(null);
 
-  const uploadFile = () => {
-    console.log(blob, 'UPLOAD FILE');
-  };
+  useEffect(() => {
+    if (!socket.connected) socket.connect();
+
+    socket.on('chunk', ({ response }) => {
+      console.log(response);
+      setPromptResponse(prev => [...prev, response]);
+    });
+    return () => {
+      socket.removeAllListeners();
+      socket.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
-    if (!stream) createStream(setStream, { audio: true });
+    if (!stream) createStream(setStream, { audio: true, video: false });
     if (stream) {
-      mrcRef.current = new MRC(stream, { mimeType: 'audio/webm' });
+      mrcRef.current = new MRC(stream, options);
     }
   }, [stream]);
 
@@ -37,9 +57,41 @@ const GenAiAudio = () => {
     if (audRef.current && blob) {
       const url = URL.createObjectURL(blob as Blob);
       audRef.current.src = url;
+      console.log(audRef.current.title);
     }
-    console.log(blob, 'BLOB - USE EFFECT');
   }, [blob]);
+
+  const uploadFile = async () => {
+    console.log(blob, 'UPLOAD FILE');
+
+    if (blob) {
+      //   const base64AudioString = await new Promise<string>((resolve, reject) => {
+      //     const reader = new FileReader();
+      //     reader.onerror = reject;
+      //     reader.onload = () => {
+      //       if (typeof reader.result === 'string') resolve(reader.result);
+      //       else reject(new Error('Error converting into base64 String'));
+      //     };
+
+      //     reader.readAsDataURL(blob);
+      //   });
+
+      //   console.log(base64AudioString);
+
+      const path = await handleFileUpload(audRef, blob);
+
+      const promptData: PromptRequest = {
+        fileData: {
+          fileUri: path,
+          mimeType: blob.type,
+        },
+
+        text: null,
+      };
+
+      socket.emit('prompt', promptData);
+    }
+  };
 
   return (
     <Box component={'div'} key={'gen-audio-wrapper'} id="gen-audio-wrapper" sx={topLevelModeStyle}>
@@ -80,7 +132,7 @@ const GenAiAudio = () => {
             sx={{ flex: '1 0 100%' }}
           >
             {recording && <AudioVisualizer stream={stream as MediaStream} />}
-            <audio autoPlay={true} loop={false} ref={audRef} />
+            <audio title="audio-track.webm" ref={audRef} />
           </Box>
 
           <Box
@@ -89,9 +141,11 @@ const GenAiAudio = () => {
             id="gen-audio-recorder-buttons-wrapper"
             sx={{ display: 'flex', justifyContent: 'space-evenly' }}
           >
-            <Button onClick={() => uploadFile()} sx={{ fontSize: '2rem' }}>
-              Query Gemini
-            </Button>
+            {blob && (
+              <Button onClick={() => uploadFile()} sx={{ fontSize: '2rem' }}>
+                Upload
+              </Button>
+            )}
 
             <Button
               endIcon={<MicNoneIcon sx={{ scale: 2 }} />}
@@ -130,3 +184,27 @@ const GenAiAudio = () => {
 };
 
 export default GenAiAudio;
+
+const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
+
+const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement>, blob: Blob) => {
+  try {
+    if (fileInputRef.current) {
+      const file = new File([blob], fileInputRef.current.title);
+
+      const resp = await axios.post(
+        `${baseUrl}/upload`,
+        { file: file },
+        { headers: { 'Content-Type': 'multipart/form-data' } },
+      );
+
+      console.log(resp.data);
+
+      const { path } = resp.data;
+
+      return path;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

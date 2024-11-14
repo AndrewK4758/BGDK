@@ -2,13 +2,15 @@ import { Storage } from '@google-cloud/storage';
 
 const bucketName = 'portfolio-gen-ai';
 
+const storagePath = `gs://${bucketName}/`;
+
 const storage = new Storage();
 
-const memoryUpload = async (file: Express.Multer.File) => {
+const memoryUpload = async ({ buffer, originalname }: Express.Multer.File) => {
   try {
-    await storage.bucket(bucketName).file(file.originalname).save(file.buffer);
+    await storage.bucket(bucketName).file(originalname).save(buffer);
 
-    return `gs://portfolio-gen-ai/${file.originalname}`;
+    return storagePath.concat(originalname);
   } catch (error) {
     console.error(error);
 

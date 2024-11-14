@@ -62,6 +62,22 @@ const SUPPORTED_FORMATS = [
   'video/mp4',
   'video/webm',
   'video/ogg',
+  'application/pdf',
+  'audio/mpeg',
+  'audio/mp3',
+  'audio/wav',
+  'image/png',
+  'image/jpeg',
+  'image/webp',
+  'text/plain',
+  'video/mov',
+  'video/mpeg',
+  'video/mp4',
+  'video/mpg',
+  'video/avi',
+  'video/wmv',
+  'video/mpegps',
+  'video/flv',
 ];
 
 const promptBuilderHeaderText = `This is designed to helperTextSxp you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
@@ -462,7 +478,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                   name="file"
                   type="file"
                   style={{ display: 'none' }}
-                  onChange={() => handleUploadToGcsBucket(fileInputRef, formik)}
+                  onChange={() => handleFileUpload(fileInputRef, formik)}
                   onBlur={formik.handleBlur}
                   onReset={formik.handleReset}
                 />
@@ -597,7 +613,7 @@ const handleCopyPromptToClipboardAndAddToInput = async (
   setOpenPromptResponse(false);
 };
 
-const handleAddFileToFormikValues = async (path: string, formik: FormikProps<IPromptInputData>) => {
+const addFilePathToFormikContext = async (path: string, formik: FormikProps<IPromptInputData>) => {
   await formik.setTouched({ document: true });
 
   await formik.setFieldValue('file', path, true);
@@ -605,7 +621,7 @@ const handleAddFileToFormikValues = async (path: string, formik: FormikProps<IPr
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
-const handleUploadToGcsBucket = async (
+export const handleFileUpload = async (
   fileInputRef: RefObject<HTMLInputElement>,
   formik: FormikProps<IPromptInputData>,
 ) => {
@@ -623,7 +639,7 @@ const handleUploadToGcsBucket = async (
 
         const { path } = resp.data;
 
-        await handleAddFileToFormikValues(path, formik);
+        await addFilePathToFormikContext(path, formik);
       }
     }
   } catch (error) {

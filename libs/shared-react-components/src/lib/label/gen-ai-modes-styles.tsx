@@ -3,7 +3,7 @@ import Theme from '../../styles/theme';
 import type { CSSProperties } from 'react';
 
 export const topLevelModeStyle: SxProps = {
-  minHeight: '30vh',
+  minHeight: '100%',
   height: 'fit-content',
   display: 'flex',
   flexDirection: 'column',

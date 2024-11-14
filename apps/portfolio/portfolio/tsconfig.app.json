@@ -30,8 +30,7 @@
     "../../../libs/react-components/src/**/*.tsx",
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",
-    "../../../libs/media-recorder/src/**/*.ts",
-    "tests/prompt-builder-response.spec.tsx"
+    "../../../libs/media-recorder/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",

@@ -1,34 +1,16 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import Theme from '../../../styles/theme';
 import * as Yup from 'yup';
-import { labelSx, renderPreTagInsideParentDiv, textInputSx, topLevelModeStyle } from '@bgdk/shared-react-components';
-import { ChatInput, ChatResponse } from '@bgdk/react-components';
-import { useContext, useEffect, useState, type CSSProperties } from 'react';
-import { WebSocketContext, WebSocketContextType } from '../../../contexts/websocket-context';
+import { labelSx, textInputSx, topLevelModeStyle } from '@bgdk/shared-react-components';
+import { ChatInput } from '@bgdk/react-components';
 import { useOutletContext } from 'react-router-dom';
+import { useContext } from 'react';
+import { WebSocketContext, WebSocketContextType } from '../../../contexts/websocket-context';
 
 const TextGenerator = () => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
   const prompt = useOutletContext() as ChatInputValues | null;
-  const [promptResponse, setPromptResponse] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (!socket.connected) {
-      socket.connect();
-    }
-    socket.on('connect', () => {
-      console.log(`Connected as ${socket.id}`);
-    });
-    socket.on('chunk', ({ response }) => {
-      setPromptResponse(prev => [...prev, response]);
-    });
-    return () => {
-      socket.removeAllListeners();
-      socket.disconnect();
-    };
-  }, []);
 
   type ChatInputValues = {
     prompt: string;
@@ -65,13 +47,6 @@ const TextGenerator = () => {
             breakpointsChatInputText={textInputSx}
             breakpointsChatInputLabel={labelSx}
             breakpointsWrapperBoxSx={{ width: '100%' }}
-          />
-        </Container>
-        <Container>
-          <ChatResponse
-            response={promptResponse}
-            chatResponseLabelProps={{ textAlign: 'center', color: Theme.palette.secondary.light }}
-            chatResponseTextProps={renderPreTagInsideParentDiv as CSSProperties}
           />
         </Container>
       </Paper>
