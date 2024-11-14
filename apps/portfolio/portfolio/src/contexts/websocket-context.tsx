@@ -14,7 +14,13 @@ interface WebSocketContextProviderProps {
 }
 
 export const WebSocketContextProvider = ({ children }: WebSocketContextProviderProps) => {
-  const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
+  const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, {
+    autoConnect: false,
+    reconnectionAttempts: 10,
+    withCredentials: true,
+    reconnectionDelay: 2500,
+    rememberUpgrade: true,
+  });
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;
 

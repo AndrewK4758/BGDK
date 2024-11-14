@@ -11,11 +11,12 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "**/*.d.ts",
+    "src/**/*.d.ts",
     "../react-components/src/**/*.ts",
     "../react-components/src/**/*.tsx",
     "../types/**/*/src/**/*.ts",
-    "../games-components-logic/src/**/*.ts"
+    "../games-components-logic/src/**/*.ts",
+    "../gen-ai/vertex-ai/src/**/*.ts"
   ],
   "exclude": [
     "**/*.spec.ts",
@@ -28,14 +29,14 @@
     "**/*.test.jsx",
     "vite.config.ts",
     "vitest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx"
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.jsx",
+    "tests/**/*.spec.jsx"
   ],
   "references": []
 }

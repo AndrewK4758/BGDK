@@ -10,6 +10,7 @@ import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count'
 import handlePromptBuilder from '../services/actions/prompt-builder-action';
 import generateImageAction from '../services/actions/generate-image-action';
 import vertexSubmitAction from '../services/actions/vertex-submit-action';
+import loadContextId from '../services/loaders/gen-ai/load-context-id';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -89,6 +90,7 @@ const routes: RouteObject[] = [
       {
         path: 'gen-ai',
         Component: GenAI,
+        loader: loadContextId,
         action: handlePromptBuilder,
         children: [
           {

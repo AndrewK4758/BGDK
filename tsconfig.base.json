@@ -14,7 +14,7 @@
     "importHelpers": true,
     "incremental": true,
     "isolatedModules": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext", "DOM", "DOM.AsyncIterable", "DOM.Iterable"],
     "module": "CommonJS",
     "moduleResolution": "Node10",
     "noEmitOnError": true,

@@ -40,7 +40,8 @@
       "defaultConfiguration": "development",
       "dependsOn": ["^build"],
       "options": {
-        "buildTarget": "vertex-api:build"
+        "buildTarget": "vertex-api:build",
+        "runtimeArgs": ["--trace-deprecation"]
       },
       "configurations": {
         "development": {

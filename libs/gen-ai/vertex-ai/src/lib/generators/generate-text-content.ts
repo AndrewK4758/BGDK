@@ -1,6 +1,6 @@
 import { GenerateContentRequest } from '@google-cloud/vertexai';
-import generativeTextModel from '../models/generative-text-model.ts';
-import type { PromptRequest } from '../../types/prompt-request-types.ts';
+import generativeTextModel from '../models/generative-text-model';
+import type { PromptRequest } from '../../types/prompt-request-types';
 
 export const generateTextContent = async ({ text, fileData }: PromptRequest) => {
   const request: GenerateContentRequest = {

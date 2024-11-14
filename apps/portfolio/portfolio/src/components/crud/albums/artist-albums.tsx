@@ -127,7 +127,6 @@ const AlbumsOnArtist = () => {
           <DataGrid
             key={'artist-albums-data-grid'}
             aria-label="artist-albums-data-grid"
-            autoHeight
             apiRef={apiRef}
             columns={columns}
             rows={albums}

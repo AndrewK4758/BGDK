@@ -29,7 +29,7 @@
     "../../../libs/shared-react-components/src/**/*.tsx",
     "../../../libs/react-components/src/**/*.tsx",
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
-    "../../../libs/socket-io/src/**/*.ts",
+    "../../../libs/socket-io/client/src/**/*.ts",
     "../../../libs/media-recorder/src/**/*.ts"
   ],
   "exclude": [
@@ -46,8 +46,7 @@
   ],
   "references": [
     { "path": "../../../libs/gen-ai/prompt-builder/tsconfig.lib.json" },
-    { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
-    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
+    { "path": "../../../libs/media-recorder/tsconfig.lib.json" },
     { "path": "../../../libs/socket-io/client/tsconfig.lib.json" },
     { "path": "../../../libs/utils/tsconfig.lib.json" },
     { "path": "../../../libs/__mocks__/mocks/tsconfig.lib.json" },
@@ -58,6 +57,8 @@
     { "path": "../../../libs/models/instance-of-game/tsconfig.lib.json" },
     { "path": "../../../libs/chain/tsconfig.lib.json" },
     { "path": "../../../libs/chains-for-games/tsconfig.lib.json" },
+    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
+    { "path": "../../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
     { "path": "../../../libs/shared-react-components/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-game/tsconfig.lib.json" },

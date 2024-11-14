@@ -66,13 +66,13 @@ const Games = () => {
         component={'div'}
         key={'games-header-wrapper'}
         id="games-header-wrapper"
-        sx={{ width: '55%' }}
+        sx={{ width: '60vw' }}
       >
         <Box
           component={'section'}
           key={'games-title-wrapper'}
           id="games-title-wrapper"
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingY: 2 }}
         >
           <Text titleVariant="h3" titleText={title} sx={titleSx} />
         </Box>

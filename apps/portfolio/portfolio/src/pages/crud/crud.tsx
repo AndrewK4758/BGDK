@@ -74,13 +74,13 @@ const Crud = () => {
         component={'div'}
         key={'crud-header-wrapper'}
         id="crud-header-wrapper"
-        sx={{ width: '55%' }}
+        sx={{ width: '60vw' }}
       >
         <Box
           component={'section'}
           key={'crud-title-wrapper'}
           id="crud-title-wrapper"
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingY: 2 }}
         >
           <Text titleVariant="h3" titleText={title} sx={titleSx} />
         </Box>

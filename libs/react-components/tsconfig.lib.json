@@ -16,8 +16,9 @@
     "src/**/*.d.ts",
     "../games-components-logic/src/**/*.ts",
     "../types/**/*/src/**/*.ts",
-    "../types/types-ai/src/enums/enums-for-imagen-config.ts",
-    "../types/types-ai/src/types/types-for-imagen-config.ts"
+    "../shared-react-components/src/**/*.ts",
+    "../shared-react-components/src/**/*.tsx",
+    "../gen-ai/vertex-ai/src/**/*.ts"
   ],
   "exclude": [
     "tests/**/*.spec.ts",
@@ -40,6 +41,8 @@
     "src/**/*.spec.jsx"
   ],
   "references": [
+    { "path": "../types/types-ai/tsconfig.lib.json" },
+    { "path": "../gen-ai/vertex-ai/tsconfig.lib.json" },
     { "path": "../shared-react-components/tsconfig.lib.json" },
     { "path": "../types/types-api/tsconfig.lib.json" },
     { "path": "../types/types-game/tsconfig.lib.json" }

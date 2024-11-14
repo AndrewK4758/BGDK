@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 import 'yup-phone-lite';
 import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
 import Theme from '../../../styles/theme';
-import { helperTextSx } from '../../gen-ai/gen-ai-modes-styles';
+import { helperTextSx } from '@bgdk/shared-react-components';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
 
 const textFieldSlotProps = {

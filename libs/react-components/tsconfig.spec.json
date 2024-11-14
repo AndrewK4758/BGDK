@@ -19,6 +19,8 @@
     "tests/**/*.spec.jsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "../gen-ai/vertex-ai/src/**/*.ts",
+    "../types/types-ai/src/**/*.ts"
   ]
 }

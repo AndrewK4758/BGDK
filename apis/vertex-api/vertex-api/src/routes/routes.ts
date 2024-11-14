@@ -3,6 +3,7 @@ import multer from 'multer';
 import generateImages from '../controllers/gen-ai-image-gen';
 import promptBuilder from '../controllers/prompt-builder';
 import uploadToGcsBucket from '../controllers/upload-files-to-gcs-bucket';
+import createContextIdCookie from '../controllers/create-context-id-cookie';
 
 const router: Router = Router();
 
@@ -14,6 +15,7 @@ export class Routes {
     router.use(json({ limit: '10mb' }));
     router.use(urlencoded({ extended: true, limit: '1000mb' }));
 
+    router.get('/context-id', createContextIdCookie);
     router.post('/upload', upload.single('file'), uploadToGcsBucket);
     router.post('/build-prompt', upload.single('document'), promptBuilder);
     router.post('/images', generateImages);

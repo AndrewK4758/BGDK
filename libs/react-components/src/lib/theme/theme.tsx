@@ -2,21 +2,21 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { createTheme } from '@mui/material/styles';
 import './theme.module.css';
 
-declare module '@mui/material' {
-  interface BreakpointOverrides {
-    // Your custom breakpoints
-    laptop: true;
-    tablet: true;
-    mobile: true;
-    desktop: true;
-    // Remove default breakpoints
-    xs: false;
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-  }
-}
+// declare module '@mui/material' {
+//   interface BreakpointOverrides {
+//     // Your custom breakpoints
+//     laptop: true;
+//     tablet: true;
+//     mobile: true;
+//     desktop: true;
+//     // Remove default breakpoints
+//     xs: false;
+//     sm: false;
+//     md: false;
+//     lg: false;
+//     xl: false;
+//   }
+// }
 
 //yellows
 const __primaryMain = '#ffd300';

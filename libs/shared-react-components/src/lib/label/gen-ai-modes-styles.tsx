@@ -41,3 +41,8 @@ export const renderPreTagInsideParentDiv: SxProps | CSSProperties = {
   overflow: 'hidden',
   whiteSpace: 'pre-wrap',
 };
+
+export const helperTextSx: SxProps = {
+  color: Theme.palette.error.main,
+  fontSize: '1.25rem',
+};

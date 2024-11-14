@@ -9,7 +9,7 @@ export interface LabelProps {
   tooltipTitle: ReactNode;
   labelVariant: Variant;
   labelText: string;
-  sx: SxProps;
+  sx?: SxProps;
   tooltipSx?: SxProps;
   placement:
     | 'bottom'

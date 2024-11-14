@@ -4,7 +4,7 @@ import PromptBuilderResponse from '../src/components/gen-ai/prompt-builder/promp
 
 describe('PromptBuilderResponse', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<PromptBuilderResponse />);
+    const { baseElement } = render(<PromptBuilderResponse prompt={''} />);
     expect(baseElement).toBeTruthy();
   });
 });

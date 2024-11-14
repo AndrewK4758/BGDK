@@ -13,7 +13,8 @@
     "src/**/*.tsx",
     "../../../libs/shared-react-components/src/**/*.ts",
     "../../../libs/shared-react-components/src/**/*.tsx",
-    "../../../libs/socket-io/client/src/**/*.ts"
+    "../../../libs/socket-io/client/src/**/*.ts",
+    "../../../libs/types/types-ai/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
@@ -30,7 +31,6 @@
     "vitest.config.mts"
   ],
   "references": [
-    { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../../libs/socket-io/client/tsconfig.lib.json" },
     { "path": "../../../libs/shared-react-components/tsconfig.lib.json" }

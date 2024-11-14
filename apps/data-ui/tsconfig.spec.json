@@ -17,6 +17,14 @@
     "tests/**/*.spec.jsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "../../libs/types/**/*/src/**/*.ts",
+    "../../libs/games-components-logic/src/**/*.ts",
+    "../../libs/react-components/src/**/*.ts",
+    "../../libs/shared-react-components/src/**/*.ts",
+    "../../libs/react-components/src/**/*.tsx",
+    "../../libs/shared-react-components/src/**/*.tsx",
+    "../../libs/utils/src/lib/get-current-minute.ts",
+    "../../libs/gen-ai/vertex-ai/src/**/*.ts"
   ]
 }

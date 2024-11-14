@@ -13,6 +13,8 @@ import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'rea
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Theme from '../../../styles/theme';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -26,8 +28,11 @@ const Artist = () => {
   const [artists, setArtists] = useState<artist[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
+  const matchesSize = useMediaQuery('min-width:1000px');
   const nav = useNavigate();
-
+  console.log(Theme);
+  console.log(matchesSize);
+  console.log(Theme.breakpoints.keys);
   const apiRef = useGridApiRef<GridApiCommunity>();
 
   const queryOptions = useMemo(
@@ -158,8 +163,6 @@ const Artist = () => {
             logLevel="debug"
             key={'artist-data-grid'}
             aria-label="artist-data-grid"
-            autoHeight
-            autosizeOnMount={true}
             apiRef={apiRef}
             columns={columns}
             rows={artists}

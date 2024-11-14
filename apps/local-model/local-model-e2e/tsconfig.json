@@ -19,7 +19,6 @@
     "src/**/*.tsx"
   ],
   "references": [
-    { "path": "../../../libs/socket-io/server" },
     { "path": "../../../libs/types/types-ai" },
     { "path": "../../../libs/socket-io/client" },
     { "path": "../../../libs/shared-react-components" },

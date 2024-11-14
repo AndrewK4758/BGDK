@@ -65,19 +65,6 @@ const GenAiAudio = () => {
     console.log(blob, 'UPLOAD FILE');
 
     if (blob) {
-      //   const base64AudioString = await new Promise<string>((resolve, reject) => {
-      //     const reader = new FileReader();
-      //     reader.onerror = reject;
-      //     reader.onload = () => {
-      //       if (typeof reader.result === 'string') resolve(reader.result);
-      //       else reject(new Error('Error converting into base64 String'));
-      //     };
-
-      //     reader.readAsDataURL(blob);
-      //   });
-
-      //   console.log(base64AudioString);
-
       const path = await handleFileUpload(audRef, blob);
 
       const promptData: PromptRequest = {

@@ -1,6 +1,13 @@
 import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
 import { Text } from '@bgdk/react-components';
-import { FormikValidationError, Label, labelSx, textInputSx, tooltipSx } from '@bgdk/shared-react-components';
+import {
+  FormikValidationError,
+  Label,
+  labelSx,
+  textInputSx,
+  tooltipSx,
+  helperTextSx,
+} from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -8,7 +15,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useFormik, type FormikProps } from 'formik';
@@ -30,11 +36,6 @@ import {
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
 import axios from 'axios';
-
-const helperTextSx: SxProps = {
-  color: Theme.palette.error.main,
-  fontSize: '1.25rem',
-};
 
 const FILE_SIZE = 1024 * 1024 * 5;
 /**
@@ -632,7 +633,7 @@ export const handleFileUpload = async (
         const resp = await axios.post(
           `${baseUrl}/upload`,
           { file: file },
-          { headers: { 'Content-Type': 'multipart/form-data' } },
+          { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true },
         );
 
         console.log(resp.data);

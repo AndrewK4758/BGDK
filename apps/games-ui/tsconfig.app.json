@@ -22,10 +22,12 @@
     "../../libs/types/types-api/src/**/*.ts",
     "../../libs/games-components-logic/src/**/*.ts",
     "../../libs/types/types-game/src/**/*.ts",
+    "../../libs/types/types-ai/src/**/*.ts",
     "../../libs/react-components/src/**/*.ts",
     "../../libs/shared-react-components/src/**/*.ts",
     "../../libs/react-components/src/**/*.tsx",
-    "../../libs/shared-react-components/src/**/*.tsx"
+    "../../libs/shared-react-components/src/**/*.tsx",
+    "../../libs/gen-ai/vertex-ai/src/**/*.ts"
   ],
 
   "references": [
@@ -38,6 +40,8 @@
     { "path": "../../libs/chain/tsconfig.lib.json" },
     { "path": "../../libs/chains-for-games/tsconfig.lib.json" },
     { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
+    { "path": "../../libs/types/types-ai/tsconfig.lib.json" },
+    { "path": "../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
     { "path": "../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../libs/types/types-game/tsconfig.lib.json" },
     { "path": "../../libs/react-components/tsconfig.lib.json" },

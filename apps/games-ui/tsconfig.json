@@ -19,6 +19,8 @@
     { "path": "../../libs/chain" },
     { "path": "../../libs/chains-for-games" },
     { "path": "../../libs/games-components-logic" },
+    { "path": "../../libs/types/types-ai" },
+    { "path": "../../libs/gen-ai/vertex-ai" },
     { "path": "../../libs/types/types-api" },
     { "path": "../../libs/types/types-game" },
     { "path": "../../libs/react-components" },

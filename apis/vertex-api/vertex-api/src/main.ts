@@ -26,11 +26,12 @@ export const pythonProcess = startPythonShell('poetry', ['run', 'python', 'agent
 });
 
 export const corsOptions: CorsOptions = {
-  origin: '*',
-  methods: '*',
+  origin: 'http://localhost:4700',
+  methods: ['get', 'post', 'patch', 'put', 'delete', 'options', 'download'],
   exposedHeaders: '*',
   optionsSuccessStatus: 204,
   allowedHeaders: '*',
+  credentials: true,
 };
 
 export const httpServer = createServer(app);

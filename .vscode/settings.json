@@ -1,8 +1,7 @@
 {
   "jest.enable": true,
   "jest.rootPath": "./",
-  "jestrunner.jestPath": "/usr/local/lib/node_modules/jest/bin/jest.js",
-  "jest.jestCommandLine": "/usr/local/lib/node_modules/corepack/dist/pnpm.js",
+
   "jest.runMode": {
     "type": "on-demand",
     "showInlineError": true,
@@ -13,13 +12,14 @@
     "revealWithFocus": "test-results",
     "clearOnRun": "none"
   },
-  "jestrunner.codeLens": ["run", "debug", "coverage"],
+
   "testing.openTesting": "neverOpen",
-  "typescript.tsdk": "node_modules/typescript/lib",
+
   "vitest.logLevel": "verbose",
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

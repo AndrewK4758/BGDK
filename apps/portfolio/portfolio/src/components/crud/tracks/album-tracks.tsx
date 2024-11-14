@@ -30,21 +30,18 @@ const Tracks = () => {
       field: 'track_id',
       headerName: 'Track ID',
       type: 'number',
-      // width: 40,
       flex: 1,
     },
     {
       field: 'name',
       headerName: 'Name',
       type: 'string',
-      // width: 200,
       editable: true,
       flex: 3,
     },
     {
       field: 'unit_price',
       type: 'number',
-      // width: 40,
       headerName: 'Unit Price',
       editable: true,
       flex: 1,
@@ -52,7 +49,6 @@ const Tracks = () => {
     {
       field: 'genre_id',
       type: 'number',
-      // width: 40,
       headerName: 'Genre ID',
       editable: true,
       flex: 1,
@@ -60,7 +56,6 @@ const Tracks = () => {
     {
       field: 'media_type_id',
       type: 'number',
-      // width: 40,
       headerName: 'Media Type ID',
       editable: true,
       flex: 1,
@@ -68,7 +63,6 @@ const Tracks = () => {
     {
       field: 'composer',
       type: 'string',
-      // width: 140,
       headerName: 'Composer',
       editable: true,
       flex: 2,
@@ -76,7 +70,6 @@ const Tracks = () => {
     {
       field: 'milliseconds',
       type: 'number',
-      // width: 40,
       headerName: 'Milliseconds',
       editable: true,
       flex: 1,
@@ -84,7 +77,6 @@ const Tracks = () => {
     {
       field: 'bytes',
       type: 'number',
-      // width: 40,
       headerName: 'Bytes',
       editable: true,
       flex: 1,
@@ -94,7 +86,6 @@ const Tracks = () => {
       field: 'update-delete',
       type: 'actions',
       headerName: 'Actions',
-      // width: 100,
       flex: 1.5,
       getActions: (params: GridRowParams<track>) => {
         return [
@@ -130,8 +121,6 @@ const Tracks = () => {
       key={'track-box'}
       sx={{
         borderTop: '3px solid purple',
-        // borderRight: '3px solid purple',
-        // borderBottom: '3px solid purple',
         width: '100%',
       }}
     >
@@ -149,7 +138,6 @@ const Tracks = () => {
       </Box>
       <Box component={'div'} key={'tracks-data-grid-wrapper'} id="tracks-data-grid-wrapper">
         <DataGrid
-          autoHeight
           apiRef={apiRef}
           columns={columns}
           rows={tracks}

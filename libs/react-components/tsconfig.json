@@ -12,6 +12,8 @@
   "include": [],
   "exclude": [],
   "references": [
+    { "path": "../types/types-ai" },
+    { "path": "../gen-ai/vertex-ai" },
     { "path": "../shared-react-components" },
     { "path": "../types/types-api" },
     { "path": "../types/types-game" },

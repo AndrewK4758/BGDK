@@ -13,7 +13,7 @@ import StepButton from '@mui/material/StepButton';
 import Stepper from '@mui/material/Stepper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { album, artist, track, Prisma } from '@prisma/client';
+import { album, artist, Prisma, track } from '@prisma/client';
 import { useFormik } from 'formik';
 import { FocusEvent, Fragment, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';

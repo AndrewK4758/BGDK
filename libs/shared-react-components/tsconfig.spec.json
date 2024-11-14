@@ -19,6 +19,11 @@
     "tests/**/*.spec.jsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "../react-components/src/**/*.ts",
+    "../react-components/src/**/*.tsx",
+    "../types/**/*/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../gen-ai/vertex-ai/src/**/*.ts"
   ]
 }

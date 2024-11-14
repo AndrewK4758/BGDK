@@ -47,7 +47,6 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             type={'text'}
             placeholder="Enter First Name Here"
             name={'firstName'}
-            value={formik.values.firstName}
             textSx={breakpointsTextBoxSx}
             labelSx={breakpointsLabelSx}
           />
@@ -59,7 +58,6 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             type={'text'}
             placeholder="Enter Last Name Here"
             name={'lastName'}
-            value={formik.values.lastName}
             textSx={breakpointsTextBoxSx}
             labelSx={breakpointsLabelSx}
           />
@@ -71,7 +69,6 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             type={'text'}
             placeholder="Enter Email Here"
             name={'email'}
-            value={formik.values.email}
             textSx={breakpointsTextBoxSx}
             labelSx={breakpointsLabelSx}
             onBlurCB={e => verifyEmailObBlur(e, setBlurString)}
@@ -86,7 +83,6 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             type={'text'}
             placeholder="Enter Player Name Here"
             name={'playerName'}
-            value={formik.values.playerName}
             textSx={breakpointsTextBoxSx}
             labelSx={breakpointsLabelSx}
           />
@@ -98,7 +94,6 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             type="password"
             placeholder="Enter Password Here"
             name="password"
-            value={formik.values.password}
             textSx={breakpointsTextBoxSx}
             labelSx={breakpointsLabelSx}
           />

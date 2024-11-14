@@ -17,7 +17,7 @@ export interface FormikTextInputProps {
   id?: string;
   placeholder?: string;
   textSx?: SxProps;
-  labelSx: SxProps;
+  labelSx?: SxProps;
   onBlurCB?: (event: FocusEvent<unknown>) => void;
 }
 

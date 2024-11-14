@@ -16,7 +16,7 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "main": "libs/socket-io/server/src/index.ts",
         "outputPath": "libs/socket-io/server/dist",

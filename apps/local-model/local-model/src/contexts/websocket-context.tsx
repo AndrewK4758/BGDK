@@ -1,5 +1,5 @@
 import { createContext, ReactElement, useRef } from 'react';
-import { ClientSocket } from 'libs/socket-io/server/src';
+import { ClientSocket } from '@bgdk/socket-io-client';
 import { Socket } from 'socket.io-client';
 
 export type WebSocket = {
@@ -13,9 +13,11 @@ interface WebsocketContextProviderProps {
   children: ReactElement | ReactElement[];
 }
 
+const baseUrl = import.meta.env.VITE_WS_SERVER_URL_VERTEX;
+
 const WebsocketContextProvider = ({ children }: WebsocketContextProviderProps) => {
-  const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, { autoConnect: false });
-  const socketRef = useRef<Socket>(clientSocket.Socket);
+  const clientSocket = new ClientSocket(baseUrl, { autoConnect: false });
+  const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;
 
   return <WebSocketContext.Provider value={{ socket: socket }}>{children}</WebSocketContext.Provider>;

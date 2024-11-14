@@ -83,25 +83,14 @@ export const GameBoardMapTicTacToe = ({
           }
         >
           {e.display.indexOf('g') === e.display.length - 1 ? (
-            <img
-              key={`tic-tac-toe-space-${e.display}-svg`}
-              src={`./game-avatars/${e.display}`}
-              alt={`${e.display} game piece`}
-              style={avatarSize}
-            />
+            <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />
           ) : (
-            <Text
-              key={`tic-tac-toe-space-${e.display}`}
-              titleVariant="body2"
-              titleText={e.display}
-              sx={breakpointsSpaceSx}
-            />
+            <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
           )}
         </Grid2>
       );
     })}
   </Grid2>
 );
-
 
 export default GameBoardMapTicTacToe;

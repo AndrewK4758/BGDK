@@ -1,9 +1,9 @@
 import { darkScrollbar } from '@mui/material';
-import createTheme, { type Theme } from '@mui/material/styles/createTheme';
+import createTheme, { type Theme as ThemeType } from '@mui/material/styles/createTheme';
 import { enUS } from '@mui/x-date-pickers/locales';
 import './styles.css';
 
-const Theme: Theme = createTheme(
+const Theme: ThemeType = createTheme(
   {
     defaultColorScheme: 'dark',
     palette: {

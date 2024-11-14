@@ -8,7 +8,6 @@ import { FormActionProps } from '../../../../interfaces/form-action-props';
 import FormikTextInput from '../../text-input/formik-text-input';
 import { GamePlayerValidation } from '@bgdk/types-game';
 
-
 export interface JoinGameProps extends FormActionProps {
   breakpointsJoinGameButton?: SxProps;
   breakpointsJoinGameText?: SxProps;
@@ -30,7 +29,7 @@ export const JoinGame = ({
   breakpointsJoinGameLabel,
   method,
   type,
-  name,
+  names,
   variant,
   buttonType,
   buttonText,
@@ -66,7 +65,7 @@ export const JoinGame = ({
           id="gamePath"
           type={type}
           placeholder="Enter GameID to join"
-          name={name}
+          name={names[0]}
           textSx={breakpointsJoinGameText}
           labelSx={breakpointsJoinGameLabel}
         />

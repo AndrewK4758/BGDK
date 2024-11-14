@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
+    "module": "ESNext",
     "types": [
       "vitest/globals",
       "vitest/importMeta",
@@ -20,6 +21,10 @@
     "src/**/*.tsx",
     "src/**/*.ts",
     "tests/**/*.tsx",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "../../../libs/shared-react-components/src/**/*.ts",
+    "../../../libs/shared-react-components/src/**/*.tsx",
+    "../../../libs/socket-io/client/src/**/*.ts",
+    "../../../libs/types/types-ai/src/**/*.ts"
   ]
 }
