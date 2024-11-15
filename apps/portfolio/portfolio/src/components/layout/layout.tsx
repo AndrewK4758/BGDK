@@ -12,7 +12,7 @@ import WebSocketContextProvider from '../../contexts/websocket-context';
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
   top: '1vh',
-  width: '70%',
+  width: '70vw',
   display: 'flex',
   height: '8vh',
   maxHeight: '120px',
@@ -23,7 +23,7 @@ const headerWrapperSxProps: SxProps = {
 
 const mainWrapperSxProps: SxProps = {
   flex: '1 0 100%',
-  width: '100%',
+  width: '100vw',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -49,7 +49,7 @@ const Layout = () => (
         id="home-wrapper"
         sx={{
           flex: '0 1 auto',
-          width: '90%',
+          width: '100vw',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -64,7 +64,7 @@ const Layout = () => (
         key={'outlet-ref-wrapper'}
         id="outlet-ref-wrapper"
         sx={{
-          width: '100%',
+          width: '100vw',
           display: 'flex',
           justifyContent: 'center',
           height: 'fit-content',

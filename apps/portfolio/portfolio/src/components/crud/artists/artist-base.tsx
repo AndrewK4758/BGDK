@@ -14,7 +14,7 @@ import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Theme from '../../../styles/theme';
+// import Theme from '../../../styles/theme';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -28,11 +28,9 @@ const Artist = () => {
   const [artists, setArtists] = useState<artist[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
-  const matchesSize = useMediaQuery('min-width:1000px');
+  const matchesSize = useMediaQuery('(max-width:1200px)');
   const nav = useNavigate();
-  console.log(Theme);
-  console.log(matchesSize);
-  console.log(Theme.breakpoints.keys);
+
   const apiRef = useGridApiRef<GridApiCommunity>();
 
   const queryOptions = useMemo(
@@ -120,7 +118,7 @@ const Artist = () => {
       component={'div'}
       key={'all-data-grids-wrapper'}
       id="all-data-grids-wrapper"
-      sx={{ width: '100%', minWidth: 0, display: 'flex' }}
+      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row' }}
     >
       <Box
         component={'div'}
@@ -131,7 +129,7 @@ const Artist = () => {
           flexWrap: 'wrap',
           alignContent: 'center',
           justifyItems: 'center',
-          flex: '1 0 50%',
+          flex: matchesSize ? '1 0 100%' : '1 0 50%',
           border: '3px solid purple',
         }}
       >

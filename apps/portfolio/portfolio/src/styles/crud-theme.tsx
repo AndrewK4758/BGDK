@@ -6,7 +6,7 @@ const CrudTheme = createTheme({
       primary: '#1f1f1f',
     },
   },
-  shape: { borderRadius: 5 },
+  shape: { borderRadius: 15 },
 });
 
 export default CrudTheme;

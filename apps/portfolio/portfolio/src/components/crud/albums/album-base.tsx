@@ -1,7 +1,9 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
-import { Container, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
@@ -24,6 +26,7 @@ const Album = () => {
   const [albums, setAlbums] = useState<album[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
+  const matchesSize = useMediaQuery('(max-width:1200px)');
   const nav = useNavigate();
 
   const apiRef = useGridApiRef<GridApiCommunity>();
@@ -120,9 +123,14 @@ const Album = () => {
       component={'div'}
       key={'all-albums-box'}
       id="all-albums-box"
-      sx={{ display: 'flex', minWidth: 0, width: '100%' }}
+      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row' }}
     >
-      <Box component={'div'} key={'album-box'} id="album-box" sx={{ flex: 1, border: '3px solid purple' }}>
+      <Box
+        component={'div'}
+        key={'album-box'}
+        id="album-box"
+        sx={{ flex: matchesSize ? '1 0 100%' : '1 0 50%', border: '3px solid purple' }}
+      >
         <Container key={'albums-title-wrapper'} component={'section'} id="album-title-wrapper">
           <Paper elevation={6} key={'album-title-bar'} id="album-title-bar" component={'div'} sx={{ height: '2rem' }}>
             <Typography
@@ -147,7 +155,6 @@ const Album = () => {
             logLevel="info"
             key={'album-data-grid'}
             aria-label="album-data-grid"
-            autoHeight
             autosizeOnMount={true}
             apiRef={apiRef}
             columns={columns}
@@ -163,7 +170,12 @@ const Album = () => {
           />
         </Box>
       </Box>
-      <Box key={'tracks-on-album-box'} component={'div'} id="tracks-on-album-box" sx={{ flex: 1 }}>
+      <Box
+        key={'tracks-on-album-box'}
+        component={'div'}
+        id="tracks-on-album-box"
+        sx={{ flex: matchesSize ? '1 0 100%' : '1 0 50%' }}
+      >
         <Outlet />
       </Box>
     </Box>

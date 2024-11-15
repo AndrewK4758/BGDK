@@ -10,7 +10,7 @@ const Home = () => (
       key={'intro-wrapper'}
       id="intro-wrapper"
       sx={{
-        width: '90%',
+        width: '80vw',
         display: 'flex',
         justifyContent: 'space-between',
       }}
@@ -24,7 +24,7 @@ const Home = () => (
       key={'tech-stack-wrapper'}
       id="tech-stack-wrapper"
       sx={{
-        width: '90%',
+        width: '80vw',
         display: 'flex',
         justifyContent: 'center',
       }}

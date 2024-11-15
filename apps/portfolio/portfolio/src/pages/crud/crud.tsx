@@ -6,12 +6,13 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { lazy, useEffect, useRef } from 'react';
+import { lazy, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
+const Search = lazy(() => import('../../components/crud/search'));
 
 const title = 'C.R.U.D. Data Manager';
 
@@ -47,6 +48,7 @@ const titleSx: SxProps = {
 };
 
 const Crud = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
 
@@ -61,8 +63,7 @@ const Crud = () => {
       key={'crud-wrapper'}
       id="crud-wrapper"
       sx={{
-        flex: '1 0 80%',
-        width: '100%',
+        flex: '1 0 100%',
         display: 'flex',
         flexDirection: 'column',
         gap: '10vh',
@@ -130,6 +131,23 @@ const Crud = () => {
             {body}
           </Typography>
         </Box>
+        <Box sx={{ display: 'flex', flex: '0 1 100%', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <Button
+            color="secondary"
+            variant="text"
+            onClick={() => setOpen(!open)}
+            sx={{
+              textAlign: 'right',
+              color: Theme.palette.secondary.light,
+              fontSize: '1.25rem',
+              p: 2,
+            }}
+          >
+            {open ? 'Close' : 'Search'}
+          </Button>
+        </Box>
+
+        {open && <Search open={open} />}
       </Paper>
 
       <Box
@@ -137,8 +155,8 @@ const Crud = () => {
         key={`crud-app-wrapper`}
         id={`crud-app-wrapper`}
         sx={{
-          width: '90%',
-          minHeight: '100%',
+          width: '90vw',
+          minHeight: '30vh',
           height: 'fit-content',
         }}
       >
