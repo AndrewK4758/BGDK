@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { LoaderFunction } from 'react-router-dom';
-import { getCookie } from '@bgdk/utils';
+import { getContextId } from '@bgdk/utils';
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
 const loadContextId: LoaderFunction = async () => {
   try {
-    const cookie = getCookie('context-id', document.cookie);
+    const contextId = getContextId('context-id');
 
-    if (cookie) {
+    if (contextId) {
       return null;
     } else {
-      await axios.get(`${baseUrl}/context-id`, { withCredentials: true });
+      const resp = await axios.get(`${baseUrl}/context-id`);
 
+      sessionStorage.setItem('context-id', resp.data);
       return null;
     }
   } catch (error) {

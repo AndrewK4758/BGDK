@@ -5,9 +5,7 @@ const createContextIdCookie = (_req: Request, resp: Response) => {
   try {
     const contextId = new ShortUniqueId().randomUUID();
 
-    resp.cookie('context-id', contextId, { sameSite: 'none', secure: true });
-
-    resp.sendStatus(201);
+    resp.status(201).send(contextId);
   } catch (err) {
     console.error(err);
 

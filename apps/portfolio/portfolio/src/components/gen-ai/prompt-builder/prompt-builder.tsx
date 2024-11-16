@@ -9,7 +9,7 @@ import {
   tooltipSx,
   Waiting,
 } from '@bgdk/shared-react-components';
-import { getCookie } from '@bgdk/utils';
+import { getContextId } from '@bgdk/utils';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -607,17 +607,18 @@ export const handleFileUpload = async (
     if (fileInputRef.current) {
       if (fileInputRef.current.files) {
         const file = fileInputRef.current.files[0];
+
+        const contextPath = getContextId('context-id');
+
         const resp = await axios.post(
           `${baseUrl}/upload`,
-          { file: file },
-          { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true },
+          { file: file, contextPath: contextPath },
+          { headers: { 'Content-Type': 'multipart/form-data' } },
         );
 
         const { path } = resp.data as { path: string };
 
         const insertIdx = path.lastIndexOf('/');
-
-        const contextPath = getCookie('context-id', document.cookie);
 
         const fullPath = path.slice(0, insertIdx) + `/${contextPath}` + path.slice(insertIdx);
 

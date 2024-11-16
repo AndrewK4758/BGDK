@@ -1,14 +1,13 @@
-import { getCookie } from '@bgdk/utils';
 import { Request, Response } from 'express';
 import memoryUpload from '../services/upload-to-gcs-bucket';
 
 const uploadToGcsBucket = async (req: Request, resp: Response) => {
   try {
+    const { contextPath } = req.body;
+
     const file = req.file;
 
-    const contextPath = getCookie('context-id', req.headers.cookie);
-
-    const result = await memoryUpload(contextPath, file);
+    const result = await memoryUpload(contextPath as string, file);
 
     resp.status(201).json({ path: result });
   } catch (error) {
