@@ -22,7 +22,7 @@ export default defineConfig({
 
   plugins: [
     react({ babel: { targets: { esmodules: true } } }),
-    nxViteTsPaths(),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports', 'require'] }),
     nxCopyAssetsPlugin(['*.md']),
     dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') }),
   ],

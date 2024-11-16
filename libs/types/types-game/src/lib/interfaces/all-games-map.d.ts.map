@@ -1,0 +1,1 @@
+{"version":3,"file":"all-games-map.d.ts","sourceRoot":"","sources":["all-games-map.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AACrD,OAAO,EAAE,cAAc,EAAE,MAAM,eAAe,CAAC;AAE/C,MAAM,WAAW,YAAY;IAC3B,QAAQ,EAAE,GAAG,CAAC,cAAc,EAAE,eAAe,CAAC,CAAC;IAC/C,OAAO,CAAC,cAAc,EAAE,cAAc,EAAE,IAAI,EAAE,eAAe,GAAG,IAAI,CAAC;CACtE"}

@@ -10,7 +10,6 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "libs/chain/dist",
-        "buildLibsFromSource": true,
         "main": "libs/chain/src/index.ts",
         "tsConfig": "libs/chain/tsconfig.lib.json",
         "configFile": "libs/chain/vite.config.mts",
@@ -30,6 +29,17 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "fix": true
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "outputPath": "dist/libs/chain",
+        "tsConfig": "tsconfig.base.json",
+        "main": "libs/chain/src/index.ts",
+        "color": true,
+        "commands": ["tsc", "--build", "--emitDeclarationOnly", "--pretty", "--verbose"]
       }
     }
   }

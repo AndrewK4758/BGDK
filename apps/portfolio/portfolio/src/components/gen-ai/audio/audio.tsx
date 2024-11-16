@@ -1,21 +1,21 @@
 import type { MRC } from '@bgdk/media-recorder';
+import { Text } from '@bgdk/react-components';
 import { topLevelModeStyle } from '@bgdk/shared-react-components';
+import type { PromptRequest } from '@bgdk/vertex-ai';
+import HearingIcon from '@mui/icons-material/Hearing';
+import MicNoneIcon from '@mui/icons-material/MicNone';
+import MicOffIcon from '@mui/icons-material/MicOff';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { useContext, useEffect, useRef, useState, type RefObject } from 'react';
-import { MediaRecorderClientContext } from '../../../contexts/audio-context';
-import MicNoneIcon from '@mui/icons-material/MicNone';
-import MicOffIcon from '@mui/icons-material/MicOff';
-import AudioVisualizer from './audio-visualizer';
-import HearingIcon from '@mui/icons-material/Hearing';
-import { Text } from '@bgdk/react-components';
-import { WebSocketContext } from '../../../contexts/websocket-context';
-import type { PromptRequest } from '@bgdk/vertex-ai';
 import axios from 'axios';
+import { useContext, useEffect, useRef, useState, type RefObject } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import type { OutletContextProps } from '../../../pages/ai/gen-ai';
+import { MediaRecorderClientContext } from '../../../contexts/audio-context';
+import { WebSocketContext } from '../../../contexts/websocket-context';
+import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
+import AudioVisualizer from './audio-visualizer';
 
 const audioText =
   'This audio recorder allows you to capture your voice and submit it directly to Gemini.  Use it to create recordings for analysis, transcription, or any other task that can benefit from Gemini\'s powerful AI capabilities. Simply click "Start" to begin.';
@@ -37,7 +37,6 @@ const GenAiAudio = () => {
     if (!socket.connected) socket.connect();
 
     socket.on('chunk', ({ response }) => {
-      console.log(response);
       setPromptResponse(prev => [...prev, response]);
     });
     return () => {
@@ -57,13 +56,10 @@ const GenAiAudio = () => {
     if (audRef.current && blob) {
       const url = URL.createObjectURL(blob as Blob);
       audRef.current.src = url;
-      console.log(audRef.current.title);
     }
   }, [blob]);
 
   const uploadFile = async () => {
-    console.log(blob, 'UPLOAD FILE');
-
     if (blob) {
       const path = await handleFileUpload(audRef, blob);
 
@@ -184,8 +180,6 @@ const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement>, blob:
         { file: file },
         { headers: { 'Content-Type': 'multipart/form-data' } },
       );
-
-      console.log(resp.data);
 
       const { path } = resp.data;
 

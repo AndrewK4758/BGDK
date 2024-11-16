@@ -1,4 +1,6 @@
 import { ChatResponse, Text } from '@bgdk/react-components';
+import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
+import type { PromptRequest } from '@bgdk/vertex-ai';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,19 +10,26 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { lazy, useEffect, useRef, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
+import {
+  lazy,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type Dispatch,
+  type SetStateAction,
+} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
+import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
 import Theme from '../../styles/theme';
 import handleScrollIntoView from '../../utils/handle-scroll-into-view';
-import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
-import { useContext } from 'react';
-import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
 
 export type OutletContextProps = {
-  prompt: string;
+  prompt: PromptRequest;
   promptResponse: string[];
   setPromptResponse: Dispatch<SetStateAction<string[]>>;
 };
@@ -36,13 +45,15 @@ const titleSx: SxProps = {
   flex: '1 0 100%',
 };
 
+const promptInit: PromptRequest = { text: '', fileData: null };
+
 const GenAiHome = () => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
+  const [prompt, setPrompt] = useState<PromptRequest>(promptInit);
+  const [open, setOpen] = useState<boolean>(false);
+  const [promptResponse, setPromptResponse] = useState<string[]>([]);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
-  const [open, setOpen] = useState<boolean>(false);
-  const [prompt, setPrompt] = useState<string>('');
-  const [promptResponse, setPromptResponse] = useState<string[]>([]);
 
   useEffect(() => {
     if (divRef.current) handleScrollIntoView(divRef.current);
@@ -131,15 +142,6 @@ const GenAiHome = () => {
             >
               Audio
             </Button>
-            <Button
-              LinkComponent={'button'}
-              key={'gen-ai-video'}
-              id="gen-ai-video"
-              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
-              onClick={() => nav('video')}
-            >
-              Video
-            </Button>
           </Toolbar>
         </AppBar>
         <Container sx={{ paddingY: 2 }}>
@@ -193,32 +195,34 @@ const GenAiHome = () => {
           <Outlet context={{ prompt, promptResponse, setPromptResponse }} />
         </MediaRecorderClientContextProvider>
       </Box>
-      <Box
-        component={'div'}
-        key={'gen-ai-response-wrapper'}
-        id="gen-ai-response-wrapper"
-        sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
-      >
-        <Paper
+      {promptResponse.length && (
+        <Box
           component={'div'}
-          key={'gen-ai-response-paper'}
-          id="gen-ai-response-paper"
-          sx={{ height: '100%', width: '100%' }}
+          key={'gen-ai-response-wrapper'}
+          id="gen-ai-response-wrapper"
+          sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
         >
-          <Container
+          <Paper
             component={'div'}
-            key={'gen-ai-response-container'}
-            id="gen-ai-response-container"
+            key={'gen-ai-response-paper'}
+            id="gen-ai-response-paper"
             sx={{ height: '100%', width: '100%' }}
           >
-            <ChatResponse
-              response={promptResponse}
-              chatResponseLabelProps={{ textAlign: 'center', color: Theme.palette.secondary.light }}
-              chatResponseTextProps={renderPreTagInsideParentDiv as CSSProperties}
-            />
-          </Container>
-        </Paper>
-      </Box>
+            <Container
+              component={'div'}
+              key={'gen-ai-response-container'}
+              id="gen-ai-response-container"
+              sx={{ height: '100%', width: '100%' }}
+            >
+              <ChatResponse
+                response={promptResponse}
+                chatResponseLabelProps={{ textAlign: 'center', color: Theme.palette.secondary.light }}
+                chatResponseTextProps={renderPreTagInsideParentDiv as CSSProperties}
+              />
+            </Container>
+          </Paper>
+        </Box>
+      )}
     </Box>
   );
 };

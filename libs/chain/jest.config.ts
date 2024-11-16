@@ -2,12 +2,6 @@ import { DefaultEsmTransformOptions } from 'ts-jest';
 
 const opts: DefaultEsmTransformOptions = {
   tsconfig: '<rootDir>/tsconfig.spec.json',
-  babelConfig: {
-    targets: { esmodules: true, node: 'current' },
-  },
-  diagnostics: {
-    warnOnly: true,
-  },
 };
 
 export default {

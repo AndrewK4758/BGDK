@@ -35,7 +35,7 @@ export function FormikTextInput({
   if (onBlurCB) field.onBlur = onBlurCB;
 
   return (
-    <Box key={`${label}-wrapper`}>
+    <Box key={`${label}-wrapper`} id={`${label}-wrapper`}>
       <Label tooltipTitle={label} labelVariant={'h2'} labelText={label} sx={labelSx} placement={'top'} />
       <TextField
         id="chat-text-input-id"
@@ -54,9 +54,10 @@ export function FormikTextInput({
       />
       {meta.touched && meta.error ? (
         <Text
-          sx={{ color: Theme.palette.primary.contrastText, ...labelSx }}
+          id="formik-error-text-input"
           titleVariant="body1"
           titleText={meta.error}
+          sx={{ ...labelSx, color: Theme.palette.error.main, fontFamily: 'Roboto', fontSize: '1.25rem', paddingY: 2 }}
         />
       ) : null}
     </Box>

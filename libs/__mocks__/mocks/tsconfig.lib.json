@@ -6,7 +6,7 @@
     "moduleResolution": "Bundler",
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "../../types/types-game/src/**/*.ts"],
   "exclude": ["tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [{ "path": "../../types/types-game/tsconfig.lib.json" }]
 }

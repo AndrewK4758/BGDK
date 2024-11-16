@@ -6,12 +6,13 @@ import { ReactNode } from 'react';
 
 export interface TextProps {
   titleVariant: Variant;
+  id?: string;
   titleText: string | ReactNode;
   sx?: SxProps;
 }
 
-export const Text = ({ titleVariant, titleText, sx }: TextProps) => (
-  <Typography variant={titleVariant} sx={sx}>
+export const Text = ({ id, titleVariant, titleText, sx }: TextProps) => (
+  <Typography id={id} variant={titleVariant} sx={sx}>
     {titleText}
   </Typography>
 );

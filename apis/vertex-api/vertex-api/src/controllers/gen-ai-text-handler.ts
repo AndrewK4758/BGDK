@@ -1,6 +1,6 @@
 import type { SocketCallback } from '@bgdk/types-ai';
-import { type Socket } from 'socket.io';
 import { generateTextContent } from '@bgdk/vertex-ai';
+import { type Socket } from 'socket.io';
 
 const handleTextDataChunks: SocketCallback = (socket: Socket) => {
   socket.on('prompt', async prompt => {

@@ -23,7 +23,7 @@
           }
         ],
         "sourcemap": true,
-        "target": "node22",
+        "target": "node23",
         "platform": "node",
         "format": ["esm", "cjs"],
         "bundle": true,

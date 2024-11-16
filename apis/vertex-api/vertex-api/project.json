@@ -41,7 +41,7 @@
       "dependsOn": ["^build"],
       "options": {
         "buildTarget": "vertex-api:build",
-        "runtimeArgs": ["--trace-deprecation"]
+        "runtimeArgs": ["--trace-deprecation", "--trace-warnings"]
       },
       "configurations": {
         "development": {

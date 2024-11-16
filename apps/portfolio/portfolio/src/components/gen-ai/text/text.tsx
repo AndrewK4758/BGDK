@@ -7,41 +7,37 @@ import { ChatInput } from '@bgdk/react-components';
 import { useOutletContext } from 'react-router-dom';
 import { useContext } from 'react';
 import { WebSocketContext, WebSocketContextType } from '../../../contexts/websocket-context';
+import type { PromptRequest } from '@bgdk/vertex-ai';
+import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
+import { FileData } from '@google-cloud/vertexai';
 
 const TextGenerator = () => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
-  const prompt = useOutletContext() as ChatInputValues | null;
+  const { prompt } = useOutletContext() as OutletContextProps;
 
-  type ChatInputValues = {
-    prompt: string;
-  };
-
-  const chatInitialValues: ChatInputValues = {
-    prompt: '',
-  };
-
-  const validationSchema = Yup.object({
-    prompt: Yup.string()
-      .required()
+  const validationSchema = Yup.object<PromptRequest>().shape({
+    text: Yup.string()
+      .required('Must be a valid question or statement')
       .min(2, 'Must be a valid question or statement')
       .max(255, 'Must be less than 255 characters'),
+    fileData: Yup.mixed<FileData>().nullable().notRequired(),
   });
 
   return (
     <Box component={'section'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={topLevelModeStyle}>
       <Paper component={'div'} key={'prompt-builder-paper'} id="prompt-builder-paper">
         <Container component={'section'} key={'text-input-wrapper'} id="text-input-wrapper" sx={{ paddingY: 2 }}>
-          <ChatInput<ChatInputValues>
+          <ChatInput<PromptRequest>
             method="post"
             action=""
             type="text"
             buttonText="Submit Prompt"
             buttonType="submit"
-            names={Object.keys(chatInitialValues)}
+            names={Object.keys(prompt)}
             labelText={'Prompt Input'}
             variant="text"
             socket={socket}
-            initialValues={prompt === null ? chatInitialValues : prompt}
+            initialValues={prompt}
             validationSchema={validationSchema}
             breakpointsChatInputButton={{ fontSize: '2rem' }}
             breakpointsChatInputText={textInputSx}

@@ -1,6 +1,6 @@
 import { GenerateContentRequest } from '@google-cloud/vertexai';
-import generativeTextModel from '../models/generative-text-model';
 import type { PromptRequest } from '../../types/prompt-request-types';
+import generativeTextModel from '../models/generative-text-model';
 
 export const generateTextContent = async ({ text, fileData }: PromptRequest) => {
   const request: GenerateContentRequest = {
@@ -12,21 +12,14 @@ export const generateTextContent = async ({ text, fileData }: PromptRequest) => 
     ],
   };
 
-  if (text !== null) {
+  if (text && text.length) {
     request.contents[0].parts.push({ text: text });
   }
 
-  if (fileData !== null) {
+  if (fileData) {
     const { fileUri, mimeType } = fileData;
     request.contents[0].parts.push({ fileData: { fileUri: fileUri, mimeType: mimeType } });
   }
-  // if (filesData.inlineData !== null) {
-  //   const { data, mimeType } = filesData.inlineData;
-
-  //   request.contents[0].parts.push({
-  //     inlineData: { data: data, mimeType: mimeType },
-  //   });
-  // }
 
   return await generativeTextModel.generateContentStream(request);
 };

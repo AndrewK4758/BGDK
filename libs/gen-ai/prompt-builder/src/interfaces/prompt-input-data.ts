@@ -1,11 +1,11 @@
 import { ResponseType } from '../types/prompt-input-data-types';
 
 export interface IPromptInputData {
-  [key: string]: string | File | undefined | null | ResponseType;
+  [key: string]: string | undefined | null | ResponseType;
   objective: string;
   responseFormat: ResponseType;
   instructions?: string | undefined;
-  document?: File | string | null;
+  document?: string | null;
   textData?: string | undefined;
   examples?: string | undefined;
   constraints?: string | undefined;

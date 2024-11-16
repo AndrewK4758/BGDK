@@ -17,7 +17,7 @@ export class Routes {
 
     router.get('/context-id', createContextIdCookie);
     router.post('/upload', upload.single('file'), uploadToGcsBucket);
-    router.post('/build-prompt', upload.single('document'), promptBuilder);
+    router.post('/build-prompt', promptBuilder);
     router.post('/images', generateImages);
   }
 }

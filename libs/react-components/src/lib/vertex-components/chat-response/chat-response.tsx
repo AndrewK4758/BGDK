@@ -1,6 +1,6 @@
-import Box from '@mui/material/Box';
 // import styles from './chat-response.module.css';
 import { Label } from '@bgdk/shared-react-components';
+import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import type { CSSProperties } from 'react';
 

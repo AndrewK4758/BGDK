@@ -12,7 +12,7 @@ export default defineConfig({
     nxViteTsPaths({
       buildLibsFromSource: true,
       debug: true,
-      mainFields: ['exports', '.', 'import', 'default'],
+      mainFields: ['exports', '.', 'types', 'import', 'require'],
     }),
     dts({
       logLevel: 'info',
@@ -40,7 +40,7 @@ export default defineConfig({
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
       name: 'chain',
-      fileName: 'index',
+      fileName: 'main',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es', 'cjs'],
@@ -58,6 +58,7 @@ export default defineConfig({
     format: 'esm',
     color: true,
     platform: 'node',
+    target: 'node23',
   },
   logLevel: 'info',
 });

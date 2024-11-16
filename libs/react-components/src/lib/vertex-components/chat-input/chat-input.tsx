@@ -1,14 +1,15 @@
 // import styles from './chat-input.module.css';
+
+import type { PromptRequest } from '@bgdk/vertex-ai';
 import { Box, SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
-import { Form, Formik } from 'formik';
+import { Form, Formik, type FormikState, type FormikValues } from 'formik';
 import type { Socket } from 'socket.io-client';
 import * as Yup from 'yup';
 import { FormActionProps } from '../../../interfaces/form-action-props';
 import FormikTextInput from '../../games-ui/text-input/formik-text-input';
-import type { PromptRequest } from '@bgdk/vertex-ai';
 
-interface ChatInputProps<T extends Yup.AnyObject> extends FormActionProps {
+interface ChatInputProps<T extends Yup.Maybe<Yup.AnyObject>> extends FormActionProps {
   breakpointsChatInputButton: SxProps;
   breakpointsChatInputText: SxProps;
   breakpointsChatInputLabel: SxProps;
@@ -19,7 +20,7 @@ interface ChatInputProps<T extends Yup.AnyObject> extends FormActionProps {
   validationSchema: Yup.ObjectSchema<T>;
 }
 
-export const ChatInput = <T extends Yup.AnyObject>({
+export const ChatInput = <T extends FormikValues>({
   method,
   action,
   names,
@@ -46,15 +47,7 @@ export const ChatInput = <T extends Yup.AnyObject>({
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={({ prompt }, { resetForm }) => {
-          console.log(prompt);
-          const promptRequest: PromptRequest = {
-            text: prompt,
-            fileData: null,
-          };
-          socket.emit('prompt', promptRequest);
-          resetForm();
-        }}
+        onSubmit={({ text, fileData }, { resetForm }) => submitPrompt<T>({ text, fileData }, resetForm, socket)}
       >
         <Form
           key={'chat-input-form'}
@@ -65,12 +58,12 @@ export const ChatInput = <T extends Yup.AnyObject>({
         >
           <Box key={'chat-input-form-text-box'} id="chat-input-form-text-box" sx={{ flex: '0 1 100%' }}>
             <FormikTextInput
+              key={'chat-input-form-text-input'}
+              id="chat-input-form-text-input"
               autoComplete="off"
               placeholder="Enter prompt here"
               type={type}
               name={names[0]}
-              key={'chat-input-form-text-input'}
-              id="chat-input-form-text-input"
               textSx={breakpointsChatInputText}
               label={labelText}
               labelComponent={'h2'}
@@ -101,3 +94,17 @@ export const ChatInput = <T extends Yup.AnyObject>({
 };
 
 export default ChatInput;
+
+const submitPrompt = <T,>(
+  { text, fileData }: PromptRequest,
+  resetForm: (nextState?: Partial<FormikState<T>> | undefined) => void,
+  socket: Socket,
+) => {
+  const promptRequest: PromptRequest = {
+    text: text,
+    fileData: fileData,
+  };
+
+  socket.emit('prompt', promptRequest);
+  resetForm();
+};

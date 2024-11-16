@@ -5,6 +5,42 @@ import Theme from '../../../styles/theme';
 
 import type { SxProps } from '@mui/material/styles';
 
+export const FILE_SIZE = 1024 * 1024 * 5;
+
+/**
+ * THESE ARE VALUES THAT I FOUND FROM LOOKING AT THE TYPE PROPERTY AS I UPLOADED THEM TO MY LOCAL MACHINE.
+ * I AM NOT SURE THEY WILL WORK FOR TYPESCRIPT AND OTHER FILE TYPES OUTSIDE OF MY LOCAL DEV SETTING.
+ */
+export const SUPPORTED_FORMATS = [
+  '.json',
+  '.pdf',
+  '.txt',
+  '.csv',
+  '.docx',
+  '.doc',
+  '.xml',
+  '.js',
+  '.py',
+  '.ts',
+  '.xlsx',
+  '.ppt',
+  '.ogg',
+  '.mpeg',
+  '.mp4',
+  '.webm',
+  '.mp3',
+  '.wav',
+  '.png',
+  '.jpeg',
+  '.webp',
+  '.mov',
+  '.mpg',
+  '.avi',
+  '.wmv',
+  '.mpegps',
+  '.flv',
+];
+
 const listHeader: SxProps = {
   color: Theme.palette.secondary.light,
   fontSize: '1.1rem',

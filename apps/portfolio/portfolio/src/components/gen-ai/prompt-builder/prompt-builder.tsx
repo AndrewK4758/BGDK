@@ -2,12 +2,15 @@ import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
 import { Text } from '@bgdk/react-components';
 import {
   FormikValidationError,
+  helperTextSx,
   Label,
   labelSx,
   textInputSx,
   tooltipSx,
-  helperTextSx,
+  Waiting,
 } from '@bgdk/shared-react-components';
+import { getCookie } from '@bgdk/utils';
+import type { PromptRequest } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -17,9 +20,17 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useFormik, type FormikProps } from 'formik';
+import axios from 'axios';
+import { useFormik } from 'formik';
 import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
-import { Form, useActionData, useSubmit, type SubmitFunction } from 'react-router-dom';
+import {
+  Form,
+  useActionData,
+  useNavigate,
+  useSubmit,
+  type NavigateFunction,
+  type SubmitFunction,
+} from 'react-router-dom';
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
@@ -31,59 +42,13 @@ import {
   instructions,
   objective,
   responseInstructions,
+  SUPPORTED_FORMATS,
   textData,
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
-import axios from 'axios';
 
-const FILE_SIZE = 1024 * 1024 * 5;
-/**
- * THESE ARE VALUES THAT I FOUND FROM LOOKING AT THE TYPE PROPERTY AS I UPLOADED THEM TO MY LOCAL MACHINE.
- * I AM NOT SURE THEY WILL WORK FOR TYPESCRIPT AND OTHER FILE TYPES OUTSIDE OF MY LOCAL DEV SETTING.
- */
-const SUPPORTED_FORMATS = [
-  'application/json',
-  'text/csv',
-  'text/plain',
-  'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'application/xml',
-  'text/javascript',
-  'application/pdf',
-  'application/python',
-  'application/javascript',
-  'text/vnd.trolltech.linguist', //typescript
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'audio/webm',
-  'audio/ogg',
-  'audio/mpeg',
-  'audio/wav',
-  'video/mp4',
-  'video/webm',
-  'video/ogg',
-  'application/pdf',
-  'audio/mpeg',
-  'audio/mp3',
-  'audio/wav',
-  'image/png',
-  'image/jpeg',
-  'image/webp',
-  'text/plain',
-  'video/mov',
-  'video/mpeg',
-  'video/mp4',
-  'video/mpg',
-  'video/avi',
-  'video/wmv',
-  'video/mpegps',
-  'video/flv',
-];
-
-const promptBuilderHeaderText = `This is designed to helperTextSxp you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be converted into a text format.`;
-
-const isFile = (valueToTest: unknown) => valueToTest instanceof File;
+const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
 
 const initialValues: IPromptInputData = {
   objective: '',
@@ -94,7 +59,6 @@ const initialValues: IPromptInputData = {
   tone: '',
   responseFormat: ResponseType.TEXT,
   responseInstructions: '',
-  file: null,
 };
 
 const validationSchema = Yup.object({
@@ -106,46 +70,36 @@ const validationSchema = Yup.object({
   tone: Yup.string(),
   resposeFormat: Yup.string().oneOf(Object.values(ResponseType)),
   responseInstructions: Yup.string(),
-  file: Yup.mixed()
-    .notRequired()
-    .test('fileSize', 'File too large, must be less than 5MB', value => {
-      if (isFile(value)) return value.size < FILE_SIZE;
-      else return true;
-    })
-    .test(
-      'fileFormat',
-      'Unsupported File Format. Supported formats are: '.concat(
-        ...SUPPORTED_FORMATS.map(e => e.split('/')[1]).join(', .'),
-      ),
-      value => {
-        if (isFile(value)) return SUPPORTED_FORMATS.includes(value.type);
-        else if (value === null || value === undefined) return true;
-        else return false;
-      },
-    ),
 });
 
 interface PromptBuilderProps {
-  setPrompt: Dispatch<SetStateAction<string>>;
+  setPrompt: Dispatch<SetStateAction<PromptRequest>>;
 }
 
 const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   const [openPromptResponse, setOpenPromptResponse] = useState<boolean>(false);
+  const [fileName, setFileName] = useState<string>('');
+  const [loadingFile, setLoadingFile] = useState<boolean>(false);
   const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const nav = useNavigate();
+
   const action = useActionData() as string;
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => handleSubmitMessage(values, submit),
+    onSubmit: values => {
+      handleSubmitMessage(values, submit);
+    },
     validateOnBlur: true,
     validateOnChange: true,
   });
 
-  const handleFileSubmit = () => {
+  const handleFileUploadButtonClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
+      setLoadingFile(true);
     }
   };
 
@@ -166,7 +120,14 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
             />
             <Text titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
-          <Form key={'prompt-builder-form'} method="post" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+          <Form
+            key={'prompt-builder-form'}
+            action=""
+            method="post"
+            encType="application/x-www-form-urlencoded"
+            onSubmit={formik.handleSubmit}
+            onReset={formik.handleReset}
+          >
             <Box
               component={'section'}
               key={'prompt-builder-input-elements-box'}
@@ -474,30 +435,54 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
               >
                 <input
                   ref={fileInputRef}
-                  accept={`${SUPPORTED_FORMATS.toString()}`}
-                  id="file"
-                  name="file"
+                  accept={SUPPORTED_FORMATS.join(', ')}
+                  id="document"
+                  name="document"
                   type="file"
                   style={{ display: 'none' }}
-                  onChange={() => handleFileUpload(fileInputRef, formik)}
+                  onChange={() => handleFileUpload(fileInputRef, setPrompt, setFileName, setLoadingFile)}
                   onBlur={formik.handleBlur}
                   onReset={formik.handleReset}
                 />
-                {formik.values.document ? (
-                  <Box component={'span'}>
+
+                <Box
+                  component={'section'}
+                  key={'current-document-text-value'}
+                  id={'current-document-text-value'}
+                  sx={{ display: 'flex', alignItems: 'baseline', gap: 2, flex: '1 0 100%' }}
+                >
+                  <Text
+                    key={'current-document-text-value-title'}
+                    titleVariant="h4"
+                    titleText={`Uploaded File: `}
+                    sx={{ color: Theme.palette.primary.main }}
+                  />
+                  {loadingFile ? (
+                    <Box sx={{ maxHeight: '100px', width: 'auto' }}>
+                      <Waiting />
+                    </Box>
+                  ) : (
                     <Text
+                      key={'current-document-text-value-text'}
                       titleVariant="body1"
-                      titleText={`Uploaded File: ${(formik.values.document as File).name}`}
-                      sx={{ fontSize: '1.1rem', fontWeight: 'bold' }}
+                      titleText={`${fileName}`}
+                      sx={{ fontSize: '1.4rem' }}
                     />
-                  </Box>
-                ) : null}
+                  )}
+                </Box>
+
                 <FormikValidationError<IPromptInputData>
                   elementName="document"
                   formik={formik}
                   helperTextSx={helperTextSx}
                 />
               </Box>
+              <Box
+                component={'section'}
+                key={'uploaded-file-name'}
+                id={'uploaded-file-name'}
+                sx={{ display: 'hidden' }}
+              ></Box>
               <Box
                 component={'section'}
                 key={'prompt-builder-submit-box'}
@@ -511,7 +496,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                     key={'prompt-builder-upload-file-button'}
                     id="prompt-builder-upload-file-button"
                     sx={{ fontSize: '2rem' }}
-                    onClick={handleFileSubmit}
+                    onClick={handleFileUploadButtonClick}
                   >
                     Upload File
                   </Button>
@@ -541,7 +526,9 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                     type="button"
                     key={'copy-and-add-to-input'}
                     id="copy-and-add-to-input"
-                    onClick={() => handleCopyPromptToClipboardAndAddToInput(action, setPrompt, setOpenPromptResponse)}
+                    onClick={() =>
+                      handleCopyPromptToClipboardAndAddToInput(action, setPrompt, setOpenPromptResponse, nav)
+                    }
                     sx={{ fontSize: '2rem' }}
                   >
                     Copy & Add to Input
@@ -576,55 +563,45 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
 export default PromptBuilder;
 
 const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) => {
-  const {
-    objective,
-    instructions,
-    document,
-    textData,
-    examples,
-    constraints,
-    tone,
-    responseFormat,
-    responseInstructions,
-  } = values;
+  console.log('clicked');
+  const { objective, instructions, textData, examples, constraints, tone, responseFormat, responseInstructions } =
+    values;
 
-  const formDataToSend = new FormData();
+  const promptDataToSend = new FormData();
 
-  formDataToSend.set('objective', objective);
-  formDataToSend.set('responseFormat', responseFormat);
+  promptDataToSend.set('objective', objective);
+  promptDataToSend.set('responseFormat', responseFormat);
 
-  if (instructions) formDataToSend.set('instructions', instructions);
-  if (document) formDataToSend.set('document', document);
-  if (textData) formDataToSend.set('textData', textData);
-  if (examples) formDataToSend.set('examples', examples);
-  if (constraints) formDataToSend.set('constraints', constraints);
-  if (tone) formDataToSend.set('tone', tone);
-  if (responseInstructions) formDataToSend.set('responseInstructions', responseInstructions);
+  if (instructions) promptDataToSend.set('instructions', instructions);
+  if (textData) promptDataToSend.set('textData', textData);
+  if (examples) promptDataToSend.set('examples', examples);
+  if (constraints) promptDataToSend.set('constraints', constraints);
+  if (tone) promptDataToSend.set('tone', tone);
+  if (responseInstructions) promptDataToSend.set('responseInstructions', responseInstructions);
 
-  submit(formDataToSend, { method: 'post', encType: 'multipart/form-data' });
+  console.log(promptDataToSend);
+  submit(promptDataToSend, { action: '', method: 'post', encType: 'application/x-www-form-urlencoded' });
 };
 
 const handleCopyPromptToClipboardAndAddToInput = async (
-  prompt: string,
-  setPrompt: Dispatch<SetStateAction<string>>,
+  buildPrompt: string,
+  setPrompt: Dispatch<SetStateAction<PromptRequest>>,
   setOpenPromptResponse: Dispatch<SetStateAction<boolean>>,
+  nav: NavigateFunction,
 ) => {
-  setPrompt(prompt);
-  await navigator.clipboard.writeText(prompt);
+  setPrompt(prev => ({ ...prev, text: buildPrompt }));
+  await navigator.clipboard.writeText(buildPrompt);
   setOpenPromptResponse(false);
-};
-
-const addFilePathToFormikContext = async (path: string, formik: FormikProps<IPromptInputData>) => {
-  await formik.setTouched({ document: true });
-
-  await formik.setFieldValue('file', path, true);
+  nav('text');
 };
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
 export const handleFileUpload = async (
   fileInputRef: RefObject<HTMLInputElement>,
-  formik: FormikProps<IPromptInputData>,
+  setPrompt: Dispatch<SetStateAction<PromptRequest>>,
+  setFileName: Dispatch<SetStateAction<string>>,
+  setLoadingFile: Dispatch<SetStateAction<boolean>>,
 ) => {
   try {
     if (fileInputRef.current) {
@@ -636,14 +613,25 @@ export const handleFileUpload = async (
           { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true },
         );
 
-        console.log(resp.data);
+        const { path } = resp.data as { path: string };
 
-        const { path } = resp.data;
+        const insertIdx = path.lastIndexOf('/');
 
-        await addFilePathToFormikContext(path, formik);
-      }
-    }
+        const contextPath = getCookie('context-id', document.cookie);
+
+        const fullPath = path.slice(0, insertIdx) + `/${contextPath}` + path.slice(insertIdx);
+
+        console.log(fullPath);
+
+        setPrompt(prev => ({ ...prev, fileData: { fileUri: fullPath, mimeType: file.type } }));
+        setFileName(file.name);
+        setLoadingFile(false);
+
+        return null;
+      } else return null;
+    } else return null;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
