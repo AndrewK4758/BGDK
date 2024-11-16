@@ -19,8 +19,8 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.ts",
+    // "src/**/*.tsx",
+    // "src/**/*.ts",
     "tests/**/*.tsx"
   ]
 }

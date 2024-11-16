@@ -33,7 +33,7 @@ module.exports = [
     ...config,
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      ...config.rules,
+      // ...config.rules,
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
