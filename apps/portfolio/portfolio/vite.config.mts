@@ -21,13 +21,11 @@ export default defineConfig({
   server: {
     port: 4700,
     host: 'localhost',
-    open: true,
   },
 
   preview: {
     port: 4800,
     host: 'localhost',
-    open: true,
   },
 
   plugins: [
@@ -64,7 +62,6 @@ export default defineConfig({
           symbols: true,
         },
       },
-      external: ['node:path'],
     },
     target: 'esnext',
   },

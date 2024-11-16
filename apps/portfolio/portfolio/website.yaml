@@ -1,0 +1,46 @@
+runtime: nodejs22
+
+service: default
+
+instance_class: f2
+
+service_account: aklapper@games-424800.iam.gserviceaccount.com
+
+env_variables:
+  GCLOUD_STORAGE_BUCKET: gs://portfolio-gen-ai
+  NODE_ENV: 'production'
+
+handlers:
+  - url: / # Matches the root URL
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
+    http_headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: '*'
+
+  - url: /(.*) # Catches all other paths
+    static_files: dist/\1
+    upload: dist/(.*)
+    secure: always
+    http_headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: '*'
+# handlers:
+#   # Serve all static files with url ending with a file extension
+#   - url: /.*\..* # Match files with extensions
+#     static_dir: dist
+#     upload: dist/(.*\..*)
+#     secure: always
+#     http_headers:
+#       Access-Control-Allow-Origin: '*'
+#       Access-Control-Expose-Headers: '*'
+
+#   # Catch all handler to index.html
+#   - url: /.*\..*
+#     static_files: dist/index.html
+#     upload: dist/index.html
+#     secure: always
+#     http_headers:
+#       Access-Control-Allow-Origin: '*'
+#       Access-Control-Expose-Headers: '*'

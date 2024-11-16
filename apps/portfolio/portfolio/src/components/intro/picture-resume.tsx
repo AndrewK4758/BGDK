@@ -2,7 +2,6 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Paper from '@mui/material/Paper';
-import self from '../../assets/self.webp';
 import ResumeIcon from '../../components/icons/resume-icon';
 import Theme from '../../styles/theme';
 
@@ -23,7 +22,7 @@ const PicutreAndResume = () => (
   >
     <CardMedia
       component={'img'}
-      src={self}
+      src={'/self.webp'}
       loading="lazy"
       alt="andrew"
       sx={{

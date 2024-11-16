@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DB_URL_DEV")
+  url      = env("PG_AE_URL")
   schemas  = ["chinook", "games"]
 }
 

@@ -23,11 +23,7 @@ const renderTechLists = (e: string, _i: number, _arr: string[]) => (
       {e}
     </ListItemText>
     <ListItemIcon>
-      <img
-        src={`src/assets/icons/${e.toLowerCase()}-icon.svg`}
-        alt={`${e}-icon`}
-        style={{ width: '32px', height: 'auto' }}
-      />
+      <img src={`/icons/${e.toLowerCase()}-icon.svg`} alt={`${e}-icon`} style={{ width: '32px', height: 'auto' }} />
     </ListItemIcon>
   </ListItem>
 );

@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
-import WebSocketContextProvider from '../../contexts/websocket-context';
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',

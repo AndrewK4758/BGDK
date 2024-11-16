@@ -1,16 +1,16 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-const url = () => {
-  if (process.env['NODE_ENV']) {
-    return process.env['NODE_ENV'] === 'production'
-      ? process.env['DB_URL_SSL']
-      : process.env['NODE_ENV'] === 'tesing'
-        ? process.env['DB_URL_TEST']
-        : process.env['DB_URL_DEV'];
-  } else return process.env['DB_URL_DEV'];
-};
+// const url = () => {
+//   if (process.env['NODE_ENV']) {
+//     return process.env['NODE_ENV'] === 'production'
+//       ? process.env['DB_URL_SSL']
+//       : process.env['NODE_ENV'] === 'tesing'
+//         ? process.env['DB_URL_TEST']
+//         : process.env['DB_URL_DEV'];
+//   } else return process.env['DB_URL_DEV'];
+// };
 
 const prismaClient = new PrismaClient({
-  datasourceUrl: url(),
+  datasourceUrl: process.env.DB_URL_SSL,
 });
 
 export const prisma = prismaClient.$extends({

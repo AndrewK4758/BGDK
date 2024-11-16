@@ -7,7 +7,6 @@ import { cwd } from 'process';
 import type { ServerOptions } from 'socket.io';
 import handleTextDataChunks from './controllers/gen-ai-text-handler';
 import connectWsToLocalProcess from './controllers/connect-ws-to-local-process';
-import startPythonShell from './python/start-python-shell';
 import router, { Routes } from './routes/routes';
 
 const __dirname =
@@ -17,20 +16,21 @@ const __dirname =
 
 const app: Express = express();
 
-export const pythonProcess = startPythonShell('poetry', ['run', 'python', 'agent_1.py'], {
-  cwd: `${cwd()}/apps/wdg-agents/wdg_agents`,
-  env: process.env,
-  shell: true,
-  stdio: 'pipe',
-  detached: true,
-});
-
 export const corsOptions: CorsOptions = {
-  origin: 'http://localhost:4700',
-  methods: ['get', 'post', 'patch', 'put', 'delete', 'options', 'download'],
-  exposedHeaders: '*',
+  origin: [
+    'http://localhost:4700',
+    'http://localhost:4200',
+    'http://localhost:3000',
+    'https://www.andrew-k.us',
+    'https://andrew-k.us',
+    'https://games-424800.uc.r.appspot.com/',
+    'https://www.games-424800.uc.r.appspot.com/',
+    '*',
+  ],
+  methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
+  exposedHeaders: ['*'],
   optionsSuccessStatus: 204,
-  allowedHeaders: '*',
+  allowedHeaders: ['*', 'content-type', 'content-length'],
   credentials: true,
 };
 

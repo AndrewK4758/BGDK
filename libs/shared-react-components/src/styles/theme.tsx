@@ -1,7 +1,6 @@
 import { darkScrollbar } from '@mui/material';
 import createTheme, { type Theme as SxTheme } from '@mui/material/styles/createTheme';
 import { enUS } from '@mui/x-date-pickers/locales';
-import './styles.css';
 
 export const Theme: SxTheme = createTheme(
   {

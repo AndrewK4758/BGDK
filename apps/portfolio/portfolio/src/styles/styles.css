@@ -60,7 +60,7 @@
   height: fit-content;
   min-height: 100vh;
   width: 100%;
-  background-image: url('../assets/overlay.svg');
+  background-image: url('/overlay.svg');
   background-size: cover;
   z-index: -1;
 }
