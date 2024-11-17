@@ -23,14 +23,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
-import {
-  Form,
-  useActionData,
-  useNavigate,
-  useSubmit,
-  type NavigateFunction,
-  type SubmitFunction,
-} from 'react-router-dom';
+import { Form, useActionData, useNavigate, useSubmit, type NavigateFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
@@ -47,6 +40,7 @@ import {
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
+import type { SubmitTarget } from 'react-router-dom/dist/dom';
 
 const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
 
@@ -89,9 +83,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => {
-      handleSubmitMessage(values, submit);
-    },
+    onSubmit: values => submit(values as SubmitTarget, { action: '', method: 'post', encType: 'application/json' }),
     validateOnBlur: true,
     validateOnChange: true,
   });
@@ -562,26 +554,20 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
 
 export default PromptBuilder;
 
-const handleSubmitMessage = (values: IPromptInputData, submit: SubmitFunction) => {
-  console.log('clicked');
-  const { objective, instructions, textData, examples, constraints, tone, responseFormat, responseInstructions } =
-    values;
+// const handleSubmitMessage = (values: SubmitTarget, submit: SubmitFunction) => {
+//   console.log('clicked');
 
-  const promptDataToSend = new FormData();
+//   // promptDataToSend.set('objective', objective);
+//   // promptDataToSend.set('responseFormat', responseFormat);
 
-  promptDataToSend.set('objective', objective);
-  promptDataToSend.set('responseFormat', responseFormat);
+//   // if (instructions) promptDataToSend.set('instructions', instructions);
+//   // if (textData) promptDataToSend.set('textData', textData);
+//   // if (examples) promptDataToSend.set('examples', examples);
+//   // if (constraints) promptDataToSend.set('constraints', constraints);
+//   // if (tone) promptDataToSend.set('tone', tone);
+//   // if (responseInstructions) promptDataToSend.set('responseInstructions', responseInstructions);
 
-  if (instructions) promptDataToSend.set('instructions', instructions);
-  if (textData) promptDataToSend.set('textData', textData);
-  if (examples) promptDataToSend.set('examples', examples);
-  if (constraints) promptDataToSend.set('constraints', constraints);
-  if (tone) promptDataToSend.set('tone', tone);
-  if (responseInstructions) promptDataToSend.set('responseInstructions', responseInstructions);
-
-  console.log(promptDataToSend);
-  submit(promptDataToSend, { action: '', method: 'post', encType: 'application/x-www-form-urlencoded' });
-};
+// };
 
 const handleCopyPromptToClipboardAndAddToInput = async (
   buildPrompt: string,

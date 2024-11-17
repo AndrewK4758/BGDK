@@ -35,7 +35,8 @@
           "minify": false
         },
         "production": {
-          "minify": true
+          "minify": false,
+          "charset": "utf8"
         }
       }
     },

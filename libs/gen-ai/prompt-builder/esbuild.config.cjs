@@ -5,7 +5,6 @@ module.exports = {
   format: ['esm', 'cjs'],
   bundle: true,
   write: true,
-  outExtension: { '.mjs': '.js', '.cjs': '.cjs' },
-  conditions: ['node', 'import'],
+  charset: 'utf8',
 };
 //

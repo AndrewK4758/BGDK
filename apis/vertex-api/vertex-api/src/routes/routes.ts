@@ -1,7 +1,7 @@
 import { Router, json, urlencoded } from 'express';
 import multer from 'multer';
 // import generateImages from '../controllers/gen-ai-image-gen';
-// import promptBuilder from '../controllers/prompt-builder';
+import promptBuilder from '../controllers/prompt-builder';
 // import uploadToGcsBucket from '../controllers/upload-files-to-gcs-bucket';
 import createContextIdCookie from '../controllers/create-context-id-cookie';
 
@@ -17,7 +17,7 @@ export class Routes {
 
     router.get('/context-id', createContextIdCookie);
     // router.post('/upload', upload.single('file'), uploadToGcsBucket);
-    // router.post('/build-prompt', promptBuilder);
+    router.post('/build-prompt', promptBuilder);
     // router.post('/images', generateImages);
   }
 }

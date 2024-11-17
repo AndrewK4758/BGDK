@@ -5,10 +5,10 @@ const baseURL = import.meta.env.VITE_SERVER_URL_VERTEX;
 
 const handlePromptBuilder: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   try {
-    const formData = await request.formData();
+    const formData = await request.json();
 
     const resp = await axios.post(`${baseURL}/build-prompt`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { 'Content-Type': 'application/json' },
     });
 
     return resp.data.finalPrompt;
