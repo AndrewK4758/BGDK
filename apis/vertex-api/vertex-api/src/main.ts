@@ -30,7 +30,6 @@ export const corsOptions: CorsOptions = {
   exposedHeaders: ['*'],
   optionsSuccessStatus: 204,
   allowedHeaders: ['*', 'content-type', 'content-length'],
-  credentials: true,
 };
 
 export const httpServer = createServer(app);
