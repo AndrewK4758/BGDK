@@ -68,7 +68,6 @@ const GenAiHome = () => {
       setPromptResponse(prev => [...prev, response]);
     });
     return () => {
-      socket.removeAllListeners();
       socket.disconnect();
     };
   }, []);

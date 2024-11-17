@@ -2,6 +2,18 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import { createRequire } from 'module';
+import path from 'path';
+import { cwd } from 'process';
+
+const { resolve } = createRequire(import.meta.url);
+
+const prismaClient = `prisma${path.sep}client`;
+
+const prismaClientIndexBrowser = resolve('@prisma/client/index-browser').replace(
+  `@${prismaClient}`,
+  `.${prismaClient}`,
+);
 
 export default defineConfig({
   test: {
@@ -75,4 +87,6 @@ export default defineConfig({
   appType: 'spa',
   publicDir: 'public',
   envDir: './env',
+
+  resolve: { alias: { '.prisma/client/index-browser': path.relative(cwd(), prismaClientIndexBrowser) } },
 });

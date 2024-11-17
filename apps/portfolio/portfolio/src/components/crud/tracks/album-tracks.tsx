@@ -111,9 +111,7 @@ const Tracks = () => {
     },
   ];
 
-  const getID = (row: track) => {
-    return row.track_id;
-  };
+  const getID = (row: track) => row.track_id;
 
   return (
     <Box

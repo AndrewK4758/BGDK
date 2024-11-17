@@ -6,7 +6,6 @@ export type WebSocketContextType = {
   socket: Socket;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const WebSocketContext = createContext<WebSocketContextType>(null!);
 
 interface WebSocketContextProviderProps {
@@ -17,9 +16,7 @@ export const WebSocketContextProvider = ({ children }: WebSocketContextProviderP
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_VERTEX, {
     autoConnect: false,
     reconnectionAttempts: 10,
-    withCredentials: true,
     reconnectionDelay: 2500,
-    rememberUpgrade: true,
   });
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;

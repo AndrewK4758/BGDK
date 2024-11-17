@@ -115,7 +115,6 @@ const ActiveGameSession = () => {
     });
 
     return () => {
-      socket.removeAllListeners();
       socket.disconnect();
     };
   }, []);
