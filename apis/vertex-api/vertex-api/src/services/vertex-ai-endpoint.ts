@@ -1,6 +1,5 @@
 import { generateImageRequest, imagenConfig, predictionServiceClient, type ImagenConfig } from '@bgdk/vertex-ai';
 import { configDotenv } from 'dotenv';
-import { writeFile } from 'fs/promises';
 import { resolve } from 'path';
 import { cwd } from 'process';
 
@@ -26,7 +25,6 @@ const generateImage = async ({ prompt, aspectRatio, sampleCount, seed }: Partial
         const buff = Buffer.from(prediction.structValue.fields.bytesBase64Encoded.stringValue, 'base64');
         const pic64String = buff.toString('base64');
         picStrings.push(pic64String);
-        await writeFile(`${process.env.PIC_SAVE_PATH}/pic${i}.txt`, pic64String);
       }
     }
 

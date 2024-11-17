@@ -3,6 +3,8 @@ import { configDotenv } from 'dotenv';
 
 configDotenv({ path: '../../env/.env' });
 
+console.log(process.env.VERTEX_CRED_KEY);
+
 // MY STUFF
 export const PROJECT = 'games-424800';
 export const LOCATION = 'us-central1';

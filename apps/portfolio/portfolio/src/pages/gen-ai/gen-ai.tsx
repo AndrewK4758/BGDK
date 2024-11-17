@@ -65,6 +65,11 @@ const GenAiHome = () => {
     socket.on('connect', () => {
       console.log(`Connected as ${socket.id}`);
     });
+
+    socket.on('connect_error', err => {
+      console.log(err);
+    });
+
     socket.on('chunk', ({ response }) => {
       setPromptResponse(prev => [...prev, response]);
     });

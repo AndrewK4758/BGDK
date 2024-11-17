@@ -70,8 +70,6 @@ const ImageForm = () => {
     aspectRatio: AspectRatio['1:1'],
   };
 
-  console.log(state);
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
