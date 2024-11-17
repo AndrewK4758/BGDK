@@ -47,7 +47,6 @@ const serverOptions: Partial<ServerOptions> = {
 
 export const socketServer = new SocketServer(httpServer, serverOptions, [handleTextDataChunks]);
 
-console.log(socketServer.io);
 new Routes();
 
 const port = process.env.PORT || 5000;

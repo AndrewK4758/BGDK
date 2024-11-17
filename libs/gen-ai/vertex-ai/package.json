@@ -5,7 +5,8 @@
   "dependencies": {
     "@google-cloud/vertexai": "1.9.0",
     "@google-cloud/aiplatform": "^3.31.0",
-    "@bgdk/types-ai": "0.0.1"
+    "@bgdk/types-ai": "0.0.1",
+    "dotenv": "^16.4.5"
   },
   "exports": {
     ".": {
