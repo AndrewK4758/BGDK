@@ -5,10 +5,10 @@ const bucketName = 'portfolio-gen-ai';
 
 const storagePath: GcsBucketPath = `gs://${bucketName}/`;
 
-const storage = new Storage();
-
 const memoryUpload = async (contextPath: string, { buffer, originalname }: Express.Multer.File) => {
   try {
+    const storage = new Storage();
+
     await storage.bucket(bucketName).file(`${contextPath}/${originalname}`).save(buffer);
 
     return storagePath.concat(originalname);
