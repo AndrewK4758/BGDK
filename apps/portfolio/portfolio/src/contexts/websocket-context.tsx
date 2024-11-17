@@ -17,6 +17,7 @@ export const WebSocketContextProvider = ({ children }: WebSocketContextProviderP
     autoConnect: false,
     reconnectionAttempts: 10,
     reconnectionDelay: 2500,
+    withCredentials: false,
   });
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;

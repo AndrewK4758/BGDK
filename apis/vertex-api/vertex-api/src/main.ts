@@ -24,12 +24,12 @@ export const corsOptions: CorsOptions = {
     'https://andrew-k.us',
     'https://games-424800.uc.r.appspot.com/',
     'https://www.games-424800.uc.r.appspot.com/',
-    '*',
   ],
-  methods: ['get', 'post', 'patch', 'put', 'delete', 'options', '*'],
-  exposedHeaders: ['*'],
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+  exposedHeaders: ['current-game'],
   optionsSuccessStatus: 204,
-  allowedHeaders: ['*', 'content-type', 'content-length'],
+  allowedHeaders: ['*', 'content-type', 'content-length', 'current-game'],
+  credentials: false,
 };
 
 export const httpServer = createServer(app);
