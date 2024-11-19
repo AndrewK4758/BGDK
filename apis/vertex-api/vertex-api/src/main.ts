@@ -17,6 +17,7 @@ const app: Express = express();
 
 export const corsOptions: CorsOptions = {
   origin: [
+    '*',
     'https://andrew-k.us',
     'https://www.andrew-k.us',
     'https://games-424800.uc.r.appspot.com/',
@@ -25,8 +26,8 @@ export const corsOptions: CorsOptions = {
     'http://localhost:4200',
     'http://localhost:3000',
   ],
-  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
-  exposedHeaders: ['current-game'],
+  methods: ['*', 'GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+  exposedHeaders: ['*', 'current-game'],
   optionsSuccessStatus: 204,
   allowedHeaders: ['*'],
   credentials: false,
