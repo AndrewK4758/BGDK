@@ -79,13 +79,13 @@ const ActiveGameSession = () => {
 
   useEffect(() => {
     if (divRef.current) handleScrollIntoView(divRef.current);
-    if (!socket.connected) {
-      socket.connect();
-      socket.on('connect', () => {
-        console.log(`Player connected with ID: ${socket.id}`);
-      });
-      socket.emit('create-room', (getGameInstanceInfo() as GamePlayerValidation).gameInstanceID);
-    }
+
+    if (!socket.connected) socket.connect();
+
+    socket.on('connect', () => {
+      console.log(`Player connected with ID: ${socket.id}`);
+    });
+    socket.emit('create-room', (getGameInstanceInfo() as GamePlayerValidation).gameInstanceID);
 
     socket.emit('action', { action: ActionType.BOARD });
 
@@ -118,8 +118,8 @@ const ActiveGameSession = () => {
     });
 
     return () => {
-      socket.disconnect();
       socket.removeAllListeners();
+      socket.disconnect();
     };
   }, []);
 

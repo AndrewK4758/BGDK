@@ -16,6 +16,7 @@ import { MediaRecorderClientContext } from '../../../contexts/audio-context';
 import { WebSocketContext } from '../../../contexts/websocket-context';
 import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
 import AudioVisualizer from './audio-visualizer';
+import { handleScrollIntoView } from '@bgdk/utils';
 
 const audioText =
   'This audio recorder allows you to capture your voice and submit it directly to Gemini.  Use it to create recordings for analysis, transcription, or any other task that can benefit from Gemini\'s powerful AI capabilities. Simply click "Start" to begin.';
@@ -34,6 +35,7 @@ const GenAiAudio = () => {
   const mrcRef = useRef<MRC | null>(null);
 
   useEffect(() => {
+    if (audRef.current) handleScrollIntoView(audRef.current);
     if (!socket.connected) socket.connect();
 
     socket.on('chunk', ({ response }) => {
@@ -126,7 +128,7 @@ const GenAiAudio = () => {
           >
             {blob && (
               <Button onClick={() => uploadFile()} sx={{ fontSize: '2rem' }}>
-                Upload
+                Query Gemini
               </Button>
             )}
 

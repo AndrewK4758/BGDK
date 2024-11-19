@@ -20,6 +20,7 @@ import { type ChangeEvent } from 'react';
 import { Form, useActionData, useNavigation, useOutletContext, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import Theme from '../../../styles/theme';
+import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
 
 const imageGenDescription =
   "Imagen 3 is Google's latest text-to-image AI model, generating high-quality images from detailed text descriptions. Trained on an extensive dataset of text-image pairs, Imagen 3 excels at creating photorealistic images with accurate details and composition. This model can be used for various applications, including creative visualization, design prototyping, and generating visual content for marketing and advertising. Access Imagen 3 through Google's Vertex AI platform or the Gemini API to explore its capabilities.";
@@ -58,17 +59,19 @@ const validationSchema = Yup.object({
 });
 
 const ImageForm = () => {
-  const { prompt } = useOutletContext() as { prompt: string };
+  const { prompt } = useOutletContext() as OutletContextProps;
   const submit = useSubmit();
   const { state } = useNavigation();
   const pics = useActionData() as string[];
 
   const initialValues: Partial<ImagenConfig> = {
-    prompt: prompt === null ? '' : prompt,
+    prompt: prompt.text === null ? '' : prompt.text,
     sampleCount: 1,
     seed: 100,
     aspectRatio: AspectRatio['1:1'],
   };
+
+  console.log(prompt);
 
   const formik = useFormik({
     initialValues: initialValues,

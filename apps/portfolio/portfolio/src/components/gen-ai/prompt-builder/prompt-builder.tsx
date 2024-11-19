@@ -29,6 +29,7 @@ import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
 import JsonIcon from '../../icons/json-icon';
 import TextIcon from '../../icons/text-icon';
+import ImageIcon from '../../icons/image-icon';
 import {
   constraints,
   examples,
@@ -384,7 +385,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                       fontSize: '1.5rem',
                       display: 'flex',
                       flexDirection: 'row',
-                      gap: 4,
+                      justifyContent: 'space-evenly',
                       paddingLeft: 2,
                     }}
                   >
@@ -407,6 +408,22 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
                           <Typography variant="h4">JSON</Typography>
                           <JsonIcon />
+                        </Box>
+                      }
+                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                    />
+
+                    <FormControlLabel
+                      value={ResponseType.IMAGE}
+                      control={<Radio />}
+                      label={
+                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+                          <Typography variant="h4">Image</Typography>
+                          <ImageIcon />
+
+                          <Typography variant="caption" fontWeight={'bold'}>
+                            WILL NOT WORK WITH TEXT OR AUDIO
+                          </Typography>
                         </Box>
                       }
                       sx={{ alignContent: 'center', fontSize: '1.5rem' }}
@@ -553,21 +570,6 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
 };
 
 export default PromptBuilder;
-
-// const handleSubmitMessage = (values: SubmitTarget, submit: SubmitFunction) => {
-//   console.log('clicked');
-
-//   // promptDataToSend.set('objective', objective);
-//   // promptDataToSend.set('responseFormat', responseFormat);
-
-//   // if (instructions) promptDataToSend.set('instructions', instructions);
-//   // if (textData) promptDataToSend.set('textData', textData);
-//   // if (examples) promptDataToSend.set('examples', examples);
-//   // if (constraints) promptDataToSend.set('constraints', constraints);
-//   // if (tone) promptDataToSend.set('tone', tone);
-//   // if (responseInstructions) promptDataToSend.set('responseInstructions', responseInstructions);
-
-// };
 
 const handleCopyPromptToClipboardAndAddToInput = async (
   buildPrompt: string,

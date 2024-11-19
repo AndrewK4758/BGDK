@@ -59,23 +59,19 @@ const GenAiHome = () => {
     console.log('rendered');
     if (divRef.current) handleScrollIntoView(divRef.current);
 
-    if (!socket.connected) {
-      socket.connect();
-    }
+    if (!socket.connected) socket.connect();
+
     socket.on('connect', () => {
       console.log(`Connected as ${socket.id}`);
-    });
-
-    socket.on('connect_error', err => {
-      console.log(err);
     });
 
     socket.on('chunk', ({ response }) => {
       setPromptResponse(prev => [...prev, response]);
     });
+
     return () => {
-      socket.disconnect();
       socket.removeAllListeners();
+      socket.disconnect();
     };
   }, []);
 
