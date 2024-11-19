@@ -11,7 +11,9 @@ const memoryUpload = async (contextPath: string, { buffer, originalname }: Expre
 
     await storage.bucket(bucketName).file(`${contextPath}/${originalname}`).save(buffer);
 
-    return storagePath.concat(originalname);
+    const pathWithContext = `${storagePath}${contextPath}/${originalname}`;
+
+    return pathWithContext;
   } catch (error) {
     console.error(error);
 

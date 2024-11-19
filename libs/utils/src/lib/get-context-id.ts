@@ -1,3 +1,3 @@
-export const getContextId = (name: string): string | null => sessionStorage.getItem(name);
+export const getContextPath = (name: string): string | null => sessionStorage.getItem(name);
 
-export default getContextId;
+export default getContextPath;

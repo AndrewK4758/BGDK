@@ -174,10 +174,10 @@ const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement>, blob:
   try {
     if (fileInputRef.current) {
       const file = new File([blob], fileInputRef.current.title);
-
+      const contextPath = sessionStorage.getItem('context-path');
       const resp = await axios.post(
         `${baseUrl}/upload`,
-        { file: file },
+        { file: file, contextPath: contextPath },
         { headers: { 'Content-Type': 'multipart/form-data' } },
       );
 

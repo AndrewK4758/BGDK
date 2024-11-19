@@ -3,6 +3,7 @@ import type { PromptRequest } from '../../types/prompt-request-types';
 import generativeTextModel from '../models/generative-text-model';
 
 export const generateTextContent = async ({ text, fileData }: PromptRequest) => {
+  console.log(text, fileData);
   const request: GenerateContentRequest = {
     contents: [
       {

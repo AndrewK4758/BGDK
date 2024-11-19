@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ShortUniqueId from 'short-unique-id';
 
-const createContextIdCookie = (_req: Request, resp: Response) => {
+const createContextPath = (_req: Request, resp: Response) => {
   try {
     const contextId = new ShortUniqueId().randomUUID();
 
@@ -13,4 +13,4 @@ const createContextIdCookie = (_req: Request, resp: Response) => {
   }
 };
 
-export default createContextIdCookie;
+export default createContextPath;
