@@ -28,7 +28,7 @@ export const corsOptions: CorsOptions = {
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
   exposedHeaders: ['current-game'],
   optionsSuccessStatus: 204,
-  allowedHeaders: ['current-game', 'context-id'],
+  allowedHeaders: ['*'],
   credentials: false,
 };
 
