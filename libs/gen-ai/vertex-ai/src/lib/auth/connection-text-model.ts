@@ -1,9 +1,11 @@
 import { VertexAI } from '@google-cloud/vertexai';
 import { configDotenv } from 'dotenv';
+import { cwd } from 'process';
 
-configDotenv({ path: 'libs/gen-ai/vertex-ai/env/.env' });
+configDotenv({ path: `${cwd()}/libs/gen-ai/vertex-ai/env/.env` });
 
-console.log(process.env.VERTEX_CRED_KEY);
+console.log(process.env.VERTEX_CRED_KEY, 'cred key');
+console.log(process.env, 'process env');
 
 // MY STUFF
 export const PROJECT = 'games-424800';
