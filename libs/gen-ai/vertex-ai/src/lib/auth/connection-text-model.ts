@@ -1,7 +1,7 @@
 import { VertexAI } from '@google-cloud/vertexai';
 import { configDotenv } from 'dotenv';
 
-configDotenv({ path: '../../env/.env' });
+configDotenv({ path: 'libs/gen-ai/vertex-ai/env/.env' });
 
 console.log(process.env.VERTEX_CRED_KEY);
 

@@ -18,7 +18,7 @@ export const WebSocketContextProvider = ({ children }: WebSocketContextProviderP
     reconnectionAttempts: 10,
     reconnectionDelay: 2500,
     withCredentials: false,
-    transports: ['websocket'],
+    transports: ['polling', 'websocket'],
   });
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const socket = socketRef.current;
