@@ -9,7 +9,7 @@ import {
   tooltipSx,
   Waiting,
 } from '@bgdk/shared-react-components';
-import { getContextId } from '@bgdk/utils';
+import { getContextPath } from '@bgdk/utils';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -594,7 +594,7 @@ export const handleFileUpload = async (
       if (fileInputRef.current.files) {
         const file = fileInputRef.current.files[0];
 
-        const contextPath = getContextId('context-id');
+        const contextPath = getContextPath('context-id');
 
         const resp = await axios.post(
           `${baseUrl}/upload`,
