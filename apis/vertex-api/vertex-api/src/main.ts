@@ -16,20 +16,11 @@ const __dirname =
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: [
-    '*',
-    'https://andrew-k.us',
-    'https://www.andrew-k.us',
-    'https://games-424800.uc.r.appspot.com/',
-    'https://www.games-424800.uc.r.appspot.com/',
-    'http://localhost:4700',
-    'http://localhost:4200',
-    'http://localhost:3000',
-  ],
-  methods: ['*', 'GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
-  exposedHeaders: ['*', 'current-game'],
+  origin: '*',
+  methods: '*',
+  exposedHeaders: '*',
   optionsSuccessStatus: 204,
-  allowedHeaders: ['*'],
+  allowedHeaders: '*',
   credentials: false,
 };
 
