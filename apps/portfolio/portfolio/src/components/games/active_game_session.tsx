@@ -18,6 +18,7 @@ import ShowGameBoard from './game_board/show_game_board';
 import socketReducer, { ActionType } from './game_board/socket-reducer';
 import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
 import TakeTurn from './game_board/take_turn';
+import { handleScrollIntoView } from '@bgdk/utils';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   display: 'flex',
@@ -70,12 +71,14 @@ const ActiveGameSession = () => {
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
   const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
+  const divRef = useRef<HTMLDivElement>(null);
   const params = useParams();
   const id = params.id;
 
   const socket = socketRef.current;
 
   useEffect(() => {
+    if (divRef.current) handleScrollIntoView(divRef.current);
     if (!socket.connected) {
       socket.connect();
       socket.on('connect', () => {
@@ -116,12 +119,14 @@ const ActiveGameSession = () => {
 
     return () => {
       socket.disconnect();
+      socket.removeAllListeners();
     };
   }, []);
 
   return (
     <Paper key={'active-game'} id="active-game">
       <Box
+        ref={divRef}
         component={'section'}
         key={'active-avatar-wrapper'}
         id="active-avatar-wrapper"

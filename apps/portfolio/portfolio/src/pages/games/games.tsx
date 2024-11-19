@@ -1,4 +1,5 @@
 import { Text } from '@bgdk/react-components';
+import { handleScrollIntoView } from '@bgdk/utils';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -11,7 +12,6 @@ import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
 import GameLoading from '../../components/loading/loading';
-import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 import Theme from '../../styles/theme';
 
 const title = 'Games';

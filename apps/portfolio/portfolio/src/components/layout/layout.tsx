@@ -69,6 +69,7 @@ const Layout = () => (
           justifyContent: 'center',
           height: 'fit-content',
           minHeight: '50vh',
+          paddingBottom: '15vh',
         }}
       >
         <WebSocketContextProvider>

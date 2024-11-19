@@ -1,5 +1,6 @@
 import { ChatResponse, Text } from '@bgdk/react-components';
 import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
+import { handleScrollIntoView } from '@bgdk/utils';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -24,7 +25,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
 import Theme from '../../styles/theme';
-import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
 
@@ -75,6 +75,7 @@ const GenAiHome = () => {
     });
     return () => {
       socket.disconnect();
+      socket.removeAllListeners();
     };
   }, []);
 
@@ -85,7 +86,7 @@ const GenAiHome = () => {
       key={'gen-ai-wrapper'}
       id="gen-ai-wrapper"
       sx={{
-        flex: '0 1 100%',
+        flex: '1 0 100%',
         display: 'flex',
         flexDirection: 'column',
         gap: '15vh',
@@ -194,7 +195,7 @@ const GenAiHome = () => {
         component={'div'}
         key={'gen-ai-outlet-wrapper'}
         id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
+        sx={{ height: 'fit-content', width: '60vw' }}
       >
         <MediaRecorderClientContextProvider>
           <Outlet context={{ prompt, promptResponse, setPromptResponse }} />
@@ -205,7 +206,7 @@ const GenAiHome = () => {
           component={'div'}
           key={'gen-ai-response-wrapper'}
           id="gen-ai-response-wrapper"
-          sx={{ height: 'fit-content', minHeight: '30vh', width: '60vw' }}
+          sx={{ height: 'fit-content', width: '60vw' }}
         >
           <Paper
             component={'div'}

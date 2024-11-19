@@ -1,4 +1,5 @@
 import { Text } from '@bgdk/react-components';
+import { handleScrollIntoView } from '@bgdk/utils';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import { lazy, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Theme from '../../styles/theme';
-import handleScrollIntoView from '../../utils/handle-scroll-into-view';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 const Search = lazy(() => import('../../components/crud/search'));

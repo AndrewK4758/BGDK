@@ -1,4 +1,4 @@
-const handleScrollIntoView = (ref: HTMLElement) => {
+export const handleScrollIntoView = (ref: HTMLElement) => {
   const element = ref.getBoundingClientRect();
   const offset = element.top + window.scrollY;
 

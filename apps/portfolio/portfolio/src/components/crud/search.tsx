@@ -1,3 +1,5 @@
+import { handleScrollIntoView } from '@bgdk/utils';
+import { Collapse, ThemeProvider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
@@ -7,11 +9,10 @@ import ListItem from '@mui/material/ListItem';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
-import { Collapse, ThemeProvider } from '@mui/material';
 import { debounce } from '@mui/material/utils';
 import { album, artist } from '@prisma/client';
 import axios from 'axios';
-import { useState, type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
 import CrudTheme from '../../styles/crud-theme';
 
 type InitVals = {
@@ -31,10 +32,14 @@ interface SearchProps {
 const Search = ({ open }: SearchProps) => {
   const [artAlbVals, setArtVals] = useState(initVals);
   const [searchParam, setSearchParam] = useState<string>('artist');
+  const divRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (divRef.current) handleScrollIntoView(divRef.current);
+  }, []);
   return (
     <ThemeProvider theme={CrudTheme}>
-      <Box component={'div'} key={'search-box-wrapper'} id="search-box-wrapper">
+      <Box component={'div'} key={'search-box-wrapper'} id="search-box-wrapper" ref={divRef}>
         <Container key={'search-box-container'} id="search-box-container">
           <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
             <Card
@@ -47,7 +52,6 @@ const Search = ({ open }: SearchProps) => {
                 justifyContent: 'center',
                 width: '100%',
                 border: '5px solid purple',
-                // backgroundColor: 'white',
               }}
             >
               <Box component={'div'} key={'search-radio-group-box'}>
@@ -103,7 +107,7 @@ const Search = ({ open }: SearchProps) => {
                 {artAlbVals.artist.length > 0 ? (
                   <>
                     {artAlbVals.artist.map(e => (
-                      <ListItem component={'li'} key={e.artist_id}>
+                      <ListItem component={'li'} key={e.artist_id} sx={{ fontWeight: 'bold' }}>
                         {e.name}
                       </ListItem>
                     ))}
@@ -112,7 +116,7 @@ const Search = ({ open }: SearchProps) => {
                 {artAlbVals.album.length > 0 ? (
                   <>
                     {artAlbVals.album.map(e => (
-                      <ListItem component={'li'} key={e?.album_id}>
+                      <ListItem component={'li'} key={e?.album_id} sx={{ fontWeight: 'bold' }}>
                         {e?.title}
                       </ListItem>
                     ))}
@@ -140,7 +144,7 @@ const handleSearchParams = async (
     const resp = await searchArtistsAndAlbums(searchParams, searchParam);
 
     if (resp) {
-      const { artist, album } = resp.data;
+      const { artist, album } = resp;
       setArtVals({ artist: artist, album: album });
     }
   }
@@ -154,8 +158,7 @@ const searchArtistsAndAlbums = async (search: string, type: string) => {
       headers: { 'Content-Type': 'text/plain' },
     });
 
-    console.log(resp.data);
-    return resp;
+    return resp.data;
   } catch (error) {
     console.error(error);
     return null;

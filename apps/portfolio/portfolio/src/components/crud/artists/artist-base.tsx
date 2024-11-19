@@ -1,3 +1,4 @@
+import { handleScrollIntoView } from '@bgdk/utils';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
@@ -5,16 +6,15 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { artist } from '@prisma/client';
 import axios from 'axios';
-import { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react';
+import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
-import useMediaQuery from '@mui/material/useMediaQuery';
-// import Theme from '../../../styles/theme';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -29,6 +29,7 @@ const Artist = () => {
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
   const matchesSize = useMediaQuery('(max-width:1200px)');
+  const divRef = useRef<HTMLDivElement>(null);
   const nav = useNavigate();
 
   const apiRef = useGridApiRef<GridApiCommunity>();
@@ -46,6 +47,10 @@ const Artist = () => {
     async (pageSize: number, skip: number, cursor: number) => await loadArtists(pageSize, skip, cursor),
     [],
   );
+
+  useEffect(() => {
+    if (divRef.current) handleScrollIntoView(divRef.current);
+  }, []);
 
   useEffect(() => {
     fetchArtists(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
@@ -118,6 +123,7 @@ const Artist = () => {
       component={'div'}
       key={'all-data-grids-wrapper'}
       id="all-data-grids-wrapper"
+      ref={divRef}
       sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row' }}
     >
       <Box
