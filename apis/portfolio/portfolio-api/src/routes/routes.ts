@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import postEmail from '../controllers/post-email';
 import createTokens from '../controllers/create-google-tokens';
@@ -13,6 +14,7 @@ export class PortfolioRoutes {
   constructor() {
     router.use(express.json({ limit: '50mb' }));
     router.use(express.urlencoded({ extended: true, limit: '10mb' }));
+    router.use(cookieParser());
 
     //-------------------------------------------------//
     router.post('/email', upload.single('attachment'), postEmail);

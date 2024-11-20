@@ -12,12 +12,9 @@ const __dirname =
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: '*',
-  methods: '*',
-  exposedHeaders: '*',
+  origin: ['https://andrew-k.us', 'http://localhost:4700'],
   optionsSuccessStatus: 204,
-  allowedHeaders: '*',
-  credentials: false,
+  credentials: true,
 };
 
 app.use('*', cors(corsOptions));

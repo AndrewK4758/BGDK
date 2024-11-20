@@ -5,7 +5,7 @@ import oauth2Client from '../../services/google-oauth';
 
 const createEvents = async (req: Request, resp: Response, next: NextFunction) => {
   try {
-    const userID = req.cookies['oauid'];
+    const userID = req.cookies['OAUID'];
 
     if (!userID) {
       resp.status(404).json({ message: 'Please connect Google Calendar to continue.' });
@@ -46,7 +46,6 @@ const createEvents = async (req: Request, resp: Response, next: NextFunction) =>
       sendNotifications: true,
     });
 
-    console.log(result);
     resp.status(201).json({ result });
   } catch (error) {
     console.error(error);

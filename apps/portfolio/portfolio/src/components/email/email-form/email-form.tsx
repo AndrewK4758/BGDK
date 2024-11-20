@@ -8,8 +8,8 @@ import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import { useContext, useRef } from 'react';
-import { Form, useSubmit, type SubmitFunction } from 'react-router-dom';
+import { useContext, useRef, type Dispatch, type SetStateAction } from 'react';
+import { Form, useNavigation, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
@@ -67,19 +67,24 @@ const validationSchema = Yup.object({
   attachment: Yup.mixed().notRequired(),
 });
 
-const EmaiForm = () => {
+interface EmaiFormProps {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const EmaiForm = ({ setOpen }: EmaiFormProps) => {
   const submit = useSubmit();
+  const { state } = useNavigation();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { GoogleUserContextValues } = useContext<GoogleUserContextProps>(GoogleUserContext);
 
   const handleFileSubmit = () => {
-    fileInputRef.current?.click();
+    if (fileInputRef.current) fileInputRef.current.click();
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => handleSubmitMessage(values, submit),
+    onSubmit: values => handleSubmitMessage(values, submit, setOpen, state),
   });
 
   return (
@@ -265,7 +270,12 @@ const EmaiForm = () => {
 
 export default EmaiForm;
 
-const handleSubmitMessage = (values: MessageMeFormValues, submit: SubmitFunction) => {
+const handleSubmitMessage = async (
+  values: MessageMeFormValues,
+  submit: SubmitFunction,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  state: 'idle' | 'loading' | 'submitting',
+) => {
   const { name, email, phone, subject, body, date, attachment } = values;
 
   const form = new FormData();
@@ -279,4 +289,6 @@ const handleSubmitMessage = (values: MessageMeFormValues, submit: SubmitFunction
   if (attachment) form.append('attachment', attachment);
 
   submit(form, { action: '/', method: 'post', encType: 'multipart/form-data' });
+
+  if (state === 'idle') setOpen(false);
 };

@@ -103,7 +103,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
           >
             <Suspense fallback={<Waiting />}>
               {tab === 0 && <GoogleCalendar />}
-              {tab === 1 && <EmailForm />}
+              {tab === 1 && <EmailForm setOpen={setOpen} />}
             </Suspense>
           </Box>
           <DialogActions

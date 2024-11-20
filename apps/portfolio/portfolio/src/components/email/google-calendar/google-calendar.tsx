@@ -205,6 +205,16 @@ const GoogleCalendar = () => {
               alignItems: 'center',
             }}
           >
+            <Label
+              tooltipTitle={
+                'Time must be between 8:30am and 8:00pm EST. Start & End time must be minimun of 1 hour range'
+              }
+              labelVariant={'h4'}
+              labelText={'Suggested Meeting Time'}
+              placement={'top'}
+              sx={{ color: Theme.palette.primary.main }}
+              tooltipSx={{ fontSize: '1.4rem' }}
+            />
             <TimePicker
               label={
                 <Label
@@ -222,6 +232,7 @@ const GoogleCalendar = () => {
               value={values.startTime}
               onAccept={data => setValues({ ...values, startTime: data as Dayjs })}
               slotProps={timePickerSlotProps}
+              disablePast={true}
             />
             <TimePicker
               label={
@@ -239,6 +250,7 @@ const GoogleCalendar = () => {
               value={values.endTime}
               onAccept={data => setValues({ ...values, endTime: data as Dayjs })}
               slotProps={timePickerSlotProps}
+              disablePast={true}
             />
           </Box>
           <Box
