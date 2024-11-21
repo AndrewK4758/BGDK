@@ -6,7 +6,7 @@ import ShortUniqueId from 'short-unique-id';
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
     const { code } = req.body;
-
+    console.log(code, 'CODE');
     const { tokens } = await oauth2Client.getToken(code);
 
     const userID = new ShortUniqueId().rnd();
@@ -22,6 +22,7 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
 
     resp.setHeader('Access-Control-Allow-Origin', origin);
     resp.setHeader('Access-Control-Allow-Credentials', 'true');
+
     resp.status(201).json({ idToken: tokens.id_token });
   } catch (error) {
     console.error(error);
