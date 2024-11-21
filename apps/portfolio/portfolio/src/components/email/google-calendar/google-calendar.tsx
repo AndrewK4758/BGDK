@@ -286,11 +286,7 @@ const baseURL = import.meta.env.VITE_PORTFOLIO_API_URL;
 
 const onGoogleSuccess = async (code: CodeResponse, setUser: Dispatch<SetStateAction<GoogleUserContextInfo>>) => {
   try {
-    const resp = await axios.post(
-      `${baseURL}/create-tokens`,
-      { code },
-      { withCredentials: true, headers: { 'Content-Type': 'application/json' } },
-    );
+    const resp = await axios.post(`${baseURL}/create-tokens`, { code }, { withCredentials: true });
 
     let { idToken } = resp.data;
 
