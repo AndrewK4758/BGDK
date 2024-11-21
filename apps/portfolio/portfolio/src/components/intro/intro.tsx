@@ -1,8 +1,9 @@
+import { Text } from '@bgdk/react-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Theme from '../../styles/theme';
+import type { SxProps } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import Theme from '../../styles/theme';
 
 const INTRO_TEXT = (
   <span id="intro-text" key={'intro-text'}>
@@ -36,37 +37,39 @@ const INTRO_TEXT = (
   </span>
 );
 
+const introCardSxProps: SxProps = {
+  position: 'relative',
+  zIndex: 1,
+  flex: '0 1 50%',
+  height: 'fit-content',
+  display: 'flex',
+};
+const introCardContentSxProps: SxProps = { paddingX: 2, display: 'flex', flexDirection: 'column' };
+
+const introTextSxProps: SxProps = { textAlign: 'start', paddingY: 2, fontSize: '1.25rem' };
+const introTitleTextSxProps: SxProps = {
+  borderBottom: `3px solid ${Theme.palette.primary.dark}`,
+  width: 'fit-content',
+  alignSelf: 'center',
+};
+
 const Intro = () => (
-  <Card
-    elevation={24}
-    sx={{
-      position: 'relative',
-      zIndex: 1,
-      flex: '0 1 50%',
-      height: 'fit-content',
-      display: 'flex',
-    }}
-  >
-    <CardContent
-      component={'div'}
-      id="about-me-header-box"
-      sx={{ paddingX: 2, display: 'flex', flexDirection: 'column' }}
-    >
-      <Typography
-        variant="h2"
+  <Card elevation={24} sx={introCardSxProps}>
+    <CardContent component={'div'} id="about-me-header-box" sx={introCardContentSxProps}>
+      <Text
+        titleVariant="h2"
+        key={'about-me-title-text'}
+        id="about-me-title-text"
+        sx={introTitleTextSxProps}
+        titleText={"Hi, I'm Andrew Klapper"}
+      />
+      <Text
         key={'about-me-text'}
         id="about-me-text"
-        sx={{
-          borderBottom: `3px solid ${Theme.palette.primary.dark}`,
-          width: 'fit-content',
-          alignSelf: 'center',
-        }}
-      >
-        Hi, I'm Andrew Klapper
-      </Typography>
-      <Typography id="home-text-title" variant="body1" sx={{ textAlign: 'start', paddingY: 2 }}>
-        {INTRO_TEXT}
-      </Typography>
+        titleVariant="body1"
+        titleText={INTRO_TEXT}
+        sx={introTextSxProps}
+      />
     </CardContent>
   </Card>
 );

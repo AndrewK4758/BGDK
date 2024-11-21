@@ -75,7 +75,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
                   mainText="Appointment Request"
                   mainSx={mainSx}
                   subVariant="caption"
-                  subText="Sync with your Google Calendar"
+                  subText="Add to Google Calendar"
                   subSx={subSx}
                 />
               }
@@ -89,7 +89,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
                   mainText="Email Me"
                   mainSx={mainSx}
                   subVariant="caption"
-                  subText="Send Email / Include appointment details"
+                  subText="Send Email / Upload Appointment Details"
                   subSx={subSx}
                 />
               }

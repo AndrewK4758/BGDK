@@ -13,17 +13,24 @@ import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
 
-const iconSxProps: SxProps = {
-  flex: '1 0 10%',
-  justifyItems: 'center',
+const iconWrapperSxProps: SxProps = {
+  flex: '1 0 75%',
+  display: 'flex',
   alignContent: 'center',
+  justifyContent: 'space-around',
+};
+
+const iconSxProps: SxProps = {
+  justifyContent: 'center',
+  alignContent: 'center',
+  scale: 1.4,
 };
 
 const socialMediaLinksWrapper: SxProps = {
-  width: '80%',
+  flex: '1 0 100%',
   display: 'flex',
   alignItems: 'center',
-  justifyItems: 'center',
+  justifyContent: 'center',
   paddingX: 1,
 };
 
@@ -37,7 +44,7 @@ const Header = () => {
       id="social-media-icons"
       sx={socialMediaLinksWrapper}
     >
-      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" sx={{ flex: '1 0 25%' }}>
+      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" flex={'1 0 25%'}>
         <Typography
           variant="h4"
           color="secondary"
@@ -45,15 +52,10 @@ const Header = () => {
           id="social-media-text"
           textAlign={'center'}
         >
-          {'Connect & Colab   \u27F6'}
+          {`Connect & Colab \u27F6`}
         </Typography>
       </Box>
-      <Box
-        component={'div'}
-        key={'social-media-icon-wrapper'}
-        id="social-media-icon-wrapper"
-        sx={{ flex: '1 0 75%', display: 'flex', justifyContent: 'space-evenly' }}
-      >
+      <Box component={'div'} key={'social-media-icon-wrapper'} id="social-media-icon-wrapper" sx={iconWrapperSxProps}>
         <Box component={'span'} key={'github-icon-span'} id="github-icon-span" sx={iconSxProps}>
           <IconButton href="https://github.com/AndrewK4758">
             <GitHibIcon />

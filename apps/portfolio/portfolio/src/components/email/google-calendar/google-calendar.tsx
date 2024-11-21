@@ -138,13 +138,7 @@ const GoogleCalendar = () => {
         id="google-calendar-auth-box"
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
-        <Button
-          LinkComponent={'button'}
-          key={'google-auth'}
-          id="google-auth"
-          onClick={() => login()}
-          sx={{ fontSize: '2.5rem' }}
-        >
+        <Button LinkComponent={'button'} key={'google-auth'} id="google-auth" onClick={() => login()}>
           Connect Your Google Calendar
         </Button>
       </Box>
@@ -264,13 +258,7 @@ const GoogleCalendar = () => {
               paddingX: 4,
             }}
           >
-            <Button
-              type="submit"
-              LinkComponent={'button'}
-              key={'calendar-submit-button'}
-              id="calendar-submit-buttom"
-              sx={{ fontSize: '2rem' }}
-            >
+            <Button type="submit" LinkComponent={'button'} key={'calendar-submit-button'} id="calendar-submit-buttom">
               Submit Event
             </Button>
           </Box>

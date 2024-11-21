@@ -55,6 +55,9 @@ const Theme: ThemeType = createTheme(
       MuiCssBaseline: {
         styleOverrides: themeParam => ({ body: themeParam.palette.mode === 'dark' ? darkScrollbar() : null }),
       },
+      MuiButton: {
+        defaultProps: { sx: { fontSize: '2rem' } },
+      },
     },
   },
   enUS,

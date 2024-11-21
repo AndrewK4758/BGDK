@@ -9,7 +9,7 @@ import {
   tooltipSx,
   Waiting,
 } from '@bgdk/shared-react-components';
-import { getContextPath } from '@bgdk/utils';
+import { getContextPath, handleScrollIntoView } from '@bgdk/utils';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -18,18 +18,19 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
+import { useEffect, useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
 import { Form, useActionData, useNavigate, useSubmit, type NavigateFunction } from 'react-router-dom';
+import type { SubmitTarget } from 'react-router-dom/dist/dom';
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
+import ImageIcon from '../../icons/image-icon';
 import JsonIcon from '../../icons/json-icon';
 import TextIcon from '../../icons/text-icon';
-import ImageIcon from '../../icons/image-icon';
 import {
   constraints,
   examples,
@@ -41,9 +42,11 @@ import {
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
-import type { SubmitTarget } from 'react-router-dom/dist/dom';
 
 const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
+
+const radioButtonLabelSxProps: SxProps = { display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' };
+const formLabelSxProps: SxProps = { alignContent: 'center', fontSize: '1.5rem' };
 
 const initialValues: IPromptInputData = {
   objective: '',
@@ -77,9 +80,14 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   const [loadingFile, setLoadingFile] = useState<boolean>(false);
   const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const nav = useNavigate();
 
   const action = useActionData() as string;
+
+  useEffect(() => {
+    if (divRef.current) handleScrollIntoView(divRef.current);
+  }, []);
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -97,7 +105,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   };
 
   return (
-    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" sx={{ width: '100%' }}>
+    <Box component={'div'} key={'prompt-builder-wrapper'} id="prompt-builder-wrapper" ref={divRef} width={'100%'}>
       <Paper key={'prompt-builder-paper'} id="prompt-builder-paper" sx={{ height: 'fit-content', minHeight: '30vh' }}>
         <Container
           component={'section'}
@@ -385,7 +393,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                       fontSize: '1.5rem',
                       display: 'flex',
                       flexDirection: 'row',
-                      justifyContent: 'space-evenly',
+                      justifyContent: 'space-around',
                       paddingLeft: 2,
                     }}
                   >
@@ -393,40 +401,49 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                       value={ResponseType.TEXT}
                       control={<Radio />}
                       label={
-                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                          <Typography variant="h4">Text</Typography>
-                          <TextIcon />
-                        </Box>
+                        <Label
+                          tooltipTitle={undefined}
+                          labelVariant={'h4'}
+                          labelText={'Text'}
+                          placement={undefined}
+                          Icon={<TextIcon />}
+                          sx={radioButtonLabelSxProps}
+                        />
                       }
-                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                      sx={formLabelSxProps}
                     />
 
                     <FormControlLabel
                       value={ResponseType.JSON}
                       control={<Radio />}
                       label={
-                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                          <Typography variant="h4">JSON</Typography>
-                          <JsonIcon />
-                        </Box>
+                        <Label
+                          tooltipTitle={undefined}
+                          labelVariant={'h4'}
+                          labelText={'JSON'}
+                          placement={undefined}
+                          sx={radioButtonLabelSxProps}
+                          Icon={<JsonIcon />}
+                        />
                       }
-                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                      sx={formLabelSxProps}
                     />
 
                     <FormControlLabel
                       value={ResponseType.IMAGE}
                       control={<Radio />}
                       label={
-                        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                          <Typography variant="h4">Image</Typography>
-                          <ImageIcon />
-
-                          <Typography variant="caption" fontWeight={'bold'}>
-                            WILL NOT WORK WITH TEXT OR AUDIO
-                          </Typography>
-                        </Box>
+                        <Label
+                          tooltipTitle={'WILL NOT WORK WITH TEXT OR AUDIO'}
+                          labelVariant={'h4'}
+                          labelText={'Image'}
+                          placement={'top'}
+                          Icon={<ImageIcon />}
+                          sx={radioButtonLabelSxProps}
+                          tooltipSx={{ fontSize: '1rem' }}
+                        />
                       }
-                      sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                      sx={formLabelSxProps}
                     />
                   </RadioGroup>
                   <FormikValidationError<IPromptInputData>

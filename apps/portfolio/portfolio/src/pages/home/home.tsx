@@ -1,7 +1,13 @@
+import Box from '@mui/material/Box';
+import type { SxProps } from '@mui/material/styles';
 import Intro from '../../components/intro/intro';
 import PicutreAndResume from '../../components/intro/picture-resume';
 import TechStackList from '../../components/tech-list/tech-list';
-import Box from '@mui/material/Box';
+
+const baseStyleForHomeItems: SxProps = {
+  width: '80vw',
+  display: 'flex',
+};
 
 const Home = () => (
   <>
@@ -10,8 +16,7 @@ const Home = () => (
       key={'intro-wrapper'}
       id="intro-wrapper"
       sx={{
-        width: '80vw',
-        display: 'flex',
+        ...baseStyleForHomeItems,
         justifyContent: 'space-between',
       }}
     >
@@ -24,23 +29,12 @@ const Home = () => (
       key={'tech-stack-wrapper'}
       id="tech-stack-wrapper"
       sx={{
-        width: '80vw',
-        display: 'flex',
+        ...baseStyleForHomeItems,
         justifyContent: 'center',
       }}
     >
       <TechStackList />
     </Box>
-    <Box
-      component={'div'}
-      key={'github-code-wrapper'}
-      id="github-code-wrapper"
-      sx={{
-        width: '90%',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    ></Box>
   </>
 );
 

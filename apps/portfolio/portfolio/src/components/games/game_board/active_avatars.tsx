@@ -84,11 +84,13 @@ interface ActiveAvatarsProps {
 export default function ActiveAvatars({ avatarsInGame, winner }: ActiveAvatarsProps) {
   return (
     <Box component={'section'} sx={breakpointsActiveGameTitleContainer}>
-      <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
       {!winner ? (
-        <Box component={'section'} sx={breakpointsPlayersInGameBox}>
-          <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
-        </Box>
+        <>
+          <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
+          <Box component={'section'} sx={breakpointsPlayersInGameBox}>
+            <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
+          </Box>
+        </>
       ) : (
         <Box component={'section'} sx={{ flex: '1 0 70%' }}>
           <Text titleVariant="h2" titleText={winner} sx={breakpointsActiveGameTitleText} />

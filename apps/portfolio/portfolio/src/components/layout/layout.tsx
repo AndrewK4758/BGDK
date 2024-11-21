@@ -12,7 +12,7 @@ import Menus from '../menus/menus';
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
   top: '1vh',
-  width: '70vw',
+  width: '55vw',
   display: 'flex',
   height: '8vh',
   maxHeight: '120px',
@@ -21,13 +21,33 @@ const headerWrapperSxProps: SxProps = {
   zIndex: 5,
 };
 
+const homeWrapperSxProps: SxProps = {
+  flex: '0 1 auto',
+  width: '100vw',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '25vh',
+};
+
 const mainWrapperSxProps: SxProps = {
   flex: '1 0 100%',
   width: '100vw',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginTop: '25vh',
+  marginTop: '20vh',
+  gap: '20vh',
+};
+
+const outletWrapperSxProps: SxProps = {
+  width: '100vw',
+  display: 'flex',
+  justifyContent: 'center',
+  height: 'fit-content',
+  minHeight: '50vh',
+  paddingBottom: '15vh',
 };
 
 /**
@@ -37,41 +57,16 @@ const mainWrapperSxProps: SxProps = {
 
 const Layout = () => (
   <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
-    <Box component={'div'} className="background" />
-    <Box component={'div'} className="background-overlay" />
+    <Box component={'div'} className="background" id="background" />
+    <Box component={'div'} className="background-overlay" id="background-overlay" />
     <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
       <Header />
     </Box>
     <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
-      <Box
-        component={'div'}
-        key={'home-wrapper'}
-        id="home-wrapper"
-        sx={{
-          flex: '0 1 auto',
-          width: '100vw',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '25vh',
-        }}
-      >
+      <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
         <Home />
       </Box>
-      <Box
-        component={'div'}
-        key={'outlet-ref-wrapper'}
-        id="outlet-ref-wrapper"
-        sx={{
-          width: '100vw',
-          display: 'flex',
-          justifyContent: 'center',
-          height: 'fit-content',
-          minHeight: '50vh',
-          paddingBottom: '15vh',
-        }}
-      >
+      <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
         <WebSocketContextProvider>
           <Suspense fallback={<Waiting />}>
             <Outlet />
