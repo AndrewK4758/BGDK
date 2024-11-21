@@ -8,7 +8,7 @@ import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
 import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useContext, useState, type Dispatch, type SetStateAction } from 'react';
-import { Form } from 'react-router-dom';
+import { Form, useNavigation } from 'react-router-dom';
 import '../../../styles/google-calendar.css';
 import Theme from '../../../styles/theme';
 import {
@@ -114,9 +114,14 @@ const initState: TimesAndDates = {
   date: tomorrow,
 };
 
-const GoogleCalendar = () => {
+interface GoogleCalendarProps {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
   const [values, setValues] = useState<TimesAndDates>(initState);
-  const { setUser } = useContext<GoogleUserContextProps>(GoogleUserContext);
+  const { GoogleUserContextValues, setUser } = useContext<GoogleUserContextProps>(GoogleUserContext);
+  const { state } = useNavigation();
 
   const login = useGoogleLogin({
     onSuccess: code => onGoogleSuccess(code, setUser),
@@ -154,7 +159,7 @@ const GoogleCalendar = () => {
         }}
       >
         <Form
-          onSubmit={() => handleSubmitEvent(values)}
+          onSubmit={() => handleSubmitEvent(values, setOpen)}
           style={{
             width: '100%',
             flex: 1,
@@ -258,9 +263,11 @@ const GoogleCalendar = () => {
               paddingX: 4,
             }}
           >
-            <Button type="submit" LinkComponent={'button'} key={'calendar-submit-button'} id="calendar-submit-buttom">
-              Submit Event
-            </Button>
+            {state !== 'submitting' && GoogleUserContextValues.name.length ? (
+              <Button type="submit" LinkComponent={'button'} key={'calendar-submit-button'} id="calendar-submit-buttom">
+                Submit Event
+              </Button>
+            ) : null}
           </Box>
         </Form>
       </Box>
@@ -293,7 +300,10 @@ const onGoogleSuccess = async (code: CodeResponse, setUser: Dispatch<SetStateAct
   }
 };
 
-const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) => {
+const handleSubmitEvent = async (
+  { date, startTime, endTime }: TimesAndDates,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) => {
   try {
     const tempStartDateTime = date.toDate();
     const tempEndDateTime = date.toDate();
@@ -313,7 +323,7 @@ const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) =>
     const startDateTime = tempStartDateTime.toISOString();
     const endDateTime = tempEndDateTime.toISOString();
 
-    await axios.post(
+    const result = await axios.post(
       `${baseURL}/create-events`,
       { start: startDateTime, end: endDateTime },
       {
@@ -321,6 +331,9 @@ const handleSubmitEvent = async ({ date, startTime, endTime }: TimesAndDates) =>
         headers: { 'Content-Type': 'application/json' },
       },
     );
+
+    if (result) setOpen(false);
+
     return null;
   } catch (error) {
     console.error(error);

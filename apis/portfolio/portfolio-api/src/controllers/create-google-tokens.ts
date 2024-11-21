@@ -9,21 +9,18 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
 
     const { tokens } = await oauth2Client.getToken(code);
 
-    console.log(tokens);
-
     const userID = new ShortUniqueId().rnd();
 
     userTokensMap.set(userID, tokens);
 
-    console.log(userTokensMap);
     resp.cookie('OAUID', userID, {
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
     });
 
-    console.log(resp.headersSent);
+    const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us' : 'http://localhost:4700';
 
-    resp.setHeader('Access-Control-Allow-Origin', 'http://www.andrew-k.us');
+    resp.setHeader('Access-Control-Allow-Origin', origin);
     resp.setHeader('Access-Control-Allow-Credentials', 'true');
     resp.status(201).json({ idToken: tokens.id_token });
   } catch (error) {

@@ -102,7 +102,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             sx={{ flex: 4, display: 'flex', flexDirection: 'column' }}
           >
             <Suspense fallback={<Waiting />}>
-              {tab === 0 && <GoogleCalendar />}
+              {tab === 0 && <GoogleCalendar setOpen={setOpen} />}
               {tab === 1 && <EmailForm setOpen={setOpen} />}
             </Suspense>
           </Box>
