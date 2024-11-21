@@ -2,7 +2,6 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.messages import HumanMessage
 
-
 prompt = ChatPromptTemplate.from_messages(
     [
         MessagesPlaceholder(variable_name="prompt"),
@@ -12,7 +11,7 @@ prompt = ChatPromptTemplate.from_messages(
 
 def main():
 
-    model = OllamaLLM(model="llama3.2:latest")
+    model = OllamaLLM(model="gemma2:2b")
     # codellama
     # sqlcoder
     # codestral

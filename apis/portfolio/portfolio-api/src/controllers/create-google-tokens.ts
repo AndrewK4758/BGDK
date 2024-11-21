@@ -18,6 +18,8 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
       httpOnly: true,
     });
 
+    resp.setHeader('Access-Control-Allow-Origin', 'http://www.andrew-k.us');
+    resp.setHeader('Access-Control-Allow-Credentials', 'true');
     resp.status(201).json({ idToken: tokens.id_token });
   } catch (error) {
     console.error(error);

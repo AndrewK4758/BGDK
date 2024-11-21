@@ -25,6 +25,7 @@ export const LocalModel = () => {
     ]);
 
     return () => {
+      socket.removeAllListeners();
       socket.disconnect();
     };
   }, []);

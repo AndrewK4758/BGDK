@@ -13,8 +13,7 @@ def main():
 
     parser = argparse.ArgumentParser(
         prog="cli",
-        description="A simple CLI for demonstrating gemini using langchain",
-        epilog="\nGoogle Cloud Platform",
+        description="A simple CLI to demonstrate running agents using langchain",
     )
 
     subparsers = parser.add_subparsers(dest="action", required=False)

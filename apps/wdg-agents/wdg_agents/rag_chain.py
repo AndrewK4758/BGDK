@@ -3,7 +3,7 @@ import os
 import chromadb
 from chromadb import EmbeddingFunction, Documents
 
-# from chromadb.api.models.Collection import Collection
+from chromadb.api.models import Collection
 from langchain_chroma import Chroma
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain

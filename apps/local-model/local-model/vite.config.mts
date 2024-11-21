@@ -46,7 +46,6 @@ export default defineConfig({
     target: 'esnext',
   },
   esbuild: {
-    jsx: 'automatic',
     format: 'esm',
     color: true,
     platform: 'browser',
