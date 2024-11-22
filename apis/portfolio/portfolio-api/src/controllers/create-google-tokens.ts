@@ -3,6 +3,8 @@ import oauth2Client from '../services/google-oauth';
 import userTokensMap from '../models/users-tokens-map';
 import ShortUniqueId from 'short-unique-id';
 
+console.log(process.env.NODE_ENV);
+
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
     const { code } = req.body;
@@ -19,6 +21,8 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
     });
 
     const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us/' : 'http://localhost:4700/';
+
+    console.log(origin);
 
     resp.setHeader('Access-Control-Allow-Origin', origin);
     resp.setHeader('Access-Control-Allow-Credentials', 'true');

@@ -328,7 +328,6 @@ const handleSubmitEvent = async (
       { start: startDateTime, end: endDateTime },
       {
         withCredentials: true,
-        headers: { 'Content-Type': 'application/json' },
       },
     );
 
