@@ -18,9 +18,10 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
     resp.cookie('OAUID', userID, {
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
+      sameSite: 'none',
     });
 
-    const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us/' : 'http://localhost:4700/';
+    const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us' : 'http://localhost:4700';
 
     console.log(origin);
 
