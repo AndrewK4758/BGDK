@@ -23,8 +23,14 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { useEffect, useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
-import { Form, useActionData, useNavigate, useSubmit, type NavigateFunction } from 'react-router-dom';
-import type { SubmitTarget } from 'react-router-dom/dist/dom';
+import {
+  Form,
+  useActionData,
+  useNavigate,
+  useSubmit,
+  type NavigateFunction,
+  type SubmitTarget,
+} from 'react-router-dom';
 import * as Yup from 'yup';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';

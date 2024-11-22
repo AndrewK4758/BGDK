@@ -81,7 +81,7 @@
       "library": {
         "style": "css",
         "linter": "eslint",
-        "unitTestRunner": "jest"
+        "unitTestRunner": "vitest"
       }
     },
     "@nx/web:application": {

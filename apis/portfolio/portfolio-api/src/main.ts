@@ -30,6 +30,6 @@ const host = process.env.HOST || 'localhost';
 const server = app.listen(port, () => {
   console.log(`Listening at http://${host}:${port}/api/v1`);
 });
-server.on('error', console.error);
+server.on('error', err => console.error(err));
 
 export default app;
