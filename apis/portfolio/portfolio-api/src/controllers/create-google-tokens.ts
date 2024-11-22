@@ -3,8 +3,6 @@ import oauth2Client from '../services/google-oauth';
 import userTokensMap from '../models/users-tokens-map';
 import ShortUniqueId from 'short-unique-id';
 
-console.log(process.env.NODE_ENV);
-
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
     const { code } = req.body;
