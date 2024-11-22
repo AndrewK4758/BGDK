@@ -12,8 +12,10 @@ const __dirname =
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: ['https://www.andrew-k.us', 'https://andrew-k.us', 'http://localhost:4700'],
+  origin: ['https://www.andrew-k.us/', 'https://andrew-k.us/', 'http://localhost:4700/'],
   optionsSuccessStatus: 204,
+  allowedHeaders: '*',
+  exposedHeaders: '*',
   credentials: true,
 };
 

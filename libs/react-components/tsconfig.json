@@ -12,6 +12,13 @@
   "include": [],
   "exclude": [],
   "references": [
+    { "path": "../__mocks__/mocks" },
+    { "path": "../games/chutes-and-ladders" },
+    { "path": "../games-components-logic" },
+    { "path": "../game" },
+    { "path": "../models/instance-of-game" },
+    { "path": "../chain" },
+    { "path": "../utils" },
     { "path": "../types/types-ai" },
     { "path": "../gen-ai/vertex-ai" },
     { "path": "../shared-react-components" },

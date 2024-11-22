@@ -6,7 +6,7 @@ import ShortUniqueId from 'short-unique-id';
 const createTokens = async (req: Request, resp: Response, next: NextFunction) => {
   try {
     const { code } = req.body;
-    console.log(code, 'CODE');
+
     const { tokens } = await oauth2Client.getToken(code);
 
     const userID = new ShortUniqueId().rnd();
@@ -18,7 +18,7 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
       httpOnly: true,
     });
 
-    const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us' : 'http://localhost:4700';
+    const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us/' : 'http://localhost:4700/';
 
     resp.setHeader('Access-Control-Allow-Origin', origin);
     resp.setHeader('Access-Control-Allow-Credentials', 'true');

@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { Waiting } from '@bgdk/shared-react-components';
+import ActiveUserProvider from '../context/active-user-context-provider';
 import { NoGameError, NotEnoughPlayersError } from '../errors/error';
 import ActiveGameSession from '../pages/active_game_session';
 import GameDetails from '../pages/game_details';
@@ -12,7 +12,6 @@ import registerPlayerAndAvatarAction from '../services/action_functions/register
 import vertexSubmitAction from '../services/action_functions/vertex-submit-action';
 import loadGameList from '../services/loader_functions/load_game_list';
 import loadPlayerAvatarRegisterFilterData from '../services/loader_functions/load_register_player_avatar_data_and_filter';
-import ActiveUserProvider from '../context/active-user-context-provider';
 
 const router = createBrowserRouter([
   {
@@ -66,7 +65,7 @@ const router = createBrowserRouter([
 
 const App = () => (
   <ActiveUserProvider>
-    <RouterProvider router={router} fallbackElement={<Waiting />} />
+    <RouterProvider router={router} />
   </ActiveUserProvider>
 );
 

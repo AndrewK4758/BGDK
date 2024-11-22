@@ -25,6 +25,7 @@
     "../../libs/react-components/src/**/*.tsx",
     "../../libs/shared-react-components/src/**/*.tsx",
     "../../libs/utils/src/lib/get-current-minute.ts",
-    "../../libs/gen-ai/vertex-ai/src/**/*.ts"
+    "../../libs/gen-ai/vertex-ai/src/**/*.ts",
+    "../../libs/utils/src/**/*.ts"
   ]
 }

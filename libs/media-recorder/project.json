@@ -13,7 +13,6 @@
         "main": "libs/media-recorder/src/index.ts",
         "tsConfig": "libs/media-recorder/tsconfig.lib.json",
         "assets": ["libs/media-recorder/*.md"],
-        "generatePackageJson": true,
         "sourcemap": true,
         "target": "esnext",
         "platform": "browser",

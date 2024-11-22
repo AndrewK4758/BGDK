@@ -18,7 +18,7 @@
     "../../libs/shared-react-components/src/**/*.ts",
     "../../libs/react-components/src/**/*.tsx",
     "../../libs/shared-react-components/src/**/*.tsx",
-    "../../libs/utils/src/lib/get-current-minute.ts",
+    "../../libs/utils/src/**/*.ts",
     "../../libs/gen-ai/vertex-ai/src/**/*.ts"
   ],
   "exclude": [
@@ -34,11 +34,18 @@
     "vitest.config.ts"
   ],
   "references": [
+    { "path": "../../libs/__mocks__/mocks/tsconfig.lib.json" },
+    { "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
+    { "path": "../../libs/game/tsconfig.lib.json" },
+    { "path": "../../libs/models/instance-of-game/tsconfig.lib.json" },
+    { "path": "../../libs/chain/tsconfig.lib.json" },
+    { "path": "../../libs/utils/tsconfig.lib.json" },
     { "path": "../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
+    { "path": "../../libs/shared-react-components/tsconfig.lib.json" },
     { "path": "../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../libs/react-components/tsconfig.lib.json" },
-    { "path": "../../libs/shared-react-components/tsconfig.lib.json" }
+    { "path": "../../libs/react-components/tsconfig.lib.json" }
   ]
 }
