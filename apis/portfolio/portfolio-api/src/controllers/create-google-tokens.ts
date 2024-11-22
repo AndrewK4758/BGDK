@@ -19,6 +19,7 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
       sameSite: 'none',
+      secure: true,
     });
 
     const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us' : 'http://localhost:4700';
