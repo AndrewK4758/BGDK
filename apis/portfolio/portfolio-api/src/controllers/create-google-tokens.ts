@@ -24,8 +24,6 @@ const createTokens = async (req: Request, resp: Response, next: NextFunction) =>
 
     const origin = process.env.NODE_ENV === 'production' ? 'https://www.andrew-k.us' : 'http://localhost:4700';
 
-    console.log(origin);
-
     resp.setHeader('Access-Control-Allow-Origin', origin);
     resp.setHeader('Access-Control-Allow-Credentials', 'true');
 

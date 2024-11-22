@@ -7,14 +7,10 @@ const createEvents = async (req: Request, resp: Response, next: NextFunction) =>
   try {
     const userID = req.cookies['OAUID'];
 
-    console.log(userID, 'user id');
-
     if (!userID) {
       resp.status(404).json({ message: 'Please connect Google Calendar to continue.' });
     }
     const tokens = userTokensMap.get(userID as string) as Auth.Credentials;
-
-    console.log(userTokensMap, 'MAP');
 
     const REFRESH_TOKEN = tokens.refresh_token;
 
