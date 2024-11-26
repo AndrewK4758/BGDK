@@ -66,13 +66,13 @@ const Layout = () => (
       <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
         <Home />
       </Box>
-      <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
-        <WebSocketContextProvider>
-          <Suspense fallback={<Waiting />}>
+      <Suspense fallback={<Waiting />}>
+        <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
+          <WebSocketContextProvider>
             <Outlet />
-          </Suspense>
-        </WebSocketContextProvider>
-      </Box>
+          </WebSocketContextProvider>
+        </Box>
+      </Suspense>
     </Box>
     <Menus />
   </Box>

@@ -1,6 +1,5 @@
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import { Fragment } from 'react/jsx-runtime';
 import { RenderList } from '../render-list/render-list';
 import Text from '../text/text';
 import { Theme } from '../../theme/theme';
@@ -13,7 +12,7 @@ export interface GameBoardProps {
   container: boolean | undefined;
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse' | undefined;
   wrap: 'wrap' | 'nowrap' | undefined;
-  id: string | number;
+  id: string | undefined;
   gridSx?: SxProps;
   rowSx?: SxProps;
 }
@@ -36,6 +35,8 @@ const breakpointsSpaceSx: SxProps = {
   },
 };
 
+const spaceStyle: SxProps = { display: 'flex', flex: '1 0 100%' };
+
 const avatarSize: CSSProperties = {
   alignSelf: 'self-start',
   width: 'auto',
@@ -50,27 +51,25 @@ const avatarSize: CSSProperties = {
  * @returns each space for provided row
  */
 
-const gameBoardRowMap = (e: ILiteSpace, _i: number, _arr: string[]) => {
-  const DisplayValue = () => {
-    if (e.display.indexOf('g') === e.display.length - 1)
-      return <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />;
-    else return <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />;
-  };
-  return (
-    <Fragment key={e.display}>
-      <Grid2 sx={breakpointsRowSx}>
-        <DisplayValue />
-      </Grid2>
-    </Fragment>
-  );
-};
+const gameBoardRowMap = (e: ILiteSpace, i: number, _arr: string[]) => (
+  <Grid2 key={`space-${i}-${e.display}`} sx={breakpointsRowSx}>
+    {e.display.indexOf('g') === e.display.length - 1 ? (
+      <img
+        id={`${e.display}-avatar-c&l`}
+        src={`./game-avatars/${e.display}`}
+        alt={`${e.display} game piece`}
+        style={avatarSize}
+      />
+    ) : (
+      <Text id={`${e.display}-avatar-c&l`} titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
+    )}
+  </Grid2>
+);
 
-export function GameBoardMap({ row, columns, container, direction, wrap, id, gridSx }: GameBoardProps) {
-  return (
-    <Grid2 columns={columns} container={container} direction={direction} wrap={wrap} key={id} sx={gridSx}>
-      <RenderList data={row} listMapCallback={gameBoardRowMap} />
-    </Grid2>
-  );
-}
+export const GameBoardMap = ({ row, columns, container, direction, wrap, id, rowSx }: GameBoardProps) => (
+  <Grid2 columns={columns} container={container} direction={direction} wrap={wrap} id={id} sx={rowSx}>
+    <RenderList data={row} listMapCallback={gameBoardRowMap} sx={spaceStyle} />
+  </Grid2>
+);
 
 export default GameBoardMap;

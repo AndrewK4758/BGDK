@@ -30,7 +30,6 @@ const GameLoading = () => {
   return (
     <Paper
       component={'div'}
-      key={'game-loading-wrapper'}
       id="game-loading"
       sx={{
         width: '100%',

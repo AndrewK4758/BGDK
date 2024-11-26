@@ -86,12 +86,12 @@ export interface IRegisterLoaderAndFilter extends ILoadRegisterData {
   gamePlayerIDs: GamePlayerValidation;
 }
 
-export interface IRegisterFormValues {
+export type IRegisterFormValues = {
   playerName: string;
   avatarName: string;
   avatarColor: Color;
   avatarImage?: string;
-}
+};
 
 export interface IActivePlayersInGame {
   activePlayersInGame: IRegisterFormValues[];

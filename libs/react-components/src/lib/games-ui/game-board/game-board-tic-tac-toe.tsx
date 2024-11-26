@@ -1,39 +1,36 @@
-import { SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Grid2 from '@mui/material/Grid2';
 import Text from '../text/text';
 import { Theme } from '../../theme/theme';
-import { ILiteSpace } from '@bgdk/types-game';
-import type { CSSProperties } from 'react';
+import { type Row } from '@bgdk/types-game';
+import type { CSSProperties, Dispatch, SetStateAction } from 'react';
 
 const breakpointsRowSx: SxProps = {
   display: 'flex',
-  flex: '1 0 33%',
-  justifyItems: 'center',
-  alignItems: 'center',
-  border: `3px solid ${Theme.palette.success.main}`,
-  alignContent: 'center',
+  flex: 1,
+  height: '100%',
   justifyContent: 'center',
+  alignItems: 'center',
+  flexWrap: 'nowrap',
+  overflow: 'hidden',
+  border: `3px solid ${Theme.palette.success.main}`,
   [Theme.breakpoints.down('laptop')]: {
     border: `1.5px solid ${Theme.palette.success.main}`,
   },
 };
 
 const breakpointsSpaceSx: SxProps = {
-  fontSize: '4rem',
   display: 'none',
-  [Theme.breakpoints.down('laptop')]: {
-    fontSize: '.75rem',
-  },
 };
 
 const avatarSize: CSSProperties = {
-  width: '40%',
-  height: 'auto',
-  border: 5,
+  width: 'auto',
+  height: '120px',
 };
 
 export interface GameBoardPropsTicTacToe {
-  row: ILiteSpace[];
+  row: Row;
   columns: number;
   container: boolean | undefined;
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse' | undefined;
@@ -41,8 +38,8 @@ export interface GameBoardPropsTicTacToe {
   gridSx?: SxProps;
   rowSx?: SxProps;
   id?: string;
-  state: HTMLDivElement | undefined;
-  setStateAction: (e: HTMLDivElement) => void;
+  state: string | undefined;
+  setStateAction: Dispatch<SetStateAction<string | undefined>>;
 }
 
 /**
@@ -67,29 +64,38 @@ export const GameBoardMapTicTacToe = ({
     container={container}
     direction={direction}
     wrap={wrap}
-    id={id}
-    sx={{ height: '33.3%', flex: '1 0 100%' }}
+    id={`row-${id}`}
+    sx={{ height: '33.4 ', flex: '1 0 100%' }}
   >
-    {row.map((e, _i, _arr) => {
-      return (
-        <Grid2
-          component={'div'}
-          sx={breakpointsRowSx}
-          onClick={e => setStateAction(e.currentTarget)}
-          style={
-            state?.textContent === e.display
-              ? { backgroundColor: '#FFD300', color: '#58278b' }
-              : { backgroundColor: Theme.palette.background.default }
-          }
-        >
-          {e.display.indexOf('g') === e.display.length - 1 ? (
-            <img src={`./game-avatars/${e.display}`} alt={`${e.display} game piece`} style={avatarSize} />
-          ) : (
-            <Text titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
-          )}
-        </Grid2>
-      );
-    })}
+    {row.map((e, i, _arr) => (
+      <Grid2
+        key={`space-${e.display}-${i}`}
+        id={`space-${e.display}-${i}`}
+        component={'div'}
+        sx={breakpointsRowSx}
+        onClick={e => setStateAction(e.currentTarget.textContent as string)}
+        style={
+          state === e.display
+            ? { backgroundColor: '#FFD300', color: '#58278b' }
+            : { backgroundColor: Theme.palette.background.default }
+        }
+      >
+        {e.display.indexOf('g') === e.display.length - 1 ? (
+          <Box sx={{ position: 'absolute', display: 'flex', justifyContent: 'center', flex: 1 }}>
+            <img
+              key={`${e.display}-avatar-${i}`}
+              src={`./game-avatars/${e.display}`}
+              alt={`${e.display} game piece`}
+              style={avatarSize}
+            />
+          </Box>
+        ) : (
+          <Box>
+            <Text key={`${e.display}-space`} titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
+          </Box>
+        )}
+      </Grid2>
+    ))}
   </Grid2>
 );
 

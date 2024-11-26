@@ -1,5 +1,5 @@
 import { Board, Die, LiteSpace, Space, rangeSelector, rowFinder } from '@bgdk/games-components-logic';
-import { AvatarTotem, Color, GameBoard, SpaceType, type IChutesAndLadders } from '@bgdk/types-game';
+import { AvatarTotem, Color, SpaceType, type IChutesAndLadders, type ILiteSpace } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
 
 export const TOTAL_SPACES = 100;
@@ -209,8 +209,8 @@ export class ChutesAndLadders implements IChutesAndLadders {
    *
    * @returns a complete game board array of LiteSpace instances
    */
-  displayGameBoard(): GameBoard {
-    const gameBoard: GameBoard = [];
+  displayGameBoard(): ILiteSpace[] {
+    const gameBoard: ILiteSpace[] = [];
     let space: Space = this.startSpace;
     let display;
     while (space) {

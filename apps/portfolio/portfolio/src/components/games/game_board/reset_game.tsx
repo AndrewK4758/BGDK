@@ -24,11 +24,11 @@ const baseURL = import.meta.env.VITE_GAMES_API_URL;
 interface ResetGameProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
-  setSpace: Dispatch<SetStateAction<HTMLDivElement | undefined>>;
+  setSpace: Dispatch<SetStateAction<string | undefined>>;
 }
 
 export default function ResetGame({ dispatch, socket, setSpace }: ResetGameProps) {
-  const { id } = useParams() ;
+  const { id } = useParams();
 
   return (
     <Button

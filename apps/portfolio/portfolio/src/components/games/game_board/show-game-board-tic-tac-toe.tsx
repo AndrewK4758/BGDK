@@ -1,23 +1,26 @@
 import { GameBoardMapTicTacToe, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Built_GameBoard } from '../../games/active_game_session';
-
+import type { GameBoard } from '@bgdk/types-game';
+import type { Dispatch, SetStateAction } from 'react';
 
 const breakpointsGameBoardBox: SxProps = {
   display: 'flex',
   flexWrap: 'wrap',
   border: `5px solid ${Theme.palette.success.main}`,
-  height: '55vh',
+  minHeight: '55vh',
+  maxHeight: '80vh',
+  width: '50vw',
+  justifySelf: 'center',
   [Theme.breakpoints.up('laptop')]: {
     boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
   },
 };
 
 interface ShowGameBoardProps {
-  board: Built_GameBoard;
-  state: (EventTarget & HTMLDivElement) | undefined;
-  setStateAction: (e: EventTarget & HTMLDivElement) => void;
+  board: GameBoard;
+  state: string | undefined;
+  setStateAction: Dispatch<SetStateAction<string | undefined>>;
 }
 
 /**
@@ -26,23 +29,28 @@ interface ShowGameBoardProps {
  */
 
 const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps) => (
-  <Box component={'section'} sx={breakpointsGameBoardBox}>
-    {board.map((e, i, _arr): JSX.Element => {
-      return (
+  <Box
+    key={'tic-tac-toe-whole-board'}
+    id={'tic-tac-toe-whole-board'}
+    component={'section'}
+    sx={breakpointsGameBoardBox}
+  >
+    {board.map(
+      (e, i, _arr): JSX.Element => (
         <GameBoardMapTicTacToe
+          key={`${i}-row-ttt`}
           row={e}
           columns={3}
-          key={`tic-tac-toe-row-${i}`}
+          id={`row-${i}`}
           container={true}
           direction="row"
           wrap="wrap"
           state={state}
           setStateAction={setStateAction}
         />
-      );
-    })}
+      ),
+    )}
   </Box>
 );
-
 
 export default ShowGameBoardTicTacToe;

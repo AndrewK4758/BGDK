@@ -20,6 +20,7 @@ import { Form, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import handleSubmitNewEntry, { NewEntryReturn } from '../../../services/actions/crud-actions/submit.new-entry-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
+import Theme from '../../../styles/theme';
 
 const AddEntryStyle: SxProps = {
   position: 'absolute',
@@ -34,7 +35,7 @@ const AddEntryStyle: SxProps = {
   border: '10px solid purple',
   boxShadow: 24,
   p: 4,
-  borderRadius: 5,
+  borderRadius: 1,
 };
 
 const steps = ['Artist', 'Album', 'Track'];
@@ -183,7 +184,7 @@ const AddEntry = () => {
   return (
     <Modal id="DIALOG WRAPPER ID" open={open} component={'div'}>
       <DialogContent id="DIALOG CONTENT ID" sx={AddEntryStyle}>
-        <DialogTitle component={'h1'} sx={{ fontSize: 'xx-large', textAlign: 'center' }}>
+        <DialogTitle component={'h1'} color="textSecondary" sx={{ fontSize: 'xx-large', textAlign: 'center' }}>
           Add New Entry
         </DialogTitle>
         <Form
@@ -193,7 +194,7 @@ const AddEntry = () => {
           style={{ display: 'flex', flexDirection: 'column' }}
         >
           <>
-            <DialogTitle>
+            <DialogTitle color="textSecondary">
               All fields are required to submit entry. Artist, Album, and Track ID's will be automatically generated and
               provided to you upon successful submission
             </DialogTitle>
@@ -213,7 +214,11 @@ const AddEntry = () => {
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.artist?.name && formik.errors.artist?.name ? (
-                  <Text titleVariant="body1" titleText={formik.errors.artist.name} />
+                  <Text
+                    titleVariant="body1"
+                    titleText={formik.errors.artist.name}
+                    sx={{ color: Theme.palette.text.secondary }}
+                  />
                 ) : null}
               </>
             )}
@@ -395,9 +400,11 @@ const AddEntry = () => {
               </Fragment>
             ) : (
               <Fragment>
-                <Typography sx={{ mt: 2, mb: 1, py: 1 }}>Step {activeStep + 1}</Typography>
+                <Typography color="textSecondary" sx={{ mt: 2, mb: 1, py: 1 }}>
+                  Step {activeStep + 1}
+                </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                  <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
+                  <Button color="primary" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
                     Back
                   </Button>
                   <Box sx={{ flex: '1 1 auto' }} />

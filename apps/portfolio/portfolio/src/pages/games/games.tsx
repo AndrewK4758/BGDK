@@ -7,12 +7,12 @@ import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
-import GameLoading from '../../components/loading/loading';
 import Theme from '../../styles/theme';
+import { Waiting } from '@bgdk/shared-react-components';
 
 const title = 'Games';
 
@@ -26,8 +26,8 @@ const titleSx: SxProps = {
 };
 
 const Games = () => {
-  const { state } = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
+  const { state } = useNavigation();
   const divRef = useRef<HTMLElement>(null);
   const submit = useSubmit();
 
@@ -35,15 +35,15 @@ const Games = () => {
     if (divRef.current) handleScrollIntoView(divRef.current);
   }, []);
 
-  useEffect(() => {
-    const renderTimer = setTimeout(() => setLoading(false), 3000);
-
-    return () => clearTimeout(renderTimer);
-  }, [state]);
-
-  const handleClick = (gameName: string) => {
-    setLoading(true);
-    submit(gameName, { method: 'post', relative: 'path', encType: 'text/plain' });
+  const handleSelectGame = async (gameName: string, setLoading: Dispatch<SetStateAction<boolean>>) => {
+    try {
+      setLoading(true);
+      await submit(gameName, { method: 'post', relative: 'path', encType: 'text/plain' });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,7 +98,7 @@ const Games = () => {
               id="Chutes-&-Ladders"
               disabled={state === 'submitting'}
               endIcon={<ChutesAndLaddersIcon />}
-              onClick={e => handleClick(e.currentTarget.id)}
+              onClick={e => handleSelectGame(e.currentTarget.id, setLoading)}
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
             >
               Chutes & Ladders
@@ -112,7 +112,7 @@ const Games = () => {
               id="Tic-Tac-Toe"
               disabled={state === 'submitting'}
               endIcon={<TicTacToeIcon />}
-              onClick={e => handleClick(e.currentTarget.id)}
+              onClick={e => handleSelectGame(e.currentTarget.id, setLoading)}
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
             >
               Tic Tac Toe
@@ -137,7 +137,7 @@ const Games = () => {
         id={`games-app-wrapper`}
         sx={{ width: '80%', minHeight: '100%', height: 'fit-content' }}
       >
-        {loading ? <GameLoading /> : <Outlet />}
+        <Suspense fallback={<Waiting />}>{!loading && <Outlet />}</Suspense>
       </Box>
     </Box>
   );

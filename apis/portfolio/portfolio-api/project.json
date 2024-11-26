@@ -66,7 +66,11 @@
     },
     "docker-build": {
       "dependsOn": ["build"],
-      "command": "docker build -f apis/portfolio/portfolio-api/Dockerfile . -t portfolio-api"
+      "command": "docker build -f apis/portfolio/portfolio-api/Dockerfile . -t us-central1-docker.pkg.dev/games-424800/portfolio/portfolio-api"
+    },
+
+    "docker-push": {
+      "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/portfolio-api"
     }
   }
 }

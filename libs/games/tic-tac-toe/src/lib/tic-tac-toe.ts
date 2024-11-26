@@ -1,5 +1,5 @@
 import { Board, Space, LiteSpace } from '@bgdk/games-components-logic';
-import { SpaceType, Color, AvatarTotem, type ITicTacToe } from '@bgdk/types-game';
+import { SpaceType, Color, AvatarTotem, type ITicTacToe, type ILiteSpace } from '@bgdk/types-game';
 import AvatarTotems from './avatar-totems';
 
 export const WINNING_POSITIONS: string[][] = [
@@ -49,7 +49,7 @@ export class TicTacToe implements ITicTacToe {
     }
   };
 
-  displayGameBoard = () => {
+  displayGameBoard = (): ILiteSpace[] => {
     const board: LiteSpace[] = [];
     let space = this.startSpace;
     let display;

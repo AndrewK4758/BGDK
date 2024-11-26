@@ -41,6 +41,7 @@ const routes: RouteObject[] = [
           {
             index: true,
             path: ':id',
+            // loader: registerPlayersAndStartGame,
             Component: ActiveGameSession,
           },
         ],

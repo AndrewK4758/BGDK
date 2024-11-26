@@ -1,13 +1,17 @@
 import { Player } from '@bgdk/games-components-logic';
 import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
 import { IRegisterFormValues } from '@bgdk/types-game';
-import { Box, SxProps } from '@mui/material';
-import { Fragment } from 'react/jsx-runtime';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import type { SxProps } from '@mui/material/styles';
+
+const activeGameHeaderBoxStyles: SxProps = { display: 'flex', flex: '1 0 100%', justifyContent: 'space-evenly' };
 
 const breakpointsActiveGameTitleContainer: SxProps = {
   display: 'flex',
-  flex: '0 1 90%',
+  flexDirection: 'row',
   alignItems: 'center',
+  justifyContent: 'space-between',
   paddingBottom: 4,
   [Theme.breakpoints.down('laptop')]: {
     flex: '1 0 60%',
@@ -15,8 +19,8 @@ const breakpointsActiveGameTitleContainer: SxProps = {
 };
 
 const breakpointsActiveGameTitleText: SxProps = {
-  textAlign: 'center',
-  flex: '0 1 50%',
+  textAlign: 'left',
+  flex: '0 1 35%',
   [Theme.breakpoints.down('laptop')]: {
     flex: '1 0 100%',
     fontSize: '1.5rem',
@@ -25,7 +29,7 @@ const breakpointsActiveGameTitleText: SxProps = {
 };
 
 const breakpointsPlayersInGameBox: SxProps = {
-  flex: '1 0 70%',
+  flex: '0 1 65%',
   display: 'flex',
   flexWrap: 'wrap',
   flexDirection: 'row',
@@ -34,7 +38,7 @@ const breakpointsPlayersInGameBox: SxProps = {
 };
 
 const breakpointsPlayersBox: SxProps = {
-  flex: '1 0 50%',
+  flex: '0 1 auto',
   display: 'flex',
   flexDirection: 'row',
   [Theme.breakpoints.down('laptop')]: {},
@@ -56,17 +60,16 @@ const breakpointsPlayersInGameText: SxProps = {
  */
 
 const playersInGameMap = (e: IRegisterFormValues, _i: number, _arr: Player[]) => (
-  <Fragment key={e.avatarName}>
-    <PlayersInGame
-      component={'span'}
-      id={e.playerName}
-      boxSx={breakpointsPlayersBox}
-      textSx={{ color: '#cb91ff', ...breakpointsPlayersInGameText }}
-      playerVariant="h4"
-      playerName={`${e.playerName}: `}
-      avatarName={e.avatarName}
-    />
-  </Fragment>
+  <PlayersInGame
+    key={e.avatarName}
+    component={'span'}
+    id={e.playerName}
+    boxSx={breakpointsPlayersBox}
+    textSx={{ color: '#cb91ff', ...breakpointsPlayersInGameText }}
+    playerVariant="h4"
+    playerName={`${e.playerName}: `}
+    avatarName={e.avatarName}
+  />
 );
 
 interface ActiveAvatarsProps {
@@ -83,19 +86,26 @@ interface ActiveAvatarsProps {
 
 export default function ActiveAvatars({ avatarsInGame, winner }: ActiveAvatarsProps) {
   return (
-    <Box component={'section'} sx={breakpointsActiveGameTitleContainer}>
+    <Container component={'section'} maxWidth={false} sx={breakpointsActiveGameTitleContainer}>
       {!winner ? (
-        <>
-          <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
-          <Box component={'section'} sx={breakpointsPlayersInGameBox}>
-            <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} />
+        <Box component={'section'} key={'active-game-header'} id={'active-game-header'} sx={activeGameHeaderBoxStyles}>
+          <Box
+            component={'section'}
+            key={'active-game-header-text-box'}
+            id={'active-game-header-text-box'}
+            alignContent={'center'}
+          >
+            <Text titleVariant="h2" titleText="Active Players in Game" sx={breakpointsActiveGameTitleText} />
           </Box>
-        </>
+          <Box component={'section'} sx={breakpointsPlayersInGameBox}>
+            <RenderList data={avatarsInGame} listMapCallback={playersInGameMap} sx={activeGameHeaderBoxStyles} />
+          </Box>
+        </Box>
       ) : (
         <Box component={'section'} sx={{ flex: '1 0 70%' }}>
           <Text titleVariant="h2" titleText={winner} sx={breakpointsActiveGameTitleText} />
         </Box>
       )}
-    </Box>
+    </Container>
   );
 }

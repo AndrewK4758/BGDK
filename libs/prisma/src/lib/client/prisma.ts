@@ -10,7 +10,7 @@ import { PrismaClient, Prisma } from '@prisma/client';
 // };
 
 const prismaClient = new PrismaClient({
-  datasourceUrl: process.env.DB_URL_SSL,
+  datasourceUrl: process.env.DB_URL_DEV,
 });
 
 export const prisma = prismaClient.$extends({
@@ -19,7 +19,6 @@ export const prisma = prismaClient.$extends({
       async exists<T>(this: T, where: Prisma.Args<T, 'findFirst'>['where']): Promise<boolean> {
         const context = Prisma.getExtensionContext(this);
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result = await (context as any).findFirst(where);
         return result !== null;
       },

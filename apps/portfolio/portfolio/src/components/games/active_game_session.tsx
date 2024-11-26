@@ -1,13 +1,15 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
+import { Waiting } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
-import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace } from '@bgdk/types-game';
+import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
+import { handleScrollIntoView } from '@bgdk/utils';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { Suspense, useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
 import getGameInstanceInfo from '../../utils/utils';
@@ -18,7 +20,6 @@ import ShowGameBoard from './game_board/show_game_board';
 import socketReducer, { ActionType } from './game_board/socket-reducer';
 import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
 import TakeTurn from './game_board/take_turn';
-import { handleScrollIntoView } from '@bgdk/utils';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   display: 'flex',
@@ -46,10 +47,8 @@ const breakpointsBottomMenuButtonsBox: SxProps = {
   },
 };
 
-export type Built_GameBoard = GameBoard[];
-
 export interface IActiveGameInfo extends IActivePlayersInGame {
-  gameBoard: Built_GameBoard;
+  gameBoard: GameBoard;
 }
 
 const socketInit = () => {
@@ -70,10 +69,9 @@ const ActiveGameSession = () => {
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_GAMES, socketManagerOptions);
   const socketRef = useRef<Socket>(clientSocket.clientIo);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
-  const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
+  const [space, setSpace] = useState<string | undefined>();
   const divRef = useRef<HTMLDivElement>(null);
-  const params = useParams();
-  const id = params.id;
+  const { id } = useParams();
 
   const socket = socketRef.current;
 
@@ -85,15 +83,16 @@ const ActiveGameSession = () => {
     socket.on('connect', () => {
       console.log(`Player connected with ID: ${socket.id}`);
     });
+
     socket.emit('create-room', (getGameInstanceInfo() as GamePlayerValidation).gameInstanceID);
 
     socket.emit('action', { action: ActionType.BOARD });
 
     socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
-      const gameBoardClient: Built_GameBoard = [];
+      const gameBoardClient: GameBoard = [];
       const maxRowLength = Math.sqrt(gameBoard.length);
       let indexOfSpace = 1;
-      let row: ILiteSpace[] = [];
+      let row: Row = [];
       gameBoard.forEach((s: ILiteSpace) => {
         const rowCount = rowFinder(indexOfSpace, gameBoard.length);
         row.push(s);
@@ -121,49 +120,56 @@ const ActiveGameSession = () => {
       socket.removeAllListeners();
       socket.disconnect();
     };
-  }, []);
+  }, [id]);
 
   return (
-    <Paper key={'active-game'} id="active-game">
+    <Paper key={`active-${id}-game`} id={`active-${id}-game`}>
       <Box
         ref={divRef}
         component={'section'}
-        key={'active-avatar-wrapper'}
+        key={`${id}-active-avatar-wrapper`}
         id="active-avatar-wrapper"
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
-        <ActiveAvatars key={'active-avatars'} avatarsInGame={state.activePlayersInGame} winner={state.winner} />
+        <ActiveAvatars avatarsInGame={state.activePlayersInGame} winner={state.winner} />
       </Box>
       <Box
         component={'section'}
-        key={'game-board-wrapper'}
+        key={`${id}-game-board-wrapper`}
         id="game-board-wrapper"
         sx={{ height: 'fit-content', textAlign: 'center', paddingX: 4 }}
       >
-        {id === 'Chutes-&-Ladders' && <ShowGameBoard key={id} board={state.gameBoard} />}
-        {id === 'Tic-Tac-Toe' && (
-          <ShowGameBoardTicTacToe key={id} board={state.gameBoard} setStateAction={setSpace} state={space} />
+        {id === 'Chutes-&-Ladders' ? (
+          <ShowGameBoard key={`chutes-and-ladders-full-game-board-wrapper`} board={state.gameBoard} />
+        ) : (
+          <ShowGameBoardTicTacToe
+            key={'tic-tac-toe-full-game-board-wrapper'}
+            board={state.gameBoard}
+            setStateAction={setSpace}
+            state={space}
+          />
         )}
       </Box>
       <Container
         component={'section'}
-        key={'active-game-buttons-wrapper'}
+        key={`${id}-active-game-buttons-wrapper`}
         id="active-game-buttons-wrapper"
         sx={breakpointsBottomMenuGameBoard}
       >
         <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         <Box component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          {id === 'Chutes-&-Ladders' && (
-            <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
-          )}
-          {id === 'Tic-Tac-Toe' && (
-            <TakeTurnTicTacToe
-              avatarInTurn={state.avatarInTurn as string}
-              dispatch={dispatch}
-              socket={socket}
-              position={space}
-            />
-          )}
+          <Suspense fallback={<Waiting />}>
+            {id === 'Chutes-&-Ladders' ? (
+              <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
+            ) : (
+              <TakeTurnTicTacToe
+                avatarInTurn={state.avatarInTurn as string}
+                dispatch={dispatch}
+                socket={socket}
+                position={space}
+              />
+            )}
+          </Suspense>
           <ResetGame dispatch={dispatch} socket={socket} setSpace={setSpace} />
         </Box>
       </Container>

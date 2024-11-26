@@ -3,7 +3,7 @@ import multer from 'multer';
 import generateImages from '../controllers/gen-ai-image-gen';
 import promptBuilder from '../controllers/prompt-builder';
 import uploadToGcsBucket from '../controllers/upload-files-to-gcs-bucket';
-import createContextPath from '../controllers/create-context-id';
+import createContextPath from '../controllers/create-context-path';
 
 const router: Router = Router();
 

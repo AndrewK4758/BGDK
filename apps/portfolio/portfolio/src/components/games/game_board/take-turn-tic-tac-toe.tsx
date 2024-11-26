@@ -22,7 +22,7 @@ const breakpointsTakeTurnButton: SxProps = {
 interface TakeTurnProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
-  position: (EventTarget & HTMLDivElement) | undefined;
+  position: string | undefined;
   avatarInTurn: string;
 }
 
@@ -54,11 +54,7 @@ const handleTakeTurn = async ({ dispatch, socket, position, avatarInTurn }: Take
   };
 
   try {
-    const resp = await axios.patch(
-      `${baseURL}/games/Tic-Tac-Toe/take-turn`,
-      { position: position?.textContent },
-      reqHeaders,
-    );
+    const resp = await axios.patch(`${baseURL}/games/Tic-Tac-Toe/take-turn`, { position: position }, reqHeaders);
 
     console.log(resp.data.turnStatus);
     dispatch({ type: ActionType.TAKE_TURN, socket: socket });

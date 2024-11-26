@@ -1,9 +1,8 @@
+import { AvatarTotem, Color } from '../types/game';
 import { IDie } from './die';
 import { ISpace } from './space';
-import { Color } from '../types/game';
-import { AvatarTotem } from '../types/game';
 
-import type { GameBoard } from './lite-space';
+import type { ILiteSpace } from './lite-space';
 
 export interface IChutesAndLadders {
   MAX_PLAYERS: number;
@@ -16,5 +15,5 @@ export interface IChutesAndLadders {
   avatarList: AvatarTotem[];
 
   makeGameBoard(): void;
-  displayGameBoard(): GameBoard;
+  displayGameBoard(): ILiteSpace[];
 }

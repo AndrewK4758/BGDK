@@ -7,6 +7,7 @@ import Text from '../../text/text';
 const avatarSvgStyle: CSSProperties = {
   height: 'auto',
   width: '30%',
+  maxWidth: '100px',
 };
 
 export interface PlayersInGameProps {

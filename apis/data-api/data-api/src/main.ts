@@ -5,6 +5,8 @@ import { join } from 'path';
 import Routes, { router } from './routes/routes';
 import { cwd } from 'process';
 
+console.log(process.env);
+
 const __dirname =
   process.env.NODE_ENV === 'production'
     ? `${cwd()}/apis/data-api/data-api/dist`

@@ -1,7 +1,6 @@
+import { AvatarTotem, Color } from '../types/game';
+import type { ILiteSpace } from './lite-space';
 import { ISpace } from './space';
-import { Color } from '../types/game';
-import { AvatarTotem } from '../types/game';
-import type { GameBoard } from './lite-space';
 
 export interface ITicTacToe {
   MIN_PLAYERS: number;
@@ -11,5 +10,5 @@ export interface ITicTacToe {
   colorList: typeof Color;
 
   makeGameBoard(): void;
-  displayGameBoard(): GameBoard;
+  displayGameBoard(): ILiteSpace[];
 }

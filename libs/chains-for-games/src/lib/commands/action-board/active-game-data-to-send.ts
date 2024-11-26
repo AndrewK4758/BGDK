@@ -1,6 +1,6 @@
 import { CommandBuilder } from '@bgdk/chain';
+import { Context, GameContextKeys, GameInstanceID, IRegisterFormValues, type ILiteSpace } from '@bgdk/types-game';
 import { deRefContextObject } from '@bgdk/utils';
-import { Context, GameContextKeys, GameBoard, GameInstanceID, IRegisterFormValues } from '@bgdk/types-game';
 import { IPlayersAndBoard } from '../../completed-chains/active-game-display-chain';
 
 export const activeDataToSend = CommandBuilder.build((context: Context) => {
@@ -9,7 +9,7 @@ export const activeDataToSend = CommandBuilder.build((context: Context) => {
 
     const activeDataToSend: IPlayersAndBoard = {
       avatarInTurn: context.get('player-in-turn') as string,
-      gameBoard: game.instance.instance.displayGameBoard() as GameBoard,
+      gameBoard: game.instance.instance.displayGameBoard() as ILiteSpace[],
       activePlayersInGame: context.get('active-players-in-game') as IRegisterFormValues[],
       winner: context.get('winner-message') as string,
     };

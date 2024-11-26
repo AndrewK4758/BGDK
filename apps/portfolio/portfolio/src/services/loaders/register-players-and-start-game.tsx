@@ -2,34 +2,43 @@ import { redirect, type ActionFunction, type ActionFunctionArgs } from 'react-ro
 import registerGame from '../register-games/register-game';
 import registerPlayers from '../register-games/registers-players';
 import startGame from '../register-games/start-game';
+import type { GamePlayerValidation } from '@bgdk/types-game';
+import gamesAutoStartError from '../../errors/games-auto-start-error';
 
 const registerPlayersAndStartGame: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const gameName = await request.text();
+
+  let __current_game__: GamePlayerValidation;
   try {
-    const registered = await registerGame(gameName);
+    const gameInstanceID = (await registerGame(gameName)) as string;
 
-    if (registered) {
-      const __current_game__ = sessionStorage.getItem('__current_game__') as string;
-      const playersIds = await registerPlayers(gameName, __current_game__);
+    console.log(gameInstanceID);
 
-      if (playersIds) {
+    sessionStorage.setItem('__current_game__', gameInstanceID);
+    __current_game__ = JSON.parse(gameInstanceID);
+
+    if (gameInstanceID) {
+      const allRegistered = await registerPlayers(gameName, __current_game__);
+
+      if (allRegistered) {
         const resp = await startGame(gameName, __current_game__);
 
         if (resp.message === 'Game Started') {
           sessionStorage.setItem('playersIds', JSON.stringify(resp.playersInOrder));
+
           return redirect(gameName);
         } else {
           return null;
         }
       } else {
-        return null
+        return null;
       }
-    }else {
-      return null
+    } else {
+      return null;
     }
   } catch (error) {
     console.error(error);
-    return null;
+    return gamesAutoStartError(`starting ${gameName}`);
   }
 };
 

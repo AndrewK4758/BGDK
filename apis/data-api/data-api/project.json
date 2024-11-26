@@ -8,7 +8,7 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "esbuildConfig": "apis/data-api/data-api/esbuild.config.cjs",
         "main": "apis/data-api/data-api/src/main.ts",
@@ -59,6 +59,13 @@
       "options": {
         "jestConfig": "apis/data-api/data-api/jest.config.ts"
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -t us-central1-docker.pkg.dev/games-424800/portfolio/data-api -f apis/data-api/data-api/Dockerfile . --label data-api"
+    },
+    "docker-push": {
+      "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/data-api"
     }
   }
 }

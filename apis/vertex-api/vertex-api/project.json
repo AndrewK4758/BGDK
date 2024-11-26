@@ -8,7 +8,7 @@
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.cjs",
         "main": "apis/vertex-api/vertex-api/src/main.ts",
@@ -71,6 +71,13 @@
         "reportsDirectory": "../../coverage/libs/vertex-api",
         "testFiles": ["./src/tests/*"]
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apis/vertex-api/vertex-api/Dockerfile . -t us-central1-docker.pkg.dev/games-424800/portfolio/vertex-api"
+    },
+    "docker-push": {
+      "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/vertex-api"
     }
   }
 }

@@ -12,7 +12,6 @@
     "dotenv": "^16.4.5",
     "short-unique-id": "^5.2.0",
     "@bgdk/types-ai": "0.0.1",
-    "@bgdk/utils": "0.0.1",
     "@bgdk/socket-io-server": "0.0.1",
     "@google-cloud/storage": "7.14.0"
   },
