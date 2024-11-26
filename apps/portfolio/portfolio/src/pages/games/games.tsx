@@ -1,4 +1,5 @@
 import { Text } from '@bgdk/react-components';
+import { Waiting } from '@bgdk/shared-react-components';
 import { handleScrollIntoView } from '@bgdk/utils';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,12 +8,11 @@ import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Suspense, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
 import Theme from '../../styles/theme';
-import { Waiting } from '@bgdk/shared-react-components';
 
 const title = 'Games';
 
@@ -137,7 +137,7 @@ const Games = () => {
         id={`games-app-wrapper`}
         sx={{ width: '80%', minHeight: '100%', height: 'fit-content' }}
       >
-        <Suspense fallback={<Waiting />}>{!loading && <Outlet />}</Suspense>
+        {!loading ? <Outlet /> : <Waiting />}
       </Box>
     </Box>
   );

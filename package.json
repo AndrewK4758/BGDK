@@ -114,14 +114,14 @@
     "@types/http-server": "^0.12.4",
     "@types/jest": "29.5.14",
     "@types/multer": "^1.4.12",
-    "@types/node": "22.9.4",
+    "@types/node": "22.10.0",
     "@types/nodemailer": "6.4.17",
     "@types/react": "18.3.12",
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/parser": "8.16.0",
-    "@vitejs/plugin-react": "4.3.3",
-    "@vitest/coverage-v8": "2.1.5",
-    "@vitest/ui": "2.1.5",
+    "@vitejs/plugin-react": "4.3.4",
+    "@vitest/coverage-v8": "2.1.6",
+    "@vitest/ui": "2.1.6",
     "babel-jest": "29.7.0",
     "babel-loader": "^9.2.1",
     "esbuild": "0.24.0",
@@ -138,7 +138,7 @@
     "jsdom": "25.0.1",
     "nx": "20.1.3",
     "playwright": "1.49.0",
-    "prettier": "3.3.3",
+    "prettier": "3.4.1",
     "prettier-plugin-sh": "^0.14.0",
     "prisma": "5.22.0",
     "react-refresh": "0.14.2",
@@ -148,12 +148,12 @@
     "ts-node": "^10.9.2",
     "typescript": "5.7.2",
     "typescript-eslint": "8.16.0",
-    "vite": "5.4.11",
+    "vite": "6.0.0",
     "vite-plugin-dts": "4.3.0",
-    "vitest": "2.1.5"
+    "vitest": "2.1.6"
   },
   "prisma": {
     "schema": "./libs/prisma/prisma/schema.prisma"
   },
-  "packageManager": "pnpm@9.13.0+sha512.beb9e2a803db336c10c9af682b58ad7181ca0fbd0d4119f2b33d5f2582e96d6c0d93c85b23869295b765170fbdaa92890c0da6ada457415039769edf3c959efe"
+  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
 }
