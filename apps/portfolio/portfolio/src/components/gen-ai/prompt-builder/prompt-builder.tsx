@@ -637,7 +637,6 @@ export const handleFileUpload = async (
 
         setPrompt(prev => ({ ...prev, fileData: { fileUri: fullPath, mimeType: file.type } }));
         setFileName(file.name);
-        setLoadingFile(false);
 
         return null;
       } else return null;
@@ -645,5 +644,7 @@ export const handleFileUpload = async (
   } catch (error) {
     console.error(error);
     return null;
+  } finally {
+    setLoadingFile(false);
   }
 };
