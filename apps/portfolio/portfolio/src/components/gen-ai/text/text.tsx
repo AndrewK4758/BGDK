@@ -18,8 +18,7 @@ const TextGenerator = () => {
   const validationSchema = Yup.object<PromptRequest>().shape({
     text: Yup.string()
       .required('Must be a valid question or statement')
-      .min(2, 'Must be a valid question or statement')
-      .max(255, 'Must be less than 255 characters'),
+      .min(2, 'Must be a valid question or statement'),
     fileData: Yup.mixed<FileData>().nullable().notRequired(),
   });
 

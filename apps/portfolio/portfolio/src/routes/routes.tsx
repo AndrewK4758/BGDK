@@ -11,6 +11,8 @@ import loadArtistAlbums from '../services/loaders/crud-loaders/load-artist-album
 import loadArtistsCount from '../services/loaders/crud-loaders/load-artists-count';
 import loadContextPath from '../services/loaders/gen-ai/load-context-path';
 import registerPlayersAndStartGame from '../services/loaders/register-players-and-start-game';
+import { Waiting } from '@bgdk/shared-react-components';
+import GameLoading from '../components/loading/loading';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -32,6 +34,7 @@ const routes: RouteObject[] = [
     path: '/',
     Component: App,
     action: emailFormAction,
+    hydrateFallbackElement: <Waiting />,
     children: [
       {
         path: 'games',
@@ -41,7 +44,7 @@ const routes: RouteObject[] = [
           {
             index: true,
             path: ':id',
-            // loader: registerPlayersAndStartGame,
+            hydrateFallbackElement: <GameLoading />,
             Component: ActiveGameSession,
           },
         ],

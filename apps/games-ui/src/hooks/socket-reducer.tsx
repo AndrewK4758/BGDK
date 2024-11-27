@@ -18,7 +18,7 @@ const socketReducer = (state: IActiveGameInfo, action: Action) => {
   const { type, socket } = action;
   switch (type) {
     case ActionType.BOARD:
-      // eslint-disable-next-line no-case-declarations
+       
       const { gameBoard, activePlayersInGame, avatarInTurn, winner } = action.payload as IActiveGameInfo;
       return { ...state, gameBoard, activePlayersInGame, avatarInTurn, winner };
     case ActionType.TAKE_TURN:

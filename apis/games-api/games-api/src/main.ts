@@ -22,7 +22,7 @@ const __dirname =
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: '*',
+  origin: ['https://andrew-k.us', 'https://www.andrew-k.us', '*'],
   methods: '*',
   exposedHeaders: '*',
   optionsSuccessStatus: 204,
@@ -49,6 +49,7 @@ new GameRoutes();
 
 const port = parseInt(process.env.PORT as string) || 3000;
 const host = process.env.HOST || 'localhost';
+
 const server = httpServer.listen(port, () => {
   console.log(`Listening on http://${host}:${port}/api/v1`);
 });

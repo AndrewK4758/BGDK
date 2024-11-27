@@ -56,7 +56,6 @@ const GenAiHome = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    console.log('rendered');
     if (divRef.current) handleScrollIntoView(divRef.current);
 
     if (!socket.connected) socket.connect();

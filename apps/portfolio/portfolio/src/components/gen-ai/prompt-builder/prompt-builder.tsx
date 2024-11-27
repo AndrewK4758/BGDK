@@ -619,7 +619,7 @@ export const handleFileUpload = async (
       if (fileInputRef.current.files) {
         const file = fileInputRef.current.files[0];
 
-        const contextPath = getContextPath('context-id');
+        const contextPath = getContextPath('context-path');
 
         const resp = await axios.post(
           `${baseUrl}/upload`,

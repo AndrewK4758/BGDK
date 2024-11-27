@@ -5,6 +5,8 @@ const uploadToGcsBucket = async (req: Request, resp: Response) => {
   try {
     const { contextPath } = req.body;
 
+    console.log(contextPath);
+
     const file = req.file;
 
     const result = await memoryUpload(contextPath as string, file);

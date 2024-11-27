@@ -7,17 +7,16 @@ WORKDIR /api
 # Install pnpm
 RUN npm install -g pnpm
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json .
 
 # Install dependencies using pnpm
 RUN pnpm install --no-frozen-lockfile
 
 ENV NODE_ENV='production'
 
-COPY ../../../libs/prisma/ .
+COPY ../../../libs/prisma ./
 
-RUN pnpx nx run prisma:build:production && \
-    pnpx prisma generate
+RUN pnpx prisma generate
 
 # Copy the entire project to the container
 COPY apis/games-api/games-api/dist .

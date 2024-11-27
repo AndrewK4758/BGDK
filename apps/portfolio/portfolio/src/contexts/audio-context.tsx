@@ -12,7 +12,7 @@ export interface MediaRecorderClientContextProps {
   ) => Promise<void>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+ 
 export const MediaRecorderClientContext = createContext<MediaRecorderClientContextProps>(null!);
 
 interface MediaRecorderClientContextProviderProps {

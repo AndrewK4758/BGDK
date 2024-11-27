@@ -1,0 +1,15 @@
+
+../../data-api
+../../portfolio-api
+../../vertex-api
+../../../apps
+../../../.nx
+../../../.cache
+../../../.vscode
+../../../.idea
+../../../coverage
+../../../reports
+../../../tmp
+../../../node_modules
+.gitignore
+../../../.git
