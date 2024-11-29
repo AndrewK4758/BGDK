@@ -13,6 +13,8 @@ const memoryUpload = async (contextPath: string, { buffer, originalname }: Expre
 
     const pathWithContext = `${storagePath}${contextPath}/${originalname}`;
 
+    console.log(pathWithContext);
+
     return pathWithContext;
   } catch (error) {
     console.error(error);

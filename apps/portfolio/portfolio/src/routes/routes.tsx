@@ -52,6 +52,7 @@ const routes: RouteObject[] = [
       {
         path: 'crud',
         Component: Crud,
+        hydrateFallbackElement: <Waiting />,
         children: [
           {
             index: true,
@@ -95,6 +96,7 @@ const routes: RouteObject[] = [
         path: 'gen-ai',
         Component: GenAI,
         loader: loadContextPath,
+        hydrateFallbackElement: <Waiting />,
         action: handlePromptBuilder,
         children: [
           {

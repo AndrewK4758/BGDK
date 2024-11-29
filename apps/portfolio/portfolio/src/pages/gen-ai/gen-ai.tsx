@@ -1,7 +1,7 @@
 import { ChatResponse, Text } from '@bgdk/react-components';
-import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
-import { handleScrollIntoView } from '@bgdk/utils';
+import { renderPreTagInsideParentDiv, Waiting } from '@bgdk/shared-react-components';
 import type { PromptRequest } from '@bgdk/vertex-ai';
+import { Modal } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -24,6 +24,7 @@ import {
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
+import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import Theme from '../../styles/theme';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
@@ -31,7 +32,9 @@ const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/
 export type OutletContextProps = {
   prompt: PromptRequest;
   promptResponse: string[];
+  loading: boolean;
   setPromptResponse: Dispatch<SetStateAction<string[]>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 const title = 'Generative AI';
@@ -50,14 +53,15 @@ const promptInit: PromptRequest = { text: '', fileData: null };
 const GenAiHome = () => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
   const [prompt, setPrompt] = useState<PromptRequest>(promptInit);
+  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [promptResponse, setPromptResponse] = useState<string[]>([]);
   const divRef = useRef<HTMLElement>(null);
   const nav = useNavigate();
 
-  useEffect(() => {
-    if (divRef.current) handleScrollIntoView(divRef.current);
+  useScrollIntoView(divRef);
 
+  useEffect(() => {
     if (!socket.connected) socket.connect();
 
     socket.on('connect', () => {
@@ -66,6 +70,7 @@ const GenAiHome = () => {
 
     socket.on('chunk', ({ response }) => {
       setPromptResponse(prev => [...prev, response]);
+      setLoading(false);
     });
 
     return () => {
@@ -181,7 +186,7 @@ const GenAiHome = () => {
             sx={{ width: '100%' }}
           >
             <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
-              <PromptBuilder setPrompt={setPrompt} />
+              <PromptBuilder loading={loading} setLoading={setLoading} setPrompt={setPrompt} />
             </Collapse>
           </Container>
         </Box>
@@ -193,10 +198,37 @@ const GenAiHome = () => {
         sx={{ height: 'fit-content', width: '60vw' }}
       >
         <MediaRecorderClientContextProvider>
-          <Outlet context={{ prompt, promptResponse, setPromptResponse }} />
+          <Outlet context={{ prompt, promptResponse, loading, setPromptResponse, setLoading }} />
         </MediaRecorderClientContextProvider>
       </Box>
-      {promptResponse.length && (
+
+      <Modal
+        open={loading}
+        component={'div'}
+        key={'gen-ai-response-loading-wrapper'}
+        id="gen-ai-response-loading-wrapper"
+        sx={{
+          height: '100vh',
+          width: '100vw',
+          position: 'fixed',
+          top: '50%',
+          left: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}
+      >
+        <Box
+          component={'div'}
+          key={'gen-ai-response-loading-wrapper'}
+          id="gen-ai-response-loading-wrapper"
+          sx={{ height: '40%', maxHeight: '350px', flex: '0 1 40%' }}
+        >
+          <Waiting />
+        </Box>
+      </Modal>
+
+      {promptResponse.length ? (
         <Box
           component={'div'}
           key={'gen-ai-response-wrapper'}
@@ -217,13 +249,15 @@ const GenAiHome = () => {
             >
               <ChatResponse
                 response={promptResponse}
+                setLoading={setLoading}
+                setPromptResponse={setPromptResponse}
                 chatResponseLabelProps={{ textAlign: 'center', color: Theme.palette.secondary.light }}
                 chatResponseTextProps={renderPreTagInsideParentDiv as CSSProperties}
               />
             </Container>
           </Paper>
         </Box>
-      )}
+      ) : null}
     </Box>
   );
 };

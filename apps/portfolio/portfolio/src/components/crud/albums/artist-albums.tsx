@@ -1,7 +1,7 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
-import { Container, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
@@ -12,6 +12,8 @@ import handleDeleteAlbum from '../../../services/events/crud-events/handle-delet
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
 import AddAlbumOnArtist from './add-album-on-artist';
+import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { Text } from '@bgdk/react-components';
 
 export interface AlbumState {
   albumTitle: string;
@@ -96,34 +98,49 @@ const AlbumsOnArtist = () => {
   };
 
   return (
-    <Box component={'div'} key={'album-with-tracks-box'} sx={{ border: '3px solid purple' }}>
-      <Container
+    <Box
+      component={'div'}
+      key={'album-and-tracks-box'}
+      id={'album-and-tracks-box'}
+      sx={{
+        ...baseCrudDisplayStyleSxProps,
+        flexWrap: 'wrap',
+        gap: 0.5,
+        paddingY: 2,
+      }}
+    >
+      <Box
         component={'div'}
-        id="album-title"
+        key={'albums-box'}
+        id={'albums-box'}
         sx={{
-          width: '100%',
+          ...baseCrudDisplayStyleSxProps,
+          flex: '1 0 100%',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          border: '3px solid purple',
         }}
       >
-        <Paper elevation={6} key={'title-bar'} sx={{ height: '2rem' }}>
-          <Typography
-            aria-label="albums"
-            component={'h2'}
-            variant="h2"
-            sx={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
-          >
-            {'Artist Albums'}
-          </Typography>
-        </Paper>
-      </Container>
-      <Box component={'div'} key={'album-data-grid'} id="album-data-grid">
+        <Container
+          component={'div'}
+          id="album-title"
+          sx={{
+            flex: '1 0 100%',
+          }}
+        >
+          <Paper elevation={6} key={'title-bar'} sx={{ ...inverseColors, flex: '1 0 100%', height: 'fit-content' }}>
+            <Text titleText={'Artist Albums'} titleVariant={'h3'} id={'artist-albums'} sx={{ textAlign: 'center' }} />
+          </Paper>
+        </Container>
+        <Container component={'div'} key={'add-album-box'} sx={{ paddingY: 1, flex: '0 1 100%' }}>
+          <AddAlbumOnArtist apiRef={apiRef} />
+        </Container>
         <Box
           component={'div'}
-          key={'add-album-box'}
-          sx={{ paddingY: 1, flex: '0 1 100%', borderBottom: '3px solid purple' }}
+          key={'artist-album-datagrid-wrapper'}
+          id="artist-album-datagrid-wrapper"
+          sx={{ ...inverseColors, borderRadius: 1, flex: 1 }}
         >
-          <AddAlbumOnArtist apiRef={apiRef} />
-        </Box>
-        <Box component={'div'} key={'artist-album-datagrid-wrapper'} id="artist-album-datagrid-wrapper">
           <DataGrid
             key={'artist-albums-data-grid'}
             aria-label="artist-albums-data-grid"
@@ -135,11 +152,12 @@ const AlbumsOnArtist = () => {
             pageSizeOptions={[1, 5, 10, 20]}
             paginationModel={paginationModel}
             onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
+            sx={dataGridStyleUpdate}
           />
         </Box>
-        <Box>
-          <Outlet />
-        </Box>
+      </Box>
+      <Box component={'div'} key={'tracks-outlet-wrapper'} id={'tracks-outlet-wrapper'} sx={{ width: '100%' }}>
+        <Outlet />
       </Box>
     </Box>
   );

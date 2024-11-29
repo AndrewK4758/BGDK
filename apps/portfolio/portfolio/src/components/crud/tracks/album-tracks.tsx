@@ -12,6 +12,7 @@ import handleUpdateTrack from '../../../services/events/crud-events/handle-updat
 import { AlbumTracks } from '../../../services/loaders/crud-loaders/load-album-tracks';
 import AddTrack from './add-track';
 import { Container } from '@mui/material';
+import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
 
 const Tracks = () => {
   const { tracks } = useLoaderData() as AlbumTracks;
@@ -118,23 +119,32 @@ const Tracks = () => {
       component={'div'}
       key={'track-box'}
       sx={{
-        borderTop: '3px solid purple',
+        ...baseCrudDisplayStyleSxProps,
+        flex: '1 0 100%',
+        flexDirection: 'column',
         width: '100%',
+        border: '3px solid purple',
       }}
     >
-      <Container key={'artist-title'} component={'div'}>
-        <Paper key={'title-bar'} component={'div'} elevation={6} sx={{ height: '2rem', display: 'flex' }}>
-          <Text
-            titleVariant="h2"
-            titleText="Album Tracks"
-            sx={{ flex: '1 0 100%', textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
-          />
+      <Container key={'artist-title'} component={'div'} sx={{ ...baseCrudDisplayStyleSxProps, width: '100%' }}>
+        <Paper
+          key={'title-bar'}
+          component={'div'}
+          elevation={6}
+          sx={{ ...inverseColors, width: '100%', height: 'fit-content' }}
+        >
+          <Text titleVariant="h3" titleText="Album Tracks" sx={{ textAlign: 'center' }} />
         </Paper>
       </Container>
-      <Box component={'div'} key={'add-track-box'} sx={{ marginTop: 1 }}>
+      <Container component={'div'} key={'add-track-box'} sx={{ paddingY: 1 }}>
         <AddTrack albumID={albumID} apiRef={apiRef} />
-      </Box>
-      <Box component={'div'} key={'tracks-data-grid-wrapper'} id="tracks-data-grid-wrapper">
+      </Container>
+      <Box
+        component={'div'}
+        key={'tracks-data-grid-wrapper'}
+        id="tracks-data-grid-wrapper"
+        sx={{ ...inverseColors, width: '100%', borderRadius: 1 }}
+      >
         <DataGrid
           apiRef={apiRef}
           columns={columns}
@@ -144,6 +154,7 @@ const Tracks = () => {
           pageSizeOptions={[1, 5, 10, 25]}
           paginationModel={paginationModel}
           onPaginationModelChange={newPageModel => setPaginationModel(newPageModel)}
+          sx={dataGridStyleUpdate}
         />
       </Box>
     </Box>

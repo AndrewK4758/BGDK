@@ -22,7 +22,7 @@ const __dirname =
 const app: Express = express();
 
 export const corsOptions: CorsOptions = {
-  origin: ['https://andrew-k.us', 'https://www.andrew-k.us', '*'],
+  origin: ['https://andrew-k.us', 'https://www.andrew-k.us', 'http://localhost:4700'],
   methods: '*',
   exposedHeaders: '*',
   optionsSuccessStatus: 204,

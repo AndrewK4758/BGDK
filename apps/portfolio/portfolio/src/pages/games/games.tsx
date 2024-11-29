@@ -1,6 +1,5 @@
 import { Text } from '@bgdk/react-components';
 import { Waiting } from '@bgdk/shared-react-components';
-import { handleScrollIntoView } from '@bgdk/utils';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,11 +7,12 @@ import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
+import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
 import Theme from '../../styles/theme';
+import useScrollIntoView from '../../hooks/use-scroll-into-view';
 
 const title = 'Games';
 
@@ -31,9 +31,7 @@ const Games = () => {
   const divRef = useRef<HTMLElement>(null);
   const submit = useSubmit();
 
-  useEffect(() => {
-    if (divRef.current) handleScrollIntoView(divRef.current);
-  }, []);
+  useScrollIntoView(divRef);
 
   const handleSelectGame = async (gameName: string, setLoading: Dispatch<SetStateAction<boolean>>) => {
     try {

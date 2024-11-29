@@ -7,9 +7,8 @@ import {
   labelSx,
   textInputSx,
   tooltipSx,
-  Waiting,
 } from '@bgdk/shared-react-components';
-import { getContextPath, handleScrollIntoView } from '@bgdk/utils';
+import { getContextPath } from '@bgdk/utils';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -22,7 +21,7 @@ import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useEffect, useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
+import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
 import {
   Form,
   useActionData,
@@ -48,6 +47,7 @@ import {
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
 const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
 
@@ -77,13 +77,14 @@ const validationSchema = Yup.object({
 });
 
 interface PromptBuilderProps {
+  loading: boolean;
   setPrompt: Dispatch<SetStateAction<PromptRequest>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
+const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) => {
   const [openPromptResponse, setOpenPromptResponse] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>('');
-  const [loadingFile, setLoadingFile] = useState<boolean>(false);
   const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
@@ -91,14 +92,13 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
 
   const action = useActionData() as string;
 
-  useEffect(() => {
-    if (divRef.current) handleScrollIntoView(divRef.current);
-  }, []);
+  useScrollIntoView(divRef);
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => submit(values as SubmitTarget, { action: '', method: 'post', encType: 'application/json' }),
+    onSubmit: values => submit(values as SubmitTarget, { method: 'POST', encType: 'application/json' }),
+    onReset: () => setFileName(''),
     validateOnBlur: true,
     validateOnChange: true,
   });
@@ -106,7 +106,6 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
   const handleFileUploadButtonClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
-      setLoadingFile(true);
     }
   };
 
@@ -127,14 +126,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
             />
             <Text titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
-          <Form
-            key={'prompt-builder-form'}
-            action=""
-            method="post"
-            encType="application/x-www-form-urlencoded"
-            onSubmit={formik.handleSubmit}
-            onReset={formik.handleReset}
-          >
+          <Form key={'prompt-builder-form'} method="POST" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
             <Box
               component={'section'}
               key={'prompt-builder-input-elements-box'}
@@ -472,7 +464,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                   name="document"
                   type="file"
                   style={{ display: 'none' }}
-                  onChange={() => handleFileUpload(fileInputRef, setPrompt, setFileName, setLoadingFile)}
+                  onChange={() => handleFileUpload(fileInputRef, setPrompt, setFileName, setLoading)}
                   onBlur={formik.handleBlur}
                   onReset={formik.handleReset}
                 />
@@ -489,11 +481,7 @@ const PromptBuilder = ({ setPrompt }: PromptBuilderProps) => {
                     titleText={`Uploaded File: `}
                     sx={{ color: Theme.palette.primary.main }}
                   />
-                  {loadingFile ? (
-                    <Box sx={{ maxHeight: '100px', width: 'auto' }}>
-                      <Waiting />
-                    </Box>
-                  ) : (
+                  {loading ? null : (
                     <Text
                       key={'current-document-text-value-text'}
                       titleVariant="body1"
@@ -612,7 +600,7 @@ export const handleFileUpload = async (
   fileInputRef: RefObject<HTMLInputElement>,
   setPrompt: Dispatch<SetStateAction<PromptRequest>>,
   setFileName: Dispatch<SetStateAction<string>>,
-  setLoadingFile: Dispatch<SetStateAction<boolean>>,
+  setLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
   try {
     if (fileInputRef.current) {
@@ -621,6 +609,7 @@ export const handleFileUpload = async (
 
         const contextPath = getContextPath('context-path');
 
+        setLoading(true);
         const resp = await axios.post(
           `${baseUrl}/upload`,
           { file: file, contextPath: contextPath },
@@ -629,13 +618,7 @@ export const handleFileUpload = async (
 
         const { path } = resp.data as { path: string };
 
-        const insertIdx = path.lastIndexOf('/');
-
-        const fullPath = path.slice(0, insertIdx) + `/${contextPath}` + path.slice(insertIdx);
-
-        console.log(fullPath);
-
-        setPrompt(prev => ({ ...prev, fileData: { fileUri: fullPath, mimeType: file.type } }));
+        setPrompt(prev => ({ ...prev, fileData: { fileUri: path, mimeType: file.type } }));
         setFileName(file.name);
 
         return null;
@@ -645,6 +628,6 @@ export const handleFileUpload = async (
     console.error(error);
     return null;
   } finally {
-    setLoadingFile(false);
+    setLoading(false);
   }
 };

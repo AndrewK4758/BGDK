@@ -20,11 +20,7 @@
         "target": "node23",
         "format": ["esm", "cjs"],
         "platform": "node",
-        "bundle": true,
-        "loader": {
-          ".node": "empty"
-        },
-        "external": ["node-pty"]
+        "bundle": true
       },
       "configurations": {
         "development": {
@@ -40,8 +36,7 @@
       "defaultConfiguration": "development",
       "dependsOn": ["^build"],
       "options": {
-        "buildTarget": "vertex-api:build",
-        "runtimeArgs": ["--trace-deprecation", "--trace-warnings"]
+        "buildTarget": "vertex-api:build"
       },
       "configurations": {
         "development": {

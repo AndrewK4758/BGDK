@@ -14,9 +14,9 @@ import { useContext, useEffect, useRef, useState, type RefObject } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { MediaRecorderClientContext } from '../../../contexts/audio-context';
 import { WebSocketContext } from '../../../contexts/websocket-context';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
 import AudioVisualizer from './audio-visualizer';
-import { handleScrollIntoView } from '@bgdk/utils';
 
 const audioText =
   'This audio recorder allows you to capture your voice and submit it directly to Gemini.  Use it to create recordings for analysis, transcription, or any other task that can benefit from Gemini\'s powerful AI capabilities. Simply click "Start" to begin.';
@@ -28,14 +28,15 @@ const options: MediaRecorderOptions = {
 const GenAiAudio = () => {
   const { socket } = useContext(WebSocketContext);
   const { MRC, createStream, stream, setStream } = useContext(MediaRecorderClientContext);
-  const { setPromptResponse } = useOutletContext() as OutletContextProps;
+  const { setPromptResponse } = useOutletContext<OutletContextProps>();
   const [blob, setBlob] = useState<Blob | null>(null);
   const [recording, setRecording] = useState<boolean>(false);
   const audRef = useRef<HTMLAudioElement>(null);
   const mrcRef = useRef<MRC | null>(null);
 
+  useScrollIntoView(audRef);
+
   useEffect(() => {
-    if (audRef.current) handleScrollIntoView(audRef.current);
     if (!socket.connected) socket.connect();
 
     socket.on('chunk', ({ response }) => {

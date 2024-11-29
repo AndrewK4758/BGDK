@@ -2,19 +2,21 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useNavigate, useLoaderData } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import loadAlbums from '../../../services/loaders/crud-loaders/load-albums';
 import AddAlbum from './add-album';
+import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { Text } from '@bgdk/react-components';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
 const paginationModelInit = {
   pageSize: 25,
@@ -27,6 +29,7 @@ const Album = () => {
   const [rowCountState, setRowCountState] = useState(COUNT);
   const [paginationModel, setPaginationModel] = useState(paginationModelInit);
   const matchesSize = useMediaQuery('(max-width:1200px)');
+  const divRef = useRef<HTMLDivElement>(null);
   const nav = useNavigate();
 
   const apiRef = useGridApiRef<GridApiCommunity>();
@@ -44,6 +47,8 @@ const Album = () => {
     async (pageSize: number, skip: number, cursor: number) => await loadAlbums(pageSize, skip, cursor),
     [],
   );
+
+  useScrollIntoView(divRef);
 
   useEffect(() => {
     fetchAlbums(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
@@ -121,36 +126,54 @@ const Album = () => {
   return (
     <Box
       component={'div'}
+      ref={divRef}
       key={'all-albums-box'}
       id="all-albums-box"
-      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row' }}
+      sx={{ ...baseCrudDisplayStyleSxProps, flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
     >
       <Box
         component={'div'}
         key={'album-box'}
         id="album-box"
-        sx={{ flex: matchesSize ? '1 0 100%' : '1 0 50%', border: '3px solid purple' }}
+        sx={{
+          ...baseCrudDisplayStyleSxProps,
+          flexWrap: 'wrap',
+          flex: matchesSize ? '1 0 100%' : '1 0 50%',
+          border: '3px solid purple',
+        }}
       >
-        <Container key={'albums-title-wrapper'} component={'section'} id="album-title-wrapper">
-          <Paper elevation={6} key={'album-title-bar'} id="album-title-bar" component={'div'} sx={{ height: '2rem' }}>
-            <Typography
-              component={'h1'}
-              aria-label="albums-title"
-              variant="h1"
+        <Container
+          key={'albums-title-wrapper'}
+          component={'section'}
+          id="album-title-wrapper"
+          sx={{ flex: '1 0 100%', paddingY: 2 }}
+        >
+          <Paper
+            elevation={6}
+            key={'album-title-bar'}
+            id="album-title-bar"
+            component={'div'}
+            sx={{ ...inverseColors, height: 'fit-content' }}
+          >
+            <Text
+              titleText={'Album List'}
+              titleVariant={'h3'}
+              id="albums-title"
               sx={{
                 textAlign: 'center',
-                fontSize: '22px',
-                fontWeight: 'bold',
               }}
-            >
-              {'Album List'}
-            </Typography>
+            />
           </Paper>
         </Container>
-        <Box component={'div'} key={'add-album-box'} sx={{ paddingY: 1, borderBottom: '3px solid purple' }}>
+        <Container component={'div'} key={'add-album-box'} id={'add-album-box'} sx={{ paddingY: 1, flex: '1 0 100%' }}>
           <AddAlbum apiRef={apiRef} />
-        </Box>
-        <Box component={'div'} key={'all-albums-datagrid'} id="all-albums-datagrid">
+        </Container>
+        <Box
+          component={'div'}
+          key={'all-albums-datagrid'}
+          id="all-albums-datagrid"
+          sx={{ ...inverseColors, borderRadius: 1, flex: 1 }}
+        >
           <DataGrid
             logLevel="info"
             key={'album-data-grid'}
@@ -167,15 +190,11 @@ const Album = () => {
             onRowCountChange={newRowCount => setRowCountState(newRowCount)}
             onPaginationModelChange={setPaginationModel}
             paginationModel={paginationModel}
+            sx={dataGridStyleUpdate}
           />
         </Box>
       </Box>
-      <Box
-        key={'tracks-on-album-box'}
-        component={'div'}
-        id="tracks-on-album-box"
-        sx={{ flex: matchesSize ? '1 0 100%' : '1 0 50%' }}
-      >
+      <Box key={'tracks-on-album-box'} component={'div'} id="tracks-on-album-box" sx={{ width: '100%' }}>
         <Outlet />
       </Box>
     </Box>

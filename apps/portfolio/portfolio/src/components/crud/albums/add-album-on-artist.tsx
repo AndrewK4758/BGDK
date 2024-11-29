@@ -11,6 +11,7 @@ import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { useParams } from 'react-router-dom';
 import handleSubmitNewAlbum from '../../../services/actions/crud-actions/submit-album-on-artist-action';
 import handleNewAlbumBlur from '../../../services/events/crud-events/handle-validate-artist-albums-on-blur';
+import { inverseColors } from '../crud-home';
 
 interface AddAlbumOnArtistProps {
   apiRef: MutableRefObject<GridApiCommunity>;
@@ -33,7 +34,12 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
   };
 
   return (
-    <Container component={'div'} id="add-album-on-artist-container" key={'add-album-on-artist-container'}>
+    <Container
+      component={'div'}
+      id="add-album-on-artist-container"
+      key={'add-album-on-artist-container'}
+      sx={{ ...inverseColors, borderRadius: 1, paddingY: 1 }}
+    >
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <FormLabel htmlFor="name" hidden>
@@ -50,6 +56,7 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
             sx={{ flex: '1 0 50%' }}
             onChange={formik.handleChange}
             onBlur={e => formik.handleBlur(e)}
+            slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
           />
 
           {typeof formik.touched.title === 'string' && formik.values.title ? (
@@ -65,7 +72,7 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
             type="submit"
             variant="contained"
             color="primary"
-            sx={{ marginTop: 1, marginRight: 1, flex: '1 0 30%' }}
+            sx={{ marginTop: 1, marginRight: 1, flex: '1 0 30%', fontSize: '1rem' }}
           >
             Submit
           </Button>
@@ -73,7 +80,7 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
             type="reset"
             variant="contained"
             color="secondary"
-            sx={{ marginTop: 1, marginLeft: 1, flex: '1 0 30%' }}
+            sx={{ marginTop: 1, marginLeft: 1, flex: '1 0 30%', fontSize: '1rem' }}
           >
             Clear
           </Button>

@@ -59,7 +59,7 @@ const validationSchema = Yup.object({
 });
 
 const ImageForm = () => {
-  const { prompt } = useOutletContext() as OutletContextProps;
+  const { prompt } = useOutletContext<OutletContextProps>();
   const submit = useSubmit();
   const { state } = useNavigation();
   const pics = useActionData() as string[];
@@ -70,8 +70,6 @@ const ImageForm = () => {
     seed: 100,
     aspectRatio: AspectRatio['1:1'],
   };
-
-  console.log(prompt);
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -235,7 +233,6 @@ const ImageForm = () => {
                 key={'image-aspect-ratio-input'}
                 id="image-aspect-ratio-input"
                 rows={2}
-                placeholder="The Aspect Ratio of the picture you want the AI to create"
                 variant="outlined"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}

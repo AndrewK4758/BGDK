@@ -1,60 +1,96 @@
 import { Text } from '@bgdk/react-components';
-import { ThemeProvider } from '@mui/material/styles';
+import { type SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { Outlet, useLocation } from 'react-router-dom';
-import CrudTheme from '../../styles/crud-theme';
-import Theme from '../../styles/theme';
+import Paper from '@mui/material/Paper';
+// import Theme from '../../styles/theme';
+
+export const baseCrudDisplayStyleSxProps: SxProps = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 1,
+};
+
+export const inverseColors: SxProps = {
+  backgroundColor: '#FFFFFF',
+  color: '#1f1f1f',
+};
+
+const crudHomeContainerSxProps: SxProps = {
+  ...baseCrudDisplayStyleSxProps,
+  flex: '1 0 100%',
+};
+
+const crudPaperSxProps: SxProps = {
+  ...baseCrudDisplayStyleSxProps,
+  flex: '1 0 100%',
+};
+
+const crudDataGridGridsSxProps: SxProps = {
+  ...baseCrudDisplayStyleSxProps,
+  width: '100%',
+  margin: 2,
+};
+
+export const dataGridStyleUpdate: SxProps = {
+  color: '#1f1f1f',
+  fontSize: '.875rem',
+  fontFamily: 'monospace',
+  '& .MuiDataGrid-columnHeader': {
+    backgroundColor: '#FFFFFF',
+  },
+  '& .MuiDataGrid-scrollbarFiller--header': {
+    backgroundColor: 'white',
+  },
+  '& .MuiToolbar-root': {
+    color: '#1f1f1f',
+  },
+  '& .MuiTablePagination-selectLabel': {
+    fontSize: '1rem',
+    fontFamily: 'Mono',
+  },
+  '& .MuiTablePagination-displayedRows': {
+    fontSize: '1rem',
+    fontFamily: 'Mono',
+  },
+};
 
 const CrudHome = () => {
   const { pathname } = useLocation();
 
   return (
-    <ThemeProvider theme={CrudTheme}>
-      <Box
-        component={'div'}
-        id="crud-home-container"
-        sx={{
-          display: 'flex',
-          flex: '1 0 100%',
-          borderRadius: 1,
-          backgroundColor: Theme.palette.background.paper,
-          // minHeight: '15vh',
-          height: 'fit-content',
-          padding: 2,
-          alignItems: 'center',
-        }}
-      >
+    <Box component={'div'} id="crud-home-container" sx={crudHomeContainerSxProps}>
+      <Paper key={'crud-outlet-wrapper'} id="crud-outlet-wrapper" sx={crudPaperSxProps}>
         <Box
-          key={'crud-outlet-wrapper'}
-          id="crud-outlet-wrapper"
-          sx={{
-            flex: '1 0 100%',
-            // height: '100%',
-            // minHeight: '100%',
-            display: 'flex',
-            // border: 10,
-          }}
+          component={'div'}
+          key={'data-grid-grids-wrapper'}
+          id="data-grid-grids-wrapper"
+          sx={crudDataGridGridsSxProps}
         >
-          <Box component={'div'} id="data-grid-grids" flex={3} sx={{ backgroundColor: 'white', minHeight: '100%' }}>
-            {pathname === '/crud' && (
+          {pathname === '/crud' && (
+            <Box
+              component={'div'}
+              key={'data-grid-grids-home-title'}
+              id="data-grid-grids-home-title"
+              sx={{ flex: '1 0 100%' }}
+            >
               <Text
                 titleText={'Make A Selection Above'}
                 titleVariant="h2"
                 sx={{
-                  alignContent: 'center',
-                  justifySelf: 'center',
+                  ...baseCrudDisplayStyleSxProps,
+                  flex: 1,
                   color: '#1f1f1f',
-                  textAlign: 'center',
-                  height: '100%',
+                  backgroundColor: '#FFFFFF',
                 }}
               />
-            )}
-
-            <Outlet />
-          </Box>
+            </Box>
+          )}
+          <Outlet />
         </Box>
-      </Box>
-    </ThemeProvider>
+      </Paper>
+    </Box>
   );
 };
 

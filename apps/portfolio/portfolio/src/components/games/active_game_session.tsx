@@ -4,7 +4,6 @@ import { Text, Theme } from '@bgdk/react-components';
 import { Waiting } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
 import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
-import { handleScrollIntoView } from '@bgdk/utils';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -20,6 +19,7 @@ import ShowGameBoard from './game_board/show_game_board';
 import socketReducer, { ActionType } from './game_board/socket-reducer';
 import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
 import TakeTurn from './game_board/take_turn';
+import useScrollIntoView from '../../hooks/use-scroll-into-view';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   display: 'flex',
@@ -75,9 +75,9 @@ const ActiveGameSession = () => {
 
   const socket = socketRef.current;
 
-  useEffect(() => {
-    if (divRef.current) handleScrollIntoView(divRef.current);
+  useScrollIntoView(divRef);
 
+  useEffect(() => {
     if (!socket.connected) socket.connect();
 
     socket.on('connect', () => {

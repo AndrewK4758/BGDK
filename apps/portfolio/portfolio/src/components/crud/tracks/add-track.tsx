@@ -8,8 +8,9 @@ import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { Prisma, track } from '@prisma/client';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { FormikProps, useFormik } from 'formik';
-import { ChangeEvent, FocusEvent, MutableRefObject } from 'react';
+import { FocusEvent, MutableRefObject } from 'react';
 import { Form } from 'react-router-dom';
+import { inverseColors } from '../crud-home';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -39,17 +40,12 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
     validateOnBlur: true,
   });
 
-  formik.handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value;
-    formik.values.name = name;
-  };
-
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
     handleNewTrackBlur(e, formik, albumID);
   };
 
   return (
-    <Container sx={{ borderBottom: '3px solid purple' }}>
+    <Container sx={{ ...inverseColors, borderRadius: 1, paddingY: 1 }}>
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <FormLabel htmlFor="track-name" hidden>
@@ -57,14 +53,15 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
           </FormLabel>
           <TextField
             autoComplete="off"
-            name="track-name"
-            id="track-name"
+            name="name"
+            id="name"
             variant="outlined"
             color="primary"
             placeholder="Enter Track Name"
-            sx={{ flex: '1 0 50%' }}
-            onChange={e => formik.handleChange(e)}
+            onChange={e => formik.setFieldValue('name', e.target.value)}
             onBlur={e => formik.handleBlur(e)}
+            value={formik.values.name}
+            slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
           />
 
           {typeof formik.touched.name === 'string' && formik.values.name ? (
@@ -76,10 +73,10 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
         </Box>
 
         <Box sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%' }}>
+          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
             Submit
           </Button>
-          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%' }}>
+          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
             Clear
           </Button>
         </Box>

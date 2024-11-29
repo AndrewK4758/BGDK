@@ -1,11 +1,10 @@
-import { handleScrollIntoView } from '@bgdk/utils';
+import { Text } from '@bgdk/react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
@@ -15,6 +14,8 @@ import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } f
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
+import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
@@ -48,9 +49,7 @@ const Artist = () => {
     [],
   );
 
-  useEffect(() => {
-    if (divRef.current) handleScrollIntoView(divRef.current);
-  }, []);
+  useScrollIntoView(divRef);
 
   useEffect(() => {
     fetchArtists(queryOptions.pageSize, queryOptions.skip, queryOptions.cursor)
@@ -124,45 +123,56 @@ const Artist = () => {
       key={'all-data-grids-wrapper'}
       id="all-data-grids-wrapper"
       ref={divRef}
-      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row' }}
+      sx={{ ...baseCrudDisplayStyleSxProps, flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
     >
       <Box
         component={'div'}
         key="artists"
         id="artists"
         sx={{
-          display: 'flex',
+          ...baseCrudDisplayStyleSxProps,
           flexWrap: 'wrap',
-          alignContent: 'center',
-          justifyItems: 'center',
           flex: matchesSize ? '1 0 100%' : '1 0 50%',
           border: '3px solid purple',
         }}
       >
-        <Container component={'div'} key={'artists-title-box'} id="artists-title-box" sx={{ flex: '1 0 100%' }}>
-          <Paper elevation={6} key={'artist-list-box'} id="artist-list-box" component={'div'} sx={{ height: '2rem' }}>
-            <Typography
-              aria-label="artists-title"
-              component={'h1'}
+        <Container
+          component={'div'}
+          key={'artists-title-box'}
+          id="artists-title-box"
+          sx={{ flex: '1 0 100%', paddingY: 2 }}
+        >
+          <Paper
+            elevation={6}
+            key={'artist-list-box'}
+            id="artist-list-box"
+            component={'div'}
+            sx={{ ...inverseColors, height: 'fit-content' }}
+          >
+            <Text
+              titleText={'Artist List'}
+              titleVariant={'h3'}
               id="artists-title"
               sx={{
                 textAlign: 'center',
-                fontSize: '22px',
-                fontWeight: 'bold',
               }}
-            >
-              {'Artist List'}
-            </Typography>
+            />
           </Paper>
+        </Container>
+        <Container
+          component={'div'}
+          key={'add-artist-box'}
+          id={'add-artist-box'}
+          sx={{ paddingY: 1, flex: '1 0 100%' }}
+        >
+          <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
         </Container>
         <Box
           component={'div'}
-          key={'add-artist-box'}
-          sx={{ borderBottom: '3px solid purple', paddingTop: 1, flex: '1 0 100%' }}
+          key={'artist-data-grid-wrapper'}
+          id="artist-data-grid-wrapper"
+          sx={{ ...inverseColors, borderRadius: 1, flex: 1 }}
         >
-          <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
-        </Box>
-        <Box component={'div'} key={'artist-data-grid-wrapper'} id="artist-data-grid-wrapper" flex={'1 0 100%'}>
           <DataGrid
             logLevel="debug"
             key={'artist-data-grid'}
@@ -178,10 +188,16 @@ const Artist = () => {
             onRowCountChange={newRowCount => setRowCountState(newRowCount)}
             onPaginationModelChange={setPaginationModel}
             paginationModel={paginationModel}
+            sx={dataGridStyleUpdate}
           />
         </Box>
       </Box>
-      <Box key={'albums-for-artist-box'} component={'div'} id="albums-for-artist-box" sx={{ flex: '1 0 50%' }}>
+      <Box
+        key={'albums-for-artist-box'}
+        component={'div'}
+        id="albums-for-artist-box"
+        sx={{ ...baseCrudDisplayStyleSxProps, width: '100%' }}
+      >
         <Outlet />
       </Box>
     </Box>

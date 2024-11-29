@@ -21,8 +21,10 @@ import * as Yup from 'yup';
 import handleSubmitNewEntry, { NewEntryReturn } from '../../../services/actions/crud-actions/submit.new-entry-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
 import Theme from '../../../styles/theme';
+import { inverseColors } from '../crud-home';
 
 const AddEntryStyle: SxProps = {
+  ...inverseColors,
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -31,7 +33,6 @@ const AddEntryStyle: SxProps = {
   maxWidth: '800px',
   minHeight: '50vh',
   maxHeight: 'fit-content',
-  bgcolor: 'background.paper',
   border: '10px solid purple',
   boxShadow: 24,
   p: 4,
@@ -193,191 +194,190 @@ const AddEntry = () => {
           onSubmit={formik.handleSubmit}
           style={{ display: 'flex', flexDirection: 'column' }}
         >
-          <>
-            <DialogTitle color="textSecondary">
-              All fields are required to submit entry. Artist, Album, and Track ID's will be automatically generated and
-              provided to you upon successful submission
-            </DialogTitle>
-            {activeStep === 0 && (
-              <>
-                <FormLabel htmlFor="artist.name" hidden />
-                <TextField
-                  autoComplete="off"
-                  autoFocus
-                  name="artist.name"
-                  id="artist.name"
-                  label="Artist Name"
-                  type="text"
-                  variant="outlined"
-                  value={formik.values.artist.name}
-                  onChange={formik.handleChange}
-                  onBlur={e => formik.handleBlur(e)}
+          <DialogTitle color="textSecondary" sx={{ fontFamily: 'monospace' }}>
+            All fields are required to submit entry. Artist, Album, and Track ID's will be automatically generated and
+            provided to you upon successful submission
+          </DialogTitle>
+          {activeStep === 0 && (
+            <>
+              <FormLabel htmlFor="artist.name" hidden />
+              <TextField
+                autoComplete="off"
+                autoFocus
+                name="artist.name"
+                id="artist.name"
+                label="Artist Name"
+                type="text"
+                variant="outlined"
+                value={formik.values.artist.name}
+                onChange={formik.handleChange}
+                onBlur={e => formik.handleBlur(e)}
+              />
+              {formik.touched.artist?.name && formik.errors.artist?.name ? (
+                <Text
+                  titleVariant="body1"
+                  titleText={formik.errors.artist.name}
+                  sx={{ color: Theme.palette.text.secondary }}
                 />
-                {formik.touched.artist?.name && formik.errors.artist?.name ? (
-                  <Text
-                    titleVariant="body1"
-                    titleText={formik.errors.artist.name}
-                    sx={{ color: Theme.palette.text.secondary }}
-                  />
-                ) : null}
-              </>
-            )}
-            {activeStep === 1 && (
-              <>
-                <FormLabel htmlFor="album.title" hidden />
-                <TextField
-                  autoComplete="off"
-                  autoFocus
-                  name="album.title"
-                  id="album.title"
-                  label="Album Title"
-                  type="text"
-                  variant="outlined"
-                  value={formik.values.album.title}
-                  onChange={formik.handleChange}
-                  onBlur={e => formik.handleBlur(e)}
-                />
-                {formik.touched.album?.title && formik.errors.album?.title ? (
-                  <Text titleVariant="body1" titleText={formik.errors.album.title} />
-                ) : null}
-              </>
-            )}
+              ) : null}
+            </>
+          )}
+          {activeStep === 1 && (
+            <>
+              <FormLabel htmlFor="album.title" hidden />
+              <TextField
+                autoComplete="off"
+                autoFocus
+                name="album.title"
+                id="album.title"
+                label="Album Title"
+                type="text"
+                variant="outlined"
+                value={formik.values.album.title}
+                onChange={formik.handleChange}
+                onBlur={e => formik.handleBlur(e)}
+              />
+              {formik.touched.album?.title && formik.errors.album?.title ? (
+                <Text titleVariant="body1" titleText={formik.errors.album.title} />
+              ) : null}
+            </>
+          )}
 
-            {activeStep === 2 && (
+          {activeStep === 2 && (
+            <>
               <>
-                <>
-                  <FormLabel htmlFor="track.name" hidden />
-                  <TextField
-                    autoComplete="off"
-                    autoFocus
-                    name="track.name"
-                    id="track.name"
-                    label="Track Name"
-                    type="text"
-                    variant="outlined"
-                    value={formik.values.track.name}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.name && formik.errors.track?.name ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.name} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.media_type_id" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.media_type_id"
-                    id="track.media_type_id"
-                    label="Media Type ID"
-                    type="number"
-                    variant="outlined"
-                    value={formik.values.track.media_type_id}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.media_type_id && formik.errors.track?.media_type_id ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.media_type_id} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.genre_id" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.genre_id"
-                    id="track.genre_id"
-                    label="Genre ID"
-                    type="number"
-                    variant="outlined"
-                    value={formik.values.track.genre_id}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.genre_id && formik.errors.track?.genre_id ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.genre_id} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.composer" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.composer"
-                    id="track.composer"
-                    label="Composer"
-                    type="text"
-                    variant="outlined"
-                    value={formik.values.track.composer}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.composer && formik.errors.track?.composer ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.composer} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.milliseconds" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.milliseconds"
-                    id="track.milliseconds"
-                    label="Milliseconds"
-                    type="number"
-                    variant="outlined"
-                    value={formik.values.track.milliseconds}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.milliseconds && formik.errors.track?.milliseconds ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.milliseconds} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.bytes" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.bytes"
-                    id="track.bytes"
-                    label="Bytes"
-                    type="number"
-                    variant="outlined"
-                    value={formik.values.track.bytes}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.bytes && formik.errors.track?.bytes ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.bytes} />
-                  ) : null}
-                </>
-                <br />
-                <>
-                  <FormLabel htmlFor="track.unit_price" hidden />
-                  <TextField
-                    autoComplete="off"
-                    name="track.unit_price"
-                    id="track.unit_price"
-                    label="Unit Price"
-                    type="number"
-                    slot="step"
-                    slotProps={{ htmlInput: { step: '0.01' } }}
-                    variant="outlined"
-                    inputMode="decimal"
-                    placeholder="Enter price in X.XX format"
-                    value={formik.values.track.unit_price}
-                    onChange={formik.handleChange}
-                    onBlur={e => formik.handleBlur(e)}
-                  />
-                  {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price as string} />
-                  ) : null}
-                </>
+                <FormLabel htmlFor="track.name" hidden />
+                <TextField
+                  autoComplete="off"
+                  autoFocus
+                  name="track.name"
+                  id="track.name"
+                  label="Track Name"
+                  type="text"
+                  variant="outlined"
+                  value={formik.values.track.name}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.name && formik.errors.track?.name ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.name} />
+                ) : null}
               </>
-            )}
-          </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.media_type_id" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.media_type_id"
+                  id="track.media_type_id"
+                  label="Media Type ID"
+                  type="number"
+                  variant="outlined"
+                  value={formik.values.track.media_type_id}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.media_type_id && formik.errors.track?.media_type_id ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.media_type_id} />
+                ) : null}
+              </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.genre_id" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.genre_id"
+                  id="track.genre_id"
+                  label="Genre ID"
+                  type="number"
+                  variant="outlined"
+                  value={formik.values.track.genre_id}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.genre_id && formik.errors.track?.genre_id ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.genre_id} />
+                ) : null}
+              </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.composer" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.composer"
+                  id="track.composer"
+                  label="Composer"
+                  type="text"
+                  variant="outlined"
+                  value={formik.values.track.composer}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.composer && formik.errors.track?.composer ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.composer} />
+                ) : null}
+              </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.milliseconds" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.milliseconds"
+                  id="track.milliseconds"
+                  label="Milliseconds"
+                  type="number"
+                  variant="outlined"
+                  value={formik.values.track.milliseconds}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.milliseconds && formik.errors.track?.milliseconds ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.milliseconds} />
+                ) : null}
+              </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.bytes" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.bytes"
+                  id="track.bytes"
+                  label="Bytes"
+                  type="number"
+                  variant="outlined"
+                  value={formik.values.track.bytes}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.bytes && formik.errors.track?.bytes ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.bytes} />
+                ) : null}
+              </>
+              <br />
+              <>
+                <FormLabel htmlFor="track.unit_price" hidden />
+                <TextField
+                  autoComplete="off"
+                  name="track.unit_price"
+                  id="track.unit_price"
+                  label="Unit Price"
+                  type="number"
+                  slot="step"
+                  slotProps={{ htmlInput: { step: '0.01' } }}
+                  variant="outlined"
+                  inputMode="decimal"
+                  placeholder="Enter price in X.XX format"
+                  value={formik.values.track.unit_price}
+                  onChange={formik.handleChange}
+                  onBlur={e => formik.handleBlur(e)}
+                />
+                {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
+                  <Text titleVariant="body1" titleText={formik.errors.track.unit_price as string} />
+                ) : null}
+              </>
+            </>
+          )}
+
           <br />
           <Stepper nonLinear activeStep={activeStep}>
             {steps.map((step, index) => (
@@ -408,7 +408,7 @@ const AddEntry = () => {
                     Back
                   </Button>
                   <Box sx={{ flex: '1 1 auto' }} />
-                  <Button onClick={handleNext} sx={{ mr: 1 }}>
+                  <Button onClick={handleNext} sx={{ mr: 1, color: Theme.palette.text.secondary, fontSize: '1rem' }}>
                     Next
                   </Button>
                   {activeStep !== steps.length &&
@@ -417,7 +417,7 @@ const AddEntry = () => {
                         Step {activeStep + 1} already completed
                       </Typography>
                     ) : (
-                      <Button onClick={handleComplete}>
+                      <Button onClick={handleComplete} sx={{ color: Theme.palette.text.secondary, fontSize: '1rem' }}>
                         {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                       </Button>
                     ))}

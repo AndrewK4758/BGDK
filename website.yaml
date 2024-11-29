@@ -24,22 +24,3 @@ handlers:
     http_headers:
       Access-Control-Allow-Origin: '*'
       Access-Control-Expose-Headers: '*'
-  # Catch all handler to index.html
-
-  # - url: / # Matches the root URL
-  #   static_files: dist/index.html
-  #   upload: dist/index.html
-  #   secure: always
-  #   http_headers:
-  #     Access-Control-Allow-Origin: '*'
-  #     Access-Control-Expose-Headers: '*'
-
-  # - url: /(.*\..+)$ # Catches all other paths
-  #   static_files: dist/\1
-  #   upload: dist/(.*\..+)$
-  #   secure: always
-  #   http_headers:
-  #     Access-Control-Allow-Origin: '*'
-  #     Access-Control-Expose-Headers: '*'
-# handlers:
-# Serve all static files with url ending with a file extension

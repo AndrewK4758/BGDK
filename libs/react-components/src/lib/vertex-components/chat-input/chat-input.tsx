@@ -8,6 +8,7 @@ import type { Socket } from 'socket.io-client';
 import * as Yup from 'yup';
 import { FormActionProps } from '../../../interfaces/form-action-props';
 import FormikTextInput from '../../games-ui/text-input/formik-text-input';
+import type { Dispatch, SetStateAction } from 'react';
 
 interface ChatInputProps<T extends Yup.Maybe<Yup.AnyObject>> extends FormActionProps {
   breakpointsChatInputButton: SxProps;
@@ -18,6 +19,7 @@ interface ChatInputProps<T extends Yup.Maybe<Yup.AnyObject>> extends FormActionP
   socket: Socket;
   initialValues: T;
   validationSchema: Yup.ObjectSchema<T>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ChatInput = <T extends FormikValues>({
@@ -30,6 +32,7 @@ export const ChatInput = <T extends FormikValues>({
   buttonText,
   buttonType,
   socket,
+  setLoading,
   initialValues,
   validationSchema,
   breakpointsChatInputText,
@@ -47,7 +50,9 @@ export const ChatInput = <T extends FormikValues>({
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={({ text, fileData }, { resetForm }) => submitPrompt<T>({ text, fileData }, resetForm, socket)}
+        onSubmit={({ text, fileData }, { resetForm }) =>
+          submitPrompt<T>({ text, fileData }, resetForm, socket, setLoading)
+        }
       >
         <Form
           key={'chat-input-form'}
@@ -99,12 +104,18 @@ const submitPrompt = <T,>(
   { text, fileData }: PromptRequest,
   resetForm: (nextState?: Partial<FormikState<T>> | undefined) => void,
   socket: Socket,
+  setLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
-  const promptRequest: PromptRequest = {
-    text: text,
-    fileData: fileData,
-  };
+  try {
+    setLoading(true);
+    const promptRequest: PromptRequest = {
+      text: text,
+      fileData: fileData,
+    };
 
-  socket.emit('prompt', promptRequest);
-  resetForm();
+    socket.emit('prompt', promptRequest);
+    resetForm();
+  } catch (err) {
+    console.error(err);
+  }
 };
