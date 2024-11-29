@@ -12,7 +12,7 @@ import handleDeleteAlbum from '../../../services/events/crud-events/handle-delet
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
 import AddAlbumOnArtist from './add-album-on-artist';
-import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { dataGridStyleUpdate, inverseColors } from '../crud-home';
 import { Text } from '@bgdk/react-components';
 
 export interface AlbumState {
@@ -103,10 +103,10 @@ const AlbumsOnArtist = () => {
       key={'album-and-tracks-box'}
       id={'album-and-tracks-box'}
       sx={{
-        ...baseCrudDisplayStyleSxProps,
+        display: 'flex',
+        flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 0.5,
-        paddingY: 2,
       }}
     >
       <Box
@@ -114,25 +114,25 @@ const AlbumsOnArtist = () => {
         key={'albums-box'}
         id={'albums-box'}
         sx={{
-          ...baseCrudDisplayStyleSxProps,
           flex: '1 0 100%',
-          flexDirection: 'row',
           flexWrap: 'wrap',
           border: '3px solid purple',
+          borderRadius: 1,
         }}
       >
         <Container
           component={'div'}
+          key="album-title"
           id="album-title"
           sx={{
-            flex: '1 0 100%',
+            paddingY: 2,
           }}
         >
-          <Paper elevation={6} key={'title-bar'} sx={{ ...inverseColors, flex: '1 0 100%', height: 'fit-content' }}>
+          <Paper elevation={6} key={'title-bar'} sx={{ ...inverseColors, height: 'fit-content' }}>
             <Text titleText={'Artist Albums'} titleVariant={'h3'} id={'artist-albums'} sx={{ textAlign: 'center' }} />
           </Paper>
         </Container>
-        <Container component={'div'} key={'add-album-box'} sx={{ paddingY: 1, flex: '0 1 100%' }}>
+        <Container component={'div'} key={'add-album-box'} sx={{ paddingY: 1 }}>
           <AddAlbumOnArtist apiRef={apiRef} />
         </Container>
         <Box

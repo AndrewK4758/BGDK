@@ -40,7 +40,7 @@ const AddAlbum = ({ apiRef }: AddAlbumProps) => {
       sx={{ ...inverseColors, borderRadius: 1, paddingY: 2 }}
     >
       <Form method="post" onSubmit={formik.handleSubmit}>
-        <Box component={'div'}>
+        <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box
             key={'add-album-input-divs-box'}
             component={'div'}

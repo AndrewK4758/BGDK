@@ -58,20 +58,24 @@ const routes: RouteObject[] = [
             index: true,
             path: 'add-entry',
             Component: AddEntry,
+            hydrateFallbackElement: <Waiting />,
           },
           {
             path: 'artists',
             Component: Artist,
             loader: loadArtistsCount,
+            hydrateFallbackElement: <Waiting />,
             children: [
               {
                 path: ':artistID/albums',
                 loader: loadArtistAlbums,
                 Component: AlbumsOnArtist,
+                hydrateFallbackElement: <Waiting />,
                 children: [
                   {
                     path: ':albumID/tracks',
                     loader: loadAlbumTracks,
+                    hydrateFallbackElement: <Waiting />,
                     Component: Tracks,
                   },
                 ],
@@ -82,11 +86,13 @@ const routes: RouteObject[] = [
             path: 'albums',
             Component: Album,
             loader: loadAlbumsCount,
+            hydrateFallbackElement: <Waiting />,
             children: [
               {
                 path: ':albumID/tracks',
                 Component: Tracks,
                 loader: loadAlbumTracks,
+                hydrateFallbackElement: <Waiting />,
               },
             ],
           },
@@ -103,15 +109,18 @@ const routes: RouteObject[] = [
             path: 'text',
             Component: TextGenerator,
             action: vertexSubmitAction,
+            hydrateFallbackElement: <Waiting />,
           },
           {
             path: 'image',
             Component: Image,
             action: generateImageAction,
+            hydrateFallbackElement: <Waiting />,
           },
           {
             path: 'audio',
             Component: Audio,
+            hydrateFallbackElement: <Waiting />,
           },
         ],
       },

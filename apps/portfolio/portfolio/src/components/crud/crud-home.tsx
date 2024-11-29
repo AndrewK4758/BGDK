@@ -24,11 +24,11 @@ const crudHomeContainerSxProps: SxProps = {
 
 const crudPaperSxProps: SxProps = {
   ...baseCrudDisplayStyleSxProps,
+  flexDirection: 'row',
   flex: '1 0 100%',
 };
 
 const crudDataGridGridsSxProps: SxProps = {
-  ...baseCrudDisplayStyleSxProps,
   width: '100%',
   margin: 2,
 };
@@ -87,7 +87,9 @@ const CrudHome = () => {
               />
             </Box>
           )}
-          <Outlet />
+          <Box sx={{ paddingX: 2, width: '100%' }}>
+            <Outlet />
+          </Box>
         </Box>
       </Paper>
     </Box>

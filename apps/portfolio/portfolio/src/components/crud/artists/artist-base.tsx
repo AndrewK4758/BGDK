@@ -14,7 +14,7 @@ import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } f
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
 import AddArtist from './add-artist';
-import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { dataGridStyleUpdate, inverseColors } from '../crud-home';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
@@ -117,31 +117,31 @@ const Artist = () => {
 
   const getID = (row: artist) => row.artist_id;
 
+  console.log(matchesSize);
   return (
     <Box
       component={'div'}
       key={'all-data-grids-wrapper'}
       id="all-data-grids-wrapper"
       ref={divRef}
-      sx={{ ...baseCrudDisplayStyleSxProps, flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
+      sx={{
+        display: 'flex',
+        flexDirection: matchesSize ? 'column' : 'row',
+        gap: 0.5,
+      }}
     >
       <Box
         component={'div'}
         key="artists"
         id="artists"
         sx={{
-          ...baseCrudDisplayStyleSxProps,
           flexWrap: 'wrap',
-          flex: matchesSize ? '1 0 100%' : '1 0 50%',
+          flex: matchesSize ? '0 1 100%' : '0 1 50%',
           border: '3px solid purple',
+          borderRadius: 1,
         }}
       >
-        <Container
-          component={'div'}
-          key={'artists-title-box'}
-          id="artists-title-box"
-          sx={{ flex: '1 0 100%', paddingY: 2 }}
-        >
+        <Container component={'div'} key={'artists-title-box'} id="artists-title-box" sx={{ paddingY: 2 }}>
           <Paper
             elevation={6}
             key={'artist-list-box'}
@@ -159,19 +159,14 @@ const Artist = () => {
             />
           </Paper>
         </Container>
-        <Container
-          component={'div'}
-          key={'add-artist-box'}
-          id={'add-artist-box'}
-          sx={{ paddingY: 1, flex: '1 0 100%' }}
-        >
+        <Container component={'div'} key={'add-artist-box'} id={'add-artist-box'} sx={{ paddingY: 1 }}>
           <AddArtist rowCountState={rowCountState} setRowCountState={setRowCountState} COUNT={COUNT} />
         </Container>
         <Box
           component={'div'}
           key={'artist-data-grid-wrapper'}
           id="artist-data-grid-wrapper"
-          sx={{ ...inverseColors, borderRadius: 1, flex: 1 }}
+          sx={{ ...inverseColors, borderRadius: 1 }}
         >
           <DataGrid
             logLevel="debug"
@@ -196,7 +191,7 @@ const Artist = () => {
         key={'albums-for-artist-box'}
         component={'div'}
         id="albums-for-artist-box"
-        sx={{ ...baseCrudDisplayStyleSxProps, width: '100%' }}
+        sx={{ flex: matchesSize ? '0 1 100%' : '0 1 50%' }}
       >
         <Outlet />
       </Box>

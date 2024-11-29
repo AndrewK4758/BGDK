@@ -38,7 +38,7 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
       component={'div'}
       id="add-album-on-artist-container"
       key={'add-album-on-artist-container'}
-      sx={{ ...inverseColors, borderRadius: 1, paddingY: 1 }}
+      sx={{ ...inverseColors, borderRadius: 1, paddingY: 2 }}
     >
       <Form method="post" onSubmit={formik.handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -53,7 +53,6 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
             color="primary"
             value={formik.values.title}
             placeholder="Enter Album Title"
-            sx={{ flex: '1 0 50%' }}
             onChange={formik.handleChange}
             onBlur={e => formik.handleBlur(e)}
             slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
@@ -68,20 +67,10 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
         </Box>
 
         <Container sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 1, marginRight: 1, flex: '1 0 30%', fontSize: '1rem' }}
-          >
+          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
             Submit
           </Button>
-          <Button
-            type="reset"
-            variant="contained"
-            color="secondary"
-            sx={{ marginTop: 1, marginLeft: 1, flex: '1 0 30%', fontSize: '1rem' }}
-          >
+          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
             Clear
           </Button>
         </Container>

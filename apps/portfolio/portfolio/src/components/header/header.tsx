@@ -87,7 +87,7 @@ const Header = () => {
           </IconButton>
         </Box>
         <Box component={'span'} key={'email-icon-span'} id="email-icon-span" sx={iconSxProps}>
-          <IconButton color="secondary" onClick={() => setOpenEmail(true)} sx={iconSxProps}>
+          <IconButton color="secondary" onClick={() => setOpenEmail(true)}>
             <EmailIcon />
           </IconButton>
         </Box>
