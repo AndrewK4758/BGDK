@@ -1,5 +1,5 @@
 import { Text } from '@bgdk/react-components';
-import { Waiting } from '@bgdk/shared-react-components';
+// import { Waiting } from '@bgdk/shared-react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import type { SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
-import { Outlet, useNavigation, useSubmit } from 'react-router-dom';
+import { Outlet, useNavigation, useSubmit, type SubmitFunction } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
 import Theme from '../../styles/theme';
@@ -32,17 +32,6 @@ const Games = () => {
   const submit = useSubmit();
 
   useScrollIntoView(divRef);
-
-  const handleSelectGame = async (gameName: string, setLoading: Dispatch<SetStateAction<boolean>>) => {
-    try {
-      setLoading(true);
-      await submit(gameName, { method: 'post', relative: 'path', encType: 'text/plain' });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <Box
@@ -96,8 +85,11 @@ const Games = () => {
               id="Chutes-&-Ladders"
               disabled={state === 'submitting'}
               endIcon={<ChutesAndLaddersIcon />}
-              onClick={e => handleSelectGame(e.currentTarget.id, setLoading)}
-              sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
+              onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
+              sx={{
+                fontSize: '2rem',
+                color: Theme.palette.text.secondary,
+              }}
             >
               Chutes & Ladders
             </Button>
@@ -110,7 +102,7 @@ const Games = () => {
               id="Tic-Tac-Toe"
               disabled={state === 'submitting'}
               endIcon={<TicTacToeIcon />}
-              onClick={e => handleSelectGame(e.currentTarget.id, setLoading)}
+              onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
               sx={{ fontSize: '2rem', color: Theme.palette.text.secondary }}
             >
               Tic Tac Toe
@@ -133,12 +125,27 @@ const Games = () => {
         component={'div'}
         key={`games-app-wrapper`}
         id={`games-app-wrapper`}
-        sx={{ width: '80%', minHeight: '100%', height: 'fit-content' }}
+        sx={{ width: '80vw', minHeight: '100%', height: 'fit-content' }}
       >
-        {!loading ? <Outlet /> : <Waiting />}
+        {!loading && <Outlet />}
       </Box>
     </Box>
   );
 };
 
 export default Games;
+
+const handleSelectGame = async (
+  gameName: string,
+  submit: SubmitFunction,
+  setLoading: Dispatch<SetStateAction<boolean>>,
+) => {
+  try {
+    setLoading(true);
+    await submit(gameName, { method: 'post', relative: 'path', encType: 'text/plain' });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};

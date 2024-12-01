@@ -1,14 +1,13 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
-import { Waiting } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
 import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import type { SxProps } from '@mui/material/styles';
-import { Suspense, useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
 import getGameInstanceInfo from '../../utils/utils';
@@ -86,9 +85,16 @@ const ActiveGameSession = () => {
 
     socket.emit('create-room', (getGameInstanceInfo() as GamePlayerValidation).gameInstanceID);
 
+    return () => {
+      socket.disconnect();
+      socket.removeAllListeners();
+    };
+  }, []);
+
+  useEffect(() => {
     socket.emit('action', { action: ActionType.BOARD });
 
-    socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
+    socket.on('game-data', async ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
       const gameBoardClient: GameBoard = [];
       const maxRowLength = Math.sqrt(gameBoard.length);
       let indexOfSpace = 1;
@@ -115,11 +121,6 @@ const ActiveGameSession = () => {
     socket.on('no-game-error', ({ errorMessage }) => {
       console.error(errorMessage);
     });
-
-    return () => {
-      socket.removeAllListeners();
-      socket.disconnect();
-    };
   }, [id]);
 
   return (
@@ -133,6 +134,7 @@ const ActiveGameSession = () => {
       >
         <ActiveAvatars avatarsInGame={state.activePlayersInGame} winner={state.winner} />
       </Box>
+
       <Box
         component={'section'}
         key={`${id}-game-board-wrapper`}
@@ -150,6 +152,7 @@ const ActiveGameSession = () => {
           />
         )}
       </Box>
+
       <Container
         component={'section'}
         key={`${id}-active-game-buttons-wrapper`}
@@ -158,18 +161,17 @@ const ActiveGameSession = () => {
       >
         <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         <Box component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          <Suspense fallback={<Waiting />}>
-            {id === 'Chutes-&-Ladders' ? (
-              <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
-            ) : (
-              <TakeTurnTicTacToe
-                avatarInTurn={state.avatarInTurn as string}
-                dispatch={dispatch}
-                socket={socket}
-                position={space}
-              />
-            )}
-          </Suspense>
+          {id === 'Chutes-&-Ladders' ? (
+            <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />
+          ) : (
+            <TakeTurnTicTacToe
+              avatarInTurn={state.avatarInTurn as string}
+              dispatch={dispatch}
+              socket={socket}
+              position={space}
+            />
+          )}
+
           <ResetGame dispatch={dispatch} socket={socket} setSpace={setSpace} />
         </Box>
       </Container>

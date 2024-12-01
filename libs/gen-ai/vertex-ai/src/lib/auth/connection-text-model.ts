@@ -14,7 +14,7 @@ const vertexAI = new VertexAI({
   project: PROJECT,
   location: LOCATION,
   googleAuthOptions: {
-    keyFile: process.env.KEY_FILE,
+    // keyFile: process.env.KEY_FILE,
   },
 });
 

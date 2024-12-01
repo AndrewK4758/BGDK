@@ -10,7 +10,12 @@ const baseStyleForHomeItems: SxProps = {
 };
 
 const Home = () => (
-  <>
+  <Box
+    component={'div'}
+    key={'home-wrapper'}
+    id="home-wrapper"
+    sx={{ ...baseStyleForHomeItems, flexDirection: 'column', gap: '15vh' }}
+  >
     <Box
       component={'div'}
       key={'intro-wrapper'}
@@ -35,7 +40,7 @@ const Home = () => (
     >
       <TechStackList />
     </Box>
-  </>
+  </Box>
 );
 
 export default Home;

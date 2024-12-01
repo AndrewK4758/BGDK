@@ -12,8 +12,6 @@ const registerPlayersAndStartGame: ActionFunction = async ({ request }: ActionFu
   try {
     const gameInstanceID = (await registerGame(gameName)) as string;
 
-    console.log(gameInstanceID);
-
     sessionStorage.setItem('__current_game__', gameInstanceID);
     __current_game__ = JSON.parse(gameInstanceID);
 

@@ -1,16 +1,16 @@
+import { ChatInput } from '@bgdk/react-components';
+import { labelSx, textInputSx, topLevelModeStyle } from '@bgdk/shared-react-components';
+import type { PromptRequest } from '@bgdk/vertex-ai';
+import { FileData } from '@google-cloud/vertexai';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import * as Yup from 'yup';
-import { labelSx, textInputSx, topLevelModeStyle } from '@bgdk/shared-react-components';
-import { ChatInput } from '@bgdk/react-components';
+import { useContext, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { useContext, useRef } from 'react';
+import * as Yup from 'yup';
 import { WebSocketContext, WebSocketContextType } from '../../../contexts/websocket-context';
-import type { PromptRequest } from '@bgdk/vertex-ai';
-import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
-import { FileData } from '@google-cloud/vertexai';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
+import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
 
 const validationSchema = Yup.object<PromptRequest>().shape({
   text: Yup.string().required('Must be a valid question or statement').min(2, 'Must be a valid question or statement'),
@@ -19,10 +19,30 @@ const validationSchema = Yup.object<PromptRequest>().shape({
 
 const TextGenerator = () => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
-  const { prompt, setLoading } = useOutletContext<OutletContextProps>();
+  const { prompt, setLoading, setPromptResponse } = useOutletContext<OutletContextProps>();
   const divRef = useRef<HTMLDivElement>(null);
 
   useScrollIntoView(divRef);
+
+  useEffect(() => {
+    if (!socket.connected) socket.connect();
+
+    socket.on('connect', () => {
+      console.log(`Connected as ${socket.id}`);
+    });
+
+    socket.on('chunk', ({ response }) => {
+      setPromptResponse(prev => [...prev, response]);
+      setLoading(false);
+    });
+
+    return () => {
+      if (socket.connected) {
+        socket.disconnect();
+        socket.removeAllListeners();
+      }
+    };
+  }, []);
 
   return (
     <Box

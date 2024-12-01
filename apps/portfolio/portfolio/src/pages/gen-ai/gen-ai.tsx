@@ -11,19 +11,9 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {
-  lazy,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type Dispatch,
-  type SetStateAction,
-} from 'react';
+import { lazy, useRef, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
-import { WebSocketContext, WebSocketContextType } from '../../contexts/websocket-context';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import Theme from '../../styles/theme';
 
@@ -51,7 +41,6 @@ const titleSx: SxProps = {
 const promptInit: PromptRequest = { text: '', fileData: null };
 
 const GenAiHome = () => {
-  const { socket } = useContext<WebSocketContextType>(WebSocketContext);
   const [prompt, setPrompt] = useState<PromptRequest>(promptInit);
   const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
@@ -60,24 +49,6 @@ const GenAiHome = () => {
   const nav = useNavigate();
 
   useScrollIntoView(divRef);
-
-  useEffect(() => {
-    if (!socket.connected) socket.connect();
-
-    socket.on('connect', () => {
-      console.log(`Connected as ${socket.id}`);
-    });
-
-    socket.on('chunk', ({ response }) => {
-      setPromptResponse(prev => [...prev, response]);
-      setLoading(false);
-    });
-
-    return () => {
-      socket.removeAllListeners();
-      socket.disconnect();
-    };
-  }, []);
 
   return (
     <Box
@@ -191,16 +162,16 @@ const GenAiHome = () => {
           </Container>
         </Box>
       )}
-      <Box
-        component={'div'}
-        key={'gen-ai-outlet-wrapper'}
-        id="gen-ai-outlet-wrapper"
-        sx={{ height: 'fit-content', width: '60vw' }}
-      >
-        <MediaRecorderClientContextProvider>
+      <MediaRecorderClientContextProvider>
+        <Box
+          component={'div'}
+          key={'gen-ai-outlet-wrapper'}
+          id="gen-ai-outlet-wrapper"
+          sx={{ height: 'fit-content', width: '60vw' }}
+        >
           <Outlet context={{ prompt, promptResponse, loading, setPromptResponse, setLoading }} />
-        </MediaRecorderClientContextProvider>
-      </Box>
+        </Box>
+      </MediaRecorderClientContextProvider>
 
       <Modal
         open={loading}

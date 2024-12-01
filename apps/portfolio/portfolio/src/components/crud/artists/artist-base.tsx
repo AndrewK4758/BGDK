@@ -117,7 +117,6 @@ const Artist = () => {
 
   const getID = (row: artist) => row.artist_id;
 
-  console.log(matchesSize);
   return (
     <Box
       component={'div'}

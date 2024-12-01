@@ -1,13 +1,19 @@
-import { Waiting } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
-import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
+
+const baseStyleForLayoutItems: SxProps = {
+  flex: '1 0 100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: '100vw',
+};
 
 const headerWrapperSxProps: SxProps = {
   position: 'fixed',
@@ -22,29 +28,20 @@ const headerWrapperSxProps: SxProps = {
 };
 
 const homeWrapperSxProps: SxProps = {
-  flex: '0 1 auto',
-  width: '100vw',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  ...baseStyleForLayoutItems,
+  flex: '1 0 100%',
   justifyContent: 'space-between',
   gap: '25vh',
 };
 
 const mainWrapperSxProps: SxProps = {
-  flex: '1 0 100%',
-  width: '100vw',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  ...baseStyleForLayoutItems,
   marginTop: '20vh',
   gap: '20vh',
 };
 
 const outletWrapperSxProps: SxProps = {
-  width: '100vw',
-  display: 'flex',
-  justifyContent: 'center',
+  ...baseStyleForLayoutItems,
   height: 'fit-content',
   minHeight: '50vh',
   paddingBottom: '15vh',
@@ -66,13 +63,11 @@ const Layout = () => (
       <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
         <Home />
       </Box>
-      <Suspense fallback={<Waiting />}>
+      <WebSocketContextProvider>
         <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
-          <WebSocketContextProvider>
-            <Outlet />
-          </WebSocketContextProvider>
+          <Outlet />
         </Box>
-      </Suspense>
+      </WebSocketContextProvider>
     </Box>
     <Menus />
   </Box>

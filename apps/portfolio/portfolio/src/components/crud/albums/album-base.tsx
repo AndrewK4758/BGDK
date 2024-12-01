@@ -14,7 +14,7 @@ import handleDeleteAlbum from '../../../services/events/crud-events/handle-delet
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import loadAlbums from '../../../services/loaders/crud-loaders/load-albums';
 import AddAlbum from './add-album';
-import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { dataGridStyleUpdate, inverseColors } from '../crud-home';
 import { Text } from '@bgdk/react-components';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
@@ -129,25 +129,20 @@ const Album = () => {
       ref={divRef}
       key={'all-albums-box'}
       id="all-albums-box"
-      sx={{ ...baseCrudDisplayStyleSxProps, flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
+      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
     >
       <Box
         component={'div'}
         key={'album-box'}
         id="album-box"
         sx={{
-          ...baseCrudDisplayStyleSxProps,
           flexWrap: 'wrap',
           flex: matchesSize ? '1 0 100%' : '1 0 50%',
           border: '3px solid purple',
+          borderRadius: 1,
         }}
       >
-        <Container
-          key={'albums-title-wrapper'}
-          component={'section'}
-          id="album-title-wrapper"
-          sx={{ flex: '1 0 100%', paddingY: 2 }}
-        >
+        <Container key={'albums-title-wrapper'} component={'section'} id="album-title-wrapper" sx={{ paddingY: 2 }}>
           <Paper
             elevation={6}
             key={'album-title-bar'}
@@ -165,14 +160,14 @@ const Album = () => {
             />
           </Paper>
         </Container>
-        <Container component={'div'} key={'add-album-box'} id={'add-album-box'} sx={{ paddingY: 1, flex: '1 0 100%' }}>
+        <Container component={'div'} key={'add-album-box'} id={'add-album-box'} sx={{ paddingY: 1 }}>
           <AddAlbum apiRef={apiRef} />
         </Container>
         <Box
           component={'div'}
           key={'all-albums-datagrid'}
           id="all-albums-datagrid"
-          sx={{ ...inverseColors, borderRadius: 1, flex: 1 }}
+          sx={{ ...inverseColors, borderRadius: 1 }}
         >
           <DataGrid
             logLevel="info"
@@ -194,7 +189,12 @@ const Album = () => {
           />
         </Box>
       </Box>
-      <Box key={'tracks-on-album-box'} component={'div'} id="tracks-on-album-box" sx={{ width: '100%' }}>
+      <Box
+        key={'tracks-on-album-box'}
+        component={'div'}
+        id="tracks-on-album-box"
+        sx={{ flex: matchesSize ? '0 1 100%' : '0 1 50%' }}
+      >
         <Outlet />
       </Box>
     </Box>

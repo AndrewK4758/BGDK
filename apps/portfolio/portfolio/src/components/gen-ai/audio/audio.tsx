@@ -33,8 +33,9 @@ const GenAiAudio = () => {
   const [recording, setRecording] = useState<boolean>(false);
   const audRef = useRef<HTMLAudioElement>(null);
   const mrcRef = useRef<MRC | null>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  useScrollIntoView(audRef);
+  useScrollIntoView(divRef);
 
   useEffect(() => {
     if (!socket.connected) socket.connect();
@@ -42,9 +43,12 @@ const GenAiAudio = () => {
     socket.on('chunk', ({ response }) => {
       setPromptResponse(prev => [...prev, response]);
     });
+
     return () => {
-      socket.removeAllListeners();
-      socket.disconnect();
+      if (socket.connected) {
+        socket.disconnect();
+        socket.removeAllListeners();
+      }
     };
   }, []);
 
@@ -80,7 +84,7 @@ const GenAiAudio = () => {
   };
 
   return (
-    <Box component={'div'} key={'gen-audio-wrapper'} id="gen-audio-wrapper" sx={topLevelModeStyle}>
+    <Box component={'div'} key={'gen-audio-wrapper'} id="gen-audio-wrapper" ref={divRef} sx={topLevelModeStyle}>
       <Paper
         component={'div'}
         key={'gen-audio-paper'}
