@@ -4,7 +4,7 @@ import { type SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, type Dispatch, type SetStateAction } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import Theme from '../../styles/theme';
 import AiIcon from '../icons/ai-icon';
@@ -27,7 +27,12 @@ const buttonSXProps: SxProps = {
   color: Theme.palette.background.default,
 };
 
-const Menus = () => {
+interface MenusProps {
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+const Menus = ({ setLoading }: MenusProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const nav: NavigateFunction = useNavigate();
 
@@ -155,7 +160,10 @@ const Menus = () => {
               sx={buttonSXProps}
               color="primary"
               variant="extended"
-              onClick={() => nav('gen-ai')}
+              onClick={() => {
+                setLoading(true);
+                nav('gen-ai');
+              }}
             >
               Generative
               <AiIcon />

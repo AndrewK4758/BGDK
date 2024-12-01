@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
@@ -52,25 +53,29 @@ const outletWrapperSxProps: SxProps = {
  * @returns Layout for portfolio app
  */
 
-const Layout = () => (
-  <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
-    <Box component={'div'} className="background" id="background" />
-    <Box component={'div'} className="background-overlay" id="background-overlay" />
-    <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
-      <Header />
-    </Box>
-    <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
-      <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
-        <Home />
+const Layout = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
+  return (
+    <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
+      <Box component={'div'} className="background" id="background" />
+      <Box component={'div'} className="background-overlay" id="background-overlay" />
+      <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
+        <Header />
       </Box>
-      <WebSocketContextProvider>
-        <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
-          <Outlet />
+      <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
+        <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
+          <Home />
         </Box>
-      </WebSocketContextProvider>
+        <WebSocketContextProvider>
+          <Box component={'div'} key={'outlet-ref-wrapper'} id="outlet-ref-wrapper" sx={outletWrapperSxProps}>
+            <Outlet context={{ loading, setLoading }} />
+          </Box>
+        </WebSocketContextProvider>
+      </Box>
+      <Menus loading={loading} setLoading={setLoading} />
     </Box>
-    <Menus />
-  </Box>
-);
+  );
+};
 
 export default Layout;

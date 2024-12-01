@@ -21,7 +21,8 @@
           "color": true
         },
         "production": {
-          "mode": "production"
+          "mode": "production",
+          "generatePackageJson": true
         }
       }
     },

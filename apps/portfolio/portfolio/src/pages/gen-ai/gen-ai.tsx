@@ -12,7 +12,7 @@ import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { lazy, useRef, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import Theme from '../../styles/theme';
@@ -22,8 +22,13 @@ const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/
 export type OutletContextProps = {
   prompt: PromptRequest;
   promptResponse: string[];
-  loading: boolean;
   setPromptResponse: Dispatch<SetStateAction<string[]>>;
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+export type LayoutOutletContextProps = {
+  loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -41,8 +46,8 @@ const titleSx: SxProps = {
 const promptInit: PromptRequest = { text: '', fileData: null };
 
 const GenAiHome = () => {
+  const { loading, setLoading } = useOutletContext<LayoutOutletContextProps>();
   const [prompt, setPrompt] = useState<PromptRequest>(promptInit);
-  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [promptResponse, setPromptResponse] = useState<string[]>([]);
   const divRef = useRef<HTMLElement>(null);
@@ -52,6 +57,7 @@ const GenAiHome = () => {
 
   return (
     <Box
+      onLoad={() => setLoading(false)}
       ref={divRef}
       component={'div'}
       key={'gen-ai-wrapper'}
@@ -162,6 +168,7 @@ const GenAiHome = () => {
           </Container>
         </Box>
       )}
+
       <MediaRecorderClientContextProvider>
         <Box
           component={'div'}
