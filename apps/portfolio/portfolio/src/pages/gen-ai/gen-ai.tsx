@@ -24,8 +24,8 @@ import {
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
-import Theme from '../../styles/theme';
 import loadContextPath from '../../services/loaders/gen-ai/load-context-path';
+import Theme from '../../styles/theme';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
 

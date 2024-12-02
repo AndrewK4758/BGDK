@@ -31,6 +31,7 @@ import {
   type SubmitTarget,
 } from 'react-router-dom';
 import * as Yup from 'yup';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
 import ImageIcon from '../../icons/image-icon';
@@ -47,7 +48,6 @@ import {
   tone,
 } from '../static/definitions';
 import PromptBuilderResponse from './prompt-builder-response';
-import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 
 const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
 

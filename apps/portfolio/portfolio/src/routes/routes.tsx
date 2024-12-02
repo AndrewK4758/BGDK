@@ -3,6 +3,7 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import App from '../app/app';
 import GameLoading from '../components/loading/loading';
+import PrivacyPolicy from '../components/privacy-policy/privacy-policy';
 import emailFormAction from '../services/actions/email-form-action';
 import generateImageAction from '../services/actions/generate-image-action';
 import handlePromptBuilder from '../services/actions/prompt-builder-action';
@@ -12,7 +13,6 @@ import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count'
 import loadArtistAlbums from '../services/loaders/crud-loaders/load-artist-albums';
 import loadArtistsCount from '../services/loaders/crud-loaders/load-artists-count';
 import registerPlayersAndStartGame from '../services/loaders/register-players-and-start-game';
-import PrivacyPolicy from '../components/privacy-policy/privacy-policy';
 
 const Games = lazy(() => import('../pages/games/games'));
 const ActiveGameSession = lazy(() => import('../components/games/active_game_session'));
@@ -94,7 +94,6 @@ const routes: RouteObject[] = [
       {
         path: 'gen-ai',
         Component: GenAI,
-        // loader: loadContextPath,
         action: handlePromptBuilder,
         children: [
           {

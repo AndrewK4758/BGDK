@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { baseStyleForLayoutItems } from '../layout/layout';
 import Button from '@mui/material/Button';
-import PrivacyPolicyText from '../../pages/static/privacy-policy-text';
+import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
+import PrivacyPolicyText from '../../pages/static/privacy-policy-text';
+import { baseStyleForLayoutItems } from '../layout/layout';
 
 export const PrivacyPolicy = () => {
   const nav = useNavigate();
