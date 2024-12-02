@@ -1,13 +1,12 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { baseStyleForLayoutItems } from '../layout/layout';
 import Button from '@mui/material/Button';
 import PrivacyPolicyText from '../../pages/static/privacy-policy-text';
+import { useNavigate } from 'react-router-dom';
 
 export const PrivacyPolicy = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const nav = useNavigate();
   return (
     <Box
       component={'div'}
@@ -15,13 +14,10 @@ export const PrivacyPolicy = () => {
       id="privacy-policy-wrapper"
       sx={{ ...baseStyleForLayoutItems, justifyContent: 'center' }}
     >
-      <Link to={''} onClick={() => setOpen(true)}>
-        Privacy Policy
-      </Link>
       <Modal
         key={'privacy-policy-modal'}
         id={'privacy-policy-modal'}
-        open={open}
+        open={true}
         sx={{
           height: '90vh',
           width: '90vw',
@@ -36,7 +32,7 @@ export const PrivacyPolicy = () => {
           id={'privacy-policy-modal-wrapper'}
           sx={{ backgroundColor: '#d1d1d1' }}
         >
-          {PrivacyPolicyText}
+          <PrivacyPolicyText />
           <Box
             component={'section'}
             key={'privacy-policy-button-wrapper'}
@@ -49,7 +45,7 @@ export const PrivacyPolicy = () => {
               key={'privacy-policy-button'}
               id={'privacy-policy-button'}
               color="secondary"
-              onClick={() => setOpen(false)}
+              onClick={() => nav('/')}
               sx={{ fontSize: '1.5rem' }}
             >
               Close

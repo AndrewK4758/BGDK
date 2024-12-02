@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-const PrivacyPolicyText = (
+const PrivacyPolicyText = () => (
   <Box
     component={'section'}
     key={'privacy-policy-text-wrapper'}
@@ -83,7 +83,7 @@ const PrivacyPolicyText = (
     </p>
     <p>
       You can revoke access to your Google Calendar data at any time by visiting your Google account settings and
-      removing access for <a href="https://andrew-k.us">https://andrew-k.us</a>.
+      removing access for Andrew's Portfolio - Appointment Maker <a href="https://andrew-k.us">https://andrew-k.us</a>.
     </p>
     <p>
       <strong>6. Children&#39;s Privacy</strong>

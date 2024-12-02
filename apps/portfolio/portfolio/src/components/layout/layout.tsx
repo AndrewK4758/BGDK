@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
-import PrivacyPolicy from '../privacy-policy/privacy-policy';
+// import PrivacyPolicy from '../privacy-policy/privacy-policy';
 
 export const baseStyleForLayoutItems: SxProps = {
   flex: '1 0 100%',
@@ -80,7 +80,7 @@ const Layout = () => {
       </Box>
       <Menus loading={loading} setLoading={setLoading} />
       <Box component={'div'} key={'footer-wrapper'} id="footer-wrapper" sx={footerWrapperSxProps}>
-        <PrivacyPolicy />
+        <Link to={'/privacy-policy'}>Privacy Policy</Link>
       </Box>
     </Box>
   );
