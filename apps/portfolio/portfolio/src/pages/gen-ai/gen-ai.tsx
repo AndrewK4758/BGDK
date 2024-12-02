@@ -11,11 +11,21 @@ import Paper from '@mui/material/Paper';
 import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { lazy, useRef, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type Dispatch,
+  type SetStateAction,
+} from 'react';
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import Theme from '../../styles/theme';
+import loadContextPath from '../../services/loaders/gen-ai/load-context-path';
 
 const PromptBuilder = lazy(() => import('../../components/gen-ai/prompt-builder/prompt-builder'));
 
@@ -54,6 +64,10 @@ const GenAiHome = () => {
   const nav = useNavigate();
 
   useScrollIntoView(divRef);
+
+  useEffect(() => {
+    loadContextPath();
+  }, []);
 
   return (
     <Box
@@ -162,9 +176,11 @@ const GenAiHome = () => {
             id="prompt-builder-collapse-box"
             sx={{ width: '100%' }}
           >
-            <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
-              <PromptBuilder loading={loading} setLoading={setLoading} setPrompt={setPrompt} />
-            </Collapse>
+            <Suspense fallback={<Waiting />}>
+              <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
+                <PromptBuilder loading={loading} setLoading={setLoading} setPrompt={setPrompt} />
+              </Collapse>
+            </Suspense>
           </Container>
         </Box>
       )}

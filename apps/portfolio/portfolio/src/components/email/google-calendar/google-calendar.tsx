@@ -18,10 +18,10 @@ import {
 } from '../../../contexts/contact-context';
 import { jwtDecode } from 'jwt-decode';
 
-const tomorrow = dayjs().add(1, 'day').set('hour', 8).set('minutes', 30);
-const nextYear = dayjs().add(1, 'year').set('hour', 8).set('minutes', 30);
-const minTime = dayjs().set('hour', 8).set('minutes', 30);
-const maxTime = dayjs().set('hour', 20).set('minutes', 30);
+const tomorrow = dayjs().add(1, 'day');
+const nextYear = dayjs().add(1, 'year');
+const minTime = tomorrow.set('hour', 8).set('minutes', 30);
+const maxTime = tomorrow.set('hour', 19).set('minutes', 30);
 
 const dateCalendarSlotProps: DateCalendarSlotProps<Dayjs> = {
   switchViewIcon: {
@@ -231,7 +231,6 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
               value={values.startTime}
               onAccept={data => setValues({ ...values, startTime: data as Dayjs })}
               slotProps={timePickerSlotProps}
-              disablePast={true}
             />
             <TimePicker
               label={
@@ -249,7 +248,6 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
               value={values.endTime}
               onAccept={data => setValues({ ...values, endTime: data as Dayjs })}
               slotProps={timePickerSlotProps}
-              disablePast={true}
             />
           </Box>
           <Box

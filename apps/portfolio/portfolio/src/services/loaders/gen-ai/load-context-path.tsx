@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { LoaderFunction } from 'react-router-dom';
 import { getContextPath } from '@bgdk/utils';
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
-const loadContextPath: LoaderFunction = async () => {
+const loadContextPath = async () => {
   try {
     const contextId = getContextPath('context-path');
 

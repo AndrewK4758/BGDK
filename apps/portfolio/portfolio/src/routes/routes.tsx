@@ -11,7 +11,7 @@ import loadAlbumTracks from '../services/loaders/crud-loaders/load-album-tracks'
 import loadAlbumsCount from '../services/loaders/crud-loaders/load-albums-count';
 import loadArtistAlbums from '../services/loaders/crud-loaders/load-artist-albums';
 import loadArtistsCount from '../services/loaders/crud-loaders/load-artists-count';
-import loadContextPath from '../services/loaders/gen-ai/load-context-path';
+// import loadContextPath from '../services/loaders/gen-ai/load-context-path';
 import registerPlayersAndStartGame from '../services/loaders/register-players-and-start-game';
 
 const Games = lazy(() => import('../pages/games/games'));
@@ -94,7 +94,7 @@ const routes: RouteObject[] = [
       {
         path: 'gen-ai',
         Component: GenAI,
-        loader: loadContextPath,
+        // loader: loadContextPath,
         action: handlePromptBuilder,
         children: [
           {

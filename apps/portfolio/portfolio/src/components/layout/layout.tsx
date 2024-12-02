@@ -7,8 +7,9 @@ import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
+import PrivacyPolicy from '../privacy-policy/privacy-policy';
 
-const baseStyleForLayoutItems: SxProps = {
+export const baseStyleForLayoutItems: SxProps = {
   flex: '1 0 100%',
   display: 'flex',
   flexDirection: 'column',
@@ -48,6 +49,10 @@ const outletWrapperSxProps: SxProps = {
   paddingBottom: '15vh',
 };
 
+const footerWrapperSxProps: SxProps = {
+  height: 'fit-content',
+};
+
 /**
  *
  * @returns Layout for portfolio app
@@ -60,10 +65,10 @@ const Layout = () => {
     <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
       <Box component={'div'} className="background" id="background" />
       <Box component={'div'} className="background-overlay" id="background-overlay" />
-      <Box component={'div'} id="header-wrapper" sx={headerWrapperSxProps}>
+      <Box component={'div'} key={'header-wrapper'} id="header-wrapper" sx={headerWrapperSxProps}>
         <Header />
       </Box>
-      <Box component={'main'} key={'main'} id="main-wrapper" sx={mainWrapperSxProps}>
+      <Box component={'main'} key={'main-wrapper'} id="main-wrapper" sx={mainWrapperSxProps}>
         <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
           <Home />
         </Box>
@@ -74,6 +79,9 @@ const Layout = () => {
         </WebSocketContextProvider>
       </Box>
       <Menus loading={loading} setLoading={setLoading} />
+      <Box component={'div'} key={'footer-wrapper'} id="footer-wrapper" sx={footerWrapperSxProps}>
+        <PrivacyPolicy />
+      </Box>
     </Box>
   );
 };

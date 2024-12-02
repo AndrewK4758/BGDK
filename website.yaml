@@ -9,7 +9,7 @@ env_variables:
   NODE_ENV: 'production'
 
 handlers:
-  - url: /(.*\.(js|css|png|jpg|jpeg|gif|svg|ico|webp|json|xml|txt|map|woff|woff2|ttf|eot)$)
+  - url: /(.*\.(js|css|yaml|png|jpg|jpeg|gif|svg|ico|webp|json|xml|txt|map|woff|woff2|ttf|eot|pdf|md)$)
     static_files: apps/portfolio/portfolio/dist/\1
     upload: apps/portfolio/portfolio/dist/(.*)
     secure: always
