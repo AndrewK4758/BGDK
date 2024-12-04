@@ -8,7 +8,7 @@ import { ChangeEvent, Fragment, MouseEvent, useState } from 'react';
 import { IActionError } from '../../../interfaces/action-error';
 import ActionError from '../errors/action-error';
 import FormikTextInput from '../text-input/formik-text-input';
-import Text from '../text/text';
+import Text from '../../../../../shared-react-components/src/lib/text/text';
 import registerUserAction from './actions/register-user-action';
 import updateFormOnChange from './events/add-file-to-form-on-change';
 import verifyEmailObBlur from './events/verify-email-on-blur';

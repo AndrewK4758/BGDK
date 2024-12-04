@@ -1,7 +1,7 @@
 import type { SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid2 from '@mui/material/Grid2';
-import Text from '../text/text';
+import Text from '../../../../../shared-react-components/src/lib/text/text';
 import { Theme } from '../../theme/theme';
 import { type Row } from '@bgdk/types-game';
 import type { CSSProperties, Dispatch, SetStateAction } from 'react';

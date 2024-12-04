@@ -7,7 +7,6 @@ import Home from '../../pages/home/home';
 import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
-// import PrivacyPolicy from '../privacy-policy/privacy-policy';
 
 export const baseStyleForLayoutItems: SxProps = {
   flex: '1 0 100%',
@@ -62,14 +61,26 @@ const Layout = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <Box component={'div'} key={'app-wrapper'} id="app-wrapper" className="app-wrapper">
-      <Box component={'div'} className="background" id="background" />
-      <Box component={'div'} className="background-overlay" id="background-overlay" />
-      <Box component={'div'} key={'header-wrapper'} id="header-wrapper" sx={headerWrapperSxProps}>
+    <Box component={'div'} key={'app-wrapper'} id="app-wrapper" data-testid="app-wrapper" className="app-wrapper">
+      <Box component={'div'} className="background" id="background" data-testid="background" />
+      <Box component={'div'} className="background-overlay" id="background-overlay" data-testid="background-overlay" />
+      <Box
+        component={'div'}
+        key={'header-wrapper'}
+        id="header-wrapper"
+        data-testid="header-wrapper"
+        sx={headerWrapperSxProps}
+      >
         <Header />
       </Box>
-      <Box component={'main'} key={'main-wrapper'} id="main-wrapper" sx={mainWrapperSxProps}>
-        <Box component={'div'} key={'home-wrapper'} id="home-wrapper" sx={homeWrapperSxProps}>
+      <Box component={'main'} key={'main-wrapper'} id="main-wrapper" data-testid="main-wrapper" sx={mainWrapperSxProps}>
+        <Box
+          component={'div'}
+          key={'home-wrapper'}
+          id="home-wrapper"
+          data-testid="home-wrapper"
+          sx={homeWrapperSxProps}
+        >
           <Home />
         </Box>
         <WebSocketContextProvider>
@@ -79,8 +90,22 @@ const Layout = () => {
         </WebSocketContextProvider>
       </Box>
       <Menus loading={loading} setLoading={setLoading} />
-      <Box component={'div'} key={'footer-wrapper'} id="footer-wrapper" sx={footerWrapperSxProps}>
-        <Link to={'/privacy-policy'}>Privacy Policy</Link>
+      <Box
+        component={'div'}
+        key={'footer-wrapper'}
+        id="footer-wrapper"
+        data-testid="footer-wrapper"
+        sx={footerWrapperSxProps}
+      >
+        <Link
+          key={'privacy-policy-link'}
+          id={'privacy-policy-link'}
+          to={'/privacy-policy'}
+          rel="noopener noreferrer"
+          data-testid={'privacy-policy-link'}
+        >
+          Privacy Policy
+        </Link>
       </Box>
     </Box>
   );

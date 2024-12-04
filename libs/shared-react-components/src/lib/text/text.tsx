@@ -1,4 +1,3 @@
-// import styles from './title.module.css';
 import { SxProps } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Variant } from '@mui/material/styles/createTypography';
@@ -7,7 +6,7 @@ import { ReactNode } from 'react';
 export interface TextProps {
   titleVariant: Variant;
   id?: string;
-  titleText: string | ReactNode;
+  titleText: ReactNode;
   sx?: SxProps;
 }
 

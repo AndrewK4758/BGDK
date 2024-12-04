@@ -3,7 +3,7 @@ import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useField } from 'formik';
-import Text from '../../text/text';
+import Text from '../../../../../../shared-react-components/src/lib/text/text';
 import { Theme } from '../../../theme/theme';
 
 interface IAvatarColorSelectValues {

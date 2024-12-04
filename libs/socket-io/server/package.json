@@ -5,7 +5,7 @@
   "dependencies": {
     "socket.io": "^4.7.5",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.15.0",
+    "@eslint/js": "9.16.0",
     "jsonc-eslint-parser": "2.4.0",
     "@bgdk/types-ai": "0.0.1"
   },

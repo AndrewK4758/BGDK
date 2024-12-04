@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "6.0.1",
     "express": "4.21.1",
     "@bgdk/chain": "0.0.1",
     "@bgdk/chains-for-games": "0.0.1",

@@ -2,7 +2,7 @@
 import { Box, SxProps } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import { CSSProperties, ElementType } from 'react';
-import Text from '../../text/text';
+import { Text } from '@bgdk/shared-react-components';
 
 const avatarSvgStyle: CSSProperties = {
   height: 'auto',

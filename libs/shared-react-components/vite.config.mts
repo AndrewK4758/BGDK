@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
@@ -57,11 +57,17 @@ export default defineConfig({
       output: {
         esModule: true,
         format: 'esm',
+        generatedCode: {
+          arrowFunctions: true,
+          constBindings: true,
+          symbols: true,
+        },
       },
     },
     target: 'esnext',
   },
   esbuild: {
+    jsx: 'automatic',
     format: 'esm',
     color: true,
     platform: 'browser',

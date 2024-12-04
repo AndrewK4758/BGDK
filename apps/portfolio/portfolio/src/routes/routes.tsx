@@ -1,6 +1,6 @@
 import { Waiting } from '@bgdk/shared-react-components';
 import { lazy } from 'react';
-import { RouteObject } from 'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
 import App from '../app/app';
 import GameLoading from '../components/loading/loading';
 import PrivacyPolicy from '../components/privacy-policy/privacy-policy';

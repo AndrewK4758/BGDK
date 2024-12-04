@@ -13,7 +13,7 @@
     "express": "4.21.1",
     "@bgdk/chutes-and-ladders": "0.0.1",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.15.0",
+    "@eslint/js": "9.16.0",
     "jsonc-eslint-parser": "2.4.0",
     "ts-jest": "29.2.5",
     "@bgdk/mocks": "0.0.1",

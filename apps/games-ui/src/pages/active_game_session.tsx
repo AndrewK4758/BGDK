@@ -1,7 +1,7 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
 import { Text, Theme } from '@bgdk/react-components';
-import { IActivePlayersInGame, GameBoard, ILiteSpace } from '@bgdk/types-game';
+import { IActivePlayersInGame, GameBoard, ILiteSpace, type Row } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -44,7 +44,7 @@ const breakpointsBottomMenuButtonsBox: SxProps = {
 export type Built_GameBoard = GameBoard[];
 
 export interface IActiveGameInfo extends IActivePlayersInGame {
-  gameBoard: Built_GameBoard;
+  gameBoard: GameBoard;
 }
 
 const socketInit = () => {
@@ -59,7 +59,7 @@ const ActiveGameSession = () => {
 
   const clientSocket = new ClientSocket(managerOptions);
   const [state, dispatch] = useReducer(socketReducer, {}, socketInit);
-  const [space, setSpace] = useState<(EventTarget & HTMLDivElement) | undefined>(undefined);
+  const [space, setSpace] = useState<string | undefined>(undefined);
   const socketRef = useRef<Socket>(clientSocket.Socket);
   const params = useParams();
 
@@ -80,10 +80,10 @@ const ActiveGameSession = () => {
   useEffect(() => {
     socket.emit('action', { action: ActionType.BOARD });
     socket.on('game-data', ({ gameBoard, activePlayersInGame, winner, avatarInTurn }: IPlayersAndBoard) => {
-      const gameBoardClient: Built_GameBoard = [];
+      const gameBoardClient: GameBoard = [];
       const maxRowLength = Math.sqrt(gameBoard.length);
       let indexOfSpace = 1;
-      let row: ILiteSpace[] = [];
+      let row: Row = [];
       gameBoard.forEach((s: ILiteSpace) => {
         const rowCount = rowFinder(indexOfSpace, gameBoard.length);
         row.push(s);
@@ -108,9 +108,12 @@ const ActiveGameSession = () => {
     });
 
     return () => {
-      if (socket) socket.disconnect();
+      if (socket) {
+        socket.disconnect();
+        socket.removeAllListeners();
+      }
     };
-  }, [socket, id]);
+  }, [id]);
 
   return (
     <>

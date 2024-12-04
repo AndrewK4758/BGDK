@@ -63,7 +63,8 @@
     "test": {
       "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/portfolio/portfolio/vite.config.mts"
+        "config": "apps/portfolio/portfolio/vite.config.mts",
+        "reportsDirectory": "../../../coverage/apps/portfolio/portfolio"
       },
       "configurations": {
         "watch": {

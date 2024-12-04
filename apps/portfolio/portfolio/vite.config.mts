@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
@@ -21,11 +21,20 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    reporters: ['default'],
+    reporters: ['default', 'verbose'],
+    logHeapUsage: true,
+    name: 'Portfolio',
     coverage: {
-      reportsDirectory: '../../../coverage/apps/portfolio/portfolio',
+      reportsDirectory: `${cwd()}/coverage/apps/portfolio/portfolio`,
       provider: 'v8',
+      reporter: [
+        ['text', { verbose: true, file: 'layout.txt' }],
+        ['html', { verbose: true, file: 'layout.html' }],
+        ['lcov', { projectRoot: cwd() }],
+        ['json', { verbose: true, file: 'layout.json' }],
+      ],
     },
+    workspace: `${cwd()}/vitest.workspace.mts`,
   },
   root: __dirname,
   cacheDir: '../../../node_modules/.vite/apps/portfolio/portfolio',
@@ -44,6 +53,7 @@ export default defineConfig({
     react({ babel: { targets: { esmodules: true } } }),
     nxViteTsPaths({
       debug: true,
+      mainFields: ['exports', '.', 'types', 'imports', 'require'],
     }),
     nxCopyAssetsPlugin(['*.md']),
   ],
@@ -59,14 +69,15 @@ export default defineConfig({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: false,
+      transformMixedEsModules: true,
     },
-
+    target: 'esnext',
     assetsDir: './assets',
     rollupOptions: {
       perf: true,
       output: {
         esModule: true,
+        sourcemap: true,
         format: 'esm',
         generatedCode: {
           arrowFunctions: true,
@@ -75,18 +86,19 @@ export default defineConfig({
         },
       },
     },
-    target: 'esnext',
   },
-  esbuild: {
-    jsx: 'automatic',
-    format: 'esm',
-    color: true,
-    platform: 'browser',
-  },
+
   logLevel: 'info',
   appType: 'spa',
   publicDir: 'public',
   envDir: './env',
 
   resolve: { alias: { '.prisma/client/index-browser': path.relative(cwd(), prismaClientIndexBrowser) } },
+
+  esbuild: {
+    jsx: 'automatic',
+    format: 'esm',
+    color: true,
+    platform: 'browser',
+  },
 });

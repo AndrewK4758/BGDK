@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import { ElementType, FocusEvent } from 'react';
 import { Theme } from '../../theme/theme';
-import Text from '../text/text';
+import Text from '../../../../../shared-react-components/src/lib/text/text';
 
 export interface FormikTextInputProps {
   name: string;

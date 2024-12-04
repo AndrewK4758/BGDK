@@ -12,8 +12,9 @@ const baseStyleForHomeItems: SxProps = {
 const Home = () => (
   <Box
     component={'div'}
-    key={'home-wrapper'}
-    id="home-wrapper"
+    key={'home'}
+    id="home"
+    data-testid="home"
     sx={{ ...baseStyleForHomeItems, flexDirection: 'column', gap: '15vh' }}
   >
     <Box

@@ -1,17 +1,19 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import type { SxProps } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Theme from '../../styles/theme';
 
-const INTRO_TEXT = (
-  <span id="intro-text" key={'intro-text'}>
+export const INTRO_TEXT = (
+  <Box component={'span'} id="intro-text" key={'intro-text'}>
     A Full-Stack web developer looking to turn your ideas and inspirations into a digital reality by translating your
     business needs or personal passions into a web based experience that you and your clients will enjoy. When I am not
     working on projects, I enjoy, tutoring members of a group I belong to,{' '}
     <Link
-      rel="noreferrer"
+      key={'link-to-woodstock.dev'}
+      rel="noreferrer noopener"
       target="_blank"
       to="https://woodstock.dev"
       id="link-to-woodstock.dev"
@@ -34,7 +36,7 @@ const INTRO_TEXT = (
     lakes, camping in the spring and fall seasons, and working on my project truck. Yes there is a large contrast
     between my hobbies, but each brings a balance to the others and all skills learned are applicable in all other
     areas. I am truly happy and blessed to have been able to find my ideal happy balance in life.
-  </span>
+  </Box>
 );
 
 const introCardSxProps: SxProps = {

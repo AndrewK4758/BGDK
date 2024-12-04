@@ -1,9 +1,7 @@
 import { GameBoardMap, RenderList, Theme } from '@bgdk/react-components';
 import { GameBoard, ILiteSpace } from '@bgdk/types-game';
-import { Built_GameBoard } from '../../pages/active_game_session';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Fragment } from 'react';
 
 const breakpointsGameBoardBox: SxProps = {
   border: `5px solid ${Theme.palette.success.main}`,
@@ -13,13 +11,11 @@ const breakpointsGameBoardBox: SxProps = {
 };
 
 const gameBoardMap = (e: ILiteSpace[], i: number, _arr: GameBoard) => (
-  <Fragment key={Math.random()}>
-    <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
-  </Fragment>
+  <GameBoardMap row={e} columns={10} container={true} direction="row" wrap="wrap" id={`Row ${i}`} />
 );
 
 interface ShowGameBoardProps {
-  board: Built_GameBoard;
+  board: GameBoard;
 }
 
 /**

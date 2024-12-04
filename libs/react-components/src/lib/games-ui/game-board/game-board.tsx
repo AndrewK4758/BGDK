@@ -1,7 +1,7 @@
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import { RenderList } from '../render-list/render-list';
-import Text from '../text/text';
+import { RenderList } from '../../../../../shared-react-components/src/lib/render-list/render-list';
+import Text from '../../../../../shared-react-components/src/lib/text/text';
 import { Theme } from '../../theme/theme';
 import { ILiteSpace } from '@bgdk/types-game';
 import { CSSProperties } from 'react';

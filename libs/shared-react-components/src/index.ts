@@ -5,3 +5,5 @@ export * from './lib/label/label';
 export * from './lib/label/gen-ai-modes-styles';
 export * from './styles/theme';
 export * from './lib/formik/formik-validation-error';
+export * from './lib/text/text';
+export * from './lib/render-list/render-list';

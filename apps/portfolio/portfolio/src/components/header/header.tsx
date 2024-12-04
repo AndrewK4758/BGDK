@@ -42,14 +42,16 @@ const Header = () => {
       component={'div'}
       key={'social-media-icons'}
       id="social-media-icons"
+      data-testid="social-media-icons"
       sx={socialMediaLinksWrapper}
     >
-      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" flex={'1 0 25%'}>
+      <Box component={'div'} key={'social-media-text-wrapper'} id="social-media-text-wrapper" data-testid="social-media-text-wrapper" flex={'1 0 25%'}>
         <Typography
           variant="h4"
           color="secondary"
           key={'social-media-text'}
           id="social-media-text"
+          data-testid="social-media-text"
           textAlign={'center'}
         >
           {`Connect & Colab \u27F6`}

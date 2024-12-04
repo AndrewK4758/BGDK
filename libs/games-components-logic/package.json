@@ -5,7 +5,7 @@
   "dependencies": {
     "@bgdk/types-game": "0.0.1",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.15.0",
+    "@eslint/js": "9.16.0",
     "jsonc-eslint-parser": "2.4.0",
     "ts-jest": "29.2.5"
   },

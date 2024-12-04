@@ -20,14 +20,14 @@ const breakpointsTakeTurnButton: SxProps = {
 interface TakeTurnProps {
   dispatch: Dispatch<Action>;
   socket: Socket;
-  position: (EventTarget & HTMLDivElement) | undefined;
+  position: string | undefined;
 }
 
 export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTurnProps) {
   const params = useParams();
   const id = params.id;
 
-  console.log(position?.textContent, 'out of button');
+  console.log(position, 'out of button');
   const handleTakeTurn = async () => {
     const baseURL = import.meta.env.VITE_REST_API_SERVER_URL;
     const __current_game__ = JSON.stringify(getGameInstanceInfo());
@@ -35,7 +35,7 @@ export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTu
     try {
       const resp = await axios.patch(
         `${baseURL}/games/${id}/take-turn`,
-        { position: position?.textContent },
+        { position: position },
         { headers: { 'current-game': __current_game__ } },
       );
       console.log(resp.data.turnStatus);

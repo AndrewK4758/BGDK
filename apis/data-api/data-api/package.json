@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@bgdk/prisma": "0.0.1",
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "6.0.1",
     "cors": "^2.8.5",
     "express": "4.21.1"
   },

@@ -10,15 +10,15 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
-    <ThemeProvider theme={Theme}>
-      <LocalizationProvider
-        dateAdapter={AdapterDayjs}
-        localeText={enUS.components.MuiLocalizationProvider.defaultProps.localeText}
-      >
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      localeText={enUS.components.MuiLocalizationProvider.defaultProps.localeText}
+    >
+      <ThemeProvider theme={Theme}>
         <CssBaseline enableColorScheme />
         <Layout />
-      </LocalizationProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </LocalizationProvider>
   </GoogleOAuthProvider>
 );
 

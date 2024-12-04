@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { ElementType, useContext, useEffect } from 'react';
 import { Theme } from '../../theme/theme';
-import Text from '../text/text';
+import Text from '../../../../../shared-react-components/src/lib/text/text';
 import HeaderMenu from './header-menu/header-menu';
 import LoginDrawer from '../login/login-drawer';
 import RegisterDrawer from '../register-user/register-drawer';
