@@ -11,7 +11,7 @@ export interface TextProps {
 }
 
 export const Text = ({ id, titleVariant, titleText, sx }: TextProps) => (
-  <Typography id={id} variant={titleVariant} sx={sx}>
+  <Typography id={id} variant={titleVariant} sx={sx} data-testid={id}>
     {titleText}
   </Typography>
 );

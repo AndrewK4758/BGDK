@@ -7,6 +7,9 @@ import Theme from '../../styles/theme';
 
 const PicutreAndResume = () => (
   <Paper
+    key={'picture-and-resume-paper'}
+    id={'picture-and-resume-paper'}
+    data-testid={'picture-and-resume-paper'}
     elevation={24}
     sx={{
       paddingTop: 3,
@@ -22,6 +25,9 @@ const PicutreAndResume = () => (
   >
     <CardMedia
       component={'img'}
+      key={'card-media-resume-image'}
+      id={'card-media-resume-image'}
+      data-testid={'card-media-resume-image'}
       src={'/self.webp'}
       loading="lazy"
       alt="andrew"
@@ -38,6 +44,9 @@ const PicutreAndResume = () => (
       }}
     >
       <Button
+        key={'card-media-resume-button'}
+        id={'card-media-resume-button'}
+        data-testid={'card-media-resume-button'}
         LinkComponent={'a'}
         href={'/Resume.pdf'}
         download={`andrew-klapper-resume-${new Date().toLocaleDateString()}`}

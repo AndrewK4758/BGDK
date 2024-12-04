@@ -6,8 +6,10 @@ import type { SxProps } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Theme from '../../styles/theme';
 
-export const INTRO_TEXT = (
-  <Box component={'span'} id="intro-text" key={'intro-text'}>
+export const ABOUT_ME_TITLE = "Hi, I'm Andrew Klapper";
+
+export const IntroText = () => (
+  <Box component={'span'} id="intro-text" data-testid="intro-text" key={'intro-text'}>
     A Full-Stack web developer looking to turn your ideas and inspirations into a digital reality by translating your
     business needs or personal passions into a web based experience that you and your clients will enjoy. When I am not
     working on projects, I enjoy, tutoring members of a group I belong to,{' '}
@@ -17,6 +19,7 @@ export const INTRO_TEXT = (
       target="_blank"
       to="https://woodstock.dev"
       id="link-to-woodstock.dev"
+      data-testid="link-to-woodstock.dev"
       style={{
         textDecoration: 'none',
         color: Theme.palette.secondary.contrastText,
@@ -56,20 +59,22 @@ const introTitleTextSxProps: SxProps = {
 };
 
 const Intro = () => (
-  <Card elevation={24} sx={introCardSxProps}>
-    <CardContent component={'div'} id="about-me-header-box" sx={introCardContentSxProps}>
+  <Card key={'intro-card'} id={'intro-card'} elevation={24} sx={introCardSxProps}>
+    <CardContent component={'div'} id="about-me-header-box" key="about-me-header-box" sx={introCardContentSxProps}>
       <Text
-        titleVariant="h2"
+        titleVariant="h1"
         key={'about-me-title-text'}
         id="about-me-title-text"
+        data-testid="about-me-title-text"
         sx={introTitleTextSxProps}
-        titleText={"Hi, I'm Andrew Klapper"}
+        titleText={ABOUT_ME_TITLE}
       />
       <Text
         key={'about-me-text'}
         id="about-me-text"
+        data-testid="about-me-text"
         titleVariant="body1"
-        titleText={INTRO_TEXT}
+        titleText={<IntroText />}
         sx={introTextSxProps}
       />
     </CardContent>
