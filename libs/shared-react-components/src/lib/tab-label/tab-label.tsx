@@ -10,14 +10,15 @@ export interface TabLabelProps {
   subText: string;
   mainSx?: SxProps;
   subSx?: SxProps;
+  id?: string;
 }
 
-export const TabLabel = ({ mainVariant, mainText, mainSx, subVariant, subText, subSx }: TabLabelProps) => (
-  <Box>
-    <Typography variant={mainVariant} sx={mainSx}>
+export const TabLabel = ({ id, mainVariant, mainText, mainSx, subVariant, subText, subSx }: TabLabelProps) => (
+  <Box component={'section'} id={`${id}-wrapper`} data-testid={`${id}-wrapper`}>
+    <Typography id={`${id}-main-text`} data-testid={`${id}-main-text`} variant={mainVariant} sx={mainSx}>
       {mainText}
     </Typography>
-    <Typography variant={subVariant} sx={subSx}>
+    <Typography id={`${id}-caption-text`} data-testid={`${id}-caption-text`} variant={subVariant} sx={subSx}>
       {subText}
     </Typography>
   </Box>

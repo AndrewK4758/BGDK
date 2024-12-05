@@ -101,7 +101,10 @@ const PrivacyPolicyText = () => (
     <p>
       <strong>8. Contact Me</strong>{' '}
     </p>
-    <p>If you have any questions about this privacy policy, please contact me at [Your Email Address].</p>
+    <p>
+      If you have any questions about this privacy policy, please contact me at{' '}
+      <a href={'mailto:andrew@andrew-k.us'}>andrew@andrew-k.us</a>
+    </p>
     <p>
       <strong>Effective Date:</strong> December 1st, 2024
     </p>

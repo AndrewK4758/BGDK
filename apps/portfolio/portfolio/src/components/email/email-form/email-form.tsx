@@ -89,19 +89,28 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
 
   return (
     <Form
+      id="email-me-form"
+      data-testid="email-me-form"
       action="/"
       method="post"
       encType="multipart/form-data"
       onSubmit={formik.handleSubmit}
       style={{ height: '100%' }}
     >
-      <Container component={'section'} key={'inputs-container'} id="inputs-container" sx={{ height: '100%' }}>
+      <Container
+        component={'section'}
+        key={'inputs-container'}
+        id="inputs-container"
+        data-testid="inputs-container"
+        sx={{ height: '100%' }}
+      >
         <Stack
           component={'section'}
           id="email-me-inputs-stack"
+          data-testid="email-me-inputs-stack"
           sx={{ height: '100%', justifyContent: 'space-evenly', gap: 4, paddingTop: 4 }}
         >
-          <Box component={'span'} key={'name-wrapper'} id="name-wrapper">
+          <Box component={'span'} key={'name-wrapper'} id="name-wrapper" data-testid="name-wrapper">
             <TextField
               fullWidth
               autoComplete="on"
@@ -109,6 +118,7 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               defaultValue={GoogleUserContextValues ? GoogleUserContextValues.name : ''}
               type="text"
               id="name"
+              data-testid="name"
               name="name"
               label="Name"
               onBlur={formik.handleBlur}
@@ -122,12 +132,13 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               helperTextSx={helperTextSx}
             />
           </Box>
-          <Box component={'span'} key={'email-wrapper'} id="email-wrapper">
+          <Box component={'span'} key={'email-wrapper'} id="email-wrapper" data-testid="email-wrapper">
             <TextField
               fullWidth
               autoComplete="on"
               type="text"
               id="email"
+              data-testid="email"
               name="email"
               label="Email"
               defaultValue={GoogleUserContextValues ? GoogleUserContextValues.email : ''}
@@ -142,12 +153,13 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               helperTextSx={helperTextSx}
             />
           </Box>
-          <Box component={'span'} key={'phone-wrapper'} id="phone-wrapper">
+          <Box component={'span'} key={'phone-wrapper'} id="phone-wrapper" data-testid="phone-wrapper">
             <TextField
               fullWidth
               autoComplete="on"
               type="number"
               id="phone"
+              data-testid="phone"
               name="phone"
               label="Phone"
               onChange={formik.handleChange}
@@ -160,11 +172,12 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               helperTextSx={helperTextSx}
             />
           </Box>
-          <Box component={'span'} key={'subject-wrapper'} id="subject-wrapper">
+          <Box component={'span'} key={'subject-wrapper'} id="subject-wrapper" data-testid="subject-wrapper">
             <TextField
               fullWidth
               type="text"
               id="subject"
+              data-testid="subject"
               name="subject"
               label="Subject"
               defaultValue={'I saw your website and wanted to reach out...'}
@@ -179,12 +192,13 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               helperTextSx={helperTextSx}
             />
           </Box>
-          <Box component={'span'} key={'body-wrapper'} id="body-wrapper" p={0}>
+          <Box component={'span'} key={'body-wrapper'} id="body-wrapper" data-testid="body-wrapper" p={0}>
             <TextField
               fullWidth
               multiline
               type="text"
               id="body"
+              data-testid="body"
               name="body"
               maxRows={4}
               minRows={4}
@@ -212,7 +226,12 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               helperTextSx={helperTextSx}
             />
           </Box>
-          <Box component={'span'} key={'appointment-maker-wrapper'} id="appointment-maker-wrapper">
+          <Box
+            component={'span'}
+            key={'appointment-maker-wrapper'}
+            id="appointment-maker-wrapper"
+            data-testid="appointment-maker-wrapper"
+          >
             <AppointmentMaker formik={formik} />
             <FormikValidationError<MessageMeFormValues>
               formik={formik}
@@ -224,12 +243,14 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
             component={'span'}
             key={'attachment-wrapper'}
             id="attachment-wrapper"
+            data-testid="attachment-wrapper"
             sx={{ display: 'flex', flexDirection: 'column' }}
           >
             <input
               ref={fileInputRef}
               accept="*/*"
               id="attchment"
+              data-testid="attchment"
               name="attchment"
               type="file"
               style={{ display: 'none' }}
@@ -252,13 +273,29 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               alignItems: 'flex-end',
             }}
           >
-            <Button id="upload-file-button" sx={{ fontSize: '2rem' }} onClick={handleFileSubmit}>
+            <Button
+              id="upload-file-button"
+              data-testid="upload-file-button"
+              sx={{ fontSize: '2rem' }}
+              onClick={handleFileSubmit}
+            >
               Upload File
             </Button>
-            <Button type="submit" id="submit-email-me-button" sx={{ fontSize: '2rem' }}>
+            <Button
+              type="submit"
+              id="submit-email-me-button"
+              data-testid="submit-email-me-button"
+              sx={{ fontSize: '2rem' }}
+            >
               Submit
             </Button>
-            <Button type="reset" id="reset-email-me-button" onReset={formik.handleReset} sx={{ fontSize: '2rem' }}>
+            <Button
+              type="reset"
+              id="reset-email-me-button"
+              data-testid="reset-email-me-button"
+              onReset={formik.handleReset}
+              sx={{ fontSize: '2rem' }}
+            >
               Reset
             </Button>
           </DialogActions>

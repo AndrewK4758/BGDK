@@ -7,24 +7,40 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Theme from '../../styles/theme';
+import type { SxProps } from '@mui/material/styles';
 
-const languages = ['Typescript', 'NodeJs', 'Python'];
-const libraries = ['React', 'React Router', 'Express', 'Prisma', 'PyTorch'];
-const styles = ['Mui Material', 'Mui X', 'Tailwind CSS'];
-const data = ['PostgreSQL', 'MongoDB', 'ChromaDB'];
-const cloud = ['GCP', 'AWS', 'Azure'];
-const build = ['Nx', 'Vite', 'Webpack', 'Docker'];
-const analytics = ['Swagger'];
-const testing = ['Jest', 'Playwright'];
+export const languages = ['Typescript', 'NodeJs', 'Python'];
+export const libraries = ['React', 'React Router', 'Express', 'Prisma', 'PyTorch'];
+export const styles = ['Mui Material', 'Mui X', 'Tailwind CSS'];
+export const data = ['PostgreSQL', 'MongoDB', 'ChromaDB'];
+export const cloud = ['GCP', 'AWS', 'Azure'];
+export const build = ['Nx', 'Vite', 'Webpack', 'Docker'];
+export const analytics = ['Swagger'];
+export const testing = ['Jest', 'Playwright'];
+
+const techListSectionContainer: SxProps = {
+  flex: '1 0 25%',
+  paddingY: 2,
+  borderTop: `2px solid ${Theme.palette.primary.dark}`,
+};
+
+const techlistTextStyle: SxProps = { borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' };
 
 const renderTechLists = (e: string, _i: number, _arr: string[]) => (
-  <ListItem key={`${e}-wrapper`} id={`${e}-wrapper`} sx={{ justifyContent: 'space-between' }}>
-    <ListItemText key={`${e}`} id={`${e}`}>
+  <ListItem
+    key={`${e}-wrapper`}
+    id={`${e}-wrapper`}
+    data-testid={`${e}-wrapper`}
+    sx={{ justifyContent: 'space-between' }}
+  >
+    <ListItemText key={`${e}`} id={`${e}`} data-testid={`${e}`}>
       {e}
     </ListItemText>
-    <ListItemIcon key={`${e}-svg-icon-wrapper`} id={`${e}-svg-icon-wrapper`}>
+    <ListItemIcon key={`${e}-svg-icon-wrapper`} id={`${e}-svg-icon-wrapper`} data-testid={`${e}-svg-icon-wrapper`}>
       <img
         key={`${e}-svg-icon`}
+        data-testid={`${e}-svg-icon`}
+        id={`${e}-svg-icon`}
         src={`/icons/${e.toLowerCase()}-icon.svg`}
         alt={`${e}-icon`}
         style={{ width: '32px', height: 'auto' }}
@@ -35,21 +51,34 @@ const renderTechLists = (e: string, _i: number, _arr: string[]) => (
 
 const TechStackList = () => (
   <Paper elevation={24} sx={{ height: 'fit-content', p: 2 }}>
-    <Container component={'div'} id="tech-list-text-container" sx={{ width: 'fit-content' }}>
-      <Text titleVariant="h3" titleText={'My Core Tech Stack'} />
+    <Container
+      component={'div'}
+      id="tech-list-text-container"
+      data-testid="tech-list-title-text"
+      sx={{ width: 'fit-content' }}
+    >
+      <Text
+        titleVariant="h3"
+        key="tech-list-title-text"
+        id="tech-list-title-text"
+        data-testid="tech-list-title-text"
+        titleText={'My Core Tech Stack'}
+      />
     </Container>
 
-    <Container id="tech-list-container" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Container
+      component={'div'}
+      id="tech-list-container"
+      data-testid="tech-list-title-text"
+      sx={{ display: 'flex', flexWrap: 'wrap' }}
+    >
       <Container
         component={'section'}
         id="languages-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Languages'}
-        />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Languages'} />
         <List key={'languages-list'} id={'languages-list'}>
           <RenderList data={languages} listMapCallback={renderTechLists} />
         </List>
@@ -57,86 +86,79 @@ const TechStackList = () => (
       <Container
         component={'section'}
         id="libraries-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Libraries'}
-        />
-        <RenderList data={libraries} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Libraries'} />
+        <List key={'libraries-list'} id={'libraries-list'}>
+          <RenderList data={libraries} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="build-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Build'}
-        />
-        <RenderList data={build} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Build'} />
+        <List key={'build-list'} id={'build-list'}>
+          <RenderList data={build} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="databases-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Databases'}
-        />
-        <RenderList data={data} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Databases'} />
+        <List key={'databases-list'} id={'databases-list'}>
+          <RenderList data={data} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="cloud-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Cloud'}
-        />
-        <RenderList data={cloud} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Cloud'} />
+        <List key={'cloud-list'} id={'cloud-list'}>
+          <RenderList data={cloud} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="styles-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Styles'}
-        />
-        <RenderList data={styles} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Styles'} />
+        <List key={'styles-list'} id={'styles-list'}>
+          <RenderList data={styles} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="analytics-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Analytics'}
-        />
-        <RenderList data={analytics} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Analytics'} />
+        <List key={'analytics-list'} id={'analytics-list'}>
+          <RenderList data={analytics} listMapCallback={renderTechLists} />
+        </List>
       </Container>
       <Container
         component={'section'}
         id="testing-wrapper"
-        sx={{ flex: '1 0 25%', paddingY: 2, borderTop: `2px solid ${Theme.palette.primary.dark}` }}
+        data-testid="tech-list-title-text"
+        sx={techListSectionContainer}
       >
-        <Text
-          titleVariant="h5"
-          sx={{ borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' }}
-          titleText={'Testing'}
-        />
-        <RenderList data={testing} listMapCallback={renderTechLists} />
+        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Testing'} />
+        <List key={'testing-list'} id={'testing-list'}>
+          <RenderList data={testing} listMapCallback={renderTechLists} />
+        </List>
       </Container>
     </Container>
   </Paper>

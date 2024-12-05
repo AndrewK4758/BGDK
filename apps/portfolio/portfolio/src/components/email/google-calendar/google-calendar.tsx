@@ -135,15 +135,23 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
       component={'div'}
       key={'google-calendar-wrapper'}
       id="google-calendar-wrapper"
+      data-testid="google-calendar-wrapper"
       sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}
     >
       <Box
         component={'section'}
         key={'google-calendar-auth-box'}
         id="google-calendar-auth-box"
+        data-testid="google-calendar-auth-box"
         sx={{ display: 'flex', justifyContent: 'center' }}
       >
-        <Button LinkComponent={'button'} key={'google-auth'} id="google-auth" onClick={() => login()}>
+        <Button
+          LinkComponent={'button'}
+          key={'google-auth'}
+          id="google-auth"
+          data-testid="google-auth"
+          onClick={() => login()}
+        >
           Connect Your Google Calendar
         </Button>
       </Box>
@@ -151,6 +159,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
         component={'section'}
         key={'google-calendar-components-box'}
         id="google-calendar-components-box"
+        data-testid="google-calendar-components-box"
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -171,6 +180,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             component={'section'}
             key={'date-picker-wrapper'}
             id="date-picker-wrapper"
+            data-testid="date-picker-wrapper"
             sx={{
               width: '100%',
               flex: '3 1 auto',
@@ -196,6 +206,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             component={'section'}
             key={'time-pickers-wrapper'}
             id="time-pickers-wrapper"
+            data-testid="time-pickers-wrapper"
             sx={{
               flex: '1 0 auto',
               display: 'flex',
@@ -254,6 +265,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             component={'section'}
             key={'google-calendar-submit-box'}
             id="google-calendar-submit-box"
+            data-testid="google-calendar-submit-box"
             sx={{
               height: 'fit-content',
               display: 'flex',
@@ -262,7 +274,13 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             }}
           >
             {state !== 'submitting' && GoogleUserContextValues.name.length ? (
-              <Button type="submit" LinkComponent={'button'} key={'calendar-submit-button'} id="calendar-submit-buttom">
+              <Button
+                type="submit"
+                LinkComponent={'button'}
+                key={'calendar-submit-button'}
+                id="calendar-submit-buttom"
+                data-testid="calendar-submit-buttom"
+              >
                 Submit Event
               </Button>
             ) : null}
