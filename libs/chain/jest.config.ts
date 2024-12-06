@@ -1,6 +1,10 @@
 import { DefaultEsmTransformOptions } from 'ts-jest';
 
-const opts: DefaultEsmTransformOptions = {
+const opts: Partial<DefaultEsmTransformOptions> = {
+  diagnostics: {
+    pretty: true,
+    warnOnly: true,
+  },
   tsconfig: '<rootDir>/tsconfig.spec.json',
 };
 

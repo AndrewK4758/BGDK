@@ -11,7 +11,7 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
-    "../../../libs/__mocks__/mocks/src/**/*.ts",
+    "../../../libs/mocks/src/**/*.ts",
     "../../../libs/types/types-game/**/*.ts"
   ],
   "exclude": []

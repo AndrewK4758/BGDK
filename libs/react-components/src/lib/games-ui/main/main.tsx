@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 export interface MainProps {
   component: ElementType;
-  maxWidth: 'mobile' | 'tablet' | 'laptop' | 'desktop' | false;
+  maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   breakpointsMain?: SxProps;
   id: string;
 }

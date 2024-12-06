@@ -1,0 +1,54 @@
+{
+  "name": "mocks",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mocks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "esbuildConfig": "libs/mocks/esbuild.config.cjs",
+        "main": "libs/mocks/src/index.ts",
+        "outputPath": "libs/mocks/dist",
+        "outputFileName": "main.js",
+        "tsConfig": "libs/mocks/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "libs/mocks/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "deleteOutputPath": true,
+        "metafile": true,
+        "platform": "node",
+        "sourcemap": "linked",
+        "target": "node23",
+        "format": ["esm", "cjs"],
+        "bundle": true,
+        "write": true
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{projectRoot}/dist/libs/mocks"],
+      "options": {
+        "outputPath": "dist/libs/mocks",
+        "tsConfig": "tsconfig.base.json",
+        "main": "libs/mocks/src/index.ts",
+        "color": true
+      }
+    }
+  }
+}

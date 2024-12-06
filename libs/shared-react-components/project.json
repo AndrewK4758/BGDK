@@ -37,11 +37,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "fix": true,
-        "lintFilePatterns": [
-          "libs/shared-react-components/**/*.{ts,tsx,js,jsx}",
-          "libs/shared-react-components/package.json"
-        ]
+        "fix": true
       }
     }
   }

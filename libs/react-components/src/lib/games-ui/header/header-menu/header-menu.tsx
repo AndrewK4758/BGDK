@@ -1,10 +1,10 @@
+import { Text } from '@bgdk/shared-react-components';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { SxProps } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import Text from '../../../../../../shared-react-components/src/lib/text/text';
 import { useNavigate } from 'react-router-dom';
 
 export interface HeaderMenuProps {

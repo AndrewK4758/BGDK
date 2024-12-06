@@ -10,7 +10,7 @@ import getGameInstanceInfo from '../../services/utils/utils';
 
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 35,

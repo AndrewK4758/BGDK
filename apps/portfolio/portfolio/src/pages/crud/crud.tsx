@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,8 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { lazy, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Theme from '../../styles/theme';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
+import Theme from '../../styles/theme';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 const Search = lazy(() => import('../../components/crud/search'));

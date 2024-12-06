@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';

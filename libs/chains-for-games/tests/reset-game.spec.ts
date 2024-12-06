@@ -4,7 +4,7 @@ import { deRefContextObject } from '@bgdk/utils';
 import { Game } from '@bgdk/game';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { getCurrentMinute } from '@bgdk/utils';
-import { Context, GameBoard, GameContextKeys, Color, IPlayer } from '@bgdk/types-game';
+import { Context, GameContextKeys, Color, IPlayer, type ILiteSpace } from '@bgdk/types-game';
 import { resetGame } from '../src/lib/commands/action-reset-game/reset-game-start';
 import { flipHaveWinnerFlag } from '../src/lib/commands/action-reset-game/flip-winner-flag';
 import { makeNewGameBoard } from '../src/lib/commands/action-reset-game/make-new-game-board';
@@ -67,11 +67,11 @@ describe('test reset game chain', () => {
       ctx.put(GameContextKeys.NEXT, 'make-game-board');
       const { game } = deRefContextObject(ctx);
 
-      const oldBoard: GameBoard = game.instance.instance.displayGameBoard();
+      const oldBoard: ILiteSpace[] = game.instance.instance.displayGameBoard();
 
       const commandResult = makeNewGameBoard.execute(ctx);
 
-      const newBoard: GameBoard = game.instance.instance.displayGameBoard();
+      const newBoard: ILiteSpace[] = game.instance.instance.displayGameBoard();
 
       expect(commandResult).toBeTruthy();
       expect(oldBoard === newBoard).toBeFalsy();

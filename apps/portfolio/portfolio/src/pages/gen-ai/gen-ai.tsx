@@ -1,5 +1,5 @@
-import { ChatResponse, Text } from '@bgdk/react-components';
-import { renderPreTagInsideParentDiv, Waiting } from '@bgdk/shared-react-components';
+import { ChatResponse } from '@bgdk/react-components';
+import { renderPreTagInsideParentDiv, Text, Waiting } from '@bgdk/shared-react-components';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import { Modal } from '@mui/material';
 import AppBar from '@mui/material/AppBar';

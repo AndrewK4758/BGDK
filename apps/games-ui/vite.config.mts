@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
@@ -27,7 +27,7 @@ export default defineConfig({
 
   plugins: [
     react({ babel: { targets: { esmodules: true } } }),
-    nxViteTsPaths({ debug: true }),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports', 'require'] }),
     nxCopyAssetsPlugin(['*.md']),
   ],
 
@@ -49,6 +49,11 @@ export default defineConfig({
       output: {
         esModule: true,
         format: 'esm',
+        generatedCode: {
+          arrowFunctions: true,
+          constBindings: true,
+          symbols: true,
+        },
       },
     },
     target: 'esnext',

@@ -10,7 +10,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "apps/data-ui/dist"
+        "outputPath": "apps/data-ui/dist",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {

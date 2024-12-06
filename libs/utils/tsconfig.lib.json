@@ -9,7 +9,7 @@
   "include": ["src/**/*.ts", "../types/types-game/src/**/*.ts"],
   "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
-    { "path": "../__mocks__/mocks/tsconfig.lib.json" },
+    { "path": "../mocks/tsconfig.lib.json" },
     { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../games-components-logic/tsconfig.lib.json" },
     { "path": "../game/tsconfig.lib.json" },

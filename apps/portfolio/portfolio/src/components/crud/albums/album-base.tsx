@@ -1,22 +1,22 @@
+import { Text } from '@bgdk/shared-react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
-import Container from '@mui/material/Container';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Outlet, useNavigate, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import loadAlbums from '../../../services/loaders/crud-loaders/load-albums';
-import AddAlbum from './add-album';
 import { dataGridStyleUpdate, inverseColors } from '../crud-home';
-import { Text } from '@bgdk/react-components';
-import useScrollIntoView from '../../../hooks/use-scroll-into-view';
+import AddAlbum from './add-album';
 
 const paginationModelInit = {
   pageSize: 25,

@@ -33,6 +33,13 @@
     "vitest.config.ts"
   ],
   "references": [
+    { "path": "../mocks/tsconfig.lib.json" },
+    { "path": "../games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../games-components-logic/tsconfig.lib.json" },
+    { "path": "../game/tsconfig.lib.json" },
+    { "path": "../models/instance-of-game/tsconfig.lib.json" },
+    { "path": "../chain/tsconfig.lib.json" },
+    { "path": "../utils/tsconfig.lib.json" },
     { "path": "../types/types-ai/tsconfig.lib.json" },
     { "path": "../gen-ai/vertex-ai/tsconfig.lib.json" },
     { "path": "../shared-react-components/tsconfig.lib.json" },

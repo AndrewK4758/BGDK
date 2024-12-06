@@ -1,5 +1,6 @@
 import { Player } from '@bgdk/games-components-logic';
-import { PlayersInGame, RenderList, Text, Theme } from '@bgdk/react-components';
+import { PlayersInGame, Theme } from '@bgdk/react-components';
+import { RenderList, Text } from '@bgdk/shared-react-components';
 import { IRegisterFormValues } from '@bgdk/types-game';
 import { Box, SxProps } from '@mui/material';
 import Container from '@mui/material/Container';
@@ -7,7 +8,7 @@ import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsActiveGameTitleContainer: SxProps = {
   flex: '0 1 80%',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     flex: '1 0 60%',
   },
 };
@@ -15,7 +16,7 @@ const breakpointsActiveGameTitleContainer: SxProps = {
 const breakpointsActiveGameTitleText: SxProps = {
   textAlign: 'start',
   flex: '1 0 45%',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     flex: '1 0 100%',
     fontSize: '1.5rem',
     textAlign: 'center',
@@ -28,19 +29,19 @@ const breakpointsPlayersInGameBox: SxProps = {
   flexWrap: 'wrap',
   flexDirection: 'row',
   height: '100%',
-  [Theme.breakpoints.down('laptop')]: {},
+  [Theme.breakpoints.down('md')]: {},
 };
 
 const breakpointsPlayersBox: SxProps = {
   flex: '1 0 50%',
   display: 'flex',
   flexDirection: 'row',
-  [Theme.breakpoints.down('laptop')]: {},
+  [Theme.breakpoints.down('md')]: {},
 };
 
 const breakpointsPlayersInGameText: SxProps = {
   flex: '0 1 auto',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1rem',
   },
 };

@@ -6,7 +6,6 @@
   },
   "include": [
     "vite.config.mts",
-    "vitest.config.ts",
     "tests/**/*.test.ts",
     "tests/**/*.spec.ts",
     "tests/**/*.test.tsx",
@@ -17,15 +16,6 @@
     "tests/**/*.spec.jsx",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.ts",
-    "../../libs/types/**/*/src/**/*.ts",
-    "../../libs/games-components-logic/src/**/*.ts",
-    "../../libs/react-components/src/**/*.ts",
-    "../../libs/shared-react-components/src/**/*.ts",
-    "../../libs/react-components/src/**/*.tsx",
-    "../../libs/shared-react-components/src/**/*.tsx",
-    "../../libs/utils/src/lib/get-current-minute.ts",
-    "../../libs/gen-ai/vertex-ai/src/**/*.ts",
-    "../../libs/utils/src/**/*.ts"
+    "src/**/*.ts"
   ]
 }

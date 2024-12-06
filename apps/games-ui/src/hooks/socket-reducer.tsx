@@ -17,10 +17,10 @@ export interface Action {
 const socketReducer = (state: IActiveGameInfo, action: Action) => {
   const { type, socket } = action;
   switch (type) {
-    case ActionType.BOARD:
-       
+    case ActionType.BOARD: {
       const { gameBoard, activePlayersInGame, avatarInTurn, winner } = action.payload as IActiveGameInfo;
       return { ...state, gameBoard, activePlayersInGame, avatarInTurn, winner };
+    }
     case ActionType.TAKE_TURN:
       if (socket) socket.emit('action', { action: ActionType.BOARD });
       return { ...state };

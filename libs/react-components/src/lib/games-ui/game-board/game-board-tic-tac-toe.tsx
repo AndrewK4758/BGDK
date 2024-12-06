@@ -1,10 +1,10 @@
-import type { SxProps } from '@mui/material/styles';
+import { Text } from '@bgdk/shared-react-components';
+import { type Row } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import Grid2 from '@mui/material/Grid2';
-import Text from '../../../../../shared-react-components/src/lib/text/text';
-import { Theme } from '../../theme/theme';
-import { type Row } from '@bgdk/types-game';
+import type { SxProps } from '@mui/material/styles';
 import type { CSSProperties, Dispatch, SetStateAction } from 'react';
+import { Theme } from '../../theme/theme';
 
 const breakpointsRowSx: SxProps = {
   display: 'flex',
@@ -15,7 +15,7 @@ const breakpointsRowSx: SxProps = {
   flexWrap: 'nowrap',
   overflow: 'hidden',
   border: `3px solid ${Theme.palette.success.main}`,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     border: `1.5px solid ${Theme.palette.success.main}`,
   },
 };

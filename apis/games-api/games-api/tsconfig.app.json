@@ -30,7 +30,7 @@
     "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
     "../../../libs/types/types-ai/src/**/*.ts"
   ],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
     { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
@@ -41,7 +41,7 @@
     { "path": "../../../libs/models/game-builder/tsconfig.lib.json" },
     { "path": "../../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../../libs/utils/tsconfig.lib.json" },
-    { "path": "../../../libs/__mocks__/mocks/tsconfig.lib.json" },
+    { "path": "../../../libs/mocks/tsconfig.lib.json" },
     { "path": "../../../libs/games/tic-tac-toe/tsconfig.lib.json" },
     { "path": "../../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
     { "path": "../../../libs/games-components-logic/tsconfig.lib.json" },

@@ -1,25 +1,25 @@
+import { Text } from '@bgdk/shared-react-components';
 import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { ElementType, useContext, useEffect } from 'react';
 import { Theme } from '../../theme/theme';
-import Text from '../../../../../shared-react-components/src/lib/text/text';
-import HeaderMenu from './header-menu/header-menu';
+import { ActiveUserContext } from '../context/active-user-context';
 import LoginDrawer from '../login/login-drawer';
 import RegisterDrawer from '../register-user/register-drawer';
-import { ActiveUserContext } from '../context/active-user-context';
+import HeaderMenu from './header-menu/header-menu';
 
 const breakpointsMenuItem: SxProps = {
   color: Theme.palette.primary.main,
   backgroundColor: Theme.palette.info.main,
   width: '100%',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
   },
 };
 
 const breakpointsMenu: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '2rem',
   },
 };

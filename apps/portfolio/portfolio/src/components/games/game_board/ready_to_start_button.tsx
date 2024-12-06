@@ -13,12 +13,12 @@ const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
   justifyItems: 'center',
   alignContent: 'center',
-  [Theme.breakpoints.down('laptop')]: {},
+  [Theme.breakpoints.down('md')]: {},
 };
 
 const breakpointsStartGameButtonFormButton: SxProps = {
   textAlign: 'center',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 35,

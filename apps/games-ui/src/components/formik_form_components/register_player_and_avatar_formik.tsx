@@ -17,7 +17,7 @@ const breakpointsSelectMenuSxProps: SxProps = {
   backgroundColor: Theme.palette.info.main,
   display: 'flex',
   justifyContent: 'space-between',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
   },
 };
@@ -27,7 +27,7 @@ const breakpointsRegisterPlayerButton: SxProps = {
   alignSelf: 'end',
   justifySelf: 'center',
   backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 35,
@@ -36,7 +36,7 @@ const breakpointsRegisterPlayerButton: SxProps = {
 
 const breakpointsRegisterPlayerLabel: SxProps = {
   m: 1,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
   },
 };
@@ -44,7 +44,7 @@ const breakpointsRegisterPlayerLabel: SxProps = {
 const breakpointsRegisterPlayerTextInput: SxProps = {
   width: '35vw',
   backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '20px',
     height: 45,
     width: 200,
@@ -55,7 +55,7 @@ const breakpointsRegisterPlayerSelectInput: SxProps = {
   width: '25%',
   textAlign: 'center',
   backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '19px',
     height: 45,
     width: 200,
@@ -66,7 +66,7 @@ const breakpointsFormContianer: SxProps = {
   textAlign: 'start',
   flexDirection: 'column',
   paddingX: '1rem',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     alignContent: 'center',
   },
 };

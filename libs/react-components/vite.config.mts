@@ -22,7 +22,7 @@ export default defineConfig({
 
   plugins: [
     react({ babel: { targets: { esmodules: true } } }),
-    nxViteTsPaths(),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports', 'require'] }),
     nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
@@ -61,6 +61,11 @@ export default defineConfig({
       output: {
         esModule: true,
         format: 'esm',
+        generatedCode: {
+          arrowFunctions: true,
+          constBindings: true,
+          symbols: true,
+        },
       },
     },
     target: 'esnext',

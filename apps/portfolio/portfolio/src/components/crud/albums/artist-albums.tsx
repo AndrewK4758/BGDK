@@ -1,8 +1,9 @@
+import { Text } from '@bgdk/shared-react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DetailsIcon from '@mui/icons-material/Details';
 import UploadIcon from '@mui/icons-material/Upload';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { album } from '@prisma/client';
@@ -11,9 +12,8 @@ import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
-import AddAlbumOnArtist from './add-album-on-artist';
 import { dataGridStyleUpdate, inverseColors } from '../crud-home';
-import { Text } from '@bgdk/react-components';
+import AddAlbumOnArtist from './add-album-on-artist';
 
 export interface AlbumState {
   albumTitle: string;

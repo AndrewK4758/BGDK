@@ -7,7 +7,7 @@ exclude_lines = ['if TYPE_CHECKING:']
 show_missing = true
 
 [tool.pytest.ini_options]
-addopts = "--cov --cov-report html:'../../coverage/apis/wdg-agents/html' --cov-report xml:'../../coverage/apis/wdg-agents/coverage.xml' --html='../../reports/apis/wdg-agents/unittests/html/index.html' --junitxml='../../reports/apis/wdg-agents/unittests/junit.xml'"
+addopts = "--cov --cov-report html:'../../coverage/apps/wdg-agents/html' --cov-report xml:'../../coverage/apis/wdg-agents/coverage.xml' --html='../../reports/apps/wdg-agents/unittests/html/index.html' --junitxml='../../reports/apps/wdg-agents/unittests/junit.xml'"
 
 [tool.poetry]
 name = "wdg-agents"

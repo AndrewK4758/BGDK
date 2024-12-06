@@ -3,7 +3,7 @@ import { type SxProps } from '@mui/material/styles';
 import type { Variant } from '@mui/material/styles/createTypography';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { forwardRef, type ReactNode } from 'react';
+import { forwardRef, type JSX, type ReactNode } from 'react';
 
 const labelWrapperSxProps: SxProps = {
   display: 'flex',

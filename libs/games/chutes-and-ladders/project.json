@@ -31,8 +31,7 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/games/chutes-and-ladders/jest.config.ts",
-        "reportsDirectory": "../../coverage/libs/games/chutes-and-ladders",
-        "testFiles": ["./src/tests/*"]
+        "reportsDirectory": "../../../coverage/libs/games/chutes-and-ladders"
       }
     }
   }

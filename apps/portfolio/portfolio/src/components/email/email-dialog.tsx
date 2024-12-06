@@ -57,7 +57,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             data-testid="contact-tabs"
             component={'nav'}
             key={'contact-tabs'}
-            value={tab}
+            value={0}
             onChange={(_e, tab) => setTab(tab)}
             TabIndicatorProps={{
               sx: {

@@ -11,7 +11,7 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/__mocks__/mocks/src/**/*.ts",
+    "../../../libs/mocks/src/**/*.ts",
     "../../../libs/password/src/**/*.ts",
     "../../../libs/prisma/src/**/*.ts",
     "../../../libs/socket-io/src/**/*.ts",

@@ -2,22 +2,6 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { createTheme } from '@mui/material/styles';
 import './theme.module.css';
 
-// declare module '@mui/material' {
-//   interface BreakpointOverrides {
-//     // Your custom breakpoints
-//     laptop: true;
-//     tablet: true;
-//     mobile: true;
-//     desktop: true;
-//     // Remove default breakpoints
-//     xs: false;
-//     sm: false;
-//     md: false;
-//     lg: false;
-//     xl: false;
-//   }
-// }
-
 //yellows
 const __primaryMain = '#ffd300';
 const __primaryLight = '#ffdb33';
@@ -77,15 +61,6 @@ export const Theme = createTheme({
       default: __greyLight,
       paper: __greyDark,
     },
-  },
-  breakpoints: {
-    values: {
-      laptop: 1024,
-      tablet: 640,
-      mobile: 0,
-      desktop: 1280,
-    },
-    unit: 'px',
   },
 
   typography: {

@@ -10,13 +10,13 @@ const breakpointsAppBar: SxProps = {
   zIndex: 10,
   backgroundColor: Theme.palette.background.paper,
   boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}`,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     height: '35px',
     bottom: 0,
     top: 'calc(100vh - 100px)',
     boxShadow: `0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
   },
-  [Theme.breakpoints.up('laptop')]: {
+  [Theme.breakpoints.up('md')]: {
     height: '65px',
     top: 0,
   },
@@ -30,7 +30,7 @@ const breakpointsText: SxProps = {
   display: 'flex',
   height: '65px',
   color: Theme.palette.primary.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '2rem',
   },
 };
@@ -43,13 +43,13 @@ const breakpointsFooter: SxProps = {
   textAlign: 'center',
   alignContent: 'center',
   zIndex: 10,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     display: 'none',
   },
 };
 
 const breakpointsFooterText: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1.25rem',
   },
 };
@@ -63,7 +63,7 @@ const breakpointsMain: SxProps = {
   height: 'fit-content',
   minHeight: '100vh',
   overflowY: 'hidden',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     top: 0,
     bottom: 100,
     paddingY: 0,

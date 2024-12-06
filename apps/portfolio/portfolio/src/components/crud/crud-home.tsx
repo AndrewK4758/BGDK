@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import { type SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { Outlet, useLocation } from 'react-router-dom';

@@ -13,7 +13,7 @@
     "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../__mocks__/**/*.ts",
+    "../../../mocks/**/*.ts",
     "../../../libs/prisma/src/**/*.ts"
   ]
 }

@@ -15,7 +15,7 @@
     "src/**/*.ts",
     "../../../libs/models/all-games-map/src/**/*.ts",
     "../../../libs/types/**/*.ts",
-    "../../../libs/__mocks__/mocks/src/**/*.ts",
+    "../../../libs/mocks/src/**/*.ts",
     "../../../libs/socket-io/server/src/**/*.ts"
   ],
   "exclude": []

@@ -20,14 +20,6 @@
     "../utils/src/**/*.ts"
   ],
   "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.spec.tsx",
-    "**/*.test.tsx",
-    "**/*.spec.js",
-    "**/*.test.js",
-    "**/*.spec.jsx",
-    "**/*.test.jsx",
     "vite.config.ts",
     "vitest.config.ts",
     "tests/**/*.test.ts",

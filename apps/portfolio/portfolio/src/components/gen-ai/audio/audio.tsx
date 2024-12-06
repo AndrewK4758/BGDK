@@ -1,6 +1,5 @@
 import type { MRC } from '@bgdk/media-recorder';
-import { Text } from '@bgdk/react-components';
-import { topLevelModeStyle } from '@bgdk/shared-react-components';
+import { Text, topLevelModeStyle } from '@bgdk/shared-react-components';
 import type { PromptRequest } from '@bgdk/vertex-ai';
 import HearingIcon from '@mui/icons-material/Hearing';
 import MicNoneIcon from '@mui/icons-material/MicNone';
@@ -177,7 +176,7 @@ export default GenAiAudio;
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
-const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement>, blob: Blob) => {
+const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement | null>, blob: Blob) => {
   try {
     if (fileInputRef.current) {
       const file = new File([blob], fileInputRef.current.title);

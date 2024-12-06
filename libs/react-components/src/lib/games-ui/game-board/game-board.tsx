@@ -1,10 +1,9 @@
+import { RenderList, Text } from '@bgdk/shared-react-components';
+import { ILiteSpace } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import { RenderList } from '../../../../../shared-react-components/src/lib/render-list/render-list';
-import Text from '../../../../../shared-react-components/src/lib/text/text';
-import { Theme } from '../../theme/theme';
-import { ILiteSpace } from '@bgdk/types-game';
 import { CSSProperties } from 'react';
+import { Theme } from '../../theme/theme';
 
 export interface GameBoardProps {
   row: ILiteSpace[];
@@ -23,14 +22,14 @@ const breakpointsRowSx: SxProps = {
   border: `3px solid ${Theme.palette.success.main}`,
   alignContent: 'center',
   justifyContent: 'center',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     border: `1.5px solid ${Theme.palette.success.main}`,
   },
 };
 
 const breakpointsSpaceSx: SxProps = {
   fontSize: '1.5rem',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '.75rem',
   },
 };

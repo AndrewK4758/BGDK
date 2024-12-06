@@ -261,3 +261,5 @@ export class ChutesAndLadders implements IChutesAndLadders {
     return uniqueSpecialValues;
   };
 }
+
+export default ChutesAndLadders;

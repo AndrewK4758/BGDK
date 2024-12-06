@@ -42,14 +42,14 @@ const Header = () => {
       component={'div'}
       key={'social-media-icons'}
       id="social-media-icons"
-      test-dataid="social-media-icons"
+      data-testid="social-media-icons"
       sx={socialMediaLinksWrapper}
     >
       <Box
         component={'div'}
         key={'social-media-text-wrapper'}
         id="social-media-text-wrapper"
-        test-dataid="social-media-text-wrapper"
+        data-testid="social-media-text-wrapper"
         flex={'1 0 25%'}
       >
         <Typography
@@ -57,7 +57,7 @@ const Header = () => {
           color="secondary"
           key={'social-media-text'}
           id="social-media-text"
-          test-dataid="social-media-text"
+          data-testid="social-media-text"
           textAlign={'center'}
         >
           {`Connect & Colab \u27F6`}
@@ -67,17 +67,22 @@ const Header = () => {
         component={'div'}
         key={'social-media-icon-wrapper'}
         id="social-media-icon-wrapper"
-        test-dataid="social-media-icon-wrapper"
+        data-testid="social-media-icon-wrapper"
         sx={iconWrapperSxProps}
       >
         <Box
           component={'span'}
           key={'github-icon-span'}
           id="github-icon-span"
-          test-dataid="github-icon-span"
+          data-testid="github-icon-span"
           sx={iconSxProps}
         >
-          <IconButton href="https://github.com/AndrewK4758">
+          <IconButton
+            key={'github-icon'}
+            id="github-icon"
+            data-testid="github-icon"
+            href="https://github.com/AndrewK4758"
+          >
             <GitHibIcon />
           </IconButton>
         </Box>
@@ -85,10 +90,15 @@ const Header = () => {
           component={'span'}
           key={'facebook-icon-span'}
           id="facebook-icon-span"
-          test-dataid="facebook-icon-span"
+          data-testid="facebook-icon-span"
           sx={iconSxProps}
         >
-          <IconButton href="https://www.facebook.com/AKlapper47">
+          <IconButton
+            key={'facebook-icon'}
+            id="facebook-icon"
+            data-testid="facebook-icon"
+            href="https://www.facebook.com/AKlapper47"
+          >
             <FacebookIcon />
           </IconButton>
         </Box>
@@ -96,10 +106,15 @@ const Header = () => {
           component={'span'}
           key={'linkedin-icon-span'}
           id="likedin-icon-span"
-          test-dataid="likedin-icon-span"
+          data-testid="likedin-icon-span"
           sx={iconSxProps}
         >
-          <IconButton href="https://www.linkedin.com/in/andrew-klapper-a9204b23b/">
+          <IconButton
+            key={'linkedin-icon'}
+            id="linkedin-icon"
+            data-testid="linkedin-icon"
+            href="https://www.linkedin.com/in/andrew-klapper-a9204b23b/"
+          >
             <LinkedinIcon />
           </IconButton>
         </Box>
@@ -107,15 +122,20 @@ const Header = () => {
           component={'span'}
           key={'huggingface-icon-span'}
           id="huggingface-icon-span"
-          test-dataid="huggingface-icon-span"
+          data-testid="huggingface-icon-span"
           sx={iconSxProps}
         >
-          <IconButton href="https://huggingface.co/ak475826">
+          <IconButton
+            key={'huggingface-icon'}
+            id="huggingface-icon"
+            data-testid="huggingface-icon"
+            href="https://huggingface.co/ak475826"
+          >
             <HuggingFaceIcon />
           </IconButton>
         </Box>
-        <Box component={'span'} key={'x-icon-span'} id="x-icon-span" test-dataid="x-icon-span" sx={iconSxProps}>
-          <IconButton href="https://x.com/ak475826">
+        <Box component={'span'} key={'x-icon-span'} id="x-icon-span" data-testid="x-icon-span" sx={iconSxProps}>
+          <IconButton key={'x-icon'} id="x-icon" data-testid="x-icon" href="https://x.com/ak475826">
             <XIcon />
           </IconButton>
         </Box>
@@ -123,10 +143,15 @@ const Header = () => {
           component={'span'}
           key={'discord-icon-span'}
           id="discord-icon-span"
-          test-dataid="discord-icon-span"
+          data-testid="discord-icon-span"
           sx={iconSxProps}
         >
-          <IconButton href="https://discord.com/users/989564035542446190">
+          <IconButton
+            key={'discord-icon'}
+            id="discord-icon"
+            data-testid="discord-icon"
+            href="https://discord.com/users/989564035542446190"
+          >
             <DiscordIcon />
           </IconButton>
         </Box>
@@ -134,7 +159,7 @@ const Header = () => {
           component={'span'}
           key={'email-icon-span'}
           id="email-icon-span"
-          test-dataid="email-icon-span"
+          data-testid="email-icon-span"
           sx={iconSxProps}
         >
           <IconButton color="secondary" id="email-icon" data-testid="email-icon" onClick={() => setOpenEmail(true)}>
@@ -146,7 +171,7 @@ const Header = () => {
         component={'div'}
         key={'email-form-wrapper'}
         id="email-form-wrapper"
-        test-dataid="email-form-wrapper"
+        data-testid="email-form-wrapper"
         width={'100%'}
       >
         <EmailDialog open={openEmail} setOpen={setOpenEmail} />

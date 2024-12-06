@@ -68,3 +68,5 @@ export class TicTacToe implements ITicTacToe {
     return board;
   };
 }
+
+export default TicTacToe;

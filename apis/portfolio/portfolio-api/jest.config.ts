@@ -19,7 +19,7 @@ export default {
   },
   extensionsToTreatAsEsm: ['.jsx', '.ts', '.tsx', '.mts'],
   moduleFileExtensions: ['ts', 'js', 'html', 'mts'],
-  coverageDirectory: '../../coverage/apis/portfolio/portfolio-api',
+  coverageDirectory: '../../../coverage/apis/portfolio/portfolio-api',
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },

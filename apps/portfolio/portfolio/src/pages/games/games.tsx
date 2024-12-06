@@ -1,5 +1,4 @@
-import { Text } from '@bgdk/react-components';
-// import { Waiting } from '@bgdk/shared-react-components';
+import { Text } from '@bgdk/shared-react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -11,8 +10,8 @@ import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { Outlet, useNavigation, useSubmit, type SubmitFunction } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
-import Theme from '../../styles/theme';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
+import Theme from '../../styles/theme';
 
 const title = 'Games';
 

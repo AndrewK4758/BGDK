@@ -5,7 +5,7 @@
   "include": [],
   "exclude": [],
   "references": [
-    { "path": "../../__mocks__/mocks" },
+    { "path": "../../mocks" },
     { "path": "../../chain" },
     { "path": "../../utils" },
     { "path": "../../games/chutes-and-ladders" },

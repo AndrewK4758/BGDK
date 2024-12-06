@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["DOM"],
     "outDir": "dist",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
@@ -33,19 +32,5 @@
     "vite.config.ts",
     "vitest.config.ts"
   ],
-  "references": [
-    { "path": "../../libs/__mocks__/mocks/tsconfig.lib.json" },
-    { "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
-    { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
-    { "path": "../../libs/game/tsconfig.lib.json" },
-    { "path": "../../libs/models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../../libs/chain/tsconfig.lib.json" },
-    { "path": "../../libs/utils/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-ai/tsconfig.lib.json" },
-    { "path": "../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
-    { "path": "../../libs/shared-react-components/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-api/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../libs/react-components/tsconfig.lib.json" }
-  ]
+  "references": [{ "path": "../../libs/shared-react-components/tsconfig.lib.json" }]
 }

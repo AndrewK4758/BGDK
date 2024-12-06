@@ -1,5 +1,6 @@
+import { ImageLink, Theme } from '@bgdk/react-components';
+import { RenderList, Text } from '@bgdk/shared-react-components';
 import { IBuiltGame } from '@bgdk/types-game';
-import { ImageLink, RenderList, Text, Theme } from '@bgdk/react-components';
 import { SxProps, useMediaQuery } from '@mui/material';
 import Container from '@mui/material/Container';
 import ImageList from '@mui/material/ImageList';
@@ -7,14 +8,14 @@ import { useRouteLoaderData } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsGameListText: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '4rem',
   },
 };
 
 const breakpointsImageListText: SxProps = {
   fontSize: '12px',
-  [Theme.breakpoints.down('tablet')]: {
+  [Theme.breakpoints.down('md')]: {
     '& .MuiImageListItemBar-title': {
       fontSize: '1.5rem',
     },
@@ -23,7 +24,7 @@ const breakpointsImageListText: SxProps = {
 
 const GamesList = () => {
   const games = useRouteLoaderData('gameList') as IBuiltGame[];
-  const media = useMediaQuery(Theme.breakpoints.up('tablet'));
+  const media = useMediaQuery(Theme.breakpoints.up('md'));
 
   const listGamesMap = (e: IBuiltGame, _i: number, _arr: IBuiltGame[]) => (
     <Fragment key={e.id}>

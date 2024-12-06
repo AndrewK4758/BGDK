@@ -10,8 +10,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "fix": true,
-        "lintFilePatterns": ["libs/socket-io/client/**/*.{ts,tsx,js,jsx}", "libs/socket-io/client/package.json"]
+        "fix": true
       }
     },
     "build": {

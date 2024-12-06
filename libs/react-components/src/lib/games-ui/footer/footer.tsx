@@ -1,6 +1,6 @@
+import { Text } from '@bgdk/shared-react-components';
 import { SxProps } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import Text from '../../../../../shared-react-components/src/lib/text/text';
 import { ElementType } from 'react';
 
 export interface FooterProps {

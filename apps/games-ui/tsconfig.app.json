@@ -31,21 +31,21 @@
   ],
 
   "references": [
-    { "path": "../../libs/utils/tsconfig.lib.json" },
-    { "path": "../../libs/__mocks__/mocks/tsconfig.lib.json" },
     { "path": "../../libs/games/tic-tac-toe/tsconfig.lib.json" },
+    { "path": "../../libs/chains-for-games/tsconfig.lib.json" },
+    { "path": "../../libs/mocks/tsconfig.lib.json" },
     { "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
+    { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
     { "path": "../../libs/game/tsconfig.lib.json" },
     { "path": "../../libs/models/instance-of-game/tsconfig.lib.json" },
     { "path": "../../libs/chain/tsconfig.lib.json" },
-    { "path": "../../libs/chains-for-games/tsconfig.lib.json" },
-    { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
+    { "path": "../../libs/utils/tsconfig.lib.json" },
     { "path": "../../libs/types/types-ai/tsconfig.lib.json" },
     { "path": "../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
+    { "path": "../../libs/shared-react-components/tsconfig.lib.json" },
     { "path": "../../libs/types/types-api/tsconfig.lib.json" },
     { "path": "../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../libs/react-components/tsconfig.lib.json" },
-    { "path": "../../libs/shared-react-components/tsconfig.lib.json" }
+    { "path": "../../libs/react-components/tsconfig.lib.json" }
   ],
   "exclude": [
     "tests/**/*.spec.ts",

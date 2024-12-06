@@ -12,7 +12,7 @@
     { "path": "../../../libs/models/game-builder" },
     { "path": "../../../libs/types/types-api" },
     { "path": "../../../libs/utils" },
-    { "path": "../../../libs/__mocks__/mocks" },
+    { "path": "../../../libs/mocks" },
     { "path": "../../../libs/games/tic-tac-toe" },
     { "path": "../../../libs/games/chutes-and-ladders" },
     { "path": "../../../libs/games-components-logic" },

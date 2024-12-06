@@ -4,7 +4,7 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../__mocks__/mocks" },
+    { "path": "../mocks" },
     { "path": "../games/chutes-and-ladders" },
     { "path": "../games-components-logic" },
     { "path": "../game" },

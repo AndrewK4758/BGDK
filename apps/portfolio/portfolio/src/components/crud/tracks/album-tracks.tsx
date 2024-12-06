@@ -1,6 +1,7 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import UploadIcon from '@mui/icons-material/Upload';
+import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
@@ -10,9 +11,8 @@ import { useLoaderData, useParams } from 'react-router-dom';
 import handleDeleteTrack from '../../../services/events/crud-events/handle-delete-track';
 import handleUpdateTrack from '../../../services/events/crud-events/handle-update-track';
 import { AlbumTracks } from '../../../services/loaders/crud-loaders/load-album-tracks';
-import AddTrack from './add-track';
-import { Container } from '@mui/material';
 import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
+import AddTrack from './add-track';
 
 const Tracks = () => {
   const { tracks } = useLoaderData() as AlbumTracks;

@@ -1,4 +1,5 @@
-import { Text, Theme } from '@bgdk/react-components';
+import { Theme } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import { IRegisterLoaderAndFilter } from '@bgdk/types-game';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { SxProps } from '@mui/material';
@@ -9,7 +10,7 @@ import { useLocation, useRouteLoaderData } from 'react-router-dom';
 import RegisterPlayerAndAvatarForm from '../components/formik_form_components/register_player_and_avatar_formik';
 
 const breakpointsRegisterPlayerTitle: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '2rem',
   },
 };
@@ -17,7 +18,7 @@ const breakpointsRegisterPlayerTitle: SxProps = {
 const breakpointsRegisterPlayerTitleBox: SxProps = { flex: '1 0 33.3%' };
 
 const breakpointsRegisterPlayerTitleValue: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1rem',
   },
 };
@@ -25,7 +26,7 @@ const breakpointsRegisterPlayerTitleValue: SxProps = {
 const breakpointsCopyIcon: SxProps = {
   fontSize: '2.5rem',
   color: Theme.palette.primary.contrastText,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1.25rem',
   },
 };

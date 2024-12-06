@@ -5,7 +5,7 @@ const prisma = new PrismaClient({
   datasourceUrl: process.env['NODE_ENV'] === 'production' ? process.env['DB_URL_SSL'] : process.env['DB_URL_DEV'],
 });
  
-var __TEARDOWN_MESSAGE__: string;
+let __TEARDOWN_MESSAGE__: string;
 module.exports = async function () {
   // Start services that that the app needs to run (e.g. database, docker-compose, etc.).
 

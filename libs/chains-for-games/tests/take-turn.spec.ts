@@ -1,10 +1,10 @@
 import { ContextBuilder } from '@bgdk/chain';
 import { ChutesAndLadders } from '@bgdk/chutes-and-ladders';
 import { Game } from '@bgdk/game';
-import { Avatar, Player } from '@bgdk/games-components-logic';
+import { Player } from '@bgdk/games-components-logic';
 import { InstanceOfGame } from '@bgdk/instance-of-game';
 import { getCurrentMinute } from '@bgdk/utils';
-import { Context, Color, GameContextKeys, SpaceType, TurnStatus } from '@bgdk/types-game';
+import { Context, Color, GameContextKeys, SpaceType, TurnStatus, type IAvatar } from '@bgdk/types-game';
 import { mockReqObj, mockRespObj } from '@bgdk/mocks';
 import { Request, Response } from 'express';
 import { moveAvatar } from '../src/lib/commands/action-take-turn/move-avatar';
@@ -24,8 +24,8 @@ let ctx: Context,
   output: ICtxOutput,
   turnStatus: TurnStatus,
   instance: ChutesAndLadders,
-  avatar1: Avatar,
-  avatar2: Avatar,
+  avatar1: IAvatar,
+  avatar2: IAvatar,
   req: Partial<Request>,
   resp: Partial<Response>;
 

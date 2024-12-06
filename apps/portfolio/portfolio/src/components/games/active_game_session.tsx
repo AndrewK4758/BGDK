@@ -1,6 +1,7 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
-import { Text, Theme } from '@bgdk/react-components';
+import { Theme } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
 import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
@@ -10,6 +11,7 @@ import type { SxProps } from '@mui/material/styles';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
+import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import getGameInstanceInfo from '../../utils/utils';
 import ActiveAvatars from './game_board/active_avatars';
 import ResetGame from './game_board/reset_game';
@@ -18,7 +20,6 @@ import ShowGameBoard from './game_board/show_game_board';
 import socketReducer, { ActionType } from './game_board/socket-reducer';
 import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
 import TakeTurn from './game_board/take_turn';
-import useScrollIntoView from '../../hooks/use-scroll-into-view';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   display: 'flex',
@@ -26,13 +27,13 @@ const breakpointsBottomMenuGameBoard: SxProps = {
   flexDirection: 'row',
   alignItems: 'center',
   gap: 4,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     marginTop: '1rem',
   },
 };
 
 const breakpointsPlayerInTurnText: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1em',
   },
 };
@@ -41,7 +42,7 @@ const breakpointsBottomMenuButtonsBox: SxProps = {
   flex: '0 1 30%',
   display: 'flex',
   justifyContent: 'space-evenly',
-  [Theme.breakpoints.down('tablet')]: {
+  [Theme.breakpoints.down('md')]: {
     flexDirection: 'column',
   },
 };

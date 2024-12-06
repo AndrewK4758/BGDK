@@ -7,7 +7,7 @@
     "moduleResolution": "Bundler"
   },
   "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts", "../../games-components-logic/src/**/*.ts"],
-  "exclude": ["vite.config.ts", "jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exclude": ["vite.config.mts", "jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
     { "path": "../../games-components-logic/tsconfig.lib.json" },
     { "path": "../../types/types-game/tsconfig.lib.json" }

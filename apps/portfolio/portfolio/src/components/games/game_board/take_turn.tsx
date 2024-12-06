@@ -11,7 +11,7 @@ import { Action, ActionType } from './socket-reducer';
 const breakpointsTakeTurnButton: SxProps = {
   backgroundColor: Theme.palette.primary.main,
   fontSize: '1.75rem',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 35,

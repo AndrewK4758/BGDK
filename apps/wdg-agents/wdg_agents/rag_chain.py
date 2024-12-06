@@ -9,7 +9,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
 from langchain_core.embeddings import Embeddings
 from langchain_ollama.llms import OllamaLLM
-from langchain_core.vectorstores.base import Collection
+
+# from langchain_core.vectorstores.base import Collection
 from langchain_community.document_loaders import PyPDFLoader
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter

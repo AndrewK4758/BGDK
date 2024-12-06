@@ -1,14 +1,13 @@
-import TextField from '@mui/material/TextField';
+import { Text } from '@bgdk/shared-react-components';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import FormLabel from '@mui/material/FormLabel';
+import TextField from '@mui/material/TextField';
+import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { useFormik } from 'formik';
 import { FocusEvent, MutableRefObject } from 'react';
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
-import { Form } from 'react-router-dom';
-import { Text } from '@bgdk/react-components';
-import Button from '@mui/material/Button';
-import { GridApiCommunity } from '@mui/x-data-grid/internals';
-import { useParams } from 'react-router-dom';
+import { Form, useParams } from 'react-router-dom';
 import handleSubmitNewAlbum from '../../services/actions/submit-album-on-artist-action';
 import handleNewAlbumBlur from '../../services/events/handle-validate-artist-albums-on-blur';
 

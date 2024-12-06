@@ -1,5 +1,4 @@
-import { Text } from '@bgdk/react-components';
-import { FormikValidationError, Label, Waiting } from '@bgdk/shared-react-components';
+import { FormikValidationError, Label, Text, Waiting } from '@bgdk/shared-react-components';
 import { AspectRatio } from '@bgdk/types-ai';
 import { type ImagenConfig } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';

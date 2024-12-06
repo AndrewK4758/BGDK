@@ -6,6 +6,7 @@ export type WebSocket = {
   socket: Socket;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const WebSocketContext = createContext<WebSocket>(null!);
 
 interface WebsocketContextProviderProps {

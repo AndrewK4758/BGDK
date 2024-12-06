@@ -1,10 +1,10 @@
 import { IPromptInputData, ResponseType } from '@bgdk/prompt-builder';
-import { Text } from '@bgdk/react-components';
 import {
   FormikValidationError,
   helperTextSx,
   Label,
   labelSx,
+  Text,
   textInputSx,
   tooltipSx,
 } from '@bgdk/shared-react-components';
@@ -597,7 +597,7 @@ const handleCopyPromptToClipboardAndAddToInput = async (
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
 export const handleFileUpload = async (
-  fileInputRef: RefObject<HTMLInputElement>,
+  fileInputRef: RefObject<HTMLInputElement | null>,
   setPrompt: Dispatch<SetStateAction<PromptRequest>>,
   setFileName: Dispatch<SetStateAction<string>>,
   setLoading: Dispatch<SetStateAction<boolean>>,

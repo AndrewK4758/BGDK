@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -59,7 +59,7 @@ const AddAlbum = ({ apiRef }: AddAlbumProps) => {
               onChange={e => formik.setFieldValue('title', e.target.value)}
               slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
             />
-            {typeof formik.touched.title && formik.touched.artist_id ? (
+            {formik.touched.title && formik.touched.artist_id ? (
               <Text titleVariant="body1" titleText={formik.touched.title} />
             ) : null}
             <FormLabel htmlFor="artist_id">Artist ID</FormLabel>

@@ -1,4 +1,5 @@
-import { Theme, JoinGame, Text } from '@bgdk/react-components';
+import { Theme, JoinGame } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import type { SxProps } from '@mui/material/styles';
 
 const breakpointsHomeTextTitle: SxProps = {

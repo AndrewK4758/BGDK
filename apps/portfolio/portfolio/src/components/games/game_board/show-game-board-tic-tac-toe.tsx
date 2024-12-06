@@ -2,7 +2,7 @@ import { GameBoardMapTicTacToe, Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import type { GameBoard } from '@bgdk/types-game';
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, JSX, SetStateAction } from 'react';
 
 const breakpointsGameBoardBox: SxProps = {
   display: 'flex',
@@ -12,7 +12,7 @@ const breakpointsGameBoardBox: SxProps = {
   maxHeight: '80vh',
   width: '50vw',
   justifySelf: 'center',
-  [Theme.breakpoints.up('laptop')]: {
+  [Theme.breakpoints.up('md')]: {
     boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
   },
 };

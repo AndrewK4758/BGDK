@@ -1,9 +1,10 @@
+import { Text } from '@bgdk/shared-react-components';
 import { AvatarTotem } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useField } from 'formik';
-import Text from '../../../../../../shared-react-components/src/lib/text/text';
+import type { JSX } from 'react';
 import { Theme } from '../../../theme/theme';
 
 interface IAvatarColorSelectValues {

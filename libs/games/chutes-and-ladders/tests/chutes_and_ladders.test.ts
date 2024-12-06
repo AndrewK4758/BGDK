@@ -1,17 +1,16 @@
-import { SpaceType } from '@bgdk/types-game';
-import { rangeSelector } from '@bgdk/games-components-logic';
+import { rangeSelector, Space } from '@bgdk/games-components-logic';
+import { SpaceType, type ILiteSpace } from '@bgdk/types-game';
 import {
   ChutesAndLadders,
-  MAX_SPECIAL_DISTANCE,
-  START,
   TOTAL_SPACES,
+  START,
+  MAX_SPECIAL_DISTANCE,
   uniqueSpecialValues,
   specialsDumps,
 } from '../src/lib/chutes_and_ladders';
-import { Space } from '@bgdk/games-components-logic';
-import { GameBoard } from '@bgdk/types-game';
 
-let game: ChutesAndLadders, gameBoard: GameBoard;
+let game: ChutesAndLadders, gameBoard: ILiteSpace[];
+
 describe('Test connectivity of spaces within Board', () => {
   beforeAll(() => {
     game = new ChutesAndLadders(5, 5);

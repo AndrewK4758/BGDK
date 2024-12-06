@@ -1,34 +1,35 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
-import { Text, Theme } from '@bgdk/react-components';
-import { IActivePlayersInGame, GameBoard, ILiteSpace, type Row } from '@bgdk/types-game';
+import { Theme } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
+import { GameBoard, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Fragment, useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ManagerOptions, Socket } from 'socket.io-client';
 import ActiveAvatars from '../components/game_board/active_avatars';
 import ReadyToStart from '../components/game_board/ready_to_start_button';
 import ResetGame from '../components/game_board/reset_game';
-import ShowGameBoard from '../components/game_board/show_game_board';
 import ShowGameBoardTicTacToe from '../components/game_board/show-game-board-tic-tac-toe';
+import ShowGameBoard from '../components/game_board/show_game_board';
 import socketReducer, { ActionType } from '../components/game_board/socket-reducer';
+import TakeTurnTicTacToe from '../components/game_board/take-turn-tic-tac-toe';
 import TakeTurn from '../components/game_board/take_turn';
 import getGameInstanceInfo from '../services/utils/utils';
 import ClientSocket from '../services/utils/web-socket/socket-instance';
-import TakeTurnTicTacToe from '../components/game_board/take-turn-tic-tac-toe';
 
 const breakpointsBottomMenuGameBoard: SxProps = {
   marginTop: '2rem',
   flexDirection: 'row',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     marginTop: '1rem',
   },
 };
 
 const breakpointsPlayerInTurnText: SxProps = {
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '1em',
   },
 };
@@ -36,7 +37,7 @@ const breakpointsPlayerInTurnText: SxProps = {
 const breakpointsBottomMenuButtonsBox: SxProps = {
   flex: '1 0 50%',
   flexDirection: 'row',
-  [Theme.breakpoints.down('tablet')]: {
+  [Theme.breakpoints.down('md')]: {
     flexDirection: 'column',
   },
 };
@@ -73,9 +74,9 @@ const ActiveGameSession = () => {
       socket.on('connect', () => {
         console.log(`Player connected with ID: ${socket.id}`);
       });
-      socket.emit('create-room', getGameInstanceInfo()?.gameInstanceID);
     }
-  });
+    socket.emit('create-room', getGameInstanceInfo()?.gameInstanceID);
+  }, []);
 
   useEffect(() => {
     socket.emit('action', { action: ActionType.BOARD });
@@ -108,7 +109,7 @@ const ActiveGameSession = () => {
     });
 
     return () => {
-      if (socket) {
+      if (socket.connected) {
         socket.disconnect();
         socket.removeAllListeners();
       }
@@ -132,11 +133,9 @@ const ActiveGameSession = () => {
           <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         </Box>
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
-          <Fragment key={Math.random().toFixed(4)}>
-            {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}
-            {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={space} />}
-            <ResetGame dispatch={dispatch} socket={socket} />
-          </Fragment>
+          {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}
+          {id === 'Tic-Tac-Toe' && <TakeTurnTicTacToe dispatch={dispatch} socket={socket} position={space} />}
+          <ResetGame dispatch={dispatch} socket={socket} />
         </Container>
       </Container>
     </>

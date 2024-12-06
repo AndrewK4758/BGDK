@@ -37,9 +37,9 @@
     { "path": "./libs/game" },
     { "path": "./libs/gen-ai/vertex-ai" },
     { "path": "./libs/gen-ai/prompt-builder" },
-    { "path": "./libs/__mocks__/mocks" },
     { "path": "./libs/utils" },
     { "path": "./libs/types/types-ai" },
-    { "path": "./libs/media-recorder" }
+    { "path": "./libs/media-recorder" },
+    { "path": "./libs/mocks" }
   ]
 }

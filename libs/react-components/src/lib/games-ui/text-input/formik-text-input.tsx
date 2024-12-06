@@ -1,11 +1,10 @@
-import { Label } from '@bgdk/shared-react-components';
+import { Label, Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import { ElementType, FocusEvent } from 'react';
 import { Theme } from '../../theme/theme';
-import Text from '../../../../../shared-react-components/src/lib/text/text';
 
 export interface FormikTextInputProps {
   name: string;

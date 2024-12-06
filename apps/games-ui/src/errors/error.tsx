@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/react-components';
+import { Text } from '@bgdk/shared-react-components';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 

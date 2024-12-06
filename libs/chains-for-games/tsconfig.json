@@ -6,7 +6,7 @@
   "exclude": [],
   "references": [
     { "path": "../utils" },
-    { "path": "../__mocks__/mocks" },
+    { "path": "../mocks" },
     { "path": "../games/tic-tac-toe" },
     { "path": "../games/chutes-and-ladders" },
     { "path": "../games-components-logic" },

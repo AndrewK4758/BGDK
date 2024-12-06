@@ -12,7 +12,7 @@ export const breakpointsTextBoxSx: SxProps = {
   m: 0,
   fontSize: '1.5rem',
   borderRadius: '5px',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     textAlign: 'center',
     height: 35,
@@ -22,7 +22,7 @@ export const breakpointsTextBoxSx: SxProps = {
 
 export const breakpointsButtonSx: SxProps = {
   backgroundColor: Theme.palette.info.main,
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 25,

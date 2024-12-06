@@ -6,6 +6,7 @@ const opts: DefaultEsmTransformOptions = {
     targets: { esmodules: true, node: 'current' },
   },
   diagnostics: {
+    pretty: true,
     warnOnly: true,
   },
 };

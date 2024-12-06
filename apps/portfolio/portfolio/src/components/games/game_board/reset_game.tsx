@@ -12,7 +12,7 @@ const breakpointsResetGameButton: SxProps = {
   marginLeft: '.5rem',
   backgroundColor: Theme.palette.primary.main,
   fontSize: '1.75rem',
-  [Theme.breakpoints.down('laptop')]: {
+  [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
     height: 35,

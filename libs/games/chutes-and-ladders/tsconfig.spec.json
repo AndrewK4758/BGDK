@@ -6,9 +6,9 @@
     "types": ["jest", "node"]
   },
   "include": [
+    "vite.config.mts",
     "jest.config.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
     "src/**/*.ts",
     "tests/**/*.ts",
     "../../types/types-game/src/**/*.ts",

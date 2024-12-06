@@ -1,4 +1,4 @@
-import { Label } from '@bgdk/shared-react-components';
+import { Label, Waiting } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -7,16 +7,16 @@ import { TimePicker, type TimePickerSlotProps } from '@mui/x-date-pickers/TimePi
 import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
 import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
+import { jwtDecode } from 'jwt-decode';
 import { useContext, useState, type Dispatch, type SetStateAction } from 'react';
 import { Form, useNavigation } from 'react-router-dom';
-import '../../../styles/google-calendar.css';
-import Theme from '../../../styles/theme';
 import {
   GoogleUserContext,
   type GoogleUserContextInfo,
   type GoogleUserContextProps,
 } from '../../../contexts/contact-context';
-import { jwtDecode } from 'jwt-decode';
+import '../../../styles/google-calendar.css';
+import Theme from '../../../styles/theme';
 
 const tomorrow = dayjs().add(1, 'day');
 const nextYear = dayjs().add(1, 'year');
@@ -109,8 +109,8 @@ type TimesAndDates = {
 };
 
 const initState: TimesAndDates = {
-  startTime: tomorrow,
-  endTime: tomorrow.add(1, 'hour'),
+  startTime: minTime,
+  endTime: minTime.add(1, 'hour'),
   date: tomorrow,
 };
 
@@ -191,7 +191,8 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             }}
           >
             <DateCalendar
-              key={'appointment-maker'}
+              key={'date-calendar'}
+              data-testid={'date-calendar'}
               minDate={tomorrow}
               maxDate={nextYear}
               disablePast={true}
@@ -226,6 +227,8 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
               tooltipSx={{ fontSize: '1.4rem' }}
             />
             <TimePicker
+              key={'start-time-picker'}
+              data-testid={'start-time-picker'}
               label={
                 <Label
                   placement="top"
@@ -237,13 +240,15 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
               }
               minTime={minTime}
               maxTime={maxTime}
-              defaultValue={tomorrow}
+              defaultValue={minTime}
               closeOnSelect={false}
               value={values.startTime}
               onAccept={data => setValues({ ...values, startTime: data as Dayjs })}
               slotProps={timePickerSlotProps}
             />
             <TimePicker
+              key={'end-time-picker'}
+              data-testid={'end-time-picker'}
               label={
                 <Label
                   placement="top"
@@ -284,6 +289,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
                 Submit Event
               </Button>
             ) : null}
+            {state === 'loading' && <Waiting />}
           </Box>
         </Form>
       </Box>
