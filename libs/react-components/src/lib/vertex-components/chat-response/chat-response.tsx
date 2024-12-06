@@ -3,10 +3,10 @@ import { Label } from '@bgdk/shared-react-components';
 import { handleScrollIntoView } from '@bgdk/utils';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import type { SxProps } from '@mui/material/styles';
 import { useEffect, useRef, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
 import Theme from '../../styles/theme';
-import Container from '@mui/material/Container';
 
 const tooltipTitle = 'Response from text query';
 
@@ -18,7 +18,7 @@ interface ChatResponseProps {
   chatResponseTextProps: CSSProperties;
 }
 
-export function ChatResponse({
+export function PromptResponse({
   response,
   setLoading,
   setPromptResponse,
@@ -70,4 +70,4 @@ export function ChatResponse({
   );
 }
 
-export default ChatResponse;
+export default PromptResponse;

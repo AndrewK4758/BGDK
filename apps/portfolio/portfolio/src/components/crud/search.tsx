@@ -12,6 +12,8 @@ import { debounce } from '@mui/material/utils';
 import { album, artist } from '@prisma/client';
 import axios from 'axios';
 import { useState, type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
+import { pagesTitlesBoxStyles } from '../../styles/pages-styles';
+import Theme from '../../styles/theme';
 import { inverseColors } from './crud-home';
 
 type InitVals = {
@@ -44,8 +46,6 @@ const Search = ({ open }: SearchProps) => {
               ...inverseColors,
               padding: 2,
               display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
               border: '5px solid purple',
               borderRadius: 1,
             }}
@@ -55,20 +55,15 @@ const Search = ({ open }: SearchProps) => {
                 defaultValue={'artist'}
                 name="artist-album-select"
                 sx={{
+                  ...pagesTitlesBoxStyles,
                   height: '100%',
-                  width: '100%',
-                  display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                 }}
               >
                 <FormControlLabel
                   value={'artist'}
                   label="Artist"
                   control={<Radio value={'artist'} onChange={e => setSearchParam(e.target.value)} />}
-                  slotProps={{ typography: { sx: { fontSize: '1rem' } } }}
-                  sx={{ width: '100%', paddingLeft: 1 }}
                 />
                 <FormControlLabel
                   value={'album'}
@@ -95,29 +90,32 @@ const Search = ({ open }: SearchProps) => {
                 name="artist-search"
                 helperText="Search is performed automatically. Case is insensitive"
                 onChange={debounce(e => handleSearchParams(e, setArtVals, searchParam), 560)}
-                slotProps={{ formHelperText: { sx: { fontFamily: 'monospace' } } }}
+                slotProps={{
+                  formHelperText: { sx: { fontFamily: 'monospace' } },
+                  input: { sx: { color: Theme.palette.text.secondary } },
+                }}
               />
             </Box>
           </Card>
           <Container>
-            <List component={'ul'} sx={{}}>
+            <List component={'ul'} key={'search-list'} id="search-list">
               {artAlbVals.artist.length > 0 ? (
-                <>
+                <Box key={'artist-search-list-wrapper'} id={'artist-search-list-wrapper'}>
                   {artAlbVals.artist.map(e => (
                     <ListItem component={'li'} key={e.artist_id} sx={{ fontWeight: 'bold' }}>
                       {e.name}
                     </ListItem>
                   ))}
-                </>
+                </Box>
               ) : null}
               {artAlbVals.album.length > 0 ? (
-                <>
+                <Box key={'album-search-list-wrapper'} id={'album-search-list-wrapper'}>
                   {artAlbVals.album.map(e => (
                     <ListItem component={'li'} key={e?.album_id} sx={{ fontWeight: 'bold' }}>
                       {e?.title}
                     </ListItem>
                   ))}
-                </>
+                </Box>
               ) : null}
             </List>
           </Container>

@@ -1,7 +1,11 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
-const TicTacToeIcon = () => (
-  <SvgIcon sx={{ scale: 1.4, marginLeft: 1 }}>
+interface TicTacToeIconProps {
+  state: 'loading' | 'idle' | 'submitting';
+}
+
+const TicTacToeIcon = ({ state }: TicTacToeIconProps) => (
+  <SvgIcon sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.4, marginLeft: 1 }}>
     <svg
       version="1.1"
       id="svg268"

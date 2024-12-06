@@ -17,7 +17,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -32,6 +31,8 @@ import {
 } from 'react-router-dom';
 import * as Yup from 'yup';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
+import { fullSizeBlock } from '../../../styles/pages-styles';
+import { flexColumnStyles, formLabelSxProps, radioButtonLabelSxProps } from '../../../styles/prompt-builder-styles';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
 import ImageIcon from '../../icons/image-icon';
@@ -47,12 +48,8 @@ import {
   textData,
   tone,
 } from '../static/definitions';
+import { promptBuilderHeaderText } from '../static/prompt-builder-text';
 import PromptBuilderResponse from './prompt-builder-response';
-
-const promptBuilderHeaderText = `This is designed to help you structure & format your idea to increase the probability of receiving the best possible response from your query. Using all of the available fields will give you a more desireable response, but not all are required. Hover over the category label text for a more detailed explaination of the category.All uploaded files will be stored in a Google Cloud Storage Bucket upon upload, then added to your prompt query.`;
-
-const radioButtonLabelSxProps: SxProps = { display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' };
-const formLabelSxProps: SxProps = { alignContent: 'center', fontSize: '1.5rem' };
 
 const initialValues: IPromptInputData = {
   objective: '',
@@ -85,9 +82,9 @@ interface PromptBuilderProps {
 const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) => {
   const [openPromptResponse, setOpenPromptResponse] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>('');
-  const submit = useSubmit();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
+  const submit = useSubmit();
   const nav = useNavigate();
 
   const action = useActionData() as string;
@@ -116,22 +113,23 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
           component={'section'}
           key={'prompt-builder'}
           id="prompt-builder"
-          sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+          sx={{ ...flexColumnStyles, gap: 4 }}
         >
-          <Box component={'section'} key={'prompt-builder-header-box'} id="prompt-builder-header-box" sx={{ gap: 4 }}>
+          <Box component={'section'} key={'prompt-builder-header-box'} id="prompt-builder-header-box">
             <Text
+              component={'h2'}
               titleVariant="h2"
               titleText={'Prompt Builder'}
-              sx={{ width: '100%', textAlign: 'center', color: Theme.palette.secondary.light }}
+              sx={{ textAlign: 'center', color: Theme.palette.secondary.light }}
             />
-            <Text titleVariant="body1" titleText={promptBuilderHeaderText} />
+            <Text component={'p'} titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
           <Form key={'prompt-builder-form'} method="POST" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
             <Box
               component={'section'}
               key={'prompt-builder-input-elements-box'}
               id="prompt-builder-input-elements-box"
-              sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+              sx={{ ...flexColumnStyles, gap: 2 }}
             >
               <Box component={'section'} key={'prompt-builder-objective-box'} id="prompt-builder-objective-box">
                 <Label
@@ -455,7 +453,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                 component={'span'}
                 key={'prompt-builder-document-wrapper'}
                 id="prompt-builder-document-wrapper"
-                sx={{ display: 'flex', flexDirection: 'column' }}
+                sx={flexColumnStyles}
               >
                 <input
                   ref={fileInputRef}
@@ -473,16 +471,18 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                   component={'section'}
                   key={'current-document-text-value'}
                   id={'current-document-text-value'}
-                  sx={{ display: 'flex', alignItems: 'baseline', gap: 2, flex: '1 0 100%' }}
+                  sx={{ ...radioButtonLabelSxProps, alignItems: 'baseline', flex: '1 0 100%' }}
                 >
                   <Text
                     key={'current-document-text-value-title'}
+                    component={'h4'}
                     titleVariant="h4"
                     titleText={`Uploaded File: `}
                     sx={{ color: Theme.palette.primary.main }}
                   />
                   {loading ? null : (
                     <Text
+                      component={'p'}
                       key={'current-document-text-value-text'}
                       titleVariant="body1"
                       titleText={`${fileName}`}
@@ -497,17 +497,13 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                   helperTextSx={helperTextSx}
                 />
               </Box>
-              <Box
-                component={'section'}
-                key={'uploaded-file-name'}
-                id={'uploaded-file-name'}
-                sx={{ display: 'hidden' }}
-              ></Box>
+
               <Box
                 component={'section'}
                 key={'prompt-builder-submit-box'}
                 id="prompt-builder-submit-box"
-                sx={{ display: 'flex', justifyContent: 'space-evenly' }}
+                display={'flex'}
+                justifyContent={'space-evenly'}
               >
                 {!action && (
                   <Button
@@ -515,7 +511,6 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                     type="button"
                     key={'prompt-builder-upload-file-button'}
                     id="prompt-builder-upload-file-button"
-                    sx={{ fontSize: '2rem' }}
                     onClick={handleFileUploadButtonClick}
                   >
                     Upload File
@@ -526,7 +521,6 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                   type="submit"
                   key={'prompt-builder-submit-button'}
                   id="prompt-builder-submit-button"
-                  sx={{ fontSize: '2rem' }}
                 >
                   Build Prompt
                 </Button>
@@ -536,7 +530,6 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                   key={'prompt-builder-reset-button'}
                   id="prompt-builder-reset-button"
                   onReset={formik.handleReset}
-                  sx={{ fontSize: '2rem' }}
                 >
                   Clear Values
                 </Button>
@@ -549,7 +542,6 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                     onClick={() =>
                       handleCopyPromptToClipboardAndAddToInput(action, setPrompt, setOpenPromptResponse, nav)
                     }
-                    sx={{ fontSize: '2rem' }}
                   >
                     Copy & Add to Input
                   </Button>
@@ -560,7 +552,6 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                     key={'open-prompt'}
                     id="open-prompt"
                     type="button"
-                    sx={{ fontSize: '2rem' }}
                     onClick={() => setOpenPromptResponse(!openPromptResponse)}
                   >
                     {!openPromptResponse ? 'Open Prompt' : 'Close Prompt'}
@@ -571,7 +562,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
           </Form>
         </Container>
         {openPromptResponse && (
-          <Container sx={{ width: '100%', height: '100%' }}>
+          <Container key={'prompt-response-container'} id={'prompt-response-container'} sx={fullSizeBlock}>
             <PromptBuilderResponse prompt={action} />
           </Container>
         )}

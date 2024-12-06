@@ -1,21 +1,23 @@
-import type { CSSProperties } from 'react';
 // import styles from '../../../styles/prompt-builder-response.module.css';
-import { renderPreTagInsideParentDiv } from '@bgdk/shared-react-components';
+import { renderPreTagInsideParentDiv, Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import type { CSSProperties } from 'react';
+import { fullSizeBlock } from '../../../styles/pages-styles';
 
 interface PromptBuilderResponseProps {
   prompt: string;
 }
 
-export function PromptBuilderResponse({ prompt }: PromptBuilderResponseProps) {
-  return (
-    <Box sx={{ width: '100%', height: '100%' }}>
-      <Typography component={'div'} variant="body1">
-        <pre style={renderPreTagInsideParentDiv as CSSProperties}>{prompt}</pre>
-      </Typography>
-    </Box>
-  );
-}
+export const PromptBuilderResponse = ({ prompt }: PromptBuilderResponseProps) => (
+  <Box sx={fullSizeBlock}>
+    <Text
+      key={'prompt-response-text'}
+      id="prompt-response-text"
+      component={'p'}
+      titleVariant="body1"
+      titleText={<pre style={renderPreTagInsideParentDiv as CSSProperties}>{prompt}</pre>}
+    />
+  </Box>
+);
 
 export default PromptBuilderResponse;

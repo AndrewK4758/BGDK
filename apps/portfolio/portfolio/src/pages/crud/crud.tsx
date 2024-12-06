@@ -2,50 +2,25 @@ import { Text } from '@bgdk/shared-react-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { type SxProps } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import { lazy, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
-import Theme from '../../styles/theme';
+import {
+  headerModalButtonStyles,
+  modalButtonBoxStyles,
+  pagesButtonStyles,
+  pagesTitlesBoxStyles,
+  pagesTitleSx,
+  pagesToolbarStyles,
+  pagesWrapperStyles,
+} from '../../styles/pages-styles';
+import { title, body } from '../static/crud-text';
 
 const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 const Search = lazy(() => import('../../components/crud/search'));
-
-const title = 'C.R.U.D. Data Manager';
-
-const body = (
-  <span>
-    Example of crud app with MUI X- DataGrid, debounced search bar, columns have sorting & filtering, cells can be
-    updated and changes are represented on the client and back end in real time, full cell values can be seen by
-    hovering, rows can be deleted, each catagory has the ability to create an entry, ADD ENTRY provides the opportunity
-    to add all fields at once, uses public{' '}
-    <Link
-      target="_blank"
-      rel="noopener"
-      to={'https://github.com/lerocha/chinook-database'}
-      style={{ color: Theme.palette.secondary.contrastText }}
-      onMouseOver={e => {
-        e.currentTarget.style.backgroundColor = Theme.palette.secondary.dark;
-      }}
-      onMouseOut={e => {
-        e.currentTarget.style.backgroundColor = Theme.palette.background.paper;
-      }}
-    >
-      Chinook Database
-    </Link>{' '}
-    as the data.
-  </span>
-);
-
-const titleSx: SxProps = {
-  width: 'fit-content',
-  maxWidth: '80%',
-  textAlign: 'center',
-  flex: '1 0 100%',
-};
 
 const Crud = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -55,19 +30,7 @@ const Crud = () => {
   useScrollIntoView(divRef);
 
   return (
-    <Box
-      ref={divRef}
-      component={'div'}
-      key={'crud-wrapper'}
-      id="crud-wrapper"
-      sx={{
-        flex: '1 0 100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10vh',
-        alignItems: 'center',
-      }}
-    >
+    <Box ref={divRef} component={'div'} key={'crud-wrapper'} id="crud-wrapper" sx={pagesWrapperStyles}>
       <Paper
         elevation={24}
         component={'div'}
@@ -75,72 +38,43 @@ const Crud = () => {
         id="crud-header-wrapper"
         sx={{ width: '60vw' }}
       >
-        <Box
-          component={'section'}
-          key={'crud-title-wrapper'}
-          id="crud-title-wrapper"
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingY: 2 }}
-        >
-          <Text titleVariant="h3" titleText={title} sx={titleSx} />
+        <Box component={'section'} key={'crud-title-wrapper'} id="crud-title-wrapper" sx={pagesTitlesBoxStyles}>
+          <Text component={'h3'} titleVariant="h3" titleText={title} sx={pagesTitleSx} />
         </Box>
-        <AppBar component={'div'} elevation={24} position="static">
-          <Toolbar
-            component={'nav'}
-            sx={{ display: 'flex', justifyItems: 'space-evenly', alignItems: 'center', flex: '1 0 100%' }}
-          >
+        <AppBar component={'div'} id="crud-navbar-wrapper" key={'crud-navbar-wrapper'} elevation={24} position="static">
+          <Toolbar component={'nav'} id="crud-navbar" key={'crud-navbar'} sx={pagesToolbarStyles}>
             <Button
-              type="button"
-              variant="text"
+              LinkComponent={'button'}
+              key={'crud-home-button'}
+              id="crud-home-button"
               onClick={() => nav('/crud')}
-              sx={{ flex: '1 0 25%', color: Theme.palette.text.secondary, fontSize: '1.5rem' }}
+              sx={pagesButtonStyles}
             >
               Home
             </Button>
-            <Button
-              type="submit"
-              variant="text"
-              onClick={() => nav('artists')}
-              sx={{ flex: '1 0 25%', color: Theme.palette.text.secondary, fontSize: '1.5rem' }}
-            >
+            <Button type="submit" variant="text" onClick={() => nav('artists')} sx={pagesButtonStyles}>
               All Artists
             </Button>
 
-            <Button
-              type="submit"
-              variant="text"
-              onClick={() => nav('albums')}
-              sx={{ flex: '1 0 25%', color: Theme.palette.text.secondary, fontSize: '1.5rem' }}
-            >
+            <Button type="submit" variant="text" onClick={() => nav('albums')} sx={pagesButtonStyles}>
               All Albums
             </Button>
 
-            <Button
-              type="submit"
-              variant="text"
-              onClick={() => nav('add-entry')}
-              sx={{ flex: '1 0 25%', color: Theme.palette.text.secondary, fontSize: '1.5rem' }}
-            >
+            <Button type="submit" variant="text" onClick={() => nav('add-entry')} sx={pagesButtonStyles}>
               Add Entry
             </Button>
           </Toolbar>
         </AppBar>
-        <Box component={'div'} key={'crud-header-text-wrapper'} id="crud-header-text-wrapper" sx={{ p: 2 }}>
-          <Typography component={'p'} variant="body1" sx={{ paddingLeft: 1 }}>
-            {body}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flex: '0 1 100%', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <Button
-            color="secondary"
-            variant="text"
-            onClick={() => setOpen(!open)}
-            sx={{
-              textAlign: 'right',
-              color: Theme.palette.secondary.light,
-              fontSize: '1.25rem',
-              p: 2,
-            }}
-          >
+        <Container
+          component={'div'}
+          key={'crud-header-text-wrapper'}
+          id="crud-header-text-wrapper"
+          sx={{ paddingY: 2 }}
+        >
+          <Text key={'crud-header-text'} id="crud-header-text" component={'p'} titleVariant="body1" titleText={body} />
+        </Container>
+        <Box key={'crud-search-button'} id={'crud-search-button'} sx={modalButtonBoxStyles}>
+          <Button color="secondary" variant="text" onClick={() => setOpen(!open)} sx={headerModalButtonStyles}>
             {open ? 'Close' : 'Search'}
           </Button>
         </Box>

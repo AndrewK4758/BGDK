@@ -1,7 +1,11 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
-const ChutesAndLaddersIcon = () => (
-  <SvgIcon sx={{ scale: 1.75, marginLeft: 1 }}>
+interface ChutesAndLaddersIconProps {
+  state: 'loading' | 'idle' | 'submitting';
+}
+
+const ChutesAndLaddersIcon = ({ state }: ChutesAndLaddersIconProps) => (
+  <SvgIcon component={'svg'} sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.75, marginLeft: 1 }}>
     <svg
       version="1.1"
       id="svg55"

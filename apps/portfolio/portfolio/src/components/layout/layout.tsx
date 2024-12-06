@@ -38,7 +38,7 @@ const homeWrapperSxProps: SxProps = {
 const mainWrapperSxProps: SxProps = {
   ...baseStyleForLayoutItems,
   marginTop: '20vh',
-  gap: '20vh',
+  gap: '15vh',
 };
 
 const outletWrapperSxProps: SxProps = {
@@ -50,6 +50,8 @@ const outletWrapperSxProps: SxProps = {
 
 const footerWrapperSxProps: SxProps = {
   height: 'fit-content',
+  width: '100%',
+  textAlign: 'center',
 };
 
 /**
