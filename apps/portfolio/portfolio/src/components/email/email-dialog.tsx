@@ -9,6 +9,8 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { type Dispatch, lazy, type SetStateAction, Suspense, useState } from 'react';
 import GoogleUserContextProvider from '../../contexts/contact-context';
+import { fullSizeBlock } from '../../styles/pages-styles';
+import { flexColumnStyles } from '../../styles/prompt-builder-styles';
 import Theme from '../../styles/theme';
 
 const EmailForm = lazy(() => import('./email-form/email-form'));
@@ -44,10 +46,9 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
           id="email-me-title-box"
           data-testid="email-me-title-box"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            height: '100%',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ...(fullSizeBlock as any),
+            ...flexColumnStyles,
           }}
         >
           <Tabs
@@ -104,7 +105,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             key={'calendar-and-email-section'}
             id="calendar-and-email-section"
             data-testid="calendar-and-email-section"
-            sx={{ flex: 4, display: 'flex', flexDirection: 'column' }}
+            sx={{ ...flexColumnStyles, flex: 4 }}
           >
             <Suspense fallback={<Waiting />}>
               {tab === 0 && <GoogleCalendar setOpen={setOpen} />}
@@ -122,7 +123,6 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
               id="close-email-me-button"
               data-testid="close-email-me-button"
               onClick={() => setOpen(false)}
-              sx={{ fontSize: '2rem' }}
             >
               Close
             </Button>

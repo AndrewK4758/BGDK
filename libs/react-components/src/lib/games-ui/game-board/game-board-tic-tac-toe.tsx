@@ -91,7 +91,13 @@ export const GameBoardMapTicTacToe = ({
           </Box>
         ) : (
           <Box>
-            <Text key={`${e.display}-space`} titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
+            <Text
+              component={'p'}
+              key={`${e.display}-space`}
+              titleVariant="body2"
+              titleText={e.display}
+              sx={breakpointsSpaceSx}
+            />
           </Box>
         )}
       </Grid2>

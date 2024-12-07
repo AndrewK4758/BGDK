@@ -1,25 +1,11 @@
-import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch, type SetStateAction } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
-import Theme from '../../../styles/theme';
+import { breakpointsResetGameButton } from '../../../styles/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
-
-const breakpointsResetGameButton: SxProps = {
-  marginLeft: '.5rem',
-  backgroundColor: Theme.palette.primary.main,
-  fontSize: '1.75rem',
-  [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-    width: 130,
-    height: 35,
-  },
-};
-
-const baseURL = import.meta.env.VITE_GAMES_API_URL;
 
 interface ResetGameProps {
   dispatch: Dispatch<Action>;
@@ -42,6 +28,8 @@ export default function ResetGame({ dispatch, socket, setSpace }: ResetGameProps
   );
 }
 
+const baseURL = import.meta.env.VITE_GAMES_API_URL;
+
 const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProps & { id: string | undefined }) => {
   const reqHeaders = {
     headers: {
@@ -51,10 +39,11 @@ const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProp
   try {
     await axios.patch(`${baseURL}/games/${id}/reset`, {}, reqHeaders);
     dispatch({ type: ActionType.RESET, socket: socket });
-    setSpace(undefined);
     return null;
   } catch (error) {
     console.log(error);
     return null;
+  } finally {
+    setSpace(undefined);
   }
 };

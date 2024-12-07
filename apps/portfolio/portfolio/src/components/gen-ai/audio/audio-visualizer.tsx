@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
+import { fullSizeBlock } from '../../../styles/pages-styles';
 import Theme from '../../../styles/theme';
-// import Theme from '../../../styles/theme';
 
 interface AudioVisualizerProps {
   stream: MediaStream;
@@ -63,7 +63,7 @@ export const AudioVisualizer = ({ stream }: AudioVisualizerProps) => {
       ref={canvasRef}
       key={'audio-visualizer-canvas-element'}
       id={'audio-visualizer-canvas-element'}
-      style={{ width: '100%', height: '100%' }}
+      style={fullSizeBlock as CSSProperties}
     />
   );
 };

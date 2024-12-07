@@ -1,42 +1,21 @@
-import { FormikValidationError } from '@bgdk/shared-react-components';
+import { FormikValidationError, helperTextSx } from '@bgdk/shared-react-components';
 import { DialogActions } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import { useContext, useRef, type Dispatch, type SetStateAction } from 'react';
-import { Form, useNavigation, useSubmit, type SubmitFunction } from 'react-router-dom';
+import { Form, useSubmit, type SubmitFunction } from 'react-router-dom';
 import * as Yup from 'yup';
 import 'yup-phone-lite';
 import { GoogleUserContext, GoogleUserContextProps } from '../../../contexts/contact-context';
+import { dialogActionsStyles, textFieldSlotProps } from '../../../styles/header-styles';
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
-import { helperTextSx } from '@bgdk/shared-react-components';
 import AppointmentMaker from '../appointment-maker/appointment-maker';
-
-const textFieldSlotProps = {
-  inputLabel: { sx: { fontSize: '1.5rem', color: Theme.palette.primary.dark } as SxProps },
-  htmlInput: {
-    sx: {
-      fontSize: '1.5rem',
-      paddingTop: 2,
-      backgroundColor: Theme.palette.background.default,
-      color: Theme.palette.background.paper,
-    } as SxProps,
-  },
-  input: {
-    inputProps: {
-      sx: {
-        borderRadius: 1,
-        color: Theme.palette.text.primary,
-        backgroundColor: Theme.palette.background.default,
-      },
-    },
-  },
-};
 
 export type MessageMeFormValues = {
   name: string;
@@ -73,7 +52,6 @@ interface EmaiFormProps {
 
 const EmaiForm = ({ setOpen }: EmaiFormProps) => {
   const submit = useSubmit();
-  const { state } = useNavigation();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { GoogleUserContextValues } = useContext<GoogleUserContextProps>(GoogleUserContext);
 
@@ -84,7 +62,7 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: values => handleSubmitMessage(values, submit, setOpen, state),
+    onSubmit: values => handleSubmitMessage(values, submit, setOpen),
   });
 
   return (
@@ -95,20 +73,19 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
       method="post"
       encType="multipart/form-data"
       onSubmit={formik.handleSubmit}
-      style={{ height: '100%' }}
     >
       <Container
         component={'section'}
         key={'inputs-container'}
         id="inputs-container"
         data-testid="inputs-container"
-        sx={{ height: '100%' }}
+        sx={flexColumnStyles}
       >
         <Stack
           component={'section'}
           id="email-me-inputs-stack"
           data-testid="email-me-inputs-stack"
-          sx={{ height: '100%', justifyContent: 'space-evenly', gap: 4, paddingTop: 4 }}
+          sx={{ flex: '1 0 100%', justifyContent: 'space-between', gap: 4, paddingTop: 4 }}
         >
           <Box component={'span'} key={'name-wrapper'} id="name-wrapper" data-testid="name-wrapper">
             <TextField
@@ -244,7 +221,7 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
             key={'attachment-wrapper'}
             id="attachment-wrapper"
             data-testid="attachment-wrapper"
-            sx={{ display: 'flex', flexDirection: 'column' }}
+            sx={flexColumnStyles}
           >
             <input
               ref={fileInputRef}
@@ -266,27 +243,11 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
             ) : null}
           </Box>
 
-          <DialogActions
-            sx={{
-              flex: '0 1 45%',
-              display: 'flex',
-              alignItems: 'flex-end',
-            }}
-          >
-            <Button
-              id="upload-file-button"
-              data-testid="upload-file-button"
-              sx={{ fontSize: '2rem' }}
-              onClick={handleFileSubmit}
-            >
+          <DialogActions sx={dialogActionsStyles}>
+            <Button id="upload-file-button" data-testid="upload-file-button" onClick={handleFileSubmit}>
               Upload File
             </Button>
-            <Button
-              type="submit"
-              id="submit-email-me-button"
-              data-testid="submit-email-me-button"
-              sx={{ fontSize: '2rem' }}
-            >
+            <Button type="submit" id="submit-email-me-button" data-testid="submit-email-me-button">
               Submit
             </Button>
             <Button
@@ -294,7 +255,6 @@ const EmaiForm = ({ setOpen }: EmaiFormProps) => {
               id="reset-email-me-button"
               data-testid="reset-email-me-button"
               onReset={formik.handleReset}
-              sx={{ fontSize: '2rem' }}
             >
               Reset
             </Button>
@@ -311,21 +271,24 @@ const handleSubmitMessage = async (
   values: MessageMeFormValues,
   submit: SubmitFunction,
   setOpen: Dispatch<SetStateAction<boolean>>,
-  state: 'idle' | 'loading' | 'submitting',
 ) => {
-  const { name, email, phone, subject, body, date, attachment } = values;
+  try {
+    const { name, email, phone, subject, body, date, attachment } = values;
 
-  const form = new FormData();
+    const form = new FormData();
 
-  form.append('name', name);
-  form.append('email', email);
-  form.append('phone', phone);
-  form.append('subject', subject);
-  form.append('body', body);
-  form.append('date', date);
-  if (attachment) form.append('attachment', attachment);
+    form.append('name', name);
+    form.append('email', email);
+    form.append('phone', phone);
+    form.append('subject', subject);
+    form.append('body', body);
+    form.append('date', date);
+    if (attachment) form.append('attachment', attachment);
 
-  submit(form, { action: '/', method: 'post', encType: 'multipart/form-data' });
-
-  if (state === 'idle') setOpen(false);
+    await submit(form, { action: '/', method: 'post', encType: 'multipart/form-data' });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setOpen(false);
+  }
 };

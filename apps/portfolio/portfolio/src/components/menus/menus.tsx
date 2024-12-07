@@ -1,31 +1,16 @@
 import DataObjectTwoToneIcon from '@mui/icons-material/DataObjectTwoTone';
 import MenuOpenSharpIcon from '@mui/icons-material/MenuOpenSharp';
-import { type SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
 import { Fragment, useState, type Dispatch, type SetStateAction } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { buttonSXProps, closeMenusStyles, cubeSxProps, menuIconsStyles } from '../../styles/menus-styles';
+import { flexColumnStyles } from '../../styles/prompt-builder-styles';
 import Theme from '../../styles/theme';
 import AiIcon from '../icons/ai-icon';
 import GamesIcon from '../icons/games-icon';
 import HomeIcon from '../icons/home-icon';
-
-const cubeSxProps: SxProps = {
-  position: 'fixed',
-  zIndex: 2,
-  width: 'fit-content',
-  maxWidth: '350px',
-  minWidth: '12%',
-  height: '8%',
-  maxHeight: '200px',
-};
-
-const buttonSXProps: SxProps = {
-  fontSize: '3rem',
-  width: '100%',
-  color: Theme.palette.background.default,
-};
 
 interface MenusProps {
   loading: boolean;
@@ -47,16 +32,18 @@ const Menus = ({ setLoading }: MenusProps) => {
         left={'2%'}
         sx={cubeSxProps}
       >
-        <Box
-          component={'div'}
-          key={'top-left-button-wrapper'}
-          id="top-left-button-wrapper"
-          sx={{ display: 'flex', flexDirection: 'column' }}
-        >
+        <Box component={'div'} key={'top-left-button-wrapper'} id="top-left-button-wrapper" sx={flexColumnStyles}>
           {!open && (
-            <Fab sx={buttonSXProps} variant="extended" color="primary" onClick={() => setOpen(true)}>
+            <Fab
+              sx={buttonSXProps}
+              id={'explore-button'}
+              data-testid={'explore-button'}
+              variant="extended"
+              color="primary"
+              onClick={() => setOpen(true)}
+            >
               Explore
-              <MenuOpenSharpIcon sx={{ fontSize: '3rem' }} />
+              <MenuOpenSharpIcon sx={menuIconsStyles} />
             </Fab>
           )}
 
@@ -65,11 +52,13 @@ const Menus = ({ setLoading }: MenusProps) => {
               component={'div'}
               key={'games-menu-with-close'}
               id="games-menu-with-close"
-              sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+              sx={{ ...flexColumnStyles, gap: 1 }}
             >
               <Fab
-                sx={{ ...buttonSXProps, flex: '0 1 auto' }}
+                sx={buttonSXProps}
                 color="primary"
+                id="home-button"
+                data-testid="home-button"
                 variant="extended"
                 onClick={() => {
                   nav('/');
@@ -77,24 +66,16 @@ const Menus = ({ setLoading }: MenusProps) => {
                 }}
               >
                 Home
-                <HomeIcon />
+                <HomeIcon sx={{ fontSize: '2.5rem' }} />
               </Fab>
 
               <Typography
                 variant="caption"
+                id={'close-link'}
+                data-testid={'close-link'}
                 onClick={() => setOpen(false)}
                 color={Theme.palette.secondary.contrastText}
-                sx={{
-                  justifySelf: 'center',
-                  cursor: 'pointer',
-                  fontSize: '.8rem',
-                  textAlign: 'center',
-                  maxHeight: '1.5rem',
-                  backgroundColor: Theme.palette.background.default,
-                  width: '75px',
-                  borderRadius: 0.4,
-                  alignSelf: 'flex-end',
-                }}
+                sx={closeMenusStyles}
               >
                 Close Menu
               </Typography>
@@ -116,6 +97,8 @@ const Menus = ({ setLoading }: MenusProps) => {
             <Fab
               className={`menuButton ${open ? 'animate' : ''}`}
               color="primary"
+              id="games-button"
+              data-testid="games-button"
               variant="extended"
               onClick={() => {
                 nav('games');
@@ -123,7 +106,7 @@ const Menus = ({ setLoading }: MenusProps) => {
               sx={buttonSXProps}
             >
               Games
-              <GamesIcon />
+              <GamesIcon sx={menuIconsStyles} />
             </Fab>
           </Box>
           <Box
@@ -139,11 +122,13 @@ const Menus = ({ setLoading }: MenusProps) => {
               className={`menuButton ${open ? 'animate' : ''}`}
               sx={buttonSXProps}
               color="primary"
+              id="crud-button"
+              data-testid="crud-button"
               variant="extended"
               onClick={() => nav('crud')}
             >
               Crud
-              <DataObjectTwoToneIcon sx={{ fontSize: '3rem' }} />
+              <DataObjectTwoToneIcon sx={menuIconsStyles} />
             </Fab>
           </Box>
           <Box
@@ -159,6 +144,8 @@ const Menus = ({ setLoading }: MenusProps) => {
               className={`menuButton ${open ? 'animate' : ''}`}
               sx={buttonSXProps}
               color="primary"
+              id="gen-ai-button"
+              data-testid="gen-ai-button"
               variant="extended"
               onClick={() => {
                 setLoading(true);
@@ -166,7 +153,7 @@ const Menus = ({ setLoading }: MenusProps) => {
               }}
             >
               Generative
-              <AiIcon />
+              <AiIcon sx={menuIconsStyles} />
             </Fab>
           </Box>
         </>

@@ -1,7 +1,12 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const GitHibIcon = () => (
-  <SvgIcon sx={{ scale: 1.25 }}>
+interface GitHubIconProps {
+  sx: SxProps;
+}
+
+const GitHibIcon = ({ sx }: GitHubIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg46"

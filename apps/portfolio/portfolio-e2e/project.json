@@ -9,11 +9,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "fix": true,
-        "lintFilePatterns": [
-          "apps/portfolio/portfolio-e2e/**/*.{ts,tsx,js,jsx}",
-          "apps/portfolio/portfolio-e2e/package.json"
-        ]
+        "fix": true
       }
     }
   }

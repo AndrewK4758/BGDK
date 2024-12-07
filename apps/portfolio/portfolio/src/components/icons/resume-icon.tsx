@@ -1,7 +1,12 @@
 import SvgIcon from '@mui/material/SvgIcon';
+import { SxProps } from '@mui/material/styles';
 
-const ResumeIcon = () => (
-  <SvgIcon sx={{ width: '3rem', height: 'auto' }}>
+interface ResumeIconProps {
+  sx: SxProps;
+}
+
+const ResumeIcon = ({ sx }: ResumeIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg1031"

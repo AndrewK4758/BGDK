@@ -1,23 +1,11 @@
 import type { GamePlayerValidation } from '@bgdk/types-game';
-import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
-import Theme from '../../../styles/theme';
+import { breakpointsTakeTurnButtonTTT } from '../../../styles/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
-
-const breakpointsTakeTurnButton: SxProps = {
-  backgroundColor: Theme.palette.primary.main,
-
-  fontSize: '1.75rem',
-  [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-    width: 130,
-    height: 35,
-  },
-};
 
 interface TakeTurnProps {
   dispatch: Dispatch<Action>;
@@ -31,7 +19,7 @@ const TakeTurnTicTacToe = ({ dispatch, socket, position, avatarInTurn }: TakeTur
     variant="contained"
     type="button"
     onClick={() => handleTakeTurn({ dispatch, socket, position, avatarInTurn })}
-    sx={breakpointsTakeTurnButton}
+    sx={breakpointsTakeTurnButtonTTT}
   >
     Take Turn
   </Button>

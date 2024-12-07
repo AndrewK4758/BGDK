@@ -54,7 +54,9 @@ const Games = () => {
               title="Chutes & Ladders"
               id="Chutes-&-Ladders"
               disabled={state === 'submitting'}
-              endIcon={<ChutesAndLaddersIcon state={state} />}
+              endIcon={
+                <ChutesAndLaddersIcon sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.75, marginLeft: 1 }} />
+              }
               onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
               sx={pagesButtonStyles}
             >
@@ -68,7 +70,7 @@ const Games = () => {
               title="Tic Tac Toe"
               id="Tic-Tac-Toe"
               disabled={state === 'submitting'}
-              endIcon={<TicTacToeIcon state={state} />}
+              endIcon={<TicTacToeIcon sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.4, marginLeft: 1 }} />}
               onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
               sx={pagesButtonStyles}
             >

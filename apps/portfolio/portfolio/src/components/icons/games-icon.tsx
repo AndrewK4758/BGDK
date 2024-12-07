@@ -1,7 +1,12 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const GamesIcon = () => (
-  <SvgIcon sx={{ fontSize: '3rem' }}>
+interface GamesIconProps {
+  sx: SxProps;
+}
+
+const GamesIcon = ({ sx }: GamesIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg292"

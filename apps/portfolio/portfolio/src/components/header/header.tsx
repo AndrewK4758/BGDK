@@ -1,10 +1,11 @@
+import { Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
-import { type SxProps } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import EmailIcon from '../../components/icons/email-icon';
+import { iconSxProps, iconWrapperSxProps, socialMediaLinksWrapper } from '../../styles/header-styles';
+import Theme from '../../styles/theme';
 import EmailDialog from '../email/email-dialog';
 import DiscordIcon from '../icons/discord-icon';
 import FacebookIcon from '../icons/facebook-icon';
@@ -12,27 +13,6 @@ import GitHibIcon from '../icons/github-icon';
 import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
-
-const iconWrapperSxProps: SxProps = {
-  flex: '1 0 75%',
-  display: 'flex',
-  alignContent: 'center',
-  justifyContent: 'space-around',
-};
-
-const iconSxProps: SxProps = {
-  justifyContent: 'center',
-  alignContent: 'center',
-  scale: 1.4,
-};
-
-const socialMediaLinksWrapper: SxProps = {
-  flex: '1 0 100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  paddingX: 1,
-};
 
 const Header = () => {
   const [openEmail, setOpenEmail] = useState<boolean>(false);
@@ -52,16 +32,15 @@ const Header = () => {
         data-testid="social-media-text-wrapper"
         flex={'1 0 25%'}
       >
-        <Typography
-          variant="h4"
-          color="secondary"
+        <Text
+          component={'h4'}
+          titleVariant="h4"
+          sx={{ color: Theme.palette.secondary.main, textAlign: 'center' }}
           key={'social-media-text'}
           id="social-media-text"
           data-testid="social-media-text"
-          textAlign={'center'}
-        >
-          {`Connect & Colab \u27F6`}
-        </Typography>
+          titleText={`Connect & Colab \u27F6`}
+        />
       </Box>
       <Box
         component={'div'}
@@ -83,7 +62,7 @@ const Header = () => {
             data-testid="github-icon"
             href="https://github.com/AndrewK4758"
           >
-            <GitHibIcon />
+            <GitHibIcon sx={{ scale: 1.25 }} />
           </IconButton>
         </Box>
         <Box
@@ -99,7 +78,7 @@ const Header = () => {
             data-testid="facebook-icon"
             href="https://www.facebook.com/AKlapper47"
           >
-            <FacebookIcon />
+            <FacebookIcon sx={{ scale: 1.25 }} />
           </IconButton>
         </Box>
         <Box
@@ -115,7 +94,7 @@ const Header = () => {
             data-testid="linkedin-icon"
             href="https://www.linkedin.com/in/andrew-klapper-a9204b23b/"
           >
-            <LinkedinIcon />
+            <LinkedinIcon sx={{ scale: 1.25 }} />
           </IconButton>
         </Box>
         <Box
@@ -131,12 +110,12 @@ const Header = () => {
             data-testid="huggingface-icon"
             href="https://huggingface.co/ak475826"
           >
-            <HuggingFaceIcon />
+            <HuggingFaceIcon sx={{ scale: 1.5 }} />
           </IconButton>
         </Box>
         <Box component={'span'} key={'x-icon-span'} id="x-icon-span" data-testid="x-icon-span" sx={iconSxProps}>
           <IconButton key={'x-icon'} id="x-icon" data-testid="x-icon" href="https://x.com/ak475826">
-            <XIcon />
+            <XIcon sx={{ scale: 1 }} />
           </IconButton>
         </Box>
         <Box
@@ -152,7 +131,7 @@ const Header = () => {
             data-testid="discord-icon"
             href="https://discord.com/users/989564035542446190"
           >
-            <DiscordIcon />
+            <DiscordIcon sx={{ scale: 1.25 }} />
           </IconButton>
         </Box>
         <Box
@@ -163,7 +142,7 @@ const Header = () => {
           sx={iconSxProps}
         >
           <IconButton color="secondary" id="email-icon" data-testid="email-icon" onClick={() => setOpenEmail(true)}>
-            <EmailIcon />
+            <EmailIcon sx={{ scale: 1.25 }} />
           </IconButton>
         </Box>
       </Box>

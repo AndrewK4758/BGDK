@@ -8,7 +8,7 @@ import { useGoogleLogin, type CodeResponse } from '@react-oauth/google';
 import axios from 'axios';
 import dayjs, { type Dayjs } from 'dayjs';
 import { jwtDecode } from 'jwt-decode';
-import { useContext, useState, type Dispatch, type SetStateAction } from 'react';
+import { useContext, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
 import { Form, useNavigation } from 'react-router-dom';
 import {
   GoogleUserContext,
@@ -16,7 +16,9 @@ import {
   type GoogleUserContextProps,
 } from '../../../contexts/contact-context';
 import '../../../styles/google-calendar.css';
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
+import { timePickerSxProps } from '../../../styles/header-styles';
 
 const tomorrow = dayjs().add(1, 'day');
 const nextYear = dayjs().add(1, 'year');
@@ -136,14 +138,15 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
       key={'google-calendar-wrapper'}
       id="google-calendar-wrapper"
       data-testid="google-calendar-wrapper"
-      sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}
+      sx={{ ...flexColumnStyles, flex: 1 }}
     >
       <Box
         component={'section'}
         key={'google-calendar-auth-box'}
         id="google-calendar-auth-box"
         data-testid="google-calendar-auth-box"
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        display={'flex'}
+        justifyContent={'center'}
       >
         <Button
           LinkComponent={'button'}
@@ -161,8 +164,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
         id="google-calendar-components-box"
         data-testid="google-calendar-components-box"
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          ...flexColumnStyles,
           alignItems: 'center',
           flex: 1,
         }}
@@ -170,10 +172,9 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
         <Form
           onSubmit={() => handleSubmitEvent(values, setOpen)}
           style={{
+            ...(flexColumnStyles as CSSProperties),
             width: '100%',
             flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
           }}
         >
           <Box
@@ -182,10 +183,9 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             id="date-picker-wrapper"
             data-testid="date-picker-wrapper"
             sx={{
+              ...flexColumnStyles,
               width: '100%',
               flex: '3 1 auto',
-              display: 'flex',
-              flexDirection: 'column',
               alignContent: 'center',
               justifyContent: 'center',
             }}
@@ -235,7 +235,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
                   tooltipTitle=""
                   labelVariant="body1"
                   labelText="Start Time"
-                  sx={{ fontSize: '1.25rem' }}
+                  sx={timePickerSxProps}
                 />
               }
               minTime={minTime}
@@ -255,7 +255,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
                   tooltipTitle=""
                   labelVariant="body1"
                   labelText="End Time"
-                  sx={{ fontSize: '1.25rem' }}
+                  sx={timePickerSxProps}
                 />
               }
               minTime={values.startTime.add(1, 'hour')}
@@ -271,12 +271,10 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
             key={'google-calendar-submit-box'}
             id="google-calendar-submit-box"
             data-testid="google-calendar-submit-box"
-            sx={{
-              height: 'fit-content',
-              display: 'flex',
-              justifyContent: 'flex-end',
-              paddingX: 4,
-            }}
+            height={'fit-content'}
+            display={'flex'}
+            justifyContent={'flex-end'}
+            paddingX={4}
           >
             {state !== 'submitting' && GoogleUserContextValues.name.length ? (
               <Button

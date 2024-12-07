@@ -1,7 +1,11 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const DiscordIcon = () => (
-  <SvgIcon sx={{ scale: 1.25 }}>
+interface DiscordIconProps {
+  sx: SxProps;
+}
+const DiscordIcon = ({ sx }: DiscordIconProps) => (
+  <SvgIcon sx={sx}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
       <path
         fill="#5865F2"

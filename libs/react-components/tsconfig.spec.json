@@ -20,8 +20,9 @@
     "src/**/*.tsx",
     "src/**/*.ts",
     "../gen-ai/vertex-ai/src/**/*.ts",
-    "../types/types-ai/src/**/*.ts",
+    "../types/**/*/src/**/*.ts",
     "../utils/src/**/*.ts",
-    "../shared-react-components/src/lib/render-list/render-list.tsx"
+    "../shared-react-components/src/**/*.tsx",
+    "../shared-react-components/src/**/*.ts"
   ]
 }

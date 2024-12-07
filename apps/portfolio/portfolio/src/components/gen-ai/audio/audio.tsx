@@ -15,10 +15,9 @@ import { MediaRecorderClientContext } from '../../../contexts/audio-context';
 import { WebSocketContext } from '../../../contexts/websocket-context';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
+import { audioText } from '../static/audio-text';
 import AudioVisualizer from './audio-visualizer';
-
-const audioText =
-  'This audio recorder allows you to capture your voice and submit it directly to Gemini.  Use it to create recordings for analysis, transcription, or any other task that can benefit from Gemini\'s powerful AI capabilities. Simply click "Start" to begin.';
 
 const options: MediaRecorderOptions = {
   mimeType: 'audio/webm',
@@ -88,38 +87,22 @@ const GenAiAudio = () => {
         component={'div'}
         key={'gen-audio-paper'}
         id="gen-audio-paper"
-        sx={{ flex: '1 0 100%', display: 'flex', flexDirection: 'column' }}
+        sx={{ ...flexColumnStyles, flex: '1 0 100%' }}
       >
         <Container
           component={'section'}
           key={'gen-audio-container'}
           id="gen-audio-container"
           sx={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            justifyContent: 'space-between',
-            flex: '1 0 100%',
             paddingY: 2,
           }}
         >
-          <Box
-            component={'section'}
-            key={'gen-audio-header-wrapper'}
-            id={'gen-audio-header-wrapper'}
-            sx={{ flex: '0 1 100%' }}
-          >
-            <Text titleVariant="h3" sx={{ textAlign: 'center', paddingY: 2 }} titleText={'Audio'} />
+          <Box component={'section'} key={'gen-audio-header-wrapper'} id={'gen-audio-header-wrapper'}>
+            <Text component={'h3'} titleVariant="h3" titleText={'Audio'} sx={{ textAlign: 'center', paddingY: 2 }} />
 
-            <Text titleVariant="body1" sx={{}} titleText={audioText} />
+            <Text component={'p'} titleVariant="body1" titleText={audioText} />
           </Box>
-          <Box
-            component={'section'}
-            key={'gen-audio-recorder-wrapper'}
-            id="gen-audio-recorder-wrapper"
-            sx={{ flex: '1 0 100%' }}
-          >
+          <Box component={'section'} key={'gen-audio-recorder-wrapper'} id="gen-audio-recorder-wrapper">
             {recording && <AudioVisualizer stream={stream as MediaStream} />}
             <audio title="audio-track.webm" ref={audRef} />
           </Box>
@@ -128,13 +111,10 @@ const GenAiAudio = () => {
             component={'section'}
             key={'gen-audio-recorder-buttons-wrapper'}
             id="gen-audio-recorder-buttons-wrapper"
-            sx={{ display: 'flex', justifyContent: 'space-evenly' }}
+            display={'flex'}
+            justifyContent={'space-evenly'}
           >
-            {blob && (
-              <Button onClick={() => uploadFile()} sx={{ fontSize: '2rem' }}>
-                Query Gemini
-              </Button>
-            )}
+            {blob && <Button onClick={() => uploadFile()}>Query Gemini</Button>}
 
             <Button
               endIcon={<MicNoneIcon sx={{ scale: 2 }} />}
@@ -142,7 +122,6 @@ const GenAiAudio = () => {
                 mrcRef.current?.startRecording(setBlob);
                 setRecording(true);
               }}
-              sx={{ fontSize: '2rem' }}
             >
               Start
             </Button>
@@ -153,16 +132,11 @@ const GenAiAudio = () => {
                 mrcRef.current?.stopRecording();
                 setRecording(false);
               }}
-              sx={{ fontSize: '2rem' }}
             >
               Stop
             </Button>
 
-            <Button
-              endIcon={<HearingIcon sx={{ scale: 2 }} />}
-              onClick={() => audRef.current?.play()}
-              sx={{ fontSize: '2rem' }}
-            >
+            <Button endIcon={<HearingIcon sx={{ scale: 2 }} />} onClick={() => audRef.current?.play()}>
               Listen
             </Button>
           </Box>

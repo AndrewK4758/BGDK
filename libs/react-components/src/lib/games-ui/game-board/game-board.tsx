@@ -60,7 +60,13 @@ const gameBoardRowMap = (e: ILiteSpace, i: number, _arr: string[]) => (
         style={avatarSize}
       />
     ) : (
-      <Text id={`${e.display}-avatar-c&l`} titleVariant="body2" titleText={e.display} sx={breakpointsSpaceSx} />
+      <Text
+        component={'p'}
+        id={`${e.display}-avatar-c&l`}
+        titleVariant="body2"
+        titleText={e.display}
+        sx={breakpointsSpaceSx}
+      />
     )}
   </Grid2>
 );

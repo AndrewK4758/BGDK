@@ -31,6 +31,7 @@ export function SelectMenu({ label, mapCallback, labelSx, selectSx, data, ...pro
       </Select>
       {meta.touched && meta.error ? (
         <Text
+          component={'p'}
           titleVariant="body1"
           titleText={meta.error}
           sx={{ color: Theme.palette.primary.contrastText, ...labelSx }}

@@ -53,6 +53,7 @@ export function FormikTextInput({
       />
       {meta.touched && meta.error ? (
         <Text
+          component={'p'}
           id="formik-error-text-input"
           titleVariant="body1"
           titleText={meta.error}

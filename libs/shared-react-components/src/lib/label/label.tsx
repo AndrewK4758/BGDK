@@ -45,7 +45,9 @@ export const Label = forwardRef<HTMLDivElement, LabelProps>(
         component={'span'}
         key={`${labelText}-box`}
         id={`${labelText}-box`}
-        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+        display={'flex'}
+        alignItems={'center'}
+        gap={1}
       >
         <Tooltip
           id={`${labelText}-tooltip`}

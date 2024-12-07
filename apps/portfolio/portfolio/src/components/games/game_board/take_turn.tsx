@@ -1,22 +1,11 @@
 import type { GamePlayerValidation } from '@bgdk/types-game';
-import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { Socket } from 'socket.io-client';
-import Theme from '../../../styles/theme';
+import { breakpointsTakeTurnButton } from '../../../styles/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
-
-const breakpointsTakeTurnButton: SxProps = {
-  backgroundColor: Theme.palette.primary.main,
-  fontSize: '1.75rem',
-  [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-    width: 130,
-    height: 35,
-  },
-};
 
 const baseURL = import.meta.env.VITE_GAMES_API_URL;
 

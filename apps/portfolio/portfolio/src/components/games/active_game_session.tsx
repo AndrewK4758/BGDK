@@ -1,17 +1,20 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
-import { Theme } from '@bgdk/react-components';
 import { Text } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
 import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import type { SxProps } from '@mui/material/styles';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
+import {
+  breakpointsBottomMenuButtonsBox,
+  breakpointsBottomMenuGameBoard,
+  breakpointsPlayerInTurnText,
+} from '../../styles/games-styles';
 import getGameInstanceInfo from '../../utils/utils';
 import ActiveAvatars from './game_board/active_avatars';
 import ResetGame from './game_board/reset_game';
@@ -20,32 +23,6 @@ import ShowGameBoard from './game_board/show_game_board';
 import socketReducer, { ActionType } from './game_board/socket-reducer';
 import TakeTurnTicTacToe from './game_board/take-turn-tic-tac-toe';
 import TakeTurn from './game_board/take_turn';
-
-const breakpointsBottomMenuGameBoard: SxProps = {
-  display: 'flex',
-  marginTop: '2rem',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 4,
-  [Theme.breakpoints.down('md')]: {
-    marginTop: '1rem',
-  },
-};
-
-const breakpointsPlayerInTurnText: SxProps = {
-  [Theme.breakpoints.down('md')]: {
-    fontSize: '1em',
-  },
-};
-
-const breakpointsBottomMenuButtonsBox: SxProps = {
-  flex: '0 1 30%',
-  display: 'flex',
-  justifyContent: 'space-evenly',
-  [Theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-  },
-};
 
 export interface IActiveGameInfo extends IActivePlayersInGame {
   gameBoard: GameBoard;
@@ -131,7 +108,8 @@ const ActiveGameSession = () => {
         component={'section'}
         key={`${id}-active-avatar-wrapper`}
         id="active-avatar-wrapper"
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        display={'flex'}
+        justifyContent={'center'}
       >
         <ActiveAvatars avatarsInGame={state.activePlayersInGame} winner={state.winner} />
       </Box>
@@ -160,7 +138,7 @@ const ActiveGameSession = () => {
         id="active-game-buttons-wrapper"
         sx={breakpointsBottomMenuGameBoard}
       >
-        <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
+        <Text component={'h2'} titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         <Box component={'section'} sx={breakpointsBottomMenuButtonsBox}>
           {id === 'Chutes-&-Ladders' ? (
             <TakeTurn avatarInTurn={state.avatarInTurn as string} dispatch={dispatch} socket={socket} />

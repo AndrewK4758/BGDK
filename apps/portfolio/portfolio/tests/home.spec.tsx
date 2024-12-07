@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, type RenderResult } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { ABOUT_ME_TITLE } from '../src/components/intro/intro';
 import Home from '../src/pages/home/home';
+import { ABOUT_ME_TITLE } from '../src/components/intro/static/intro-text';
 
 let baseComponent: RenderResult;
 

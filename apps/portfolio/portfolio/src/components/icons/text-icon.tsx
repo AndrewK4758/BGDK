@@ -1,7 +1,12 @@
 import SvgIcon from '@mui/material/SvgIcon';
+import type { SxProps } from '@mui/material/styles';
 
-const TextIcon = () => (
-  <SvgIcon sx={{ scale: 1.5 }}>
+interface TextIconProps {
+  sx: SxProps;
+}
+
+const TextIcon = ({ sx }: TextIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       width="800px"
       height="800px"

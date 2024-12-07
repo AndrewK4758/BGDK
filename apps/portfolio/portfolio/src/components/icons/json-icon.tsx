@@ -1,7 +1,11 @@
 import SvgIcon from '@mui/material/SvgIcon';
+import type { SxProps } from '@mui/material/styles';
 
-const JsonIcon = () => (
-  <SvgIcon sx={{ scale: 1.5 }}>
+interface JsonIconProps {
+  sx: SxProps;
+}
+const JsonIcon = ({ sx }: JsonIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       width="16"
       height="16"

@@ -1,6 +1,10 @@
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-import Theme from '../../styles/theme';
+import type { SxProps } from '@mui/material/styles';
 
-const ImageIcon = () => <InsertPhotoOutlinedIcon sx={{ scale: 1.5, color: Theme.palette.primary.main }} />;
+interface ImageIconProps {
+  sx: SxProps;
+}
+
+const ImageIcon = ({ sx }: ImageIconProps) => <InsertPhotoOutlinedIcon sx={sx} />;
 
 export default ImageIcon;

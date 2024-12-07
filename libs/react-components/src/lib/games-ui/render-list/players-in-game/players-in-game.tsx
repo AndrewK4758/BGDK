@@ -38,7 +38,7 @@ export function PlayersInGame({
   const avatarSVG = `./game-avatars/${avatarName.toLowerCase()}.svg`;
   return (
     <Box component={component} key={id} width={'fit-content'} whiteSpace={'preserve'} sx={boxSx}>
-      <Text titleVariant={playerVariant} titleText={playerName} sx={textSx} />
+      <Text component={'p'} titleVariant={playerVariant} titleText={playerName} sx={textSx} />
       <img src={avatarSVG} alt={`${avatarName} active in game`} style={avatarSvgStyle} />
     </Box>
   );

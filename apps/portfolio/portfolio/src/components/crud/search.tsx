@@ -12,9 +12,9 @@ import { debounce } from '@mui/material/utils';
 import { album, artist } from '@prisma/client';
 import axios from 'axios';
 import { useState, type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
+import { inverseColors } from '../../styles/crud-styles';
 import { pagesTitlesBoxStyles } from '../../styles/pages-styles';
 import Theme from '../../styles/theme';
-import { inverseColors } from './crud-home';
 
 type InitVals = {
   artist: Partial<artist>[];

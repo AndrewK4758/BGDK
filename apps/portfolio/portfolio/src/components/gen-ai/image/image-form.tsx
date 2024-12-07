@@ -1,4 +1,13 @@
-import { FormikValidationError, Label, Text, Waiting } from '@bgdk/shared-react-components';
+import {
+  FormikValidationError,
+  helperTextSx,
+  Label,
+  labelSx,
+  Text,
+  textInputSx,
+  tooltipSx,
+  Waiting,
+} from '@bgdk/shared-react-components';
 import { AspectRatio } from '@bgdk/types-ai';
 import { type ImagenConfig } from '@bgdk/vertex-ai';
 import Box from '@mui/material/Box';
@@ -11,44 +20,17 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Select from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
-import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import { useFormik, type FormikProps } from 'formik';
 import { type ChangeEvent } from 'react';
 import { Form, useActionData, useNavigation, useOutletContext, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
 import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
+import { forrmControlLabelStyles, radioGroupStyles, sampleCountRadioTextStyles } from '../../../styles/gen-ai-styles';
+import { centerFlex } from '../../../styles/pages-styles';
+import { coloredTitleStyles, flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
-
-const imageGenDescription =
-  "Imagen 3 is Google's latest text-to-image AI model, generating high-quality images from detailed text descriptions. Trained on an extensive dataset of text-image pairs, Imagen 3 excels at creating photorealistic images with accurate details and composition. This model can be used for various applications, including creative visualization, design prototyping, and generating visual content for marketing and advertising. Access Imagen 3 through Google's Vertex AI platform or the Gemini API to explore its capabilities.";
-
-const helperTextSx: SxProps = {
-  color: Theme.palette.error.main,
-  fontSize: '1.25rem',
-};
-
-const labelSx: SxProps = {
-  fontSize: '2rem',
-  color: Theme.palette.primary.main,
-  width: 'fit-content',
-  '&:hover': { cursor: 'pointer' },
-};
-
-const tooltipSx: SxProps = {
-  maxWidth: '80vw',
-  fontSize: '1rem',
-  color: Theme.palette.text.primary,
-  backgroundColor: Theme.palette.background.default,
-  border: `2px solid ${Theme.palette.primary.main}`,
-};
-
-const textInputSx: SxProps = {
-  color: Theme.palette.primary.main,
-  backgroundColor: Theme.palette.background.default,
-  borderRadius: 1,
-};
+import { imageGenDescription, promptTooltipText, sampleCountTooltipText, seedTooltipText } from '../static/image-text';
 
 const validationSchema = Yup.object({
   prompt: Yup.string().required('The prompt is required'),
@@ -77,25 +59,11 @@ const ImageForm = () => {
   });
 
   return (
-    <Box
-      component={'div'}
-      key={'image-gen-wrapper'}
-      id="image-gen-wrapper"
-      sx={{ height: 'fit-content', minHeight: '50vh' }}
-    >
-      <Container
-        component={'section'}
-        key={'image-gen'}
-        id="image-gen"
-        sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
-      >
+    <Box component={'div'} key={'image-gen-wrapper'} id="image-gen-wrapper" height={'fit-content'} minHeight={'50vh'}>
+      <Container component={'section'} key={'image-gen'} id="image-gen" sx={{ ...flexColumnStyles, gap: 4 }}>
         <Box component={'div'} key={'image-gen-header-wrapper'} id="image-gen-header-wrapper" sx={{ gap: 4 }}>
-          <Text
-            titleVariant="h2"
-            titleText="Image Generator"
-            sx={{ width: '100%', textAlign: 'center', color: Theme.palette.secondary.light }}
-          />
-          <Text titleVariant="body1" titleText={imageGenDescription} />
+          <Text component={'h2'} titleVariant="h2" titleText="Image Generator" sx={coloredTitleStyles} />
+          <Text component={'p'} titleVariant="body1" titleText={imageGenDescription} />
         </Box>
 
         <Form
@@ -110,9 +78,7 @@ const ImageForm = () => {
               placement="top"
               labelText="Prompt"
               labelVariant="h5"
-              tooltipTitle={
-                'Enter text prompt or use prompt builder to generate prompt, then copy & paste in the input bar.'
-              }
+              tooltipTitle={promptTooltipText}
               tooltipSx={tooltipSx}
               sx={labelSx}
             />
@@ -144,16 +110,14 @@ const ImageForm = () => {
             component={'section'}
             key={'image-form-sample-count-aspect-ratio-box'}
             id="image-form-sample-count-aspect-ratio-box"
-            sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}
+            sx={{ ...centerFlex, justifyContent: 'space-around' }}
           >
             <Box component={'section'} key={'image-form-sample-count-box'} id="image-form-sample-count-box">
               <Label
                 placement="top"
                 labelText="Sample Count"
                 labelVariant="h5"
-                tooltipTitle={
-                  'Sample count is the number of attempts you want the AI to produce for each prompt submission. The range is 1 - 4.'
-                }
+                tooltipTitle={sampleCountTooltipText}
                 tooltipSx={tooltipSx}
                 sx={labelSx}
               />
@@ -167,55 +131,49 @@ const ImageForm = () => {
                 value={formik.values.sampleCount}
                 name={'sampleCount'}
                 color="primary"
-                sx={{
-                  fontSize: '1.5rem',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: 4,
-                  paddingLeft: 2,
-                }}
+                sx={radioGroupStyles}
               >
                 <FormControlLabel
                   value={1}
                   control={<Radio />}
                   label={
-                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                      <Typography variant="h4">1</Typography>
+                    <Box sx={sampleCountRadioTextStyles}>
+                      <Text component={'h4'} titleVariant="h4" titleText={1} />
                     </Box>
                   }
-                  sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                  sx={forrmControlLabelStyles}
                 />
 
                 <FormControlLabel
                   value={2}
                   control={<Radio />}
                   label={
-                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                      <Typography variant="h4">2</Typography>
+                    <Box sx={sampleCountRadioTextStyles}>
+                      <Text component={'h4'} titleVariant="h4" titleText={2} />
                     </Box>
                   }
-                  sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                  sx={forrmControlLabelStyles}
                 />
 
                 <FormControlLabel
                   value={3}
                   control={<Radio />}
                   label={
-                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                      <Typography variant="h4">3</Typography>
+                    <Box sx={sampleCountRadioTextStyles}>
+                      <Text component={'h4'} titleVariant="h4" titleText={3} />
                     </Box>
                   }
-                  sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                  sx={forrmControlLabelStyles}
                 />
                 <FormControlLabel
                   value={4}
                   control={<Radio />}
                   label={
-                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, alignItems: 'center' }}>
-                      <Typography variant="h4">4</Typography>
+                    <Box sx={sampleCountRadioTextStyles}>
+                      <Text component={'h4'} titleVariant="h4" titleText={4} />
                     </Box>
                   }
-                  sx={{ alignContent: 'center', fontSize: '1.5rem' }}
+                  sx={forrmControlLabelStyles}
                 />
               </RadioGroup>
             </Box>
@@ -253,9 +211,7 @@ const ImageForm = () => {
               placement="top"
               labelText="Seed"
               labelVariant="h5"
-              tooltipTitle={
-                "The seed property in Imagen 3's configuration is an optional parameter that allows you to control the randomness of the image generation process. By providing a specific seed value (an integer), you can ensure that the same prompt will consistently generate the same image. This is useful for reproducibility and for exploring variations of an image by changing other parameters while keeping the seed constant. If you don't provide a seed, Imagen 3 will use a random seed, resulting in different images each time you generate with the same prompt."
-              }
+              tooltipTitle={seedTooltipText}
               tooltipSx={tooltipSx}
               sx={labelSx}
             />
@@ -263,7 +219,9 @@ const ImageForm = () => {
               component={'section'}
               key={'slider-and-input-box'}
               id="slider-and-input-box"
-              sx={{ display: 'flex', gap: 4, alignItems: 'center' }}
+              display={'flex'}
+              gap={4}
+              alignItems={'center'}
             >
               <Slider
                 name="seed"
@@ -290,7 +248,7 @@ const ImageForm = () => {
             component={'section'}
             key={'image-gen-button-or-generating-box'}
             id="image-gen-button-or-generating-box"
-            sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}
+            sx={centerFlex}
           >
             {state !== 'submitting' ? (
               <Box
@@ -298,11 +256,9 @@ const ImageForm = () => {
                 key={'image-gen-button-box'}
                 id="image-gen-button-box"
                 sx={{
+                  ...centerFlex,
                   flex: '0 1 50%',
                   height: 'fit-content',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                 }}
               >
                 <Button
@@ -320,14 +276,12 @@ const ImageForm = () => {
                 key={'image-gen-generating-box'}
                 id="image-gen-generating-box"
                 sx={{
+                  ...centerFlex,
                   flex: '0 1 50%',
                   height: 'fit-content',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                 }}
               >
-                <Text titleVariant="h4" titleText={'Generating'} sx={{ textAlign: 'center' }} />
+                <Text component={'h4'} titleVariant="h4" titleText={'Generating'} sx={{ textAlign: 'center' }} />
                 <Waiting />
               </Box>
             )}
@@ -338,11 +292,9 @@ const ImageForm = () => {
         component={'section'}
         key={'generated-image-wrapper'}
         sx={{
+          ...centerFlex,
           flex: '1 0 20%',
-          display: 'flex',
           flexWrap: 'wrap',
-          alignContent: 'center',
-          justifyContent: 'center',
         }}
       >
         {pics &&

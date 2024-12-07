@@ -9,12 +9,17 @@ export const pagesWrapperStyles: SxProps = {
   alignItems: 'center',
   height: 'fit-content',
   minHeight: '80vh',
+  width: '80vw',
 };
 
-export const pagesTitlesBoxStyles: SxProps = {
+export const centerFlex: SxProps = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+};
+
+export const pagesTitlesBoxStyles: SxProps = {
+  ...centerFlex,
   paddingY: 2,
 };
 
@@ -29,7 +34,13 @@ export const modalButtonBoxStyles: SxProps = {
   alignItems: 'center',
 };
 
-export const pagesOutletStyles: SxProps = { width: '80vw', minHeight: '100%', height: 'fit-content' };
+export const pagesOutletStyles: SxProps = {
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  minHeight: '100%',
+  height: 'fit-content',
+};
 
 export const fullPageModalStyles: SxProps = {
   height: '100vh',

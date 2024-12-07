@@ -8,7 +8,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Theme from '../../styles/theme';
 import type { SxProps } from '@mui/material/styles';
-
 export const languages = ['Typescript', 'NodeJs', 'Python'];
 export const libraries = ['React', 'React Router', 'Express', 'Prisma', 'PyTorch'];
 export const styles = ['Mui Material', 'Mui X', 'Tailwind CSS'];
@@ -58,6 +57,7 @@ const TechStackList = () => (
       sx={{ width: 'fit-content' }}
     >
       <Text
+        component={'h3'}
         titleVariant="h3"
         key="tech-list-title-text"
         id="tech-list-title-text"
@@ -78,7 +78,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Languages'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Languages'} />
         <List key={'languages-list'} id={'languages-list'}>
           <RenderList data={languages} listMapCallback={renderTechLists} />
         </List>
@@ -89,7 +89,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Libraries'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Libraries'} />
         <List key={'libraries-list'} id={'libraries-list'}>
           <RenderList data={libraries} listMapCallback={renderTechLists} />
         </List>
@@ -100,7 +100,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Build'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Build'} />
         <List key={'build-list'} id={'build-list'}>
           <RenderList data={build} listMapCallback={renderTechLists} />
         </List>
@@ -111,7 +111,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Databases'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Databases'} />
         <List key={'databases-list'} id={'databases-list'}>
           <RenderList data={data} listMapCallback={renderTechLists} />
         </List>
@@ -122,7 +122,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Cloud'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Cloud'} />
         <List key={'cloud-list'} id={'cloud-list'}>
           <RenderList data={cloud} listMapCallback={renderTechLists} />
         </List>
@@ -133,7 +133,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Styles'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Styles'} />
         <List key={'styles-list'} id={'styles-list'}>
           <RenderList data={styles} listMapCallback={renderTechLists} />
         </List>
@@ -144,7 +144,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Analytics'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Analytics'} />
         <List key={'analytics-list'} id={'analytics-list'}>
           <RenderList data={analytics} listMapCallback={renderTechLists} />
         </List>
@@ -155,7 +155,7 @@ const TechStackList = () => (
         data-testid="tech-list-title-text"
         sx={techListSectionContainer}
       >
-        <Text titleVariant="h5" sx={techlistTextStyle} titleText={'Testing'} />
+        <Text component={'h5'} titleVariant="h5" sx={techlistTextStyle} titleText={'Testing'} />
         <List key={'testing-list'} id={'testing-list'}>
           <RenderList data={testing} listMapCallback={renderTechLists} />
         </List>

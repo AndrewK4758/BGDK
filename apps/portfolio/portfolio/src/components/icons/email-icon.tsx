@@ -1,7 +1,11 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const EmailIcon = () => (
-  <SvgIcon sx={{ scale: 1.25 }}>
+interface EmailIconProps {
+  sx: SxProps;
+}
+const EmailIcon = ({ sx }: EmailIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg1108"

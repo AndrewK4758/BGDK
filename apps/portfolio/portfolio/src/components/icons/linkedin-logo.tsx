@@ -1,7 +1,11 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const LinkedinIcon = () => (
-  <SvgIcon sx={{ scale: 1.25 }}>
+interface LinkedInIconProps {
+  sx: SxProps;
+}
+const LinkedinIcon = ({ sx }: LinkedInIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg450"

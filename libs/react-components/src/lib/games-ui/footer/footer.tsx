@@ -12,7 +12,12 @@ export interface FooterProps {
 export function Footer({ component, breakpointsFooter, breakpointsFooterText }: FooterProps) {
   return (
     <Paper component={component} sx={breakpointsFooter}>
-      <Text titleVariant={'h3'} titleText={`\u00A9 A.Klapper ${new Date().getFullYear()}`} sx={breakpointsFooterText} />
+      <Text
+        component={'h3'}
+        titleVariant={'h3'}
+        titleText={`\u00A9 A.Klapper ${new Date().getFullYear()}`}
+        sx={breakpointsFooterText}
+      />
     </Paper>
   );
 }

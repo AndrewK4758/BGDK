@@ -1,7 +1,11 @@
+import type { SxProps } from '@mui/material/styles';
 import SvgIcon from '@mui/material/SvgIcon';
 
-const FacebookIcon = () => (
-  <SvgIcon sx={{ scale: 1.25 }}>
+interface FacebookIconProps {
+  sx: SxProps;
+}
+const FacebookIcon = ({ sx }: FacebookIconProps) => (
+  <SvgIcon sx={sx}>
     <svg
       version="1.1"
       id="svg562"

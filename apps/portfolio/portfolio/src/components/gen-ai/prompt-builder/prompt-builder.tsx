@@ -32,7 +32,12 @@ import {
 import * as Yup from 'yup';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import { fullSizeBlock } from '../../../styles/pages-styles';
-import { flexColumnStyles, formLabelSxProps, radioButtonLabelSxProps } from '../../../styles/prompt-builder-styles';
+import {
+  coloredTitleStyles,
+  flexColumnStyles,
+  formLabelSxProps,
+  radioButtonLabelSxProps,
+} from '../../../styles/prompt-builder-styles';
 import '../../../styles/prompt-builder.css';
 import Theme from '../../../styles/theme';
 import ImageIcon from '../../icons/image-icon';
@@ -116,12 +121,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
           sx={{ ...flexColumnStyles, gap: 4 }}
         >
           <Box component={'section'} key={'prompt-builder-header-box'} id="prompt-builder-header-box">
-            <Text
-              component={'h2'}
-              titleVariant="h2"
-              titleText={'Prompt Builder'}
-              sx={{ textAlign: 'center', color: Theme.palette.secondary.light }}
-            />
+            <Text component={'h2'} titleVariant="h2" titleText={'Prompt Builder'} sx={coloredTitleStyles} />
             <Text component={'p'} titleVariant="body1" titleText={promptBuilderHeaderText} />
           </Box>
           <Form key={'prompt-builder-form'} method="POST" onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
@@ -402,7 +402,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                           labelVariant={'h4'}
                           labelText={'Text'}
                           placement={undefined}
-                          Icon={<TextIcon />}
+                          Icon={<TextIcon sx={{ scale: 1.5 }} />}
                           sx={radioButtonLabelSxProps}
                         />
                       }
@@ -419,7 +419,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                           labelText={'JSON'}
                           placement={undefined}
                           sx={radioButtonLabelSxProps}
-                          Icon={<JsonIcon />}
+                          Icon={<JsonIcon sx={{ scale: 1.5 }} />}
                         />
                       }
                       sx={formLabelSxProps}
@@ -434,7 +434,7 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
                           labelVariant={'h4'}
                           labelText={'Image'}
                           placement={'top'}
-                          Icon={<ImageIcon />}
+                          Icon={<ImageIcon sx={{ scale: 1.5, color: Theme.palette.primary.main }} />}
                           sx={radioButtonLabelSxProps}
                           tooltipSx={{ fontSize: '1rem' }}
                         />

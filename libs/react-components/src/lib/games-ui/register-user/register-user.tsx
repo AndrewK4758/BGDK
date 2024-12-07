@@ -115,7 +115,7 @@ export const RegisterUser = ({ toggleDrawer, anchor }: RegisterUserProps) => {
             <br />
 
             {formik.errors.thumbnail && formik.touched.thumbnail ? (
-              <Text sx={breakpointsLabelSx} titleVariant="body1" titleText={formik.errors.thumbnail} />
+              <Text component={'p'} sx={breakpointsLabelSx} titleVariant="body1" titleText={formik.errors.thumbnail} />
             ) : null}
           </Fragment>
 

@@ -27,10 +27,10 @@ export function HeadingWithDetails({
   return (
     <Box component={'div'} key={id}>
       <ListItem component={component}>
-        <Text titleVariant={titleVariant} titleText={titleText} sx={titleSx} />
+        <Text component={'p'} titleVariant={titleVariant} titleText={titleText} sx={titleSx} />
       </ListItem>
       <ListItem component={component}>
-        <Text titleVariant={valueVariant} titleText={valueText} sx={valueSx} />
+        <Text component={'p'} titleVariant={valueVariant} titleText={valueText} sx={valueSx} />
       </ListItem>
     </Box>
   );

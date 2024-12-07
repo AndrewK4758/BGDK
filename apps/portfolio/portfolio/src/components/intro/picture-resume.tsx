@@ -54,7 +54,7 @@ const PicutreAndResume = () => (
           fontSize: '1.5rem',
           height: 'fit-content',
         }}
-        endIcon={<ResumeIcon />}
+        endIcon={<ResumeIcon sx={{ width: '3rem', height: 'auto' }} />}
       >
         Resume
       </Button>

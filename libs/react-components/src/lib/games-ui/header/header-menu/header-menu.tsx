@@ -32,7 +32,7 @@ export function HeaderMenu({ breakpointsMenu, breakpointsMenuItem }: HeaderMenuP
     <>
       <IconButton size="large" onClick={handleOpenMenu} edge={false} sx={{ padding: 0 }}>
         <MenuRoundedIcon color={'success'} fontSize="large" />
-        <Text titleVariant="h2" titleText={'MENU'} sx={breakpointsMenu} />
+        <Text component={'h2'} titleVariant="h2" titleText={'MENU'} sx={breakpointsMenu} />
       </IconButton>
 
       <Menu

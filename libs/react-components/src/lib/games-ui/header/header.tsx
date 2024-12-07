@@ -53,6 +53,7 @@ export const Header = ({ componentAppBar, componentLogin, componentRegister, sxA
         <Box sx={{ flex: '1 0 50%' }}>
           {activeUser.activeUser.playerName && (
             <Text
+              component={'h2'}
               titleText={`Welcome ${activeUser.activeUser.playerName}`}
               titleVariant="h2"
               sx={{ fontSize: '52px' }}
