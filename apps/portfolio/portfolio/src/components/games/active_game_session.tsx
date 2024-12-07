@@ -33,8 +33,27 @@ const socketInit = () => {
 };
 
 /**
+ * Renders the active game session component.
  *
- * @returns Active Game Component
+ * This component manages the real-time interaction and display of a game session
+ * using websockets. It handles:
+ *
+ * - **Establishing a Websocket Connection:** Connects to the game server using `socket.io-client`,
+ *   sending game instance information in the headers.
+ * - **Joining a Game Room:** Emits a `create-room` event to join a specific game room
+ *   based on the game instance ID.
+ * - **Fetching Game Data:** Emits an `action` event to request the initial game board data.
+ * - **Real-time Updates:** Listens for `game-data` events from the server to update the game board,
+ *   active players, and the current player's turn in real-time.
+ * - **Displaying Game Elements:**
+ *   - Renders the game board using `ShowGameBoard` or `ShowGameBoardTicTacToe` based on the game type.
+ *   - Shows active player avatars using `ActiveAvatars`.
+ *   - Provides buttons for taking turns (`TakeTurn` or `TakeTurnTicTacToe`) and resetting the game (`ResetGame`).
+ * - **Error Handling:** Listens for `no-game-error` events to handle potential game session errors.
+ * - **Disconnecting:** Disconnects from the websocket server and removes all listeners
+ *   when the component unmounts.
+ *
+ * @returns {JSX.Element} The rendered active game session component.
  */
 
 const ActiveGameSession = () => {

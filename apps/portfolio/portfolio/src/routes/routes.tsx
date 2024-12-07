@@ -2,6 +2,7 @@ import { Waiting } from '@bgdk/shared-react-components';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
 import App from '../app/app';
+import suspenseImg from '../assets/swirly-dots-to-chrome.webp';
 import GameLoading from '../components/loading/loading';
 import PrivacyPolicy from '../components/privacy-policy/privacy-policy';
 import emailFormAction from '../services/actions/email-form-action';
@@ -33,7 +34,7 @@ const routes: RouteObject[] = [
   {
     path: '/',
     Component: App,
-    HydrateFallback: Waiting,
+    hydrateFallbackElement: <Waiting src={suspenseImg} />,
     action: emailFormAction,
     children: [
       {

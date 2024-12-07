@@ -31,6 +31,7 @@ import { centerFlex } from '../../../styles/pages-styles';
 import { coloredTitleStyles, flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
 import { imageGenDescription, promptTooltipText, sampleCountTooltipText, seedTooltipText } from '../static/image-text';
+import suspenseImg from '../../../assets/swirly-dots-to-chrome.webp';
 
 const validationSchema = Yup.object({
   prompt: Yup.string().required('The prompt is required'),
@@ -282,7 +283,7 @@ const ImageForm = () => {
                 }}
               >
                 <Text component={'h4'} titleVariant="h4" titleText={'Generating'} sx={{ textAlign: 'center' }} />
-                <Waiting />
+                <Waiting src={suspenseImg} />
               </Box>
             )}
           </Box>

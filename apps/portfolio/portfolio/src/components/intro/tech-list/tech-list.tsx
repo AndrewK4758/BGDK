@@ -1,31 +1,24 @@
-import { RenderList } from '@bgdk/shared-react-components';
-import { Text } from '@bgdk/shared-react-components';
+import { RenderList, Text } from '@bgdk/shared-react-components';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
-import Theme from '../../styles/theme';
-import type { SxProps } from '@mui/material/styles';
-export const languages = ['Typescript', 'NodeJs', 'Python'];
-export const libraries = ['React', 'React Router', 'Express', 'Prisma', 'PyTorch'];
-export const styles = ['Mui Material', 'Mui X', 'Tailwind CSS'];
-export const data = ['PostgreSQL', 'MongoDB', 'ChromaDB'];
-export const cloud = ['GCP', 'AWS', 'Azure'];
-export const build = ['Nx', 'Vite', 'Webpack', 'Docker'];
-export const analytics = ['Swagger'];
-export const testing = ['Jest', 'Playwright'];
+import type { JSX } from 'react';
+import { techListSectionContainer, techlistTextStyle } from '../../../styles/intro-styles';
+import { analytics, build, cloud, data, languages, libraries, styles, testing } from '../static/tech-stack-text';
 
-const techListSectionContainer: SxProps = {
-  flex: '1 0 25%',
-  paddingY: 2,
-  borderTop: `2px solid ${Theme.palette.primary.dark}`,
-};
+/**
+ * This function renders a single list item for the tech stack list.
+ *
+ * @param {string} e - The text of the list item.
+ * @param {number} _i - The index of the list item.
+ * @param {string[]} _arr - The array of list items.
+ * @returns {JSX.Element} The rendered list item.
+ */
 
-const techlistTextStyle: SxProps = { borderBottom: `2px solid ${Theme.palette.primary.dark}`, width: 'fit-content' };
-
-const renderTechLists = (e: string, _i: number, _arr: string[]) => (
+const renderTechLists = (e: string, _i: number, _arr: string[]): JSX.Element => (
   <ListItem
     key={`${e}-wrapper`}
     id={`${e}-wrapper`}
@@ -48,7 +41,13 @@ const renderTechLists = (e: string, _i: number, _arr: string[]) => (
   </ListItem>
 );
 
-const TechStackList = () => (
+/**
+ * This component renders a list of technologies i am strongest with.
+ *
+ * @returns {JSX.Element} The rendered tech stack list component.
+ */
+
+const TechStackList = (): JSX.Element => (
   <Paper elevation={24} sx={{ height: 'fit-content', p: 2 }}>
     <Container
       component={'div'}

@@ -19,6 +19,7 @@ export const socialMediaLinksWrapper: SxProps = {
   ...centerFlex,
   flex: '1 0 100%',
   paddingX: 1,
+  minHeight: 'fit-content',
 };
 
 //-------GOOGLE CALENDAR--------//

@@ -1,6 +1,7 @@
 import { Text } from '@bgdk/shared-react-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import type { JSX } from 'react';
 import {
   introCardContentSxProps,
   introCardSxProps,
@@ -9,7 +10,13 @@ import {
 } from '../../styles/intro-styles';
 import { ABOUT_ME_TITLE, IntroText } from './static/intro-text';
 
-const Intro = () => (
+/**
+ * This component renders a card containing a brief introduction of me.
+ *
+ * @returns {JSX.Element} The rendered intro component.
+ */
+
+const Intro = (): JSX.Element => (
   <Card key={'intro-card'} id={'intro-card'} elevation={24} sx={introCardSxProps}>
     <CardContent component={'div'} id="about-me-header-box" key="about-me-header-box" sx={introCardContentSxProps}>
       <Text

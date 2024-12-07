@@ -10,15 +10,16 @@ import dayjs, { type Dayjs } from 'dayjs';
 import { jwtDecode } from 'jwt-decode';
 import { useContext, useState, type CSSProperties, type Dispatch, type SetStateAction } from 'react';
 import { Form, useNavigation } from 'react-router-dom';
+import suspenseImg from '../../../assets/swirly-dots-to-chrome.webp';
 import {
   GoogleUserContext,
   type GoogleUserContextInfo,
   type GoogleUserContextProps,
 } from '../../../contexts/contact-context';
 import '../../../styles/google-calendar.css';
+import { timePickerSxProps } from '../../../styles/header-styles';
 import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
-import { timePickerSxProps } from '../../../styles/header-styles';
 
 const tomorrow = dayjs().add(1, 'day');
 const nextYear = dayjs().add(1, 'year');
@@ -287,7 +288,7 @@ const GoogleCalendar = ({ setOpen }: GoogleCalendarProps) => {
                 Submit Event
               </Button>
             ) : null}
-            {state === 'loading' && <Waiting />}
+            {state === 'loading' && <Waiting src={suspenseImg} />}
           </Box>
         </Form>
       </Box>

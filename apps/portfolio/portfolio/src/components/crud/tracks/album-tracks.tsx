@@ -6,15 +6,22 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { track } from '@prisma/client';
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import handleDeleteTrack from '../../../services/events/crud-events/handle-delete-track';
 import handleUpdateTrack from '../../../services/events/crud-events/handle-update-track';
 import { AlbumTracks } from '../../../services/loaders/crud-loaders/load-album-tracks';
-import AddTrack from './add-track';
 import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
+import AddTrack from './add-track';
 
-const Tracks = () => {
+/**
+ * This component renders a page displaying a list of tracks for a specific album.
+ * It includes functionality for adding, updating, and deleting tracks.
+ *
+ * @returns {JSX.Element} The rendered Tracks component.
+ */
+
+const Tracks = (): JSX.Element => {
   const { tracks } = useLoaderData() as AlbumTracks;
   const params = useParams();
   const [paginationModel, setPaginationModel] = useState({

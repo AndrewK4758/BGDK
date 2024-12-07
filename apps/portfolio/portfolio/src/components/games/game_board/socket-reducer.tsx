@@ -13,12 +13,13 @@ export interface Action {
   payload?: IActiveGameInfo;
   socket?: Socket;
 }
-
 /**
+ * This is a reducer function that manages the state of the ActiveGameSession component.
+ * It handles actions related to updating the game board, taking turns, starting and resetting the game.
  *
- * @param state current state of ActiveGameSession component
- * @param action Action to be executed and websocket to handle execution
- * @returns updated state to ui
+ * @param {IActiveGameInfo} state - The current state of the ActiveGameSession component.
+ * @param {Action} action - The action to be performed.
+ * @returns {IActiveGameInfo} The updated state.
  */
 
 const socketReducer = (state: IActiveGameInfo, action: Action) => {

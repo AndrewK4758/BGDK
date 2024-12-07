@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { artist } from '@prisma/client';
 import { useFormik } from 'formik';
-import { Dispatch, FocusEvent, SetStateAction } from 'react';
+import { Dispatch, FocusEvent, SetStateAction, type JSX } from 'react';
 import { Form } from 'react-router-dom';
 import handleSubmitNewArtist from '../../../services/actions/crud-actions/submit-artist-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
@@ -19,7 +19,18 @@ interface AddArtistProps {
   COUNT: number;
 }
 
-const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) => {
+/**
+ * This component renders a form for adding a new artist to the database.
+ * It allows users to input the artist name and then submits the data to the server.
+ *
+ * @param {AddArtistProps} props - The props for the AddArtist component.
+ * @param {number} props.rowCountState - The current number of artists in the database.
+ * @param {Dispatch<SetStateAction<number>>} props.setRowCountState - A function to update the number of artists in the database.
+ * @param {number} props.COUNT - The initial number of artists in the database.
+ * @returns {JSX.Element} The rendered AddArtist component.
+ */
+
+const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps): JSX.Element => {
   const formik = useFormik({
     initialValues: { name: '', artist_id: COUNT + 1 } as artist,
     onSubmit: values => {

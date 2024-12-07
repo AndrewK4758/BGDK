@@ -20,7 +20,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useRef, useState, type Dispatch, type RefObject, type SetStateAction } from 'react';
+import { useRef, useState, type Dispatch, type JSX, type RefObject, type SetStateAction } from 'react';
 import {
   Form,
   useActionData,
@@ -84,7 +84,18 @@ interface PromptBuilderProps {
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) => {
+/**
+ * This component renders a form for building prompts for the generative AI model.
+ * It allows users to input various parameters for the prompt and then submits the data to the server to generate a prompt.
+ *
+ * @param {PromptBuilderProps} props - The props for the PromptBuilder component.
+ * @param {boolean} props.loading - Whether the prompt is being generated.
+ * @param {Dispatch<SetStateAction<PromptRequest>>} props.setPrompt - A function to update the prompt state.
+ * @param {Dispatch<SetStateAction<boolean>>} props.setLoading - A function to update the loading state.
+ * @returns {JSX.Element} The rendered PromptBuilder component.
+ */
+
+const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps): JSX.Element => {
   const [openPromptResponse, setOpenPromptResponse] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -104,6 +115,11 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
     validateOnBlur: true,
     validateOnChange: true,
   });
+
+  /**
+   * This function handles the file upload button click event.
+   * It triggers the hidden file input element to open the file selection dialog.
+   */
 
   const handleFileUploadButtonClick = () => {
     if (fileInputRef.current) {
@@ -573,6 +589,15 @@ const PromptBuilder = ({ loading, setPrompt, setLoading }: PromptBuilderProps) =
 
 export default PromptBuilder;
 
+/**
+ * This function handles copying the generated prompt to the clipboard and adding it to the prompt state.
+ *
+ * @param {string} buildPrompt - The generated prompt.
+ * @param {Dispatch<SetStateAction<PromptRequest>>} setPrompt - A function to update the prompt state.
+ * @param {Dispatch<SetStateAction<boolean>>} setOpenPromptResponse - A function to close the prompt response modal.
+ * @param {NavigateFunction} nav - A function to navigate to the text section.
+ */
+
 const handleCopyPromptToClipboardAndAddToInput = async (
   buildPrompt: string,
   setPrompt: Dispatch<SetStateAction<PromptRequest>>,
@@ -586,6 +611,16 @@ const handleCopyPromptToClipboardAndAddToInput = async (
 };
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
+
+/**
+ * This function handles the file upload event.
+ * It uploads the file to the server and updates the prompt state with the file data.
+ *
+ * @param {RefObject<HTMLInputElement | null>} fileInputRef - A ref to the file input element.
+ * @param {Dispatch<SetStateAction<PromptRequest>>} setPrompt - A function to update the prompt state.
+ * @param {Dispatch<SetStateAction<string>>} setFileName - A function to update the file name state.
+ * @param {Dispatch<SetStateAction<boolean>>} setLoading - A function to update the loading state.
+ */
 
 export const handleFileUpload = async (
   fileInputRef: RefObject<HTMLInputElement | null>,

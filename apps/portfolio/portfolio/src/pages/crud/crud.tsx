@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
-import { lazy, useRef, useState } from 'react';
+import { lazy, useRef, useState, type JSX } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import CrudHome from '../../components/crud/crud-home';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
@@ -23,7 +23,14 @@ import { body, title } from '../static/crud-text';
 
 const Search = lazy(() => import('../../components/crud/search'));
 
-const Crud = () => {
+/**
+ * This component renders the CRUD (Create, Read, Update, Delete) section of the application.
+ * It provides an interface for users to interact with the database, including viewing, adding, updating, and deleting records.
+ *
+ * @returns {JSX.Element} The rendered CRUD component.
+ */
+
+const Crud = (): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
   const divRef = useRef<HTMLElement>(null);
   const { pathname } = useLocation();

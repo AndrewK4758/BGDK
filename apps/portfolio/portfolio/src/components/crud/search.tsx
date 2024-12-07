@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { debounce } from '@mui/material/utils';
 import { album, artist } from '@prisma/client';
 import axios from 'axios';
-import { useState, type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
+import { useState, type ChangeEvent, type Dispatch, type JSX, type SetStateAction } from 'react';
 import { inverseColors } from '../../styles/crud-styles';
 import { pagesTitlesBoxStyles } from '../../styles/pages-styles';
 import Theme from '../../styles/theme';
@@ -30,7 +30,17 @@ interface SearchProps {
   open: boolean;
 }
 
-const Search = ({ open }: SearchProps) => {
+/**
+ * This component renders a search modal for the CRUD section.
+ * It allows users to search for artists or albums in the database.
+ * The search is automatic when user pauses typing for .6 secords.
+ *
+ * @param {SearchProps} props - The props for the Search component.
+ * @param {boolean} props.open - Whether the search modal is open.
+ * @returns {JSX.Element} The rendered search modal component.
+ */
+
+const Search = ({ open }: SearchProps): JSX.Element => {
   const [artAlbVals, setArtVals] = useState(initVals);
   const [searchParam, setSearchParam] = useState<string>('artist');
 
@@ -127,6 +137,15 @@ const Search = ({ open }: SearchProps) => {
 
 export default Search;
 
+/**
+ * This function handles the search input change event.
+ * It debounces the input change, fetches search results from the server, and updates the search results state.
+ *
+ * @param {ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - The change event object.
+ * @param {Dispatch<SetStateAction<InitVals>>} setArtVals - A function to update the search results state.
+ * @param {string} searchParam - The type of search to perform ('artist' or 'album').
+ */
+
 const handleSearchParams = async (
   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   setArtVals: Dispatch<SetStateAction<InitVals>>,
@@ -145,6 +164,14 @@ const handleSearchParams = async (
 };
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
+
+/**
+ * This function fetches search results from the server based on the search query and type.
+ *
+ * @param {string} search - The search query.
+ * @param {string} type - The type of search to perform ('artist' or 'album').
+ * @returns {Promise<any>} A promise that resolves with the search results.
+ */
 
 const searchArtistsAndAlbums = async (search: string, type: string) => {
   try {

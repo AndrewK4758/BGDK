@@ -2,8 +2,7 @@ import { RenderList, Text } from '@bgdk/shared-react-components';
 import { ILiteSpace } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
-import { CSSProperties } from 'react';
-import { Theme } from '../../theme/theme';
+import { breakpointsRowSx, avatarSize, breakpointsSpaceSx, spaceStyle } from '../../styles/game-board-styles';
 
 export interface GameBoardProps {
   row: ILiteSpace[];
@@ -15,32 +14,6 @@ export interface GameBoardProps {
   gridSx?: SxProps;
   rowSx?: SxProps;
 }
-
-const breakpointsRowSx: SxProps = {
-  flex: '1 0 10%',
-  height: '7vh',
-  border: `3px solid ${Theme.palette.success.main}`,
-  alignContent: 'center',
-  justifyContent: 'center',
-  [Theme.breakpoints.down('md')]: {
-    border: `1.5px solid ${Theme.palette.success.main}`,
-  },
-};
-
-const breakpointsSpaceSx: SxProps = {
-  fontSize: '1.5rem',
-  [Theme.breakpoints.down('md')]: {
-    fontSize: '.75rem',
-  },
-};
-
-const spaceStyle: SxProps = { display: 'flex', flex: '1 0 100%' };
-
-const avatarSize: CSSProperties = {
-  alignSelf: 'self-start',
-  width: 'auto',
-  height: '112%',
-};
 
 /**
  *
@@ -54,7 +27,9 @@ const gameBoardRowMap = (e: ILiteSpace, i: number, _arr: string[]) => (
   <Grid2 key={`space-${i}-${e.display}`} sx={breakpointsRowSx}>
     {e.display.indexOf('g') === e.display.length - 1 ? (
       <img
+        key={`${e.display}-avatar-c&l`}
         id={`${e.display}-avatar-c&l`}
+        data-testid={`${e.display}-avatar-c&l`}
         src={`./game-avatars/${e.display}`}
         alt={`${e.display} game piece`}
         style={avatarSize}
@@ -62,7 +37,9 @@ const gameBoardRowMap = (e: ILiteSpace, i: number, _arr: string[]) => (
     ) : (
       <Text
         component={'p'}
+        key={`${e.display}-avatar-c&l`}
         id={`${e.display}-avatar-c&l`}
+        data-testid={`${e.display}-avatar-c&l`}
         titleVariant="body2"
         titleText={e.display}
         sx={breakpointsSpaceSx}

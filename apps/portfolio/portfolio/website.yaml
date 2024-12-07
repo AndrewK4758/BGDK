@@ -10,16 +10,16 @@ env_variables:
 
 handlers:
   - url: /(.*\.(js|css|yaml|png|jpg|jpeg|gif|svg|ico|webp|json|xml|txt|map|woff|woff2|ttf|eot|pdf|md)$)
-    static_files: apps/portfolio/portfolio/dist/\1
-    upload: apps/portfolio/portfolio/dist/(.*)
+    static_files: dist/\1
+    upload: dist/(.*)
     secure: always
     http_headers:
       Access-Control-Allow-Origin: '*'
       Access-Control-Expose-Headers: '*'
 
   - url: /.*
-    static_files: apps/portfolio/portfolio/dist/index.html
-    upload: apps/portfolio/portfolio/dist/index.html
+    static_files: dist/index.html
+    upload: dist/index.html
     secure: always
     http_headers:
       Access-Control-Allow-Origin: '*'

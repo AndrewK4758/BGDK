@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { useFormik } from 'formik';
-import { FocusEvent, RefObject } from 'react';
+import { FocusEvent, RefObject, type JSX } from 'react';
 import { Form, useParams } from 'react-router-dom';
 import handleSubmitNewAlbum from '../../../services/actions/crud-actions/submit-album-on-artist-action';
 import handleNewAlbumBlur from '../../../services/events/crud-events/handle-validate-artist-albums-on-blur';
@@ -18,7 +18,16 @@ interface AddAlbumOnArtistProps {
 
 export type ArtistAndAlbum = { title: string; album_id: number; artist_id: number };
 
-const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
+/**
+ * This component renders a form for adding a new album to a specific artist.
+ * It allows users to input the album title and then submits the data to the server.
+ *
+ * @param {AddAlbumOnArtistProps} props - The props for the AddAlbumOnArtist component.
+ * @param {RefObject<GridApiCommunity>} props.apiRef - A ref to the DataGrid API object.
+ * @returns {JSX.Element} The rendered AddAlbumOnArtist component.
+ */
+
+const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps): JSX.Element => {
   const params = useParams();
   const artistID = parseInt(params.artistID as string, 10);
 

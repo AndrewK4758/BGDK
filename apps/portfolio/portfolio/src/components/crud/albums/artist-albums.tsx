@@ -7,20 +7,27 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { album } from '@prisma/client';
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
-import AddAlbumOnArtist from './add-album-on-artist';
 import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
+import AddAlbumOnArtist from './add-album-on-artist';
 
 export interface AlbumState {
   albumTitle: string;
   albumID: number;
 }
 
-const AlbumsOnArtist = () => {
+/**
+ * This component renders a page displaying a list of albums for a specific artist.
+ * It includes functionality for adding, updating, deleting, and viewing the tracks of each album.
+ *
+ * @returns {JSX.Element} The rendered AlbumsOnArtist component.
+ */
+
+const AlbumsOnArtist = (): JSX.Element => {
   const { albums } = useLoaderData() as ArtistAlbums;
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5 });
   const nav = useNavigate();

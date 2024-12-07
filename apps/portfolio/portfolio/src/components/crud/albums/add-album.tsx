@@ -8,7 +8,7 @@ import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
 import axios from 'axios';
 import { FormikProps, useFormik } from 'formik';
-import type { RefObject } from 'react';
+import type { JSX, RefObject } from 'react';
 import { Form } from 'react-router-dom';
 import * as Yup from 'yup';
 import handleSubmitNewAlbum from '../../../services/actions/crud-actions//submit-album-to-artist-id-action';
@@ -25,7 +25,16 @@ const validationSchema = Yup.object({
   artist_id: Yup.number().positive('Must be greater than 0').required('Need artist ID to add the album on'),
 });
 
-const AddAlbum = ({ apiRef }: AddAlbumProps) => {
+/**
+ * This component renders a form for adding a new album to a selected artist.
+ * It allows users to input the album title and then submits the data to the server.
+ *
+ * @param {AddAlbumOnArtistProps} props - The props for the AddAlbumOnArtist component.
+ * @param {RefObject<GridApiCommunity>} props.apiRef - A ref to the DataGrid API object.
+ * @returns {JSX.Element} The rendered AddAlbum component.
+ */
+
+const AddAlbum = ({ apiRef }: AddAlbumProps): JSX.Element => {
   const formik = useFormik({
     initialValues: { title: '', album_id: 0, artist_id: 1 } as ArtistAndAlbum,
     validationSchema: validationSchema,

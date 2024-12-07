@@ -1,15 +1,18 @@
 import Box from '@mui/material/Box';
-import type { SxProps } from '@mui/material/styles';
+import type { JSX } from 'react';
 import Intro from '../../components/intro/intro';
 import PicutreAndResume from '../../components/intro/picture-resume';
-import TechStackList from '../../components/tech-list/tech-list';
+import TechStackList from '../../components/intro/tech-list/tech-list';
+import { baseStyleForHomeItems } from '../../styles/intro-styles';
 
-const baseStyleForHomeItems: SxProps = {
-  width: '80vw',
-  display: 'flex',
-};
+/**
+ * This is the main home component that renders the introduction section of the portfolio website.
+ * It includes a brief introduction, a picture with a resume download button, and a list of technologies I am familiar with.
+ *
+ * @returns {JSX.Element} The rendered home component.
+ */
 
-const Home = () => (
+const Home = (): JSX.Element => (
   <Box
     component={'div'}
     key={'home'}

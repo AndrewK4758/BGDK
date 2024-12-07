@@ -15,7 +15,7 @@
     "../../../libs/types/**/*/src/**/*.ts",
     "../../../libs/utils/src/**/*.ts"
   ],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
     { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
     { "path": "../../../libs/gen-ai/prompt-builder/tsconfig.lib.json" },

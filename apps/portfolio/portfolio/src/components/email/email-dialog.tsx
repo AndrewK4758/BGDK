@@ -12,6 +12,7 @@ import GoogleUserContextProvider from '../../contexts/contact-context';
 import { fullSizeBlock } from '../../styles/pages-styles';
 import { flexColumnStyles } from '../../styles/prompt-builder-styles';
 import Theme from '../../styles/theme';
+import suspenseImg from '../../assets/swirly-dots-to-chrome.webp';
 
 const EmailForm = lazy(() => import('./email-form/email-form'));
 const GoogleCalendar = lazy(() => import('./google-calendar/google-calendar'));
@@ -107,7 +108,7 @@ const EmailDialog = ({ open, setOpen }: EmailDialogProps) => {
             data-testid="calendar-and-email-section"
             sx={{ ...flexColumnStyles, flex: 4 }}
           >
-            <Suspense fallback={<Waiting />}>
+            <Suspense fallback={<Waiting src={suspenseImg} />}>
               {tab === 0 && <GoogleCalendar setOpen={setOpen} />}
               {tab === 1 && <EmailForm setOpen={setOpen} />}
             </Suspense>

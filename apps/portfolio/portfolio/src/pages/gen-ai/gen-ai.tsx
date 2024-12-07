@@ -17,9 +17,11 @@ import {
   useState,
   type CSSProperties,
   type Dispatch,
+  type JSX,
   type SetStateAction,
 } from 'react';
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
+import suspenseImg from '../../assets/swirly-dots-to-chrome.webp';
 import { MediaRecorderClientContextProvider } from '../../contexts/audio-context';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
 import loadContextPath from '../../services/loaders/gen-ai/load-context-path';
@@ -55,7 +57,14 @@ export type LayoutOutletContextProps = {
 
 const promptInit: PromptRequest = { text: '', fileData: null };
 
-const GenAiHome = () => {
+/**
+ * This component renders the home page for the generative AI section of the application.
+ * It provides an interface for users to interact with the AI model, including building prompts and viewing responses.
+ *
+ * @returns {JSX.Element} The rendered GenAiHome component.
+ */
+
+const GenAiHome = (): JSX.Element => {
   const { loading, setLoading } = useOutletContext<LayoutOutletContextProps>();
   const [prompt, setPrompt] = useState<PromptRequest>(promptInit);
   const [open, setOpen] = useState<boolean>(false);
@@ -152,7 +161,7 @@ const GenAiHome = () => {
       {open && (
         <Box component={'section'} key={'prompt-builder-form-wrapper'} id="prompt-builder-form-wrapper" width={'75vw'}>
           <Container component={'div'} key={'prompt-builder-collapse-box'} id="prompt-builder-collapse-box">
-            <Suspense fallback={<Waiting />}>
+            <Suspense fallback={<Waiting src={suspenseImg} />}>
               <Collapse appear={open} in={open} collapsedSize={0} component={'div'}>
                 <PromptBuilder loading={loading} setLoading={setLoading} setPrompt={setPrompt} />
               </Collapse>
@@ -182,7 +191,7 @@ const GenAiHome = () => {
           maxHeight={'350px'}
           flex={'0 1 40%'}
         >
-          <Waiting />
+          <Waiting src={suspenseImg} />
         </Box>
       </Modal>
 

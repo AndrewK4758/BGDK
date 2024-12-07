@@ -11,11 +11,16 @@ interface ShowGameBoardProps {
 }
 
 /**
+ * This component renders a Tic Tac Toe game board.
  *
- * @returns a rendered tic tac toe game board
+ * @param {ShowGameBoardProps} props - The props for the ShowGameBoardTicTacToe component.
+ * @param {GameBoard} props.board - The game board data.
+ * @param {string | undefined} props.state - The currently selected space on the board.
+ * @param {Dispatch<SetStateAction<string | undefined>>} props.setStateAction - A function to update the selected space.
+ * @returns {JSX.Element} The rendered ShowGameBoardTicTacToe component.
  */
 
-const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps) => (
+const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardProps): JSX.Element => (
   <Box
     key={'tic-tac-toe-whole-board'}
     id={'tic-tac-toe-whole-board'}

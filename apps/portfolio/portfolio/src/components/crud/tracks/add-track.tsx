@@ -31,6 +31,16 @@ const initialValues: track = {
   composer: '',
 };
 
+/**
+ * This component renders a form for adding a new track to a specific album.
+ * It allows users to input the track name and then submits the data to the server.
+ *
+ * @param {AddTrackProps} props - The props for the AddTrack component.
+ * @param {number} props.albumID - The ID of the album to add the track to.
+ * @param {RefObject<GridApiCommunity>} props.apiRef - A ref to the DataGrid API object.
+ * @returns {JSX.Element} The rendered AddTrack component.
+ */
+
 const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
   const formik = useFormik({
     initialValues: initialValues,
@@ -79,6 +89,16 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
   );
 };
 
+/**
+ * This function handles the submission of the new track form.
+ * It sends a POST request to the server with the track data and updates the DataGrid with the new track.
+ *
+ * @param {track} values - The track data from the form.
+ * @param {FormikProps<track>} formik - The Formik props object.
+ * @param {number} albumID - The ID of the album to add the track to.
+ * @param {RefObject<GridApiCommunity>} apiRef - A ref to the DataGrid API object.
+ */
+
 const handleSubmitNewTrack = async (
   values: track,
   formik: FormikProps<track>,
@@ -119,6 +139,15 @@ const handleSubmitNewTrack = async (
     formik.setErrors({ name: errorMessage });
   }
 };
+
+/**
+ * This function handles the blur event of the track name input field.
+ * It sends a GET request to the server to check if the track name already exists and updates the Formik state accordingly.
+ *
+ * @param {FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>} e - The blur event object.
+ * @param {FormikProps<track>} formik - The Formik props object.
+ * @param {number} albumID - The ID of the album to add the track to.
+ */
 
 const handleNewTrackBlur = async (
   e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>,

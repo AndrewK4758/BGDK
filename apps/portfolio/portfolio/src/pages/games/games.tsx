@@ -20,6 +20,12 @@ import {
 } from '../../styles/pages-styles';
 import { body, title } from '../static/games-text';
 
+/**
+ * This component renders the main games page, providing an interface for users to select and play different games.
+ *
+ * @returns {JSX.Element} The rendered Games component.
+ */
+
 const Games = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { state } = useNavigation();
@@ -53,9 +59,14 @@ const Games = () => {
               key={'chutes-and-ladders-button'}
               title="Chutes & Ladders"
               id="Chutes-&-Ladders"
-              disabled={state === 'submitting'}
+              disabled={state !== 'idle'}
               endIcon={
-                <ChutesAndLaddersIcon sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.75, marginLeft: 1 }} />
+                <ChutesAndLaddersIcon
+                  sx={{
+                    opacity: state !== 'idle' ? 0.38 : 1,
+                    scale: 1.75,
+                  }}
+                />
               }
               onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
               sx={pagesButtonStyles}
@@ -69,8 +80,15 @@ const Games = () => {
               type="submit"
               title="Tic Tac Toe"
               id="Tic-Tac-Toe"
-              disabled={state === 'submitting'}
-              endIcon={<TicTacToeIcon sx={{ opacity: state === 'submitting' ? 0.38 : 1, scale: 1.4, marginLeft: 1 }} />}
+              disabled={state !== 'idle'}
+              endIcon={
+                <TicTacToeIcon
+                  sx={{
+                    opacity: state !== 'idle' ? 0.38 : 1,
+                    scale: 1.5,
+                  }}
+                />
+              }
               onClick={e => handleSelectGame(e.currentTarget.id, submit, setLoading)}
               sx={pagesButtonStyles}
             >
@@ -95,6 +113,15 @@ const Games = () => {
 };
 
 export default Games;
+
+/**
+ * This function handles the selection of a game.
+ * It submits the game name to the server and updates the loading state.
+ *
+ * @param {string} gameName - The name of the game to select.
+ * @param {SubmitFunction} submit - A function for submitting the game name to the server.
+ * @param {Dispatch<SetStateAction<boolean>>} setLoading - A function to update the loading state.
+ */
 
 const handleSelectGame = async (
   gameName: string,

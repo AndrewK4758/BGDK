@@ -10,7 +10,7 @@ import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { artist } from '@prisma/client';
 import axios from 'axios';
-import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
@@ -22,7 +22,14 @@ const paginationModelInit = {
   page: 0,
 };
 
-const Artist = () => {
+/**
+ * This component renders a page displaying a list of artists.
+ * It includes functionality for adding, updating, deleting, and viewing the albums of each artist.
+ *
+ * @returns {JSX.Element} The rendered Artist component.
+ */
+
+const Artist = (): JSX.Element => {
   const COUNT = useLoaderData() as number;
   const [artists, setArtists] = useState<artist[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);

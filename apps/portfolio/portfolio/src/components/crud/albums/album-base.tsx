@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef } from '@mui/x-data-grid';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { album } from '@prisma/client';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
@@ -23,7 +23,14 @@ const paginationModelInit = {
   page: 0,
 };
 
-const Album = () => {
+/**
+ * This component renders a page displaying a list of albums.
+ * It includes functionality for adding, updating, deleting, and viewing the tracks of each album.
+ *
+ * @returns {JSX.Element} The rendered Album component.
+ */
+
+const Album = (): JSX.Element => {
   const COUNT = useLoaderData() as number;
   const [albums, setAlbums] = useState<album[]>();
   const [rowCountState, setRowCountState] = useState(COUNT);

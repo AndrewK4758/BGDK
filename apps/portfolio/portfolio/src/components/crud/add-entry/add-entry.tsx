@@ -14,16 +14,16 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { album, artist, Prisma, track } from '@prisma/client';
 import { useFormik } from 'formik';
-import { FocusEvent, Fragment, useState, type CSSProperties } from 'react';
+import { FocusEvent, Fragment, useState, type CSSProperties, type JSX } from 'react';
 import { Form, useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { addEntrySteps } from '../../../pages/static/crud-text';
 import handleSubmitNewEntry from '../../../services/actions/crud-actions/submit-new-entry-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
-import { fullPageModalStyles } from '../../../styles/pages-styles';
-import Theme from '../../../styles/theme';
-import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import { AddEntryModalStyle } from '../../../styles/crud-styles';
+import { fullPageModalStyles } from '../../../styles/pages-styles';
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
+import Theme from '../../../styles/theme';
 
 const initialValues: NewEntry = {
   artist: {
@@ -85,7 +85,14 @@ export type NewEntryIDs = {
   albumID: number;
 };
 
-const AddEntry = () => {
+/**
+ * This component renders a modal for adding new entries to the database.
+ * It allows users to add new artists, albums, and tracks through a step-by-step process.
+ *
+ * @returns {JSX.Element} The rendered add entry modal component.
+ */
+
+const AddEntry = (): JSX.Element => {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState<{
     [k: number]: boolean;

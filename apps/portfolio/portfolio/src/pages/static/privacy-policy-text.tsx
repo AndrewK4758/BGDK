@@ -112,16 +112,3 @@ const PrivacyPolicyText = () => (
 );
 
 export default PrivacyPolicyText;
-
-/*
-
-I give the user the option to add the appointment they wish to schedule with me as an event in their calendar. I do not edit or view any other events on their calendar. The Oauth2 tokens (all types) are not saved and only have a TTL on the client for 5 minutes. This is my developer portfolio and I do not for-see many people authorizing with this, I just want to go through the process without 3rd party libraries. The link to all the code used for this calendar event scope is:
-client- https://github.com/AndrewK4758/BGDK/blob/main/apps/portfolio/portfolio/src/components/email/google-calendar/google-calendar.tsx
-
-express api:
-  - tokens - https://github.com/AndrewK4758/BGDK/blob/main/apis/portfolio/portfolio-api/src/controllers/create-google-tokens.ts
-  - event - https://github.com/AndrewK4758/BGDK/blob/main/apis/portfolio/portfolio-api/src/controllers/calendar/create-event.ts
-
-
-
- */
