@@ -1,7 +1,19 @@
-import { darkScrollbar } from '@mui/material';
 import createTheme, { type Theme as ThemeType } from '@mui/material/styles/createTheme';
 import { enUS } from '@mui/x-date-pickers/locales';
 import './styles.css';
+
+const darkScrollbarGlobal = {
+  '&::-webkit-scrollbar': {
+    width: '16px',
+  },
+  '&::-webkit-scrollbar-track': {
+    backgroundColor: '#1f1f1f',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: '#3a3c41',
+    borderRadius: '4px',
+  },
+};
 
 const Theme: ThemeType = createTheme(
   {
@@ -28,7 +40,7 @@ const Theme: ThemeType = createTheme(
         default: '#3a3c41',
       },
       text: {
-        primary: '#cbcbcb', //'#f3ead9',
+        primary: '#cbcbcb',
         secondary: '#3a3c41',
       },
     },
@@ -53,11 +65,12 @@ const Theme: ThemeType = createTheme(
     },
     components: {
       MuiCssBaseline: {
-        styleOverrides: themeParam => ({ body: themeParam.palette.mode === 'dark' ? darkScrollbar() : null }),
+        styleOverrides: { body: darkScrollbarGlobal },
       },
       MuiButton: {
         defaultProps: { sx: { fontSize: '2rem' } },
       },
+      MuiInputBase: { defaultProps: { sx: { color: '#3a3c41' } } },
     },
   },
   enUS,

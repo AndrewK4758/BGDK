@@ -1,6 +1,7 @@
 import { track } from '@prisma/client';
 import axios from 'axios';
 import { NewEntry } from '../../../components/crud/add-entry/add-entry';
+import type { NavigateFunction } from 'react-router-dom';
 
 export type NewEntryReturn = {
   artist_id: number;
@@ -14,9 +15,14 @@ interface INewEntryReturn {
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
-const handleSubmitNewEntry = async (values: NewEntry, setSubmitting: (isSubmitting: boolean) => void) => {
+const handleSubmitNewEntry = async (
+  values: NewEntry,
+  setSubmitting: (isSubmitting: boolean) => void,
+  nav: NavigateFunction,
+) => {
   try {
     setSubmitting(true);
+
     const { artist, album, track } = values;
     const resp = await axios.post(
       `${baseURL}/new-entry`,
@@ -25,7 +31,6 @@ const handleSubmitNewEntry = async (values: NewEntry, setSubmitting: (isSubmitti
     );
 
     const { newEntry } = resp.data as INewEntryReturn;
-    console.log(newEntry);
 
     return newEntry;
   } catch (error) {
@@ -33,6 +38,7 @@ const handleSubmitNewEntry = async (values: NewEntry, setSubmitting: (isSubmitti
     return null;
   } finally {
     setSubmitting(false);
+    nav('/crud', { replace: true });
   }
 };
 

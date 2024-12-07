@@ -15,7 +15,7 @@ import useScrollIntoView from '../../../hooks/use-scroll-into-view';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import loadAlbums from '../../../services/loaders/crud-loaders/load-albums';
-import { dataGridStyleUpdate, inverseColors } from '../crud-home';
+import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
 import AddAlbum from './add-album';
 
 const paginationModelInit = {
@@ -129,7 +129,9 @@ const Album = () => {
       ref={divRef}
       key={'all-albums-box'}
       id="all-albums-box"
-      sx={{ display: 'flex', flexDirection: matchesSize ? 'column' : 'row', gap: 0.5 }}
+      display={'flex'}
+      flexDirection={matchesSize ? 'column' : 'row'}
+      gap={0.5}
     >
       <Box
         component={'div'}
@@ -151,6 +153,7 @@ const Album = () => {
             sx={{ ...inverseColors, height: 'fit-content' }}
           >
             <Text
+              component={'h3'}
               titleText={'Album List'}
               titleVariant={'h3'}
               id="albums-title"
@@ -193,7 +196,7 @@ const Album = () => {
         key={'tracks-on-album-box'}
         component={'div'}
         id="tracks-on-album-box"
-        sx={{ flex: matchesSize ? '0 1 100%' : '0 1 50%' }}
+        flex={matchesSize ? '0 1 100%' : '0 1 50%'}
       >
         <Outlet />
       </Box>

@@ -1,5 +1,5 @@
-import Theme from '../../styles/theme';
 import { Link } from 'react-router-dom';
+import Theme from '../../styles/theme';
 
 export const title = 'C.R.U.D. Data Manager';
 
@@ -26,3 +26,5 @@ export const body = (
     as the data.
   </span>
 );
+
+export const addEntrySteps = ['Artist', 'Album', 'Track'];

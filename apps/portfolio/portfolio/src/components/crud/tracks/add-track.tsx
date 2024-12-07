@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/shared-react-components';
+import { FormikValidationError } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -8,15 +8,15 @@ import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { Prisma, track } from '@prisma/client';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { FormikProps, useFormik } from 'formik';
-import { FocusEvent, MutableRefObject } from 'react';
+import { FocusEvent, RefObject } from 'react';
 import { Form } from 'react-router-dom';
-import { inverseColors } from '../crud-home';
+import { crudAddButtonStyles, crudAddErrorTextStyles, inverseColors } from '../../../styles/crud-styles';
 
 const baseURL = import.meta.env.VITE_DATA_API_URL;
 
 interface AddTrackProps {
   albumID: number;
-  apiRef: MutableRefObject<GridApiCommunity>;
+  apiRef: RefObject<GridApiCommunity>;
 }
 
 const initialValues: track = {
@@ -61,22 +61,16 @@ const AddTrack = ({ albumID, apiRef }: AddTrackProps) => {
             onChange={e => formik.setFieldValue('name', e.target.value)}
             onBlur={e => formik.handleBlur(e)}
             value={formik.values.name}
-            slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
           />
 
-          {typeof formik.touched.name === 'string' && formik.values.name ? (
-            <Text titleVariant="body1" titleText={formik.touched.name} />
-          ) : null}
-          {formik.errors.name && formik.touched.name === true ? (
-            <Text titleVariant="body1" titleText={formik.errors.name} />
-          ) : null}
+          <FormikValidationError<track> formik={formik} elementName={'name'} helperTextSx={crudAddErrorTextStyles} />
         </Box>
 
         <Box sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="submit" variant="contained" color="primary" sx={crudAddButtonStyles}>
             Submit
           </Button>
-          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="reset" variant="contained" color="secondary" sx={crudAddButtonStyles}>
             Clear
           </Button>
         </Box>
@@ -89,7 +83,7 @@ const handleSubmitNewTrack = async (
   values: track,
   formik: FormikProps<track>,
   albumID: number,
-  apiRef: MutableRefObject<GridApiCommunity>,
+  apiRef: RefObject<GridApiCommunity>,
 ) => {
   try {
     const trackName = values.name;

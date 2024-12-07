@@ -11,8 +11,8 @@ import { useLoaderData, useParams } from 'react-router-dom';
 import handleDeleteTrack from '../../../services/events/crud-events/handle-delete-track';
 import handleUpdateTrack from '../../../services/events/crud-events/handle-update-track';
 import { AlbumTracks } from '../../../services/loaders/crud-loaders/load-album-tracks';
-import { baseCrudDisplayStyleSxProps, dataGridStyleUpdate, inverseColors } from '../crud-home';
 import AddTrack from './add-track';
+import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
 
 const Tracks = () => {
   const { tracks } = useLoaderData() as AlbumTracks;
@@ -115,25 +115,10 @@ const Tracks = () => {
   const getID = (row: track) => row.track_id;
 
   return (
-    <Box
-      component={'div'}
-      key={'track-box'}
-      sx={{
-        ...baseCrudDisplayStyleSxProps,
-        flex: '1 0 100%',
-        flexDirection: 'column',
-        width: '100%',
-        border: '3px solid purple',
-      }}
-    >
-      <Container key={'artist-title'} component={'div'} sx={{ ...baseCrudDisplayStyleSxProps, width: '100%' }}>
-        <Paper
-          key={'title-bar'}
-          component={'div'}
-          elevation={6}
-          sx={{ ...inverseColors, width: '100%', height: 'fit-content' }}
-        >
-          <Text titleVariant="h3" titleText="Album Tracks" sx={{ textAlign: 'center' }} />
+    <Box component={'div'} key={'track-box'} id={'track-box'} border={'3px solid purple'} borderRadius={1}>
+      <Container key={'artist-title'} component={'div'} sx={{ paddingY: 2 }}>
+        <Paper key={'title-bar'} component={'div'} elevation={6} sx={inverseColors}>
+          <Text component={'h3'} titleVariant="h3" titleText="Album Tracks" sx={{ textAlign: 'center' }} />
         </Paper>
       </Container>
       <Container component={'div'} key={'add-track-box'} sx={{ paddingY: 1 }}>
@@ -143,7 +128,7 @@ const Tracks = () => {
         component={'div'}
         key={'tracks-data-grid-wrapper'}
         id="tracks-data-grid-wrapper"
-        sx={{ ...inverseColors, width: '100%', borderRadius: 1 }}
+        sx={{ ...inverseColors, borderRadius: 1 }}
       >
         <DataGrid
           apiRef={apiRef}

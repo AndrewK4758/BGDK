@@ -12,8 +12,8 @@ import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import handleDeleteAlbum from '../../../services/events/crud-events/handle-delete-album';
 import handleUpdateAlbumTitle from '../../../services/events/crud-events/handle-update-album-title';
 import { ArtistAlbums } from '../../../services/loaders/crud-loaders/load-artist-albums';
-import { dataGridStyleUpdate, inverseColors } from '../crud-home';
 import AddAlbumOnArtist from './add-album-on-artist';
+import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
 
 export interface AlbumState {
   albumTitle: string;
@@ -102,23 +102,18 @@ const AlbumsOnArtist = () => {
       component={'div'}
       key={'album-and-tracks-box'}
       id={'album-and-tracks-box'}
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 0.5,
-      }}
+      display={'flex'}
+      flexDirection={'row'}
+      flexWrap={'wrap'}
+      gap={0.5}
     >
       <Box
         component={'div'}
         key={'albums-box'}
         id={'albums-box'}
-        sx={{
-          flex: '1 0 100%',
-          flexWrap: 'wrap',
-          border: '3px solid purple',
-          borderRadius: 1,
-        }}
+        flex={'1 0 100%'}
+        border={'3px solid purple'}
+        borderRadius={1}
       >
         <Container
           component={'div'}
@@ -129,7 +124,13 @@ const AlbumsOnArtist = () => {
           }}
         >
           <Paper elevation={6} key={'title-bar'} sx={{ ...inverseColors, height: 'fit-content' }}>
-            <Text titleText={'Artist Albums'} titleVariant={'h3'} id={'artist-albums'} sx={{ textAlign: 'center' }} />
+            <Text
+              component={'h3'}
+              titleText={'Artist Albums'}
+              titleVariant={'h3'}
+              id={'artist-albums'}
+              sx={{ textAlign: 'center' }}
+            />
           </Paper>
         </Container>
         <Container component={'div'} key={'add-album-box'} sx={{ paddingY: 1 }}>
@@ -156,7 +157,7 @@ const AlbumsOnArtist = () => {
           />
         </Box>
       </Box>
-      <Box component={'div'} key={'tracks-outlet-wrapper'} id={'tracks-outlet-wrapper'} sx={{ width: '100%' }}>
+      <Box component={'div'} key={'tracks-outlet-wrapper'} id={'tracks-outlet-wrapper'} width={'100%'}>
         <Outlet />
       </Box>
     </Box>

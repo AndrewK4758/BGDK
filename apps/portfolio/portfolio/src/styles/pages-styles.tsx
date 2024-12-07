@@ -35,11 +35,12 @@ export const fullPageModalStyles: SxProps = {
   height: '100vh',
   width: '100vw',
   position: 'fixed',
-  top: '50%',
+  top: 0,
   left: 0,
   display: 'flex',
   justifyContent: 'center',
-  alignContent: 'center',
+  alignItems: 'center',
+  overflowY: 'auto',
 };
 
 export const fullSizeBlock: SxProps = { height: '100%', width: '100%' };

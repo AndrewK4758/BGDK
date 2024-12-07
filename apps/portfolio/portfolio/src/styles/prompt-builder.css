@@ -1,6 +1,4 @@
-:root {
-  --primary: #00dfb9;
-}
+@import './styles.css';
 
 .css-1bz1rr0-MuiSvgIcon-root {
   color: var(--primary);

@@ -1,5 +1,4 @@
 import { Text } from '@bgdk/shared-react-components';
-import { SxProps } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -15,31 +14,16 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { album, artist, Prisma, track } from '@prisma/client';
 import { useFormik } from 'formik';
-import { FocusEvent, Fragment, useState } from 'react';
-import { Form, useNavigate } from 'react-router-dom';
+import { FocusEvent, Fragment, useState, type CSSProperties } from 'react';
+import { Form, useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import handleSubmitNewEntry, { NewEntryReturn } from '../../../services/actions/crud-actions/submit.new-entry-action';
+import { addEntrySteps } from '../../../pages/static/crud-text';
+import handleSubmitNewEntry from '../../../services/actions/crud-actions/submit-new-entry-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
+import { fullPageModalStyles } from '../../../styles/pages-styles';
 import Theme from '../../../styles/theme';
-import { inverseColors } from '../crud-home';
-
-const AddEntryStyle: SxProps = {
-  ...inverseColors,
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  minWidth: '50vw',
-  maxWidth: '800px',
-  minHeight: '50vh',
-  maxHeight: 'fit-content',
-  border: '10px solid purple',
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 1,
-};
-
-const steps = ['Artist', 'Album', 'Track'];
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
+import { AddEntryModalStyle } from '../../../styles/crud-styles';
 
 const initialValues: NewEntry = {
   artist: {
@@ -102,28 +86,19 @@ export type NewEntryIDs = {
 };
 
 const AddEntry = () => {
-  const [open, setOpen] = useState<boolean>(true);
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState<{
     [k: number]: boolean;
   }>({});
-
+  const { pathname } = useLocation();
   const nav = useNavigate();
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: async (values, { setSubmitting }) => {
-      const newEntry = (await handleSubmitNewEntry(values, setSubmitting)) as NewEntryReturn;
-      console.log(newEntry);
-      const ids: NewEntryIDs = {
-        artistID: newEntry.artist_id,
-        albumID: newEntry.album[0].album_id,
-      };
-
-      setOpen(!open);
-      nav(`/home`, { state: { ids }, replace: true });
-    },
+    onSubmit: async (values, { setSubmitting }) => await handleSubmitNewEntry(values, setSubmitting, nav),
+    onReset: () => handleReset(),
+    validateOnMount: false,
   });
 
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
@@ -140,7 +115,7 @@ const AddEntry = () => {
   };
 
   const totalSteps = () => {
-    return steps.length;
+    return addEntrySteps.length;
   };
 
   const completedSteps = () => {
@@ -157,7 +132,7 @@ const AddEntry = () => {
 
   const handleNext = () => {
     const newActiveStep =
-      isLastStep() && !allStepsCompleted() ? steps.findIndex((_step, i) => !(i in completed)) : activeStep + 1;
+      isLastStep() && !allStepsCompleted() ? addEntrySteps.findIndex((_step, i) => !(i in completed)) : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
@@ -183,18 +158,25 @@ const AddEntry = () => {
   };
 
   return (
-    <Modal id="DIALOG WRAPPER ID" open={open} component={'div'}>
-      <DialogContent id="DIALOG CONTENT ID" sx={AddEntryStyle}>
-        <DialogTitle component={'h1'} color="textSecondary" sx={{ fontSize: 'xx-large', textAlign: 'center' }}>
-          Add New Entry
+    <Modal
+      key={'add-entry-modal-wrapper'}
+      id="add-entry-modal-wrapper"
+      open={pathname === '/crud/add-entry'}
+      component={'div'}
+      sx={fullPageModalStyles}
+    >
+      <DialogContent key={'add-entry-dialog-content'} id={'add-entry-dialog-content'} sx={AddEntryModalStyle}>
+        <DialogTitle component={'div'} color="textSecondary" sx={{ textAlign: 'center' }}>
+          <Text component={'h2'} titleText={'Add New Entry'} titleVariant="h2" />
         </DialogTitle>
         <Form
           method="post"
           encType="text/plain"
           onSubmit={formik.handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
+          onReset={formik.handleReset}
+          style={{ ...(flexColumnStyles as CSSProperties), overflowY: 'auto', overflowX: 'hidden' }}
         >
-          <DialogTitle color="textSecondary" sx={{ fontFamily: 'monospace' }}>
+          <DialogTitle color="textSecondary" sx={{ fontFamily: 'monospace', fontSize: '.875rem' }}>
             All fields are required to submit entry. Artist, Album, and Track ID's will be automatically generated and
             provided to you upon successful submission
           </DialogTitle>
@@ -209,15 +191,17 @@ const AddEntry = () => {
                 label="Artist Name"
                 type="text"
                 variant="outlined"
+                disabled={Object.keys(completed).length > 0}
                 value={formik.values.artist.name}
                 onChange={formik.handleChange}
                 onBlur={e => formik.handleBlur(e)}
               />
               {formik.touched.artist?.name && formik.errors.artist?.name ? (
                 <Text
+                  component={'p'}
                   titleVariant="body1"
                   titleText={formik.errors.artist.name}
-                  sx={{ color: Theme.palette.text.secondary }}
+                  sx={{ color: Theme.palette.error.main }}
                 />
               ) : null}
             </>
@@ -233,12 +217,18 @@ const AddEntry = () => {
                 label="Album Title"
                 type="text"
                 variant="outlined"
+                disabled={Object.keys(completed).length > 1}
                 value={formik.values.album.title}
                 onChange={formik.handleChange}
                 onBlur={e => formik.handleBlur(e)}
               />
               {formik.touched.album?.title && formik.errors.album?.title ? (
-                <Text titleVariant="body1" titleText={formik.errors.album.title} />
+                <Text
+                  component={'p'}
+                  titleVariant="body1"
+                  titleText={formik.errors.album.title}
+                  sx={{ color: Theme.palette.error.main }}
+                />
               ) : null}
             </>
           )}
@@ -255,12 +245,18 @@ const AddEntry = () => {
                   label="Track Name"
                   type="text"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.name}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.name && formik.errors.track?.name ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.name} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.name}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -273,12 +269,18 @@ const AddEntry = () => {
                   label="Media Type ID"
                   type="number"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.media_type_id}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.media_type_id && formik.errors.track?.media_type_id ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.media_type_id} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.media_type_id}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -291,12 +293,18 @@ const AddEntry = () => {
                   label="Genre ID"
                   type="number"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.genre_id}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.genre_id && formik.errors.track?.genre_id ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.genre_id} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.genre_id}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -309,12 +317,18 @@ const AddEntry = () => {
                   label="Composer"
                   type="text"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.composer}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.composer && formik.errors.track?.composer ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.composer} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.composer}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -327,12 +341,18 @@ const AddEntry = () => {
                   label="Milliseconds"
                   type="number"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.milliseconds}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.milliseconds && formik.errors.track?.milliseconds ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.milliseconds} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.milliseconds}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -345,12 +365,18 @@ const AddEntry = () => {
                   label="Bytes"
                   type="number"
                   variant="outlined"
+                  disabled={Object.keys(completed).length > 2}
                   value={formik.values.track.bytes}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.bytes && formik.errors.track?.bytes ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.bytes} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.bytes}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
               <br />
@@ -366,13 +392,19 @@ const AddEntry = () => {
                   slotProps={{ htmlInput: { step: '0.01' } }}
                   variant="outlined"
                   inputMode="decimal"
+                  disabled={Object.keys(completed).length > 2}
                   placeholder="Enter price in X.XX format"
                   value={formik.values.track.unit_price}
                   onChange={formik.handleChange}
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
-                  <Text titleVariant="body1" titleText={formik.errors.track.unit_price as string} />
+                  <Text
+                    component={'p'}
+                    titleVariant="body1"
+                    titleText={formik.errors.track.unit_price as string}
+                    sx={{ color: Theme.palette.error.main }}
+                  />
                 ) : null}
               </>
             </>
@@ -380,7 +412,7 @@ const AddEntry = () => {
 
           <br />
           <Stepper nonLinear activeStep={activeStep}>
-            {steps.map((step, index) => (
+            {addEntrySteps.map((step, index) => (
               <Step key={step} completed={completed[index]}>
                 <StepButton color="inherit" onClick={handleStep(index)}>
                   {step}
@@ -391,13 +423,12 @@ const AddEntry = () => {
 
           <div>
             {allStepsCompleted() ? (
-              <Fragment>
-                <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - Please Submit Entry to save</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                  <Box sx={{ flex: '1 1 auto' }} />
-                  <Button onClick={handleReset}>Reset</Button>
-                </Box>
-              </Fragment>
+              <Text
+                component={'p'}
+                titleVariant="body1"
+                titleText={'All steps completed - Please Submit Entry to save'}
+                sx={{ mt: 2, mb: 1 }}
+              />
             ) : (
               <Fragment>
                 <Typography color="textSecondary" sx={{ mt: 2, mb: 1, py: 1 }}>
@@ -411,7 +442,7 @@ const AddEntry = () => {
                   <Button onClick={handleNext} sx={{ mr: 1, color: Theme.palette.text.secondary, fontSize: '1rem' }}>
                     Next
                   </Button>
-                  {activeStep !== steps.length &&
+                  {activeStep !== addEntrySteps.length &&
                     (completed[activeStep] ? (
                       <Typography variant="caption" sx={{ display: 'inline-block' }}>
                         Step {activeStep + 1} already completed
@@ -430,13 +461,10 @@ const AddEntry = () => {
               {allStepsCompleted() ? (
                 <Button type="submit">{formik.isSubmitting ? 'Submitting' : 'Submit Entry'}</Button>
               ) : null}
-              <Button type="reset" onClick={() => formik.resetForm()}>
-                Reset
-              </Button>
+              <Button type="reset">Reset</Button>
               <Button
                 type="button"
                 onClick={() => {
-                  setOpen(!open);
                   nav(-1);
                 }}
               >

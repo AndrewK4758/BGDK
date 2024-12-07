@@ -10,14 +10,12 @@ import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams, useGridApiRef
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { artist } from '@prisma/client';
 import axios from 'axios';
-import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
-import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
-import AddArtist from './add-artist';
-import { dataGridStyleUpdate, inverseColors } from '../crud-home';
 import useScrollIntoView from '../../../hooks/use-scroll-into-view';
-
-const baseURL = import.meta.env.VITE_DATA_API_URL;
+import loadArtists from '../../../services/loaders/crud-loaders/load-artists';
+import { dataGridStyleUpdate, inverseColors } from '../../../styles/crud-styles';
+import AddArtist from './add-artist';
 
 const paginationModelInit = {
   pageSize: 25,
@@ -123,22 +121,17 @@ const Artist = () => {
       key={'all-data-grids-wrapper'}
       id="all-data-grids-wrapper"
       ref={divRef}
-      sx={{
-        display: 'flex',
-        flexDirection: matchesSize ? 'column' : 'row',
-        gap: 0.5,
-      }}
+      display={'flex'}
+      flexDirection={matchesSize ? 'column' : 'row'}
+      gap={0.5}
     >
       <Box
         component={'div'}
         key="artists"
         id="artists"
-        sx={{
-          flexWrap: 'wrap',
-          flex: matchesSize ? '0 1 100%' : '0 1 50%',
-          border: '3px solid purple',
-          borderRadius: 1,
-        }}
+        flex={matchesSize ? '0 1 100%' : '0 1 50%'}
+        border={'3px solid purple'}
+        borderRadius={1}
       >
         <Container component={'div'} key={'artists-title-box'} id="artists-title-box" sx={{ paddingY: 2 }}>
           <Paper
@@ -149,6 +142,7 @@ const Artist = () => {
             sx={{ ...inverseColors, height: 'fit-content' }}
           >
             <Text
+              component={'h3'}
               titleText={'Artist List'}
               titleVariant={'h3'}
               id="artists-title"
@@ -190,7 +184,7 @@ const Artist = () => {
         key={'albums-for-artist-box'}
         component={'div'}
         id="albums-for-artist-box"
-        sx={{ flex: matchesSize ? '0 1 100%' : '0 1 50%' }}
+        flex={matchesSize ? '0 1 100%' : '0 1 50%'}
       >
         <Outlet />
       </Box>
@@ -200,28 +194,27 @@ const Artist = () => {
 
 export default Artist;
 
-const handleUpdateArtistName = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
+const baseURL = import.meta.env.VITE_DATA_API_URL;
+
+const handleUpdateArtistName = async (values: artist, apiRef: RefObject<GridApiCommunity>) => {
   try {
     const { artist_id, name } = values;
     const resp = await axios.patch(
       `${baseURL}/artists`,
       { artistID: artist_id, name: name },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
+      { headers: { 'Content-Type': 'application/json' } },
     );
 
     if (resp.data) {
       const { artist_id, name } = resp.data.updatedArtist;
       apiRef.current.updateRows([{ artist_id: artist_id, name: name }]);
     }
-    console.log(resp.data);
   } catch (error) {
     console.error(error);
   }
 };
 
-const handleDeleteArtist = async (values: artist, apiRef: MutableRefObject<GridApiCommunity>) => {
+const handleDeleteArtist = async (values: artist, apiRef: RefObject<GridApiCommunity>) => {
   try {
     const { artist_id } = values;
     const resp = await axios.delete(`${baseURL}/artists/${artist_id}`, {

@@ -6,8 +6,10 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 import { lazy, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import CrudHome from '../../components/crud/crud-home';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
+import { crudAppWrapperStyles, crudDataGridGridsSxProps, crudPaperSxProps } from '../../styles/crud-styles';
 import {
   headerModalButtonStyles,
   modalButtonBoxStyles,
@@ -17,14 +19,14 @@ import {
   pagesToolbarStyles,
   pagesWrapperStyles,
 } from '../../styles/pages-styles';
-import { title, body } from '../static/crud-text';
+import { body, title } from '../static/crud-text';
 
-const CrudHome = lazy(() => import('../../components/crud/crud-home'));
 const Search = lazy(() => import('../../components/crud/search'));
 
 const Crud = () => {
   const [open, setOpen] = useState<boolean>(false);
   const divRef = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
   const nav = useNavigate();
 
   useScrollIntoView(divRef);
@@ -55,11 +57,9 @@ const Crud = () => {
             <Button type="submit" variant="text" onClick={() => nav('artists')} sx={pagesButtonStyles}>
               All Artists
             </Button>
-
             <Button type="submit" variant="text" onClick={() => nav('albums')} sx={pagesButtonStyles}>
               All Albums
             </Button>
-
             <Button type="submit" variant="text" onClick={() => nav('add-entry')} sx={pagesButtonStyles}>
               Add Entry
             </Button>
@@ -82,17 +82,20 @@ const Crud = () => {
         {open && <Search open={open} />}
       </Paper>
 
-      <Box
-        component={'div'}
-        key={`crud-app-wrapper`}
-        id={`crud-app-wrapper`}
-        sx={{
-          width: '90vw',
-          minHeight: '30vh',
-          height: 'fit-content',
-        }}
-      >
-        <CrudHome />
+      <Box component={'div'} key={`crud-app-wrapper`} id={`crud-app-wrapper`} sx={crudAppWrapperStyles}>
+        <Paper key={'crud-paper-wrapper'} id="crud-paper-wrapper" sx={crudPaperSxProps}>
+          {pathname === '/crud' && <CrudHome />}
+          <Box
+            component={'div'}
+            key={'data-grid-grids-wrapper'}
+            id="data-grid-grids-wrapper"
+            sx={crudDataGridGridsSxProps}
+          >
+            <Box key={'crud-outlet-wrapper'} id={'crud-outlet-wrapper'}>
+              <Outlet />
+            </Box>
+          </Box>
+        </Paper>
       </Box>
     </Box>
   );

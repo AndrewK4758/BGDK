@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/shared-react-components';
+import { FormikValidationError } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -6,22 +6,24 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import { GridApiCommunity } from '@mui/x-data-grid/internals';
 import { useFormik } from 'formik';
-import { FocusEvent, MutableRefObject } from 'react';
+import { FocusEvent, RefObject } from 'react';
 import { Form, useParams } from 'react-router-dom';
 import handleSubmitNewAlbum from '../../../services/actions/crud-actions/submit-album-on-artist-action';
 import handleNewAlbumBlur from '../../../services/events/crud-events/handle-validate-artist-albums-on-blur';
-import { inverseColors } from '../crud-home';
+import { crudAddButtonStyles, inverseColors } from '../../../styles/crud-styles';
 
 interface AddAlbumOnArtistProps {
-  apiRef: MutableRefObject<GridApiCommunity>;
+  apiRef: RefObject<GridApiCommunity>;
 }
+
+export type ArtistAndAlbum = { title: string; album_id: number; artist_id: number };
 
 const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
   const params = useParams();
   const artistID = parseInt(params.artistID as string, 10);
 
   const formik = useFormik({
-    initialValues: { title: '', album_id: 0, artist_id: 0 },
+    initialValues: { title: '', album_id: 0, artist_id: 0 } as ArtistAndAlbum,
     onSubmit: values => {
       handleSubmitNewAlbum(values, formik, artistID, apiRef);
     },
@@ -54,22 +56,20 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
             placeholder="Enter Album Title"
             onChange={formik.handleChange}
             onBlur={e => formik.handleBlur(e)}
-            slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
           />
 
-          {typeof formik.touched.title === 'string' && formik.values.title ? (
-            <Text titleVariant="body1" titleText={formik.touched.title} />
-          ) : null}
-          {formik.errors.title && formik.touched.title === true ? (
-            <Text titleVariant="body1" titleText={formik.errors.title} />
-          ) : null}
+          <FormikValidationError<ArtistAndAlbum>
+            formik={formik}
+            elementName={'title'}
+            helperTextSx={{ fontSize: '1.25rem' }}
+          />
         </Box>
 
         <Container sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="submit" variant="contained" color="primary" sx={crudAddButtonStyles}>
             Submit
           </Button>
-          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="reset" variant="contained" color="secondary" sx={crudAddButtonStyles}>
             Clear
           </Button>
         </Container>

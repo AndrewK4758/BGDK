@@ -1,4 +1,4 @@
-import { Text } from '@bgdk/shared-react-components';
+import { FormikValidationError } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -10,7 +10,8 @@ import { Dispatch, FocusEvent, SetStateAction } from 'react';
 import { Form } from 'react-router-dom';
 import handleSubmitNewArtist from '../../../services/actions/crud-actions/submit-artist-action';
 import handleNewArtistBlur from '../../../services/events/crud-events/handle-validate-artist-on-blur';
-import { inverseColors } from '../crud-home';
+import { crudAddButtonStyles, crudAddErrorTextStyles, inverseColors } from '../../../styles/crud-styles';
+import { flexColumnStyles } from '../../../styles/prompt-builder-styles';
 
 interface AddArtistProps {
   rowCountState: number;
@@ -26,6 +27,7 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
       handleSubmitNewArtist(values, formik);
     },
     validateOnBlur: true,
+    validateOnMount: false,
   });
 
   formik.handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
@@ -40,7 +42,7 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
       sx={{ ...inverseColors, borderRadius: 1, paddingY: 2 }}
     >
       <Form method="post" onSubmit={formik.handleSubmit}>
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box key={'add-artist-box'} id={'add-artist-box'} sx={flexColumnStyles}>
           <FormLabel htmlFor="name" hidden>
             Enter Artist Name
           </FormLabel>
@@ -54,18 +56,15 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
             placeholder="Enter Artist Name"
             onChange={formik.handleChange}
             onBlur={e => formik.handleBlur(e)}
-            slotProps={{ input: { sx: { color: '#1f1f1f' } } }}
           />
-          {formik.touched.name && formik.errors.name ? (
-            <Text titleVariant="body1" titleText={formik.errors.name} />
-          ) : null}
+          <FormikValidationError<artist> formik={formik} elementName={'name'} helperTextSx={crudAddErrorTextStyles} />
         </Box>
 
         <Container sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button type="submit" variant="contained" color="primary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="submit" variant="contained" color="primary" sx={crudAddButtonStyles}>
             {formik.isSubmitting ? 'Submitting' : 'Submit'}
           </Button>
-          <Button type="reset" variant="contained" color="secondary" sx={{ m: 1, flex: '1 0 30%', fontSize: '1rem' }}>
+          <Button type="reset" variant="contained" color="secondary" sx={crudAddButtonStyles}>
             Clear
           </Button>
         </Container>
