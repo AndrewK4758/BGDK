@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import { useContext, useEffect, useRef, useState, type RefObject } from 'react';
+import { useContext, useEffect, useRef, useState, type JSX, type RefObject } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { MediaRecorderClientContext } from '../../../contexts/audio-context';
 import { WebSocketContext } from '../../../contexts/websocket-context';
@@ -23,7 +23,14 @@ const options: MediaRecorderOptions = {
   mimeType: 'audio/webm',
 };
 
-const GenAiAudio = () => {
+/**
+ * This component renders the audio section of the generative AI page.
+ * It allows users to record audio, visualize it, and send it to the AI model for processing.
+ *
+ * @returns {JSX.Element} The rendered GenAiAudio component.
+ */
+
+const GenAiAudio = (): JSX.Element => {
   const { socket } = useContext(WebSocketContext);
   const { MRC, createStream, stream, setStream } = useContext(MediaRecorderClientContext);
   const { setPromptResponse } = useOutletContext<OutletContextProps>();
@@ -150,6 +157,14 @@ export default GenAiAudio;
 
 const baseUrl = import.meta.env.VITE_SERVER_URL_VERTEX;
 
+/**
+ * This function handles uploading the recorded audio to the server.
+ *
+ * @param {RefObject<HTMLAudioElement | null>} fileInputRef - A ref to the audio element.
+ * @param {Blob} blob - The recorded audio blob.
+ * @returns {Promise<string | undefined>} A promise that resolves with the path to the uploaded audio file.
+ */
+
 const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement | null>, blob: Blob) => {
   try {
     if (fileInputRef.current) {
@@ -167,5 +182,6 @@ const handleFileUpload = async (fileInputRef: RefObject<HTMLAudioElement | null>
     }
   } catch (error) {
     console.error(error);
+    return null;
   }
 };

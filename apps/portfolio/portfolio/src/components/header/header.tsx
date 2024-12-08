@@ -2,7 +2,7 @@ import { Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import EmailIcon from '../../components/icons/email-icon';
 import { iconSxProps, iconWrapperSxProps, socialMediaLinksWrapper } from '../../styles/header-styles';
 import Theme from '../../styles/theme';
@@ -14,7 +14,13 @@ import HuggingFaceIcon from '../icons/huggingface-icon';
 import LinkedinIcon from '../icons/linkedin-logo';
 import XIcon from '../icons/x-logo-icon';
 
-const Header = () => {
+/**
+ * This component renders the header section of the application, which includes social media links and an email contact form.
+ *
+ * @returns {JSX.Element} The rendered Header component.
+ */
+
+const Header = (): JSX.Element => {
   const [openEmail, setOpenEmail] = useState<boolean>(false);
   return (
     <Paper

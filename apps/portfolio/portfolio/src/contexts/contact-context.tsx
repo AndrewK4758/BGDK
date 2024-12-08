@@ -1,6 +1,7 @@
 import {
   createContext,
   type Dispatch,
+  type JSX,
   type ReactElement,
   type ReactNode,
   type SetStateAction,
@@ -30,7 +31,16 @@ interface GoogleContextProviderProps {
   children: ReactElement | ReactElement[] | ReactNode | ReactNode[];
 }
 
-const GoogleUserContextProvider = ({ children }: GoogleContextProviderProps) => {
+/**
+ * This component provides the Google User context to its children.
+ * The context includes the user's email and name.
+ *
+ * @param {GoogleContextProviderProps} props - The props for the GoogleUserContextProvider component.
+ * @param {ReactElement | ReactElement[] | ReactNode | ReactNode[]} props.children - The child components to which the context is provided.
+ * @returns {JSX.Element} The rendered GoogleUserContextProvider component.
+ */
+
+const GoogleUserContextProvider = ({ children }: GoogleContextProviderProps): JSX.Element => {
   const [user, setUser] = useState<GoogleUserContextInfo>(googleUserInit);
   const GoogleUserContextValues = useMemo(() => user, [user]);
   return (

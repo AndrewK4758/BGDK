@@ -3,7 +3,7 @@ import MenuOpenSharpIcon from '@mui/icons-material/MenuOpenSharp';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
-import { Fragment, useState, type Dispatch, type SetStateAction } from 'react';
+import { Fragment, useState, type Dispatch, type JSX, type SetStateAction } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { buttonSXProps, closeMenusStyles, cubeSxProps, menuIconsStyles } from '../../styles/menus-styles';
 import { flexColumnStyles } from '../../styles/prompt-builder-styles';
@@ -17,7 +17,17 @@ interface MenusProps {
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const Menus = ({ setLoading }: MenusProps) => {
+/**
+ * This component renders the navigation menus for the application.
+ * It includes buttons for navigating to different sections of the application, such as Home, Games, CRUD, and Generative AI.
+ *
+ * @param {MenusProps} props - The props for the Menus component.
+ * @param {boolean} props.loading - Whether the application is loading.
+ * @param {Dispatch<SetStateAction<boolean>>} props.setLoading - A function to update the loading state.
+ * @returns {JSX.Element} The rendered Menus component.
+ */
+
+const Menus = ({ setLoading }: MenusProps): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
   const nav: NavigateFunction = useNavigate();
 

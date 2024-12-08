@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
@@ -15,11 +15,12 @@ import Header from '../header/header';
 import Menus from '../menus/menus';
 
 /**
+ * This component renders the main layout of the application.
+ * It includes the header, home section, navigation menus, main content area, and footer.
  *
- * @returns Layout for portfolio app
+ * @returns {JSX.Element} The rendered Layout component.
  */
-
-const Layout = () => {
+const Layout = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (

@@ -2,7 +2,7 @@ import { Text } from '@bgdk/shared-react-components';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { loadingBarStyles, loadingBarTextStyles, loadingPaperStyles } from '../../styles/loading-styles';
 
 const loadingValues = [
@@ -14,7 +14,13 @@ const loadingValues = [
   'Set Players on Start',
 ];
 
-const GameLoading = () => {
+/**
+ * This component renders a loading screen with a progress bar and text updates.
+ *
+ * @returns {JSX.Element} The rendered GameLoading component.
+ */
+
+const GameLoading = (): JSX.Element => {
   const [loadingValueIdx, setLoadingValueIdx] = useState<number>(0);
 
   const loadingValue = loadingValues[loadingValueIdx];

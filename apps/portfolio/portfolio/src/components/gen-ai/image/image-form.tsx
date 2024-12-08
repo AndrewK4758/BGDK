@@ -22,16 +22,16 @@ import Select from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
 import TextField from '@mui/material/TextField';
 import { useFormik, type FormikProps } from 'formik';
-import { type ChangeEvent } from 'react';
+import { type ChangeEvent, type JSX } from 'react';
 import { Form, useActionData, useNavigation, useOutletContext, useSubmit } from 'react-router-dom';
 import * as Yup from 'yup';
+import suspenseImg from '../../../assets/swirly-dots-to-chrome.webp';
 import type { OutletContextProps } from '../../../pages/gen-ai/gen-ai';
 import { forrmControlLabelStyles, radioGroupStyles, sampleCountRadioTextStyles } from '../../../styles/gen-ai-styles';
 import { centerFlex } from '../../../styles/pages-styles';
 import { coloredTitleStyles, flexColumnStyles } from '../../../styles/prompt-builder-styles';
 import Theme from '../../../styles/theme';
 import { imageGenDescription, promptTooltipText, sampleCountTooltipText, seedTooltipText } from '../static/image-text';
-import suspenseImg from '../../../assets/swirly-dots-to-chrome.webp';
 
 const validationSchema = Yup.object({
   prompt: Yup.string().required('The prompt is required'),
@@ -40,7 +40,14 @@ const validationSchema = Yup.object({
   aspectRatio: Yup.string().oneOf(Object.values(AspectRatio)),
 });
 
-const ImageForm = () => {
+/**
+ * This component renders a form for generating images using the generative AI model.
+ * It allows users to input a prompt, select the number of images to generate, choose the aspect ratio, and set a seed value.
+ *
+ * @returns {JSX.Element} The rendered ImageForm component.
+ */
+
+const ImageForm = (): JSX.Element => {
   const { prompt } = useOutletContext<OutletContextProps>();
   const submit = useSubmit();
   const { state } = useNavigation();
@@ -315,12 +322,29 @@ const ImageForm = () => {
 
 export default ImageForm;
 
+/**
+ * This function handles the seed input change event.
+ * It updates the seed value in the Formik state.
+ *
+ * @param {ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event - The change event object.
+ * @param {FormikProps<Partial<ImagenConfig>>} formik - The Formik props object.
+ */
+
 const handleSliderInputChange = (
   event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   formik: FormikProps<Partial<ImagenConfig>>,
 ) => {
   formik.setFieldValue('seed', event.target.value === '' ? 0 : Number(event.target.value));
 };
+
+/**
+ * This function handles the Formik value change event.
+ * It updates the corresponding value in the Formik state.
+ *
+ * @param {string} name - The name of the input field.
+ * @param {string | number | number[]} value - The new value of the input field.
+ * @param {FormikProps<Partial<ImagenConfig>>} formik - The Formik props object.
+ */
 
 const handleFormikValueChange = async (
   name: string,

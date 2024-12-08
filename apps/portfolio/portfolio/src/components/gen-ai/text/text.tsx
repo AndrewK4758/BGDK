@@ -5,7 +5,7 @@ import { FileData } from '@google-cloud/vertexai';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, type JSX } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import * as Yup from 'yup';
 import { WebSocketContext, WebSocketContextType } from '../../../contexts/websocket-context';
@@ -17,7 +17,14 @@ const validationSchema = Yup.object<PromptRequest>().shape({
   fileData: Yup.mixed<FileData>().nullable().notRequired(),
 });
 
-const TextGenerator = () => {
+/**
+ * This component renders the text generation section of the generative AI page.
+ * It allows users to input a prompt and send it to the AI model for processing.
+ *
+ * @returns {JSX.Element} The rendered TextGenerator component.
+ */
+
+const TextGenerator = (): JSX.Element => {
   const { socket } = useContext<WebSocketContextType>(WebSocketContext);
   const { prompt, setLoading, setPromptResponse } = useOutletContext<OutletContextProps>();
   const divRef = useRef<HTMLDivElement>(null);

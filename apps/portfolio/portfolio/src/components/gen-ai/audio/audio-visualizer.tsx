@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties, type JSX } from 'react';
 import { fullSizeBlock } from '../../../styles/pages-styles';
 import Theme from '../../../styles/theme';
 
@@ -6,7 +6,15 @@ interface AudioVisualizerProps {
   stream: MediaStream;
 }
 
-export const AudioVisualizer = ({ stream }: AudioVisualizerProps) => {
+/**
+ * This component renders a visual representation of the audio stream.
+ *
+ * @param {AudioVisualizerProps} props - The props for the AudioVisualizer component.
+ * @param {MediaStream} props.stream - The audio stream to visualize.
+ * @returns {JSX.Element} The rendered AudioVisualizer component.
+ */
+
+export const AudioVisualizer = ({ stream }: AudioVisualizerProps): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
