@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Dispatch, type JSX, type SetStateAction } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
-import { breakpointsResetGameButton } from '../../../styles/games-styles';
+import { breakpointsResetGameButton } from '../../../../../../../libs/react-components/src/lib/theme/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
 
@@ -50,8 +50,8 @@ const baseURL = import.meta.env.VITE_GAMES_API_URL;
 const handleResetGame = async ({ dispatch, socket, setSpace, id }: ResetGameProps & { id: string | undefined }) => {
   const reqHeaders = {
     headers: {
-      'current-game': JSON.stringify(getGameInstanceInfo()),
-    },
+      'current-game': JSON.stringify(getGameInstanceInfo())
+    }
   };
   try {
     await axios.patch(`${baseURL}/games/${id}/reset`, {}, reqHeaders);

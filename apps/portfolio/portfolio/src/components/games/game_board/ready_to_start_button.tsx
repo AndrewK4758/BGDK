@@ -4,7 +4,10 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { Dispatch, type JSX } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
-import { breakpointsStartGameButtonBox, breakpointsStartGameButtonFormButton } from '../../../styles/games-styles';
+import {
+  breakpointsStartGameButtonBox,
+  breakpointsStartGameButtonFormButton
+} from '../../../../../../../libs/react-components/src/lib/theme/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
 
@@ -27,8 +30,8 @@ export default function ReadyToStart({ dispatch, socket }: ReadyToStartProps): J
 
   const reqHeaders = {
     headers: {
-      'current-game': JSON.stringify(getGameInstanceInfo()),
-    },
+      'current-game': JSON.stringify(getGameInstanceInfo())
+    }
   };
 
   return (
@@ -63,7 +66,7 @@ const handleStartGame = async (
   dispatch: Dispatch<Action>,
   socket: Socket,
   id: string,
-  reqHeaders: AxiosRequestConfig,
+  reqHeaders: AxiosRequestConfig
 ) => {
   const resp = await axios.patch(`${__baseURL__}/games/${id}/start`, {}, reqHeaders);
   dispatch({ type: ActionType.START, socket: socket });

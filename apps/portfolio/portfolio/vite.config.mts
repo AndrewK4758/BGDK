@@ -48,14 +48,14 @@ const vite: ViteUserConfig = defineConfig({
     outDir: 'dist',
     manifest: true,
     emptyOutDir: true,
-    sourcemap: false,
+    sourcemap: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true
     },
     target: 'esnext',
     assetsDir: './assets',
-    minify: false,
+    minify: true,
 
     rollupOptions: {
       perf: true,

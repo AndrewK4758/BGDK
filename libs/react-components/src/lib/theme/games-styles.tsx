@@ -12,8 +12,8 @@ export const breakpointsActiveGameTitleContainer: SxProps = {
   justifyContent: 'space-between',
   paddingBottom: 4,
   [Theme.breakpoints.down('md')]: {
-    flex: '1 0 60%',
-  },
+    flex: '1 0 60%'
+  }
 };
 
 export const breakpointsActiveGameTitleText: SxProps = {
@@ -22,8 +22,8 @@ export const breakpointsActiveGameTitleText: SxProps = {
   [Theme.breakpoints.down('md')]: {
     flex: '1 0 100%',
     fontSize: '1.5rem',
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 };
 
 export const breakpointsPlayersInGameBox: SxProps = {
@@ -32,21 +32,21 @@ export const breakpointsPlayersInGameBox: SxProps = {
   flexWrap: 'wrap',
   flexDirection: 'row',
   height: '100%',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 export const breakpointsPlayersBox: SxProps = {
   flex: '0 1 auto',
   display: 'flex',
   flexDirection: 'row',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 export const breakpointsPlayersInGameText: SxProps = {
   flex: '0 1 auto',
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 };
 
 //-------READY TO START BUTTON-------//
@@ -55,7 +55,7 @@ export const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
   justifyItems: 'center',
   alignContent: 'center',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 export const breakpointsStartGameButtonFormButton: SxProps = {
@@ -63,8 +63,8 @@ export const breakpointsStartGameButtonFormButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 //--------RESET GAME--------//
@@ -76,8 +76,8 @@ export const breakpointsResetGameButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 //-------SHOW GAME BOARD-------//
@@ -88,8 +88,8 @@ export const breakpointsGameBoardBox: SxProps = {
   flexDirection: 'row',
   border: `5px solid ${Theme.palette.success.main}`,
   [Theme.breakpoints.up('md')]: {
-    boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
-  },
+    boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`
+  }
 };
 
 //-------SHOW GAME BOARD TIC TAC TOE-------//
@@ -103,8 +103,8 @@ export const breakpointsGameBoardBoxTicTacToe: SxProps = {
   width: '50vw',
   justifySelf: 'center',
   [Theme.breakpoints.up('md')]: {
-    boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
-  },
+    boxShadow: `0px 7px 8px -4px ${Theme.palette.success.main}, 0px 12px 17px 2px ${Theme.palette.primary.light}, 0px 5px 22px 4px ${Theme.palette.primary.dark}, 0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`
+  }
 };
 
 //--------TAKE TURN--------//
@@ -115,8 +115,8 @@ export const breakpointsTakeTurnButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 //-------TAKE TURN TIC TAC TOE-------//
@@ -127,8 +127,8 @@ export const breakpointsTakeTurnButtonTTT: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 //-------ACTIVE GAME SESSION--------//
@@ -140,14 +140,14 @@ export const breakpointsBottomMenuGameBoard: SxProps = {
   alignItems: 'center',
   gap: 4,
   [Theme.breakpoints.down('md')]: {
-    marginTop: '1rem',
-  },
+    marginTop: '1rem'
+  }
 };
 
 export const breakpointsPlayerInTurnText: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1em',
-  },
+    fontSize: '1em'
+  }
 };
 
 export const breakpointsBottomMenuButtonsBox: SxProps = {
@@ -155,6 +155,6 @@ export const breakpointsBottomMenuButtonsBox: SxProps = {
   display: 'flex',
   justifyContent: 'space-evenly',
   [Theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-  },
+    flexDirection: 'column'
+  }
 };

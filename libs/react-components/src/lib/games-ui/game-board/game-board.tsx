@@ -30,16 +30,16 @@ const gameBoardRowMap = (e: ILiteSpace, i: number, _arr: string[]) => (
         key={`${e.display}-avatar-c&l`}
         id={`${e.display}-avatar-c&l`}
         data-testid={`${e.display}-avatar-c&l`}
-        src={`./game-avatars/${e.display}`}
+        src={`/game-avatars/${e.display}`}
         alt={`${e.display} game piece`}
         style={avatarSize}
       />
     ) : (
       <Text
         component={'p'}
-        key={`${e.display}-avatar-c&l`}
-        id={`${e.display}-avatar-c&l`}
-        data-testid={`${e.display}-avatar-c&l`}
+        key={`${e.display}-space-text-c&l`}
+        id={`${e.display}-space-text-c&l`}
+        data-testid={`${e.display}-space-text-c&l`}
         titleVariant="body2"
         titleText={e.display}
         sx={breakpointsSpaceSx}

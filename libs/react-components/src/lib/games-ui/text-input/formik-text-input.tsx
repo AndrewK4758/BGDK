@@ -4,7 +4,7 @@ import type { SxProps } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 import { ElementType, FocusEvent } from 'react';
-import { Theme } from '../../theme/theme';
+import Theme from '../../theme/theme';
 
 export interface FormikTextInputProps {
   name: string;
@@ -46,7 +46,7 @@ export function FormikTextInput({
         name={field.name}
         value={field.value}
         slotProps={{
-          inputLabel: { sx: textSx },
+          inputLabel: { sx: textSx }
         }}
         sx={textSx}
         onBlur={field.onBlur}

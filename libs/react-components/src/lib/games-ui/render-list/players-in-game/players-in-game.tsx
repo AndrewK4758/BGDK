@@ -7,7 +7,7 @@ import { Text } from '@bgdk/shared-react-components';
 const avatarSvgStyle: CSSProperties = {
   height: 'auto',
   width: '30%',
-  maxWidth: '100px',
+  maxWidth: '100px'
 };
 
 export interface PlayersInGameProps {
@@ -26,22 +26,23 @@ export interface PlayersInGameProps {
  * @returns list of players in game with avatars
  */
 
-export function PlayersInGame({
+export const PlayersInGame = ({
   component,
   id,
   boxSx,
   textSx,
   playerVariant,
   playerName,
-  avatarName,
-}: PlayersInGameProps) {
-  const avatarSVG = `./game-avatars/${avatarName.toLowerCase()}.svg`;
-  return (
-    <Box component={component} key={id} width={'fit-content'} whiteSpace={'preserve'} sx={boxSx}>
-      <Text component={'p'} titleVariant={playerVariant} titleText={playerName} sx={textSx} />
-      <img src={avatarSVG} alt={`${avatarName} active in game`} style={avatarSvgStyle} />
-    </Box>
-  );
-}
+  avatarName
+}: PlayersInGameProps) => (
+  <Box component={component} key={id} width={'fit-content'} whiteSpace={'preserve'} sx={boxSx}>
+    <Text component={'p'} titleVariant={playerVariant} titleText={playerName} sx={textSx} />
+    <img
+      src={`/game-avatars/${avatarName.toLowerCase()}.svg`}
+      alt={`${avatarName} active in game`}
+      style={avatarSvgStyle}
+    />
+  </Box>
+);
 
 export default PlayersInGame;

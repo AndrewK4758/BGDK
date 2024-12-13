@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch, type JSX } from 'react';
 import { Socket } from 'socket.io-client';
-import { breakpointsTakeTurnButton } from '../../../styles/games-styles';
+import { breakpointsTakeTurnButton } from '@bgdk/react-components';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
 
@@ -55,8 +55,8 @@ const handleTakeTurn = async (dispatch: Dispatch<Action>, socket: Socket, avatar
     gameInfo.playerID = playerId;
     const reqHeaders = {
       headers: {
-        'current-game': JSON.stringify(gameInfo),
-      },
+        'current-game': JSON.stringify(gameInfo)
+      }
     };
 
     const resp = await axios.patch(`${baseURL}/games/Chutes-&-Ladders/take-turn`, {}, reqHeaders);

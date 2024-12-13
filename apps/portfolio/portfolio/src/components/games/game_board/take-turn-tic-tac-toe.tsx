@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import { Dispatch, type JSX } from 'react';
 import { Socket } from 'socket.io-client';
-import { breakpointsTakeTurnButtonTTT } from '../../../styles/games-styles';
+import { breakpointsTakeTurnButtonTTT } from '../../../../../../../libs/react-components/src/lib/theme/games-styles';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
 
@@ -60,8 +60,8 @@ const handleTakeTurn = async ({ dispatch, socket, position, avatarInTurn }: Take
 
     const reqHeaders = {
       headers: {
-        'current-game': JSON.stringify(gameInfo),
-      },
+        'current-game': JSON.stringify(gameInfo)
+      }
     };
 
     const resp = await axios.patch(`${baseURL}/games/Tic-Tac-Toe/take-turn`, { position: position }, reqHeaders);

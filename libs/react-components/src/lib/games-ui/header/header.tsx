@@ -3,7 +3,7 @@ import { SxProps } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { ElementType, useContext, useEffect } from 'react';
-import { Theme } from '../../theme/theme';
+import Theme from '../../theme/theme';
 import { ActiveUserContext } from '../context/active-user-context';
 import LoginDrawer from '../login/login-drawer';
 import RegisterDrawer from '../register-user/register-drawer';
@@ -14,14 +14,14 @@ const breakpointsMenuItem: SxProps = {
   backgroundColor: Theme.palette.info.main,
   width: '100%',
   [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-  },
+    fontSize: '17px'
+  }
 };
 
 const breakpointsMenu: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '2rem',
-  },
+    fontSize: '2rem'
+  }
 };
 
 export interface ActiveUserData {
@@ -70,7 +70,7 @@ export const Header = ({ componentAppBar, componentLogin, componentRegister, sxA
                 height: 'auto',
                 flex: '1 0 50%',
                 alignSelf: 'center',
-                borderRadius: '45px',
+                borderRadius: '45px'
               }}
             />
           )}

@@ -1,8 +1,7 @@
-import { GameBoardMap } from '@bgdk/react-components';
+import { GameBoardMap, breakpointsGameBoardBox } from '@bgdk/react-components';
 import { RenderList } from '@bgdk/shared-react-components';
 import { GameBoard, ILiteSpace } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
-import { breakpointsGameBoardBox } from '../../../styles/games-styles';
 
 /**
  *

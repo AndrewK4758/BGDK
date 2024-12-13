@@ -9,18 +9,18 @@ export const pagesWrapperStyles: SxProps = {
   alignItems: 'center',
   height: 'fit-content',
   minHeight: '80vh',
-  width: '80vw',
+  width: '80vw'
 };
 
 export const centerFlex: SxProps = {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'center'
 };
 
 export const pagesTitlesBoxStyles: SxProps = {
   ...centerFlex,
-  paddingY: 2,
+  paddingY: 2
 };
 
 export const pagesToolbarStyles: SxProps = { display: 'flex', justifyContent: 'space-evenly', flex: '1 0 100%' };
@@ -31,7 +31,7 @@ export const modalButtonBoxStyles: SxProps = {
   display: 'flex',
   flex: '0 1 100%',
   justifyContent: 'flex-end',
-  alignItems: 'center',
+  alignItems: 'center'
 };
 
 export const pagesOutletStyles: SxProps = {
@@ -39,7 +39,7 @@ export const pagesOutletStyles: SxProps = {
   justifyContent: 'center',
   width: '100%',
   minHeight: '100%',
-  height: 'fit-content',
+  height: 'fit-content'
 };
 
 export const fullPageModalStyles: SxProps = {
@@ -51,7 +51,7 @@ export const fullPageModalStyles: SxProps = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  overflowY: 'auto',
+  overflowY: 'auto'
 };
 
 export const fullSizeBlock: SxProps = { height: '100%', width: '100%' };
@@ -59,12 +59,12 @@ export const fullSizeBlock: SxProps = { height: '100%', width: '100%' };
 export const headerModalButtonStyles: SxProps = {
   textAlign: 'right',
   color: Theme.palette.secondary.light,
-  fontSize: '1.25rem',
+  fontSize: '1.25rem'
 };
 
 export const pagesTitleSx: SxProps = {
   width: 'fit-content',
   maxWidth: '80%',
   textAlign: 'center',
-  flex: '1 0 100%',
+  flex: '1 0 100%'
 };

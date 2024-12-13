@@ -11,7 +11,7 @@ import {
   nonSelectedSpaceStyle,
   rowSizeTTT,
   selectedSpaceStyle,
-  svgSpaceTTTStyles,
+  svgSpaceTTTStyles
 } from '../../styles/game-board-styles';
 
 export interface GameBoardPropsTicTacToe {
@@ -51,7 +51,7 @@ export const GameBoardMapTicTacToe = ({
   id,
   wrap,
   state,
-  setStateAction,
+  setStateAction
 }: GameBoardPropsTicTacToe) => (
   <Grid2
     component={'section'}
@@ -67,9 +67,9 @@ export const GameBoardMapTicTacToe = ({
         key={`space-${e.display}-${i}`}
         id={`space-${e.display}-${i}`}
         component={'div'}
-        sx={breakpointsRowTTTSx}
+        sx={setStyleOnState(state, e.display, breakpointsRowTTTSx, selectedSpaceStyle, nonSelectedSpaceStyle)}
         onClick={e => setStateAction(e.currentTarget.textContent as string)}
-        style={state === e.display ? selectedSpaceStyle : nonSelectedSpaceStyle}
+        // style={state === e.display ? selectedSpaceStyle : nonSelectedSpaceStyle}
       >
         {e.display.indexOf('g') === e.display.length - 1 ? (
           <Box
@@ -80,7 +80,7 @@ export const GameBoardMapTicTacToe = ({
           >
             <img
               key={`${e.display}-avatar-${i}`}
-              src={`./game-avatars/${e.display}`}
+              src={`/game-avatars/${e.display}`}
               alt={`${e.display} game piece`}
               style={avatarTTTSize}
             />
@@ -104,3 +104,12 @@ export const GameBoardMapTicTacToe = ({
 );
 
 export default GameBoardMapTicTacToe;
+
+const setStyleOnState = (
+  state: string | undefined,
+  name: string,
+  base: SxProps,
+  cond1: SxProps,
+  cond2: SxProps
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): SxProps => (state === name ? { ...(base as any), ...cond1 } : { ...(base as any), ...cond2 });

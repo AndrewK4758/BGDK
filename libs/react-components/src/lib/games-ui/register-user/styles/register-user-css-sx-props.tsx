@@ -1,6 +1,6 @@
-import { Theme } from '../../../theme/theme';
-import { SxProps } from '@mui/material';
+import type { SxProps } from '@mui/material/styles';
 import { CSSProperties } from 'react';
+import Theme from '../../../theme/theme';
 
 export const breakpointsTextBoxSx: SxProps = {
   backgroundColor: Theme.palette.info.main,
@@ -16,8 +16,8 @@ export const breakpointsTextBoxSx: SxProps = {
     fontSize: '17px',
     textAlign: 'center',
     height: 35,
-    width: 230,
-  },
+    width: 230
+  }
 };
 
 export const breakpointsButtonSx: SxProps = {
@@ -25,15 +25,15 @@ export const breakpointsButtonSx: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 25,
-  },
+    height: 25
+  }
 };
 
 export const breakpointsLabelSx: SxProps = {
   color: Theme.palette.primary.main,
-  textShadow: `1px 1px 1px #800080`,
+  textShadow: `1px 1px 1px #800080`
 };
 
 export const inputStyle: CSSProperties = {
-  fontSize: '1.5rem',
+  fontSize: '1.5rem'
 };

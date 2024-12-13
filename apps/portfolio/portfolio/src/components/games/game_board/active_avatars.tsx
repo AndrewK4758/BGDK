@@ -1,17 +1,17 @@
 import { Player } from '@bgdk/games-components-logic';
-import { PlayersInGame } from '@bgdk/react-components';
-import { RenderList, Text } from '@bgdk/shared-react-components';
-import { IRegisterFormValues } from '@bgdk/types-game';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import {
+  PlayersInGame,
   activeGameHeaderBoxStyles,
   breakpointsActiveGameTitleContainer,
   breakpointsActiveGameTitleText,
   breakpointsPlayersBox,
   breakpointsPlayersInGameBox,
-  breakpointsPlayersInGameText,
-} from '../../../styles/games-styles';
+  breakpointsPlayersInGameText
+} from '@bgdk/react-components';
+import { RenderList, Text } from '@bgdk/shared-react-components';
+import { IRegisterFormValues } from '@bgdk/types-game';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 /**
  *

@@ -1,8 +1,7 @@
-import { GameBoardMapTicTacToe } from '@bgdk/react-components';
+import { GameBoardMapTicTacToe, breakpointsGameBoardBoxTicTacToe } from '@bgdk/react-components';
 import type { GameBoard } from '@bgdk/types-game';
 import Box from '@mui/material/Box';
 import type { Dispatch, JSX, SetStateAction } from 'react';
-import { breakpointsGameBoardBoxTicTacToe } from '../../../styles/games-styles';
 
 interface ShowGameBoardProps {
   board: GameBoard;
@@ -40,7 +39,7 @@ const ShowGameBoardTicTacToe = ({ board, state, setStateAction }: ShowGameBoardP
           state={state}
           setStateAction={setStateAction}
         />
-      ),
+      )
     )}
   </Box>
 );

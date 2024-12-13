@@ -1,5 +1,10 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
+import {
+  breakpointsBottomMenuButtonsBox,
+  breakpointsBottomMenuGameBoard,
+  breakpointsPlayerInTurnText
+} from '@bgdk/react-components';
 import { Text } from '@bgdk/shared-react-components';
 import { ClientSocket } from '@bgdk/socket-io-client';
 import { GameBoard, type GamePlayerValidation, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
@@ -10,11 +15,6 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { ManagerOptions, Socket } from 'socket.io-client';
 import useScrollIntoView from '../../hooks/use-scroll-into-view';
-import {
-  breakpointsBottomMenuButtonsBox,
-  breakpointsBottomMenuGameBoard,
-  breakpointsPlayerInTurnText,
-} from '../../styles/games-styles';
 import getGameInstanceInfo from '../../utils/utils';
 import ActiveAvatars from './game_board/active_avatars';
 import ResetGame from './game_board/reset_game';
@@ -59,7 +59,7 @@ const socketInit = () => {
 const ActiveGameSession = () => {
   const socketManagerOptions: Partial<ManagerOptions> = {
     autoConnect: false,
-    extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) },
+    extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) }
   };
 
   const clientSocket = new ClientSocket(import.meta.env.VITE_WS_SERVER_URL_GAMES, socketManagerOptions);
@@ -112,7 +112,7 @@ const ActiveGameSession = () => {
 
       dispatch({
         type: ActionType.BOARD,
-        payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
+        payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo
       });
     });
     socket.on('no-game-error', ({ errorMessage }) => {

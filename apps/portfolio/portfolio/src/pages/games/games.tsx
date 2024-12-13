@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
-import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
+import { useRef, useState, type Dispatch, type JSX, type SetStateAction } from 'react';
 import { Outlet, useNavigation, useSubmit, type SubmitFunction } from 'react-router-dom';
 import ChutesAndLaddersIcon from '../../components/icons/chutes-and-ladders';
 import TicTacToeIcon from '../../components/icons/tic-tac-toe-icon';
@@ -16,9 +16,10 @@ import {
   pagesTitlesBoxStyles,
   pagesTitleSx,
   pagesToolbarStyles,
-  pagesWrapperStyles,
+  pagesWrapperStyles
 } from '../../styles/pages-styles';
 import { body, title } from '../static/games-text';
+import GameLoading from '../../components/loading/loading';
 
 /**
  * This component renders the main games page, providing an interface for users to select and play different games.
@@ -26,8 +27,8 @@ import { body, title } from '../static/games-text';
  * @returns {JSX.Element} The rendered Games component.
  */
 
-const Games = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+const Games = (): JSX.Element => {
+  const [loading, setLoading] = useState<boolean | null>(false);
   const { state } = useNavigation();
   const divRef = useRef<HTMLElement>(null);
   const submit = useSubmit();
@@ -64,7 +65,7 @@ const Games = () => {
                 <ChutesAndLaddersIcon
                   sx={{
                     opacity: state !== 'idle' ? 0.38 : 1,
-                    scale: 1.75,
+                    scale: 1.75
                   }}
                 />
               }
@@ -85,7 +86,7 @@ const Games = () => {
                 <TicTacToeIcon
                   sx={{
                     opacity: state !== 'idle' ? 0.38 : 1,
-                    scale: 1.5,
+                    scale: 1.5
                   }}
                 />
               }
@@ -106,7 +107,8 @@ const Games = () => {
         </Container>
       </Paper>
       <Box component={'div'} key={`games-outlet-wrapper`} id={`games-outlet-wrapper`} sx={pagesOutletStyles}>
-        {!loading && <Outlet />}
+        {loading === true && <GameLoading />}
+        {loading === false && <Outlet />}
       </Box>
     </Box>
   );
@@ -120,13 +122,13 @@ export default Games;
  *
  * @param {string} gameName - The name of the game to select.
  * @param {SubmitFunction} submit - A function for submitting the game name to the server.
- * @param {Dispatch<SetStateAction<boolean>>} setLoading - A function to update the loading state.
+ * @param {Dispatch<SetStateAction<boolean | null>>} setLoading - A function to update the loading state.
  */
 
 const handleSelectGame = async (
   gameName: string,
   submit: SubmitFunction,
-  setLoading: Dispatch<SetStateAction<boolean>>,
+  setLoading: Dispatch<SetStateAction<boolean | null>>
 ) => {
   try {
     setLoading(true);

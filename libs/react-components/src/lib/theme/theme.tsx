@@ -22,45 +22,45 @@ const __greyDefault = '#404040';
 //text main?
 const __rustColor = '#ff3d00';
 
-export const Theme = createTheme({
+const Theme = createTheme({
   palette: {
     common: {
       black: __greyDark,
-      white: __greyLight,
+      white: __greyLight
     },
     text: {
       primary: __primaryMain,
       secondary: __greyDark,
-      disabled: __primaryDark,
+      disabled: __primaryDark
     },
     divider: __primaryContrast,
     action: {
       hover: __primaryContrast,
-      hoverOpacity: 0.75,
+      hoverOpacity: 0.75
     },
     primary: {
       main: __primaryMain,
       light: __primaryLight,
       dark: __primaryDark,
-      contrastText: __primaryContrast,
+      contrastText: __primaryContrast
     },
     secondary: {
       main: __secondaryMain,
       light: __secondaryLight,
       dark: __secondaryDark,
-      contrastText: __secondaryContrast,
+      contrastText: __secondaryContrast
     },
     info: {
-      main: __greyDefault,
+      main: __greyDefault
     },
     success: {
-      main: __rustColor,
+      main: __rustColor
     },
 
     background: {
       default: __greyLight,
-      paper: __greyDark,
-    },
+      paper: __greyDark
+    }
   },
 
   typography: {
@@ -69,48 +69,48 @@ export const Theme = createTheme({
       fontFamily: 'Jersey25-Charted',
       fontSize: '8rem',
       color: __rustColor,
-      textShadow: `2px 1px ${__primaryLight}`,
+      textShadow: `2px 1px ${__primaryLight}`
     },
     h2: {
       fontSize: '4rem',
       fontFamily: 'Jersey25',
       color: __primaryMain,
-      textShadow: `2px 1px ${__primaryContrast}`,
+      textShadow: `2px 1px ${__primaryContrast}`
     },
     h3: {
       fontFamily: 'Jersey25',
       fontSize: '2.5rem',
       color: __primaryMain,
-      textShadow: `2px 1px ${__primaryContrast}`,
+      textShadow: `2px 1px ${__primaryContrast}`
     },
     h4: {
       fontFamily: 'Jersey25-Charted',
       fontSize: '2rem',
       color: __primaryMain,
-      textShadow: `1px 1px ${__primaryContrast}`,
+      textShadow: `1px 1px ${__primaryContrast}`
     },
     h5: {
       fontFamily: 'Jersey25-Charted',
       fontSize: '5rem',
       color: __rustColor,
-      textShadow: `2px 1px ${__primaryLight}`,
+      textShadow: `2px 1px ${__primaryLight}`
     },
     body1: {
       fontFamily: 'Jersey25',
       color: __greyDark,
-      fontSize: '2rem',
+      fontSize: '2rem'
     },
     body2: {
       fontFamily: 'Jersey25',
       fontWeight: 100,
-      fontSize: '1.5rem',
-    },
+      fontSize: '1.5rem'
+    }
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        main: darkScrollbar(),
-      },
+        main: darkScrollbar()
+      }
     },
     MuiContainer: {
       variants: [
@@ -125,8 +125,8 @@ export const Theme = createTheme({
             justifyContent: 'center',
             alignContent: 'center',
             margin: 0,
-            padding: 0,
-          },
+            padding: 0
+          }
         },
         {
           props: { component: 'section' },
@@ -134,10 +134,10 @@ export const Theme = createTheme({
             display: 'flex',
             flexWrap: 'wrap',
             margin: 0,
-            padding: 0,
-          },
-        },
-      ],
+            padding: 0
+          }
+        }
+      ]
     },
     MuiButton: {
       variants: [
@@ -148,13 +148,13 @@ export const Theme = createTheme({
             backgroundColor: __greyDefault,
             width: 230,
             height: 70,
-            fontSize: 34,
-          },
-        },
+            fontSize: 34
+          }
+        }
       ],
       defaultProps: {
-        variant: 'outlined',
-      },
+        variant: 'outlined'
+      }
     },
     MuiInputLabel: {
       variants: [
@@ -164,22 +164,24 @@ export const Theme = createTheme({
             fontSize: '4rem',
             fontFamily: 'Jersey25-Charted',
             color: __primaryMain,
-            textShadow: `2px 1px ${__primaryContrast}`,
-          },
-        },
-      ],
+            textShadow: `2px 1px ${__primaryContrast}`
+          }
+        }
+      ]
     },
     MuiImageListItemBar: {
       styleOverrides: {
         title: {
           fontSize: 36,
-          color: __rustColor,
+          color: __rustColor
         },
         root: {
           backgroundColor: __greyDark,
-          borderRadius: 5,
-        },
-      },
-    },
-  },
+          borderRadius: 5
+        }
+      }
+    }
+  }
 });
+
+export default Theme;
