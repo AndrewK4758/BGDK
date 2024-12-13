@@ -54,7 +54,7 @@ const GamesList = () => {
           justifyItems: 'center',
         }}
       >
-        <Text titleVariant="h1" titleText={'Games'} sx={breakpointsGameListText} />
+        <Text component={'h1'} titleVariant="h1" titleText={'Games'} sx={breakpointsGameListText} />
       </Container>
       <Container component={'div'}>
         <ImageList variant="standard" cols={media ? 2 : 1} rowHeight={media ? 365 : 200} gap={12} sx={{ m: 0 }}>

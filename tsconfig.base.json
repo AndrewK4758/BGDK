@@ -62,5 +62,8 @@
       "@bgdk/vertex-ai": ["libs/gen-ai/vertex-ai/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "ts-node": {
+    "esm": true
+  }
 }

@@ -31,6 +31,34 @@
       "options": {
         "fix": true
       }
+    },
+    "typecheck": {
+      "cache": true,
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": ["typescript"]
+        }
+      ],
+      "options": {
+        "cwd": "libs/chains-for-games/",
+        "command": "tsc --noEmit -p tsconfig.lib.json"
+      },
+      "metadata": {
+        "description": "Run Typechecking",
+        "help": {
+          "command": "pnpm exec tsc --help -p tsconfig.lib.json",
+          "example": {
+            "options": {
+              "noEmit": true
+            }
+          }
+        }
+      },
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
     }
   }
 }

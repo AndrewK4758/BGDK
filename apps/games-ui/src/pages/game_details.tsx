@@ -66,14 +66,17 @@ const GameDetails = () => {
     const gameDetails: IRule[] = selectedGame.rules;
     return (
       <Container component={'div'} sx={{ flexDirection: 'column', marginTop: '1.5rem' }}>
-        <Text titleVariant="h1" titleText={selectedName} sx={breakpointsGameDetailsTitle} />
+        <Text component={'h1'} titleVariant="h1" titleText={selectedName} sx={breakpointsGameDetailsTitle} />
         <List component={'ul'}>
           <RenderList data={gameDetails} listMapCallback={listRulesCallback} />
         </List>
         <RegisterGame registerGameButtonSx={breakpointsGameDetailsRegisterButton} />
       </Container>
     );
-  } else return <Text titleVariant="h1" titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'} />;
+  } else
+    return (
+      <Text component={'h1'} titleVariant="h1" titleText={'GAME DOES NOT EXIST --- OR ERROR --- OR SOMETHING ELSE'} />
+    );
 };
 
 export default GameDetails;

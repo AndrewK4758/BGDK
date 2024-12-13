@@ -1,55 +1,37 @@
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import { createRequire } from 'module';
-import path from 'path';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import react from '@vitejs/plugin-react';
 import { cwd } from 'process';
+import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
-const { resolve } = createRequire(import.meta.url);
-
-const prismaClient = `prisma${path.sep}client`;
-
-const prismaClientIndexBrowser = resolve('@prisma/client/index-browser').replace(
-  `@${prismaClient}`,
-  `.${prismaClient}`,
-);
-
-export default defineConfig({
+const vite: ViteUserConfig = defineConfig({
   test: {
     watch: false,
     globals: true,
     environment: 'jsdom',
-    include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: ['tests/**.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['verbose'],
     logHeapUsage: true,
     name: 'Portfolio',
     coverage: {
       reportsDirectory: `${cwd()}/coverage/apps/portfolio/portfolio`,
-      provider: 'v8',
-    },
+      provider: 'v8'
+    }
   },
   root: __dirname,
   cacheDir: '../../../node_modules/.vite/apps/portfolio/portfolio',
 
   server: {
     port: 4700,
-    host: 'localhost',
+    host: 'localhost'
   },
 
   preview: {
     port: 4800,
-    host: 'localhost',
+    host: 'localhost'
   },
 
-  plugins: [
-    react({ babel: { targets: { esmodules: true } } }),
-    nxViteTsPaths({
-      debug: true,
-      mainFields: ['exports', '.', 'types', 'imports', 'require'],
-    }),
-    nxCopyAssetsPlugin(['*.md']),
-  ],
+  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -57,28 +39,38 @@ export default defineConfig({
   // plugins: [nxViteTsPaths()]
   // },
 
+  css: {
+    devSourcemap: true,
+    modules: { exportGlobals: true }
+  },
+
   build: {
-    outDir: './dist',
+    outDir: 'dist',
+    manifest: true,
     emptyOutDir: true,
+    sourcemap: false,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
+      transformMixedEsModules: true
     },
     target: 'esnext',
     assetsDir: './assets',
+    minify: false,
+
     rollupOptions: {
       perf: true,
+
       output: {
         esModule: true,
-        sourcemap: true,
-        format: 'esm',
+        format: 'es',
         generatedCode: {
           arrowFunctions: true,
           constBindings: true,
           symbols: true,
-        },
-      },
-    },
+          objectShorthand: true
+        }
+      }
+    }
   },
 
   logLevel: 'info',
@@ -86,12 +78,14 @@ export default defineConfig({
   publicDir: 'public',
   envDir: './env',
 
-  resolve: { alias: { '.prisma/client/index-browser': path.relative(cwd(), prismaClientIndexBrowser) } },
-
   esbuild: {
     jsx: 'automatic',
     format: 'esm',
     color: true,
     platform: 'browser',
-  },
+    sourcemap: true,
+    target: 'esnext'
+  }
 });
+
+export default vite;

@@ -124,6 +124,7 @@ const Tracks = () => {
       <Container key={'artist-title'} component={'div'}>
         <Paper key={'title-bar'} component={'div'} elevation={6} sx={{ height: '2rem', display: 'flex' }}>
           <Text
+            component={'h2'}
             titleVariant="h2"
             titleText="Album Tracks"
             sx={{ flex: '1 0 100%', textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}
@@ -136,7 +137,6 @@ const Tracks = () => {
 
       <Box>
         <DataGrid
-          autoHeight
           apiRef={apiRef}
           columns={columns}
           rows={tracks}

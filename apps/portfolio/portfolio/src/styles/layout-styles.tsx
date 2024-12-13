@@ -5,7 +5,7 @@ export const baseStyleForLayoutItems: SxProps = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  width: '100vw',
+  width: '100vw'
 };
 
 export const headerWrapperSxProps: SxProps = {
@@ -17,31 +17,31 @@ export const headerWrapperSxProps: SxProps = {
   maxHeight: '120px',
   justifyContent: 'center',
   alignContent: 'center',
-  zIndex: 5,
+  zIndex: 5
 };
 
 export const homeWrapperSxProps: SxProps = {
   ...baseStyleForLayoutItems,
   flex: '1 0 100%',
   justifyContent: 'space-between',
-  gap: '25vh',
+  gap: '25vh'
 };
 
 export const mainWrapperSxProps: SxProps = {
   ...baseStyleForLayoutItems,
   marginTop: '20vh',
-  gap: '15vh',
+  gap: '15vh'
 };
 
 export const outletWrapperSxProps: SxProps = {
   ...baseStyleForLayoutItems,
   height: 'fit-content',
   minHeight: '50vh',
-  paddingBottom: '15vh',
+  paddingBottom: '15vh'
 };
 
 export const footerWrapperSxProps: SxProps = {
   height: 'fit-content',
   width: '100%',
-  textAlign: 'center',
+  textAlign: 'center'
 };

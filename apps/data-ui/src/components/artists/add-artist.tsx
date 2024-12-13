@@ -51,7 +51,7 @@ const AddArtist = ({ rowCountState, setRowCountState, COUNT }: AddArtistProps) =
             onBlur={e => formik.handleBlur(e)}
           />
           {formik.touched.name && formik.errors.name ? (
-            <Text titleVariant="body1" titleText={formik.errors.name} />
+            <Text component={'p'} titleVariant="body1" titleText={formik.errors.name} />
           ) : null}
         </Box>
 

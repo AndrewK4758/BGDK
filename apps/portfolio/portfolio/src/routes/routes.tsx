@@ -1,8 +1,8 @@
 import { Waiting } from '@bgdk/shared-react-components';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
-import App from '../app/app';
 import suspenseImg from '../assets/swirly-dots-to-chrome.webp';
+import Layout from '../components/layout/layout';
 import GameLoading from '../components/loading/loading';
 import PrivacyPolicy from '../components/privacy-policy/privacy-policy';
 import emailFormAction from '../services/actions/email-form-action';
@@ -33,7 +33,7 @@ const Audio = lazy(() => import('../components/gen-ai/audio/audio'));
 const routes: RouteObject[] = [
   {
     path: '/',
-    Component: App,
+    Component: Layout,
     hydrateFallbackElement: <Waiting src={suspenseImg} />,
     action: emailFormAction,
     children: [
@@ -46,9 +46,9 @@ const routes: RouteObject[] = [
           {
             index: true,
             path: ':id',
-            Component: ActiveGameSession,
-          },
-        ],
+            Component: ActiveGameSession
+          }
+        ]
       },
       {
         path: 'crud',
@@ -57,7 +57,7 @@ const routes: RouteObject[] = [
           {
             index: true,
             path: 'add-entry',
-            Component: AddEntry,
+            Component: AddEntry
           },
           {
             path: 'artists',
@@ -72,11 +72,11 @@ const routes: RouteObject[] = [
                   {
                     path: ':albumID/tracks',
                     loader: loadAlbumTracks,
-                    Component: Tracks,
-                  },
-                ],
-              },
-            ],
+                    Component: Tracks
+                  }
+                ]
+              }
+            ]
           },
           {
             path: 'albums',
@@ -86,11 +86,11 @@ const routes: RouteObject[] = [
               {
                 path: ':albumID/tracks',
                 Component: Tracks,
-                loader: loadAlbumTracks,
-              },
-            ],
-          },
-        ],
+                loader: loadAlbumTracks
+              }
+            ]
+          }
+        ]
       },
       {
         path: 'gen-ai',
@@ -100,25 +100,25 @@ const routes: RouteObject[] = [
           {
             path: 'text',
             Component: TextGenerator,
-            action: vertexSubmitAction,
+            action: vertexSubmitAction
           },
           {
             path: 'image',
             Component: Image,
-            action: generateImageAction,
+            action: generateImageAction
           },
           {
             path: 'audio',
-            Component: Audio,
-          },
-        ],
+            Component: Audio
+          }
+        ]
       },
       {
         path: 'privacy-policy',
-        Component: PrivacyPolicy,
-      },
-    ],
-  },
+        Component: PrivacyPolicy
+      }
+    ]
+  }
 ];
 
 export default routes;

@@ -34,11 +34,11 @@ describe('Test Home Component', () => {
     const resumePic = baseComponent.getByTestId('card-media-resume-image');
     const resumeButton = baseComponent.getByTestId('card-media-resume-button');
 
-    expect(resumePic).toHaveAttribute('src', '/self.webp');
+    expect(resumePic).toHaveAttribute('src', '/src/assets/self.webp');
     expect(resumePic).toHaveAttribute('alt', 'andrew');
 
     expect(resumeButton).toHaveTextContent('Resume');
-    expect(resumeButton).toHaveAttribute('href', '/Resume.pdf');
+    expect(resumeButton).toHaveAttribute('href', '/src/assets/Resume.pdf');
     expect(resumeButton).toHaveAttribute('download', `andrew-klapper-resume-${new Date().toLocaleDateString()}`);
   });
 });

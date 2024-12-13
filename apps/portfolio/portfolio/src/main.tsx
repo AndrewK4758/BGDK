@@ -1,9 +1,7 @@
-import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import routes from './routes/routes';
-
-const router = createBrowserRouter(routes);
+import App from './app/app';
+import { StrictMode } from 'react';
+import './styles/main-styles.css';
 
 /**
  * This is the main entry point for the React application.
@@ -11,9 +9,8 @@ const router = createBrowserRouter(routes);
  * and mounts it to the DOM.
  */
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+    <App />
+  </StrictMode>
 );

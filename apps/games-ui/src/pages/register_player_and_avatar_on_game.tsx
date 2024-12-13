@@ -47,20 +47,26 @@ export default function RegisterPlayerAndAvatarOnGame() {
     <>
       <Container component={'section'} sx={{ borderBottom: `5px solid ${Theme.palette.background.paper}` }}>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text titleVariant="h2" titleText={'Game ID:'} sx={breakpointsRegisterPlayerTitle} />
-          <Text titleVariant="body1" titleText={gameID} sx={breakpointsRegisterPlayerTitleValue} />
+          <Text component={'h2'} titleVariant="h2" titleText={'Game ID:'} sx={breakpointsRegisterPlayerTitle} />
+          <Text component={'p'} titleVariant="body1" titleText={gameID} sx={breakpointsRegisterPlayerTitleValue} />
         </Box>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text titleVariant="h2" titleText={'Player ID: '} sx={breakpointsRegisterPlayerTitle} />
+          <Text component={'h2'} titleVariant="h2" titleText={'Player ID: '} sx={breakpointsRegisterPlayerTitle} />
           <Text
+            component={'p'}
             titleVariant="body1"
             titleText={`${playerID ? playerID : 'Please Register'}`}
             sx={breakpointsRegisterPlayerTitleValue}
           />
         </Box>
         <Box sx={breakpointsRegisterPlayerTitleBox}>
-          <Text titleVariant="h2" titleText={'Game Link:'} sx={breakpointsRegisterPlayerTitle} />
-          <Text titleVariant="body1" titleText={gameLocatordata} sx={breakpointsRegisterPlayerTitleValue} />
+          <Text component={'h2'} titleVariant="h2" titleText={'Game Link:'} sx={breakpointsRegisterPlayerTitle} />
+          <Text
+            component={'p'}
+            titleVariant="body1"
+            titleText={gameLocatordata}
+            sx={breakpointsRegisterPlayerTitleValue}
+          />
           <IconButton
             onClick={() => handleCopyGameLinkToClipboard(gameLocatordata)}
             sx={{

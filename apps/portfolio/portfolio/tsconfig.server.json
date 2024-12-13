@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts"]
+  },
+  "include": ["src/main.server.tsx", "server.ts"]
+}

@@ -11,7 +11,7 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.d.ts",
+    "**/*.d.ts",
     "../../../libs/gen-ai/prompt-builder/src/**/*.ts",
     "../../../libs/games/chutes-and-ladders/src/**/*.ts",
     "../../../libs/games/tic-tac-toe/src/**/*.ts",
@@ -33,16 +33,15 @@
     "../../../libs/media-recorder/src/**/*.ts"
   ],
   "exclude": [
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.js",
-    "src/**/*.test.js",
-    "src/**/*.spec.jsx",
-    "src/**/*.test.jsx",
-    "vite.config.ts",
-    "vitest.config.ts"
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.jsx",
+    "tests/**/*.test.jsx",
+    "dist/**/*"
   ],
   "references": [
     { "path": "../../../libs/gen-ai/prompt-builder/tsconfig.lib.json" },

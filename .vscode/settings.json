@@ -13,13 +13,17 @@
     "clearOnRun": "none"
   },
 
-  "testing.openTesting": "neverOpen",
-
   "vitest.logLevel": "verbose",
+  "playwright.showTrace": true,
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "testing.automaticallyOpenTestResults": "neverOpen",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

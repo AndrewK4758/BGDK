@@ -130,7 +130,7 @@ const ActiveGameSession = () => {
       </Box>
       <Container component={'section'} sx={breakpointsBottomMenuGameBoard}>
         <Box component={'div'} sx={{ flex: '1 0 50%' }}>
-          <Text titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
+          <Text component={'h2'} titleVariant="h2" titleText={state.avatarInTurn} sx={breakpointsPlayerInTurnText} />
         </Box>
         <Container component={'section'} sx={breakpointsBottomMenuButtonsBox}>
           {id === 'Chutes-&-Ladders' && <TakeTurn dispatch={dispatch} socket={socket} />}

@@ -8,6 +8,6 @@
     "moduleResolution": "Bundler"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts", "dist/**/*"],
   "references": []
 }

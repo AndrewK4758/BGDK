@@ -4,13 +4,13 @@ import { Link, Outlet } from 'react-router-dom';
 import WebSocketContextProvider from '../../contexts/websocket-context';
 import Home from '../../pages/home/home';
 import {
+  baseStyleForLayoutItems,
   footerWrapperSxProps,
   headerWrapperSxProps,
   homeWrapperSxProps,
   mainWrapperSxProps,
-  outletWrapperSxProps,
+  outletWrapperSxProps
 } from '../../styles/layout-styles';
-import '../../styles/layout.css';
 import Header from '../header/header';
 import Menus from '../menus/menus';
 
@@ -24,9 +24,7 @@ const Layout = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <Box component={'div'} key={'app-wrapper'} id="app-wrapper" data-testid="app-wrapper" className="app-wrapper">
-      <Box component={'div'} className="background" id="background" data-testid="background" />
-      <Box component={'div'} className="background-overlay" id="background-overlay" data-testid="background-overlay" />
+    <Box component={'div'} key={'app-wrapper'} id="app-wrapper" data-testid="app-wrapper" sx={baseStyleForLayoutItems}>
       <Box
         component={'div'}
         key={'header-wrapper'}

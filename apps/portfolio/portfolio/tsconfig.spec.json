@@ -7,8 +7,6 @@
     "moduleResolution": "Bundler"
   },
   "include": [
-    "vite.config.mts",
-    "vitest.config.ts",
     "tests/**/*.test.ts",
     "tests/**/*.spec.ts",
     "tests/**/*.test.tsx",
@@ -20,5 +18,6 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.ts"
-  ]
+  ],
+  "exclude": ["dist/**/*"]
 }

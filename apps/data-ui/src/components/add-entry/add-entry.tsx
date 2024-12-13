@@ -212,7 +212,7 @@ const AddEntry = () => {
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.artist?.name && formik.errors.artist?.name ? (
-                  <Text titleVariant="body1" titleText={formik.errors.artist.name} />
+                  <Text component={'p'} titleVariant="body1" titleText={formik.errors.artist.name} />
                 ) : null}
               </>
             )}
@@ -232,7 +232,7 @@ const AddEntry = () => {
                   onBlur={e => formik.handleBlur(e)}
                 />
                 {formik.touched.album?.title && formik.errors.album?.title ? (
-                  <Text titleVariant="body1" titleText={formik.errors.album.title} />
+                  <Text component={'p'} titleVariant="body1" titleText={formik.errors.album.title} />
                 ) : null}
               </>
             )}
@@ -254,7 +254,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.name && formik.errors.track?.name ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.name} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.name} />
                   ) : null}
                 </>
                 <br />
@@ -272,7 +272,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.media_type_id && formik.errors.track?.media_type_id ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.media_type_id} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.media_type_id} />
                   ) : null}
                 </>
                 <br />
@@ -290,7 +290,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.genre_id && formik.errors.track?.genre_id ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.genre_id} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.genre_id} />
                   ) : null}
                 </>
                 <br />
@@ -308,7 +308,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.composer && formik.errors.track?.composer ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.composer} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.composer} />
                   ) : null}
                 </>
                 <br />
@@ -326,7 +326,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.milliseconds && formik.errors.track?.milliseconds ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.milliseconds} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.milliseconds} />
                   ) : null}
                 </>
                 <br />
@@ -344,7 +344,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.bytes && formik.errors.track?.bytes ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.bytes} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.bytes} />
                   ) : null}
                 </>
                 <br />
@@ -366,7 +366,7 @@ const AddEntry = () => {
                     onBlur={e => formik.handleBlur(e)}
                   />
                   {formik.touched.track?.unit_price && formik.errors.track?.unit_price ? (
-                    <Text titleVariant="body1" titleText={formik.errors.track.unit_price} />
+                    <Text component={'p'} titleVariant="body1" titleText={formik.errors.track.unit_price} />
                   ) : null}
                 </>
               </>

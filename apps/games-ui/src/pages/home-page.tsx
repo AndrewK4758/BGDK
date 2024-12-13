@@ -77,8 +77,9 @@ const breakpointsJoinGameText: SxProps = {
 
 const Home = () => (
   <>
-    <Text titleVariant="h1" titleText="Welcome To My Game" sx={breakpointsHomeTextTitle} />
+    <Text component={'h1'} titleVariant="h1" titleText="Welcome To My Game" sx={breakpointsHomeTextTitle} />
     <Text
+      component={'p'}
       titleVariant="body1"
       titleText={
         <>

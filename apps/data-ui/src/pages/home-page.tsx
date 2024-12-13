@@ -45,9 +45,15 @@ const HomePage = () => {
         >
           <Grid2 component={'div'} id="title-grid" size={2}>
             <Container component={'div'} sx={{ paddingY: 1 }}>
-              <Text titleVariant="h2" titleText={'Media Data Manager'} sx={{ textAlign: 'center' }} />
-              <Text titleVariant="h5" titleText="Example of MUI-X DataGrid" sx={{ textAlign: 'center' }} />
+              <Text component={'h2'} titleVariant="h2" titleText={'Media Data Manager'} sx={{ textAlign: 'center' }} />
               <Text
+                component={'h3'}
+                titleVariant="h5"
+                titleText="Example of MUI-X DataGrid"
+                sx={{ textAlign: 'center' }}
+              />
+              <Text
+                component={'p'}
                 titleVariant="body1"
                 titleText={
                   'Columns have sorting & filtering, cells can be updated and changes can be sent to the back end, rows can be deleted, each catagory has the ability to create an entry, ADD ENTRY provides the opportunity to add all fields at once'

@@ -52,10 +52,10 @@ const AddAlbumOnArtist = ({ apiRef }: AddAlbumOnArtistProps) => {
           />
 
           {typeof formik.touched.title === 'string' && formik.values.title ? (
-            <Text titleVariant="body1" titleText={formik.touched.title} />
+            <Text component={'p'} titleVariant="body1" titleText={formik.touched.title} />
           ) : null}
           {formik.errors.title && formik.touched.title === true ? (
-            <Text titleVariant="body1" titleText={formik.errors.title} />
+            <Text component={'p'} titleVariant="body1" titleText={formik.errors.title} />
           ) : null}
         </Box>
 

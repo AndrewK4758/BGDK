@@ -11,6 +11,7 @@ import Theme from '../../styles/theme';
 import AiIcon from '../icons/ai-icon';
 import GamesIcon from '../icons/games-icon';
 import HomeIcon from '../icons/home-icon';
+// import '../../styles/layout.css';
 
 interface MenusProps {
   loading: boolean;
@@ -50,7 +51,10 @@ const Menus = ({ setLoading }: MenusProps): JSX.Element => {
               data-testid={'explore-button'}
               variant="extended"
               color="primary"
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setOpen(true);
+                console.log('clicked');
+              }}
             >
               Explore
               <MenuOpenSharpIcon sx={menuIconsStyles} />

@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     nxViteTsPaths({
       debug: true,
-      mainFields: ['exports', '.', 'import', 'default'],
+      mainFields: ['exports', '.', 'types', 'import', 'default'],
     }),
     dts({
       entryRoot: 'src',
