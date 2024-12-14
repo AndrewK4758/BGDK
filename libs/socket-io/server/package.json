@@ -7,13 +7,14 @@
     "@eslint/eslintrc": "3.2.0",
     "@eslint/js": "9.16.0",
     "jsonc-eslint-parser": "2.4.0",
-    "@bgdk/types-ai": "0.0.1"
+    "@bgdk/types-ai": "0.0.1",
+    "esbuild": "0.24.0"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "node": "./dist/index.cjs"
+      "types": "./src/index.d.ts",
+      "import": "./index.js",
+      "node": "./index.cjs"
     }
   },
   "private": true,

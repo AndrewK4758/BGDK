@@ -19,7 +19,7 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/socket-io/client/src/index.ts",
-        "outputPath": "libs/socket-io/client/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "outputFileName": "main.js",
         "tsConfig": "libs/socket-io/client/tsconfig.lib.json",
         "assets": [

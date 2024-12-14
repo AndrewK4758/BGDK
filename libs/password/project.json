@@ -18,23 +18,18 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/password/src/index.ts",
-        "outputPath": "libs/password/dist",
-        "outputFileName": "main.js",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "index.js",
         "tsConfig": "libs/password/tsconfig.lib.json",
         "esbuildConfig": "libs/password/esbuild.config.cjs",
         "assets": [
           {
-            "glob": "libs/password/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": true,
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

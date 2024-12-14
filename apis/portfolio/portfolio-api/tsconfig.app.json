@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "../../../dist",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": ["node", "express"]

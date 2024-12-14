@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/games/chutes-and-ladders/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "libs/games/chutes-and-ladders/src/index.ts",
         "tsConfig": "libs/games/chutes-and-ladders/tsconfig.lib.json",
         "configFile": "libs/games/chutes-and-ladders/vite.config.mts",

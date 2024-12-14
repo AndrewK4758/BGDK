@@ -12,15 +12,11 @@
       "options": {
         "esbuildConfig": "apis/portfolio/portfolio-api/esbuild.config.cjs",
         "main": "apis/portfolio/portfolio-api/src/main.ts",
-        "outputPath": "apis/portfolio/portfolio-api/dist",
+        "outputPath": "{workspaceRoot}/dist",
         "outputFileName": "main.js",
         "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
         "assets": [],
-        "sourcemap": "linked",
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

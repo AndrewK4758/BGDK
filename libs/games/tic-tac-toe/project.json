@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/games/tic-tac-toe/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "libs/games/tic-tac-toe/src/index.ts",
         "tsConfig": "libs/games/tic-tac-toe/tsconfig.lib.json",
         "configFile": "libs/games/tic-tac-toe/vite.config.mts",

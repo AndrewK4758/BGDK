@@ -11,7 +11,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "apps/local-model/local-model/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "apps/local-model/local-model/src/main.tsx",
         "tsConfig": "apps/local-model/local-model/tsconfig.app.json",
         "assets": ["apps/local-model/local-model/*.md"]

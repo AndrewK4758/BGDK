@@ -11,23 +11,18 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/types/types-ai/src/index.ts",
-        "outputPath": "libs/types/types-ai/dist",
-        "outputFileName": "main.js",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "index.js",
         "tsConfig": "libs/types/types-ai/tsconfig.lib.json",
         "esbuildConfig": "libs/types/types-ai/esbuild.config.cjs",
         "assets": [
           {
-            "glob": "libs/types/types-ai/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": true,
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

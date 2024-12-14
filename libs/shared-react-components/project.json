@@ -11,7 +11,7 @@
       "configFile": "libs/shared-react-components/vite.config.mts",
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "libs/shared-react-components/dist"
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}"
       },
       "configurations": {
         "development": {

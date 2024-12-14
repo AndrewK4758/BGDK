@@ -6,13 +6,14 @@
     "@google-cloud/vertexai": "1.9.2",
     "@google-cloud/aiplatform": "^3.31.0",
     "@bgdk/types-ai": "0.0.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "esbuild": "0.24.0"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./src/index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   },
   "private": true,

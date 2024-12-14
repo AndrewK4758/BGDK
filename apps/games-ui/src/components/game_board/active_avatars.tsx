@@ -1,5 +1,5 @@
 import { Player } from '@bgdk/games-components-logic';
-import { PlayersInGame, Theme } from '@bgdk/react-components';
+import { PlayersInGame, GamesTheme as Theme } from '@bgdk/react-components';
 import { RenderList, Text } from '@bgdk/shared-react-components';
 import { IRegisterFormValues } from '@bgdk/types-game';
 import { Box, SxProps } from '@mui/material';
@@ -9,8 +9,8 @@ import { Fragment } from 'react/jsx-runtime';
 const breakpointsActiveGameTitleContainer: SxProps = {
   flex: '0 1 80%',
   [Theme.breakpoints.down('md')]: {
-    flex: '1 0 60%',
-  },
+    flex: '1 0 60%'
+  }
 };
 
 const breakpointsActiveGameTitleText: SxProps = {
@@ -19,8 +19,8 @@ const breakpointsActiveGameTitleText: SxProps = {
   [Theme.breakpoints.down('md')]: {
     flex: '1 0 100%',
     fontSize: '1.5rem',
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 };
 
 const breakpointsPlayersInGameBox: SxProps = {
@@ -29,21 +29,21 @@ const breakpointsPlayersInGameBox: SxProps = {
   flexWrap: 'wrap',
   flexDirection: 'row',
   height: '100%',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 const breakpointsPlayersBox: SxProps = {
   flex: '1 0 50%',
   display: 'flex',
   flexDirection: 'row',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 const breakpointsPlayersInGameText: SxProps = {
   flex: '0 1 auto',
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 };
 
 const playersInGameMap = (e: IRegisterFormValues, _i: number, _arr: Player[]) => (

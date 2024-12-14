@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { Text } from '@bgdk/shared-react-components';
 import { IRegisterLoaderAndFilter } from '@bgdk/types-game';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -11,24 +11,24 @@ import RegisterPlayerAndAvatarForm from '../components/formik_form_components/re
 
 const breakpointsRegisterPlayerTitle: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '2rem',
-  },
+    fontSize: '2rem'
+  }
 };
 
 const breakpointsRegisterPlayerTitleBox: SxProps = { flex: '1 0 33.3%' };
 
 const breakpointsRegisterPlayerTitleValue: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 };
 
 const breakpointsCopyIcon: SxProps = {
   fontSize: '2.5rem',
   color: Theme.palette.primary.contrastText,
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1.25rem',
-  },
+    fontSize: '1.25rem'
+  }
 };
 
 const handleCopyGameLinkToClipboard = (gameLocatordata: string): Promise<void> =>
@@ -70,7 +70,7 @@ export default function RegisterPlayerAndAvatarOnGame() {
           <IconButton
             onClick={() => handleCopyGameLinkToClipboard(gameLocatordata)}
             sx={{
-              '&:hover': { backgroundColor: Theme.palette.primary.main },
+              '&:hover': { backgroundColor: Theme.palette.primary.main }
             }}
           >
             <ContentCopyIcon titleAccess="Copy Game Link" sx={breakpointsCopyIcon} />

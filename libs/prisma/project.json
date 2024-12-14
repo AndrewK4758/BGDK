@@ -9,7 +9,7 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/prisma/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "libs/prisma/src/index.ts",
         "tsConfig": "libs/prisma/tsconfig.lib.json",
         "configFile": "libs/prisma/vite.config.mts",

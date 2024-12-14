@@ -9,16 +9,11 @@
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/media-recorder/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "libs/media-recorder/src/index.ts",
         "tsConfig": "libs/media-recorder/tsconfig.lib.json",
         "assets": ["libs/media-recorder/*.md"],
-        "sourcemap": true,
-        "target": "esnext",
-        "platform": "browser",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       }
     },
     "test": {

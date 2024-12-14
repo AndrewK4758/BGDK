@@ -1,6 +1,6 @@
 import { IPlayersAndBoard } from '@bgdk/chains-for-games';
 import { rowFinder } from '@bgdk/games-components-logic';
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { Text } from '@bgdk/shared-react-components';
 import { GameBoard, IActivePlayersInGame, ILiteSpace, type Row } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
@@ -24,22 +24,22 @@ const breakpointsBottomMenuGameBoard: SxProps = {
   marginTop: '2rem',
   flexDirection: 'row',
   [Theme.breakpoints.down('md')]: {
-    marginTop: '1rem',
-  },
+    marginTop: '1rem'
+  }
 };
 
 const breakpointsPlayerInTurnText: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1em',
-  },
+    fontSize: '1em'
+  }
 };
 
 const breakpointsBottomMenuButtonsBox: SxProps = {
   flex: '1 0 50%',
   flexDirection: 'row',
   [Theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-  },
+    flexDirection: 'column'
+  }
 };
 
 export type Built_GameBoard = GameBoard[];
@@ -55,7 +55,7 @@ const socketInit = () => {
 const ActiveGameSession = () => {
   const managerOptions: Partial<ManagerOptions> = {
     autoConnect: false,
-    extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) },
+    extraHeaders: { 'current-game': JSON.stringify(getGameInstanceInfo()) }
   };
 
   const clientSocket = new ClientSocket(managerOptions);
@@ -101,7 +101,7 @@ const ActiveGameSession = () => {
 
       dispatch({
         type: ActionType.BOARD,
-        payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo,
+        payload: { gameBoard: gameBoardClient, activePlayersInGame, avatarInTurn, winner } as IActiveGameInfo
       });
     });
     socket.on('no-game-error', ({ errorMessage }) => {

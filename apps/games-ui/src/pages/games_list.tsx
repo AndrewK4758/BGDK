@@ -1,4 +1,4 @@
-import { ImageLink, Theme } from '@bgdk/react-components';
+import { ImageLink, GamesTheme as Theme } from '@bgdk/react-components';
 import { RenderList, Text } from '@bgdk/shared-react-components';
 import { IBuiltGame } from '@bgdk/types-game';
 import { SxProps, useMediaQuery } from '@mui/material';
@@ -9,17 +9,17 @@ import { Fragment } from 'react/jsx-runtime';
 
 const breakpointsGameListText: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '4rem',
-  },
+    fontSize: '4rem'
+  }
 };
 
 const breakpointsImageListText: SxProps = {
   fontSize: '12px',
   [Theme.breakpoints.down('md')]: {
     '& .MuiImageListItemBar-title': {
-      fontSize: '1.5rem',
-    },
-  },
+      fontSize: '1.5rem'
+    }
+  }
 };
 
 const GamesList = () => {
@@ -36,7 +36,7 @@ const GamesList = () => {
         loading="lazy"
         alt={`${e.name} game picture`}
         style={{
-          width: `${media ? '365px' : '200px'}`,
+          width: `${media ? '365px' : '200px'}`
         }}
         title={e.name}
         position="bottom"
@@ -51,7 +51,7 @@ const GamesList = () => {
         sx={{
           flexDirection: 'column',
           alignItems: 'center',
-          justifyItems: 'center',
+          justifyItems: 'center'
         }}
       >
         <Text component={'h1'} titleVariant="h1" titleText={'Games'} sx={breakpointsGameListText} />

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Dispatch, type JSX, type SetStateAction } from 'react';
 import { useParams } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
-import { breakpointsResetGameButton } from '../../../../../../../libs/react-components/src/lib/theme/games-styles';
+import { breakpointsResetGameButton } from '@bgdk/react-components';
 import getGameInstanceInfo from '../../../utils/utils';
 import { Action, ActionType } from './socket-reducer';
 

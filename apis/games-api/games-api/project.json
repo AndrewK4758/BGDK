@@ -12,8 +12,8 @@
       "options": {
         "esbuildConfig": "apis/games-api/games-api/esbuild.config.cjs",
         "main": "apis/games-api/games-api/src/main.ts",
-        "outputPath": "apis/games-api/games-api/dist",
-        "outputFileName": "main.js",
+        "outputPath": "{workspaceRoot}/dist",
+        "outputFileName": "index.js",
         "tsConfig": "apis/games-api/games-api/tsconfig.app.json",
         "assets": [
           {

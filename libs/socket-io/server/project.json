@@ -19,22 +19,17 @@
       "defaultConfiguration": "production",
       "options": {
         "main": "libs/socket-io/server/src/index.ts",
-        "outputPath": "libs/socket-io/server/dist",
-        "outputFileName": "main.js",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "index.js",
         "tsConfig": "libs/socket-io/server/tsconfig.lib.json",
         "assets": [
           {
-            "glob": "libs/socket-io/server/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": "linked",
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

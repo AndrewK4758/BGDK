@@ -22,7 +22,7 @@ const __greyDefault = '#404040';
 //text main?
 const __rustColor = '#ff3d00';
 
-const Theme = createTheme({
+export const Theme = createTheme({
   palette: {
     common: {
       black: __greyDark,

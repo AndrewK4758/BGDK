@@ -12,22 +12,17 @@
       "options": {
         "main": "libs/gen-ai/vertex-ai/src/index.ts",
         "esbuildConfig": "libs/gen-ai/vertex-ai/esbuild.config.cjs",
-        "outputPath": "libs/gen-ai/vertex-ai/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "outputFileName": "main.js",
         "tsConfig": "libs/gen-ai/vertex-ai/tsconfig.lib.json",
         "assets": [
           {
-            "glob": "libs/gen-ai/vertex-ai/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": true,
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

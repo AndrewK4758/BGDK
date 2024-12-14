@@ -6,10 +6,10 @@
   "tags": [],
   "targets": {
     "build": {
+      "outputs": ["{workspaceRoot}/dist/apps/portfolio"],
       "defaultConfiguration": "development",
       "options": {
-        "cwd": "apps/portfolio/portfolio",
-        "command": "vite build",
+        "command": "vite build ./apps/portfolio/portfolio",
         "color": true
       },
       "cache": true,
@@ -21,7 +21,6 @@
           "externalDependencies": ["vite"]
         }
       ],
-      "outputs": ["{workspaceRoot}/apps/portfolio/portfolio/dist"],
       "metadata": {
         "technologies": ["vite"],
         "description": "Run Vite build",

@@ -10,24 +10,18 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/utils/src/index.ts",
-        "outputPath": "libs/utils/dist",
-        "outputFileName": "main.js",
-        "tsConfig": "libs/utils/tsconfig.lib.json",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "esbuildConfig": "libs/utils/esbuild.config.cjs",
+        "tsConfig": "libs/utils/tsconfig.lib.json",
+        "main": "libs/utils/src/index.ts",
         "assets": [
           {
-            "glob": "libs/utils/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": "linked",
-        "target": "esnext",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

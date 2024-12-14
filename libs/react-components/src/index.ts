@@ -21,5 +21,6 @@ export * from './lib/games-ui/render-list/players-in-game/players-in-game';
 export * from './lib/games-ui/text-input/formik-text-input';
 export * from './lib/theme/games-styles';
 export * from './lib/theme/theme';
+export { Theme as GamesTheme } from './lib/styles/theme';
 export * from './lib/vertex-components/chat-input/chat-input';
 export * from './lib/vertex-components/chat-response/chat-response';

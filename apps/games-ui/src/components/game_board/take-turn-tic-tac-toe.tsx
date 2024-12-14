@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -13,8 +13,8 @@ const breakpointsTakeTurnButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 interface TakeTurnProps {
@@ -36,7 +36,7 @@ export default function TakeTurnTicTacToe({ dispatch, socket, position }: TakeTu
       const resp = await axios.patch(
         `${baseURL}/games/${id}/take-turn`,
         { position: position },
-        { headers: { 'current-game': __current_game__ } },
+        { headers: { 'current-game': __current_game__ } }
       );
       console.log(resp.data.turnStatus);
       dispatch({ type: ActionType.TAKE_TURN, socket: socket });

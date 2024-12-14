@@ -1,4 +1,4 @@
-import { HeadingWithDetails, Theme } from '@bgdk/react-components';
+import { HeadingWithDetails, GamesTheme as Theme } from '@bgdk/react-components';
 import { RenderList, Text } from '@bgdk/shared-react-components';
 import { IBuiltGame, IRule } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
@@ -9,21 +9,21 @@ import RegisterGame from '../components/register_game';
 
 const breakpointsGameDetailsTitle: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '4rem',
-  },
+    fontSize: '4rem'
+  }
 };
 
 const breakpointsGameDetailsListTitle: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '2rem',
-  },
+    fontSize: '2rem'
+  }
 };
 
 const breakpointsGameDetailsListValue: SxProps = {
   paddingX: '1rem',
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 };
 
 const breakpointsGameDetailsRegisterButton: SxProps = {
@@ -31,15 +31,15 @@ const breakpointsGameDetailsRegisterButton: SxProps = {
   '@keyframes blink': {
     '50%': {
       color: Theme.palette.secondary.main,
-      backgroundColor: Theme.palette.primary.contrastText,
-    },
+      backgroundColor: Theme.palette.primary.contrastText
+    }
   },
 
   [Theme.breakpoints.down('md')]: {
     fontSize: '1rem',
     width: '130px',
-    height: '35px',
-  },
+    height: '35px'
+  }
 };
 
 const listRulesCallback = (e: IRule, _i: number, _arr: IRule[]) => (

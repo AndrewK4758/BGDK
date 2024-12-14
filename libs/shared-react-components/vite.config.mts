@@ -4,6 +4,7 @@ import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import { cwd } from 'process';
 
 export default defineConfig({
   test: {
@@ -14,8 +15,8 @@ export default defineConfig({
     reporters: ['verbose'],
     coverage: {
       reportsDirectory: '../../coverage/libs/shared-react-components',
-      provider: 'v8',
-    },
+      provider: 'v8'
+    }
   },
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/shared-react-components',
@@ -24,7 +25,12 @@ export default defineConfig({
     react({ babel: { targets: { esmodules: true } } }),
     nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports', 'require'] }),
     nxCopyAssetsPlugin(['*.md']),
-    dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') }),
+    dts({
+      logLevel: 'info',
+      entryRoot: 'src',
+      outDir: `${cwd()}/dist/libs/shared-react-components/src`,
+      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json')
+    })
   ],
 
   // Uncomment this if you are using workers.
@@ -35,11 +41,11 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: './dist',
+    outDir: `${cwd()}/dist/libs/shared-react-components/src`,
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
+      transformMixedEsModules: true
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
@@ -48,7 +54,7 @@ export default defineConfig({
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
-      formats: ['es', 'cjs'],
+      formats: ['es', 'cjs']
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
@@ -60,17 +66,17 @@ export default defineConfig({
         generatedCode: {
           arrowFunctions: true,
           constBindings: true,
-          symbols: true,
-        },
-      },
+          symbols: true
+        }
+      }
     },
-    target: 'esnext',
+    target: 'esnext'
   },
   esbuild: {
     jsx: 'automatic',
     format: 'esm',
     color: true,
-    platform: 'browser',
+    platform: 'browser'
   },
-  logLevel: 'info',
+  logLevel: 'info'
 });

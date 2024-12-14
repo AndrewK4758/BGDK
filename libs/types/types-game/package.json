@@ -11,7 +11,7 @@
   },
   "exports": {
     ".": {
-      "types": "./index.d.ts",
+      "types": "./src/index.d.ts",
       "import": "./index.js",
       "require": "./index.cjs"
     }

@@ -1,4 +1,4 @@
-import { SelectMenu, FormikTextInput, Theme } from '@bgdk/react-components';
+import { SelectMenu, FormikTextInput, GamesTheme as Theme } from '@bgdk/react-components';
 import { AvatarTotem, Color, ILoadRegisterData } from '@bgdk/types-game';
 import { SxProps } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,8 +18,8 @@ const breakpointsSelectMenuSxProps: SxProps = {
   display: 'flex',
   justifyContent: 'space-between',
   [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-  },
+    fontSize: '17px'
+  }
 };
 
 const breakpointsRegisterPlayerButton: SxProps = {
@@ -30,15 +30,15 @@ const breakpointsRegisterPlayerButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 const breakpointsRegisterPlayerLabel: SxProps = {
   m: 1,
   [Theme.breakpoints.down('md')]: {
-    fontSize: '17px',
-  },
+    fontSize: '17px'
+  }
 };
 
 const breakpointsRegisterPlayerTextInput: SxProps = {
@@ -47,8 +47,8 @@ const breakpointsRegisterPlayerTextInput: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '20px',
     height: 45,
-    width: 200,
-  },
+    width: 200
+  }
 };
 
 const breakpointsRegisterPlayerSelectInput: SxProps = {
@@ -58,8 +58,8 @@ const breakpointsRegisterPlayerSelectInput: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '19px',
     height: 45,
-    width: 200,
-  },
+    width: 200
+  }
 };
 
 const breakpointsFormContianer: SxProps = {
@@ -67,19 +67,19 @@ const breakpointsFormContianer: SxProps = {
   flexDirection: 'column',
   paddingX: '1rem',
   [Theme.breakpoints.down('md')]: {
-    alignContent: 'center',
-  },
+    alignContent: 'center'
+  }
 };
 
 const breakpointsAvatarPicture: CSSProperties = {
   width: '64px',
-  height: '64px',
+  height: '64px'
 };
 
 const initialValues = {
   playerName: '',
   avatarName: '',
-  avatarColor: '',
+  avatarColor: ''
 };
 
 const avatarColorMap = (e: Color, _i: number, _arr: string[]) => (
@@ -109,7 +109,7 @@ export default function RegisterPlayerAndAvatarForm() {
       .required('Required, please enter player name')
       .default(user.playerName),
     avatarName: Yup.string().required('Required, please select avatar name'),
-    avatarColor: Yup.string().required('Required, please select avatar color'),
+    avatarColor: Yup.string().required('Required, please select avatar color')
   });
 
   const colors = Object.values(data.avatarColorList) as Color[];

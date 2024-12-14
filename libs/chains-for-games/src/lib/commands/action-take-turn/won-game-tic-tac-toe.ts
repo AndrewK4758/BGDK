@@ -26,7 +26,7 @@ export const wonGameCheckTicTacToe = CommandBuilder.build((context: Context) => 
       return false;
     }
 
-    WINNING_POSITIONS.forEach(v => {
+    WINNING_POSITIONS.forEach((v: string[]) => {
       const occupiedSpacesLength = occupiedSpaces.length;
       let start = 0;
       let offset = occupiedSpacesLength > v.length ? occupiedSpacesLength - v.length : 0;

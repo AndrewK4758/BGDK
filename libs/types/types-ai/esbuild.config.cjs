@@ -1,8 +1,14 @@
-module.exports = {
-  sourcemap: true,
-  target: 'node22',
+const { cwd } = require('process');
+const build = require('esbuild').buildSync;
+
+build({
+  sourceRoot: `${__dirname}/src`,
+  color: true,
+  metafile: true,
+  sourcemap: 'linked',
+  target: 'esnext',
   platform: 'node',
-  format: ['esm'],
   bundle: true,
-};
-//
+  write: true,
+  outdir: `${cwd()}/dist/libs/types/types-ai`
+});

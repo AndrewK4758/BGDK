@@ -13,22 +13,17 @@
       "options": {
         "main": "libs/gen-ai/prompt-builder/src/index.ts",
         "esbuildConfig": "libs/gen-ai/prompt-builder/esbuild.config.cjs",
-        "outputPath": "libs/gen-ai/prompt-builder/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "outputFileName": "index.js",
         "tsConfig": "libs/gen-ai/prompt-builder/tsconfig.lib.json",
         "assets": [
           {
-            "glob": "libs/gen-ai/prompt-builder/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
-        "sourcemap": true,
-        "target": "node23",
-        "platform": "node",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

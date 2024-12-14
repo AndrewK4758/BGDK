@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { ThemeProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { StrictMode } from 'react';
@@ -14,5 +14,5 @@ root.render(
       <App />
     </ThemeProvider>
     ,
-  </StrictMode>,
+  </StrictMode>
 );

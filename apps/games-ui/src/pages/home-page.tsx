@@ -1,17 +1,17 @@
-import { Theme, JoinGame } from '@bgdk/react-components';
+import { GamesTheme as Theme, JoinGame } from '@bgdk/react-components';
 import { Text } from '@bgdk/shared-react-components';
 import type { SxProps } from '@mui/material/styles';
 
 const breakpointsHomeTextTitle: SxProps = {
   ['min-width:900px']: {
-    fontSize: '4rem',
-  },
+    fontSize: '4rem'
+  }
 };
 
 const breakpointsHomeText: SxProps = {
   ['min-width:900px']: {
-    fontSize: '1rem',
-  },
+    fontSize: '1rem'
+  }
 };
 
 const breakpointsJoinGameButton: SxProps = {
@@ -20,8 +20,8 @@ const breakpointsJoinGameButton: SxProps = {
   ['min-width:900px']: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 const breakpointsJoinGameLabel: SxProps = {
@@ -29,8 +29,8 @@ const breakpointsJoinGameLabel: SxProps = {
   marginBottom: 1,
   ['min-width:900px']: {
     fontSize: '2rem',
-    marginTop: 0,
-  },
+    marginTop: 0
+  }
 };
 
 const breakpointsJoinGameText: SxProps = {
@@ -42,8 +42,8 @@ const breakpointsJoinGameText: SxProps = {
     fontSize: '17px',
     textAlign: 'center',
     height: 35,
-    width: 230,
-  },
+    width: 230
+  }
 };
 
 // const breakpointsChatInputText: SxProps = {

@@ -33,7 +33,7 @@
       "executor": "@nxlv/python:build",
       "outputs": ["{projectRoot}/dist"],
       "options": {
-        "outputPath": "apps/wdg-agents/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "publish": false,
         "lockedVersions": true,
         "bundleLocalDependencies": true

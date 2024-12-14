@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -13,7 +13,7 @@ const breakpointsStartGameButtonBox: SxProps = {
   flex: '0 1 20%',
   justifyItems: 'center',
   alignContent: 'center',
-  [Theme.breakpoints.down('md')]: {},
+  [Theme.breakpoints.down('md')]: {}
 };
 
 const breakpointsStartGameButtonFormButton: SxProps = {
@@ -21,8 +21,8 @@ const breakpointsStartGameButtonFormButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 interface ReadyToStartProps {
@@ -37,8 +37,8 @@ export default function ReadyToStart({ dispatch, socket }: ReadyToStartProps) {
   const id = params.id;
   const reqHeaders = {
     headers: {
-      'current-game': JSON.stringify(getGameInstanceInfo()),
-    },
+      'current-game': JSON.stringify(getGameInstanceInfo())
+    }
   };
 
   const handleStartGame = async () => {

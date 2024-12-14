@@ -12,24 +12,19 @@
       "options": {
         "esbuildConfig": "libs/mocks/esbuild.config.cjs",
         "main": "libs/mocks/src/index.ts",
-        "outputPath": "libs/mocks/dist",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "outputFileName": "main.js",
         "tsConfig": "libs/mocks/tsconfig.lib.json",
         "assets": [
           {
-            "glob": "libs/mocks/README.md",
+            "glob": "./README.md",
             "input": ".",
             "output": "."
           }
         ],
         "deleteOutputPath": true,
         "metafile": true,
-        "platform": "node",
-        "sourcemap": "linked",
-        "target": "node23",
-        "format": ["esm", "cjs"],
-        "bundle": true,
-        "write": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {

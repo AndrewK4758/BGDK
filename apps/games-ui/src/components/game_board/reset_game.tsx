@@ -1,4 +1,4 @@
-import { Theme } from '@bgdk/react-components';
+import { GamesTheme as Theme } from '@bgdk/react-components';
 import { SxProps } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -14,8 +14,8 @@ const breakpointsResetGameButton: SxProps = {
   [Theme.breakpoints.down('md')]: {
     fontSize: '17px',
     width: 130,
-    height: 35,
-  },
+    height: 35
+  }
 };
 
 interface ResetGameProps {
@@ -32,8 +32,8 @@ export default function ResetGame({ dispatch, socket }: ResetGameProps) {
     const reqHeaders = {
       headers: {
         'current-game': JSON.stringify(getGameInstanceInfo()),
-        Authorization: sessionStorage.getItem('token'),
-      },
+        Authorization: sessionStorage.getItem('token')
+      }
     };
     try {
       await axios.patch(`${__baseURL__}/games/${id}/reset`, {}, reqHeaders);

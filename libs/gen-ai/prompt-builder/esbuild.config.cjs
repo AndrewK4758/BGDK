@@ -1,10 +1,14 @@
-module.exports = {
-  sourcemap: true,
-  target: 'node23',
+const { cwd } = require('process');
+const build = require('esbuild').buildSync;
+
+build({
+  sourceRoot: `${__dirname}/src`,
+  color: true,
+  metafile: true,
+  sourcemap: 'linked',
+  target: 'esnext',
   platform: 'node',
-  format: ['esm', 'cjs'],
   bundle: true,
   write: true,
-  charset: 'utf8',
-};
-//
+  outdir: `${cwd()}/dist/libs/gen-ai/prompt-builder`
+});

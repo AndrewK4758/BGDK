@@ -1,4 +1,4 @@
-import { Footer, Header, Main, Theme } from '@bgdk/react-components';
+import { Footer, Header, Main, GamesTheme as Theme } from '@bgdk/react-components';
 import type { SxProps } from '@mui/material/styles';
 import { Fragment } from 'react';
 
@@ -14,12 +14,12 @@ const breakpointsAppBar: SxProps = {
     height: '35px',
     bottom: 0,
     top: 'calc(100vh - 100px)',
-    boxShadow: `0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`,
+    boxShadow: `0px -7px 8px -4px ${Theme.palette.success.main}, 0px -12px 17px 2px ${Theme.palette.primary.light}, 0px -5px 22px 4px ${Theme.palette.primary.dark}`
   },
   [Theme.breakpoints.up('md')]: {
     height: '65px',
-    top: 0,
-  },
+    top: 0
+  }
 };
 
 const breakpointsText: SxProps = {
@@ -31,8 +31,8 @@ const breakpointsText: SxProps = {
   height: '65px',
   color: Theme.palette.primary.main,
   [Theme.breakpoints.down('md')]: {
-    fontSize: '2rem',
-  },
+    fontSize: '2rem'
+  }
 };
 
 const breakpointsFooter: SxProps = {
@@ -44,14 +44,14 @@ const breakpointsFooter: SxProps = {
   alignContent: 'center',
   zIndex: 10,
   [Theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
+    display: 'none'
+  }
 };
 
 const breakpointsFooterText: SxProps = {
   [Theme.breakpoints.down('md')]: {
-    fontSize: '1.25rem',
-  },
+    fontSize: '1.25rem'
+  }
 };
 
 const breakpointsMain: SxProps = {
@@ -66,8 +66,8 @@ const breakpointsMain: SxProps = {
   [Theme.breakpoints.down('md')]: {
     top: 0,
     bottom: 100,
-    paddingY: 0,
-  },
+    paddingY: 0
+  }
 };
 
 const Layout = () => (

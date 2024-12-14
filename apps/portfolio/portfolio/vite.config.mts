@@ -31,7 +31,11 @@ const vite: ViteUserConfig = defineConfig({
     host: 'localhost'
   },
 
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+  plugins: [
+    react(),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'import', 'default'] }),
+    nxCopyAssetsPlugin(['*.md'])
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -45,7 +49,7 @@ const vite: ViteUserConfig = defineConfig({
   },
 
   build: {
-    outDir: 'dist',
+    outDir: `${cwd()}/dist/apps/portfolio`,
     manifest: true,
     emptyOutDir: true,
     sourcemap: true,

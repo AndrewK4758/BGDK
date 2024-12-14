@@ -13,13 +13,13 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./src/index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   },
   "private": true,
   "nx": {
-    "name": "Mocks"
+    "name": "Game"
   }
 }

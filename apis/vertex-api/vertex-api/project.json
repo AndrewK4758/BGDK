@@ -12,15 +12,11 @@
       "options": {
         "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.cjs",
         "main": "apis/vertex-api/vertex-api/src/main.ts",
-        "outputPath": "apis/vertex-api/vertex-api/dist",
+        "outputPath": "{workspaceRoot}/dist",
         "outputFileName": "main.js",
         "tsConfig": "apis/vertex-api/vertex-api/tsconfig.app.json",
         "assets": [],
-        "sourcemap": "linked",
-        "target": "node23",
-        "format": ["esm", "cjs"],
-        "platform": "node",
-        "bundle": true
+        "format": ["esm", "cjs"]
       },
       "configurations": {
         "development": {
