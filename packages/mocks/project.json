@@ -1,0 +1,48 @@
+{
+  "name": "mocks",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/mocks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "esbuildConfig": "packages/mocks/esbuild.config.cjs",
+        "main": "packages/mocks/src/index.ts",
+        "outputFileName": "main.js",
+        "tsConfig": "packages/mocks/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "./README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "deleteOutputPath": true,
+        "metafile": true,
+        "format": ["esm", "cjs"]
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/mocks",
+        "tsConfig": "tsconfig.base.json",
+        "main": "packages/mocks/src/index.ts",
+        "color": true
+      }
+    }
+  }
+}

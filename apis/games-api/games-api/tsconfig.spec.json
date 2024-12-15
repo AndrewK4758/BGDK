@@ -2,9 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apis/games-api",
     "types": ["jest", "node"]
   },
   "include": [
@@ -13,10 +11,10 @@
     "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../libs/models/all-games-map/src/**/*.ts",
-    "../../../libs/types/**/*.ts",
-    "../../../libs/mocks/src/**/*.ts",
-    "../../../libs/socket-io/server/src/**/*.ts"
+    "../../../packages/models/all-games-map/src/**/*.ts",
+    "../../../packages/types/**/*.ts",
+    "../../../packages/mocks/src/**/*.ts",
+    "../../../packages/socket-io/server/src/**/*.ts"
   ],
   "exclude": []
 }

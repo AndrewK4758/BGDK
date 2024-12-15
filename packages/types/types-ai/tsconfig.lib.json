@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "../../../dist/packages/types/types-ai",
+    "tsBuildInfoFile": "../../../dist/packages/types/types-ai/tsconfig.lib.tsbuildinfo",
+    "declaration": true,
+    "types": ["node"]
+  },
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "include": ["src/**/*.ts"]
+}

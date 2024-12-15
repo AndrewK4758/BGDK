@@ -1,0 +1,26 @@
+{
+  "name": "@bgdk/instance-of-game",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "2.4.0",
+    "ts-jest": "29.2.5",
+    "@bgdk/chutes-and-ladders": "0.0.1",
+    "@bgdk/game": "0.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "instance-of-game",
+    "sourceRoot": "packages/models/instance-of-game/src",
+    "projectType": "library"
+  }
+}

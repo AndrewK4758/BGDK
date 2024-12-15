@@ -1,0 +1,37 @@
+{
+  "name": "types-game",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/types/types-game/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{projectRoot}/{options.outDir}"],
+      "options": {
+        "main": "packages/types/types-game/src/index.ts",
+        "assets": ["packages/types/types-game/*.md"],
+        "config": "./vite.config.mts",
+        "outputPath": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["packages/types/types-game/**/*.{ts,tsx,js,jsx}", "packages/types/types-game/package.json"]
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/types/types-game/src/index.ts",
+        "outputPath": "dist/packages/types/types-game",
+        "tsConfig": "packages/types/types-game/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

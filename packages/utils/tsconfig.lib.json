@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/utils/",
+    "tsBuildInfoFile": "../../dist/packages/tsconfig.lib.tsbuildinfo",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["esbuild.config.cjs", "src/**/*.ts", "../types/types-game/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../types/types-game/tsconfig.lib.json"
+    }
+  ]
+}

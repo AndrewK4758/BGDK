@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../dist/packages/chain",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "../types/types-game/src/**/*.ts"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "allowJs": true,
+    "outDir": "../../dist/packages/media-recorder",
+    "types": ["jest", "node"]
+  },
+  "include": ["jest.config.ts", "src/**/*.ts", "tests/**/*.ts", "tests/**/*.js", "src/**/*.d.ts"]
+}

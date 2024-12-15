@@ -1,0 +1,24 @@
+{
+  "name": "@bgdk/types-api",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "multer": "1.4.5-lts.1",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "2.4.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "types-api",
+    "sourceRoot": "packages/types/types-api",
+    "projectType": "library"
+  }
+}

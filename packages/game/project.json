@@ -1,0 +1,46 @@
+{
+  "name": "game",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/game/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{projectRoot}/{options.outDir}", "{workspaceRoot}/dist/packages/game"],
+      "options": {
+        "main": "packages/game/src/index.ts",
+        "assets": ["packages/game/*.md"],
+        "config": "./vite.config.mts",
+        "outDir": "{workspaceRoot}/dist/{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/game/jest.config.ts",
+        "reportsDirectory": "../../coverage/packages/game",
+        "tsconfig": "packages/game/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["packages/game/**/*.{ts,tsx,js,jsx}", "packages/game/package.json"]
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/game/src/index.ts",
+        "outputPath": "dist/packages/game",
+        "tsConfig": "packages/game/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

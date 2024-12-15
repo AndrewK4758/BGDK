@@ -10,9 +10,12 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../../libs/shared-react-components" },
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ],
   "extends": "../../tsconfig.base.json"
 }

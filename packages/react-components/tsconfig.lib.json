@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/react-components",
+    "tsBuildInfoFile": "../../dist/packages/react-components/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "src/**/*.css",
+    "../games-components-logic/src/**/*.ts",
+    "../types/**/*/src/**/*.ts",
+    "../shared-react-components/src/**/*.ts",
+    "../shared-react-components/src/**/*.tsx",
+    "../gen-ai/vertex-ai/src/**/*.ts",
+    "../utils/src/**/*.ts"
+  ],
+  "exclude": [
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.jsx",
+    "tests/**/*.test.jsx",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
+  "references": []
+}

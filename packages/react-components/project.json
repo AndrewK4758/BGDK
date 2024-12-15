@@ -1,0 +1,52 @@
+{
+  "name": "react-components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/{options.outDir}"],
+      "defaultConfiguration": "production",
+      "configFile": "packages/react-components/vite.config.mts",
+      "options": {
+        "outputPath": "dist/{projectRoot}"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "config": "vite.config.mts"
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/react-components/src/index.ts",
+        "outputPath": "dist/packages/react-components",
+        "tsConfig": "packages/react-components/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

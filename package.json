@@ -81,7 +81,7 @@
     "@babel/preset-react": "7.26.3",
     "@babel/preset-typescript": "7.26.0",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.16.0",
+    "@eslint/js": "9.17.0",
     "@mui/types": "7.2.19",
     "@mui/x-data-grid-generator": "7.23.2",
     "@nx/devkit": "20.2.2",
@@ -156,7 +156,7 @@
     "vitest": "2.1.8"
   },
   "prisma": {
-    "schema": "./libs/prisma/prisma/schema.prisma"
+    "schema": "./packages/prisma/prisma/schema.prisma"
   },
   "packageManager": "pnpm@10.0.0-beta.1+sha512.629de0531b9ae9a3f8e372d014ef8f5a57906d9a48095ced54bbfbd246b4136381478032c8d13819fd1eedde8330517a799ea6756eedd9a136e36524fa3083cf"
 }

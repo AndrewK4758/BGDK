@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../dist/packages/games-components-logic",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "../types/types-game/src/**/*.ts"
+  ]
+}

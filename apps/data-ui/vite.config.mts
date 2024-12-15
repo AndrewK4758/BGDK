@@ -3,6 +3,7 @@ import { defineConfig as testConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import { cwd } from 'process';
 
 const TestConfig = testConfig({
   test: {
@@ -13,9 +14,9 @@ const TestConfig = testConfig({
     reporters: ['default'],
     coverage: {
       reportsDirectory: '../../coverage/apps/data-ui',
-      provider: 'v8',
-    },
-  },
+      provider: 'v8'
+    }
+  }
 });
 
 const AppConfig = defineConfig({
@@ -24,21 +25,21 @@ const AppConfig = defineConfig({
 
   server: {
     port: 5200,
-    host: 'localhost',
+    host: 'localhost'
   },
 
   preview: {
     port: 5300,
-    host: 'localhost',
+    host: 'localhost'
   },
 
   plugins: [
     react({ babel: { targets: { esmodules: true } } }),
     nxViteTsPaths({
       debug: true,
-      mainFields: ['exports', '.', 'types', 'imports', 'require'],
+      mainFields: ['exports', '.', 'types', 'imports']
     }),
-    nxCopyAssetsPlugin(['*.md']),
+    nxCopyAssetsPlugin(['*.md'])
   ],
 
   // Uncomment this if you are using workers.
@@ -47,11 +48,11 @@ const AppConfig = defineConfig({
   // },
 
   build: {
-    outDir: './dist',
-    emptyOutDir: true,
+    outDir: `${cwd()}/dist/apps/data-ui`,
+    emptyOutDir: false,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
+      transformMixedEsModules: true
     },
     rollupOptions: {
       perf: true,
@@ -61,22 +62,22 @@ const AppConfig = defineConfig({
         generatedCode: {
           arrowFunctions: true,
           constBindings: true,
-          symbols: true,
-        },
-      },
+          symbols: true
+        }
+      }
     },
-    target: 'esnext',
+    target: 'esnext'
   },
   esbuild: {
     jsx: 'automatic',
     format: 'esm',
     color: true,
-    platform: 'browser',
+    platform: 'browser'
   },
   logLevel: 'info',
   appType: 'spa',
   publicDir: 'public',
-  envDir: './env',
+  envDir: './env'
 });
 
 export default mergeConfig(TestConfig, AppConfig);

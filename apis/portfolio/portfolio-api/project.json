@@ -12,11 +12,10 @@
       "options": {
         "esbuildConfig": "apis/portfolio/portfolio-api/esbuild.config.cjs",
         "main": "apis/portfolio/portfolio-api/src/main.ts",
-        "outputPath": "{workspaceRoot}/dist",
+        "outputPath": "{workspaceRoot}/dist/apis/portfolio-api",
         "outputFileName": "main.js",
         "tsConfig": "apis/portfolio/portfolio-api/tsconfig.app.json",
-        "assets": [],
-        "format": ["esm", "cjs"]
+        "assets": []
       },
       "configurations": {
         "development": {
@@ -66,6 +65,16 @@
 
     "docker-push": {
       "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/portfolio-api"
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apis/portfolio/portfolio-api/src/index.ts",
+        "outputPath": "dist/apis/portfolio/portfolio-api",
+        "tsConfig": "apis/portfolio/portfolio-api/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
     }
   }
 }

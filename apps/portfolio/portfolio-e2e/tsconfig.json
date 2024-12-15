@@ -2,7 +2,7 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "../../../dist/out-tsc"
+    "outDir": "../../../dist/apps/portfolio-e2e"
   },
   "include": [
     "**/*.ts",
@@ -31,24 +31,11 @@
   ],
   "exclude": [],
   "references": [
-    { "path": "../../../libs/gen-ai/prompt-builder" },
-    { "path": "../../../libs/media-recorder" },
-    { "path": "../../../libs/socket-io/client" },
-    { "path": "../../../libs/types/types-ai" },
-    { "path": "../../../libs/gen-ai/vertex-ai" },
-    { "path": "../../../libs/types/types-api" },
-    { "path": "../../../libs/react-components" },
-    { "path": "../../../libs/utils" },
-    { "path": "../../../libs/mocks" },
-    { "path": "../../../libs/games/tic-tac-toe" },
-    { "path": "../../../libs/games/chutes-and-ladders" },
-    { "path": "../../../libs/games-components-logic" },
-    { "path": "../../../libs/game" },
-    { "path": "../../../libs/models/instance-of-game" },
-    { "path": "../../../libs/types/types-game" },
-    { "path": "../../../libs/chain" },
-    { "path": "../../../libs/chains-for-games" },
-    { "path": "../../../libs/shared-react-components" },
-    { "path": "../portfolio" }
+    {
+      "path": "../../../packages/types/types-game"
+    },
+    {
+      "path": "../portfolio"
+    }
   ]
 }

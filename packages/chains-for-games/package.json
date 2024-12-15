@@ -1,0 +1,34 @@
+{
+  "name": "@bgdk/chains-for-games",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@bgdk/chain": "0.0.1",
+    "@bgdk/types-game": "0.0.1",
+    "short-unique-id": "^5.2.0",
+    "@bgdk/games-components-logic": "0.0.1",
+    "@bgdk/tic-tac-toe": "0.0.1",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "2.4.0",
+    "@bgdk/utils": "0.0.1",
+    "ts-jest": "29.2.5",
+    "@bgdk/chutes-and-ladders": "0.0.1",
+    "@bgdk/game": "0.0.1",
+    "@bgdk/instance-of-game": "0.0.1",
+    "@bgdk/mocks": "0.0.1",
+    "express": "4.21.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "chains-for-games",
+    "sourceRoot": "packages/chains-for-games/src",
+    "projectType": "library"
+  }
+}

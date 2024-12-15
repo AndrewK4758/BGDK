@@ -1,7 +1,0 @@
-{
-  "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {},
-  "files": [],
-  "include": [],
-  "references": [{ "path": "../../types/types-ai" }, { "path": "./tsconfig.lib.json" }]
-}

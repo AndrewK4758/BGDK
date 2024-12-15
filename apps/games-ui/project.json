@@ -10,13 +10,14 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{options.outDir}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "configFile": "vite.config.mts",
         "main": "apps/games-ui/src/main.tsx",
-        "tsConfig": "apps/games-ui/tsconfig.app.json",
-        "assets": ["apps/games-ui/*.md"]
+        "assets": ["apps/games-ui/*.md"],
+        "outDir": "{workspaceRoot}/dist/{projectRoot}"
       },
       "configurations": {
         "development": {
@@ -28,41 +29,22 @@
       }
     },
     "serve": {
-      "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "games-ui:build"
-      },
       "configurations": {
-        "development": {
-          "buildTarget": "games-ui:build:development",
-          "hmr": true
-        },
-        "production": {
-          "buildTarget": "games-ui:build:production",
-          "hmr": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "preview": {
-      "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "games-ui:build"
-      },
       "configurations": {
-        "development": {
-          "buildTarget": "games-ui:build:development"
-        },
-        "production": {
-          "buildTarget": "games-ui:build:production"
-        }
+        "development": {},
+        "production": {}
       }
     },
     "test": {
-      "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/games-ui/vite.config.mts"
+        "config": "vite.config.mts"
       },
       "configurations": {
         "watch": {
@@ -74,6 +56,16 @@
       "executor": "@nx/eslint:lint",
       "options": {
         "fix": true
+      }
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apps/games-ui/src/main.tsx",
+        "outputPath": "dist/apps/games-ui",
+        "tsConfig": "apps/games-ui/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
       }
     }
   }

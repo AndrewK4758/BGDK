@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../dist/packages/mocks/tsconfig.lib.tsbuildinfo",
+    "types": ["jest", "node"]
+  },
+  "include": ["jest.config.ts", "src/**/*.ts", "src/**/*.d.ts", "tests/**/*.spec.ts", "../types/types-game/src/**/*.ts"]
+}

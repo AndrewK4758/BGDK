@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/packages/socket-io/client",
+    "tsBuildInfoFile": "../../../dist/packages/socket-io/client/tsconfig.lib.tsbuildinfo",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts", "../../types/types-ai/src/**/*.ts"],
+  "references": []
+}

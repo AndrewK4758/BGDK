@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/packages/models/all-games-map",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "src/**/*.ts",
+    "../instance-of-game/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../utils/src/**/*.ts",
+    "../../games/**/*/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": []
+}

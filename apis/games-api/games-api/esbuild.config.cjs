@@ -8,6 +8,7 @@ build({
   sourcemap: 'linked',
   target: 'node23',
   platform: 'node',
+  format: 'esm',
   bundle: true,
   write: true,
   outdir: `${cwd()}/dist/apis/games-api`

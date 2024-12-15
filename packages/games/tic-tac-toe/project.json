@@ -1,0 +1,47 @@
+{
+  "name": "tic-tac-toe",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/games/tic-tac-toe/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "outputs": ["{projectRoot}/{options.outDir}", "{workspaceRoot}/dist/packages/games/tic-tac-toe"],
+      "options": {
+        "main": "packages/games/tic-tac-toe/src/index.ts",
+        "assets": ["packages/games/tic-tac-toe/*.md"],
+        "config": "./vite.config.mts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/games/tic-tac-toe/jest.config.ts",
+        "reportsDirectory": "../../../coverage/packages/games/tic-tac-toe",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "packages/games/tic-tac-toe/**/*.{ts,tsx,js,jsx}",
+          "packages/games/tic-tac-toe/package.json"
+        ]
+      }
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/games/tic-tac-toe/src/index.ts",
+        "outputPath": "dist/packages/games/tic-tac-toe",
+        "tsConfig": "packages/games/tic-tac-toe/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

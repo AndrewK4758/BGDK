@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/packages/games/chutes-and-ladders",
+    "tsBuildInfoFile": "../../../dist/packages/games/chutes-and-ladders/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts", "../../games-components-logic/src/**/*.ts"],
+  "exclude": ["vite.config.mts", "jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

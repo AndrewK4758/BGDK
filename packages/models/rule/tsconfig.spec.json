@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/packages/models/rule",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "src/**/*.ts",
+    "../../types/types-game/src/**/*.ts"
+  ]
+}

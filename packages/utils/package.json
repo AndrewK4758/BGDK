@@ -1,0 +1,23 @@
+{
+  "name": "@bgdk/utils",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "types-game": "workspace:*",
+    "express": "4.21.1",
+    "socket.io": "4.8.1",
+    "@bgdk/types-game": "0.0.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "utils",
+    "projectType": "library",
+    "sourceRoot": "packages/utils/src"
+  }
+}

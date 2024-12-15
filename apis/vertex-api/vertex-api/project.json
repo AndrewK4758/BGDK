@@ -12,11 +12,10 @@
       "options": {
         "esbuildConfig": "apis/vertex-api/vertex-api/esbuild.config.cjs",
         "main": "apis/vertex-api/vertex-api/src/main.ts",
-        "outputPath": "{workspaceRoot}/dist",
+        "outputPath": "{workspaceRoot}/dist/apis/vertex-api",
         "outputFileName": "main.js",
         "tsConfig": "apis/vertex-api/vertex-api/tsconfig.app.json",
-        "assets": [],
-        "format": ["esm", "cjs"]
+        "assets": []
       },
       "configurations": {
         "development": {
@@ -69,6 +68,16 @@
     },
     "docker-push": {
       "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/vertex-api"
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apis/vertex-api/vertex-api/src/index.ts",
+        "outputPath": "dist/apis/vertex-api/vertex-api",
+        "tsConfig": "apis/vertex-api/vertex-api/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
     }
   }
 }

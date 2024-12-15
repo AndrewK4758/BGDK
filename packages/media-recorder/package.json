@@ -1,0 +1,21 @@
+{
+  "name": "@bgdk/media-recorder",
+  "version": "0.0.1",
+  "dependencies": {
+    "react": "19.0.0",
+    "esbuild": "0.24.0"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "media-recorder",
+    "sourceRoot": "packages/media-recorder/src",
+    "projectType": "library"
+  }
+}

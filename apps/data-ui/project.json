@@ -7,10 +7,11 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{projectRoot}/{options.outDir}"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "{workspaceRoot}/dist/{projectRoot}"
+        "outDir": "dist/{projectRoot}"
       },
       "configurations": {
         "development": {
@@ -22,41 +23,22 @@
       }
     },
     "serve": {
-      "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "data-ui:build"
-      },
       "configurations": {
-        "development": {
-          "buildTarget": "data-ui:build:development",
-          "hmr": true
-        },
-        "production": {
-          "buildTarget": "data-ui:build:production",
-          "hmr": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "preview": {
-      "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "data-ui:build"
-      },
       "configurations": {
-        "development": {
-          "buildTarget": "data-ui:build:development"
-        },
-        "production": {
-          "buildTarget": "data-ui:build:production"
-        }
+        "development": {},
+        "production": {}
       }
     },
     "test": {
-      "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/data-ui/vite.config.mts"
+        "config": "vite.config.mts"
       },
       "configurations": {
         "watch": {
@@ -70,6 +52,16 @@
       "options": {
         "fix": true,
         "lintFilePatterns": ["apps/data-ui/**/*.{ts,tsx,js,jsx}", "apps/data-ui/package.json"]
+      }
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apps/data-ui/src/main.tsx",
+        "outputPath": "dist/apps/data-ui",
+        "tsConfig": "apps/data-ui/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
       }
     }
   }

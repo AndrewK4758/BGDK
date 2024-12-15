@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/mocks",
+    "tsBuildInfoFile": "../../dist/packages/mocks/tsconfig.lib.tsbuildinfo",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node", "jest"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "../types/types-game/src/**/*.ts"],
+  "exclude": ["tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

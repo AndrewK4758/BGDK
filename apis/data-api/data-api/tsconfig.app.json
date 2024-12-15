@@ -1,12 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist",
+    "outDir": "../../../dist/apis/data-api",
+    "tsBuildInfoFile": "../../../dist/apis/data-api/tsconfig.app.tsbuildinfo",
     "types": ["node", "express"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
   },
-  "include": ["src/**/*.ts", "../../../libs/prisma/src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../../packages/prisma/src/**/*.ts"],
   "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
-  "references": [{ "path": "../../../libs/prisma/tsconfig.lib.json" }]
+  "references": [
+    {
+      "path": "../../../packages/prisma/tsconfig.lib.json"
+    }
+  ]
 }

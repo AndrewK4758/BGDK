@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/password",
+    "tsBuildInfoFile": "../../dist/packages/password/tsconfig.lib.tsbuildinfo",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"]
+}

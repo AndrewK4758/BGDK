@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/packages/models/instance-of-game",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "../../games/chutes-and-ladders/src/**/*.ts",
+    "../../game/src/**/*.ts",
+    "../../types/types-game/src/**/*.ts",
+    "../../games-components-logic/src/**/*.ts"
+  ],
+  "exclude": []
+}

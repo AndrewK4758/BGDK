@@ -12,11 +12,10 @@
       "options": {
         "esbuildConfig": "apis/data-api/data-api/esbuild.config.cjs",
         "main": "apis/data-api/data-api/src/main.ts",
-        "outputPath": "{workspaceRoot}/dist",
+        "outputPath": "{workspaceRoot}/dist/apis/data-api",
         "outputFileName": "main.js",
         "tsConfig": "apis/data-api/data-api/tsconfig.app.json",
-        "assets": [],
-        "format": ["esm", "cjs"]
+        "assets": []
       },
       "configurations": {
         "development": {
@@ -62,6 +61,16 @@
     },
     "docker-push": {
       "command": "docker push us-central1-docker.pkg.dev/games-424800/portfolio/data-api"
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apis/data-api/data-api/src/index.ts",
+        "outputPath": "dist/apis/data-api/data-api",
+        "tsConfig": "apis/data-api/data-api/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
     }
   }
 }

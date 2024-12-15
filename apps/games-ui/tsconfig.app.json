@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "../../dist/apps/games-ui",
+    "tsBuildInfoFile": "../../dist/apps/games-ui/tsconfig.app.tsbuildinfo",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
@@ -10,42 +11,30 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../libs/models/rule/src/**/*.ts",
-    "../../libs/models/game-builder/src/**/*.ts",
-    "../../libs/models/instance-of-game/src/**/*.ts",
-    "../../libs/games/chutes-and-ladders/src/**/*.ts",
-    "../../libs/games/tic-tac-toe/src/**/*.ts",
-    "../../libs/game/src/**/*.ts",
-    "../../libs/utils/src/**/*.ts",
-    "../../libs/chain/src/**/*.ts",
-    "../../libs/chains-for-games/src/**/*.ts",
-    "../../libs/types/types-api/src/**/*.ts",
-    "../../libs/games-components-logic/src/**/*.ts",
-    "../../libs/types/types-game/src/**/*.ts",
-    "../../libs/types/types-ai/src/**/*.ts",
-    "../../libs/react-components/src/**/*.ts",
-    "../../libs/shared-react-components/src/**/*.ts",
-    "../../libs/react-components/src/**/*.tsx",
-    "../../libs/shared-react-components/src/**/*.tsx",
-    "../../libs/gen-ai/vertex-ai/src/**/*.ts"
+    "../../packages/models/rule/src/**/*.ts",
+    "../../packages/models/game-builder/src/**/*.ts",
+    "../../packages/models/instance-of-game/src/**/*.ts",
+    "../../packages/games/chutes-and-ladders/src/**/*.ts",
+    "../../packages/games/tic-tac-toe/src/**/*.ts",
+    "../../packages/game/src/**/*.ts",
+    "../../packages/utils/src/**/*.ts",
+    "../../packages/chain/src/**/*.ts",
+    "../../packages/chains-for-games/src/**/*.ts",
+    "../../packages/types/types-api/src/**/*.ts",
+    "../../packages/games-components-logic/src/**/*.ts",
+    "../../packages/types/types-game/src/**/*.ts",
+    "../../packages/types/types-ai/src/**/*.ts",
+    "../../packages/react-components/src/**/*.ts",
+    "../../packages/shared-react-components/src/**/*.ts",
+    "../../packages/react-components/src/**/*.tsx",
+    "../../packages/shared-react-components/src/**/*.tsx",
+    "../../packages/gen-ai/vertex-ai/src/**/*.ts"
   ],
 
   "references": [
-    { "path": "../../libs/games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../../libs/chains-for-games/tsconfig.lib.json" },
-    { "path": "../../libs/mocks/tsconfig.lib.json" },
-    { "path": "../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
-    { "path": "../../libs/games-components-logic/tsconfig.lib.json" },
-    { "path": "../../libs/game/tsconfig.lib.json" },
-    { "path": "../../libs/models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../../libs/chain/tsconfig.lib.json" },
-    { "path": "../../libs/utils/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-ai/tsconfig.lib.json" },
-    { "path": "../../libs/gen-ai/vertex-ai/tsconfig.lib.json" },
-    { "path": "../../libs/shared-react-components/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-api/tsconfig.lib.json" },
-    { "path": "../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../libs/react-components/tsconfig.lib.json" }
+    {
+      "path": "../../packages/types/types-game/tsconfig.lib.json"
+    }
   ],
   "exclude": [
     "tests/**/*.spec.ts",

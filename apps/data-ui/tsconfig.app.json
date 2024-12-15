@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist",
+    "outDir": "../../dist/apps/data-ui",
+    "tsBuildInfoFile": "../../dist/apps/data-ui/tsconfig.app.tsbuildinfo",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
@@ -11,14 +12,14 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../libs/types/**/*/src/**/*.ts",
-    "../../libs/games-components-logic/src/**/*.ts",
-    "../../libs/react-components/src/**/*.ts",
-    "../../libs/shared-react-components/src/**/*.ts",
-    "../../libs/react-components/src/**/*.tsx",
-    "../../libs/shared-react-components/src/**/*.tsx",
-    "../../libs/utils/src/**/*.ts",
-    "../../libs/gen-ai/vertex-ai/src/**/*.ts"
+    "../../packages/types/**/*/src/**/*.ts",
+    "../../packages/games-components-logic/src/**/*.ts",
+    "../../packages/react-components/src/**/*.ts",
+    "../../packages/shared-react-components/src/**/*.ts",
+    "../../packages/react-components/src/**/*.tsx",
+    "../../packages/shared-react-components/src/**/*.tsx",
+    "../../packages/utils/src/**/*.ts",
+    "../../packages/gen-ai/vertex-ai/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
@@ -32,5 +33,5 @@
     "vite.config.ts",
     "vitest.config.ts"
   ],
-  "references": [{ "path": "../../libs/shared-react-components/tsconfig.lib.json" }]
+  "references": []
 }

@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/shared-react-components",
+    "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": [
+    "vite.config.mts",
+    "vitest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.jsx",
+    "tests/**/*.spec.jsx",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "../react-components/src/**/*.ts",
+    "../react-components/src/**/*.tsx",
+    "../types/**/*/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../gen-ai/vertex-ai/src/**/*.ts",
+    "../utils/src/**/*.ts"
+  ]
+}

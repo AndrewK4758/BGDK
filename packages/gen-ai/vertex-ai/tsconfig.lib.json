@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "../../../dist/dist/packages/gen-ai/vertex-ai",
+    "tsBuildInfoFile": "../../../dist/packages/gen-ai/vertex-ai/tsconfig.lib.tsbuildinfo",
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "../../types/types-ai/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

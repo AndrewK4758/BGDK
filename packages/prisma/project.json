@@ -1,0 +1,41 @@
+{
+  "name": "prisma",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/prisma/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/{options.outDir}"],
+      "options": {
+        "main": "packages/prisma/src/index.ts",
+        "assets": ["packages/prisma/*.md"],
+        "config": "./vite.config.mts",
+        "outputPath": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true
+      }
+    },
+    "generate": {
+      "command": "pnpx prisma generate",
+      "options": {
+        "cwd": "./packages/prisma"
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/prisma/src/index.ts",
+        "outputPath": "dist/packages/prisma",
+        "tsConfig": "packages/prisma/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

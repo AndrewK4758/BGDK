@@ -11,12 +11,13 @@
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
-      "import": "./main.js",
-      "require": "./main.cjs"
+      "import": "./main.js"
     }
   },
   "private": true,
   "nx": {
-    "name": "Data API"
+    "name": "data-api",
+    "projectType": "application",
+    "sourceRoot": "apis/data-api/data-api/src"
   }
 }

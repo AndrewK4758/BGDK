@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/packages/gen-ai/prompt-builder",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "data/products.json",
+    "src/**/*.ts"
+  ]
+}

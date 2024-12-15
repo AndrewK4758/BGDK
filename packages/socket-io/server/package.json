@@ -1,0 +1,25 @@
+{
+  "name": "@bgdk/socket-io-server",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "socket.io": "^4.7.5",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "2.4.0",
+    "@bgdk/types-ai": "0.0.1",
+    "esbuild": "0.24.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "socket-io-server",
+    "projectType": "library",
+    "sourceRoot": "packages/socket-io/server/src"
+  }
+}

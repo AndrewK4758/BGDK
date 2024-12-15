@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apis/portfolio-api-e2e",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "types": ["jest", "node"]
   },
   "include": [

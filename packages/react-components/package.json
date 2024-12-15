@@ -1,0 +1,39 @@
+{
+  "name": "@bgdk/react-components",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "react-components",
+    "sourceRoot": "packages/react-components/src",
+    "projectType": "library"
+  },
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "@mui/icons-material": "6.1.9",
+    "@mui/material": "6.1.9",
+    "formik": "^2.4.6",
+    "react": "^18.3.1",
+    "react-router-dom": "7.0.2",
+    "yup": "^1.4.0",
+    "axios": "1.7.8",
+    "yup-password": "^0.4.0",
+    "@bgdk/types-api": "0.0.1",
+    "@testing-library/react": "16.0.1",
+    "vite": "5.4.11",
+    "@vitejs/plugin-react": "4.3.4",
+    "vite-plugin-dts": "4.3.0",
+    "@nx/vite": "20.1.4",
+    "@bgdk/shared-react-components": "0.0.1",
+    "socket.io-client": "4.8.1",
+    "@bgdk/vertex-ai": "0.0.1",
+    "@bgdk/utils": "0.0.1",
+    "@mui/x-date-pickers": "7.23.0"
+  }
+}

@@ -5,7 +5,7 @@ module.exports = [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist/**', '.gcloudignore'],
+    ignores: ['**/dist/**', '.gcloudignore', '**/support/global-setup.ts']
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -18,10 +18,10 @@ module.exports = [
           depConstraints: [
             {
               sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
+              onlyDependOnLibsWithTags: ['*']
+            }
+          ]
+        }
       ],
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -32,14 +32,14 @@ module.exports = [
           caughtErrorsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
-    },
+          ignoreRestSiblings: true
+        }
+      ]
+    }
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
-    rules: {},
-  },
+    rules: {}
+  }
 ];

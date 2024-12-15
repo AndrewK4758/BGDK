@@ -2,6 +2,7 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import { cwd } from 'process';
 
 export default defineConfig({
   test: {
@@ -10,25 +11,25 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
-    coverage: { reportsDirectory: '../../coverage/apps/games-ui', provider: 'v8' },
+    coverage: { reportsDirectory: '../../coverage/apps/games-ui', provider: 'v8' }
   },
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/games-ui',
 
   server: {
     port: 4200,
-    host: 'localhost',
+    host: 'localhost'
   },
 
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: 'localhost'
   },
 
   plugins: [
     react({ babel: { targets: { esmodules: true } } }),
-    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports', 'require'] }),
-    nxCopyAssetsPlugin(['*.md']),
+    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'imports'] }),
+    nxCopyAssetsPlugin(['*.md'])
   ],
 
   // Uncomment this if you are using workers.
@@ -37,11 +38,11 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: './dist',
-    emptyOutDir: true,
+    outDir: `${cwd()}/dist/apps/games-ui`,
+    emptyOutDir: false,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
+      transformMixedEsModules: true
     },
     assetsDir: './assets',
     rollupOptions: {
@@ -52,20 +53,20 @@ export default defineConfig({
         generatedCode: {
           arrowFunctions: true,
           constBindings: true,
-          symbols: true,
-        },
-      },
+          symbols: true
+        }
+      }
     },
-    target: 'esnext',
+    target: 'esnext'
   },
   esbuild: {
     format: 'esm',
     color: true,
-    platform: 'browser',
+    platform: 'browser'
   },
 
   logLevel: 'info',
   appType: 'spa',
   publicDir: 'public',
-  envDir: './env',
+  envDir: './env'
 });

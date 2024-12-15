@@ -1,0 +1,52 @@
+{
+  "name": "socket-io-server",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/socket-io/server/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": ["packages/socket-io/server/**/*.{ts,tsx,js,jsx}", "packages/socket-io/server/package.json"]
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "packages/socket-io/server/src/index.ts",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "index.js",
+        "tsConfig": "packages/socket-io/server/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "./README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/socket-io/server/src/index.ts",
+        "outputPath": "dist/packages/socket-io/server",
+        "tsConfig": "packages/socket-io/server/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

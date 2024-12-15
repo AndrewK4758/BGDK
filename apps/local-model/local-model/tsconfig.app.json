@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "../../../dist/apps/local-model",
+    "tsBuildInfoFile": "../../../dist/apps/local-model/tsconfig.app.tsbuildinfo",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "module": "ESNext",
     "moduleResolution": "Bundler"
@@ -11,10 +12,10 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../../libs/shared-react-components/src/**/*.ts",
-    "../../../libs/shared-react-components/src/**/*.tsx",
-    "../../../libs/socket-io/client/src/**/*.ts",
-    "../../../libs/types/types-ai/src/**/*.ts"
+    "../../../packages/shared-react-components/src/**/*.ts",
+    "../../../packages/shared-react-components/src/**/*.tsx",
+    "../../../packages/socket-io/client/src/**/*.ts",
+    "../../../packages/types/types-ai/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
@@ -30,9 +31,5 @@
     "vitest.config.ts",
     "vitest.config.mts"
   ],
-  "references": [
-    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
-    { "path": "../../../libs/socket-io/client/tsconfig.lib.json" },
-    { "path": "../../../libs/shared-react-components/tsconfig.lib.json" }
-  ]
+  "references": []
 }

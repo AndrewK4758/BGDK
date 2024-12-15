@@ -12,7 +12,7 @@
       "options": {
         "esbuildConfig": "apis/games-api/games-api/esbuild.config.cjs",
         "main": "apis/games-api/games-api/src/main.ts",
-        "outputPath": "{workspaceRoot}/dist",
+        "outputPath": "{workspaceRoot}/dist/apis/games-api",
         "outputFileName": "index.js",
         "tsConfig": "apis/games-api/games-api/tsconfig.app.json",
         "assets": [
@@ -89,6 +89,16 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["nx run games-api:docker-start-db", "nx test games-api"]
+      }
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apis/games-api/games-api/src/index.ts",
+        "outputPath": "dist/apis/games-api/games-api",
+        "tsConfig": "apis/games-api/games-api/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
       }
     }
   }

@@ -2,9 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apis/vertex-api",
     "types": ["jest", "node"]
   },
   "include": ["jest.config.ts", "tests/**/*.test.ts", "tests/**/*.spec.ts", "src/**/*.d.ts", "src/**/*.ts"],

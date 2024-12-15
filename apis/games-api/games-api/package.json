@@ -29,12 +29,13 @@
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
-      "import": "./main.js",
-      "require": "./main.cjs"
+      "import": "./main.js"
     }
   },
   "private": true,
   "nx": {
-    "name": "Games API"
+    "name": "games-api",
+    "sourceRoot": "apis/games-api/games-api/src",
+    "projectType": "application"
   }
 }

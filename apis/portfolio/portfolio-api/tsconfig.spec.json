@@ -1,18 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
-    "types": ["jest", "node"],
-    "module": "CommonJS",
-    "moduleResolution": "Node10"
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/apis/portfolio-api",
+    "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
-    "../../../libs/mocks/src/**/*.ts",
-    "../../../libs/types/types-game/**/*.ts"
+    "../../../packages/mocks/src/**/*.ts",
+    "../../../packages/types/types-game/**/*.ts"
   ],
   "exclude": []
 }

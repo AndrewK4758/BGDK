@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist",
+    "outDir": "../../../dist/apis/games-api",
+    "tsBuildInfoFile": "../../../dist/apis/games-api/tsconfig.app.tsbuildinfo",
     "types": ["node", "express"],
     "strict": true,
     "module": "ESNext",
@@ -10,45 +11,63 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "../../../libs/password/src/**/*.ts",
-    "../../../libs/prisma/src/**/*.ts",
-    "../../../libs/socket-io/server/src/**/*.ts",
-    "../../../libs/utils/src/**/*.ts",
-    "../../../libs/chains-for-games/src/**/*.ts",
-    "../../../libs/models/rule/src/**/*.ts",
-    "../../../libs/models/game-builder/src/**/*.ts",
-    "../../../libs/chain/src/**/*.ts",
-    "../../../libs/games/tic-tac-toe/src/**/*.ts",
-    "../../../libs/games-components-logic/src/**/*.ts",
-    "../../../libs/games/chutes-and-ladders/src/**/*.ts",
-    "../../../libs/game/src/**/*.ts",
-    "../../../libs/models/instance-of-game/src/**/*.ts",
-    "../../../libs/models/all-games-map/src/**/*.ts",
-    "../../../libs/types/types-game/src/**/*.ts",
-    "../../../libs/types/types-api/src/**/*.ts",
-    "../../../libs/utils/src/lib/get-current-minute.ts",
-    "../../../libs/gen-ai/vertex-ai/src/**/*.ts",
-    "../../../libs/types/types-ai/src/**/*.ts"
+    "../../../packages/password/src/**/*.ts",
+    "../../../packages/prisma/src/**/*.ts",
+    "../../../packages/socket-io/server/src/**/*.ts",
+    "../../../packages/utils/src/**/*.ts",
+    "../../../packages/chains-for-games/src/**/*.ts",
+    "../../../packages/models/rule/src/**/*.ts",
+    "../../../packages/models/game-builder/src/**/*.ts",
+    "../../../packages/chain/src/**/*.ts",
+    "../../../packages/games/tic-tac-toe/src/**/*.ts",
+    "../../../packages/games-components-logic/src/**/*.ts",
+    "../../../packages/games/chutes-and-ladders/src/**/*.ts",
+    "../../../packages/game/src/**/*.ts",
+    "../../../packages/models/instance-of-game/src/**/*.ts",
+    "../../../packages/models/all-games-map/src/**/*.ts",
+    "../../../packages/types/types-game/src/**/*.ts",
+    "../../../packages/types/types-api/src/**/*.ts",
+    "../../../packages/utils/src/lib/get-current-minute.ts",
+    "../../../packages/gen-ai/vertex-ai/src/**/*.ts",
+    "../../../packages/types/types-ai/src/**/*.ts"
   ],
   "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
   "references": [
-    { "path": "../../../libs/socket-io/server/tsconfig.lib.json" },
-    { "path": "../../../libs/types/types-ai/tsconfig.lib.json" },
-    { "path": "../../../libs/password/tsconfig.lib.json" },
-    { "path": "../../../libs/prisma/tsconfig.lib.json" },
-    { "path": "../../../libs/models/all-games-map/tsconfig.lib.json" },
-    { "path": "../../../libs/models/rule/tsconfig.lib.json" },
-    { "path": "../../../libs/models/game-builder/tsconfig.lib.json" },
-    { "path": "../../../libs/types/types-api/tsconfig.lib.json" },
-    { "path": "../../../libs/utils/tsconfig.lib.json" },
-    { "path": "../../../libs/mocks/tsconfig.lib.json" },
-    { "path": "../../../libs/games/tic-tac-toe/tsconfig.lib.json" },
-    { "path": "../../../libs/games/chutes-and-ladders/tsconfig.lib.json" },
-    { "path": "../../../libs/games-components-logic/tsconfig.lib.json" },
-    { "path": "../../../libs/game/tsconfig.lib.json" },
-    { "path": "../../../libs/models/instance-of-game/tsconfig.lib.json" },
-    { "path": "../../../libs/chains-for-games/tsconfig.lib.json" },
-    { "path": "../../../libs/types/types-game/tsconfig.lib.json" },
-    { "path": "../../../libs/chain/tsconfig.lib.json" }
+    {
+      "path": "../../../packages/utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/password/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/types/types-api/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/prisma/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/models/all-games-map/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/games/tic-tac-toe/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/types/types-game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/models/game-builder/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/games/chutes-and-ladders/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/game/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/chains-for-games/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../packages/chain/tsconfig.lib.json"
+    }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/packages/models/all-games-map",
+    "tsBuildInfoFile": "../../../dist/packages/models/all-games-map/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts", "../../utils/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

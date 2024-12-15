@@ -16,12 +16,13 @@
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
-      "import": "./main.js",
-      "require": "./main.cjs"
+      "import": "./main.js"
     }
   },
   "private": true,
   "nx": {
-    "name": "Portfolio API"
+    "name": "portfolio-api",
+    "sourceRoot": "apis/portfolio/portfolio-api/src",
+    "projectType": "application"
   }
 }

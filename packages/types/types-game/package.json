@@ -1,0 +1,24 @@
+{
+  "name": "@bgdk/types-game",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "^2.4.0",
+    "express": "4.21.2",
+    "socket.io": "4.8.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "types-game",
+    "sourceRoot": "packages/types/types-game/src",
+    "projectType": "library"
+  }
+}

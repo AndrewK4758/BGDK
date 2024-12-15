@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist",
+    "tsBuildInfoFile": "../../dist/packages/chain/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "vite/client"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
+  },
+  "include": ["vite.config.ts", "src/**/*.ts", "../types/types-game/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

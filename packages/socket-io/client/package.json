@@ -1,0 +1,21 @@
+{
+  "name": "@bgdk/socket-io-client",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@bgdk/types-ai": "0.0.1",
+    "socket.io-client": "4.8.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "socket-io-client",
+    "sourceRoot": "packages/socket-io/client/src",
+    "projectType": "library"
+  }
+}

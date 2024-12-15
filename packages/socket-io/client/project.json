@@ -1,0 +1,52 @@
+{
+  "name": "socket-io-client",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/socket-io/client/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project client --web",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true
+      }
+    },
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "packages/socket-io/client/src/index.ts",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "main.js",
+        "tsConfig": "packages/socket-io/client/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "./README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/socket-io/client/src/index.ts",
+        "outputPath": "dist/packages/socket-io/client",
+        "tsConfig": "packages/socket-io/client/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

@@ -4,17 +4,16 @@
   "sourceRoot": "apps/local-model/local-model/src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project local-model --web",
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^typecheck"],
+      "outputs": ["{projectRoot}/{options.outDir}", "{projectRoot}/dist"],
       "defaultConfiguration": "development",
       "options": {
-        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
         "main": "apps/local-model/local-model/src/main.tsx",
-        "tsConfig": "apps/local-model/local-model/tsconfig.app.json",
-        "assets": ["apps/local-model/local-model/*.md"]
+        "assets": ["apps/local-model/local-model/*.md"],
+        "outDir": "dist/{projectRoot}"
       },
       "configurations": {
         "development": {
@@ -27,41 +26,24 @@
       }
     },
     "serve": {
-      "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "local-model:build",
         "open": false,
         "verbose": true
       },
       "configurations": {
-        "development": {
-          "buildTarget": "local-model:build:development",
-          "hmr": true
-        },
-        "production": {
-          "buildTarget": "local-model:build:production",
-          "hmr": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "preview": {
-      "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "local-model:build"
-      },
       "configurations": {
-        "development": {
-          "buildTarget": "local-model:build:development"
-        },
-        "production": {
-          "buildTarget": "local-model:build:production"
-        }
+        "development": {},
+        "production": {}
       }
     },
     "test": {
-      "executor": "@nx/vite:test",
       "options": {
         "config": "apps/local-model/local-model/vite.config.mts"
       },
@@ -76,6 +58,16 @@
       "options": {
         "fix": true,
         "color": true
+      }
+    },
+
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "apps/local-model/local-model/src/main.tsx",
+        "outputPath": "dist/apps/local-model/local-model",
+        "tsConfig": "apps/local-model/local-model/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
       }
     }
   }

@@ -2,6 +2,16 @@
   "extends": "../../../tsconfig.base.json",
   "files": [],
   "include": [],
-  "references": [{ "path": "../../../libs/prisma" }, { "path": "../data-api" }, { "path": "./tsconfig.spec.json" }],
+  "references": [
+    {
+      "path": "../../../packages/prisma"
+    },
+    {
+      "path": "../data-api"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
   "compilerOptions": {}
 }

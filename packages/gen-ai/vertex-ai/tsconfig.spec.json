@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "outDir": "../../../dist/packages/gen-ai/vertex-ai",
+    "types": ["jest", "node"]
+  },
+  "include": ["jest.config.ts", "tests/**/*.test.ts", "tests/**/*.spec.ts", "src/**/*.d.ts", "src/**/*.ts"]
+}

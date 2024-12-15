@@ -1,0 +1,20 @@
+{
+  "name": "@bgdk/types-ai",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "types-ai",
+    "sourceRoot": "packages/types/types-ai/src",
+    "projectType": "library"
+  },
+  "dependencies": {
+    "socket.io": "4.8.1"
+  }
+}

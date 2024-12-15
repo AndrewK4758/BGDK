@@ -18,12 +18,13 @@
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
-      "import": "./main.js",
-      "require": "./main.cjs"
+      "import": "./main.js"
     }
   },
   "private": true,
   "nx": {
-    "name": "Vertex API"
+    "name": "vertex-api",
+    "sourceRoot": "apis/vertex-api/vertex-api/src",
+    "projectType": "application"
   }
 }

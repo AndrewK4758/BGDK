@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/packages/models/instance-of-game",
+    "tsBuildInfoFile": "../../../dist/packages/models/instance-of-game/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "vite/client"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
+  },
+  "include": ["src/**/*.ts", "../../types/types-game/src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts"],
+  "references": []
+}

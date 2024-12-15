@@ -1,0 +1,48 @@
+{
+  "name": "instance-of-game",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/models/instance-of-game/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{projectRoot}/{options.outDir}"],
+      "options": {
+        "main": "packages/models/instance-of-game/src/index.ts",
+        "assets": ["packages/models/instance-of-game/*.md"],
+        "config": "./vite.config.mts",
+        "outputPath": "dist/{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/models/instance-of-game/jest.config.ts",
+        "reportsDirectory": "../../coverage/packages/models/instance-of-game",
+        "testFiles": ["./src/tests/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "fix": true,
+        "lintFilePatterns": [
+          "packages/models/instance-of-game/**/*.{ts,tsx,js,jsx}",
+          "packages/models/instance-of-game/package.json"
+        ]
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/models/instance-of-game/src/index.ts",
+        "outputPath": "dist/packages/models/instance-of-game",
+        "tsConfig": "packages/models/instance-of-game/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

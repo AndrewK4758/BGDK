@@ -3,9 +3,15 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../../../libs/prisma" },
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "../../../packages/prisma"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ],
   "compilerOptions": {}
 }

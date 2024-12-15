@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apps/local-model",
     "module": "ESNext",
     "types": [
       "vitest/globals",

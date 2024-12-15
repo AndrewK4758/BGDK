@@ -6,61 +6,29 @@
   "tags": [],
   "targets": {
     "build": {
-      "outputs": ["{workspaceRoot}/dist/apps/portfolio"],
-      "defaultConfiguration": "development",
+      "executor": "@nx/vite:build",
+      "dependsOn": ["^typecheck"],
       "options": {
-        "command": "vite build ./apps/portfolio/portfolio",
-        "color": true
-      },
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "externalDependencies": ["vite"]
-        }
-      ],
-      "metadata": {
-        "technologies": ["vite"],
-        "description": "Run Vite build",
-        "help": {
-          "command": "pnpm exec vite build --help",
-          "example": {
-            "options": {
-              "sourcemap": true,
-              "manifest": "manifest.json"
-            }
-          }
-        }
-      },
-      "executor": "nx:run-commands",
-      "configurations": {},
-      "parallelism": true
+        "main": "apps/portfolio/portfolio/index.html",
+        "assets": ["apps/portfolio/portfolio/*.md"],
+        "config": "apps/portfolio/portfolio/vite.config.mts",
+        "outDir": "dist/apps/portfolio"
+      }
     },
     "serve": {
-      "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "portfolio:build",
         "open": false,
         "verbose": true
       },
       "configurations": {
-        "development": {
-          "buildTarget": "portfolio:build:development",
-          "hmr": true
-        },
-        "production": {
-          "buildTarget": "portfolio:build:production",
-          "hmr": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "preview": {
       "dependsOn": ["build"],
       "options": {
-        "cwd": "apps/portfolio/portfolio",
         "command": "vite preview"
       },
       "metadata": {
@@ -80,10 +48,9 @@
       "parallelism": true
     },
     "test": {
-      "executor": "@nx/vite:test",
       "options": {
-        "config": "apps/portfolio/portfolio/vite.config.mts",
-        "reportsDirectory": "../../../coverage/apps/portfolio/portfolio"
+        "config": "vite.config.mts",
+        "coverage.reportsDirectory": "../../../coverage/apps/portfolio/portfolio"
       },
       "configurations": {
         "watch": {
@@ -98,21 +65,25 @@
         "color": true
       }
     },
-
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "./apps/portfolio/portfolio",
-        "commands": [{ "command": "gcloud app deploy website.yaml --quiet" }]
+        "commands": [
+          {
+            "command": "gcloud app deploy website.yaml --quiet"
+          }
+        ]
       }
     },
-    "serve-server": {
-      "executor": "nx:run-commands",
-      "defaultConfiguration": "development",
 
+    "typecheck": {
+      "executor": "@nx/js:tsc",
       "options": {
-        "cwd": "apps/portfolio/portfolio",
-        "command": "node ./dist/server/server.mjs"
+        "main": "apps/portfolio/portfolio/src/main.tsx",
+        "outputPath": "dist/apps/portfolio/portfolio",
+        "tsConfig": "apps/portfolio/portfolio/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
       }
     }
   }

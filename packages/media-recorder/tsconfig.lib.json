@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/media-recorder",
+    "tsBuildInfoFile": "../../dist/packages/media-recorder/tsconfig.lib.tsbuildinfo",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "tests/**/*.ts"]
+}

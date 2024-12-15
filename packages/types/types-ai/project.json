@@ -1,0 +1,45 @@
+{
+  "name": "types-ai",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/types/types-ai/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "packages/types/types-ai/src/index.ts",
+        "outputPath": "{workspaceRoot}/dist/{projectRoot}",
+        "outputFileName": "index.js",
+        "tsConfig": "packages/types/types-ai/tsconfig.lib.json",
+        "esbuildConfig": "packages/types/types-ai/esbuild.config.cjs",
+        "assets": [
+          {
+            "glob": "./README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "main": "packages/types/types-ai/src/index.ts",
+        "outputPath": "dist/packages/types/types-ai",
+        "tsConfig": "packages/types/types-ai/tsconfig.lib.json",
+        "command": "tsc --build --emitDeclarationOnly --pretty --verbose"
+      }
+    }
+  }
+}

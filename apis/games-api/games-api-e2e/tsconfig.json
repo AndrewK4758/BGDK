@@ -3,26 +3,48 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../../../libs/socket-io/server" },
-    { "path": "../../../libs/types/types-ai" },
-    { "path": "../../../libs/password" },
-    { "path": "../../../libs/prisma" },
-    { "path": "../../../libs/models/all-games-map" },
-    { "path": "../../../libs/models/rule" },
-    { "path": "../../../libs/models/game-builder" },
-    { "path": "../../../libs/types/types-api" },
-    { "path": "../../../libs/utils" },
-    { "path": "../../../libs/mocks" },
-    { "path": "../../../libs/games/tic-tac-toe" },
-    { "path": "../../../libs/games/chutes-and-ladders" },
-    { "path": "../../../libs/games-components-logic" },
-    { "path": "../../../libs/game" },
-    { "path": "../../../libs/models/instance-of-game" },
-    { "path": "../../../libs/chains-for-games" },
-    { "path": "../../../libs/types/types-game" },
-    { "path": "../../../libs/chain" },
-    { "path": "../games-api" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "../../../packages/utils"
+    },
+    {
+      "path": "../../../packages/password"
+    },
+    {
+      "path": "../../../packages/types/types-api"
+    },
+    {
+      "path": "../../../packages/prisma"
+    },
+    {
+      "path": "../../../packages/models/all-games-map"
+    },
+    {
+      "path": "../../../packages/games/tic-tac-toe"
+    },
+    {
+      "path": "../../../packages/types/types-game"
+    },
+    {
+      "path": "../../../packages/models/game-builder"
+    },
+    {
+      "path": "../../../packages/games/chutes-and-ladders"
+    },
+    {
+      "path": "../../../packages/game"
+    },
+    {
+      "path": "../../../packages/chains-for-games"
+    },
+    {
+      "path": "../../../packages/chain"
+    },
+    {
+      "path": "../games-api"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ],
   "compilerOptions": {}
 }

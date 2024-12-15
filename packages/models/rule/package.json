@@ -1,0 +1,23 @@
+{
+  "name": "@bgdk/rule",
+  "version": "0.0.1",
+  "dependencies": {
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
+    "jsonc-eslint-parser": "2.4.0",
+    "@bgdk/types-game": "0.0.1",
+    "ts-jest": "29.2.5"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "rule",
+    "sourceRoot": "packages/models/rule/src",
+    "projectType": "library"
+  }
+}

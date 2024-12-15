@@ -4,7 +4,7 @@
     "allowImportingTsExtensions": false,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apis/data-api",
     "types": ["jest", "node"]
   },
   "include": [
@@ -13,7 +13,7 @@
     "tests/**/*.spec.ts",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "../../../mocks/**/*.ts",
-    "../../../libs/prisma/src/**/*.ts"
+    "../../../packages/prisma/src/**/*.ts",
+    "../../../packages/mocks/src/**/*.ts"
   ]
 }

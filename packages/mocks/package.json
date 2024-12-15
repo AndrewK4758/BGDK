@@ -1,0 +1,21 @@
+{
+  "name": "@bgdk/mocks",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@bgdk/types-game": "0.0.1",
+    "express": "4.21.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "nx": {
+    "name": "mocks",
+    "sourceRoot": "dist/packages/mocks/src",
+    "projectType": "library"
+  }
+}

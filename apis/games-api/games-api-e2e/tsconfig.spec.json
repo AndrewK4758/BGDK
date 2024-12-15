@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": false,
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../../dist/apis/games-api-e2e",
     "types": ["jest", "node"]
   },
   "include": [

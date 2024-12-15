@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist",
+    "tsBuildInfoFile": "../../dist/packages/chains-for-games/tsconfig.lib.tsbuildinfo",
+    "types": ["node", "vite/client"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
+  },
+
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "../games/tic-tac-toe/src/**/*.ts",
+    "../games-components-logic/src/**/*.ts",
+    "../types/types-game/src/**/*.ts",
+    "../games/chutes-and-ladders/src/**/*.ts",
+    "../game/src/**/*.ts",
+    "../models/instance-of-game/src/**/*.ts",
+    "../utils/src/**/*.ts",
+    "../chain/src/**/*.ts"
+  ],
+
+  "exclude": ["jest.config.ts", "tests/**/*.spec.ts", "tests/**/*.test.ts", "jest.config.ts", "dist/**/*"],
+
+  "references": []
+}

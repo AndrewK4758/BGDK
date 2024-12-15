@@ -4,6 +4,17 @@ import react from '@vitejs/plugin-react';
 import { cwd } from 'process';
 import { defineConfig, type ViteUserConfig } from 'vitest/config';
 
+// These options were migrated by @nx/vite:convert-to-inferred from the project.json file.
+const configValues = { default: {} };
+
+// Determine the correct configValue to use based on the configuration
+const nxConfiguration = process.env.NX_TASK_TARGET_CONFIGURATION ?? 'default';
+
+const options = {
+  ...configValues.default,
+  ...(configValues[nxConfiguration] ?? {})
+};
+
 const vite: ViteUserConfig = defineConfig({
   test: {
     watch: false,
@@ -31,11 +42,7 @@ const vite: ViteUserConfig = defineConfig({
     host: 'localhost'
   },
 
-  plugins: [
-    react(),
-    nxViteTsPaths({ debug: true, mainFields: ['exports', '.', 'types', 'import', 'default'] }),
-    nxCopyAssetsPlugin(['*.md'])
-  ],
+  plugins: [react(), nxViteTsPaths({ debug: true }), nxCopyAssetsPlugin(['*.md'])],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -43,13 +50,8 @@ const vite: ViteUserConfig = defineConfig({
   // plugins: [nxViteTsPaths()]
   // },
 
-  css: {
-    devSourcemap: true,
-    modules: { exportGlobals: true }
-  },
-
   build: {
-    outDir: `${cwd()}/dist/apps/portfolio`,
+    outDir: `../../../dist/apps/portfolio`,
     manifest: true,
     emptyOutDir: true,
     sourcemap: true,

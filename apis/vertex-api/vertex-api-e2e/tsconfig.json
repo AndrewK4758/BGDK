@@ -3,12 +3,12 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "../../../libs/socket-io/server" },
-    { "path": "../../../libs/gen-ai/prompt-builder" },
-    { "path": "../../../libs/types/types-ai" },
-    { "path": "../../../libs/gen-ai/vertex-ai" },
-    { "path": "../vertex-api" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "../vertex-api"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ],
   "compilerOptions": {}
 }
